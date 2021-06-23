@@ -183,9 +183,9 @@ export const removeBuisnessById = ({ dispatch, getState }) => next => action => 
         console.log("removeBuisness", buisnessId)
         // {update == current?  dispatch(actions.getLastBuisness()):""}
         dispatch(actions.setGetAllBuisness())
-        // if (update == current) {
+        if (update == current) {
           dispatch(actions.getLastBuisness())
-        // }
+        }
       },
     });
   }

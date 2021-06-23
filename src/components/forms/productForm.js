@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import tempLogo from '../assets/newLogo.png';
 import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
+import CurrencyInput from 'react-currency-input-field';
 
 // import { borderRadius } from 'react-select/src/theme';
 
@@ -116,6 +117,35 @@ function ProductForm(props) {
       console.log('imagep', props.imgProduct)
     }
   }
+
+
+
+const updateCellPrice = (_value ,fieldName)=> {
+        if (!fieldName) {
+          return;
+        }
+        if (!_value) {
+          dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
+          return
+          //  dispatch({
+          //   fieldName,
+          //   value: {
+          //     value: undefined,
+          //     validationClass: '',
+          //     errorMessage: '',
+          //   },
+          // });
+        }
+    
+        const value = Number(_value);
+        if (!Number.isNaN(value)) {
+          dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
+        }
+      }
+
+
+
+
   return (
     <>
       <div className="container" style={{ height: 23 + 'vh', width: '97%', padding: '0px', margin: '0px' }}>
@@ -145,6 +175,31 @@ function ProductForm(props) {
             <div className="uploadImage">Upload</div>
           </button>
         </div>
+        {/* <div className="col-3">
+          <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+            onChange={(e) => addImage(e.target.files[0])} />
+          <button onClick={onButtonClick} className="rounded"
+            style={{
+              width: "13vh",
+              height: "13vh",
+              marginTop: "2vh",
+              borderRadius: "1vh",
+              backgroundColor: "#F6F6FA"
+            }}
+            className={classes.buttonUpload}>
+            {props.newProduct[0] && props.newProduct[0].images ?
+              <img
+                className={classes.imgUpload}
+                src={newProductTable ? newProductTable.images : ""}
+                alt="Logo"
+                title="Your Logo Here"
+                onClick={() => onButtonClick("logo")}
+              /> :
+              <HiUpload id="icon" className={classes.iconUpload} />}
+            <br></br>
+            <div className="uploadImage">Upload</div>
+          </button>
+        </div> */}
         <div className="row">
           <div className="hederN">
             <label> Name</label>

@@ -17,6 +17,7 @@
     /* outline: none; */
     border-bottom: 1px solid black;
 }
+
 .inputF{
     border-bottom-style: none !important;
     border: none !important;
@@ -63,13 +64,4 @@ button[disabled], html input[disabled] {
 }
 .serch :hover {
     width: 15% !important;
-}
-.table>tbody>tr>td,
- .table>tbody>tr>th, .table>tfoot>tr>td, 
- .table>tfoot>tr>th, .table>thead>tr>td, 
- .table>thead>tr>th {
-    vertical-align: middle !important;
-    /* padding: 8px;
-    line-height: 1.42857143;
-    border-top: 1px solid #ddd; */
 }

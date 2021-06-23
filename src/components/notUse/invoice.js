@@ -632,7 +632,7 @@ function Invoice(props) {
       dispatch(actions.setColorFlagShowSaveP("red"))
     }
     else {
-      dispatch(actions.setColorFlagShowSaveP("black"))
+      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
       // dispatch(actions.setResetNewProduct({}))
       dispatch(actions.setProductSelectLimit([]))
       allproduct.length > 0 && allproduct.map(
@@ -696,7 +696,7 @@ function Invoice(props) {
   const deleteItemFromStore = (index) => {
 
     debugger
-    dispatch(actions.setColorFlagShowSaveP("black"))
+    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagShowSaveP(false))
     dispatch(actions.setDeleteSaveSum(index))
     // setsaveSum2(saveSum-saveSum2)
@@ -1769,7 +1769,7 @@ export const Item = (props) => {
   const clearProduct = () => {
     if (invoice.products.length == 1) {
       debugger
-      dispatch(actions.setColorFlagShowSaveP("black"))
+      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
       dispatch(actions.setFlagShowSaveP(false))
       dispatch(actions.setDeleteSaveSum(props.index))
       // setsaveSum2(saveSum-saveSum2)
