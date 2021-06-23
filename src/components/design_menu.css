@@ -1,0 +1,145 @@
+/* #sa:hover #sb{
+    width:"100px";
+} */
+/* .f:focus ~.des{
+    background-color: red;
+} */
+.bb{
+
+}
+.wrapdm{
+    /* display: inline-block; */
+    height: 8vh;
+}
+.b_menu{
+    background: linear-gradient(to right, rgb(209, 209, 209,0.13) 50%, rgb(222, 222, 222,0.23) 50%) left; 
+    background-size: 200%;
+    
+    transition: .3s ease-out; 
+
+}
+.b_menu:focus {
+    /* border-bottom: 3px solid #917BDF ; */
+      background-position: right;
+     
+}
+
+/* #b_design:focus +#b_menu{
+    opacity: 0.3;
+} */
+.b_menu:focus +.b_design{
+    opacity: 0.5;
+}
+.b_design:focus +.b_menu{
+    opacity: 0.5;
+}
+
+
+/* #b_menu:focus +#b_design{ */
+     /* opacity: 0.3; */
+    /* background: linear-gradient(to left, rgba(253, 9, 9, 0.13) 50%, rgba(182, 156, 253, 0.23) 50%) right; 
+    background-size: 200%;
+    transition: .3s ease-out;  */
+    
+    /* background: red; */ 
+        /* background-position: left; */
+/* } */
+/* #b_design:focus +#b_menu{
+    opacity: 0.3;
+} */
+/* .button1 {width:10%; height:10%; background:red; }
+.button2 { width:10%; height:10%; background:blue; } */
+/* .button1:hover { background:green; } */
+/* .button1:focus + .button2 { background:green; }  */
+/* #b_menu:hover ~ #b_design{ 
+background: greenyellow !important;
+ } */
+.b{
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    background: rgb(209, 209, 209,0.13) ;
+    /* background: rgba(10, 16, 46,.9); */
+    /* background-color: */
+    /* opacity: 0.2; */
+    border:none;
+    outline: none;
+    overflow: none;
+    color:white;
+    font-size:x-small;
+    /* border-bottom: 3px solid rgb(6, 42, 109) !important;  */
+}
+
+.b::after {
+    position: absolute;
+    display:flex;
+    align-items: start;
+    content: '';
+    bottom:0px;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom: 3px solid #917BDF ; 
+    transform: scaleX(0);  
+    transition: transform 250ms linear;
+  }
+
+  .b_design::after{  transform-origin:  0% 50%; }
+
+  .b_menu::after{
+    transform-origin:100% 50%;
+  }
+  /* #b_design:hover: */
+   
+/* } */
+
+
+.b_design{
+    background: linear-gradient(to left, rgb(209, 209, 209,0.13) 50%, rgb(222, 222, 222,0.23) 50%) right; 
+    background-size: 200%;  
+    transition: .3s ease-out; 
+    
+}
+
+.bbb{
+    background: rgb(222, 222, 222,0.23)  !important ;  
+    bottom:0px !important;
+    border-bottom: 3px solid #917BDF !important; 
+     width: 100%;
+     height: 100%;
+     background: rgb(209, 209, 209,0.13) ;
+     border:none;
+     outline: none;
+     overflow: none;
+     color:white;
+     font-size:x-small;
+}
+
+
+
+
+ .b:focus::after{
+      transform: scaleX(1);
+ }
+.b_design:focus{
+  
+    background-position: left;
+   
+}
+
+
+
+.bbb:focus{
+    outline:none;
+}
+
+
+
+   
+.wrapb{
+     padding:0 !important;  
+}
+
+.ppoo{
+    background-color: crimson;
+}

@@ -1,0 +1,33 @@
+.btn{
+    /* border-color:0.5px solid #EEEEF6; */
+    border-radius: 5px !important;
+    /* padding: 0 !important; */
+     background-color:#3A405E ;  
+     border: 1px solid#EBEAEA;
+    opacity: 1;
+     height: 30px;  
+ }
+ .btn:focus{
+     background-color: #3A405E !important;
+     border: none !important;
+     margin-left: 0;
+ }
+ .d{
+     display: none;
+ }
+.textButton{
+text-align: left;
+font: normal normal normal Roboto;
+letter-spacing: 0.22px;
+color: #EAEAEA;
+text-transform: capitalize;
+opacity: 1; 
+}
+.inp{
+    outline: none;
+    border: none ;
+    border-bottom: 1px solid #EBEAEA ;
+    color: #EBEAEA;
+    background-color:#3A405E ; 
+    width: 100%;
+}

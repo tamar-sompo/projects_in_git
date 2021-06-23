@@ -1,0 +1,52 @@
+.btnAddBusiness{
+    background-color:'#8E73EC'!important;
+    border:'none'!important;
+    border-radius:'7%'!important;
+    color:'white'!important;
+}
+.businessCard{
+    opacity: 1;
+    border-radius: 10px;
+    border-bottom:2px solid #917BDF !important;
+    box-shadow: 0px 3px 6px #00000029;
+    transition: 0.3s;
+}
+.circle{
+    display: flex;
+    width: 10vh;
+    height: 10vh;
+    margin: -50% auto 0;
+    border-radius: 50%;
+    border:1px solid darkgray;
+    background-color: #FFFFFF;
+}
+.imgLogoBusiness{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 10vh;
+    height: 10vh;
+}
+.imgLogoBusiness:hover{
+    border: 0.5px solid lightgray;
+}
+.img1{
+    background-image: url('../../SaveObjects/1.png')
+}
+.img2{
+    background-image: url('../../SaveObjects/2.png')
+}
+.img3{
+    background-image: url('../../SaveObjects/3.png')
+}
+.displayCards{
+         /* overflow-x: auto; */
+         overflow-y: auto;
+         /* display: flex; */
+         margin-top: 8%;
+         height: 44vh;
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 11px;
+         /* width: 95%; */
+}
+        /*  */

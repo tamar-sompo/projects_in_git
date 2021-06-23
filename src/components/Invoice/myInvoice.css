@@ -1,0 +1,48 @@
+/* .home{
+    top: 80px;
+   
+} */
+element.style {
+    height: 219px!important;
+}
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 100%;               
+    background-color:#888887;
+    height: 0.5px;
+  }
+ 
+.sam {
+    margin: auto;
+    width: 100%;
+ }
+ .row-list{
+   display: block!important;
+   padding-top: 0rem!;
+ }
+
+.text-1{
+  text-align: left!important;
+width: 230px;
+height: 47px;
+  padding: 4px;
+  font-size: large;
+  font-weight: bolder;
+  font:normal normal bold 40px Roboto;
+}
+.btnShow{
+  border-color: black;
+  background-color: darkgoldenrod;
+  text-align: left!important;
+  margin-left:0px;
+  margin-left: 0;
+}
+.btn{
+  margin-left:0px;
+  text-align: left!important;
+}
+.gVYU {
+    height: 291px;
+}

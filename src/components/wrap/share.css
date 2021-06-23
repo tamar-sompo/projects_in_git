@@ -1,0 +1,50 @@
+.insertIcon{
+  width: 15px !important; 
+ height: 26px !important;
+}
+
+.ico{
+width: 40px !important; 
+height: 40px !important;
+margin-left: 0px !important;
+}
+.icons {
+color: gray;
+  vertical-align: top !important;
+}
+.icons:hover {
+color: rgb(142, 115, 236);
+}
+
+#dropdown-basic-button{
+  color:white;
+  /* color:#A66DFF; */
+  background-color: #917BDF;
+  border:none !important;
+  height: 26px;
+  width: 26px;
+ font-size: 12px;
+ letter-spacing: 0.19px;
+ margin-left: 5px;
+ margin-top: 0.1rem;
+ padding: 0px;
+} 
+.dropdown-menu {
+  width: 14rem;
+}
+.dropdown-item {
+  padding: .25rem;
+}
+.dropdown-toggle::after {
+display: none;
+}
+#dropdown-basic{
+  padding: 0px;
+  background: none !important;
+}
+#dropdown-basic:hover{
+  color:rgb(142, 115, 236);
+}
+.inv{
+  vertical-align: top !important;
+}

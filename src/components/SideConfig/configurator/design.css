@@ -1,0 +1,85 @@
+/* .easyyy{
+    animation: 0.5s fadeIn;
+    animation-fill-mode: forwards;
+  
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
+    }
+  } */
+.blogo{
+    position: initial !important;
+}
+/* .list-group-item{
+    background: #0A102E 0% 0% no-repeat padding-box; 
+    border:none;
+    color:white;
+} */
+/* .collapse1{
+   
+        position:absolute;
+        width:100%;
+    
+} */
+/* .liDesign{
+    border-left:solid white!important
+} */
+.liClass:hover{
+    background: transparent linear-gradient(90deg,rgba(145,123,223,0.18) 0% ,rgba(145,123,223,0.18) 35%, #006C8000 100%) 0% 0% no-repeat padding-box; 
+
+    color: white !important;
+    border-left:solid 2px  #9174df !important;
+}
+/* li:visited{
+    background-color: red !important;
+} */
+.listConfig{
+    margin-top: 1vh !important;
+    margin-bottom: 1px !important;
+    /* height: 5vh !important; */
+}
+
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+
+.divLi{
+    color: yellowgreen;
+}
+.liEnter{
+    /* background-color: red !important; */
+    background: transparent linear-gradient(90deg,rgba(145,123,223,0.18) 0% ,rgba(145,123,223,0.18) 35%, #006C8000 100%) 0% 0% no-repeat padding-box !important ; 
+   
+    color: white !important;
+    border-left:solid 2px  #9174df;
+} 
+.iconList{
+    color: white;
+    /* font-size: 13px; */
+    /* padding-left: 15px; */
+  font-size: 200%;  
+
+}
+.iconList{
+    width:15px !important;
+    height: 15px !important;
+}
+.iconList:hover{
+   border:none;
+   color: white;
+   text-decoration:none;
+   border-left: 2px #9174df;
+
+}
+h5{
+    margin-bottom: 0rem !important;
+}

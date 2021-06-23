@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.editable-temp4 , .static-temp4{
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    background: unset !important;
+    border-bottom: unset;
+}
+.editable-temp4:focus ,.focus-temp4{
+    border: 0;
+    background-color: #d9d9d9 !important;
+}
+.editable-temp4::placeholder{
+    font-size: 16px;
+}
+.header-temp4{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 7%;
+}
+#userLogo-temp4{
+    width: 100px;
+    height: 50px;
+    border: 1px solid gray;
+}
+.logo-temp4{
+    font-size:22px;
+    color:#AEDA51;
+    font-family:fantasy;
+}
+#title-temp4 , #title-temp4::placeholder{
+    color:black !important;
+    font-size: 22px !important;
+}
+.main-temp4{
+    background-color: #FFFFFF;
+    padding: 7%;
+    font-size: 18px;
+    border-bottom:1px solid #707070;
+}
+#table-temp4{
+    font-size: 12px;
+    border-bottom:1px solid #F1F1F1;
+}
+.tableHeader-temp4{
+    background-color: #FFFFFF;
+    border-bottom:1px solid #77CB87 !important;
+    color: #FE1E50;
+    font-size: 12px;
+}
+.sum-temp4{
+    text-align: center;
+    margin: 0;
+}
+.plusIcon-temp4 , .plusIcon-temp4:hover{
+    background-color: #77CB87;
+     border-radius: 50%;
+}
+#comment-temp4 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.total{
+    font-size: 14px;
+}
+.totalSum-temp4{
+    border-top: 2px solid #FE1E50;
+    font-size: 16px;
+    padding-right: 7%;
+}
+.footer-temp4{
+    background-color: black;
+    color:#FFFFFF;
+    width: 100%;
+    padding: 7%;
+    /* padding-right: 7%; */
+}
+.footerText-temp4::placeholder{
+    color:#FFFFFF;
+}
+#footerCenter-temp4 , #footerCenter-temp4::placeholder{
+    color:#77CB87  !important;
+}

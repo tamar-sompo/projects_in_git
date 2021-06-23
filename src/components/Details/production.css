@@ -1,0 +1,40 @@
+.trtrtr{
+    animation:1s fadeIn;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+.ggg{
+    animation: 0.8s fadeOut;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeOut{
+    0% {
+      opacity: 1;
+    }
+    100% {
+      visibility: visible;
+      opacity: 0;
+    }
+  }
+  /* .ytyt{
+    animation: 0.5s fadeOut;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fadeOut {
+    100% { 
+    visibility: visible;
+      opacity: 1;
+    }
+    0% {
+        
+         opacity: 0;
+    }
+  } */

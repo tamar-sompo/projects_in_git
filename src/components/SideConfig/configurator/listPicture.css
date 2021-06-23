@@ -1,0 +1,95 @@
+.pref{
+    
+    width: 95%;
+    margin: auto;
+}
+.pref p{
+    font-size: 2.4vh;
+}
+.pref #icon{
+    float: right;
+   width: 3vh;
+   height: 3vh;
+   color: #FFFFFF;
+}
+.pref p,.pref #icon{
+    display: inline;
+}
+.bUp{
+    border: none !important;
+    outline: none !important;
+}
+.uploaddivLogo #icon{
+    width: 2vh !important;
+    height: 2vh !important;
+    margin-bottom: -6vh;
+}
+.uploaddivLogo{
+    height: 8vh !important;
+    width: 100% !important;
+   
+}
+.MuiSlider-track{
+    height: 1px !important;
+}
+.MuiSlider-rail{
+    height: 1px !important
+}
+.MuiSlider-mark{
+    height: 1px !important
+}
+.uploaddiv{
+    text-align: center;
+    line-height: 4vh;
+    width: 75%;
+    margin: auto;
+    height: 5vh;
+    border: solid 1.5px #FFFFFF;
+    border-radius: 5px;
+}
+.uploaddiv #icon{
+    color: #FFFFFF;
+    width: 3vh;
+    height: 3vh;
+    font-weight: bold;
+}
+.container.imgs-div{
+    width: 75%;
+    padding-right: 0 !important;
+}
+.imgs-div{
+width: auto;
+margin: auto;
+height: 27vh;
+overflow-Y: auto;
+overflow-x: hidden;
+}
+
+.imgs-div::-webkit-scrollbar {
+    width: 0.5em; 
+  } 
+.imgs-div::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 5px;
+      border: solid 1px #FFFFFF;
+    }
+  
+ .imgs-div::-webkit-scrollbar-thumb {
+      background-color: white;
+     
+    }
+.imgs-div div div{
+    /* border: solid 1px red; */
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 8vh;
+    background-size: cover;
+    /* background-image: url('../../assets/Artboard2.png'); */
+}
+.logoC{
+    width: 80%;
+    height: 100%;
+    max-width: 200px !important;
+    max-height: 110px !important;
+    cursor: pointer;
+  }

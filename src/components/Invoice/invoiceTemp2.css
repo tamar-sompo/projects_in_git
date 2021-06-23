@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.editable-temp2 , .static-temp2{
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    background: unset !important;
+    border-bottom: unset;
+}
+.editable-temp2:focus ,.focus-temp2,.focus-temp2::placeholder{
+    border: 0;
+    background-color: #d9d9d9 !important;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    border-bottom: unset;
+}
+.editable-temp2::placeholder{
+    font-size: 16px;
+}
+/* .warp{
+    height: 100%;
+} */
+.header-temp2{
+    width: 100%;
+    background-image: url('../../Img/Artboard\ –\ 4.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 2px solid #F9C544;
+    padding: 7%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+#userLogo-temp2{
+    background-color: unset;
+    width: 200px;
+    height: 100px;
+    
+}
+#userLogo-temp2:hover{
+    border: 1px dashed gray;
+}
+#title-temp2 , #title-temp2::placeholder{
+    color:white !important;
+    font-size: 20px !important;
+}
+.main-temp2{
+    background-color: #FFFFFF;
+    padding: 7%;
+    font-size: 18px;
+}
+#table-temp2{
+    font-size: 12px;
+    border-bottom:1px solid #F1F1F1;
+}
+.tableHeader-temp2{
+    background-color: #1D1D1D !important;
+    border:1px solid #707070 !important;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+.odd{
+    background-color: #F1F1F1;
+}
+.sum-temp2{
+    text-align: center;
+    margin: 0;
+}
+.plusIcon-temp2 , .plusIcon-temp2:hover{
+    background-color: #DBD0D7;
+     border-radius: 50%;
+}
+#comment-temp2 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.total{
+    font-size: 14px;
+}
+/* .total-hr{
+    border-top: none;
+    border-radius: none;
+} */
+.totalSum-temp2{
+font-size: 16px;
+background-color: #F9C544 !important;
+padding-right: 7%;
+}
+.footer-temp2{
+    background-color: black;
+    color:#FFFFFF;
+    width: 100%;
+    padding: 7%;
+    /* padding-right: 7%; */
+}
+.footerText-temp2::placeholder{
+    color:#FFFFFF;
+}
+#footerCenter-temp2 , #footerCenter-temp2::placeholder{
+    color:#F9C544 !important;
+}

@@ -1,0 +1,85 @@
+#sp{
+    /* height:10%; */
+}
+.title{
+    height:30% ;
+}
+.content{
+    height:70% ;
+}
+/* #all{
+    margin-top: 50px;
+} */
+#firstTitle {
+    font-size: 6vh;
+    /* margin-top: 40px; */
+    text-align: center;
+    /* text-transform: uppercase; */
+    color:#917BDF;
+  }
+  #secondTitle {
+    /* margin-top: 2%; */
+    font-size: 6vh;
+    text-align: center;
+    /* text-transform: uppercase; */
+    color:#917BDF;
+    font: bold;
+  }
+  #cardsDeck{
+
+  }
+#cardTitle{
+    /* background-color: black; */
+    color:#2C314A;
+    text-align: center;
+    font: bold;
+}
+/* #cardTitle:hover{
+} */
+#bgCard:hover{
+    cursor: pointer;
+    background-color: #917BDF;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+    color:white !important; 
+}
+/* #bgCard:hover + #over-cardTitle{
+    color:white
+/* } */
+#bgCard:hover #iconPosition{
+    color:white
+} 
+
+    ‏
+#bgCard{
+    /* margin
+    -top: 20%; */
+    height: 100%;
+    opacity: 1;
+    border-radius: 10px;
+    border-color: light;
+    border-bottom: #917BDF;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    /* width: 60%; */
+}
+#bgFooterCard{
+    background-color:#917BDF;
+    height: 3px;
+}
+#iconPosition{
+    margin-top: 25%;
+    margin-right: 3%;
+    margin-left: 3%;
+
+    color:#917BDF;
+    text-align: center;
+}
+/* #iconPosition + #bgCard:hover{
+    color:white
+} */
+#iconPosition:hover{
+    color:white
+}
+.c{
+ height: 50%;
+}

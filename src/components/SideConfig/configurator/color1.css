@@ -1,0 +1,78 @@
+/* .rowColor{ */
+    /* width: 100% !important; */
+    /* height: 5vh !important; */
+/* } */
+.col-color{
+    /* width:12% !important; */
+    height:3.5vh !important;
+    border-radius: 2px !important;
+    box-shadow: inset  100px 200px rgba(55, 50, 50, 0.7);
+}
+/* .col-color:hover{
+    box-shadow:none;
+} */
+.row-color:hover>.col-color{
+    box-shadow:none;
+}
+/* .container.color-div{
+    padding-right: 0 !important;
+} */
+.color-div{
+/* width: auto; */
+width:55% !important;
+margin: auto;
+margin-bottom: 13%;
+height: 31vh;
+overflow-Y: auto;
+overflow-x: hidden;
+
+}
+
+.color-div::-webkit-scrollbar {
+    /* width: 0.5em;  */
+  } 
+.color-div::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 5px;
+      border: solid 1px #FFFFFF;
+    }
+  
+ .color-div::-webkit-scrollbar-thumb {
+      background-color: white;
+     
+    }
+.color-div div div{
+    /* border: solid 1px red; */
+     /* background-repeat: no-repeat;  */
+     /* background-position: center;   */
+     /* height: 6vh;  */
+     /* width: 100%;  */
+     /* background-size: cover;  */
+     /* background-image: url('../../assets/Artboard2.png'); */
+} 
+.hrColor{
+    margin-bottom: 0px !important;
+    margin-right:8% !important;
+    width:91% !important;
+    background-color: white;
+     /* margin-top: -1vh; */
+     margin-right:1px;
+     /* margin-top: -1vh !important; */
+     width:94%;
+     background-color: white;
+     /* right: 5% !important; */
+     filter:brightness(70%)
+}
+hr{
+    margin-top: 0rem !important;
+}
+
+/* .button3 { position:absolute; left:10px; top:10%; width:10%; height:10%; background:red; }
+
+
+.button1 { position:absolute; left:10px; top:10%; width:10%; height:10%; background:red; }
+
+.button2 { position:absolute; left:10px; top:25%; width:10%; height:10%; background:blue; }
+
+.button1:hover { background:green; }
+.button1:  .button2 { background:green; }  */

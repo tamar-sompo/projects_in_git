@@ -1,0 +1,38 @@
+.rec-arrow-right:hover, .rec-arrow-right:focus-within, .rec-arrow-left:focus-within{
+    background-color: rgb(238, 199, 23) !important;
+  
+  }
+  .rec-arrow-left:hover{
+    background-color: rgb(238, 199, 23) !important;
+  }
+  
+  
+  .rec-arrow-right ,.rec-arrow-left{
+    width: 65px!important;
+    height: 65px!important;
+  
+  }
+  
+  
+  .rec-item-wrapper{
+     padding: 0px;
+     /* padding-left: 20px!important; */
+     margin: 0px;
+     width: 20%;
+  }
+  
+  .fyLrfx{
+    display: none!important;
+  } 
+  .sc-gzVnrw{
+    display: none!important;
+  }
+  .rec-pagination {
+    visibility: hidden;
+  }
+  element.style {
+    height: 219px!important;
+}
+  /* .kQtsWC {
+    padding-left: 20px!important;
+  } */

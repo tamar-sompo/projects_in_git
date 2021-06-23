@@ -1,0 +1,77 @@
+.warp-conversion{
+    margin: auto;
+    width: 70%;
+    padding: 5%;
+  }
+  .box{
+    margin-bottom: 5vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh; 
+    background-color: white;
+    border-radius: 25px;
+    box-shadow:3px 3px  3px 3px #BDBDBD;
+  }
+  .top{
+    font-size: 7vh;
+    /* height: 30%; */
+  }
+  .main{
+      /* height:60%; */
+      padding: auto !important;
+  }
+  .img{
+    padding: auto;
+    background-image:url('../SaveObjects/Artboard – 2.png');
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.borderIcon{
+    height: 5vh;
+    width: 5vh;
+    border-radius: 25% !important;
+    border: 3px solid#917BDF !important;
+    background-color: white !important;
+    color:#917BDF !important;
+}
+.borderIcon:hover{
+    height: 5.5vh;
+    width: 5.5vh;
+    border:none !important;
+    background-color: #917BDF !important;
+    color:white !important;
+}
+ .insertIcon{
+    background-color:white !important;
+    color: #917BDF!important;
+}
+.insertIcon:hover{
+    background-color: #917BDF!important;
+    color:white !important;
+}
+/* .top{
+    align-items: center;
+    height: 30%;
+} */
+ /*.top111{
+    align-items: center; 
+    height: 30%;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow:3px 3px  3px 3px #BDBDBD;
+    font-size: 40px;
+}*/
+/*.center{
+  height: 60%; 
+ padding-top: 5vh;
+ padding-bottom: 5vh;
+ background-color: white;
+ border-radius: 20px;
+ box-shadow:3px 3px  3px 3px #BDBDBD;
+}*/
+/*#content{
+     background-color: tomato; 
+
+}*/

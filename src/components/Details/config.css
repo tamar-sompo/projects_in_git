@@ -1,0 +1,44 @@
+.bgcBtnConfig{
+    background-image: linear-gradient(to right, rgba(101, 232, 255,0.1) , #3a405e);
+}
+.btnConfig{  
+    border:none;
+    opacity: 1;
+    height: 30px;  
+    text-align: left;
+    font: normal normal normal Roboto; 
+    font-size: 12px;     
+    color: #FFFFFF;
+}
+.iconBtnConfig{
+    padding: auto;
+}
+.inpConfig{
+    outline: none;
+    border: none ;
+    border-bottom: 1px solid #B1B2BC;
+    color: #B1B2BC;
+    background-color:unset; 
+    width: 100%;
+}
+.inpConfig:focus{
+    outline: none;
+    border-bottom: 1px solid#B1B2BC!important;
+    color: #B1B2BC;
+    background-color:#3A405E ; 
+    width: 100%;
+}
+.inpConfig::placeholder {
+    color: #B1B2BC;
+    padding-bottom: 0;
+    font-size:1vw ;
+  }
+  .btnSave{
+    color:#B1B2BC;
+    border-radius: 7px; 
+    background-color: unset;
+    border: 1px solid #B1B2BC !important;
+  }
+  .btnSave:focus{
+    border: 1px solid #B1B2BC !important;
+  }

@@ -1,0 +1,75 @@
+.con{
+    background-color: white;
+}
+.inputP{
+    /* border:none !important; */
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom: 1px solid black;
+    background-color: #eee;
+    font-size: 129% !important;
+}
+/* .inputP:focus{
+    border-radius: 10px solid black;
+} */
+.inputP:focus{
+    /* outline: none; */
+    border-bottom: 1px solid black;
+}
+.inputF{
+    border-bottom-style: none !important;
+    border: none !important;
+    font-size: 129% !important;
+}
+button[disabled], html input[disabled] {
+    /* cursor: default; */
+    background: transparent;
+}
+/* .allInput{ */
+    /* font-size: 129% !important; */
+    /* background: transparent;
+} */
+.td_side_edit_delete_copy #icon {
+    color: gray;
+}
+.td_side_edit_delete_copy #icon:hover {
+    color: rgb(142, 115, 236);
+}
+.newProd11{
+    background-color: rgb(142, 115, 236)!important;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.expand-link .icon-contract {
+    display: none;
+ }
+.expand-link:hover .icon-expand,
+.expand-link:active .icon-expand{
+    display: none;
+}
+.expand-link:hover .icon-contract,
+.expand-link:active .icon-contract{
+    display: block;
+}
+.serch{
+    background-color: rgb(243, 243, 243);
+    display: inline-table;
+}
+.serch :hover {
+    width: 15% !important;
+}
+.table>tbody>tr>td,
+ .table>tbody>tr>th, .table>tfoot>tr>td, 
+ .table>tfoot>tr>th, .table>thead>tr>td, 
+ .table>thead>tr>th {
+    vertical-align: middle !important;
+    /* padding: 8px;
+    line-height: 1.42857143;
+    border-top: 1px solid #ddd; */
+}

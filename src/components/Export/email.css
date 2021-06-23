@@ -1,0 +1,31 @@
+
+.tag-remove {
+  /* content: 'x'; */
+  /* color: red; */
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
+.subjectAndBodyEmail{
+    background-color: #8E73EC29;
+    height: 4vh;
+    width: 80%;
+    margin: auto;
+    margin-top: 1vh;
+    /* margin-right: 2vw; */
+    /* margin-left: 2vw; */
+    font-size: 0.8vw;
+    text-align: center;
+    border: #917BDF
+  }
+  .bodyEmail{
+    height: 24vh !important;
+    /* margin-top: 2vw !important; */
+  }
+  .iconEmail{
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; 
+  }
+  .errorMassage{
+    color: red;
+  }
