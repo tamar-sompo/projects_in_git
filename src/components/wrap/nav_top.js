@@ -33,6 +33,7 @@ export default function Nav() {
   const chooseCurrentBuisness = (event) => {
     const buisnessChoose = event.value;
     const objBuisness = JSON.parse(buisnessChoose)
+    dispatch(actions.getAllProduct(objBuisness._id))
     console.log("buisnessObj", objBuisness)
     console.log("buisnessssssssssss", buisnessChoose)
     dispatch(actions.setGetBusiness(objBuisness._id))
@@ -40,6 +41,7 @@ export default function Nav() {
     dispatch(actions.setGeCurrenttBuisness(objBuisness))
     console.log("dispatch2")
   }
+
 
   const setMail = () => {
     dispatch(actions.setsendMessage("true"))

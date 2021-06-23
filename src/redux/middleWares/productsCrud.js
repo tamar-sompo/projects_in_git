@@ -62,10 +62,10 @@ export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
       dispatch(actions.setShow(true))
       dispatch(actions.setNameAction("Delete a product successfully"))
       dispatch(actions.getAllProduct());
+   
 
     }).catch((err) => {
       console.log(err)
-
     })
   }
   return next(action);
@@ -77,6 +77,7 @@ export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
 export const newProductToBuisness = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_NEW_PRODUCT_SERVER') {
     // let buisnessId = getState().buisnessReducer.buisness._id;
+    debugger
     let newProduct;
     let buisnessId = getState().buisnessReducer.buisness
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newProductForBuisness/${buisnessId}`
@@ -103,7 +104,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
           dispatch(actions.setProduct1(data))
           dispatch(actions.setAddProduct(data))
           dispatch(actions.setFlagShowSaveP({ index: action.payload, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("black"))
+          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
         }
         else {
           console.log("success add product", data)
@@ -181,7 +182,7 @@ export const updateProductById = ({ dispatch, getState }) => next => action => {
         // dispatch(actions.getAllProduct())
         if (!action.payload.key) {
           dispatch(actions.setFlagShowSaveP({ index: action.payload, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("black"))
+          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
         }
         // dispatch(actions.setGetAllBuisness(product))
       },

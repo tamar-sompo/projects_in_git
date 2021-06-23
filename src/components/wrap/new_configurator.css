@@ -54,10 +54,10 @@
   }
   
 .try{
-position: absolute;
-bottom: 4%;
+/* position: absolute; */
+/* bottom: 4%;
 background: transparent;
-width:130%;
+width:70%; */
 }
 
 .noClick{

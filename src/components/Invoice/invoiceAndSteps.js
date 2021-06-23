@@ -19,9 +19,13 @@ export default function InvoiceAndSteps(props) {
   const [isLevel4, setIsLevel4] = useState(false)
   return (
 
-    <div className='mt-2 '
+    <div className='container-fluid con con2 d-flex justify-content-center '
       // align-item-center'
-      style={{ display: 'inline-block', marginTop: "1.5em", width: "80%" }}
+      style={{
+        height: "88vh",
+        width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+ 
+      }}
     //marginLeft:"81px",
     >
       {/* <Steps setIsLevel4={setIsLevel4} /> */}

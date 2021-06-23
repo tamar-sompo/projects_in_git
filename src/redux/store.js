@@ -231,6 +231,8 @@ store.dispatch({ type: 'SEND_MAIL' })
 store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
 // store.dispatch({ type: 'SET_GET_BUISNESS_BY_ID' })
 // store.dispatch({ type: "SET_GET_ALL_INVOICES_TO_BUISNESS" })
+store.dispatch({ type: "SET_RESET_ALL_NEW_PRODUCT" })
+store.dispatch(actions.setFlagPush(true))
 
 store.dispatch({ type: "GET_CITY_BY_COUNTRY" })
 store.dispatch({ type: "GET_COUNRTY" })

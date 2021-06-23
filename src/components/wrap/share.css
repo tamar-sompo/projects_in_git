@@ -40,7 +40,7 @@ display: none;
 }
 #dropdown-basic{
   padding: 0px;
-  background: none !important;
+  background-color: white !important;
 }
 #dropdown-basic:hover{
   color:rgb(142, 115, 236);

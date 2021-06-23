@@ -108,7 +108,7 @@ export default function Fiances() {
                         </div>
 
                         <div className={isSendMessage == "true" ?
-                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex-main"}>
+                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}>
                             <div style={{
                                 zIndex: "999", position: "absolute",
                                 marginRight: "160vh", marginTop: "70vh",
@@ -120,7 +120,6 @@ export default function Fiances() {
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
                             </div>
-                            {/* <div style={{ backgroundColor: "white" }}> */}
                             <Switch>
                                 <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
                                 <Route path="/:userName/invoice" component={InvoiceAndSteps} />
@@ -134,7 +133,6 @@ export default function Fiances() {
                                 <Route path="/:userName/product" component={Products} />
                                 {/* <Route exact path="/:userName" component={HomePage} /> */}
                             </Switch>
-                            {/* </div> */}
                             {/* <div className="sendEmailFromList" style={{
                                 width: "17vw",
                                 border: "1px solid #917BDF",
