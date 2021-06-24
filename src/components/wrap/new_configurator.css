@@ -53,12 +53,12 @@
     font-size: 10px;
   }
   
-.try{
+/* .try{ */
 /* position: absolute; */
 /* bottom: 4%;
 background: transparent;
 width:70%; */
-}
+/* } */
 
 .noClick{
   border:'1px solid red';
