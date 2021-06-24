@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // import Setting from '../warp/setting';
 import './customers.css'
-import profileDefault from '../assets/newLogo.png'
+// import profileDefault from '../assets/newLogo.png'
 import SearchContact from './search'
 // import { borderRadius } from 'react-select/src/theme';
 

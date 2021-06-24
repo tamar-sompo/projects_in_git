@@ -9,7 +9,7 @@ import { event } from 'jquery';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import tempLogo from '../assets/newLogo.png';
+// import tempLogo from '../assets/newLogo.png';
 import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyInput from 'react-currency-input-field';
@@ -210,10 +210,22 @@ const updateCellPrice = (_value ,fieldName)=> {
           </div>
           <div className="hederP">
             <label> Price</label>
-            <input className="fieldProductCss"
+
+            <CurrencyInput
+              id="validation-example-3-field2"
+              name="price"
+              className="fieldProductCss"
+              // className={`form-control ${state.field2.validationClass}`}
+              value={newProductTable ? newProductTable.price : ''}
+              onValueChange={updateCellPrice}
+              prefix={'$'}
+            />
+
+            {/* <input className="fieldProductCss"
               value={newProductTable ? newProductTable.price : ''}
               onChange={(e) => onFieldEdit('price', e)}
-            ></input>
+            ></input> */}
+
           </div>
         </div>
         <div className="row">

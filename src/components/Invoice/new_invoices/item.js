@@ -559,6 +559,7 @@ function Item(props) {
                 value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
+                type="text"
               > </Cell>
 
             </div>}
@@ -614,7 +615,6 @@ function Item(props) {
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               //  style={{width:"15%", height:"60%"}}
-
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
@@ -633,10 +633,17 @@ function Item(props) {
             ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
-            <input
+          <CurrencyInput
+              id="validation-example-3-field2"
+              name="sumCalcCurrencyInput"
+              className="sum1 cell"
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              prefix={'$'}
+            />
+            {/* <input
               className="sum1 cell"
               value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
-            />
+            /> */}
 
 
           </div>

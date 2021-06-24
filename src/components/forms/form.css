@@ -112,10 +112,10 @@ h2 {
     width: 90%;
     height: 250%;
 } */
-input[type="number"]{
+/* input[type="number"]{
   width: 25%;
   height: 270%;
-}
+} */
 .posity{
   opacity: 0.5 !important;
 }

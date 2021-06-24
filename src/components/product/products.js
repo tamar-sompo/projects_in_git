@@ -200,12 +200,12 @@ function Products(props) {
             if (dis.inpDis == "") {
                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
                 // dispatch(actions.setProductId({key: "table", value:product._id}))
-                if (flagField === true) {
+                if(flagField===true){
                     dispatch(actions.editProduct({ key: "table", value: product._id }))
                     setFlagField(false)
                 }
 
-
+                
             }
             else
                 setDis({ id: product._id, inpDis: "" })
@@ -243,28 +243,28 @@ function Products(props) {
     }
 
 
-    const updateCellPrice = (_value, fieldName) => {
+    const updateCellPrice = (_value ,fieldName)=> {
         if (!fieldName) {
-            return;
+          return;
         }
         if (!_value) {
             dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
-            return
-            //  dispatch({
-            //   fieldName,
-            //   value: {
-            //     value: undefined,
-            //     validationClass: '',
-            //     errorMessage: '',
-            //   },
-            // });
+          return
+          //  dispatch({
+          //   fieldName,
+          //   value: {
+          //     value: undefined,
+          //     validationClass: '',
+          //     errorMessage: '',
+          //   },
+          // });
         }
-
+    
         const value = Number(_value);
         if (!Number.isNaN(value)) {
             dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
         }
-    }
+      }
 
 
 
@@ -468,29 +468,29 @@ function Products(props) {
 
                                                             <td>
 
+                                                         
+        {/* //  style={{width:"15%", height:"60%"}} */}
+     
+                                                            <CurrencyInput
+        //  style={{width:"15%", height:"60%"}}
+        style={{width:"100%", height:"100%"}}
+        //  onFocus={() => cleanInput1('discount')}
+                id="validation-example-3-field2"
+                name="price"
+                disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                className="allInput"
+                className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                // className={`form-control ${state.field2.validationClass}`}
+                value={dis.id === product._id && dis.inpDis == "" ?
+                newProductTable.price :
+                dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                    newProductTable.price : product.price}
+                
+                onValueChange={updateCellPrice}
+                prefix={'$'}
+              />
 
-                                                                {/* //  style={{width:"15%", height:"60%"}} */}
-
-                                                                <CurrencyInput
-                                                                    //  style={{width:"15%", height:"60%"}}
-                                                                    style={{ width: "100%", height: "100%" }}
-                                                                    //  onFocus={() => cleanInput1('discount')}
-                                                                    id="validation-example-3-field2"
-                                                                    name="price"
-                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
-                                                                    className="allInput"
-                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
-                                                                    // className={`form-control ${state.field2.validationClass}`}
-                                                                    value={dis.id === product._id && dis.inpDis == "" ?
-                                                                        newProductTable.price :
-                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
-                                                                            newProductTable.price : product.price}
-
-                                                                    onValueChange={updateCellPrice}
-                                                                    prefix={'$'}
-                                                                />
-
-
+                                                        
                                                                 {/* <input type="text" disabled={dis.id===product._id ? dis.inpDis : "disable"} /> */}
                                                                 {/* <input type="text"
 

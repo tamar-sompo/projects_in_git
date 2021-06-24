@@ -17,7 +17,7 @@ import Item from './item'
 // import {Link} from "react-router-dom";
 import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
-import signature from '../../../Img/signature.png'
+// import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import ShowCompany from '../../showCompany'
 import flowerbackground from '../../assets/flo.jpg'
@@ -192,7 +192,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
-
+     
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
@@ -201,7 +201,7 @@ function New_Invoice(props) {
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
-
+     
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)

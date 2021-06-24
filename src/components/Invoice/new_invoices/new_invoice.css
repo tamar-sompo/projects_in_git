@@ -236,3 +236,11 @@ text-align: left !important;
  .buttonaddItem:focus{
      border:none !important
  }
+ input::-webkit-inner-spin-button{
+    opacity:1; 
+  } 
+
+ 
+
+
+  

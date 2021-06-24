@@ -24,7 +24,7 @@ export default function HomePage(props) {
   const [flag, setFlag] = useState("false")
   const ffd = useSelector(state => state.invoiceReducer.flagBorderProduct)
   const [specificRoute, setspecificRoute] = useState('')
-  console.log("allBuisnessToUser", allBuisnessToUser)
+  // console.log("allBuisnessToUser", allBuisnessToUser)
 
   //  useEffect(()=>{
   //    console.log("ghgh1")
@@ -41,6 +41,28 @@ export default function HomePage(props) {
   //       // dispatch(actions.setGetUserByUsername())
   //       }
   //  },[allBuisnessToUser])
+
+
+  //  const  checkIfBuisness = (value) => {
+  //   let specificRoute = value;
+  //   debugger
+  //   if (allBuisnessToUser === undefined) {
+  //     history.push(`/${userName}/add_buisness`)
+  //   }     
+  //   else if (specificRoute === "Business") {
+  //     history.push(`/${userName}/buisness`)
+  //   }
+  //   else if (specificRoute === "Documents") {
+  //     history.push(`/${userName}/allDocuments`)
+  //   }
+  //   else if (specificRoute === "Contacts") {
+  //     history.push(`/${userName}/customers`)
+  //   }
+  //   else if (specificRoute === "Products") { 
+  //     history.push(`/${userName}/product`)
+  //   }
+  // }
+
 
 
   //  const  checkIfBuisness = (value) => {

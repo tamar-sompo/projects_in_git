@@ -106,20 +106,23 @@ export default function Fiances() {
                         <div className="col-2 px-0 mt-0 flex_configurator">
                             <Configurator />
                         </div>
+                        {/* {isSendMessage == "true"} */}
+                        <div className={isSendMessage == "true" ? "col-10  d-flex justify-content-center align-items-center flex_main" : "col-8 d-flex justify-content-center align-items-center"} 
+                        style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
 
-                        <div className="col-10  d-flex justify-content-center align-items-center flex_main" style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+                            {/* <div className={isSendMessage == "true" ?
+                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
 
-                            <div style={{
+                            {show && <div style={{
                                 zIndex: "999", position: "absolute",
                                 marginRight: "160vh", marginTop: "70vh",
                                 width: "250px"
                             }}>
-                                {show &&
-                                    <MassageFormat></MassageFormat>}
-                                {/* <button style={{
+                                <MassageFormat></MassageFormat> </div>}
+                            {/* <button style={{
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
-                            </div>
+
                             <Switch>
                                 <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
                                 <Route path="/:userName/invoice" component={InvoiceAndSteps} />

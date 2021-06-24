@@ -117,6 +117,7 @@ function Invoice(props) {
   const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
   const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
+  const [flagBorderToCol, setFlagBorderToCol]=useState(false)
   // useEffect(()=>{
   //   if (window.location.href.indexOf("view") != -1){
   //     dispatch(actions.setInvoiceShow(detailsInvoice))
@@ -1283,9 +1284,17 @@ function Invoice(props) {
               <Row className='mt-2'>
                 <Col className='m-0 p-0'>
                   {
-                    flagBorderProduct ?
-                      <span style={{ color: 'red' }}>product is require</span> :
-                      <span></span>
+
+flagBorderProduct && flagBorderProduct.map((product, index)=>{
+  if(flagBorderProduct[index]===true)
+     return  <span style={{ color: 'red' }}>product is require</span>
+}) 
+// $('.left_nav').addClass('border_configurator') 
+
+
+                    // flagBorderProduct ?
+                    //  :
+                    //   <span></span>
                   }
                   {displayInvoice === "false" &&
                     <Row>
@@ -1459,9 +1468,13 @@ export const Item = (props) => {
   const vv3 = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
-    if (invoice.products[0].id == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
+    invoice.products && invoice.products.map((product, index)=>{
+      if (invoice.products[index].id == "null") {
+      dispatch(actions.setflagBorderProduct({index:index, value:false}))}
+  }) 
+    // if (invoice.products[0].id == "null") {
+    //   dispatch(actions.setflagBorderProduct(false))
+    // }
     debugger
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
@@ -1536,9 +1549,13 @@ export const Item = (props) => {
 
 
   const updateCell = (title1, e) => {
-    if (invoice.products[0].id == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
+    invoice.products && invoice.products.map((product, index)=>{
+      if (invoice.products[index].id == "null") {
+      dispatch(actions.setflagBorderProduct({index:index, value:false}))}
+  }) 
+    // if (invoice.products[0].id == "null") {
+    //   dispatch(actions.setflagBorderProduct(false))
+    // }
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP(true)
     }
@@ -1788,7 +1805,7 @@ export const Item = (props) => {
   return (
     <>
       {/* id='row1' */}
-      <Row className='d-flex align-items-center row5 mr-0' style={flagBorderProduct ? { border: '1px solid red' } : { border: 'none' }}>
+      <Row className='d-flex align-items-center row5 mr-0' style={flagBorderProduct[props.index] ? { border: '1px solid red' } : { border: 'none' }}>
         <Col md={1} className='py-3'>
           <Button id='1'
             style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
