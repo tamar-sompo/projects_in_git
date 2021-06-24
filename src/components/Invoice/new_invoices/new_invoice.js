@@ -17,7 +17,7 @@ import Item from './item'
 // import {Link} from "react-router-dom";
 import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
-import signature from '../../../Img/signature.png'
+// import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import ShowCompany from '../../showCompany'
 import flowerbackground from '../../assets/flo.jpg'

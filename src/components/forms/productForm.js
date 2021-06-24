@@ -9,7 +9,7 @@ import { event } from 'jquery';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import tempLogo from '../assets/newLogo.png';
+// import tempLogo from '../assets/newLogo.png';
 import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyInput from 'react-currency-input-field';

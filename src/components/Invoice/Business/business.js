@@ -5,7 +5,7 @@ import { actions } from '../../../redux/actions/All_actions.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CardDeck } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-import logo1 from '../../assets/newLogo.png'
+// import logo1 from '../../assets/newLogo.png'
 import { Row } from 'react-bootstrap'
 
 import './business.css'
@@ -73,7 +73,7 @@ function Business(props) {
                   buisnessName={buisness.name}
                   buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
                   buisnessNumber={buisness.numberDeals ? buisness.numberDeals : ''}
-                  buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
+                  // buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
                 />
               </div>
             ) : <div>You have no Business</div>

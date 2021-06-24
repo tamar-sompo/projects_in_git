@@ -60,7 +60,7 @@ export default function Nav() {
         <div
         // style={{ display: "inline-block" }}
         >
-          <img src={logo} alt={"logo"} width="130px" />
+          {/* <img src={logo} alt={"logo"} width="130px" /> */}
         </div></div>
 
         <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
@@ -109,7 +109,7 @@ export default function Nav() {
         components={{ IndicatorSeparator: () => null }}
         style={{
           border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
-          backgroundImage: ('../assets/newLogo.png'),
+          // backgroundImage: ('../assets/newLogo.png'),
           webkitAppearance: "none",
           mozAppearance: "none",
           appearance: "none"
