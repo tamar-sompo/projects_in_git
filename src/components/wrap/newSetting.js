@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import $ from 'jquery'
 import Design_Menu from '../design_menu'
 
-
+import { RiSettings2Fill } from 'react-icons/ri';
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -37,8 +37,8 @@ export default function NewSetting(props) {
   const [flagFirstB, setFlagFirstB] = useState(false)
   const [flagFirst, setFlagFirst] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
-  const [flagIfSave, setFlagIfSave]=useState(false)
-  const [index, setIndex]=useState(0)
+  const [flagIfSave, setFlagIfSave] = useState(false)
+  const [index, setIndex] = useState(0)
   console.log("allBuisnessToUser", allBuisnessToUser)
 
   const setdispatch = () => {
@@ -72,7 +72,7 @@ export default function NewSetting(props) {
     else {
       console.log("rrrrrrrr", setspecificRoute)
       if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") != -1) {
-        if (flagIfEmpty==false) {
+        if (flagIfEmpty == false) {
           routePage()
           dispatch(actions.setFlagModal(""))
           dispatch(actions.setShowMessage(false))
@@ -101,26 +101,30 @@ export default function NewSetting(props) {
   const routePage = () => {
     if (specificRoute === "Documents")
       history.push(`/${userName}/allDocuments`)
-      if (specificRoute === "Business"){
-        history.push(`/${userName}/buisness`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Contacts"){
-        history.push(`/${userName}/customers`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Products"){
-        history.push(`/${userName}/product`)
-        dispatch(actions.setInvoiceSave(null))
-      }
+    if (specificRoute === "Business") {
+      history.push(`/${userName}/buisness`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Contacts") {
+      history.push(`/${userName}/customers`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Products") {
+      history.push(`/${userName}/product`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Setting") {
+      history.push(`/${userName}/setting`)
+      dispatch(actions.setInvoiceSave(null))
+    }
   }
 
 
 
   const checkIfBuisness = (value) => {
-    setIndex(index+1)
+    setIndex(index + 1)
     setspecificRoute(value)
-    setIndex(index+1)
+    setIndex(index + 1)
     if (allBuisnessToUser === undefined) {
       history.push(`/${userName}/add_buisness`)
     }
@@ -190,7 +194,15 @@ export default function NewSetting(props) {
               <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
             </li>
             <li className="li_hidden"><div className="l" onClick={() =>checkIfBuisness("Contacts")} >Contacts</div></li> */}
-
+            <li className="kkk" onClick={() => checkIfBuisness("Setting")}>
+              <li className={window.location.href.split('/')[4] == "setting" ?
+                "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
+                <RiSettings2Fill  size="lg"></RiSettings2Fill>
+                {/* <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon> */}
+              </li>
+              <li className="li_hidden"><div className={window.location.href.split('/')[4] == "setting" ?
+                "ns" : "ls"}>Setting</div></li>
+            </li>
           </ul>
         </ul>
 

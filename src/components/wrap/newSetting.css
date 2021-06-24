@@ -13,6 +13,13 @@
   /* font-size: 200%;   */
   text-decoration: none!important;
 }
+.ls{
+    color: white;
+    font-size: 10px;
+    padding-left:  2vh;
+  /* font-size: 200%;   */
+  text-decoration: none!important;
+}
 .d{
     color: white;
     font-size: 10px;
@@ -23,7 +30,14 @@
 .n{
     color: white;
     font-size: 10px;
-    padding-left:  1vh;
+    padding-left:  1.5vh;
+    background-color: #917BDF;
+  text-decoration: none!important;
+}
+.ns{
+    color: white;
+    font-size: 10px;
+    padding-left:  2vh;
     background-color: #917BDF;
   text-decoration: none!important;
 }

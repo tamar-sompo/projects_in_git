@@ -93,6 +93,8 @@ function NewConfigorator(props) {
     //         }
     //     }
     // }, [showMessage])
+    const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
+
 
     useEffect(() => {
         console.log("flagModal", flagModal)
@@ -134,7 +136,7 @@ function NewConfigorator(props) {
             if(flagSaveP===false){
             // alert("yy")
              debugger
-      if (invoice.products && invoice.products[0].id === "null") {
+      if (history.location.pathname===`/${userName}/invoice` && invoice.products && invoice.products[0].id === "null") {
           dispatch(actions.setflagBorderProduct(true))
       }
       else {
@@ -174,7 +176,39 @@ function NewConfigorator(props) {
     }
     },[colorFlagShowSaveP])
 
+    // const save1 = () => {
+    //     debugger
+    //     dispatch(actions.setFlagValidation(true))
+
+    //     // if (flagMessage)
+    //     //     setShowMessage(true)
+    //     // else
+    //     //     save()
+    // }
+    useEffect(() => {
+        debugger
+        if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+            dispatch(actions.setflagBorderProduct(true))
+        }
+        else {
+            dispatch(actions.setflagBorderProduct(false))
+
+            if (flagMessage) {
+                dispatch(actions.setFlagTmpSave(true))
+                dispatch(actions.setFlagOfterValidation(false))
+                setShowMessage(true)
+            }
+            else {
+                // save()
+                dispatch(actions.setFlagTmpSave(true))
+                dispatch(actions.setFlagOfterValidation(false))
+            }
+        }
+
+    }, [flagOfterValidation])
+
     const save1 = () => {
+        dispatch(actions.setFlagValidation(true))
         dispatch(actions.setFlagModal(""))
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
@@ -198,7 +232,7 @@ function NewConfigorator(props) {
         else
 
             if (viewConversion === "true") {
-
+                dispatch(actions.setShowInInvoice(false))
                 history.push(`/${userName}/allDocuments`)
             }
 

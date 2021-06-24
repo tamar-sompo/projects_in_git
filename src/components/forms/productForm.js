@@ -118,61 +118,100 @@ function ProductForm(props) {
   }
   return (
     <>
-      <div className="container" style={{ height: 23 + 'vh', width: '97%', padding: '0px', margin: '0px' }}>
-        <div className="col-3 col-md-2 col-sm-1"
-          style={{ paddingTop: '2%', paddingBottom: '2%', paddingLeft: '0px', paddingRight: '0px' }}>
-          <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-            onChange={(e) => addImage(e.target.files[0])} />
-          <button onClick={onButtonClick} className="rounded"
-            style={{
-              width: "13vh",
-              height: "13vh",
-              marginTop: "2vh",
-              borderRadius: "1vh",
-              backgroundColor: "#F6F6FA"
-            }}
-            className={classes.buttonUpload}>
-            {props.newProduct[0] && props.newProduct[0].images ?
-              <img
-                className={classes.imgUpload}
-                src={newProductTable ? newProductTable.images : ""}
-                alt="Logo"
-                title="Your Logo Here"
-                onClick={() => onButtonClick("logo")}
-              /> :
-              <HiUpload id="icon" className={classes.iconUpload} />}
-            <br></br>
-            <div className="uploadImage">Upload</div>
-          </button>
-        </div>
-        <div className="row">
-          <div className="hederN">
-            <label> Name</label>
-            <input className="fieldProductCss"
-              value={newProductTable ? newProductTable.name : ''}
-              onChange={(e) => onFieldEdit('name', e)}
-            ></input>
+      {/* <Box
+                                        alignSelf="center" style={{width:30+"%"}}> */}
+      <div class="container row" style={{ height: 16 + 'vh', width: '100%' }}>
+
+        <div class="col-3 d-flex justify-content-start flex-column align-items-center ">
+          <div  >
+            {/* <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+              onChange={(e) => addImage(e.target.files[0])} /> */}
+
+            <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+              onChange={(e) => addImage(e.target.files[0])} />
+
+            {/* <button onClick={onButtonClick} className="rounded" className={classes.buttonUpload}>
+              <HiUpload id="icon" className={classes.iconUpload} />
+            </button> */}
+
+            <button onClick={onButtonClick} className="rounded" className={classes.buttonUpload}>
+              {props.newProduct[0] && props.newProduct[0].images ?
+                <img
+                  className={classes.imgUpload}
+                  src={newProductTable ? newProductTable.images : ""}
+                  alt="Logo"
+                  title="Your Logo Here"
+                  onClick={() => onButtonClick("logo")}
+                /> :
+                <HiUpload id="icon" className={classes.iconUpload} />}
+            </button>
+
           </div>
-          <div className="hederP">
-            <label> Price</label>
-            <input className="fieldProductCss"
-              value={newProductTable ? newProductTable.price : ''}
-              onChange={(e) => onFieldEdit('price', e)}
-            ></input>
+
+          <div>
+            <p style={{ fontSize: "60%" }}>upload image</p>
           </div>
         </div>
-        <div className="row">
-          <div className="hederD">
-            <label> Discription</label>
-            <input className="fieldProductCssD"
-              value={newProductTable ? newProductTable.description : ''}
-              onChange={(e) => onFieldEdit('description', e)}
-            ></input>
+
+
+
+
+        <div class="container col-9" style={{ height: 16 + 'vh', width: '67%' }}>
+          <div class="row">
+            <div className="col-3">
+              <p className="ff">name product:</p>
+            </div>
+            <div className="col-3 in">
+              <input className="form-control form-control-sm"
+                value={newProductTable ? newProductTable.name : ''}
+                className={classes.inputStyle} onChange={(e) => onFieldEdit('name', e)} />
+            </div>
+            <div className="col-3">
+              <p className="ff">description:</p>
+            </div>
+            <div className="col-3 in">
+              <input className="form-control form-control-sm" className={classes.inputStyle}
+                value={newProductTable ? newProductTable.description : ''}
+                onChange={(e) => onFieldEdit('description', e)} />
+
+            </div>
           </div>
-          <button type="button" class="btn btn-link1" onClick={changeFlag}>close</button>
-          <button type="button" class="btn btn-link2" onClick={addNewProduct}>save</button>
+
+          <div class="row">
+            <div className="col-3">
+              <p className="ff">price:</p>
+            </div>
+            <div className="col-3 in">
+              <input className="form-control form-control-sm" className={classes.inputStyle}
+                value={newProductTable ? newProductTable.price : ''}
+                onChange={(e) => onFieldEdit('price', e)} />
+            </div>
+            <div className="col-3">
+              <p className="ff">amount:</p>
+            </div>
+
+            <div className="col-3 in">
+              <input className="form-control form-control-sm" className={classes.inputStyle}
+                value={newProductTable ? newProductTable.amount : ''}
+                onChange={(e) => onFieldEdit('amount', e)} />
+            </div>
+          </div>
+
+          <div class="row">
+            <div className="col-4 in" style={{ right: -80 + '%' }}>
+              <button type="button" class="btn btn-link" onClick={changeFlag}>close</button>
+              {/* <button type="button" class="btn btn-link" onClick={clearObject}>delete</button> */}
+              <button type="button" class="btn btn-link" onClick={addNewProduct}>save</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          {console.log('imagep', props.imgProduct)}
         </div>
       </div>
+      {/* <button onClick={addNewProduct}></button> */}
+
     </>
   )
 }
@@ -195,4 +234,5 @@ const mapDispatchToProps = (dispatch) => ({
   setImage: (objectImage) => dispatch(actions.setImage(objectImage))
   // setImgProduct:(img)=>dispatch(actions.setSignatureToServerP(img))
 })
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductForm)

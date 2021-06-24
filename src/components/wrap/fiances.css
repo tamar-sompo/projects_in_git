@@ -12,7 +12,8 @@
    .flex_configurator{
        flex: 0 0 5.666667%;
    }
-   .flex-main {
+   .flex-main{
+
     flex: 0 0 93.333333%;
     max-width: 93.333333%;
     padding-left: 0px;

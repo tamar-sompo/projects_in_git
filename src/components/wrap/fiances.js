@@ -48,7 +48,8 @@ import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
 import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
-
+import SettingBuisnessForm from '../forms/settingBusinessFrom';
+// import SettingBuisnessFrom from 
 
 export default function Fiances() {
     // const Location = useLocation()
@@ -120,7 +121,6 @@ export default function Fiances() {
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
                             </div>
-                            {/* <div style={{ backgroundColor: "white" }}> */}
                             <Switch>
                                 <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
                                 <Route path="/:userName/invoice" component={InvoiceAndSteps} />
@@ -130,11 +130,12 @@ export default function Fiances() {
                                 <Route path="/:userName/customers" component={Contactsiframe} />
                                 <Route path="/:userName/buisness" component={Business} />
                                 <Route path="/:userName/add_buisness" component={BuisnessForm} />
+                                <Route path="/:userName/setting" component={SettingBuisnessForm} />
+
                                 {/* <Route path="/:userName/newContact" component={createContact} /> */}
                                 <Route path="/:userName/product" component={Products} />
                                 {/* <Route exact path="/:userName" component={HomePage} /> */}
                             </Switch>
-                            {/* </div> */}
                             {/* <div className="sendEmailFromList" style={{
                                 width: "17vw",
                                 border: "1px solid #917BDF",

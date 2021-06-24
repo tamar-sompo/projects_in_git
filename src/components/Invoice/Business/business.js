@@ -35,7 +35,7 @@ function Business(props) {
   return (
     <div className="container-fluid" style={{
       height: "88vh",
-      width: "98%",
+      width: "90%",
       borderRadius: "9px",
       boxShadow: "0px 3px 6px #0A26B126",
       backgroundColor: 'white'
@@ -73,7 +73,7 @@ function Business(props) {
                   buisnessName={buisness.name}
                   buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
                   buisnessNumber={buisness.numberDeals ? buisness.numberDeals : ''}
-                  buisnessImg={buisness.imgLogo ? buisness.imgLogo : logo1}
+                  buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
                 />
               </div>
             ) : <div>You have no Business</div>

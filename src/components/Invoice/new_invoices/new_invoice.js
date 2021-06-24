@@ -14,6 +14,7 @@ import { FiUpload } from "react-icons/fi";
 import MouseTooltip from 'react-sticky-mouse-tooltip';
 // import styled from 'styled-components';
 import Item from './item'
+import LeaderLouder from '../../Useful/leaderLouder'
 // import {Link} from "react-router-dom";
 import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
@@ -107,6 +108,7 @@ function New_Invoice(props) {
   })
   const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
   const [falgView, setFlagView] = useState(false)
+  const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
   useEffect(() => {
     debugger
     let summ = 0
@@ -243,16 +245,18 @@ function New_Invoice(props) {
       if (history.location.pathname !== `/${userName}/allDocuments` && history.location.pathname !== `/${userName}/Invoice/Conversion` && history.location.pathname !== `/${userName}/Invoice/Content` && history.location.pathname !== `/${userName}/Invoice/Design` && history.location.pathname !== `/${userName}/Invoice/Production`) {
         console.log("dp", invoice.products)
         if (window.location.href.indexOf("view") != -1) {
+          setValidName(false)
           if (allproduct.length > 0) {
             detailsInvoice.products.map(p =>
               dispatch(actions.setP(allproduct.find(x => x._id == p.id).name)))
             // detailsInvoice.products.map((x) => {
             //   dispatch(actions.setSaveSumView(x.sum_product))
             // })
-            // }
+            // }    
           }
         }
         else {
+          setValidName(true)
           // detailsInvoice.products && detailsInvoice.products.map(p =>
           //   dispatch(actions.setP(allproduct.find(x => x._id == p.id).name)))
         }
@@ -330,7 +334,68 @@ function New_Invoice(props) {
     //   history.push("/ruthChoen/Invoice/" + url_string)
     // $(".step" + num).click()
   }
+
+
+  ///////////////////////////////////////////////////////////////////
+  const [validName, setValidName] = useState(false);
+  const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
+  const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
+  const [errorMessage1, setErrorMessage1] = useState(false);
+  const [errorMessage2, setErrorMessage2] = useState(false);
+  const [firstTmp, setfirstTmp] = useState(false);
+
+  const validatorPhone = (v) => {
+    debugger
+    const tmp = v.length == 13 && v.includes('+');
+    return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
+  }
+  const validatorEmail = (v) => {
+    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
+  }
+  useEffect(() => {
+    debugger
+    if (firstTmp) {
+      let tmp3 = true;
+      if (contactedit.phone) {
+        tmp3 = validatorPhone(contactedit.phone);
+      }
+      if (validatorEmail(contactedit.email) || validName  && tmp3) {
+        debugger
+        setErrorMessage1(false)
+        setErrorMessage2(false)
+        dispatch(actions.setFlagValidation(false))
+        if (!flagTmpSave) {
+          dispatch(actions.setFlagOfterValidation(true))
+        }
+        else { dispatch(actions.setFlagTmpSave(false)) }
+      }
+      else {
+        if (!contactedit.email) {
+          setErrorMessage1(true)
+          dispatch(actions.setFlagValidation(false))
+        }
+        else {
+          if (!validatorEmail(contactedit.email)) {
+            dispatch(actions.setFlagValidation(false))
+            setErrorMessage1(true)
+          }
+          else {
+            setErrorMessage1(false)
+          }
+        }
+        if (!tmp3) {
+          setErrorMessage2(true)
+          dispatch(actions.setFlagValidation(false))
+        }
+        else { setErrorMessage2(false) }
+      }
+    }
+    else (setfirstTmp(true))
+  }, [flagValidation])
+
+  /////////////////////////////////////////////////////////
   const saveContact1 = () => {
+    dispatch(actions.setShowInInvoice(true))
     debugger
     if (!detailscontact.contact) {
       debugger
@@ -353,6 +418,7 @@ function New_Invoice(props) {
       })
   }
   const saveContact = () => {
+    dispatch(actions.setShowInInvoice(true))
     debugger
     setFlag(false)
     debugger
@@ -380,10 +446,39 @@ function New_Invoice(props) {
   }
 
   const onFieldChangeContact = (fieldName, e) => {
+    debugger
+    if (fieldName == 'email') {
+      if (e.target.value) {
+        setValidName(false)
+        if (validatorEmail(e.target.value)) {
+          setErrorMessage1(false)
+        }
+        else { setErrorMessage1(true) }
+      }
+      else { setErrorMessage1(true) }
+    }
+    else {
+      if (fieldName == 'phone') {
+        if (e.target.value) {
+          if (validatorPhone(e.target.value)) {
+            setErrorMessage2(false)
+          }
+          else { setErrorMessage2(true) }
+        }
+        else {
+          setErrorMessage2(false)
+        }
+      }
+    }
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
+      debugger
       if (allcontact1.find(x => x.name == e.target.value)) {
         let dc = allcontact1.find(x => x.name == e.target.value).email
+        if (validatorEmail(dc)) {
+          setValidName(true)
+        }
+        else setValidName(false)
         // setinvoiceDetailsViewContact(dc)
         dispatch(actions.getContactById(dc))
         if (!detailscontact) {
@@ -677,258 +772,267 @@ function New_Invoice(props) {
     <>
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '100vh' : '80vh' }}>
         {console.log("allcontacttttt20", detailsInvoice)}
-        <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-          onChange={(e) => addImageList(e.target.files[0])} />
+        <div className={flagLoud ? 'flagLoudOp' : ''}>
+          <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+            onChange={(e) => addImageList(e.target.files[0])} />
 
-        <div id="bgImg" className={isMouseTooltipVisible ? "frameInvoice" : ""} style={{ border: 8 + 'px solid red' }}
-          onClick={() => {
-            if (displayInvoice === "false") onButtonClick("frame")
-          }}
-          style={{
-            opacity: isMouseTooltipVisible ? '0.5' : '1',
-            backgroundImage: invoice.imageFrame ? `url('${invoice.imageFrame}')` : detailsInvoice.imageFrame ? `url('${detailsInvoice.imageFrame}')` : `url(${Untitled})`
-          }}>
-
-
-          <Container className="main-temp1"
-            onClick={(event) => {
-              if (displayInvoice === "false") func1(event)
+          <div id="bgImg" className={isMouseTooltipVisible ? "frameInvoice" : ""} style={{ border: 8 + 'px solid red' }}
+            onClick={() => {
+              if (displayInvoice === "false") onButtonClick("frame")
             }}
-            style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
-            <Row className="justify-content-md-center py-3">
-              <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                onChange={(e) => addImageList(e.target.files[0])} />
-              {console.log('logoooo', detailsInvoice.imgLogo)}
-              <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                id='userLogo-temp1'
-                style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
-                src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : flowersLogo}
-                alt="Logo"
-                title="Your Logo Here"
-              />
-              <div
-              >
-              </div>
+            style={{
+              opacity: isMouseTooltipVisible ? '0.5' : '1',
+              backgroundImage: invoice.imageFrame ? `url('${invoice.imageFrame}')` : detailsInvoice.imageFrame ? `url('${detailsInvoice.imageFrame}')` : `url(${Untitled})`
+            }}>
 
-            </Row>
-            <Row className="justify-content-md-center mb-0">
-              <Col md={8} >
-                <Row onClick={() => focus_steps('Production', 1)}>
-                  <Col md={4} className='m-auto'>
-                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                      size='15'
-                      type="text"
 
-                      className={focus === 'companyWebsite' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
-                      onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
-                      onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
-                      value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                    />
-                  </Col>
-                  <Col md={4} className='m-auto'>
-                    <div class="d-flex justify-content-start">
-                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                        style={{ width: "10vh" }}
-
-                        size='15'
-                        type="text"
-                        className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                        placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "city" : "city"}
-                        onClick={displayInvoice === "false" && (() => setFocus('companyAddress'))}
-                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
-                        value={detailsBusiness && detailsBusiness.city}
-                      />
-                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                        style={{ width: "10vh" }}
-                        size='15'
-                        type="text"
-                        placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
-                        className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                        value={detailsBusiness && detailsBusiness.address}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4} className='m-auto'>
-                    <input readOnly
-                      type="text"
-                      disabled={displayInvoice === "true" ? "disable" : ""}
-                      size='15'
-                      className={focus === 'companyPhone' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                      placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
-                      onClick={() => setFocus('companyPhone')}
-                      onChange={(e) => onFieldChanged('companyPhone')}
-                      onBlur={updatedetailsBusiness1('phone')}
-                      value={detailsBusiness && detailsBusiness.phone}
-                    />
-                  </Col>
-                </Row></Col></Row>
-            <Row className="justify-content-center align-items-center">
-              <Col md={9}>
-                <hr
-                  style={props.colors ? { backgroundColor: props.colors[1] } : {}}
+            <Container className="main-temp1"
+              onClick={(event) => {
+                if (displayInvoice === "false") func1(event)
+              }}
+              style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
+              <Row className="justify-content-md-center py-3">
+                <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                  onChange={(e) => addImageList(e.target.files[0])} />
+                {console.log('logoooo', detailsInvoice.imgLogo)}
+                <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
+                  id='userLogo-temp1'
+                  style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
+                  src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : flowersLogo}
+                  alt="Logo"
+                  title="Your Logo Here"
                 />
-              </Col>
-            </Row>
-            <Row className="my-5"></Row>
-            <Row className='m-0' style={{ paddingRight: "7%", paddingLeft: "7%" }}>
-              <Col md={8} className='' onClick={() => focus_steps('Production', 1)}>
-                <Row className='static-temp1'>To:</Row>
-                <Row className="font-weight-bold mb-2" >
-                  <input
+                <div
+                >
+                </div>
 
-                    name="city" list="contactname"
-                    id='headers-name'
-                    disabled={displayInvoice === "true" ? "disable" : ""}
+              </Row>
+              <Row className="justify-content-md-center mb-0">
+                <Col md={8} >
+                  <Row onClick={() => focus_steps('Production', 1)}>
+                    <Col md={4} className='m-auto'>
+                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                        size='15'
+                        type="text"
 
-                    placeholder="contact name"
-                    className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
-                    onClick={() => setFocus('customerName')}
-                    onFocus={(e) => resetfieldcontact('name', e)}
+                        className={focus === 'companyWebsite' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
+                        placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                        onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                        value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
+                      />
+                    </Col>
+                    <Col md={4} className='m-auto'>
+                      {flagLoud &&
+                        <div class="d-flex justify-content-end">
+                          <LeaderLouder></LeaderLouder>
+                        </div>}
+                      <div class="d-flex justify-content-start">
+                        <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                          style={{ width: "10vh" }}
 
-                    value={
-                      detailsInvoice ?
-                        detailsInvoice.contactOneTime &&
-                          detailsInvoice.contactOneTime.flag == true ?
-                          saveContactOne.name ?
-                            saveContactOne.name : contactedit.name ? contactedit.name : '' :
-                          detailsInvoice.contact ?
-                            contactFromInvoice ?
-                              contactFromInvoice.name : contactedit.name ? contactedit.name : ''
-                            :
-                            detailscontact && detailscontact.contact ?
-                              detailscontact.contact.name :
-                              contactedit.name ? contactedit.name : "" : ""
-
-                    }
-                    onChange={(e) => onFieldChangeContact('name', e)}
+                          size='15'
+                          type="text"
+                          className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
+                          placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "city" : "city"}
+                          onClick={displayInvoice === "false" && (() => setFocus('companyAddress'))}
+                          onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
+                          value={detailsBusiness && detailsBusiness.city}
+                        />
+                        <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                          style={{ width: "10vh" }}
+                          size='15'
+                          type="text"
+                          placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
+                          className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
+                          value={detailsBusiness && detailsBusiness.address}
+                        />
+                      </div>
+                    </Col>
+                    <Col md={4} className='m-auto'>
+                      <input readOnly
+                        type="text"
+                        disabled={displayInvoice === "true" ? "disable" : ""}
+                        size='15'
+                        className={focus === 'companyPhone' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
+                        placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
+                        onClick={() => setFocus('companyPhone')}
+                        onChange={(e) => onFieldChanged('companyPhone')}
+                        onBlur={updatedetailsBusiness1('phone')}
+                        value={detailsBusiness && detailsBusiness.phone}
+                      />
+                    </Col>
+                  </Row></Col></Row>
+              <Row className="justify-content-center align-items-center">
+                <Col md={9}>
+                  <hr
+                    style={props.colors ? { backgroundColor: props.colors[1] } : {}}
                   />
-                  <datalist style={{ zIndex: "999" }} id="contactname">
-                    {console.log("allcontact1", allcontact1)}
-                    {allcontact1.length > 0 ? allcontact1.map(x => {
-                      return (
-                        <option>{x.name}</option>)
-                    }) : ''}
-                  </datalist>
-                </Row>
-                <Row >
-                  <input
-                    disabled={displayInvoice === "true" ? "disable" : ""}
+                </Col>
+              </Row>
+              <Row className="my-5"></Row>
+              <Row className='m-0' style={{ paddingRight: "7%", paddingLeft: "7%" }}>
+                <Col md={8} className='' onClick={() => focus_steps('Production', 1)}>
+                  <Row className='static-temp1'>To:</Row>
+                  <Row className="font-weight-bold mb-2" >
+                    <input
+                      autoComplete="new-password"
+                      name="city" list="contactname"
+                      id='headers-name'
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      autoComplete="new-password"
+                      placeholder="contact name"
+                      className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
+                      onClick={() => setFocus('customerName')}
+                      onFocus={(e) => resetfieldcontact('name', e)}
 
-                    placeholder="contact email"
+                      value={
+                        detailsInvoice ?
+                          detailsInvoice.contactOneTime &&
+                            detailsInvoice.contactOneTime.flag == true ?
+                            saveContactOne.name ?
+                              saveContactOne.name : contactedit.name ? contactedit.name : '' :
+                            detailsInvoice.contact ?
+                              contactFromInvoice ?
+                                contactFromInvoice.name : contactedit.name ? contactedit.name : ''
+                              :
+                              detailscontact && detailscontact.contact ?
+                                detailscontact.contact.name :
+                                contactedit.name ? contactedit.name : "" : ""
 
-                    type='email'
-                    onFocus={(e) => resetfieldcontact('email', e)}
-                    className='editable-temp1 design_text'
-                    value={detailsInvoice ?
-                      detailsInvoice.contactOneTime &&
-                        detailsInvoice.contactOneTime.flag == true ?
-                        saveContactOne.email ?
-                          saveContactOne.email : contactedit.email ? contactedit.email : '' :
-                        detailsInvoice.contact ? contactFromInvoice ?
-                          contactFromInvoice.email : contactedit.email ? contactedit.email : '' :
-                          detailscontact && detailscontact.contact ? detailscontact.contact.email :
-                            contactedit.email ? contactedit.email : '' : ''}
-                    onChange={(e) => onFieldChangeContact('email', e)}
-                  >
-                  </input>
-                </Row>
-                <Row >
-                  <input
-
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    placeholder="contact phone"
-                    onFocus={(e) => resetfieldcontact('phone', e)}
-                    className='editable-temp1 design_text'
-                    value={detailsInvoice ?
-                      detailsInvoice.contactOneTime &&
-                        detailsInvoice.contactOneTime.flag == true ?
-                        saveContactOne.phone ?
-                          saveContactOne.phone : contactedit.phone ? contactedit.phone : '' :
-                        detailsInvoice.contact ? contactFromInvoice ? contactFromInvoice.phone : contactedit.phone ? contactedit.phone : '' :
-                          detailscontact && detailscontact.contact ? detailscontact.contact.phone :
-                            contactedit.phone ? contactedit.phone : '' : ''}
-                    onChange={(e) => onFieldChangeContact('phone', e)}>
-                  </input>
-                </Row>
-                <Row >
-                  <input
-
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    placeholder="contact address "
-                    onFocus={(e) => resetfieldcontact('address', e)}
-                    className='editable-temp1 design_text'
-                    value={detailsInvoice ?
-                      detailsInvoice.contactOneTime &&
-                        detailsInvoice.contactOneTime.flag == true ?
-                        saveContactOne.address ?
-                          saveContactOne.address : contactedit.address ? contactedit.address : '' :
-                        detailsInvoice.contact ? contactFromInvoice ? contactFromInvoice.address : contactedit.address ? contactedit.address : '' :
-                          detailscontact && detailscontact.contact ? detailscontact.contact.address :
-                            contactedit.address ? contactedit.address : '' : ''}
-                    onChange={(e) => onFieldChangeContact('address', e)}>
-                  </input>
-                </Row>
-              </Col>
-              <Col md={4} className='' onClick={() => focus_steps('Content', 3)}>
-                <Row ><br /></Row>
-                <Row className="font-weight-bold mb-2">
-                  <Col md={6} id='headers-numInvoice' className='static-temp1 text-left'>Invoice</Col>
-                  <Col md={6} id='headers-numInvoice' className='static-temp1 text-right p-0'>{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</Col>
-                </Row>
-                <Row>
-                  <Col md={6} className='static-temp1 text-left'>Date:{() => convertdate(detailsInvoice.date)}</Col>
-                  <Col md={6}
-                    className='static-temp1 text-right right p-0'
-                    readOnly>
-                    {shortDate}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={6} className='static-temp1 text-left'>Due Date:
-                  </Col>
-                  <Col md={6} className='text-right p-0'>
+                      }
+                      onChange={(e) => onFieldChangeContact('name', e)}
+                    />
+                    <datalist style={{ zIndex: "999" }} id="contactname">
+                      {console.log("allcontact1", allcontact1)}
+                      {allcontact1.length > 0 ? allcontact1.map(x => {
+                        return (
+                          <option>{x.name}</option>)
+                      }) : ''}
+                    </datalist>
+                  </Row>
+                  <Row >
                     <input
                       disabled={displayInvoice === "true" ? "disable" : ""}
-                      className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
-                      type="Date"
-                      size="6"
-                      defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
-                      onChange={onFieldChanged('dueDate')}
-                      onClick={() => setFocus('dueDate')}
+
+                      placeholder="contact email"
+                      autoComplete="new-password"
+                      type='email'
+                      onFocus={(e) => resetfieldcontact('email', e)}
+                      className={errorMessage1 ?
+                        'editable-temp1 design_text validB' : 'editable-temp1 design_text'}
+                      // className='editable-temp1 design_text'
+                      value={detailsInvoice ?
+                        detailsInvoice.contactOneTime &&
+                          detailsInvoice.contactOneTime.flag == true ?
+                          saveContactOne.email ?
+                            saveContactOne.email : contactedit.email ? contactedit.email : '' :
+                          detailsInvoice.contact ? contactFromInvoice ?
+                            contactFromInvoice.email : contactedit.email ? contactedit.email : '' :
+                            detailscontact && detailscontact.contact ? detailscontact.contact.email :
+                              contactedit.email ? contactedit.email : '' : ''}
+                      onChange={(e) => onFieldChangeContact('email', e)}
                     >
                     </input>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-            <Row
-              className="font-weight-bold  justify-content-md-center py-5 mt-3 mb-3" onClick={() => focus_steps('Content', 3)}
-            >
-
-
-              <input
-                disabled={displayInvoice === "true" ? "disable" : ""}
-                placeholder='Invoice Name'
-                id='title-temp1'
-                className={focus === 'invoiceName' ? 'focus-temp1' : 'editable-temp1'}
-                maxlength="15"
-                ref={refLevel3}
-                defaultValue={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : '' : ''}
-                onClick={(e) => setRefLevel3()}
-                onBlur={() => onFieldChanged('type')}
-                bgColor={props.colors ? props.colors[2] : 'black'}
+                  </Row>
+                  <Row >
+                    <input
+                      autoComplete="new-password"
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      placeholder="contact phone"
+                      onFocus={(e) => resetfieldcontact('phone', e)}
+                      // className='editable-temp1 design_text'
+                      className={errorMessage2 ?
+                        'editable-temp1 design_text validB' : 'editable-temp1 design_text'}
+                      value={detailsInvoice ?
+                        detailsInvoice.contactOneTime &&
+                          detailsInvoice.contactOneTime.flag == true ?
+                          saveContactOne.phone ?
+                            saveContactOne.phone : contactedit.phone ? contactedit.phone : '' :
+                          detailsInvoice.contact ? contactFromInvoice ? contactFromInvoice.phone : contactedit.phone ? contactedit.phone : '' :
+                            detailscontact && detailscontact.contact ? detailscontact.contact.phone :
+                              contactedit.phone ? contactedit.phone : '' : ''}
+                      onChange={(e) => onFieldChangeContact('phone', e)}>
+                    </input>
+                  </Row>
+                  <Row >
+                    <input
+                      autoComplete="new-password"
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      placeholder="contact address "
+                      onFocus={(e) => resetfieldcontact('address', e)}
+                      className='editable-temp1 design_text'
+                      value={detailsInvoice ?
+                        detailsInvoice.contactOneTime &&
+                          detailsInvoice.contactOneTime.flag == true ?
+                          saveContactOne.address ?
+                            saveContactOne.address : contactedit.address ? contactedit.address : '' :
+                          detailsInvoice.contact ? contactFromInvoice ? contactFromInvoice.address : contactedit.address ? contactedit.address : '' :
+                            detailscontact && detailscontact.contact ? detailscontact.contact.address :
+                              contactedit.address ? contactedit.address : '' : ''}
+                      onChange={(e) => onFieldChangeContact('address', e)}>
+                    </input>
+                  </Row>
+                </Col>
+                <Col md={4} className='' onClick={() => focus_steps('Content', 3)}>
+                  <Row ><br /></Row>
+                  <Row className="font-weight-bold mb-2">
+                    <Col md={6} id='headers-numInvoice' className='static-temp1 text-left'>Invoice</Col>
+                    <Col md={6} id='headers-numInvoice' className='static-temp1 text-right p-0'>{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</Col>
+                  </Row>
+                  <Row>
+                    <Col md={6} className='static-temp1 text-left'>Date:{() => convertdate(detailsInvoice.date)}</Col>
+                    <Col md={6}
+                      className='static-temp1 text-right right p-0'
+                      readOnly>
+                      {shortDate}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6} className='static-temp1 text-left'>Due Date:
+                    </Col>
+                    <Col md={6} className='text-right p-0'>
+                      <input
+                        disabled={displayInvoice === "true" ? "disable" : ""}
+                        className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
+                        type="Date"
+                        size="6"
+                        defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
+                        onChange={onFieldChanged('dueDate')}
+                        onClick={() => setFocus('dueDate')}
+                      >
+                      </input>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+              <Row
+                className="font-weight-bold  justify-content-md-center py-5 mt-3 mb-3" onClick={() => focus_steps('Content', 3)}
               >
-              </input>
 
-              <Button
-                className='button4'>
-              </Button>
-            </Row>
-            <div className="container-fluid">
-              <div className="row">
-                {/* <div>"fghhhhhh</div> */}
-                {/* <Col md={1}>
+
+                <input
+                  disabled={displayInvoice === "true" ? "disable" : ""}
+                  placeholder='Invoice Name'
+                  id='title-temp1'
+                  className={focus === 'invoiceName' ? 'focus-temp1' : 'editable-temp1'}
+                  maxlength="15"
+                  ref={refLevel3}
+                  defaultValue={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : '' : ''}
+                  onClick={(e) => setRefLevel3()}
+                  onBlur={() => onFieldChanged('type')}
+                  bgColor={props.colors ? props.colors[2] : 'black'}
+                >
+                </input>
+
+                <Button
+                  className='button4'>
+                </Button>
+              </Row>
+              <div className="container-fluid">
+                <div className="row">
+                  {/* <div>"fghhhhhh</div> */}
+                  {/* <Col md={1}>
               </Col>
               <Col md={2}>Product Name</Col>
               <Col md={2}>Description</Col>
@@ -942,59 +1046,59 @@ function New_Invoice(props) {
                 <div className=" table_title bold col-1" >Discount</div>
                 <div className=" table_title bold col-1" ></div>
                 <div className=" table_title bold col-1 nonborder" ></div> */}
-                <div className=" nonborder col-6 d-flex justify-content-center" >
-                  <div className=" table_title bold" style={{ width: "20%" }}></div>
-                  <div className=" table_title bold" style={{ width: "30%" }}>Product Name</div>
-                  <div className=" table_title bold" style={{ width: "50%" }}>Description</div>
-                </div>
-                {/* <div className=" table_title bold" style={{ width: "15%" }}>Product Name</div>
+                  <div className=" nonborder col-6 d-flex justify-content-center" >
+                    <div className=" table_title bold" style={{ width: "20%" }}></div>
+                    <div className=" table_title bold" style={{ width: "30%" }}>Product Name</div>
+                    <div className=" table_title bold" style={{ width: "50%" }}>Description</div>
+                  </div>
+                  {/* <div className=" table_title bold" style={{ width: "15%" }}>Product Name</div>
                 <div className=" table_title bold" style={{ width: "24%" }}>Description</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Unit Price</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Quantity</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Discount</div>
                 <div className=" table_title bold" style={{ width: "10%" }}></div> */}
-                <div className=" table_title bold col-6  d-flex justify-content-center" >
+                  <div className=" table_title bold col-6  d-flex justify-content-center" >
 
-                  <div className=" table_title bold" style={{ width: "20%" }}>Unit Price</div>
-                  <div className=" table_title bold" style={{ width: "20%" }}>Quantity</div>
-                  <div className=" table_title bold" style={{ width: "20%" }}>Discount</div>
-                  <div style={{ width: "20%" }}> </div>
-                  <div style={{ width: "20%" }}> </div>
+                    <div className=" table_title bold" style={{ width: "20%" }}>Unit Price</div>
+                    <div className=" table_title bold" style={{ width: "20%" }}>Quantity</div>
+                    <div className=" table_title bold" style={{ width: "20%" }}>Discount</div>
+                    <div style={{ width: "20%" }}> </div>
+                    <div style={{ width: "20%" }}> </div>
+                  </div>
                 </div>
-              </div>
-              {/* <div className="row">
+                {/* <div className="row">
                 <div className="col-9 d-flex justify-content-center">
 <hr></hr>
                 </div> */}
 
-            </div>
+              </div>
 
-            <div className="container-fluid wrapproduct" style={{ borderTop: "1px solid gray", borderBottom: "1px solid gray" }}>
-              {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
-                detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
-                (window.location.href.indexOf("view") == -1 &&
-                  detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
-                detailsInvoice.products.map((p, index) =>
-                  <Item key={index}
-                    pro={p}
-                    arrColor={props.colors}
-                    index={index}
-                    productSelect={productSelect}
-                    onItemChanged={(fieldChanged) =>
-                      saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />) :
-                invoice.products.map((p, index) =>
-                  <Item key={index}
-                    productSelect={productSelect}
-                    pro={p}
-                    index={index}
-                    arrColor={props.colors}
-                    onItemChanged={(fieldChanged) =>
-                      saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />)}
-            </div>
-            {/* </div> */}
-            {/* <div id='table-temp1' className=''>
+              <div className="container-fluid wrapproduct" style={{ borderTop: "1px solid gray", borderBottom: "1px solid gray" }}>
+                {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
+                  detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
+                  (window.location.href.indexOf("view") == -1 &&
+                    detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
+                  detailsInvoice.products.map((p, index) =>
+                    <Item key={index}
+                      pro={p}
+                      arrColor={props.colors}
+                      index={index}
+                      productSelect={productSelect}
+                      onItemChanged={(fieldChanged) =>
+                        saveItemToStore(index, fieldChanged)}
+                      onItemDeleted={() => deleteItemFromStore(index)} />) :
+                  invoice.products.map((p, index) =>
+                    <Item key={index}
+                      productSelect={productSelect}
+                      pro={p}
+                      index={index}
+                      arrColor={props.colors}
+                      onItemChanged={(fieldChanged) =>
+                        saveItemToStore(index, fieldChanged)}
+                      onItemDeleted={() => deleteItemFromStore(index)} />)}
+              </div>
+              {/* </div> */}
+              {/* <div id='table-temp1' className=''>
               {console.log("window.location.href.indexOf", window.location.href.indexOf("view"))}
               {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                 detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
@@ -1020,55 +1124,56 @@ function New_Invoice(props) {
                     onItemDeleted={() => deleteItemFromStore(index)} />)}
             </div> */}
 
-            <Row className='mt-2'>
-              <Col className='m-0 p-0'>
-                {
-                  flagBorderProduct ?
-                    <span style={{ color: 'red' }}>product is require</span> :
-                    <span></span>
-                }
-                {displayInvoice === "false" &&
-                  <Row>
-                    <Button disabled="" variant="light"
-                      className='plusIcon-temp1 mb-2'
-                      onClick={addItem} >
-                      <FontAwesomeIcon
-                        size='1x'
-                        icon={['fas', 'plus']}
-                      />
-
-                    </Button>
-                  </Row>
-                }
-                <Row>
+              <Row className='mt-2'>
+                <Col className='m-0 p-0'>
+                  {
+                    flagBorderProduct ?
+                      <span style={{ color: 'red' }}>product is require</span> :
+                      <span></span>
+                  }
                   {displayInvoice === "false" &&
-                    <Button variant="light"
-                      id='comment-temp1'
-                      className={focus === 'comment' ? 'focus-temp1' : ''}
-                      nClick={() => setFocus('comment')}
-                    >
-                      Comment +
-                    </Button>}
-                </Row>
-              </Col>
+                    <Row>
+                      <Button disabled="" variant="light"
+                        className='plusIcon-temp1 mb-2'
+                        onClick={addItem} >
+                        <FontAwesomeIcon
+                          size='1x'
+                          icon={['fas', 'plus']}
+                        />
 
-              <Col md={{ span: 4, offset: 9 }} className="total-temp1 text-right">
-                <Row className=' font-weight-bold'>
-                  <Col md={4} className='totalSum-temp1 text-left pt-4'>Total:</Col>
-                  <Col md={4} className='totalSum-temp1 text-right pt-4 p-0'>{saveSum2 > 0 ? saveSum2 : saveSum ? saveSum.toFixed(2) :
-                    ''
-                  }</Col>
+                      </Button>
+                    </Row>
+                  }
+                  <Row>
+                    {displayInvoice === "false" &&
+                      <Button variant="light"
+                        id='comment-temp1'
+                        className={focus === 'comment' ? 'focus-temp1' : ''}
+                        nClick={() => setFocus('comment')}
+                      >
+                        Comment +
+                      </Button>}
+                  </Row>
+                </Col>
+
+                <Col md={{ span: 4, offset: 9 }} className="total-temp1 text-right">
+                  <Row className=' font-weight-bold'>
+                    <Col md={4} className='totalSum-temp1 text-left pt-4'>Total:</Col>
+                    <Col md={4} className='totalSum-temp1 text-right pt-4 p-0'>{saveSum2 > 0 ? saveSum2 : saveSum ? saveSum.toFixed(2) :
+                      ''
+                    }</Col>
 
 
-                </Row>
-              </Col>
-            </Row>
-            <div id='signatue' className='justify-content-md-center'>
-              <div>
-                <DigitalSignature />
+                  </Row>
+                </Col>
+              </Row>
+              <div id='signatue' className='justify-content-md-center'>
+                <div>
+                  <DigitalSignature />
+                </div>
               </div>
-            </div>
-          </Container>
+            </Container>
+          </div>
         </div>
       </div>
     </>

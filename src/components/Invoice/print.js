@@ -10,8 +10,8 @@ class ComponentToPrint extends React.Component {
   render() {
     return (
       <div>hello
-       <Invoice/>
-      {/* <Steps/> */}
+        <Invoice />
+        {/* <Steps/> */}
       </div>
     );
   }
@@ -22,25 +22,25 @@ class Print extends React.Component {
     return (
       <div>
         <ReactToPrint
-          trigger={() => 
-          <a href="#">
-<FontAwesomeIcon
-        //   className='iconBtnConfig'
-          size='2x'
-          className='insertIcon'
-          icon={['fas', 'print']}
-          //onClick={() => printInvoice()}
-          >
-            {/* <BiPrinter /> */}
-        </FontAwesomeIcon>
+          trigger={() =>
+            <a href="#">
+              <FontAwesomeIcon
+                //   className='iconBtnConfig'
+                size='2x'
+                className='insertIcon'
+                icon={['fas', 'print']}
+              //onClick={() => printInvoice()}
+              >
+                {/* <BiPrinter /> */}
+              </FontAwesomeIcon>
 
 
 
-          </a>}
+            </a>}
           content={() => this.componentRef}
         />
-        
-       <div style={{display:'none'}}> <ComponentToPrint ref={el => (this.componentRef = el)} /></div>
+
+        <div style={{ display: 'none' }}> <ComponentToPrint ref={el => (this.componentRef = el)} /></div>
       </div>
     );
   }

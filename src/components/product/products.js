@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonUpload1: {
         display: 'inline-block',
-        width: 6 + 'vh',
+        width:6 + 'vh',
         height: 6 + 'vh',
         backgroundColor: 'transparent',
         border: '1px solid black',
         borderRadius: 50 + '%',
         padding: 0
-    },
+      },
 
 }))
 
@@ -74,7 +74,9 @@ function Products(props) {
             setProductLocal();
         else
             setProductLocal(p)
+
     }
+
     useEffect(() => {
         // alert("allp")
         // dispatch(actions.getAllProduct())
@@ -113,14 +115,20 @@ function Products(props) {
             return description.substring(0, description.length - (description.length - 25)) + '...';
         }
         return description;
+
+
     }
+
     const changeFlag = (value) => {
+        // dispatch(actions.setPushNewProduct({}))
         dispatch(actions.setNewProductTableFull({}))
         setFlag1(value)
     }
 
     const f = () => {
         if (searchby === "productName") {
+
+
 
             searchproduct = props.allproduct.filter(product =>
                 (product.name != null && product.name.toLowerCase().includes(searchTerm)));
@@ -134,6 +142,13 @@ function Products(props) {
                 (product.user != null && product.user.toLowerCase().includes(searchTerm)));
             return true
         }
+        // if(searchby==="productAmount")
+        // {
+
+        //     searchproduct=props.allproduct.filter(product => 
+        //         (product.amount != null && product.amount .toLowerCase().includes(searchTerm)));
+        //         return true   
+        // }
         if (searchby === "") {
             searchproduct = props.allproduct;
         }
@@ -145,6 +160,7 @@ function Products(props) {
 
         }
         else {
+            // dispatch(actions.setNewProductTable(product))
         }
     }
 
@@ -154,6 +170,18 @@ function Products(props) {
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
+
+
+    //     $('.disableInput').on('click',function(){    
+    //         // $(`.input11${index}`)                  
+    //         var input = $(this).closest('tr').find('input');
+    //         var currstatus = input.prop('disabled');
+    //         console.log("currstatusssssssss", currstatus)
+    //         input.prop('disabled',!currstatus);
+    //    });
+
+
+
 
 
     const setDisable = (product) => {
@@ -176,6 +204,7 @@ function Products(props) {
 
     }
     const onButtonClick = () => {
+        // `current` points to the mounted file input element
         inputFile.current.click();
     };
 
@@ -194,6 +223,7 @@ function Products(props) {
             let reader = new FileReader();
             const image = reader.result;
             reader.onloadend = () => {
+                // console.log('reader.result',reader.result[0])
                 const objectImage = { 'image': event, 'to': 'product' }
                 props.setImage(objectImage)
             }
@@ -210,20 +240,57 @@ function Products(props) {
             } */}
             <div className="container-fluid con" style={{
                 height: "88vh",
-                width: "98%",
+                width: "90%",
                 borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
             }}>
                 <div className="row ">
-                    <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
+                    {/* <div className="col d-flex flex-row style={{ height: 15 + 'vh' }}"> */}
+                    <div className="col d-flex row" style={{ height: 15 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Products</h1>
+                        {/* <div onClick={() => changeFlag(true)} style={{ width: 50 + '%' }}> */}
+                        {/* <ButtonPlus ></ButtonPlus> */}
+                        {/* <button className="newProd">New Product +</button>
+                        </div> */}
                     </div>
                     <div className="col-8 d-flex justify-content-end ">
 
+                        {/* <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div> */}
+
+                        {/* <SearchProduct changeInput={changeInput} handlesearchby={handlesearchby}></SearchProduct> */}
+
+                        {/* <FontAwesomeIcon className="serch"
+                            icon={['fas', 'search']}
+                        ></FontAwesomeIcon> */}
+                        {/* <div class="d-flex justify-content-end">
+                            <div className="serch">
+                                <FontAwesomeIcon className="serch"
+                                    icon={['fas', 'search']}
+                                ></FontAwesomeIcon>
+                            </div>
+                        </div> */}
+                        {/* style={{ width: 50 + '%' }} */}
                         <div onClick={() => changeFlag(true)} >
+                            {/* <ButtonPlus ></ButtonPlus> */}
                             <button className="newProd11">New Product +</button>
                         </div>
+
                     </div>
+                    {/* <div className="serch">
+                        <FontAwesomeIcon className="serch"
+                            icon={['fas', 'search']}
+                        ></FontAwesomeIcon>
+                    </div> */}
                 </div>
+
+
+                {/* <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                            </div> */}
+
+
+
                 <div className="wrap_table" >
                     <div className="row">
                         <div className="col">
@@ -233,15 +300,18 @@ function Products(props) {
                                         <tr>
                                             {/* <th style={{ width: "5%", backgroundColor: "white", border: "none" }}></th> */}
                                             <th></th>
-                                            <th>NAME</th>
+                                            <th>NAMEEEEEEEEEEEE</th>
                                             <th>DESCRIPTION</th>
                                             <th>PRICE</th>
                                             <th>SKU</th>
                                             <th>DATE CREATE</th>
-                                            <th style={{ width: "2%" }}></th>
+
+
                                         </tr>
+
                                     </thead>
                                     {flag1 == true &&
+                                        //   <tr>
                                         <td colSpan="7" style={{
                                             "border": "none",
                                             "height": "0px",
@@ -253,41 +323,68 @@ function Products(props) {
                                                 <ProductForm changeFlag={changeFlag} flag1={flag1}></ProductForm>
                                             </div>
                                         </td>
+                                        //   </tr>
                                     }
                                     {console.log("producttt", props.allproduct)}
                                     {props.allproduct.length > 0 ?
                                         <tbody >
                                             {(f() || searchby === "") &&
                                                 searchproduct.map((product, index) => {
+
                                                     return (
+
                                                         <tr key={product._id} onMouseEnter={() => fff(product._id)} onMouseLeave={() => ggg(product._id)}>
-                                                            <td style={{ paddingLeft: "3%" }}>
+                                                            {/* <td className="td_checbox" id="td_hover"> */}
+                                                            {/* <input className="cb" name="select_test" type="checkbox" /> */}
+                                                            {/* </td> */}
+
+                                                            <td style={{ paddingLeft: "2%" }}>
                                                                 {dis.id == product._id ? dis.inpDis == "disable" ?
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                     :
                                                                     <>
                                                                         <div>
+
+
                                                                             <div>
                                                                                 <p style={{ fontSize: "60%" }}>upload image</p>
                                                                                 <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-                                                                                    onChange={(e) => addImage(e.target.files[0])} />
-                                                                                <img
-                                                                                    className={classes.buttonUpload1}
-                                                                                    src={newProductTable.images ? newProductTable.images : product.images ? product.images : Imgp}
-                                                                                    alt="Logo"
-                                                                                    title="Your Logo Here"
-                                                                                    onClick={onButtonClick}
-                                                                                />
+                                                                                         onChange={(e) => addImage(e.target.files[0])} />
+                                                                                <img 
+                                                                                // style={{ width: props.logowidth, borderRadius: props.borderlogo }}
+                  // placeholder={require('../../../src/Img/Untitled-1.jpg')}
+                //   id='userLogo-temp1'
+                  className={classes.buttonUpload1}
+                  // onMouseOver={() => {
+                  //   if (displayInvoice === "false") setBorderLogo(true)
+                  // }}
+                  // onMouseLeave={() => {
+                  //   if (displayInvoice === "false") setBorderLogo(false)
+                  // }}
+                  src={newProductTable.images? newProductTable.images: product.images ? product.images : Imgp}
+                  alt="Logo"
+                  title="Your Logo Here"
+                onClick={onButtonClick}
+                // style={isLoading ? { display: "none" } : {}}
+                />
                                                                             </div>
                                                                         </div>
+                                                                        {/* <div>bbbbb</div> */}
                                                                     </>
+                                                                    // {/* <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} /> */}
                                                                     :
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    // {/* <div>jjjj</div> */}
+                                                                    //  <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
+
                                                                 {/* <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />  */}
                                                             </td>
+                                                            {/* <td >{product._id}</td> */}
                                                             <td>
+                                                                {/* {console.log("ggggg",(dis.id===product._id) } */}
                                                                 <input type="text" style={{ background: "transparent" }}
+                                                                    className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
@@ -297,11 +394,17 @@ function Products(props) {
                                                                     onChange={(e) => onFieldEdit('name', e)}
                                                                     onFocus={() => resetFeild('name', product)}
                                                                 />
+                                                                {/* {product.name} */}
                                                             </td>
                                                             <td>
+
+
+
+
                                                                 {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ?
                                                                     <>
                                                                         <input type="text"
+                                                                            className="allInput"
                                                                             className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                             value={dis.id === product._id && dis.inpDis == "" ?
                                                                                 newProductTable.description :
@@ -310,14 +413,30 @@ function Products(props) {
                                                                             onChange={(e) => onFieldEdit('description', e)}
                                                                             onFocus={() => resetFeild('description', product)}
                                                                             disabled={dis.id === product._id ? dis.inpDis : "disable"}
-                                                                        /></>
+                                                                        // onBlur={onFieldEdit('description')} 
+                                                                        />
+                                                                        {/* {product.name} */}</>
+                                                                    // <div className="tgtg">{product.description}</div>
                                                                     : <div>
+                                                                        {/* <input type="text"
+                                                                className={dis.id===product._id ? dis.inpDis=="disable"? "inputF" : "inputP":"inputF"}
+                                                                    defaultValue= {mmm(product.description)}
+                                                                    disabled={dis.id === product._id ? dis.inpDis :  "disable"}
+                                                                    onBlur={onFieldEdit('description')}/> */}
                                                                         {mmm(product.description)}
+
                                                                     </div>
-                                                                }
-                                                            </td>
+                                                                }</td>
+
                                                             <td>
+                                                                {/* <input type="text" disabled={dis.id===product._id ? dis.inpDis : "disable"} /> */}
                                                                 <input type="text"
+
+
+
+
+
+                                                                    // className="inputP"
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
@@ -327,11 +446,15 @@ function Products(props) {
                                                                     disabled={dis.id === product._id ? dis.inpDis : "disable"}
                                                                     onChange={(e) => onFieldEdit('price', e)}
                                                                     onFocus={() => resetFeild('price', product)}
+
+                                                                // onBlur={onFieldEdit('price')}
+
                                                                 />
                                                             </td>
                                                             <td>{product.codeSKU}</td>
                                                             <td >
                                                                 <input type="text"
+                                                                    //  className="inputP"
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
@@ -342,7 +465,9 @@ function Products(props) {
                                                                     onChange={(e) => onFieldEdit('amount', e)}
                                                                     onFocus={() => resetFeild('amount', product)}
                                                                     disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                // onBlur={onFieldEdit('amount')} 
                                                                 />
+                                                                {/* <div style={{ display: "inline-block", paddingLeft: "5%" }}>{product.amount}</div> */}
                                                             </td>
                                                             <td className="td_tt" id="td_hover">
                                                                 <div className="td_side_edit_delete_copy " >
@@ -353,19 +478,26 @@ function Products(props) {
                                                                                     onClick={() => setDisable(product)}
                                                                                 >
                                                                                     <MdEdit id="icon"
+                                                                                    // onClick={() => props.editProduct(chooselinep.index)}
                                                                                     ></MdEdit>
                                                                                 </button>
                                                                                 <button className="btnDis"
                                                                                     onClick={() => deleteProduct1(product._id, index)}
                                                                                 >
                                                                                     <MdDelete id="icon"
+                                                                                    // onClick={(() => props.deleteProduct(chooselinep.index)) &&
+                                                                                    //    searchproduct.splice(index, 1)
+                                                                                    // } 
                                                                                     />
                                                                                 </button>
                                                                             </div>
                                                                         )
                                                                     }
-                                                                </div>
-                                                            </td>
+                                                                </div></td>
+                                                            {/* <td>{product.SKU}</td> */}
+
+
+
                                                         </tr>
                                                     )
                                                 })
@@ -378,6 +510,10 @@ function Products(props) {
                         </div>
                     </div>
                 </div>
+
+
+
+                {/* <Setting></Setting> */}
             </div>
         </>
     )
@@ -395,4 +531,5 @@ const mapStateToProps = (state) => {
         allproduct: state.productReducer.allProducts
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
