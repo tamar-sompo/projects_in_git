@@ -55,13 +55,17 @@ const initialState = {
     flagIfEmpty: false,
     flagView: false,
     flagFromTable: false,
-    flagPush: false
+    flagPush: false,
+    filteredInvoices: [],
     // specificRoute: ''
 
 }
 
 
 const invoices = {
+    setFilteredInvoices(state, action) {
+        state.filteredInvoices = action.payload
+    },
     // setSpecificRoute(state, action) {
     //     state.specificRoute = action.payload
     // },
