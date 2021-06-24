@@ -560,6 +560,7 @@ function Item(props) {
                 value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
+                type="text"
               > </Cell>
 
             </div>}
@@ -615,7 +616,7 @@ function Item(props) {
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               //  style={{width:"15%", height:"60%"}}
-
+              // max="100"
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
