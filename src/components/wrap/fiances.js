@@ -98,16 +98,16 @@ export default function Fiances() {
             <MessageSave></MessageSave>
             <Router >
                 <div className="container-fluid">
-                    <div className="row" style={{ height: "10vh" }}>
+                    <div className="row">
                         <Nav />
                     </div>
-                    <div className="row" style={{ paddingRight: "1.3%", height: "90vh" }}>
+                    <div className="row d-flex align-items-center" style={{ paddingRight: "1.3%", height: "93vh" }}>
 
                         <div className="col-2 px-0 mt-0 flex_configurator">
                             <Configurator />
                         </div>
 
-                        <div className="col-10  d-flex justify-content-center align-items-center flex_main" style={{ height: "100%", backgroundColor: "white", marginTop: "1.5%", marginBottom: "1.5%", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+                        <div className="col-10  d-flex justify-content-center align-items-center flex_main" style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
 
                             <div style={{
                                 zIndex: "999", position: "absolute",

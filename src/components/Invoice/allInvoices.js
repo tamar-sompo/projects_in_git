@@ -321,8 +321,8 @@ function AllInvoices(props) {
         height: "95%",
         width: "86%",
       }}>
-        <div className="row" style={{ marginBottom: "1rem" }}>
-          <div className="col d-flex row" style={{ height: 15 + 'vh' }}>
+        <div className="row" >
+          <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
             <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Documents</h1>
             <div style={{ width: 50 + '%' }}>
               <ButtonPlus></ButtonPlus>
