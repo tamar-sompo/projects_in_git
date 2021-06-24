@@ -153,13 +153,6 @@ function AllInvoices(props) {
     }
     return isInvoicePayed;
   }
-  const handlesearchby = (value) => {
-    setSearchby(value);
-    setDel(true)
-  }
-  const changeInput = (val) => {
-    setSearchTerm(val)
-  }
   const showInvoiceById = (invoice) => {
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))
@@ -267,21 +260,6 @@ function AllInvoices(props) {
       }
     </tr>
   }
-  const filterby = () => {
-    console.log("filter")
-    if (searchby === "") {
-      setsearchinvice(props.allInvoices)
-    }
-    if (searchby === "customerInvoice") {
-      console.log("tamar")
-      console.log()
-      let arr = props.allInvoices.filter(invoice => invoice.invoiceNumber === 3000)
-      console.log(arr);
-      setsearchinvice(arr);
-      setDel(true)
-
-    }
-  }
   const showInvoiceByIdAcord11 = (invoice) => {
     dispatch(actions.setInvoiceShow(invoice))
   }
@@ -293,9 +271,35 @@ function AllInvoices(props) {
   }
   const clickSearch = (value) => {
     setFlagSearch(value)
-    // filter={filterby} 
-    // changeInput={changeInput}
-    //  handlesearchby={handlesearchby}
+  }
+  const filtersearchInvoices = useSelector(state => state.invoiceReducer.filteredinvoices);;
+
+  const [filteredinvoices, setfilteredinvoices] = useState('')
+
+  const searchInvoices = (searchInvoice) => {
+    debugger
+    dispatch(actions.setFilteredInvoices(filteredinvoices))
+    var invoices = props.allInvoices
+    invoices.forEach(invoice => {
+      if (invoice.contactOneTime.name != undefined && invoice.contactOneTime.name.toLowerCase().indexOf(searchInvoice) > -1) {
+        console.log("filteredinvoices", invoice.contactOneTime.name);
+        setfilteredinvoices(invoice)
+        debugger
+        dispatch(actions.setFilteredInvoices(filteredinvoices))
+        console.log("successfilteredinvoices")
+      }
+    });
+    console.log(filteredinvoices);
+  }
+
+  const search = (result) => {
+    if (result != "") {
+      console.log(result);
+      searchInvoices(result)
+    }
+    else {
+      dispatch(actions.setFilteredInvoices(props.allInvoices))
+    }
   }
   return (
     <>
@@ -308,43 +312,28 @@ function AllInvoices(props) {
             <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Invoices</h1>
           </div>
           <div className="col-8 d-flex justify-content-end ">
-            {/* <div className="row">
-              <div className="col-3">
-                <input className="inptStyle"
-                  style={{ width: "10rem", marginLeft: "2vh" }}>
+            <div className="d-flex flex-row" style={{ display: "inline" }}
+              onClick={() => clickSearch(true)}>
+              <div>
+                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
+                  onChange={(e) => search(e.target.value)}>
                 </input>
               </div>
-              <div >
-                <BsSearch style={{ color: "gray", fontWeight: "bold" }}>
+              <div className={flagSearch === true ? "SearchIconClick" : "SearchIcon"}>
+                <BsSearch
+                  style={{ color: "gray", fontWeight: "bold" }}>
                 </BsSearch>
               </div>
-            </div> */}
-            <div className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-              onClick={() => clickSearch(true)}
-            >
-              {/* <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}></input> */}
-              <BsSearch style={{ color: "gray", fontWeight: "bold" }}>
-              </BsSearch>
             </div>
             <div onClick={() => changeFlag(true)} >
               <button className="newProd11">New Invoice +</button>
             </div>
           </div>
         </div>
-        {
-          history.location.pathname == `/${userName}/allDocuments` && flag === true && dispatch(actions.setResetSaveSum()) && dispatch(actions.setFlagIfEmpty(false))
-          && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
-          dispatch(actions.setInvoice({
-            products: [],
-            type: "invoice"
-          })) &&
-          history.push(`/${userName}/invoice`)
-        }
         {/* <div className="col-8 d-flex justify-content-end ">
             <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices>
           </div>
         </div> */}
-
         <div className="wrap_table">
           <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
             <div className="col">
@@ -356,10 +345,6 @@ function AllInvoices(props) {
                   </div>
                 }
                 <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px" }}>
-
-                  {/* <table className="table table-hover accordion" id="accordionExample"
-                  style={{ backgroundColor: "white", fontSize: "14px" }} >*/}
-
                   <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
                     <tr>
                       <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>

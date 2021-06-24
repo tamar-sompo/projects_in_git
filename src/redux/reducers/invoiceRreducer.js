@@ -53,12 +53,16 @@ const initialState = {
     flagOfterValidation: false,
     flagTmpSave: false,
     flagIfEmpty: false,
+    filteredInvoices: [],
     // specificRoute: ''
 
 }
 
 
 const invoices = {
+    setFilteredInvoices(state, action) {
+        state.filteredInvoices = action.payload
+    },
     // setSpecificRoute(state, action) {
     //     state.specificRoute = action.payload
     // },
