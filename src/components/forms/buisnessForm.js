@@ -23,7 +23,6 @@ import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 
 import LeaderLouder from '../../components/Useful/leaderLouder'
-import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // const phoneRegExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 // const userSchema = Yup.object().shape({
@@ -110,7 +109,7 @@ function BuisnessList(props) {
       setFlag("true")
     else {
       setFlagLoud(false)
-      updateBuisnessField({ key: 'name', value: "" })
+      updateBuisnessField({ key: 'companyName', value: "" })
       updateBuisnessField({ key: 'email', value: "" })
       updateBuisnessField({ key: 'phone', value: "" })
       updateBuisnessField({ key: 'country', value: "" })
@@ -267,7 +266,7 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+          height: "88vh", width: "90%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
         }}>
         {/* {
         show ?
@@ -482,7 +481,7 @@ function BuisnessList(props) {
 
             <div className="row
              py-5 px-5"
-            >
+             >
               <div className="col-2"></div>
               <div className="col-2"></div>
               <div className="col-8">
@@ -612,8 +611,8 @@ function BuisnessList(props) {
                   }}
                   class="saveBuisness"
                 >
-                  SAVE
-                </Button>
+                    SAVE
+                  </Button>
               </div>
             </div>
           </Form>

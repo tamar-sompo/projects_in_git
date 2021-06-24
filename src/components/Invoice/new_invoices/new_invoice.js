@@ -20,7 +20,7 @@ import flowersLogo from '../../../Img/flowersLogo.png';
 import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import ShowCompany from '../../showCompany'
-import flowerbackground from '../../assets/flo.jpg'
+// import flowerbackground from '../../assets/flo.jpg'
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {
@@ -63,6 +63,7 @@ function New_Invoice(props) {
   const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
   const inputFile = useRef();
   const inputFile1 = useRef();
+  const scrollRef = useRef();
   const [isMouseTooltipVisible, setIsMouseTooltipVisible] = useState(false);
   let productSelect = useSelector(state => state.productReducer.productSelect);
   const newContact = useSelector(state => state.customerReducer.newContact)
@@ -666,12 +667,14 @@ function New_Invoice(props) {
     else
       setIsMouseTooltipVisible(false)
   }
-  const changeBg1 = () => {
-    setIsMouseTooltipVisible(false)
-  }
-  const changetooltip = () => {
-    setIsMouseTooltipVisible(false)
-  }
+
+  useEffect(() => {
+    if (flagBorderProduct === false) {
+    }
+    else {
+      scrollRef.current.scrollIntoView()
+    }
+  }, [flagBorderProduct])
 
   return (
     <>
@@ -698,16 +701,20 @@ function New_Invoice(props) {
             <Row className="justify-content-md-center py-3">
               <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
                 onChange={(e) => addImageList(e.target.files[0])} />
-              {console.log('logoooo', detailsInvoice.imgLogo)}
-              <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                id='userLogo-temp1'
-                style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
-                src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : flowersLogo}
-                alt="Logo"
-                title="Your Logo Here"
-              />
-              <div
-              >
+                     {detailsBusiness && detailsBusiness.imgLogo ?
+                <img className="mt-5"
+                style={{ width: props.logowidth, borderRadius: props.borderlogo }}
+                  id='userLogo-temp1'
+                  style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
+                  src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                  alt="Logo"
+                  title="Your Logo Here"
+                /> 
+                :
+                 <div className="mt-5">
+                  <h1>{detailsBusiness.name}</h1>
+                </div>} 
+              <div>
               </div>
 
             </Row>
@@ -720,7 +727,7 @@ function New_Invoice(props) {
                       type="text"
 
                       className={focus === 'companyWebsite' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
                       onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
@@ -734,7 +741,7 @@ function New_Invoice(props) {
                         size='15'
                         type="text"
                         className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                        placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "city" : "city"}
+                        placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "" : ""}
                         onClick={displayInvoice === "false" && (() => setFocus('companyAddress'))}
                         onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                         value={detailsBusiness && detailsBusiness.city}
@@ -743,7 +750,7 @@ function New_Invoice(props) {
                         style={{ width: "10vh" }}
                         size='15'
                         type="text"
-                        placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
+                        placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "" : ""}
                         className={focus === 'companyAddress' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
                         value={detailsBusiness && detailsBusiness.address}
                       />
@@ -755,7 +762,7 @@ function New_Invoice(props) {
                       disabled={displayInvoice === "true" ? "disable" : ""}
                       size='15'
                       className={focus === 'companyPhone' ? 'focus-temp1 text-center design_text' : 'editable-temp1 text-center design_text'}
-                      placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
+                      placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "" : ""}
                       onClick={() => setFocus('companyPhone')}
                       onChange={(e) => onFieldChanged('companyPhone')}
                       onBlur={updatedetailsBusiness1('phone')}
@@ -925,7 +932,7 @@ function New_Invoice(props) {
                 className='button4'>
               </Button>
             </Row>
-            <div className="container-fluid">
+            <div className="container-fluid productsTable_scroll" ref={scrollRef}>
               <div className="row">
                 {/* <div>"fghhhhhh</div> */}
                 {/* <Col md={1}>

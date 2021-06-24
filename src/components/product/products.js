@@ -115,6 +115,7 @@ function Products(props) {
         return description;
     }
     const changeFlag = (value) => {
+        // dispatch(actions.setPushNewProduct({}))
         dispatch(actions.setNewProductTableFull({}))
         setFlag1(value)
     }
@@ -214,6 +215,7 @@ function Products(props) {
                 borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
             }}>
                 <div className="row ">
+                    {/* <div className="col d-flex flex-row style={{ height: 15 + 'vh' }}"> */}
                     <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Products</h1>
                     </div>
@@ -222,6 +224,7 @@ function Products(props) {
                         <div onClick={() => changeFlag(true)} >
                             <button className="newProd11">New Product +</button>
                         </div>
+
                     </div>
                 </div>
                 <div className="wrap_table" >
@@ -238,10 +241,10 @@ function Products(props) {
                                             <th>PRICE</th>
                                             <th>SKU</th>
                                             <th>DATE CREATE</th>
-                                            <th style={{ width: "2%" }}></th>
                                         </tr>
                                     </thead>
                                     {flag1 == true &&
+                                        //   <tr>
                                         <td colSpan="7" style={{
                                             "border": "none",
                                             "height": "0px",
@@ -259,9 +262,11 @@ function Products(props) {
                                         <tbody >
                                             {(f() || searchby === "") &&
                                                 searchproduct.map((product, index) => {
+
                                                     return (
+
                                                         <tr key={product._id} onMouseEnter={() => fff(product._id)} onMouseLeave={() => ggg(product._id)}>
-                                                            <td style={{ paddingLeft: "3%" }}>
+                                                            <td style={{ paddingLeft: "2%" }}>
                                                                 {dis.id == product._id ? dis.inpDis == "disable" ?
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                     :
@@ -283,11 +288,14 @@ function Products(props) {
                                                                     </>
                                                                     :
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+
                                                                 }
+
                                                                 {/* <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />  */}
                                                             </td>
                                                             <td>
                                                                 <input type="text" style={{ background: "transparent" }}
+                                                                    className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
@@ -302,6 +310,7 @@ function Products(props) {
                                                                 {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ?
                                                                     <>
                                                                         <input type="text"
+                                                                            className="allInput"
                                                                             className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                             value={dis.id === product._id && dis.inpDis == "" ?
                                                                                 newProductTable.description :
@@ -313,9 +322,10 @@ function Products(props) {
                                                                         /></>
                                                                     : <div>
                                                                         {mmm(product.description)}
+
                                                                     </div>
-                                                                }
-                                                            </td>
+                                                                }</td>
+
                                                             <td>
                                                                 <input type="text"
                                                                     className="allInput"
@@ -364,8 +374,7 @@ function Products(props) {
                                                                             </div>
                                                                         )
                                                                     }
-                                                                </div>
-                                                            </td>
+                                                                </div></td>
                                                         </tr>
                                                     )
                                                 })

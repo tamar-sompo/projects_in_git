@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 import SearchInvoices from './searchInvoices'
 import '../customers/customers.css'
 import { MdEdit, MdDelete, MdContentCopy, MdRemoveRedEye, MdShare } from 'react-icons/md'
-import { BsSearch } from 'react-icons/bs'
 import ButtonPlus from '../forms/buttonPlus'
 import Invoice from '../Invoice/new_invoices/new_invoice'
 // import Invoice from './invoice'
@@ -48,8 +47,7 @@ function AllInvoices(props) {
   const [de, setDel] = useState(false);
   const [searchinvoice, setsearchinvice] = useState([])
   const [flag, setFlag] = useState([])
-  const [flagSearch, setFlagSearch] = useState("false")
-  const [flagToUseEffect, setFlagToUseEffect] = useState(false)
+  const [flagToUseEffect, setFlagToUseEffect] = useState("false")
   const buisness = useSelector(state => state.buisnessReducer.buisness)
   const invoiceDetailsView = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   const [invoiceDetailsViewFlag, setInvoiceDetailsViewFlag] = useState("false")
@@ -291,12 +289,6 @@ function AllInvoices(props) {
     setFlag1(value)
     history.push(`/${userName}/invoice`)
   }
-  const clickSearch = (value) => {
-    setFlagSearch(value)
-    // filter={filterby} 
-    // changeInput={changeInput}
-    //  handlesearchby={handlesearchby}
-  }
   return (
     <>
       <div className="container-fluid con" style={{
@@ -308,24 +300,6 @@ function AllInvoices(props) {
             <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Invoices</h1>
           </div>
           <div className="col-8 d-flex justify-content-end ">
-            {/* <div className="row">
-              <div className="col-3">
-                <input className="inptStyle"
-                  style={{ width: "10rem", marginLeft: "2vh" }}>
-                </input>
-              </div>
-              <div >
-                <BsSearch style={{ color: "gray", fontWeight: "bold" }}>
-                </BsSearch>
-              </div>
-            </div> */}
-            <div className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-              onClick={() => clickSearch(true)}
-            >
-              {/* <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}></input> */}
-              <BsSearch style={{ color: "gray", fontWeight: "bold" }}>
-              </BsSearch>
-            </div>
             <div onClick={() => changeFlag(true)} >
               <button className="newProd11">New Invoice +</button>
             </div>
@@ -333,108 +307,132 @@ function AllInvoices(props) {
         </div>
         {
           history.location.pathname == `/${userName}/allDocuments` && flag === true && dispatch(actions.setResetSaveSum()) && dispatch(actions.setFlagIfEmpty(false))
-          && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
-          dispatch(actions.setInvoice({
+          && dispatch(actions.setResetAllNewProduct()) && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
+          dispatch(actions.setProductAfterDelete([])) && dispatch(actions.setDetailsContact({})) && dispatch(actions.setResetContactedit({})) && dispatch(actions.setInvoice({
             products: [],
             type: "invoice"
           })) &&
           history.push(`/${userName}/invoice`)
         }
+
         {/* <div className="col-8 d-flex justify-content-end ">
             <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices>
           </div>
         </div> */}
-
         <div className="wrap_table">
-          <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
+          <div className="row">
             <div className="col">
               <div className="table-responsive">
                 {flagLoud &&
                   <div class="d-flex justify-content-center"
                     className={flagLoud ? "d-flex justify-content-center oposity" : "d-flex justify-content-center"}>
-                    <LeaderLouder></LeaderLouder>
-                  </div>
-                }
-                <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px" }}>
-
-                  {/* <table className="table table-hover accordion" id="accordionExample"
-                  style={{ backgroundColor: "white", fontSize: "14px" }} >*/}
-
+                    <LeaderLouder></LeaderLouder></div>}
+                <table className="table table-hover accordion" id="accordionExample"
+                  style={{ backgroundColor: "white", fontSize: "14px" }}
+                >
                   <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
                     <tr>
-                      <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
-                      <th>CUSTOMER NAME</th>
+                      <th style={{ width: "5%", backgroundColor: "white", border: "none" }}></th>
                       <th>INVOICE NUMBER</th>
-                      <th>CUSTOMER PHONE</th>
-                      <th>PAYMENT STATUS</th>
-                      <th>DATE</th>
-                      <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
+                      <th>customerName</th>
+                      <th>customerPhone</th>
+                      <th>paymentStatus</th>
+                      <th>date</th>
+                      <th style={{ width: "3%", backgroundColor: "white", border: "none" }}></th>
                     </tr>
                   </thead>
+
                   <tbody >
                     {(searchby === "" || de === true) &&
                       props.allInvoices.length > 0 && props.allInvoices.map((invoice, index) => {
                         return (
                           <>
-                            <tr className="tr"
-                              style={{ height: "55px" }}
+                            <tr
                               id={"flag" + index}
                               onMouseEnter={() => fff(invoice._id)}
                               onMouseLeave={() => ppp(invoice._id)}
                               key={invoice._id}>
-                              <td style={{ width: "5%" }}></td>
-                              <td>{invoice.contactOneTime.flag == true && invoice.contactOneTime.name ? invoice.contactOneTime.name : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).name : '' : ''}</td>
+                              {/* {contact.googleContact ?
+                                                <td><img style={{ height: '8vh', width: '8vh', borderRadius: "50%" }} src={contact.googleContact.coverPhotos[0].url} /></td>:<td></td>} */}
+                              {/* {contact.googleContact &&
+                                                <td><img style={{ height: '8vh', width: '8vh', borderRadius: "50%" }} src={contact.googleContact.coverPhotos[0].url} /></td>} */}
+                              {/* <td>profile</td> */}
+
+                              <td className="td_checbox" id="td_hover">
+                                {/* <input className="cb" name="select_test" type="checkbox"
+                                >
+                                </input> */}
+                              </td>
                               <td>{invoice.invoiceNumber}</td>
+
+
+
+                              <td>{invoice.contactOneTime.flag == true && invoice.contactOneTime.name ? invoice.contactOneTime.name : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).name : '' : ''}</td>
                               <td>{invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''}</td>
+                              {/* <td>{invoice.customerName}</td>
+                              <td>{invoice.customerPhone}</td> */}
                               <td className={invoice.paymentStatus === false ? "noP" : "PaU"}>
                                 <div className={invoice.paymentStatus === false ? "mechilN" : "mechilY"} >
-                                  {invoice.paymentStatus === false ? 'Not Paid' : 'Paid Up'}</div>
-                              </td>
+                                  {invoice.paymentStatus === false ? 'Not Paid' : 'Paid Up'}</div></td>
                               <td>{convertdate(invoice.date)}</td>
-                              <td className="td_tt" >
+                              <td className="td_tt" id="td_hover">
                                 <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
                                   {
                                     chooselinei.isShown && chooselinei.index === invoice._id && (
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
                                         <Share fl={1} />
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
+                                        {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
+                                        <MdContentCopy id="icon"></MdContentCopy> */}
                                         <MdRemoveRedEye id="icon"
                                           data-toggle="collapse"
                                           data-target={"#collapsePicture" + index}
                                           aria-expanded="false"
                                           onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
+
+                                        {/* <Share fl={1}/> */}
+                                        {/* <span id="icon" className="glyphicon glyphicon-eye-open addIcon" aria-hidden="true"
+                                            // onClick={() => showInvoiceById(invoice._id)}></span> */}
                                       </div>
                                     )
                                   }
-                                </div>
-                              </td>
-                            </tr>
+                                </div>      </td>
+                              {/* <div>
+{invoiceDetailsView && invoiceDetailsView._id && invoiceDetailsView._id===invoice._id && <Invoice></Invoice>}
+</div> */}
 
-                            {/* <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
+
+                            </tr>
+                            {/* <tr> */}
+                            <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
                               "border": "none",
                               "height": "0px",
-                              "padding-top": "0px",
+                              /* padding-top: 0px; */
                               "padding": "0px"
                             }}>
                               <div className="d-flex justify-content-around">
                                 <div class="collapse" id={"collapsePicture" + index} data-parent="#accordionExample">
                                   <div style={{ width: '45vw', height: '5vh', display: "inline-block", boxShadow: "0px 3px 6px #0a26b126" }}>
+                                    {/* {dispatch(actions.setInvoiceShow(invoice))} */}
+
+
                                     {invoiceDetailsView._id === invoice._id && <New_Invoice></New_Invoice>}
                                   </div>
-                                </div></div>
-                            </td> */}
+                                </div></div></td>
                           </>
                         )
                       })
                     }
                   </tbody>
+
+
                 </table>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+
       {/* <div className="container d-flex justify-content-center mt-5 mb-5">
         <table className="table table-striped table-hover mt-3 ml-5 mr-5" responsive>‏
             <thead>

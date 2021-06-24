@@ -22,7 +22,7 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
     var link =
       `https://finance.leader.codes/${userName}/view/${id}`
     console.log('link', link)
-    let urlData = `https://api.dev.accounts.leader.codes/createSystemWave`
+    let urlData = `https://api.dev.leader.codes/createSystemWave`
     let body = {
       subject: "Invoice created",
       body: 'New Invoice created successfuly, you can see it in:' + link,

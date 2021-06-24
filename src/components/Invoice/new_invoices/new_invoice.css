@@ -35,3 +35,9 @@ text-transform: capitalize;
 .wrapproduct::after{
 border: none !important;
 }
+#bgImg {
+    cursor: pointer;
+    padding: 7%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

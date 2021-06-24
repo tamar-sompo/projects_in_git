@@ -2,8 +2,6 @@ import produce from 'immer'
 import createReducer from "./reducerUtils";
 
 const initialState = {
-
-    // colors:['black','black','black','black'],
     valuesCalculate: [],
     total: [],
     totalPrice: [],

@@ -2,7 +2,7 @@
 import produce from 'immer';
 import tempLogo from '../../components/assets/newLogo.png';
 import createReducer from "./reducerUtils";
-import bInvoice from '../../components/assets/flo.jpg';
+// import bInvoice from '../../components/assets/flo.jpg';
 import Untitled from '../../Img/Untitled-1.jpg'
 import { SettingsPhoneTwoTone } from '@material-ui/icons';
 // import flower from '../../'
@@ -13,7 +13,7 @@ const initialState = {
   nameAction: '',
   massageToUser: '',
   imageInvoice: Untitled,
-  listImages: [bInvoice],
+  // listImages: [bInvoice],
   itemData: [
     'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
     'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',

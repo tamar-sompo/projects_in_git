@@ -217,30 +217,7 @@ else {
 
 
 store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
-// if (window.location.href.indexOf("view") == -1) {
 store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
-// store.dispatch({ type: 'EXTRACT_JWT' });
-// store.dispatch({ type: "GET_ALL_PRODUCT" })
-// store.dispatch({ type: 'GET_ALLINVOICES_BY_IDB' })
-// store.dispatch({ type: 'GET_PUBLICNOTE' })
-// store.dispatch({ type: 'SET_GET_ALL_INVOICES_TO_BUISNESS'})
-
-// store.dispatch({ type: 'GET_ALL_PRODUCTS_TO_USER' })
-store.dispatch({ type: 'SET_COMPANY' })
-store.dispatch({ type: 'SEND_MAIL' })
-store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
-// store.dispatch({ type: 'SET_GET_BUISNESS_BY_ID' })
-// store.dispatch({ type: "SET_GET_ALL_INVOICES_TO_BUISNESS" })
-
-store.dispatch({ type: "GET_CITY_BY_COUNTRY" })
-store.dispatch({ type: "GET_COUNRTY" })
 store.dispatch({ type: 'GET_LAST_BUISNESS' })
-// store.dispatch({ type: 'EXTRACT_JWT' });
-
-// }
-
-
-
-
 
 export default store;

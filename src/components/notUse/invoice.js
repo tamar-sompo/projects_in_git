@@ -20,7 +20,7 @@ import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import ShowCompany from '../showCompany'
-import flowerbackground from '../assets/flo.jpg'
+// import flowerbackground from '../assets/flo.jpg'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {

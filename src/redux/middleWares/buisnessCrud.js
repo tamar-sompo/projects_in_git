@@ -1,41 +1,5 @@
 import $ from 'jquery';
-// import { actions } from '../actions/action';
 import { actions } from '../actions/All_actions';
-
-export const newSystemWave = ({ dispatch, getState }) => next => action => {
-  if (action.type === 'SET_SYSTEM_WAVE') {
-    let urlData = `https://api.dev.leader.codes/${getState().publicReducer.userName}/createSystemWave`
-    let body = {
-      "subject": "Invoice created",
-      "body": `You can see the invice 
-       ${<a href='https://leader.codes/login#'>at this link </a>}`,
-      "to": 'leah@leader.codes',
-      "from": "finance@noreply.leader.codes",
-      "source": "Finance",
-      "files": [
-        // https://files.codes/uploads/michalgiladi/others/1618390184619__calendarIcon.svg
-      ]
-    }
-    $.ajax({
-      url: urlData,
-      method: 'POST',
-      headers: {
-        Authorization: getState().publicReducer.tokenFromCookies
-      },
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify({ body }),
-      success: function (data) {
-        checkPermission(data).then((ifOk) => {
-          console.log('box success', data)
-        })
-      },
-      error: (err) => {
-        console.log("error", err)
-      },
-    });
-  }
-  return next(action);
-}
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {

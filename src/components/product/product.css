@@ -17,6 +17,7 @@
     /* outline: none; */
     border-bottom: 1px solid black;
 }
+
 .inputF{
     border-bottom-style: none !important;
     border: none !important;
@@ -69,7 +70,4 @@ button[disabled], html input[disabled] {
  .table>tfoot>tr>th, .table>thead>tr>td, 
  .table>thead>tr>th {
     vertical-align: middle !important;
-    /* padding: 8px;
-    line-height: 1.42857143;
-    border-top: 1px solid #ddd; */
 }
