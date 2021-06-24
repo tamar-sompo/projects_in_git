@@ -319,7 +319,7 @@ function AllInvoices(props) {
     <>
       <div className="container-fluid con" style={{
         height: "95%",
-        width: "86%",
+        width: "95%",
       }}>
         <div className="row" >
           <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
@@ -344,9 +344,9 @@ function AllInvoices(props) {
                 </BsSearch>
               </div>
             </div>
-            <div onClick={() => changeFlag(true)} >
+            {/* <div onClick={() => changeFlag(true)} >
               <button className="newProd11">New Invoice +</button>
-            </div>
+            </div> */}
           </div>
         </div >
         {/* <div className="col-8 d-flex justify-content-end ">

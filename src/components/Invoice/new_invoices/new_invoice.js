@@ -708,12 +708,9 @@ function New_Invoice(props) {
 
   return (
     <>
-      {/* <div className="container-fluid con" 
-      
-      > */}
 
 
-      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '100%' : '100%' }}>
+      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
         <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
           onChange={(e) => addImageList(e.target.files[0])} />
 
@@ -910,18 +907,18 @@ function New_Invoice(props) {
                 <div className="row">
                   <div className="col-6">
                     <span className="design_text_contact">Due Date:</span></div>
-                    <div className="col-6">
-                  <input
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    className="design_text_contact"
-                    // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
-                    type="Date"
-                    size="6"
-                    defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
-                    onChange={onFieldChanged('dueDate')}
-                    onClick={() => setFocus('dueDate')}
-                  >
-                  </input>
+                  <div className="col-6">
+                    <input
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      className="design_text_contact"
+                      // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
+                      type="Date"
+                      size="6"
+                      defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
+                      onChange={onFieldChanged('dueDate')}
+                      onClick={() => setFocus('dueDate')}
+                    >
+                    </input>
                   </div>
                 </div>
               </div>
