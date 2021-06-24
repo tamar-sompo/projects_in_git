@@ -112,6 +112,7 @@ function New_Invoice(props) {
     debugger
     let summ = 0
     if (window.location.href.indexOf("view") != -1) {
+     dispatch(actions.setsendMessage("false")) 
       detailsInvoice.products.filter(x =>
         summ += x.sum_product
       )
