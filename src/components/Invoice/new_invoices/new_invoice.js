@@ -1060,7 +1060,8 @@ function New_Invoice(props) {
                   <div className="">
                     <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                   <div className="">
-                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? saveSum2.toFixed(2) : saveSum ? saveSum.toFixed(2) :
+
+                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? saveSum2.toFixed(2) : saveSum ? "$"+ saveSum.toFixed(2) :
                       ''}</span></div>
                 </div>
               </div>

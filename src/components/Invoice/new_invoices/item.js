@@ -634,10 +634,17 @@ function Item(props) {
             ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
-            <input
+          <CurrencyInput
+              id="validation-example-3-field2"
+              name="sumCalcCurrencyInput"
+              className="sum1 cell"
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              prefix={'$'}
+            />
+            {/* <input
               className="sum1 cell"
               value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
-            />
+            /> */}
 
 
           </div>

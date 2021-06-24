@@ -210,10 +210,22 @@ const updateCellPrice = (_value ,fieldName)=> {
           </div>
           <div className="hederP">
             <label> Price</label>
-            <input className="fieldProductCss"
+
+            <CurrencyInput
+              id="validation-example-3-field2"
+              name="price"
+              className="fieldProductCss"
+              // className={`form-control ${state.field2.validationClass}`}
+              value={newProductTable ? newProductTable.price : ''}
+              onValueChange={updateCellPrice}
+              prefix={'$'}
+            />
+
+            {/* <input className="fieldProductCss"
               value={newProductTable ? newProductTable.price : ''}
               onChange={(e) => onFieldEdit('price', e)}
-            ></input>
+            ></input> */}
+
           </div>
         </div>
         <div className="row">
