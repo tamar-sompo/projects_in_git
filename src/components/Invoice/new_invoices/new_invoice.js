@@ -112,7 +112,7 @@ function New_Invoice(props) {
     debugger
     let summ = 0
     if (window.location.href.indexOf("view") != -1) {
-     dispatch(actions.setsendMessage("false")) 
+      dispatch(actions.setsendMessage("false"))
       detailsInvoice.products.filter(x =>
         summ += x.sum_product
       )
@@ -713,7 +713,7 @@ function New_Invoice(props) {
       > */}
 
 
-      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '100vh' : '80vh' }}>
+      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '100%' : '100%' }}>
         <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
           onChange={(e) => addImageList(e.target.files[0])} />
 
@@ -908,8 +908,9 @@ function New_Invoice(props) {
                     <span className="design_text_contact">{shortDate}</span></div>
                 </div>
                 <div className="row">
-                  <div class>
+                  <div className="col-6">
                     <span className="design_text_contact">Due Date:</span></div>
+                    <div className="col-6">
                   <input
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     className="design_text_contact"
@@ -921,6 +922,7 @@ function New_Invoice(props) {
                     onClick={() => setFocus('dueDate')}
                   >
                   </input>
+                  </div>
                 </div>
               </div>
             </div>

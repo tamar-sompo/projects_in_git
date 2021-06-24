@@ -22,8 +22,8 @@ export default function InvoiceAndSteps(props) {
     <div className='container-fluid con con2 d-flex justify-content-center '
       // align-item-center'
       style={{
-        height: "88vh",
-        width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+        height: "95%",
+        width: "86%"
  
       }}
     //marginLeft:"81px",

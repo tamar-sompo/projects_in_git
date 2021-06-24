@@ -283,8 +283,8 @@ function AllInvoices(props) {
   return (
     <>
       <div className="container-fluid con" style={{
-        height: "88vh",
-        width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+        height: "95%",
+        width: "86%", 
       }}>
         <div className="row" style={{ marginBottom: "1rem" }}>
           <div className="col d-flex row" style={{ height: 15 + 'vh' }}>

@@ -101,14 +101,14 @@ export default function Fiances() {
                     <div className="row">
                         <Nav />
                     </div>
-                    <div className="row">
+                    <div className="row" style={{ paddingRight: "1.3%" }}>
 
                         <div className="col-2 px-0 mt-0 flex_configurator">
                             <Configurator />
                         </div>
 
-                        <div className={isSendMessage == "true" ?
-                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}>
+                        <div className="col-10  d-flex justify-content-center align-items-center flex_main" style={{ backgroundColor: "white", marginTop: "1.5%", marginBottom: "1.5%", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+
                             <div style={{
                                 zIndex: "999", position: "absolute",
                                 marginRight: "160vh", marginTop: "70vh",
