@@ -7,6 +7,7 @@ import { actions } from '../../redux/actions/All_actions'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SearchInvoices from './searchInvoices'
@@ -67,6 +68,8 @@ function AllInvoices(props) {
   const getAllInvoicesToBuisness = () => dispatch(actions.setGetAllInvoicesToBuisness())
   const [flagLoud, setFlagLoud] = useState(true)
   const [flagProduct, setFlagProduct] = useState(false)
+  const [flag1, setFlag1] = useState();
+  const [flagSearch, setFlagSearch] = useState("false")
 
   // useEffect(() => {
   //   console.log("detailsInvoice", detailsInvoice);
