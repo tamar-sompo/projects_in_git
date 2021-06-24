@@ -25,17 +25,12 @@ function NewConfigorator(props) {
     const Location = useLocation()
     const dispatch = useDispatch()
     const setIslevel = (level) => dispatch(actions.setIsLevel(level))
-    const [hidden_design, setHidden_design] = useState(true)
-    const [margin1, setMargin] = useState('25%')
     const invoice = useSelector(state => state.invoiceReducer.invoice);
     const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
     const userName = useSelector(state => state.publicReducer.userName);
     const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-    const ifDesign = useSelector(state => state.displayComponents.openDesign)
     const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
     const setViewConversion = () => dispatch(actions.setViewConversion())
-    // const open_design=useSelector(state=>state.displayComponents.openDesign)
-    const open_design_by_steps = useSelector(state => state.displayComponents.openDesignBySteps)
     const prevPath = useSelector(state => state.displayComponents.prevPath)
     const sendWave = () => dispatch(actions.setSystemWave())
     const [flagM, setFlagM] = useState(false)
@@ -63,6 +58,8 @@ function NewConfigorator(props) {
     const [first, setFirst] = useState(false)
     // dispatch(actions.setFlagFromTable(true))
     const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
+    const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+
 
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
@@ -185,6 +182,27 @@ function NewConfigorator(props) {
         }
     }, [colorFlagShowSaveP])
 
+useEffect(()=>{
+if(flagPush===true){
+    if (window.location.href.indexOf("invoice/edit") != -1
+    && flagFromTable === false
+) {
+    dispatch(actions.setFlagIfEmpty(false))
+    dispatch(actions.setFlagMessage(false))
+    dispatch(actions.setDislayInvoice("false"));
+    dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
+    dispatch(actions.setPDelete(['']))
+    dispatch(actions.setResetAllNewProduct())
+}
+
+if (flagFromTable === true)
+    dispatch(actions.setFlagFromTable(false))
+}
+},[flagPush])
+
+
+
+
     async function save1() {
         dispatch(actions.setFlagPush(false))
         dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
@@ -200,30 +218,7 @@ function NewConfigorator(props) {
                 dispatch(actions.setColorFlagShowSaveP("red"))
             }
         })
-        if (window.location.href.indexOf("invoice/edit") != -1
-            && flagFromTable === false
-        ) {
-            dispatch(actions.setFlagIfEmpty(false))
-            dispatch(actions.setFlagMessage(false))
-            dispatch(actions.setDislayInvoice("false"));
-            // console.log("props.allproduct", props.allproduct)
-            // dispatch(actions.setDetailsContact({}))
-            await dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
-            // dispatch(actions.setInvoiceShow(invoiceSave.invoice))
-            dispatch(actions.setPDelete(['']))
-            dispatch(actions.setResetAllNewProduct())
-
-            // dispatch(actions.setFlagIfEmpty(false))
-            // dispatch(actions.setFlagMessage(false))
-
-            // // dispatch(actions.setDetailsContact({}))
-
-            // dispatch(actions.setInvoiceShow(invoiceSave.invoice))
-            // dispatch(actions.setPDelete(['']))
-        }
-
-        if (flagFromTable === true)
-            dispatch(actions.setFlagFromTable(false))
+       
     }
 
 

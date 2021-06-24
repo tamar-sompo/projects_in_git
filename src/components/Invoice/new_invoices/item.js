@@ -52,7 +52,8 @@ function Item(props) {
   const totalProductRef = useRef([]);
 
   useEffect(() => {
-    dispatch(actions.setflagBorderProduct(false))
+ 
+   dispatch(actions.setflagBorderProduct(false))
   }, [])
 
   useEffect(() => {
@@ -530,7 +531,7 @@ function Item(props) {
   return (
     <>
 
-      <div className="row" style={flagBorderProduct ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
+      <div className="row" style={flagBorderProduct? { border: '1px solid red', width: '100%' } : { border: "none" }}>
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
