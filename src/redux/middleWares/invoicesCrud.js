@@ -50,7 +50,6 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
 }
 
 export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action => {
-
   if (action.type === 'SET_SAVE_INVOICE') {
     debugger
     let buisnessId = getState().buisnessReducer.buisness
@@ -79,9 +78,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
-        
- 
-        // dispatch(actions.getFcmtoken());
+        dispatch(actions.setSendLinkPaypal())
       },
       error: function (err) {
         //בדיקה אם חוזר 401 זאת אומרת שצריך לזרוק אותו ללוגין

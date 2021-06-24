@@ -4,22 +4,6 @@ import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './actions/All_actions.js';
 
-// old functions 
-// import {
-//     // getAllReciptes, deleteProductbyID,
-//     sendEmail, getUserName, getLastInvoicePublicNote,
-//     postnewContact, getCompany,
-//     uploadImageLogo, uploadImageSignature, getContactByEmail,
-//     getFromServer,
-//     endLinkToMail, saveInvoice,
-//     //  getAllProducts,
-//     // postNewProduct,
-//     // updateContat,
-//     // createContact,
-//     getInvoicesbyIdb,
-//     createInvoiceOtomat
-// } from './middleWares/oldCrud';
-
 import {
     newBuisnessToUser,
     updateBuisnessById,
@@ -73,6 +57,9 @@ import {
 import {
     sendLinkToMail
 } from './middleWares/exportCrud';
+import {
+    getLinkToPayWithPaypal
+} from './middleWares/paymentsCrud';
 
 import publicReducer from './reducers/publicReducer';
 import invoiceReducer from './reducers/invoiceRreducer';
@@ -88,10 +75,11 @@ import buisnessReducer from './reducers/buisnessReducer';
 import companyReducer from './reducers/companyReducer';
 import cityByCountryReducer from './reducers/cityByCountryReducer'
 import messageReducer from './reducers/messageReducer'
+import paymentsReducer from './reducers/paymantsReducer.js'
 
 //רשימת הרדוסרים
 const reducer = combineReducers({
-    LogoReducer, displayComponents, invoiceReducer, customerReducer, userReducer, publicReducer, cityByCountryReducer,
+    LogoReducer, displayComponents, invoiceReducer, customerReducer, userReducer, publicReducer, cityByCountryReducer, paymentsReducer,
     productReducer, exportInvoiceReducer, companyReducer, designReducer, buisnessReducer, form: formReducer, listReducer, messageReducer
 })
 // רשימת הפונקציות שיש בכל המידלוורס
@@ -99,7 +87,7 @@ const store = createStore(
     reducer,
     composeWithDevTools(
         applyMiddleware(
-
+            getLinkToPayWithPaypal,
             getAllCountry,
             getAllCitiesByCountry,
             // deleteProductbyID,

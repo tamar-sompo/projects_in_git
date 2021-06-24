@@ -48,6 +48,7 @@ import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
 import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
+import Payments from '../Payments/paypal.js'
 
 
 export default function Fiances() {
@@ -129,6 +130,7 @@ export default function Fiances() {
                                 <Route path="/:userName/view/:theId" component={Invoice} />
                                 <Route path="/:userName/customers" component={Contactsiframe} />
                                 <Route path="/:userName/buisness" component={Business} />
+                                <Route path="/:userName/payments" component={Payments} />
                                 <Route path="/:userName/add_buisness" component={BuisnessForm} />
                                 {/* <Route path="/:userName/newContact" component={createContact} /> */}
                                 <Route path="/:userName/product" component={Products} />

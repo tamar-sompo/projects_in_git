@@ -109,7 +109,7 @@ function BuisnessList(props) {
       setFlag("true")
     else {
       setFlagLoud(false)
-      updateBuisnessField({ key: 'companyName', value: "" })
+      updateBuisnessField({ key: 'name', value: "" })
       updateBuisnessField({ key: 'email', value: "" })
       updateBuisnessField({ key: 'phone', value: "" })
       updateBuisnessField({ key: 'country', value: "" })

@@ -22,6 +22,8 @@ export default function Share(props) {
     const userName = useSelector(state => state.publicReducer.userName)
     const [phone, setPhone] = useState("")
 
+    // const businessPhone = invoiceSave.invoice.contactOneTime.phone;
+    // const businessPhoneWatsapp = businessPhone.substring(1);
     const setMail = () => {
         dispatch(actions.setsendMessage("true"))
     }
@@ -38,7 +40,8 @@ export default function Share(props) {
                 <Dropdown.Item onClick={() => setMail()}>
                     <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} />  Email</Dropdown.Item>
                 {invoiceSave && invoiceSave.invoice && invoiceSave.invoice.contactOneTime.phone ?  
-                <Dropdown.Item href={`https://wa.me/${invoiceSave.invoice.contactOneTime.phone}?text=${`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}`} target="_blank" >
+                <Dropdown.Item href={`https://wa.me/972
+                ?text=${`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}`} target="_blank" >
                     <FontAwesomeIcon size='1.5x' className='insertIcon font-weight-bold'
                             icon={['fab', 'whatsapp']} /> 
                 Whatsapp</Dropdown.Item> :""}
