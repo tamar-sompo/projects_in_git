@@ -25,7 +25,7 @@ const initialState = {
         products: []
     },
     dislayInvoice: "true",
-    invoiceId: "111",
+    // invoiceId: "111",
     productionsList: [],
     invoiceNumber: "",
     all_product: "",
@@ -53,15 +53,34 @@ const initialState = {
     flagOfterValidation: false,
     flagTmpSave: false,
     flagIfEmpty: false,
+    flagView: false,
+    flagFromTable: false,
+    flagPush: false,
+    filteredInvoices: [],
     // specificRoute: ''
 
 }
 
 
 const invoices = {
+    setFilteredInvoices(state, action) {
+        state.filteredInvoices = action.payload
+    },
     // setSpecificRoute(state, action) {
     //     state.specificRoute = action.payload
     // },
+    setFlagPush(state, action) {
+        state.flagPush = action.payload
+    },
+
+    setFlagFromTable(state, action) {
+        state.flagFromTable = action.payload
+    },
+
+    setFlagView(state, action) {
+        state.flagView = action.payload
+    },
+
     setFlagIfEmpty(state, action) {
         state.flagIfEmpty = action.payload
     },
@@ -95,6 +114,7 @@ const invoices = {
     },
     setInvoiceSave(state, action) {
         debugger
+        console.log("invoice reducer t unvoice save", action.payload)
         state.invoiceSave = action.payload
     },
 
@@ -273,7 +293,7 @@ const invoices = {
         state.invoiceDetailsView.products[action.payload.index1].amount = action.payload.amount
     },
     setResetSaveSum(state, action) {
-        state.saveSum = 0
+        state.saveSum = action.payload
     },
     setSum(state, action) {
         debugger
@@ -285,12 +305,12 @@ const invoices = {
             })
 
         }
-        else
+        else {
             state.invoice.products[action.payload.index1].sum_product = action.payload.sum
-        state.invoice.products.map((p, index) => {
-            state.saveSum += p.sum_product
-        })
-
+            state.invoice.products.map((p, index) => {
+                state.saveSum += p.sum_product
+            })
+        }
     },
     // setSumUpdate(state, action){
     //     state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum

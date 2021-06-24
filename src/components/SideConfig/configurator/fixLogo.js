@@ -9,7 +9,7 @@ import { FiUpload } from "react-icons/fi";
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import tempLogo from '../../assets/newLogo.png';
+// import tempLogo from '../../assets/newLogo.png';
 import flowersLogo from '../../../Img/flowersLogo.png';
 
 const useStyles = makeStyles((theme) => ({

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ExportInvoice from './iconsExportInvoice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
-import logo from '../assets/newLogo.png';
+// import logo from '../assets/newLogo.png';
 // import { Icon } from '@iconify/react';
 // import whatsappIcon from '@iconify-icons/mdi/whatsapp';
 // import gmailIcon from '@iconify-icons/mdi/gmail';
@@ -69,7 +69,7 @@ function InvoiceShow(props) {
     <ExportInvoice />
         <div className="row">
           <div className="col">
-            <img src={logo} alt="Logo" style={{ border: '4px solid red' }}></img>
+            {/* <img src={logo} alt="Logo" style={{ border: '4px solid red' }}></img> */}
             <div>
               <div className="col">
                 <input type="text" className="form-control ml-5 col-7 mb-4" id="title" placeholder={d.title} readOnly>

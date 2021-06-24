@@ -33,12 +33,12 @@ function Business(props) {
   console.log("changeFlag", changeFlag)
 
   return (
-    <div className="container-fluid" style={{
-      height: "88vh",
-      width: "98%",
-      borderRadius: "9px",
-      boxShadow: "0px 3px 6px #0A26B126",
-      backgroundColor: 'white'
+    <div className="container-fluid con" style={{
+      height: "95%",
+      width: "95%",
+      // borderRadius: "9px",
+      // boxShadow: "0px 3px 6px #0A26B126",
+      // backgroundColor: 'white'
     }}>
       <div class="d-flex justify-content-between   my-3"
         style={{

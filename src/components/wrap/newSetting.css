@@ -9,28 +9,28 @@
 .l{
     color: white;
     font-size: 10px;
-    padding-left:  1.5vh;
+    padding-left:  16%;
   /* font-size: 200%;   */
   text-decoration: none!important;
 }
 .d{
     color: white;
     font-size: 10px;
-    padding-left:  0.6vh;
+    padding-left:  12%;
   /* font-size: 200%;   */
   text-decoration: none!important;
 }
 .n{
     color: white;
     font-size: 10px;
-    padding-left:  1vh;
+    padding-left:  12%;
     background-color: #917BDF;
   text-decoration: none!important;
 }
 .dd{
     color: white;
     font-size: 10px;
-    padding-left:  0.6vh;
+    padding-left:  12%;
     background-color: #917BDF;
   text-decoration: none!important;
 }
@@ -43,14 +43,14 @@
         /* background-color: "#0A102E"; */
          border: none;
         color: white;
-        padding-left: 10%;
+        padding-left: 13%;
 }
 .yyyy{
     height: 5vh;
     background-color: #917BDF;
          border: none;
         color: white;
-        padding-left: 10%;
+        padding-left: 13%;
 }
 /* .kkk:hover{
     background:#5c5770 !important;

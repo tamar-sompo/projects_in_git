@@ -1,23 +1,39 @@
-.wrap_table
-{
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
-    display: inline-block;
-    height: 86%;
+.wrap_table {
+  overflow-y: auto;
+  overflow-x: hidden;
+  width     : 100%;
+  display   : inline-block;
+  height    : 80%;
 }
-.con{
+
+.con {
   background-color: white;
 }
-.posity{
+
+tr.expandable>td>.inner {
+  margin  : 15px;
+  overflow: hidden;
+}
+
+.tdToggle {
+  border        : none !important;
+  height        : 0px !important;
+  /* padding-top: 0px; */
+  padding       : 0px !important;
+}
+
+.posity {
   opacity: 0.5 !important;
 }
+
 #icons {
   color: gray;
 }
+
 #icons:hover {
   color: rgb(142, 115, 236);
 }
+
 .noP {
   color: #FF5F5F;
 }
@@ -49,7 +65,8 @@
   border-radius   : 5px;
   padding-top     : 2%;
 }
-.backgroundSearch{
+
+/* .backgroundSearch{
   background-color: #F8F8F8;
   margin-right: 1rem;
   padding: .4rem;
@@ -75,4 +92,48 @@
   height: 4vh;
   width: 4vh;
   border-radius: 50%
+} */
+.backgroundSearch {
+  display: none
+}
+
+/* .backgroundSearchClick{
+  background-color: #F8F8F8;
+  margin-right: 1rem;
+  padding: .4rem;
+  padding-left: .7rem;
+  height: 4vh;
+  width: 4vh;
+  border-radius: 50%;
+  border:none
+}  */
+.backgroundSearchClick {
+  background-color: #F8F8F8;
+  padding         : .4rem;
+  width           : 18rem;
+  height          : 4vh;
+  border-radius   : 5%;
+  border          : none
+}
+
+.SearchIcon {
+  background-color: #F8F8F8;
+  margin-right    : 1rem;
+  padding         : .4rem;
+  padding-left    : .7rem;
+  height          : 4vh;
+  width           : 4vh;
+  border-radius   : 50%;
+  border          : none
+}
+
+.SearchIconClick {
+  background-color: #F8F8F8;
+  margin-right    : 1rem;
+  padding         : .4rem;
+  padding-left    : .7rem;
+  height          : 4vh;
+  width           : 4vh;
+  border-radius   : 5%;
+  border          : none
 }

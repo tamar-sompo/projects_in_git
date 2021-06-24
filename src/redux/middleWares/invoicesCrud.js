@@ -66,12 +66,16 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
       },
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(invoice),
-      success: function (data) {
+      success: async function (data) {
         console.log("success add invoice", data)
+
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Adding an invoice successfully"))
-        dispatch(actions.setInvoiceSave(data))
-        dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setInvoiceShow(data.invoice))
+        await dispatch(actions.setInvoiceSave(data))
+        await dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setFlagPush(true))
+        // dispatch(actions.setsendMessage("true"))
         dispatch(actions.setGetAllInvoicesToBuisness())
         dispatch(actions.setSystemWave())
         dispatch(actions.getFcmtoken())
@@ -79,8 +83,6 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
-        
- 
         // dispatch(actions.getFcmtoken());
       },
       error: function (err) {
@@ -124,7 +126,8 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
     // return new Promise((resolve, reject) => {
     console.log("action.payload", action.payload)
     let invoiceId = getState().invoiceReducer.invoiceId;
-    let invoice = getState().invoiceReducer.invoice
+    let invoice = getState().invoiceReducer.invoice;
+    let vv = getState().invoiceReducer.viewConversion
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateInvoiceForBuisness/${invoiceId}`
     $.ajax({
       headers: {
@@ -137,12 +140,18 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
       data: JSON.stringify(invoice),
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
-      success: function (invoice) {
-        console.log("updateInvoice", invoice)
+      success: async function (invoice1) {
+        console.log("updateInvoice", invoice1, vv)
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update an invoice successfully"))
-        dispatch(actions.setGetAllInvoicesToBuisness(invoice))
-        dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setInvoiceShow(invoice1.invoice))
+        await dispatch(actions.setInvoiceSave(invoice1))
+        // console.log()
+
+        await dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setFlagPush(true))
+        dispatch(actions.setGetAllInvoicesToBuisness(invoice1))
+
         dispatch(actions.setFlagModal(""))
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
