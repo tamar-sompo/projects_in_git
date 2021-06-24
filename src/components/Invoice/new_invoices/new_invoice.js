@@ -1070,8 +1070,6 @@ function New_Invoice(props) {
               {/* <DigitalSignature /> */}
             </div>
 
-
-
             {/* <Col md={{ span: 4, offset: 9 }} className="total-temp1 text-right">
                 <Row className=' font-weight-bold'>
                   <Col md={4} className='totalSum-temp1 text-left pt-4'>Total:</Col>
