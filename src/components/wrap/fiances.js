@@ -107,8 +107,8 @@ export default function Fiances() {
                             <Configurator />
                         </div>
                         {/* {isSendMessage == "true"} */}
-                        <div className={isSendMessage == "true" ? "col-10  d-flex justify-content-center align-items-center flex_main" : "col-8 d-flex justify-content-center align-items-center"} 
-                        style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+                        <div className={isSendMessage == "false" ? "col-10  d-flex justify-content-center align-items-center flex_main" : "col-9 d-flex justify-content-center align-items-center"}
+                            style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
 
                             {/* <div className={isSendMessage == "true" ?
                             "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
@@ -145,13 +145,17 @@ export default function Fiances() {
                             }}> */}
 
                         </div>
+
                         {isSendMessage == "true" &&
-                            <div className="sendEmailFromList" style={{
-                                width: "17vw",
-                                border: "1px solid #917BDF",
-                                height: "90vh", display: "none", marginTop: "10vh"
-                            }}>
-                                <Massage></Massage>
+                            <div className=" col -1 d-flex justify-content-center align-items-center " style={{ height: "94%" }}>
+                                <div className=" sendEmailFromList" style={{
+                                    width: "90%",
+                                    height: "100% ",
+                                    border: "1px solid #917BDF",
+                                    display: "none"
+                                }}>
+                                    <Massage></Massage>
+                                </div>
                             </div>}
                     </div>
                 </div>
