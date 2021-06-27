@@ -80,7 +80,8 @@ width:70%; */
 
 .saving2{
   font-size: 12px;
-  background-color: #917BDF!important;
+  background-color: red !important;
+  /* background-color: #917BDF!important; */
   border-radius: 5px !important;
   text-align: center;
   vertical-align: middle;

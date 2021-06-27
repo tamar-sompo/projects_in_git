@@ -50,7 +50,7 @@ function Item(props) {
   const dispatch = useDispatch();
   const { onItemChanged, onItemDeleted, productSelect } = props;
   const totalProductRef = useRef([]);
-
+  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
   }, [])
@@ -109,7 +109,7 @@ function Item(props) {
   }, [allproduct])
   const vv3 = (e) => {
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
-
+    setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products[0].id == "null") {
@@ -163,6 +163,7 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
+    setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))
 
@@ -197,6 +198,7 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    setFlagSaveP(false)
     console.log("ttt", e)
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))

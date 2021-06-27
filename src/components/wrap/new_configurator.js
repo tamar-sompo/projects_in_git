@@ -59,6 +59,7 @@ function NewConfigorator(props) {
     // dispatch(actions.setFlagFromTable(true))
     const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
     const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+    const showModalName = useSelector(state => state.messageReducer.showModalName);
 
 
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);

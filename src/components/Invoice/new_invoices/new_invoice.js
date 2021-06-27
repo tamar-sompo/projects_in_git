@@ -100,6 +100,7 @@ function New_Invoice(props) {
   const showMessage = useSelector(state => state.messageReducer.showMessage);
   const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
   const flagPush = useSelector(state => state.invoiceReducer.flagPush)
+  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   const [contactedit, setcontactedit] = useState({
     name: "",
     email: "",
@@ -192,7 +193,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
-      alert('jjj')
+      // alert('jjj')
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
@@ -476,8 +477,9 @@ function New_Invoice(props) {
 
 
   // }
-  const onFieldChanged = (fieldName) => (e) => {
-
+  const onFieldChanged = (fieldName, e) => {
+    console.log("eeeee", e.target.value)
+  
     dispatch(actions.setFlagIfEmpty(true))
     const value = e.target.value;
     if (fieldName = "dueDate")
@@ -544,25 +546,31 @@ function New_Invoice(props) {
       console.log("productSelect5", productSelect)
       if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
 
-        console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-        debugger;
-        const newProdactions = [...detailsInvoice.products];
-        // console.log("newProdactions",newProdactions)
-        // newProdactions.push({ id: 'null', amount: 0 });
-        dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
-        console.log("dp", invoice.products)
+        if (detailsInvoice.products[detailsInvoice.products.length - 1].id != "null") {
+          console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
+          debugger;
+          const newProdactions = [...detailsInvoice.products];
+          // console.log("newProdactions",newProdactions)
+          // newProdactions.push({ id: 'null', amount: 0 });
+          dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
+          console.log("dp", invoice.products)
+        }
+
+
         // updateinvoiceField({ products: newProdactions });
       }
 
       //  }
       else {
 
+        if (invoice.products[invoice.products.length - 1].id != "null") {
+          console.log("ghg")
+          // dispatch(actions.setProducts('null'));
+          dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
+          // console.log("invoiceee", invoice)
+          // focus_steps('Content', 3)
+        }
 
-        console.log("ghg")
-        // dispatch(actions.setProducts('null'));
-        dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
-        // console.log("invoiceee", invoice)
-        // focus_steps('Content', 3)
       }
     }
 
@@ -583,6 +591,7 @@ function New_Invoice(props) {
 
   const deleteItemFromStore = (index) => {
     debugger
+    setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
@@ -712,6 +721,12 @@ function New_Invoice(props) {
   const changetooltip = () => {
     setIsMouseTooltipVisible(false)
   }
+  const resetType = (e) => {
+    e.target.value = ""
+    // alert("oo")
+    updateinvoiceField({ key: "type", value: undefined })
+
+  }
 
   return (
     <>
@@ -748,7 +763,7 @@ function New_Invoice(props) {
                 title="Your Logo Here"
               />
             </div>
-            <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%" }}>
+            <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
               {/* <div className="col-2"></div> */}
               <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
                 <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
@@ -923,7 +938,7 @@ function New_Invoice(props) {
                       type="date"
                       size="1"
                       defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
-                      onChange={onFieldChanged('dueDate')}
+                      onChange={(e) => onFieldChanged('dueDate', e)}
                       onClick={() => setFocus('dueDate')}
                     >
                     </input>
@@ -934,14 +949,16 @@ function New_Invoice(props) {
             <div className="row d-flex justify-content-center" style={{ paddingTop: "6%", paddingBottom: "6%" }}>
               <input
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                placeholder='Invoice Name'
+                // placeholder='Invoice Name'
                 // id='title-temp1'
+                onFocus={resetType}
                 className="design_invoicename"
                 maxlength="15"
                 ref={refLevel3}
-                defaultValue={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : '' : ''}
+                value={invoice.type ? invoice.type : detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : "Invoice Name" : "Invoice Name"}
                 onClick={(e) => setRefLevel3()}
-                onBlur={() => onFieldChanged('type')}
+                onChange={(e) => onFieldChanged('type', e)}
+                onClick={() => setFocus('type')}
                 bgColor={props.colors ? props.colors[2] : 'black'}
               >
               </input>
@@ -1072,7 +1089,7 @@ function New_Invoice(props) {
                   <div className="" style={{ paddingRight: "9%" }} >
                     <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                   <div className="">
-                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? saveSum2.toFixed(2) : saveSum ? saveSum.toFixed(2) :
+                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
                       ''}</span></div>
                 </div>
               </div>

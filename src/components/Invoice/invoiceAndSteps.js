@@ -14,6 +14,7 @@ import ProductForm from '../forms/productForm.js';
 import ButtonPlus from '../forms/buttonPlus'
 // import Invoice from './invoice'
 import New_Invoice from './new_invoices/new_invoice'
+// import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
 // import productForm from '../forms/productForm'
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
@@ -49,7 +50,9 @@ export default function InvoiceAndSteps(props) {
   const [flagFirst, setFlagFirst] = useState(false)
   const [flagFirstB, setFlagFirstB] = useState(false)
   const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
-  const [flagSaveP, setFlagSaveP] = useState(false)
+  // const [flagSaveP, setFlagSaveP] = useState(false)
+  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
+  const flagSaveP = useSelector(state => state.invoiceReducer.flagSaveP)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const invoiceId = useSelector(state => state.invoiceReducer.invoiceId)
   const [flagFirstToP, setFlagFirstToP] = useState(false)
@@ -60,11 +63,16 @@ export default function InvoiceAndSteps(props) {
   const flagPush = useSelector(state => state.invoiceReducer.flagPush);
   const flagPush1 = useSelector(state => state.invoiceReducer.flagPush1);
   const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
+  const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
+  const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
+  // const [flagFirstB, setFlagFirstB] = useState(false)
+  // const [flagFirst, setFlagFirst] = useState(false)
+  // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [isLevel4, setIsLevel4] = useState(false)
   // const userName = useSelector(state => state.publicReducer.userName);
-  const backtoAllInvoices = () => {
-    history.push(`/${userName}/allDocuments`)
-  }
+  // const backtoAllInvoices = () => {
+  //   history.push(`/${userName}/allDocuments`)
+  // }
   const history = useHistory()
 
   // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
@@ -74,7 +82,7 @@ export default function InvoiceAndSteps(props) {
   // {type:'SET_SYSTEM_WAVE'})
 
   useEffect(() => {
-    alert("ccc")
+    // alert("ccc")
     dispatch(actions.setflagBorderProduct(false))
     // $('.left_nav').addClass('border_configurator') 
   }, [])
@@ -85,43 +93,47 @@ export default function InvoiceAndSteps(props) {
       // alert('gyfsj')
     }
   }, [Location])
-  // useEffect(() => {
 
-  //     if (flagM === false) {
 
-  //         setFlagM(true)
-  //     }
-  //     else {
-  //         if (showMessage === false) {
-  //             save();
-  //         }
-  //     }
-  // }, [showMessage])
+ 
 
   useEffect(() => {
     console.log("flagModal", flagModal)
-    if (flagFirst === false)
-      setFlagFirst(true)
-    else {
-      if (flagModal === "successContact") {
-
-        save()
-      }
-
+   
+    // else {
+      if (flagModal === "successContact") 
+        nameInvoice()
+        if(flagModal==="successNameInvoice"){
+          // alert("ghjhg")
+           save()
     }
-
   }, [flagModal])
 
   useEffect(() => {
 
+
+
     //    alert("uuu")
-    if (flagFirstB === false) {
-      setFlagFirstB(true)
-    }
-    else {
+    // if (flagFirstB === false) {
+    //   setFlagFirstB(true)
+    // }
+    // else {
       if (buttonClick === "saveInvoiceOtherPage")
         save1()
-    }
+
+        if (buttonClick === "continuOtherPage") {
+          flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+            if (flag === true) {
+              dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
+              dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    
+            }
+          })
+          setShowMessage(false)
+          setButtonClick("")
+          history.push(`/${userName}/allDocuments`)
+        }
+    // }
   }, [buttonClick])
 
   useEffect(() => {
@@ -150,7 +162,7 @@ export default function InvoiceAndSteps(props) {
               setModalBody("how do you want to save contact changes?")
             }
             else {
-              save()
+              nameInvoice()
             }
           }
         }
@@ -185,7 +197,7 @@ export default function InvoiceAndSteps(props) {
 
     console.log("flagPush", flagPush)
     if (flagPush1 === true) {
-      alert("tyutyuflagpush")
+      // alert("tyutyuflagpush")
       if (window.location.href.indexOf("invoice/edit") != -1
         && flagFromTable === false
       ) {
@@ -203,7 +215,15 @@ export default function InvoiceAndSteps(props) {
   }, [flagPush1])
 
 
-
+  const nameInvoice =()=>{
+    // alert("uuu")
+   if(history.location.pathname == `/${userName}/invoice` && invoice.type || 
+    window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)  
+     save()
+ else{
+    dispatch(actions.setShowModalName(true)) 
+ }
+}
 
   async function save1() {
     dispatch(actions.setFlagPush(false))
@@ -214,6 +234,13 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     setFlagToCheck(true)
+    
+if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
+(detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
+((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
+
+setFlagSaveP(true)
+}
     flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
       setFlagToCheck(true)
       if (flag === true) {
@@ -270,6 +297,21 @@ export default function InvoiceAndSteps(props) {
     console.log("save", invoice)
     // sendWave()
   }
+
+  const backtoAllInvoices=()=>{
+    if (flagIfEmpty==false) {
+      history.push(`/${userName}/allDocuments`)
+      dispatch(actions.setFlagModal(""))
+      dispatch(actions.setShowMessage(false))
+      dispatch(actions.setButtonClick(""))
+      dispatch(actions.setModalBody(""))
+    }
+    else {
+        setModalBody("Do you want to save Invoice?")
+        setFlagModal("otherPage")
+        setShowMessage(true)
+    }
+}
   return (
     <>
 
