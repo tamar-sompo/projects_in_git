@@ -10,9 +10,9 @@ import $ from 'jquery'
 import { useHistory } from 'react-router-dom';
 // import history from '../../../history'
 import { withRouter, useLocation } from 'react-router-dom';
-import Maincomp from '../Details/productions'
+// import Maincomp from '../Details/productions'
 import NewSetting from './newSetting';
-import Design_Menu from '../design_menu';
+// import Design_Menu from '../design_menu';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {

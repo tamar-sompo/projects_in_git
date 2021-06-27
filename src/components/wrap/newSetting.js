@@ -10,7 +10,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
 import $ from 'jquery'
-import Design_Menu from '../design_menu'
+import Design_Menu from '../notUse/design_menu'
 
 
 export default function NewSetting(props) {
@@ -34,11 +34,9 @@ export default function NewSetting(props) {
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
   const invoice = useSelector(state => state.invoiceReducer.invoice);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
-  const [flagFirstB, setFlagFirstB] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
-  const [flagIfSave, setFlagIfSave]=useState(false)
-  const [index, setIndex]=useState(0)
+  const [index, setIndex] = useState(0)
   console.log("allBuisnessToUser", allBuisnessToUser)
 
   const setdispatch = () => {
@@ -72,7 +70,7 @@ export default function NewSetting(props) {
     else {
       console.log("rrrrrrrr", setspecificRoute)
       if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") != -1) {
-        if (flagIfEmpty==false) {
+        if (flagIfEmpty == false) {
           routePage()
           dispatch(actions.setFlagModal(""))
           dispatch(actions.setShowMessage(false))
@@ -82,10 +80,10 @@ export default function NewSetting(props) {
         else {
           console.log("invoiceeeewwww", setspecificRoute)
           // if (flagSaveInvoice === false) {
-            setModalBody("Do you want to save Invoice?")
-            console.log("seyttttttt", setspecificRoute)
-            setFlagModal("otherPage")
-            setShowMessage(true)
+          setModalBody("Do you want to save Invoice?")
+          console.log("seyttttttt", setspecificRoute)
+          setFlagModal("otherPage")
+          setShowMessage(true)
         }
       }
       else {
@@ -101,27 +99,27 @@ export default function NewSetting(props) {
     dispatch(actions.setInvoiceSave(null))
     if (specificRoute === "Documents")
       history.push(`/${userName}/allDocuments`)
-      if (specificRoute === "Business"){
-        history.push(`/${userName}/buisness`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Contacts"){
-        history.push(`/${userName}/customers`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Products"){
-        history.push(`/${userName}/product`)
-        dispatch(actions.getAllProduct())
-        dispatch(actions.setInvoiceSave(null))
-      }
+    if (specificRoute === "Business") {
+      history.push(`/${userName}/buisness`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Contacts") {
+      history.push(`/${userName}/customers`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Products") {
+      history.push(`/${userName}/product`)
+      dispatch(actions.getAllProduct())
+      dispatch(actions.setInvoiceSave(null))
+    }
   }
 
 
 
   const checkIfBuisness = (value) => {
-    setIndex(index+1)
+    setIndex(index + 1)
     setspecificRoute(value)
-    setIndex(index+1)
+    setIndex(index + 1)
     if (allBuisnessToUser === undefined) {
       history.push(`/${userName}/add_buisness`)
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
+// import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,8 +19,7 @@ import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
 // import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
-import ShowCompany from '../../showCompany'
-import flowerbackground from '../../assets/flo.jpg'
+// import flowerbackground from '../../assets/flo.jpg'
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {
@@ -193,7 +192,6 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
-      // alert('jjj')
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
@@ -201,15 +199,12 @@ function New_Invoice(props) {
       console.log("props.invoice1", props.invoice1)
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
-
-
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)
           setDisplayInvoice("false")
         dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPDelete(['']))
-
       }
       else {
 
@@ -479,7 +474,7 @@ function New_Invoice(props) {
   // }
   const onFieldChanged = (fieldName, e) => {
     console.log("eeeee", e.target.value)
-  
+
     dispatch(actions.setFlagIfEmpty(true))
     const value = e.target.value;
     if (fieldName = "dueDate")

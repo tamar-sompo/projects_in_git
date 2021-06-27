@@ -4,7 +4,6 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import { withRouter, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './invoice.css';
 // import { connect, useDispatch, useSelector } from 'react-redux';
 import Steps from './steps.js';
 import $ from 'jquery'
@@ -95,17 +94,17 @@ export default function InvoiceAndSteps(props) {
   }, [Location])
 
 
- 
+
 
   useEffect(() => {
     console.log("flagModal", flagModal)
-   
+
     // else {
-      if (flagModal === "successContact") 
-        nameInvoice()
-        if(flagModal==="successNameInvoice"){
-          // alert("ghjhg")
-           save()
+    if (flagModal === "successContact")
+      nameInvoice()
+    if (flagModal === "successNameInvoice") {
+      // alert("ghjhg")
+      save()
     }
   }, [flagModal])
 
@@ -118,21 +117,21 @@ export default function InvoiceAndSteps(props) {
     //   setFlagFirstB(true)
     // }
     // else {
-      if (buttonClick === "saveInvoiceOtherPage")
-        save1()
+    if (buttonClick === "saveInvoiceOtherPage")
+      save1()
 
-        if (buttonClick === "continuOtherPage") {
-          flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-            if (flag === true) {
-              dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-              dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
-    
-            }
-          })
-          setShowMessage(false)
-          setButtonClick("")
-          history.push(`/${userName}/allDocuments`)
+    if (buttonClick === "continuOtherPage") {
+      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+        if (flag === true) {
+          dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
+          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+
         }
+      })
+      setShowMessage(false)
+      setButtonClick("")
+      history.push(`/${userName}/allDocuments`)
+    }
     // }
   }, [buttonClick])
 
@@ -215,15 +214,15 @@ export default function InvoiceAndSteps(props) {
   }, [flagPush1])
 
 
-  const nameInvoice =()=>{
+  const nameInvoice = () => {
     // alert("uuu")
-   if(history.location.pathname == `/${userName}/invoice` && invoice.type || 
-    window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)  
-     save()
- else{
-    dispatch(actions.setShowModalName(true)) 
- }
-}
+    if (history.location.pathname == `/${userName}/invoice` && invoice.type ||
+      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)
+      save()
+    else {
+      dispatch(actions.setShowModalName(true))
+    }
+  }
 
   async function save1() {
     dispatch(actions.setFlagPush(false))
@@ -234,13 +233,13 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     setFlagToCheck(true)
-    
-if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
-(detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
-((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
 
-setFlagSaveP(true)
-}
+    if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
+      (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
+      ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
+
+      setFlagSaveP(true)
+    }
     flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
       setFlagToCheck(true)
       if (flag === true) {
@@ -298,8 +297,8 @@ setFlagSaveP(true)
     // sendWave()
   }
 
-  const backtoAllInvoices=()=>{
-    if (flagIfEmpty==false) {
+  const backtoAllInvoices = () => {
+    if (flagIfEmpty == false) {
       history.push(`/${userName}/allDocuments`)
       dispatch(actions.setFlagModal(""))
       dispatch(actions.setShowMessage(false))
@@ -307,11 +306,11 @@ setFlagSaveP(true)
       dispatch(actions.setModalBody(""))
     }
     else {
-        setModalBody("Do you want to save Invoice?")
-        setFlagModal("otherPage")
-        setShowMessage(true)
+      setModalBody("Do you want to save Invoice?")
+      setFlagModal("otherPage")
+      setShowMessage(true)
     }
-}
+  }
   return (
     <>
 

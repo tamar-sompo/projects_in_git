@@ -1,4 +1,4 @@
-  
+
 import React, { useEffect, useState } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
@@ -9,12 +9,12 @@ import './new_configurator.css'
 import $ from 'jquery'
 import { useHistory } from 'react-router-dom';
 // import history from '../../../history'
-import { withRouter,useLocation } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 import Maincomp from '../Details/productions'
-import NewSetting from './newSetting';
-import Design_Menu from '../design_menu'
+import NewSetting from '../wrap/newSetting';
+import Design_Menu from './design_menu'
 function NewConfigorator(props) {
-    const Location=useLocation()
+    const Location = useLocation()
     const dispatch = useDispatch()
     const [hidden_design, setHidden_design] = useState(true)
     const [margin1, setMargin] = useState('25%')
@@ -25,9 +25,9 @@ function NewConfigorator(props) {
     const ifDesign = useSelector(state => state.displayComponents.openDesign)
     // const open_design=useSelector(state=>state.displayComponents.openDesign)
     const open_design_by_steps = useSelector(state => state.displayComponents.openDesignBySteps)
-    const prevPath=useSelector(state=>state.displayComponents.prevPath)
+    const prevPath = useSelector(state => state.displayComponents.prevPath)
     const sendWave = () => dispatch(actions.setSystemWave())
-        // {type:'SET_SYSTEM_WAVE'})
+    // {type:'SET_SYSTEM_WAVE'})
     const history = useHistory()
 
     const changeBackground = (e) => {
@@ -42,22 +42,21 @@ function NewConfigorator(props) {
         // $('.left_nav').addClass('border_configurator') 
     })
     useEffect(() => {
-        console.log("prevPath",prevPath)
-        if(prevPath==`/${userName}/invoice`)
-        {
-          dispatch(actions.setPrevPath(''))
-        // alert('gyfsj')
-    }
-    },[Location])
+        console.log("prevPath", prevPath)
+        if (prevPath == `/${userName}/invoice`) {
+            dispatch(actions.setPrevPath(''))
+            // alert('gyfsj')
+        }
+    }, [Location])
     // useEffect(()=>{   
     //     debugger
     //     console.log("invoiceeeeproducts",invoice)
-      
+
     // },[invoice])
     const save = () => {
         // debugger
         // sendWave()
-        
+
         if (history.location.pathname === `/${userName}/invoice`) {
             dispatch(actions.setSaveInvoice(invoice))
             // history.push(`/${userName}/Invoice/Conversion`)
@@ -65,11 +64,11 @@ function NewConfigorator(props) {
         else {
             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
             console.log("detailsInvoice", detailsInvoice._id)
-            updateinvoiceField({key:"products",value:detailsInvoice.products});
-            
-           dispatch(actions.setUpdateInvoice())
-           
-           
+            updateinvoiceField({ key: "products", value: detailsInvoice.products });
+
+            dispatch(actions.setUpdateInvoice())
+
+
         }
 
         console.log("save", invoice)
@@ -77,15 +76,15 @@ function NewConfigorator(props) {
     }
     return (
         <>
-            <div className="left_nav border_configurator">    
+            <div className="left_nav border_configurator">
                 {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
                     $('.left_nav').removeClass('border_configurator') &&
                     <>
                         <Design_Menu />
                         {ifDesign || open_design_by_steps ?
                             <>
-                          
-                  {/* <button
+
+                                {/* <button
                     onClick={save}
                     className="saving1 mt-2 mb-2"
                 >
@@ -94,13 +93,13 @@ function NewConfigorator(props) {
                                     <NewSetting ></NewSetting></div>
                                 <div style={{ position: "relative" }}>
                                     <Maincomp ></Maincomp> </div>
-                                    <div className="try">
-                <button
-                    onClick={save}
-                    className="saving1 mt-2 mb-2"
-                >
-                    Save</button>
-            </div>
+                                <div className="try">
+                                    <button
+                                        onClick={save}
+                                        className="saving1 mt-2 mb-2"
+                                    >
+                                        Save</button>
+                                </div>
 
                             </> :
 
@@ -109,7 +108,7 @@ function NewConfigorator(props) {
                                 <div style={{ position: "relative" }}>
                                     <NewSetting ></NewSetting>
                                 </div>
-                               
+
 
                             </>}
 
@@ -123,7 +122,7 @@ function NewConfigorator(props) {
                     </>
 
                 }
-                
+
                 {/* <div className="try">
                 <button
                     onClick={save}
@@ -131,8 +130,8 @@ function NewConfigorator(props) {
                 >
                     Save</button>
             </div> */}
-            </div> 
-        
+            </div>
+
 
         </>
     )

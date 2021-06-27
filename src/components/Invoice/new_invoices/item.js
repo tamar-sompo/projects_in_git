@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
+// import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';

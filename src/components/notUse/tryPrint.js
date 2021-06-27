@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 
 import { useReactToPrint } from 'react-to-print';
-import  InvoiceShow  from './invoiceShow';
+import InvoiceShow from '../Invoice/invoiceShow';
 
 import { Icon } from '@iconify/react';
 import { BiPrinter } from "react-icons/bi";
@@ -17,14 +17,14 @@ const ref = React.createRef();
 
 
 
-function ExportInvoice (props) {
+function ExportInvoice(props) {
   const d = props.invoiceDetailsView;
 
   const componentRef = useRef();
-    const handlePrint = useReactToPrint({
-      content: () => componentRef.current,
-    });
-  
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   const sendEmail = (viewUrl) => {
     console.log("mail")
     var url = viewUrl
@@ -76,10 +76,10 @@ function ExportInvoice (props) {
 
   return (
     <>
-     <div>
-      <InvoiceShow ref={componentRef} />
-      <button onClick={handlePrint}>Print this out!</button>
-    </div>
+      <div>
+        <InvoiceShow ref={componentRef} />
+        <button onClick={handlePrint}>Print this out!</button>
+      </div>
       <div className="container-fluid" ref={ref} style={{
         borderRadius: "5px",
         // width: "650px",
@@ -98,7 +98,7 @@ function ExportInvoice (props) {
               className="btn btn-lg btn-link clearfix btn-lg">
               <span style={{ color: 'gray' }} title="Print" id="iconExport"
               //  onClick={() => printInvoice()}><BiPrinter/>
-              ><BiPrinter/>
+              ><BiPrinter />
               </span>
             </button>
             <button title="Whatsapp" className="btn btn-lg btn-link clearfix btn-lg">
@@ -115,7 +115,7 @@ function ExportInvoice (props) {
             </div>
           </div>
         </div>
-       </div>
+      </div>
     </>
   )
 }
@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
   return {
-    invoiceDetailsView: state.invoiceReducer.invoiceDetailsView, 
+    invoiceDetailsView: state.invoiceReducer.invoiceDetailsView,
   }
 }
 
@@ -138,5 +138,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(ExportInvoice)
 
 
 
- 
+
 
