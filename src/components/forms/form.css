@@ -146,7 +146,7 @@ input[type="number"]{
     border-radius: 1vh;
     background: #F6F6FA;
     border: none;
-    height: 4.5vh !important;
+    height: 6vh !important;
     /* font-size: small !important; */
 }
 .hrStyle{
@@ -161,7 +161,7 @@ input[type="number"]{
   text-align: center;
 }
 .iconInput{
-  width: 33rem;
+  width: 45rem;
 }
 .styleicon{
   width: 2.5vh;

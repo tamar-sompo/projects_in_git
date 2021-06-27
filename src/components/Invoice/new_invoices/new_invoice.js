@@ -190,6 +190,8 @@ function New_Invoice(props) {
     }
   }, [allcontact1, allproduct, detailsBusiness])
   useEffect(() => {
+    dispatch(actions.setFlagTmpSave(true))
+    dispatch(actions.setFlagOfterValidation(false))
     console.log("111s")
     dispatch(actions.setViewConversion('false'))
     console.log("detailsInvoice111", detailsInvoice, detailscontact)

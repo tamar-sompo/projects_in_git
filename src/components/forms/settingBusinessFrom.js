@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
         height: 10 + 'vh',
         backgroundColor: 'transparent',
         // border: '1px solid black',
-        borderRadius: 50 + '%',
+        // borderRadius: 50 + '%',
         padding: 0
     }
 }))
@@ -117,15 +117,16 @@ function SettingBuisnessList(props) {
             setFlag("true")
         else {
             setFlagLoud(false)
-            // updateBuisnessField({ key: 'name', value: "" })
-            // updateBuisnessField({ key: 'email', value: "" })
-            // updateBuisnessField({ key: 'phone', value: "" })
-            // updateBuisnessField({ key: 'country', value: "" })
-            // updateBuisnessField({ key: 'city', value: "" })
-            // updateBuisnessField({ key: 'address', value: "" })
-            // updateWebsite({ key: 'website', value: "" })
-            // updateBuisnessField({ key: 'vat', value: "" })
-            // updateBuisnessField({ key: 'numberDeals', value: "" })
+            updateBuisnessField({ key: 'name', value: "" })
+            updateBuisnessField({ key: 'imgLogo', value: "" })
+            updateBuisnessField({ key: 'email', value: "" })
+            updateBuisnessField({ key: 'phone', value: "" })
+            updateBuisnessField({ key: 'country', value: "" })
+            updateBuisnessField({ key: 'city', value: "" })
+            updateBuisnessField({ key: 'address', value: "" })
+            updateWebsite({ key: 'website', value: "" })
+            updateBuisnessField({ key: 'vat', value: "" })
+            updateBuisnessField({ key: 'numberDeals', value: "" })
             history.push(`/${userName}/allDocuments`)
         }
     }, [allBuisness])
@@ -139,18 +140,35 @@ function SettingBuisnessList(props) {
         return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
     }
 
-    // useEffect(()=>{
-    //     if(flag==="false")
-    //     setFlag("true")
-    //     else
-    //     history.push(`/${userName}/allDocuments`)
-    // },[allBuisness])
+
     const changeCurrentBusiness = () => {
-      
+        // const tmpSave = { ...currentBuisness };
+        //העתקת אוביקט יותר מדויקת
+        let tmpSave = JSON.parse(JSON.stringify(currentBuisness));
+        console.log("tmpSave", tmpSave)
+        for (var i in userFiled) {
+            // console.log(i, userFiled[i]);
+            if (i !== "socialmedias") {
+                if (userFiled[i]) {
+                    tmpSave[i] = userFiled[i];
+                }
+            }
+            else {
+                debugger
+                if (userFiled[i].website) {
+                    tmpSave.socialmedias.website = userFiled.socialmedias.website;
+                }
+            }
+        }
+        console.log("tmpSave", tmpSave)
+        delete tmpSave._id;
+        delete tmpSave.uid;
+        return tmpSave;
+        // dispatch(actions.setBuisnessToServer(tmpSave))
+        // dispatch(actions.setBuisnessToServer(tmpSave))
     }
 
     const saveNewBuisness = (e) => {
-        debugger
         let tmp1 = true;
         let tmp3 = true;
         let tmp4 = userFiled.name || currentBuisness.name;
@@ -174,8 +192,10 @@ function SettingBuisnessList(props) {
         }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-            changeCurrentBusiness();
-            dispatch(actions.setBuisnessToServer(userFiled))
+            debugger
+            const tmpSave = changeCurrentBusiness();
+            debugger
+            dispatch(actions.setBuisnessToServer(tmpSave))
             setErrorMessage('');
             setErrorMessage2('');
             setErrorMessage3('');
@@ -378,7 +398,8 @@ function SettingBuisnessList(props) {
                                     width: "13vh",
                                     height: "13vh",
                                     marginTop: "2vh",
-                                    borderRadius: "1vh",
+                                    borderRadius:"1vh",
+                                    // borderRadius: 1vh;
                                     backgroundColor: "#F6F6FA"
                                 }}
                                 className={classes.buttonUpload}>
@@ -401,7 +422,7 @@ function SettingBuisnessList(props) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-4.5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
+                        <div className="col-5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
                             <div className="row">
                                 <div>
                                     <div className="font2">Business Name</div>
@@ -410,30 +431,30 @@ function SettingBuisnessList(props) {
                                         value={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
-                                        style={{ width: "30rem", fontSize: "small" }}></input>
+                                        style={{ width: "42rem", fontSize: "small" }}></input>
                                     {errorMessage == '#enter your Buisness name' &&
                                         <div className="required">{errorMessage}</div>}
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6">
+                                <div className="col-5" style={{paddingLeft: "0vh", marginRight: "3vh"}}>
                                     <div className="font2">Company Phone</div>
                                     <input className="inptStyle" name='phone' type="text"
                                         value={userFiled.phone ? userFiled.phone :
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
-                                        style={{ width: "14rem", fontSize: "small" }}></input>
+                                        style={{ width: "20rem", fontSize: "small" }}></input>
                                     {errorMessage4 == '#Invalid phone' &&
                                         <div className="required">{errorMessage4}</div>}
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div className="font2">Company Email</div>
                                     <input name='email' type="text"
                                         className="inptStyle"
                                         value={userFiled.email ? userFiled.email :
                                             currentBuisness.email ? currentBuisness.email : ""}
                                         onChange={(e) => fieldChanged(e, 'email')}
-                                        style={{ width: "14rem", fontSize: "small" }}></input>
+                                        style={{ width: "20rem", fontSize: "small" }}></input>
                                     {errorMessage3 == '#Invalid email address' &&
                                         <div className="required">{errorMessage3}</div>}
                                 </div>
@@ -445,13 +466,13 @@ function SettingBuisnessList(props) {
                                         value={userFiled.address ? userFiled.address :
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
-                                        style={{ width: "30rem", fontSize: "small" }}></input>
+                                        style={{ width: "42rem", fontSize: "small" }}></input>
                                     {errorMessage6 == '#enter Address' &&
                                         <div className="required">{errorMessage6}</div>}
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4.5">
+                        <div className="col-5">
                             <div className="row">
                                 <div>
                                     <div className="font2">Website</div>
@@ -462,31 +483,31 @@ function SettingBuisnessList(props) {
                                                     currentBuisness.socialmedias.website ? currentBuisness.socialmedias.website :
                                                         "" : "" : ""}
                                         onChange={(e) => websiteChanged(e, 'website')}
-                                        style={{ width: "25rem", fontSize: "small" }}></input>
+                                        style={{ width: "35rem", fontSize: "small" }}></input>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-4">
+                                <div className="col-3.5" style={{ marginRight: "3vh"}}>
                                     <div className="font2">Dealer License</div>
                                     <input className="inptStyle" name='numberDeals' type="number"
                                         value={userFiled.numberDeals ? userFiled.numberDeals :
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
-                                        style={{ width: "8rem", fontSize: "small" }}></input>
+                                        style={{ width: "12rem", fontSize: "small" }}></input>
                                     {errorMessage2 == '#enter your Number-Dealds' &&
                                         <div className="required">{errorMessage2}</div>}
                                 </div>
-                                <div className="col-4">
+                                <div className="col-3.5">
                                     <div className="font2">Vat</div>
                                     <input className="inptStyle" name='vat' type="text"
                                         value={userFiled.vat ? userFiled.vat :
                                             currentBuisness.vat ? currentBuisness.vat : ""}
                                         onChange={(e) => fieldChanged(e, 'vat')}
-                                        style={{ width: "8rem", fontSize: "small" }}></input>
+                                        style={{ width: "12rem", fontSize: "small" }}></input>
                                 </div>
                             </div>
                             <div className="row" >
-                                <div className="col-6" >
+                                <div className="col-5" style={{paddingLeft: "0vh"}} >
                                     <div className="font2">Country</div>
                                     <input className="inptStyle" type="text" name="country" list="country"
                                         value={userFiled.country ? userFiled.country :
@@ -494,7 +515,7 @@ function SettingBuisnessList(props) {
                                         onFocus={(e) => selectCountry(e)}
                                         onBlur={(e) => { onChangeCountry(e.target.value) }}
                                         onChange={(e) => fieldChanged(e, 'country')}
-                                        style={{ width: "14rem", fontSize: "small" }}></input>
+                                        style={{ width: "20rem", fontSize: "small" }}></input>
                                     <datalist id="country">
                                         {allCountry ? allCountry.map(x => {
                                             return (
@@ -502,13 +523,13 @@ function SettingBuisnessList(props) {
                                         }) : ''}
                                     </datalist>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div className="font2">City</div>
                                     <input className="inptStyle" type="text" name="city" list="city"
                                         value={userFiled.city ? userFiled.city :
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}
-                                        style={{ width: "14rem", fontSize: "small" }}></input>
+                                        style={{ width: "20rem", fontSize: "small" }}></input>
                                     {errorMessage5 == '#enter City' &&
                                         <div className="required">{errorMessage5}</div>}
                                     <datalist id="city">

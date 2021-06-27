@@ -67,6 +67,7 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setBuisness(state, action) {
+        debugger
         state.newBuisness[action.payload.key] = action.payload.value
     },
     setbuisnessWebsite(state, action) {

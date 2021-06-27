@@ -51,11 +51,11 @@ function NewConfigorator(props) {
     const [flagFirst, setFlagFirst] = useState(false)
     const [flagFirstB, setFlagFirstB] = useState(false)
     const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
-    const [flagSaveP, setFlagSaveP]=useState(false)
+    const [flagSaveP, setFlagSaveP] = useState(false)
     const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
-    const [flagFirstToP, setFlagFirstToP]=useState(false)
-    const [flagToCheck, setFlagToCheck]= useState(false)
-    const [first, setFirst]=useState(false)
+    const [flagFirstToP, setFlagFirstToP] = useState(false)
+    const [flagToCheck, setFlagToCheck] = useState(false)
+    const [first, setFirst] = useState(false)
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
 
     // const invoice = useSelector(state => state.invoiceReducer.invoice);
@@ -73,7 +73,7 @@ function NewConfigorator(props) {
     useEffect(() => {
         dispatch(actions.setflagBorderProduct(false))
         // $('.left_nav').addClass('border_configurator') 
-    },[])
+    }, [])
     useEffect(() => {
         console.log("prevPath", prevPath)
         if (prevPath == `/${userName}/invoice`) {
@@ -108,73 +108,77 @@ function NewConfigorator(props) {
     }, [flagModal])
 
     useEffect(() => {
-        
-            //    alert("uuu")
-              if (flagFirstB === false) {
+
+        //    alert("uuu")
+        if (flagFirstB === false) {
             setFlagFirstB(true)
         }
         else {
             if (buttonClick === "saveInvoiceOtherPage")
                 save1()
-        } 
-           
-        
+        }
+
+
     }, [buttonClick])
 
-    useEffect(()=>{
-        if(first===false){
-              setFirst(true)
+    useEffect(() => {
+        if (first === false) {
+            setFirst(true)
             //   setFlagToCheck(false)
             //   dispatch(actions.setflagBorderProduct(false))
             //   setFlagSaveP(false)
             //   dispatch(actions.setColorFlagShowSaveP("black"))
         }
-      
-         else{
-        if(flagToCheck===true){
-            setFlagToCheck(false)
-            if(flagSaveP===false){
-            // alert("yy")
-             debugger
-      if (history.location.pathname===`/${userName}/invoice` && invoice.products && invoice.products[0].id === "null") {
-          dispatch(actions.setflagBorderProduct(true))
-      }
-      else {
-          dispatch(actions.setflagBorderProduct(false))
-          if (flagMessageContact) {
-              setShowMessage(true)
-              setFlagModal("contact")
-              setModalBody("save contact")
-          }
-          else
-              save()
-        }
-      }
-        }
-        }
-        
-    },[flagToCheck])
 
-    useEffect(()=>{
-        if(flagFirstToP===false)
-           setFlagFirstToP(true)
-           else{
-        // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-          if(colorFlagShowSaveP==="black")
-            setFlagSaveP(false)
-            else{
+        else {
+            if (flagToCheck === true) {
+                setFlagToCheck(false)
+                if (flagSaveP === false) {
+                    // alert("yy")
+                    debugger
+                    if (history.location.pathname === `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null") {
+                        dispatch(actions.setflagBorderProduct(true))
+                    }
+                    else {
+                        dispatch(actions.setflagBorderProduct(false))
+                        if (flagMessageContact) {
+                            if (flagOfterValidation) {
+                                debugger
+                                dispatch(actions.setFlagOfterValidation(false))
+                                setShowMessage(true)
+                                setFlagModal("contact")
+                                setModalBody("save contact")
+                            }
+                        }
+                        else
+                            save()
+                    }
+                }
+            }
+        }
+
+    }, [flagToCheck])
+
+    useEffect(() => {
+        if (flagFirstToP === false)
+            setFlagFirstToP(true)
+        else {
+            // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+            if (colorFlagShowSaveP === "black")
+                setFlagSaveP(false)
+            else {
                 dispatch(actions.setColorFlagShowSaveP("red"))
                 setFlagSaveP(true)
             }
-        //     if (flag === true) {
-        //         setFlagSaveP(true)
-        //         dispatch(actions.setColorFlagShowSaveP("red"))
-        //     }
-        //   })
-        //   if(flagSaveP===false)
-        //     save1()
-    }
-    },[colorFlagShowSaveP])
+            //     if (flag === true) {
+            //         setFlagSaveP(true)
+            //         dispatch(actions.setColorFlagShowSaveP("red"))
+            //     }
+            //   })
+            //   if(flagSaveP===false)
+            //     save1()
+        }
+    }, [colorFlagShowSaveP])
 
     // const save1 = () => {
     //     debugger
@@ -187,40 +191,43 @@ function NewConfigorator(props) {
     // }
     useEffect(() => {
         debugger
-        if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
-            dispatch(actions.setflagBorderProduct(true))
-        }
-        else {
-            dispatch(actions.setflagBorderProduct(false))
+        if (flagOfterValidation === true) {
+            dispatch(actions.setFlagOfterValidation(false))
+            // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+            //     dispatch(actions.setflagBorderProduct(true))
 
-            if (flagMessage) {
-                dispatch(actions.setFlagTmpSave(true))
-                dispatch(actions.setFlagOfterValidation(false))
-                setShowMessage(true)
-            }
-            else {
-                // save()
-                dispatch(actions.setFlagTmpSave(true))
-                dispatch(actions.setFlagOfterValidation(false))
-            }
-        }
+            // }
+            // else {
+                // dispatch(actions.setflagBorderProduct(false))
 
+
+                // if (flagOfterValidation === false) {
+                    dispatch(actions.setFlagModal(""))
+                    dispatch(actions.setShowMessage(false))
+                    dispatch(actions.setButtonClick(""))
+                    dispatch(actions.setModalBody(""))
+                    setFlagToCheck(true)
+                    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+                        setFlagToCheck(true)
+                        if (flag === true) {
+                            setFlagSaveP(true)
+                            dispatch(actions.setColorFlagShowSaveP("red"))
+                        }
+                    })
+                // }
+            // }
+        }
     }, [flagOfterValidation])
 
     const save1 = () => {
+       
+        if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+            dispatch(actions.setflagBorderProduct(true))
+        }
+        else{
+            dispatch(actions.setflagBorderProduct(false))
+        }
         dispatch(actions.setFlagValidation(true))
-        dispatch(actions.setFlagModal(""))
-        dispatch(actions.setShowMessage(false))
-        dispatch(actions.setButtonClick(""))
-        dispatch(actions.setModalBody(""))
-         setFlagToCheck(true)
-        flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-            setFlagToCheck(true)
-            if (flag === true) {
-                setFlagSaveP(true)
-                dispatch(actions.setColorFlagShowSaveP("red"))
-            }
-          })
         //   checkIfFalse()
     }
 
@@ -262,7 +269,7 @@ function NewConfigorator(props) {
 
     return (
         <>
- {console.log("setFlagSaveP", flagSaveP)}
+            {console.log("setFlagSaveP", flagSaveP)}
             <div className="left_nav border_configurator">
                 {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
                     $('.left_nav').removeClass('border_configurator') &&
