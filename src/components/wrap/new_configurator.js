@@ -66,207 +66,207 @@ function NewConfigorator(props) {
 
     // const invoice = useSelector(state => state.invoiceReducer.invoice);
     // {type:'SET_SYSTEM_WAVE'})
-    const history = useHistory()
+    //     const history = useHistory()
 
-    const changeBackground = (e) => {
-        // props.history.push("/" + props.user)
-        $(document).ready(function () {
-            $("li").removeClass("li-back")
-            $(e).addClass("li-back")
-        })
+    //     const changeBackground = (e) => {
+    //         // props.history.push("/" + props.user)
+    //         $(document).ready(function () {
+    //             $("li").removeClass("li-back")
+    //             $(e).addClass("li-back")
+    //         })
 
-    }
-    useEffect(() => {
-        dispatch(actions.setflagBorderProduct(false))
-        // $('.left_nav').addClass('border_configurator') 
-    }, [])
-    useEffect(() => {
-        console.log("prevPath", prevPath)
-        if (prevPath == `/${userName}/invoice`) {
-            dispatch(actions.setPrevPath(''))
-            // alert('gyfsj')
-        }
-    }, [Location])
-    // useEffect(() => {
-
-    //     if (flagM === false) {
-
-    //         setFlagM(true)
     //     }
-    //     else {
-    //         if (showMessage === false) {
-    //             save();
+    //     useEffect(() => {
+    //         dispatch(actions.setflagBorderProduct(false))
+    //         // $('.left_nav').addClass('border_configurator') 
+    //     }, [])
+    //     useEffect(() => {
+    //         console.log("prevPath", prevPath)
+    //         if (prevPath == `/${userName}/invoice`) {
+    //             dispatch(actions.setPrevPath(''))
+    //             // alert('gyfsj')
     //         }
+    //     }, [Location])
+    //     // useEffect(() => {
+
+    //     //     if (flagM === false) {
+
+    //     //         setFlagM(true)
+    //     //     }
+    //     //     else {
+    //     //         if (showMessage === false) {
+    //     //             save();
+    //     //         }
+    //     //     }
+    //     // }, [showMessage])
+
+    //     useEffect(() => {
+    //         console.log("flagModal", flagModal)
+    //         if (flagFirst === false)
+    //             setFlagFirst(true)
+    //         else {
+    //             if (flagModal === "successContact") {
+
+    //                 save()
+    //             }
+
+    //         }
+
+    //     }, [flagModal])
+
+    //     useEffect(() => {
+
+    //         //    alert("uuu")
+    //         if (flagFirstB === false) {
+    //             setFlagFirstB(true)
+    //         }
+    //         else {
+    //             if (buttonClick === "saveInvoiceOtherPage")
+    //                 save1()
+    //         }
+    //     }, [buttonClick])
+
+    //     useEffect(() => {
+    //         if (first === false) {
+    //             setFirst(true)
+    //             //   setFlagToCheck(false)
+    //             //   dispatch(actions.setflagBorderProduct(false))
+    //             //   setFlagSaveP(false)
+    //             //   dispatch(actions.setColorFlagShowSaveP("black"))
+    //         }
+
+    //         else {
+    //             if (flagToCheck === true) {
+    //                 setFlagToCheck(false)
+    //                 if (flagSaveP === false) {
+    //                     // alert("yy")
+    //                     debugger
+    //                     if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
+    //                         dispatch(actions.setflagBorderProduct(true))
+    //                     }
+    //                     else {
+    //                         dispatch(actions.setflagBorderProduct(false))
+    //                         if (flagMessageContact) {
+    //                             setShowMessage(true)
+    //                             setFlagModal("contact")
+    //                             setModalBody("how do you want to save contact changes?")
+    //                         }
+    //                         else {
+    //                             save()
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+
+    //     }, [flagToCheck])
+
+    //     useEffect(() => {
+    //         if (flagFirstToP === false)
+    //             setFlagFirstToP(true)
+    //         else {
+    //             // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    //             if (colorFlagShowSaveP === "#DBD0D7")
+    //                 setFlagSaveP(false)
+    //             else {
+    //                 dispatch(actions.setColorFlagShowSaveP("red"))
+    //                 setFlagSaveP(true)
+    //             }
+    //             //     if (flag === true) {
+    //             //         setFlagSaveP(true)
+    //             //         dispatch(actions.setColorFlagShowSaveP("red"))
+    //             //     }
+    //             //   })
+    //             //   if(flagSaveP===false)
+    //             //     save1()
+    //         }
+    //     }, [colorFlagShowSaveP])
+
+    // useEffect(()=>{
+    // if(flagPush===true){
+    //     if (window.location.href.indexOf("invoice/edit") != -1
+    //     && flagFromTable === false
+    // ) {
+    //     dispatch(actions.setFlagIfEmpty(false))
+    //     dispatch(actions.setFlagMessage(false))
+    //     dispatch(actions.setDislayInvoice("false"));
+    //     dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
+    //     dispatch(actions.setPDelete(['']))
+    //     dispatch(actions.setResetAllNewProduct())
+    // }
+
+    // if (flagFromTable === true)
+    //     dispatch(actions.setFlagFromTable(false))
+    // }
+    // },[flagPush])
+
+
+
+
+    //     async function save1() {
+    //         dispatch(actions.setFlagPush(false))
+    //         dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    //         dispatch(actions.setFlagModal(""))
+    //         dispatch(actions.setShowMessage(false))
+    //         dispatch(actions.setButtonClick(""))
+    //         dispatch(actions.setModalBody(""))
+    //         setFlagToCheck(true)
+    //         flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    //             setFlagToCheck(true)
+    //             if (flag === true) {
+    //                 setFlagSaveP(true)
+    //                 dispatch(actions.setColorFlagShowSaveP("red"))
+    //             }
+    //         })
+
     //     }
-    // }, [showMessage])
-
-    useEffect(() => {
-        console.log("flagModal", flagModal)
-        if (flagFirst === false)
-            setFlagFirst(true)
-        else {
-            if (flagModal === "successContact") {
-
-                save()
-            }
-
-        }
-
-    }, [flagModal])
-
-    useEffect(() => {
-
-        //    alert("uuu")
-        if (flagFirstB === false) {
-            setFlagFirstB(true)
-        }
-        else {
-            if (buttonClick === "saveInvoiceOtherPage")
-                save1()
-        }
-    }, [buttonClick])
-
-    useEffect(() => {
-        if (first === false) {
-            setFirst(true)
-            //   setFlagToCheck(false)
-            //   dispatch(actions.setflagBorderProduct(false))
-            //   setFlagSaveP(false)
-            //   dispatch(actions.setColorFlagShowSaveP("black"))
-        }
-
-        else {
-            if (flagToCheck === true) {
-                setFlagToCheck(false)
-                if (flagSaveP === false) {
-                    // alert("yy")
-                    debugger
-                    if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
-                        dispatch(actions.setflagBorderProduct(true))
-                    }
-                    else {
-                        dispatch(actions.setflagBorderProduct(false))
-                        if (flagMessageContact) {
-                            setShowMessage(true)
-                            setFlagModal("contact")
-                            setModalBody("how do you want to save contact changes?")
-                        }
-                        else {
-                            save()
-                        }
-                    }
-                }
-            }
-        }
-
-    }, [flagToCheck])
-
-    useEffect(() => {
-        if (flagFirstToP === false)
-            setFlagFirstToP(true)
-        else {
-            // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-            if (colorFlagShowSaveP === "#DBD0D7")
-                setFlagSaveP(false)
-            else {
-                dispatch(actions.setColorFlagShowSaveP("red"))
-                setFlagSaveP(true)
-            }
-            //     if (flag === true) {
-            //         setFlagSaveP(true)
-            //         dispatch(actions.setColorFlagShowSaveP("red"))
-            //     }
-            //   })
-            //   if(flagSaveP===false)
-            //     save1()
-        }
-    }, [colorFlagShowSaveP])
-
-useEffect(()=>{
-if(flagPush===true){
-    if (window.location.href.indexOf("invoice/edit") != -1
-    && flagFromTable === false
-) {
-    dispatch(actions.setFlagIfEmpty(false))
-    dispatch(actions.setFlagMessage(false))
-    dispatch(actions.setDislayInvoice("false"));
-    dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
-    dispatch(actions.setPDelete(['']))
-    dispatch(actions.setResetAllNewProduct())
-}
-
-if (flagFromTable === true)
-    dispatch(actions.setFlagFromTable(false))
-}
-},[flagPush])
 
 
+    //     useEffect(() => {
+
+    //         if (flagSaveinvoice1 === false)
+    //             setFlagSaveinvoice1(true)
+    //         else
+
+    //             if (viewConversion === "true") {
+
+    //                 dispatch(actions.setViewConversion('false'))
+    //                 if (history.location.pathname === `/${userName}/invoice`) {
+
+    //                     history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+    //                 }
+    //                 else
+    //                     if (flagFromTable === false) {
+    //                         // alert('opopo')
+    //                         // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+
+    //                     }
 
 
-    async function save1() {
-        dispatch(actions.setFlagPush(false))
-        dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
-        dispatch(actions.setFlagModal(""))
-        dispatch(actions.setShowMessage(false))
-        dispatch(actions.setButtonClick(""))
-        dispatch(actions.setModalBody(""))
-        setFlagToCheck(true)
-        flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-            setFlagToCheck(true)
-            if (flag === true) {
-                setFlagSaveP(true)
-                dispatch(actions.setColorFlagShowSaveP("red"))
-            }
-        })
-       
-    }
+    //             }
+
+    //     }, [viewConversion])
 
 
-    useEffect(() => {
+    //     const save = () => {
+    //         setIslevel(3);
+    //         // setFlagSaveInvoice(true)
+    //         dispatch(actions.setFlagIfEmpty(false))
+    //         if (history.location.pathname === `/${userName}/invoice`) {
 
-        if (flagSaveinvoice1 === false)
-            setFlagSaveinvoice1(true)
-        else
+    //             dispatch(actions.setSaveInvoice(invoice))
+    //         }
+    //         else {
 
-            if (viewConversion === "true") {
-
-                dispatch(actions.setViewConversion('false'))
-                if (history.location.pathname === `/${userName}/invoice`) {
-
-                    history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
-                }
-                else
-                    if (flagFromTable === false) {
-                        // alert('opopo')
-                        // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
-
-                    }
-
-
-            }
-
-    }, [viewConversion])
-
-
-    const save = () => {
-        setIslevel(3);
-        // setFlagSaveInvoice(true)
-        dispatch(actions.setFlagIfEmpty(false))
-        if (history.location.pathname === `/${userName}/invoice`) {
-
-            dispatch(actions.setSaveInvoice(invoice))
-        }
-        else {
-
-            dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-            console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-            debugger
-            updateinvoiceField({ key: "products", value: detailsInvoice.products });
-            dispatch(actions.setUpdateInvoice())
-        }
-        console.log("save", invoice)
-        // sendWave()
-    }
+    //             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+    //             console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+    //             debugger
+    //             updateinvoiceField({ key: "products", value: detailsInvoice.products });
+    //             dispatch(actions.setUpdateInvoice())
+    //         }
+    //         console.log("save", invoice)
+    //         // sendWave()
+    //     }
 
     return (
         <>
@@ -287,7 +287,7 @@ if (flagFromTable === true)
 
                             <button
                                 // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
-                                onClick={save1}
+                                // onClick={save1}
                                 className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
                             >
                                 {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}

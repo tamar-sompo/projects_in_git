@@ -192,7 +192,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
-     
+      alert('jjj')
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
@@ -201,7 +201,7 @@ function New_Invoice(props) {
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
-     
+
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)
@@ -386,10 +386,17 @@ function New_Invoice(props) {
     setFlag(false)
     debugger
     if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
+
       let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
-      console.log("contacteditttt", contactedit)
-      dispatch(actions.setContactId(contactFromInvoice._id ? contactFromInvoice._id : ojectContact._id))
-      dispatch(actions.updateContact(contactedit))
+      if (!ojectContact) {
+        dispatch(actions.createContact(contactedit))
+      }
+      else {
+        console.log("contacteditttt", contactedit)
+
+        dispatch(actions.setContactId(contactFromInvoice._id ? contactFromInvoice._id : ojectContact._id))
+        dispatch(actions.updateContact(contactedit))
+      }
     }
     else {
       if (detailscontact && detailscontact.contact && detailscontact.contact._id) {
@@ -913,7 +920,7 @@ function New_Invoice(props) {
                       className="design_text_contact"
                       // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
                       type="Date"
-                      size="6"
+                      size="1"
                       defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
                       onChange={onFieldChanged('dueDate')}
                       onClick={() => setFocus('dueDate')}
@@ -923,7 +930,7 @@ function New_Invoice(props) {
                 </div>
               </div>
             </div>
-            <div className="row d-flex justify-content-center" style={{ paddingTop: "3%", paddingBottom: "3%" }}>
+            <div className="row d-flex justify-content-center" style={{ paddingTop: "6%", paddingBottom: "6%" }}>
               <input
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 placeholder='Invoice Name'
