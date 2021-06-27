@@ -61,7 +61,6 @@ function ButtonPlus(props) {
         && dispatch(actions.setResetAllNewProduct()) && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
         dispatch(actions.setProductAfterDelete([])) && dispatch(actions.setDetailsContact({})) && dispatch(actions.setResetContactedit({})) && dispatch(actions.setInvoice({
           products: [],
-          type: "invoice"
         })) &&
         history.push(`/${userName}/invoice`)
       }

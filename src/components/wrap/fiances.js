@@ -48,6 +48,7 @@ import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
 import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
+import  ModalNameInvoice from '../Invoice/modalNameInvoice'
 
 
 export default function Fiances() {
@@ -94,7 +95,7 @@ export default function Fiances() {
     return (
         <>
 
-
+<ModalNameInvoice></ModalNameInvoice>
             <MessageSave></MessageSave>
             <Router >
                 <div className="container-fluid">
@@ -149,6 +150,7 @@ export default function Fiances() {
                                 height: "90vh", display: "none", marginTop: "10vh"
                             }}>
                                 <Massage></Massage>
+                               
                             </div>}
                     </div>
                 </div>

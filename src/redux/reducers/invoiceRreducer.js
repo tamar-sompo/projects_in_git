@@ -17,7 +17,7 @@ const initialState = {
     allAccep: '',
     invoice: {
         products: [],
-        type: "invoice"
+        // type: "invoice"
     },
     amountProductInvoice: 0,
     invoiceId: "",

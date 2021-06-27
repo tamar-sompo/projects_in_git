@@ -931,9 +931,10 @@ function New_Invoice(props) {
                 className="design_invoicename"
                 maxlength="15"
                 ref={refLevel3}
-                defaultValue={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : '' : ''}
+                value={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : invoice.type ? invoice.type : "" : ""}
                 onClick={(e) => setRefLevel3()}
-                onBlur={() => onFieldChanged('type')}
+                onChange={onFieldChanged('type')}
+                onClick={() => setFocus('type')}
                 bgColor={props.colors ? props.colors[2] : 'black'}
               >
               </input>

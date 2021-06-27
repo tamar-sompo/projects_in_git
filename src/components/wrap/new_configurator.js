@@ -59,6 +59,7 @@ function NewConfigorator(props) {
     // dispatch(actions.setFlagFromTable(true))
     const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
     const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+    const showModalName = useSelector(state => state.messageReducer.showModalName);
 
 
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
@@ -107,8 +108,10 @@ function NewConfigorator(props) {
         else {
             if (flagModal === "successContact") {
 
-                save()
+                nameInvoice()
             }
+            if(flagModal==="successNameInvoice")
+               save()
 
         }
 
@@ -152,7 +155,7 @@ function NewConfigorator(props) {
                             setModalBody("how do you want to save contact changes?")
                         }
                         else {
-                            save()
+                            nameInvoice()
                         }
                     }
                 }
@@ -248,12 +251,24 @@ if (flagFromTable === true)
     }, [viewConversion])
 
 
+   const nameInvoice =()=>{
+       alert("uuu")
+      if(history.location.pathname == `/${userName}/invoice` && invoice.type || 
+       window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)  
+        save()
+    else{
+       dispatch(actions.setShowModalName(true)) 
+    }
+   }
+
+
+
+
     const save = () => {
         setIslevel(3);
         // setFlagSaveInvoice(true)
         dispatch(actions.setFlagIfEmpty(false))
         if (history.location.pathname === `/${userName}/invoice`) {
-
             dispatch(actions.setSaveInvoice(invoice))
         }
         else {
