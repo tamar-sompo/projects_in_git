@@ -125,48 +125,52 @@ h2 {
 .titleBuisness{
   height: 20%;
 }
-.fieldProductCss{
-  border: none;
-  height: 5vh;
-  width: 90%;
-  background: rgb(245 244 244);
-  border-radius: 1vh;
-}
-.fieldProductCssD{
-  border: none;
-  height: 5vh;
-  width: 100%;
-  background: rgb(245 244 244);
-  border-radius: 1vh;
-}
-.hederN{
-   width:32% ;
-}
-.hederP{
-  width:20% ;
-}
-.hederD{
-  width:50% ;
-}
-.btn-link1 {
-  color: #8e73ec;
-  background-color: white !important;
+.colorWhite{
+  color: #917BDF;
   font-weight: bold;
-  width: 5rem;
-  height: 4vh;
-  margin-top: 5%;
+  margin-bottom: 2vh;
 }
-.btn-link2{
-  color: #8e73ec;
-  background-color: #8E73EC22 !important;
+.font{
+  font-size: 3vh;
+  font-family: 'Roboto';
   font-weight: bold;
-  width: 5rem;
-  height: 4vh;
-  margin-top: 5%;
+  padding-left: 2vh;
 }
-.btn-link1:hover{
-  color: #8e73ec;
+.btnStyle{
+  background: #917BDF;
 }
-.btn-link2:hover{
-  color: #8e73ec;
+.font2{
+  padding: 1vh;
+}
+.inptStyle{
+    border-radius: 1vh;
+    background: #F6F6FA;
+    border: none;
+    height: 6vh !important;
+    /* font-size: small !important; */
+}
+.hrStyle{
+  margin-top: 2rem !important;
+}
+.widthIcon{
+  width: 5vh;
+  height: 5vh;
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+  padding-top: 1.2vh;
+  text-align: center;
+}
+.iconInput{
+  width: 45rem;
+}
+.styleicon{
+  width: 2.5vh;
+  height: 2.5vh;
+  color: gray;
+}
+.uniq{
+  z-index: 9999;
+  position: absolute;
+  margin-top: 1.5vh;
+  margin-left: 3.5vh;
 }

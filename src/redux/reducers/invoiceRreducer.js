@@ -56,6 +56,7 @@ const initialState = {
     flagView: false,
     flagFromTable: false,
     flagPush: false,
+    flagPush1:false,
     filteredInvoices: [],
     // specificRoute: ''
 
@@ -63,6 +64,10 @@ const initialState = {
 
 
 const invoices = {
+
+    setFlagPush1(state, action) {
+        state.flagPush1 = action.payload
+    },
     setFilteredInvoices(state, action) {
         state.filteredInvoices = action.payload
     },

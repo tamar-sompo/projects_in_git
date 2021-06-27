@@ -220,7 +220,7 @@ function Item(props) {
     }
     debugger
     if (title1 === "discount") {
-      dtp.price && props.pro.amount ?
+      dtp && dtp.price && props.pro.amount ?
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
         new_product[props.index].price && amountProductInvoice &&
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
@@ -231,7 +231,7 @@ function Item(props) {
         new_product[props.index].discount ?
           dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
           dispatch(actions.setSum({ sum: e.target.value * amount2, index1: props.index })) :
-        dtp.discount ?
+        dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
@@ -243,12 +243,12 @@ function Item(props) {
 
       dispatch(actions.setAmountToProduct({ amount: e.target.value, index1: props.index }))
       dispatch(actions.setProductAmount(e.target.value))
-      dtp.price ? dtp.discount ?
+      dtp && dtp.price ? dtp && dtp.discount ?
         dispatch(actions.setSum({ sum: e.target.value * dtp.price * (1 - (dtp.discount / 100)), index1: props.index })) :
         new_product[props.index].discount ?
           dispatch(actions.setSum({ sum: e.target.value * dtp.price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
           dispatch(actions.setSum({ sum: e.target.value * dtp.price, index1: props.index })) :
-        dtp.discount ?
+        dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
@@ -339,7 +339,7 @@ function Item(props) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
-    if (dtp._id) {
+    if (dtp && dtp._id) {
       dispatch(actions.setProductId1(dtp._id))
       dispatch(actions.editProduct(props.index))
     }
@@ -487,22 +487,26 @@ function Item(props) {
       }
       debugger
       if (fieldName === "discount") {
-        dtp.price && props.pro.amount ?
+        dtp && dtp.price && props.pro.amount ?
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
           new_product[props.index].price && amountProductInvoice &&
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
       }
       if (fieldName === "price") {
-        amount2 ? dtp.discount ?
+        amount2 ? dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
             dispatch(actions.setSum({ sum: value * amount2, index1: props.index })) :
-          dtp.discount ?
+          dtp ? dtp.discount ?
             dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
             new_product[props.index].discount ?
               dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+              dispatch(actions.setSum({ sum: value * amountProductInvoice, index1: props.index })) :
+            new_product[props.index].discount ?
+              dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
               dispatch(actions.setSum({ sum: value * amountProductInvoice, index1: props.index }))
+
       }
 
 
@@ -542,7 +546,7 @@ function Item(props) {
                 list="productname"
                 className='cell'
                 size="7"
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : new_product[props.index].name}
+                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' :  new_product[props.index].name? new_product[props.index].name:''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
               />
               <datalist id="productname">
@@ -556,7 +560,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <Cell
                 onFocus={() => cleanInput1('name')}
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' :  new_product[props.index].name}
+                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : new_product[props.index].name ? new_product[props.index].name : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
@@ -569,7 +573,7 @@ function Item(props) {
               placeholder='descripition'
               onFocus={() => cleanInput1('description')}
               disabled={displayInvoice === "true" ? "" : "disable"}
-              value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : new_product[props.index].description}
+              value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : new_product[props.index].description ? new_product[props.index].description : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
             ></Cell>
@@ -591,7 +595,7 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : new_product[props.index].price }
+              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : new_product[props.index].price ? new_product[props.index].price : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
@@ -621,7 +625,7 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : new_product[props.index].discount}
+              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : new_product[props.index].discount ? new_product[props.index].discount : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
@@ -633,11 +637,11 @@ function Item(props) {
             ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
-          <CurrencyInput
+            <CurrencyInput
               id="validation-example-3-field2"
               name="sumCalcCurrencyInput"
               className="sum1 cell"
-              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
             {/* <input
@@ -647,14 +651,14 @@ function Item(props) {
 
 
           </div>
-          {displayInvoice === "false" &&
-            <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
-              {
-                flagShowSaveP[props.index] &&
-                <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
 
-              }
+          <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
+            {
+              flagShowSaveP[props.index] &&
+              <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
 
+            }
+            {displayInvoice === "false" &&
               <button id='1'
                 style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
                 onClick={() => {
@@ -663,8 +667,8 @@ function Item(props) {
                 className={invoice.products.length === 1 ? "cinput" : ""} style={{
                   marginLeft: "33%",
                   width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
-                }}>delete</button>
-            </div>}
+                }}>delete</button>}
+          </div>
         </div>
       </div>
       {/*       

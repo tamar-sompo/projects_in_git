@@ -17,6 +17,7 @@ import New_Invoice from './new_invoices/new_invoice'
 import { useHistory } from 'react-router-dom';
 // import productForm from '../forms/productForm'
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
+import { AirlineSeatReclineExtra } from '@material-ui/icons';
 
 export default function InvoiceAndSteps(props) {
   // let history = useHistory();
@@ -57,30 +58,23 @@ export default function InvoiceAndSteps(props) {
   // dispatch(actions.setFlagFromTable(true))
   const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
   const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+  const flagPush1 = useSelector(state => state.invoiceReducer.flagPush1);
   const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const [isLevel4, setIsLevel4] = useState(false)
   // const userName = useSelector(state => state.publicReducer.userName);
   const backtoAllInvoices = () => {
     history.push(`/${userName}/allDocuments`)
   }
-
+  const history = useHistory()
 
   // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
 
   // const invoice = useSelector(state => state.invoiceReducer.invoice);
   // {type:'SET_SYSTEM_WAVE'})
-  const history = useHistory()
 
-  const changeBackground = (e) => {
-    // props.history.push("/" + props.user)
-    $(document).ready(function () {
-      $("li").removeClass("li-back")
-      $(e).addClass("li-back")
-    })
-
-  }
   useEffect(() => {
+    alert("ccc")
     dispatch(actions.setflagBorderProduct(false))
     // $('.left_nav').addClass('border_configurator') 
   }, [])
@@ -166,6 +160,7 @@ export default function InvoiceAndSteps(props) {
   }, [flagToCheck])
 
   useEffect(() => {
+
     if (flagFirstToP === false)
       setFlagFirstToP(true)
     else {
@@ -187,7 +182,10 @@ export default function InvoiceAndSteps(props) {
   }, [colorFlagShowSaveP])
 
   useEffect(() => {
-    if (flagPush === true) {
+
+    console.log("flagPush", flagPush)
+    if (flagPush1 === true) {
+      alert("tyutyuflagpush")
       if (window.location.href.indexOf("invoice/edit") != -1
         && flagFromTable === false
       ) {
@@ -202,13 +200,14 @@ export default function InvoiceAndSteps(props) {
       if (flagFromTable === true)
         dispatch(actions.setFlagFromTable(false))
     }
-  }, [flagPush])
+  }, [flagPush1])
 
 
 
 
   async function save1() {
     dispatch(actions.setFlagPush(false))
+    dispatch(actions.setFlagPush1(false))
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagModal(""))
     dispatch(actions.setShowMessage(false))
@@ -273,6 +272,7 @@ export default function InvoiceAndSteps(props) {
   }
   return (
     <>
+
       <div className="container-fluid" style={{ height: "100%" }}>
         <div className="row" style={{ height: "100%" }}>
           <div className="col-2">

@@ -736,7 +736,7 @@ function New_Invoice(props) {
               if (displayInvoice === "false") func1(event)
             }}
             style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
-            <div className="row d-flex justify-content-center">
+            <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
               {/* <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
                 onChange={(e) => addImageList(e.target.files[0])} /> */}
               {console.log('logoooo', detailsInvoice.imgLogo)}
@@ -900,26 +900,27 @@ function New_Invoice(props) {
               <div className='col-4' ></div>
               <div className='col-4' onClick={() => focus_steps('Content', 3)} style={{ paddingTop: "4%", paddingLeft: "4%" }}>
                 <div className="row">
-                  <div className="col-6 ">
+                  <div className="col-6 " >
                     <span className=" design_text_contact design_text_contactname">Invoice</span></div>
-                  <div className="col-6">
+                  <div className="col-6" style={{ display: "flex", justifyContent: "center" }}>
                     <span className="design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
                 </div>
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-6" >
                     <span className="design_text_contact">Date:{() => convertdate(detailsInvoice.date)}</span></div>
-                  <div className="col-6">
+                  <div className="col-6 " style={{ display: "flex", justifyContent: "center" }}>
                     <span className="design_text_contact">{shortDate}</span></div>
                 </div>
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-4">
                     <span className="design_text_contact">Due Date:</span></div>
-                  <div className="col-6">
+                  <div className="col-8" style={{ paddingLeft: "0px" }}>
                     <input
+                      style={{ backgroundColor: "transparent" }}
                       disabled={displayInvoice === "true" ? "disable" : ""}
                       className="design_text_contact"
                       // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
-                      type="Date"
+                      type="date"
                       size="1"
                       defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
                       onChange={onFieldChanged('dueDate')}
@@ -1042,7 +1043,7 @@ function New_Invoice(props) {
             </div> */}
 
             <div className="row" style={{
-              paddingBottom: "5%",
+              paddingBottom: "1%",
               paddingLeft: "6.5%",
               paddingRight: "7%"
             }}>
@@ -1054,17 +1055,21 @@ function New_Invoice(props) {
               <div className="col-3">
                 {displayInvoice === "false" &&
 
-                  <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "35%", height: "80%", backgroundColor: "#DBD0D7", color: "white", fontSize: "0.7vw" }}>Add New
+                  <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "35%", height: "100%", backgroundColor: "#DBD0D7", color: "white", fontSize: "0.7vw" }}>Add New
                   </button>
 
                 }
               </div>
-              <div className="col-7">
+              <div className="col-9">
 
               </div>
-              <div className="col-2 ">
-                <div className="row d-flex flex-row justify-content-between" style={{ paddingTop: "10%", paddingLeft: "3%" }}>
-                  <div className="">
+            </div>
+            <div className="row" style={{ paddingBottom: "3%" }} >
+              <div className="col-9"
+              ></div>
+              <div className="col-3 ">
+                <div className=" d-flex flex-row" style={{ paddingLeft: "34%" }}>
+                  <div className="" style={{ paddingRight: "9%" }} >
                     <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                   <div className="">
                     <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? saveSum2.toFixed(2) : saveSum ? saveSum.toFixed(2) :
@@ -1072,6 +1077,8 @@ function New_Invoice(props) {
                 </div>
               </div>
             </div>
+
+
             <div className="row d-flex justify-content-center">
               {/* <DigitalSignature /> */}
             </div>

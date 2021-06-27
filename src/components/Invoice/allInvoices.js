@@ -171,6 +171,7 @@ function AllInvoices(props) {
     dispatch(actions.setPDelete(['']))
     dispatch(actions.setResetAllNewProduct())
     dispatch(actions.setFlagPush(true))
+    dispatch(actions.setFlagPush1(true))
     history.push(`/${userName}/invoice/edit/` + invoice._id)
   }
 

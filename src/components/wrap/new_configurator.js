@@ -285,13 +285,13 @@ function NewConfigorator(props) {
                         // className={colorFlagShowSaveP==="red" ? "noClick" : "try"}
                         >
 
-                            <button
+                            {/* <button
                                 // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
                                 // onClick={save1}
                                 className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
                             >
                                 {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-                            </button>
+                            </button> */}
                         </div>
 
 
