@@ -112,6 +112,10 @@ export default function NewSetting(props) {
       dispatch(actions.getAllProduct())
       dispatch(actions.setInvoiceSave(null))
     }
+    if (specificRoute === "Setting") {
+      history.push(`/${userName}/setting`)
+      dispatch(actions.setInvoiceSave(null))
+    }
   }
 
 
@@ -189,7 +193,15 @@ export default function NewSetting(props) {
               <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
             </li>
             <li className="li_hidden"><div className="l" onClick={() =>checkIfBuisness("Contacts")} >Contacts</div></li> */}
-
+            <li className="kkk" onClick={() => checkIfBuisness("Setting")}>
+              <li className={window.location.href.split('/')[4] == "setting" ?
+                "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
+                <RiSettings2Fill size="lg"></RiSettings2Fill>
+                {/* <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon> */}
+              </li>
+              <li className="li_hidden"><div className={window.location.href.split('/')[4] == "setting" ?
+                "ns" : "ls"}>Setting</div></li>
+            </li>
           </ul>
         </ul>
 
