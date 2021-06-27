@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
+// import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -633,11 +633,11 @@ function Item(props) {
             ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
-          <CurrencyInput
+            <CurrencyInput
               id="validation-example-3-field2"
               name="sumCalcCurrencyInput"
               className="sum1 cell"
-              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
             {/* <input

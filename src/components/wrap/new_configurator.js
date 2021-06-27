@@ -10,9 +10,9 @@ import $ from 'jquery'
 import { useHistory } from 'react-router-dom';
 // import history from '../../../history'
 import { withRouter, useLocation } from 'react-router-dom';
-import Maincomp from '../Details/productions'
+// import Maincomp from '../Details/productions'
 import NewSetting from './newSetting';
-import Design_Menu from '../design_menu';
+// import Design_Menu from '../design_menu';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -182,23 +182,23 @@ function NewConfigorator(props) {
         }
     }, [colorFlagShowSaveP])
 
-useEffect(()=>{
-if(flagPush===true){
-    if (window.location.href.indexOf("invoice/edit") != -1
-    && flagFromTable === false
-) {
-    dispatch(actions.setFlagIfEmpty(false))
-    dispatch(actions.setFlagMessage(false))
-    dispatch(actions.setDislayInvoice("false"));
-    dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
-    dispatch(actions.setPDelete(['']))
-    dispatch(actions.setResetAllNewProduct())
-}
+    useEffect(() => {
+        if (flagPush === true) {
+            if (window.location.href.indexOf("invoice/edit") != -1
+                && flagFromTable === false
+            ) {
+                dispatch(actions.setFlagIfEmpty(false))
+                dispatch(actions.setFlagMessage(false))
+                dispatch(actions.setDislayInvoice("false"));
+                dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
+                dispatch(actions.setPDelete(['']))
+                dispatch(actions.setResetAllNewProduct())
+            }
 
-if (flagFromTable === true)
-    dispatch(actions.setFlagFromTable(false))
-}
-},[flagPush])
+            if (flagFromTable === true)
+                dispatch(actions.setFlagFromTable(false))
+        }
+    }, [flagPush])
 
 
 
@@ -218,7 +218,7 @@ if (flagFromTable === true)
                 dispatch(actions.setColorFlagShowSaveP("red"))
             }
         })
-       
+
     }
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import Setting from '../warp/setting';
 import './customers.css'
 // import profileDefault from '../assets/newLogo.png'
-import SearchContact from './search'
+import SearchContact from '../customers/search'
 // import { borderRadius } from 'react-select/src/theme';
 
 import { Link } from 'react-router-dom';

@@ -20,7 +20,6 @@
 // import flowersLogo from '../../Img/flowersLogo.png';
 // import signature from '../../Img/signature.png'
 // import ReactDOM from 'react-dom';
-// import ShowCompany from '../showCompany'
 // import flowerbackground from '../assets/flo.jpg'
 // import Untitled from '../../../src/Img/Untitled-1.jpg'
 
@@ -73,7 +72,7 @@
 //   let date1 = new Date();
 //   const [isLoading, setIsLoading] = useState(false);
 
-  
+
 //   const [borderLogo, setBorderLogo] = useState(false);
 
 //   console.log("props", props)
@@ -138,14 +137,14 @@
 //   }
 
 //   return (
-   
+
 //     <div className="wrap_invoice">
 //      <header className='header-temp2 text-right align-items-right'>
 //               <div className="justify-content-md-right">
 //                   <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
 //                   // placeholder={require('../../../src/Img/Untitled-1.jpg')}
 //                   id='userLogo-temp2'
-                  
+
 //                   // onClick={() => {changeCurrentComponent("Design")}}
 //                   // src='../../../src/Img/flowersLogo.png'
 //                   // placeholder={flowersLogo}
@@ -155,7 +154,7 @@
 //                   onClick={() => { onLoad() }}
 //                   style={isLoading ? { display: "none" } : {}}
 //                   />
-                  
+
 //                   <img 
 //                   style={{ width: props.logowidth, borderRadius: props.borderlogo,
 //                     border: borderLogo === true ? '1px dashed lightgray' : 'none'  }}
@@ -187,7 +186,7 @@
 //           <Col md={1} className='static-temp2'>To:</Col>
 //           <Col md={7}>
 //               <Row className="font-weight-bold mt-1 mb-1" >
-              
+
 //                 {/* <input
 //                   placeholder={contactDetails ? contactDetails.name ? contactDetails.name : "Flowers" : "Flowers"}
 //                   className={focus==='customerName'?'focus-temp2':'editable-temp2'}
@@ -305,7 +304,7 @@
 //             </Col>
 //           </Row>
 
-          
+
 //             <Row className='mr-0 mt-4 text-left font-weight-bold tableHeader-temp2'>
 //               <Col md={1}>
 //               </Col>
@@ -318,12 +317,12 @@
 //             </Row>
 //             <div id='table-temp2' className='text-left font-weight-bold py-4 my-4'>
 //               {detailsInvoice.productions&&
-        
+
 //               detailsInvoice.productions.map((p, index) => 
 //               <div className={index%2===0?'':'odd'}>
 //               <Item key={index}
 //               // arrColor={props.colors}
-                  
+
 //                  {...p}
 //                 // {p.product}
 //                 onItemChanged={(fieldChanged) =>
@@ -425,7 +424,7 @@
 //                     onChange={onFieldChanged('companyPhone')} />
 //                 </Col>
 //               </Row></Col></Row>
-   
+
 //       </footer>
 
 
@@ -548,7 +547,7 @@
 
 // })
 
-  
+
 // //   const [borderLogo, setBorderLogo] = useState(false);
 
 // //   console.log("props", props)
@@ -612,14 +611,14 @@
 // //   }
 
 // //   return (
-   
+
 // //     <div className="wrap_invoice">
 // //      <header className='header-temp2 text-right align-items-right'>
 // //               <div className="justify-content-md-right">
 // //                   <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
 // //                   // placeholder={require('../../../src/Img/Untitled-1.jpg')}
 // //                   id='userLogo-temp2'
-                  
+
 // //                   // onClick={() => {changeCurrentComponent("Design")}}
 // //                   // src='../../../src/Img/flowersLogo.png'
 // //                   // placeholder={flowersLogo}
@@ -629,7 +628,7 @@
 // //                   onClick={() => { onLoad() }}
 // //                   style={isLoading ? { display: "none" } : {}}
 // //                   />
-                  
+
 // //                   <img 
 // //                   style={{ width: props.logowidth, borderRadius: props.borderlogo,
 // //                     border: borderLogo === true ? '1px dashed lightgray' : 'none'  }}
@@ -661,7 +660,7 @@
 // //           <Col md={1} className='static-temp2'>To:</Col>
 // //           <Col md={7}>
 // //               <Row className="font-weight-bold mt-1 mb-1" >
-              
+
 // //                 {/* <input
 // //                   placeholder={contactDetails ? contactDetails.name ? contactDetails.name : "Flowers" : "Flowers"}
 // //                   className={focus==='customerName'?'focus-temp2':'editable-temp2'}

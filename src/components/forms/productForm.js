@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
-// import './invoice.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Col, Row, Container, Button } from 'react-bootstrap';
 import './form.css';
@@ -60,7 +59,7 @@ function ProductForm(props) {
   const inputText = useRef(null);
   const dispatch = useDispatch();
   // const changeComponent = (component1) => dispatch(actions.setComponentConfigurator(component1))
-  const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
+  // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
   const newProductTable = useSelector(state => state.productReducer.newProductTable)
 
 
@@ -120,28 +119,28 @@ function ProductForm(props) {
 
 
 
-const updateCellPrice = (_value ,fieldName)=> {
-        if (!fieldName) {
-          return;
-        }
-        if (!_value) {
-          dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
-          return
-          //  dispatch({
-          //   fieldName,
-          //   value: {
-          //     value: undefined,
-          //     validationClass: '',
-          //     errorMessage: '',
-          //   },
-          // });
-        }
-    
-        const value = Number(_value);
-        if (!Number.isNaN(value)) {
-          dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
-        }
-      }
+  const updateCellPrice = (_value, fieldName) => {
+    if (!fieldName) {
+      return;
+    }
+    if (!_value) {
+      dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
+      return
+      //  dispatch({
+      //   fieldName,
+      //   value: {
+      //     value: undefined,
+      //     validationClass: '',
+      //     errorMessage: '',
+      //   },
+      // });
+    }
+
+    const value = Number(_value);
+    if (!Number.isNaN(value)) {
+      dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
+    }
+  }
 
 
 
@@ -246,7 +245,7 @@ const updateCellPrice = (_value ,fieldName)=> {
 
 const mapStateToProps = (state) => {
   return {
-    componentConfigurator: state.companyReducer.componentConfigurator,
+    // componentConfigurator: state.companyReducer.componentConfigurator,
     new: state.productReducer.newProduct,
     imgProduct: state.productReducer.imgProduct,
     newProduct: state.productReducer.newProduct

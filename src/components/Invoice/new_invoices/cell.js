@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import '../invoice.css';
+// import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,19 +16,19 @@ function Cell(props) {
     const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
     return (
         <>
-        <input
-            // id={id}
-            type={type}
-            onFocus={onFocus}
-            disabled={displayInvoice === "true" ? "disable" : ""}
-            className='cell design_text ffgf'
-            // maxlength="15"
-            size="6"
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-       />
-           </>
+            <input
+                // id={id}
+                type={type}
+                onFocus={onFocus}
+                disabled={displayInvoice === "true" ? "disable" : ""}
+                className='cell design_text ffgf'
+                // maxlength="15"
+                size="6"
+                value={value}
+                onBlur={onBlur}
+                onChange={onChange}
+            />
+        </>
     )
 }
 export default Cell

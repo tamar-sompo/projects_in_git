@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './invoice.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import Steps from './steps.js';
+import Steps from '../notUse/steps.js';
 // import Conversion from './conversion.js'
 import ProductForm from '../forms/productForm.js';
 // import ContactForm from '../forms/cotactForm'

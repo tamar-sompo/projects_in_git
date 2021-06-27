@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './invoice.css';
+// import './invoice.css';
 // import './invoiceTemp1.css';
 import '../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,21 +13,20 @@ import Select from 'react-select'
 import { FiUpload } from "react-icons/fi";
 import MouseTooltip from 'react-sticky-mouse-tooltip';
 // import styled from 'styled-components';
-import LeaderLouder from '../../components/Useful/leaderLouder'
+import LeaderLouder from '../Useful/leaderLouder'
 // import {Link} from "react-router-dom";
-import DigitalSignature from './digitalSignature';
+import DigitalSignature from '../Invoice/digitalSignature';
 import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
-import ShowCompany from '../showCompany'
-import flowerbackground from '../assets/flo.jpg'
+// import flowerbackground from '../assets/flo.jpg'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {
     useLocation
 } from "react-router-dom";
 import $ from 'jquery'
-import MessageSave from './messageSave'
+import MessageSave from '../Invoice/messageSave'
 
 
 
