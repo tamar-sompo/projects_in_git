@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import { ModalBody } from 'react-bootstrap'
 import { actions } from '../actions/All_actions'
 
 function checkPermission(result) {
@@ -62,7 +61,7 @@ export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
       dispatch(actions.setShow(true))
       dispatch(actions.setNameAction("Delete a product successfully"))
       dispatch(actions.getAllProduct());
-   
+
 
     }).catch((err) => {
       console.log(err)
