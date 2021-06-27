@@ -5,7 +5,7 @@ import { actions } from '../../redux/actions/All_actions';
 import { withRouter, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { connect, useDispatch, useSelector } from 'react-redux';
-import Steps from './steps.js';
+import Steps from '../notUse/steps.js';
 import $ from 'jquery'
 // import Conversion from './conversion.js'
 import ProductForm from '../forms/productForm.js';
