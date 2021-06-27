@@ -218,7 +218,6 @@ function NewConfigorator(props) {
                 dispatch(actions.setColorFlagShowSaveP("red"))
             }
         })
-
     }
 
 

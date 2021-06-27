@@ -199,15 +199,12 @@ function New_Invoice(props) {
       console.log("props.invoice1", props.invoice1)
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
-
-
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)
           setDisplayInvoice("false")
         dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPDelete(['']))
-
       }
       else {
 
