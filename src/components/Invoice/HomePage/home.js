@@ -24,7 +24,66 @@ export default function HomePage(props) {
   const [flag, setFlag] = useState("false")
   const ffd = useSelector(state => state.invoiceReducer.flagBorderProduct)
   const [specificRoute, setspecificRoute] = useState('')
-  console.log("allBuisnessToUser", allBuisnessToUser)
+  // console.log("allBuisnessToUser", allBuisnessToUser)
+
+  //  useEffect(()=>{
+  //    console.log("ghgh1")
+  //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
+  //    debugger
+  //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
+  //       console.log("ghgh2")
+  //       dispatch(actions.getLastBuisness())
+  //       // dispatch(actions.setGetUserByUsername())
+  //     }
+  //     if (allBuisnessToUser === undefined) {
+  //       console.log("ghgh3")
+  //       // history.push(`/${userName}/add_buisness`)
+  //       // dispatch(actions.setGetUserByUsername())
+  //       }
+  //  },[allBuisnessToUser])
+
+
+  //  const  checkIfBuisness = (value) => {
+  //   let specificRoute = value;
+  //   debugger
+  //   if (allBuisnessToUser === undefined) {
+  //     history.push(`/${userName}/add_buisness`)
+  //   }     
+  //   else if (specificRoute === "Business") {
+  //     history.push(`/${userName}/buisness`)
+  //   }
+  //   else if (specificRoute === "Documents") {
+  //     history.push(`/${userName}/allDocuments`)
+  //   }
+  //   else if (specificRoute === "Contacts") {
+  //     history.push(`/${userName}/customers`)
+  //   }
+  //   else if (specificRoute === "Products") { 
+  //     history.push(`/${userName}/product`)
+  //   }
+  // }
+
+
+
+  //  const  checkIfBuisness = (value) => {
+  //   let specificRoute = value;
+  //   debugger
+  //   if (allBuisnessToUser === undefined) {
+  //     history.push(`/${userName}/add_buisness`)
+  //   }     
+  //   else if (specificRoute === "Business") {
+  //     history.push(`/${userName}/buisness`)
+  //   }
+  //   else if (specificRoute === "Documents") {
+  //     history.push(`/${userName}/allDocuments`)
+  //   }
+  //   else if (specificRoute === "Contacts") {
+  //     history.push(`/${userName}/customers`)
+  //   }
+  //   else if (specificRoute === "Products") { 
+  //     history.push(`/${userName}/product`)
+  //   }
+  // }
 
 //  useEffect(()=>{
 //    console.log("ghgh1")
@@ -71,8 +130,11 @@ useEffect(()=>{
       history.push(`/${userName}/buisness`)
     if (specificRoute === "Contacts")
       history.push(`/${userName}/customers`)
-    if (specificRoute === "Products")
+    if (specificRoute === "Products") {
       history.push(`/${userName}/product`)
+      dispatch(actions.getAllProduct())
+    }
+
   }, [specificRoute])
 
   const checkIfBuisness = (value) => {
@@ -86,7 +148,8 @@ useEffect(()=>{
 
   return (
     <>
-      <div className="container-fluid con" style={{ height: "88vh", width: "90%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+      {/* style={{ height: "88vh", width: "90%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }} */}
+      <div className="container-fluid con" style={{ height: "95%", width: "86%%" }}  >
         <div className="row title d-flex justify-content-center flex-column">
           <div id="firstTitle">What Would You Like</div>
           <div><h1 id="secondTitle">To Do Today?</h1></div>

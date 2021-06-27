@@ -55,7 +55,6 @@ function Item(props) {
     dispatch(actions.setflagBorderProduct(false))
   }, [])
 
-
   useEffect(() => {
     debugger
     console.log("הגעתתתתת", props.pro)
@@ -114,6 +113,8 @@ function Item(props) {
   const vv3 = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
+    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products[0].id == "null") {
@@ -169,7 +170,12 @@ function Item(props) {
   const vv = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
+    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))
+
+    if (detailsInvoice.products[0] && detailsInvoice.products[0].id == "null") {
+      dispatch(actions.setflagBorderProduct(false))
+    }
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
       let product6 = allproduct.find(x => x.name === e.target.value)
       dispatch(actions.setProduct1(product6))
@@ -199,7 +205,7 @@ function Item(props) {
 
   const updateCell = (title1, e) => {
     console.log("ttt", e)
-
+    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
@@ -384,11 +390,11 @@ function Item(props) {
     }
   }
   const clearProduct = () => {
-    if (invoice.products.length == 1 || detailsInvoice.products && detailsInvoice.products.length == 1) {
+    if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
       debugger
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
-      dispatch(actions.setColorFlagShowSaveP("black"))
+      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
       dispatch(actions.setFlagShowSaveP({ index: props.index, value: false }))
       if (saveSum > 0)
         dispatch(actions.setDeleteSaveSum(props.index))
@@ -562,10 +568,10 @@ function Item(props) {
     <>
 
       <div className="row" style={flagBorderProduct ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
-        <div className="col-6 d-flex justify-content-center wrapinputprod">
-          <div style={{ width: "20%" }}></div>
+        <div className="col-6 d-flex justify-content-center wrapinputprod" >
+          <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
-            <div className="inputproduct" style={{ width: "30%" }}>
+            <div className="inputproduct" style={{ width: "35%" }}>
               <input
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
@@ -586,17 +592,18 @@ function Item(props) {
               </datalist>
 
             </div> :
-            <div className="inputproduct" style={{ width: "30%" }}>
+            <div className="inputproduct" style={{ width: "35%" }}>
               <Cell
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
                 value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
+                type="text"
               > </Cell>
 
             </div>}
-          <div className="inputproduct" style={{ width: "50%" }} >
+          <div className="inputproduct" style={{ width: "55%" }} >
             <Cell
               autoComplete="new-password"
               placeholder='descripition'
@@ -609,7 +616,7 @@ function Item(props) {
           </div>
 
         </div>
-        <div className="col-6 d-flex justify-content-center wrapinputprod">
+        <div className="col-6 d-flex justify-content-center wrapinputprod" >
 
 
 
@@ -640,7 +647,7 @@ function Item(props) {
               type="number"
             ></Cell> */}
           </div>
-          <div className="inputproduct" style={{ width: "20%" }}>
+          <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
               autoComplete="new-password"
               onFocus={() => cleanInput1('amount')}
@@ -649,11 +656,9 @@ function Item(props) {
               type="number"
             ></Cell>
           </div>
-          <div className="inputproduct" style={{ width: "20%" }}>
+          <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
-              autoComplete="new-password"
               //  style={{width:"15%", height:"60%"}}
-              style={{ width: "100%", height: "100%" }}
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
@@ -671,21 +676,39 @@ function Item(props) {
               type="number"
             ></Cell> */}
           </div>
-          <div className="calcProducts" style={{ width: "20%", backgroundColor: '#DBD0D7' }}>
+          <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
+          <CurrencyInput
+              id="validation-example-3-field2"
+              name="sumCalcCurrencyInput"
+              className="sum1 cell"
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              prefix={'$'}
+            />
+            {/* <input
+              className="sum1 cell"
+              value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
+            /> */}
+
 
           </div>
-          <div className="d-flex align-items-center justify-content-center" style={{ width: "20%" }}>
-            {
-              flagShowSaveP[props.index] &&
-              <button style={{ width: "70%", height: "50%", backgroundColor: 'transparent', border: "none", color: colorFlagShowSaveP, backgroundColor: '#DBD0D7' }} onClick={savepr}>save</button>
-            }
-            <button id='1'
-              style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
-              onClick={() => {
-                if (displayInvoice === "false") clearProduct()
-              }}
-              className={invoice.products.length === 1 ? "button4 cinput" : "button4"} style={{ width: "70%", height: "50%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7" }}>delete</button>
-          </div>
+          {displayInvoice === "false" &&
+            <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
+              {
+                flagShowSaveP[props.index] &&
+                <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
+
+              }
+
+              <button id='1'
+                style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
+                onClick={() => {
+                  if (displayInvoice === "false") clearProduct()
+                }}
+                className={invoice.products.length === 1 ? "cinput" : ""} style={{
+                  marginLeft: "33%",
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                }}>delete</button>
+            </div>}
         </div>
       </div>
       {/*       

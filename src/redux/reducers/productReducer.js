@@ -14,7 +14,7 @@ const initialState = {
         productSelect: [],
         productId: "",
         flagShowSaveP: [false],
-        colorFlagShowSaveP: "black",
+        colorFlagShowSaveP: "#DBD0D7",
 
 }
 const products = {

@@ -102,25 +102,27 @@ export default function Fiances() {
                     <div className="row">
                         <Nav />
                     </div>
-                    <div className="row">
+                    <div className="row d-flex align-items-center" style={{ paddingRight: "1.3%", height: "93vh" }}>
 
                         <div className="col-2 px-0 mt-0 flex_configurator">
                             <Configurator />
                         </div>
+                        {/* {isSendMessage == "true"} */}
+                        <div className={isSendMessage == "false" ? "col-10  d-flex justify-content-center align-items-center flex_main" : "col-9 d-flex justify-content-center align-items-center"}
+                            style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
 
-                        <div className={isSendMessage == "true" ?
-                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex-main"}>
-                            <div style={{
+                            {/* <div className={isSendMessage == "true" ?
+                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
+
+                            {show && <div style={{
                                 zIndex: "999", position: "absolute",
                                 marginRight: "160vh", marginTop: "70vh",
                                 width: "250px"
                             }}>
-                                {show &&
-                                    <MassageFormat></MassageFormat>}
-                                {/* <button style={{
+                                <MassageFormat></MassageFormat> </div>}
+                            {/* <button style={{
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
-                            </div>
                             <Switch>
                                 <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
                                 <Route path="/:userName/invoice" component={InvoiceAndSteps} />
@@ -145,13 +147,17 @@ export default function Fiances() {
                             }}> */}
 
                         </div>
+
                         {isSendMessage == "true" &&
-                            <div className="sendEmailFromList" style={{
-                                width: "17vw",
-                                border: "1px solid #917BDF",
-                                height: "90vh", display: "none", marginTop: "10vh"
-                            }}>
-                                <Massage></Massage>
+                            <div className=" col -1 d-flex justify-content-center align-items-center " style={{ height: "94%" }}>
+                                <div className=" sendEmailFromList" style={{
+                                    width: "90%",
+                                    height: "100% ",
+                                    border: "1px solid #917BDF",
+                                    display: "none"
+                                }}>
+                                    <Massage></Massage>
+                                </div>
                             </div>}
                     </div>
                 </div>

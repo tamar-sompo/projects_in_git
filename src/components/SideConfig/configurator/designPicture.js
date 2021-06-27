@@ -62,7 +62,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
-import tempLogo from '../../assets/newLogo.png';
+// import tempLogo from '../../assets/newLogo.png';
 
 import clsx from 'clsx';
 // import src from '*.jpg';

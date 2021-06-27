@@ -19,33 +19,32 @@ import {
     Link
 } from "react-router-dom";
 import { TrainOutlined } from '@material-ui/icons';
+import { wait } from '@testing-library/react';
 
 function NewConfigorator(props) {
     const Location = useLocation()
     const dispatch = useDispatch()
     const setIslevel = (level) => dispatch(actions.setIsLevel(level))
-    const [hidden_design, setHidden_design] = useState(true)
-    const [margin1, setMargin] = useState('25%')
     const invoice = useSelector(state => state.invoiceReducer.invoice);
     const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
     const userName = useSelector(state => state.publicReducer.userName);
     const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-    const ifDesign = useSelector(state => state.displayComponents.openDesign)
     const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
     const setViewConversion = () => dispatch(actions.setViewConversion())
-    // const open_design=useSelector(state=>state.displayComponents.openDesign)
-    const open_design_by_steps = useSelector(state => state.displayComponents.openDesignBySteps)
     const prevPath = useSelector(state => state.displayComponents.prevPath)
     const sendWave = () => dispatch(actions.setSystemWave())
     const [flagM, setFlagM] = useState(false)
     const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
+    const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
     const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
     const showMessage = useSelector(state => state.messageReducer.showMessage);
     const flagMessage = useSelector(state => state.messageReducer.flagMessage)
     const flagMessageContact = useSelector(state => state.messageReducer.flagMessageContact)
     const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
     const setModalBody = (status) => dispatch(actions.setModalBody(status))
-    const [flagSaveinvoice, setFlagSaveinvoice] = useState(false)
+    const [flagSaveinvoice1, setFlagSaveinvoice1] = useState(false)
+    const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
+    const flagSaveInvoice = useSelector(state => state.messageReducer.flagSaveInvoice)
     const buttonClick = useSelector(state => state.messageReducer.buttonClick)
     const flagModal = useSelector(state => state.messageReducer.flagModal)
     const [flagFirst, setFlagFirst] = useState(false)
@@ -53,9 +52,16 @@ function NewConfigorator(props) {
     const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
     const [flagSaveP, setFlagSaveP] = useState(false)
     const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
+    const invoiceId = useSelector(state => state.invoiceReducer.invoiceId)
     const [flagFirstToP, setFlagFirstToP] = useState(false)
     const [flagToCheck, setFlagToCheck] = useState(false)
     const [first, setFirst] = useState(false)
+    // dispatch(actions.setFlagFromTable(true))
+    const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
+    const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+
+
+    // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
 
     // const invoice = useSelector(state => state.invoiceReducer.invoice);
@@ -101,8 +107,11 @@ function NewConfigorator(props) {
         if (flagFirst === false)
             setFlagFirst(true)
         else {
-            if (flagModal === "successContact")
+            if (flagModal === "successContact") {
+
                 save()
+            }
+
         }
 
     }, [flagModal])
@@ -136,22 +145,23 @@ function NewConfigorator(props) {
                 if (flagSaveP === false) {
                     // alert("yy")
                     debugger
-                    if (history.location.pathname === `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null") {
+                    if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
                         dispatch(actions.setflagBorderProduct(true))
                     }
                     else {
                         dispatch(actions.setflagBorderProduct(false))
-                        if (flagMessageContact) {
-                            if (flagOfterValidation) {
-                                debugger
-                                dispatch(actions.setFlagOfterValidation(false))
+                        if (flagOfterValidation) {
+                            debugger
+                            dispatch(actions.setFlagOfterValidation(false))
+                            if (flagMessageContact) {
                                 setShowMessage(true)
                                 setFlagModal("contact")
-                                setModalBody("save contact")
+                                setModalBody("how do you want to save contact changes?")
+                            }
+                            else {
+                                save()
                             }
                         }
-                        else
-                            save()
                     }
                 }
             }
@@ -164,7 +174,7 @@ function NewConfigorator(props) {
             setFlagFirstToP(true)
         else {
             // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-            if (colorFlagShowSaveP === "black")
+            if (colorFlagShowSaveP === "#DBD0D7")
                 setFlagSaveP(false)
             else {
                 dispatch(actions.setColorFlagShowSaveP("red"))
@@ -180,6 +190,23 @@ function NewConfigorator(props) {
         }
     }, [colorFlagShowSaveP])
 
+    useEffect(() => {
+        if (flagPush === true) {
+            if (window.location.href.indexOf("invoice/edit") != -1
+                && flagFromTable === false
+            ) {
+                dispatch(actions.setFlagIfEmpty(false))
+                dispatch(actions.setFlagMessage(false))
+                dispatch(actions.setDislayInvoice("false"));
+                dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
+                dispatch(actions.setPDelete(['']))
+                dispatch(actions.setResetAllNewProduct())
+            }
+
+            if (flagFromTable === true)
+                dispatch(actions.setFlagFromTable(false))
+        }
+    }, [flagPush])
     // const save1 = () => {
     //     debugger
     //     dispatch(actions.setFlagValidation(true))
@@ -198,33 +225,33 @@ function NewConfigorator(props) {
 
             // }
             // else {
-                // dispatch(actions.setflagBorderProduct(false))
+            // dispatch(actions.setflagBorderProduct(false))
 
 
-                // if (flagOfterValidation === false) {
-                    dispatch(actions.setFlagModal(""))
-                    dispatch(actions.setShowMessage(false))
-                    dispatch(actions.setButtonClick(""))
-                    dispatch(actions.setModalBody(""))
-                    setFlagToCheck(true)
-                    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-                        setFlagToCheck(true)
-                        if (flag === true) {
-                            setFlagSaveP(true)
-                            dispatch(actions.setColorFlagShowSaveP("red"))
-                        }
-                    })
-                // }
+            // if (flagOfterValidation === false) {
+            dispatch(actions.setFlagModal(""))
+            dispatch(actions.setShowMessage(false))
+            dispatch(actions.setButtonClick(""))
+            dispatch(actions.setModalBody(""))
+            setFlagToCheck(true)
+            flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+                setFlagToCheck(true)
+                if (flag === true) {
+                    setFlagSaveP(true)
+                    dispatch(actions.setColorFlagShowSaveP("red"))
+                }
+            })
+            // }
             // }
         }
     }, [flagOfterValidation])
 
     const save1 = () => {
-       
+
         if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
             dispatch(actions.setflagBorderProduct(true))
         }
-        else{
+        else {
             dispatch(actions.setflagBorderProduct(false))
         }
         dispatch(actions.setFlagValidation(true))
@@ -234,13 +261,25 @@ function NewConfigorator(props) {
 
     useEffect(() => {
 
-        if (flagSaveinvoice === false)
-            setFlagSaveinvoice(true)
+        if (flagSaveinvoice1 === false)
+            setFlagSaveinvoice1(true)
         else
 
             if (viewConversion === "true") {
                 dispatch(actions.setShowInInvoice(false))
-                history.push(`/${userName}/allDocuments`)
+                dispatch(actions.setViewConversion('false'))
+                if (history.location.pathname === `/${userName}/invoice`) {
+
+                    history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+                }
+                else
+                    if (flagFromTable === false) {
+                        // alert('opopo')
+                        // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+
+                    }
+
+
             }
 
     }, [viewConversion])
@@ -248,20 +287,19 @@ function NewConfigorator(props) {
 
     const save = () => {
         setIslevel(3);
+        // setFlagSaveInvoice(true)
+        dispatch(actions.setFlagIfEmpty(false))
         if (history.location.pathname === `/${userName}/invoice`) {
-            // history.push(`/${userName}/invoice/save`)
 
             dispatch(actions.setSaveInvoice(invoice))
         }
         else {
+
             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
             console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
             debugger
             updateinvoiceField({ key: "products", value: detailsInvoice.products });
-
             dispatch(actions.setUpdateInvoice())
-
-
         }
         console.log("save", invoice)
         // sendWave()
@@ -271,47 +309,35 @@ function NewConfigorator(props) {
         <>
             {console.log("setFlagSaveP", flagSaveP)}
             <div className="left_nav border_configurator">
+                {/* {console.log("new con window.location.href.indexOf",window.location.href.indexOf("invoice") )} */}
                 {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
-                    $('.left_nav').removeClass('border_configurator') &&
+
                     <>
+                        {/* {alert("nnnnn")} */}
 
-                        {/* <Design_Menu /> */}
-                        {ifDesign || open_design_by_steps ?
-                            <>
+                        <div style={{ position: "relative" }}>
+                            <NewSetting ></NewSetting></div>
+                        <div
+                            className="try"
+                        // className={colorFlagShowSaveP==="red" ? "noClick" : "try"}
+                        >
 
-                                <div style={{ position: "absolute" }}>
-                                    <NewSetting ></NewSetting></div>
-                                <div style={{ position: "relative" }}>
-                                    <Maincomp></Maincomp> </div>
-                                <div className="try">
-                                </div>
-
-                            </> :
-
-                            <>
-
-                                <div style={{ position: "relative" }}>
-                                    <NewSetting ></NewSetting></div>
-                                <div className="try"
-                                // className={colorFlagShowSaveP==="red" ? "noClick" : "try"}
-                                >
-                                    {console.log("setFlagSaveP", flagSaveP)}
-                                    <button
-                                        // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
-                                        onClick={save1}
-                                        className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
-                                    >
-                                        Save</button>
-                                </div>
+                            <button
+                                // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
+                                onClick={save1}
+                                className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
+                            >
+                                {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+                            </button>
+                        </div>
 
 
-
-                            </>}
 
                     </>
                     :
                     $('.left_nav').addClass('border_configurator') &&
                     <>
+                        {/* {alert("fffff")} */}
                         <div style={{ marginTop: '25%' }}>
                             <NewSetting ></NewSetting>
                         </div>
