@@ -1,32 +1,26 @@
 .table_title{
-    /* font: var(--unnamed-font-style-normal) normal medium var(--unnamed-font-size-18)/20px Saira Condensed; */
-    /* font-size: medium;
-    font-family: saira Condensed;  
-    letter-spacing: 0.4px;
-    font-weight: normal; */
-    /* font-size: medium; */
-    /* font: var(--unnamed-font-style-normal) normal medium var(--unnamed-font-size-18)/20px Saira Condensed; */
+    
+font-size: 1.1vw;
 text-align: left;
-/* font:  normal medium 3rem/3rem Saira Condensed; */
 font-family: 'Saira Condensed', sans-serif;
-
 letter-spacing: 0.36px;
 color: #2D2B2E;
 text-transform: capitalize;
-/* opacity: 1; */
-      /* font-weight: 700; */
+}
+.descripitioninput{
+    width: 95%;
 }
 .wrapinputprod{
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+ padding:0px !important
+   
 }
 .calcProducts{
     padding-top: 0px;
     padding-bottom: 0px;
 }
 .inputproduct{
-    padding-top: 1.5%;
-    padding-bottom:1.5%;
+    padding-top: 1.2%;
+    padding-bottom:1.2%;
 
 }
 .nonborder{
@@ -41,3 +35,208 @@ border: none !important;
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
+.ffgf{
+text-align: left !important;
+}
+.cell{
+     
+    font-size: 1.1vw;
+    width: 80%;
+    border: 0 ;
+    outline: 0;
+     text-align: left;
+    background-color:rgba(244,244,244,0.66);
+    border-bottom: unset;
+    color: black;
+    font-family: 'Saira Condensed', sans-serif;
+    letter-spacing: 0.36px;
+}
+.sum1{
+    background-color: transparent;
+}
+.design_text::placeholder{
+    text-align: left;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size: 1.1vw;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+}
+.inputproduct{
+    /* border-top: 1px solid #474747;
+    border-bottom:1px solid #474747 ; */
+    padding-top: 1.5vh; 
+     padding-bottom: 1.5vh;
+}
+
+
+.wrapproduct tr:last-child{
+    border-top: 1px solid #474747;
+}
+.bordertableproduct{
+    border-top:1px solid #474747 ;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/*  */
+
+#userLogo-temp1{
+    width: 30vh;
+    height: 20vh;
+}
+.main-temp1{
+    /* padding: 7% !important;  */
+    background-color: white !important;
+}
+.sum-temp1{
+    text-align: center;
+    margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.pb-3, .py-3 {
+    padding-bottom: 0rem!important;
+}
+.pt-3, .py-3 {
+    padding-top: 0rem!important;
+}
+
+.design_text{
+    border:none;
+    text-align: center;
+    /* font:  normal medium 3rem/3rem Saira Condensed; */
+    font-family: 'Saira Condensed', sans-serif;
+    font-size: 1.1vw;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+}
+.design_text_contact{
+    border:none;
+    text-align: left;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.2vw !important;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+}
+
+.design_text_contactname::placeholder{
+    font-size:1.5vw !important;
+    font-weight: bold
+}
+.design_text_contactname{
+    font-size:1.5vw !important;
+    font-weight: bold
+}
+
+.design_text_contact::placeholder{
+    border:none;
+    text-align: left;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.2vw !important;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+}
+.gggff{
+    height: 100% !important;
+}
+.con2{
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+}
+.wrap_invoice{
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    /* height: 95% !important; */
+    display: inline-block;
+    /* height: 80vh; */
+}
+
+.main-temp1{
+    opacity: 0.8 !important;
+    box-shadow: 5px 5px 8px 0 rgba(0,0,0,0.2);
+    cursor: auto;
+}
+.row5{
+    height: 7vh;
+}
+.sum1{
+    width: 100%;
+    border:none;
+    display: inline;
+    background: transparent;
+}
+.validB{
+    border: solid !important;
+    border-color: red!important;
+  }
+.flagLoudOp{
+    opacity: 0.5;
+}
+
+.design_buisness:focus{
+    border:none
+
+}
+.wrapBuisnessBorder{
+    padding-bottom: 4%;
+    border-bottom: 1px solid #474747;
+}
+.sigPad{
+    display: none
+}
+.design_invoicename{
+    text-align: center;
+
+}
+.design_invoicename::placeholder{
+    text-align: center;
+    border:none;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.5vw !important;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+    font-weight: bold;
+}
+.design_invoicename{
+    text-align: center;
+    border:none;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.5vw !important;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+    font-weight: bold;
+}
+.design_text_contact_name::placeholder{
+    border:none;
+    text-align: left;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.5vw !important;
+    letter-spacing: 0.36px;
+    font-weight: bold;
+    color: #2D2B2E;
+}
+.design_text_contact_name{
+    border:none;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Saira Condensed', sans-serif;
+    font-size:1.5vw !important;
+    letter-spacing: 0.36px;
+    color: #2D2B2E;
+}
+.wrapproduct .row:last-child .inputproduct{
+   border-bottom: 1px solid black;
+}
+.wrapproduct .row:first-child .inputproduct{
+    border-top: 1px solid black;
+ }
+ .buttonaddItem:focus{
+     border:none !important
+ }
+ input::-webkit-inner-spin-button{
+    opacity:1; 
+  } 
+
+ 
+
+
+  

@@ -206,6 +206,13 @@ else {
 
 store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
+// store.dispatch({ type: 'SET_GET_BUISNESS_BY_ID' })
+// store.dispatch({ type: "SET_GET_ALL_INVOICES_TO_BUISNESS" })
+store.dispatch({ type: "SET_RESET_ALL_NEW_PRODUCT" })
+store.dispatch(actions.setFlagPush(true))
+
+// store.dispatch({ type: "GET_CITY_BY_COUNTRY" })
+// store.dispatch({ type: "GET_COUNRTY" })
 store.dispatch({ type: 'GET_LAST_BUISNESS' })
 
 export default store;

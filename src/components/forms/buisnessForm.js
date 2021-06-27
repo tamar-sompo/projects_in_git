@@ -23,6 +23,7 @@ import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 
 import LeaderLouder from '../../components/Useful/leaderLouder'
+// import uploadAnimation from '../assets/louder.gif'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // const phoneRegExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 // const userSchema = Yup.object().shape({

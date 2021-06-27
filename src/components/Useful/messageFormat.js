@@ -32,24 +32,24 @@ function MassageFormat() {
     }, 3000)
   }, [])
 
-  const deleteAction = (name) => {
-    debugger
-    switch (name) {
-      case "Adding a business successfully":
-        dispatch(actions.setRemoveBuisnessById(buisnessId));
-        setShow(false);
-      case "Adding a product successfully":
-        dispatch(actions.deleteProduct(productId))
-        setShow(false);
-      case "Adding an invoice successfully":
-        // dispatch(actions.deleteProduct(invoiceId))
-        //לא קיימת עדין פונקציית מחיקה כזאת
-        setShow(false);
-      default:
-        console.log("clum!!!!!!!!!1")
-        setShow(false);;
-    }
-  }
+  // const deleteAction = (name) => {
+  //   debugger
+  //   switch (name) {
+  //     case "Adding a business successfully":
+  //       dispatch(actions.setRemoveBuisnessById(buisnessId));
+  //       setShow(false);
+  //     case "Adding a product successfully":
+  //       dispatch(actions.deleteProduct(productId))
+  //       setShow(false);
+  //     case "Adding an invoice successfully":
+  //       // dispatch(actions.deleteProduct(invoiceId))
+  //       //לא קיימת עדין פונקציית מחיקה כזאת
+  //       setShow(false);
+  //     default:
+  //       console.log("clum!!!!!!!!!1")
+  //       setShow(false);;
+  //   }
+  // }
   // const [show, setShow] = useState(false);
   return (
     <>

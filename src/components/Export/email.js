@@ -155,7 +155,8 @@ function MultiSelectInput(props) {
         }
     }
     return (
-        <><div style={{ marginTop: "2vh" }}>
+        <>
+        <div style={{ marginTop: "2vh" }}>
             <div className="d-flex justify-content-end tag-remove mr-3"
             onClick={() => {dispatch(actions.setsendMessage("false"))}}>x</div>
             <div style={{ height: "6vh" }} >

@@ -33,15 +33,15 @@
       #EBEAEA 0% 0% no-repeat padding-box;
       
   }
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  /* ::placeholder {
   font-size: 0.6vw;
-  /* font: var(--unnamed-font-style-normal) normal bold  Lato; */
+ 
 
   
-  /* letter-spacing: 0.32px; */
+  
   color: #8D8DAE;
   opacity: 1;
-  }
+  } */
   .ff{
       padding-left: 11px;
       color: #9797B6 0% 0% no-repeat padding-box;
@@ -101,12 +101,12 @@ height: 90%;
     
     /* border-bottom: black; */
   }
-input[type="text"]
+/* input[type="text"]
 {
   font-size: 0.6vw;
   width: 10vw;
   height: 3vw;
-}
+} */
 th{
   position: sticky;
   width: 13%;

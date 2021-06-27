@@ -22,7 +22,7 @@
 
 // },initialState)
 import produce from 'immer';
-import tempLogo from '../../components/assets/newLogo.png';
+// import tempLogo from '../../components/assets/newLogo.png';
 import createReducer from "./reducerUtils";
 const initialState = {
     logoDesign: {

@@ -81,13 +81,20 @@ export default function NewSetting(props) {
         }
         else {
           console.log("invoiceeeewwww", setspecificRoute)
-          if (flagSaveInvoice === false) {
-            dispatch(actions.setModalBody(""))
+          // if (flagSaveInvoice === false) {
+            setModalBody("Do you want to save Invoice?")
             console.log("seyttttttt", setspecificRoute)
             setFlagModal("otherPage")
             setShowMessage(true)
-            setModalBody("Do you want to save Invoice?")
-          }
+            
+          // }
+          // else{
+          //   routePage()
+          //   dispatch(actions.setFlagModal(""))
+          //   dispatch(actions.setShowMessage(false))
+          //   dispatch(actions.setButtonClick(""))
+          //   dispatch(actions.setModalBody(""))
+          // }
         }
       }
       else {
@@ -99,21 +106,24 @@ export default function NewSetting(props) {
   }, [index])
 
   const routePage = () => {
+    dispatch(actions.setsendMessage("false"))
+    dispatch(actions.setInvoiceSave(null))
     if (specificRoute === "Documents")
       history.push(`/${userName}/allDocuments`)
-    if (specificRoute === "Business") {
-      history.push(`/${userName}/buisness`)
-      dispatch(actions.setInvoiceSave(null))
-    }
-    if (specificRoute === "Contacts") {
-      history.push(`/${userName}/customers`)
-      dispatch(actions.setInvoiceSave(null))
-    }
-    if (specificRoute === "Products") {
-      history.push(`/${userName}/product`)
-      dispatch(actions.setInvoiceSave(null))
-    }
-    // if (specificRoute === "Payments") {
+      if (specificRoute === "Business"){
+        history.push(`/${userName}/buisness`)
+        dispatch(actions.setInvoiceSave(null))
+      }
+      if (specificRoute === "Contacts"){
+        history.push(`/${userName}/customers`)
+        dispatch(actions.setInvoiceSave(null))
+      }
+      if (specificRoute === "Products"){
+        history.push(`/${userName}/product`)
+        dispatch(actions.getAllProduct())
+        dispatch(actions.setInvoiceSave(null))
+      }
+         // if (specificRoute === "Payments") {
     //   history.push(`/${userName}/payments`)
     //   dispatch(actions.setInvoiceSave(null))
     // }

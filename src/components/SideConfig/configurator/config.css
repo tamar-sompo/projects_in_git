@@ -49,9 +49,9 @@
     padding-bottom: 0;
     font-size: 1em;
 }
-input[type="number"]{
+/* input[type="number"]{
   width: 3em;
-  }
+  } */
 .lblConfig{
     outline: none;
     border: none ;

@@ -1,6 +1,6 @@
 
 import produce from 'immer';
-import tempLogo from '../../components/assets/newLogo.png';
+// import tempLogo from '../../components/assets/newLogo.png';
 import createReducer from "./reducerUtils";
 // import bInvoice from '../../components/assets/flo.jpg';
 import Untitled from '../../Img/Untitled-1.jpg'

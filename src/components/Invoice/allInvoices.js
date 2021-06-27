@@ -7,6 +7,7 @@ import { actions } from '../../redux/actions/All_actions'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SearchInvoices from './searchInvoices'
@@ -24,6 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import New_Invoice from './new_invoices/new_invoice'
+import ModalToViewInvoice from './modalToViewInvoice'
 // import ImageList from '@material-ui/core/ImageList';
 
 function AllInvoices(props) {
@@ -50,8 +52,11 @@ function AllInvoices(props) {
   const [flagToUseEffect, setFlagToUseEffect] = useState("false")
   const buisness = useSelector(state => state.buisnessReducer.buisness)
   const invoiceDetailsView = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+  const flagView = useSelector(state => state.invoiceReducer.flagView);
+  const setFlagView = (status) => dispatch(actions.setFlagView(status));
   const [invoiceDetailsViewFlag, setInvoiceDetailsViewFlag] = useState("false")
-  const [flag1, setFlag1] = useState();
+  const setShowViewInvoiceInModal = (status) => dispatch(actions.setShowViewInvoiceInModal(status))
+  const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
 
   const userName = useSelector(state => state.publicReducer.userName);
   const [chooselinei, setchooselinei] = useState({
@@ -63,6 +68,8 @@ function AllInvoices(props) {
   const getAllInvoicesToBuisness = () => dispatch(actions.setGetAllInvoicesToBuisness())
   const [flagLoud, setFlagLoud] = useState(true)
   const [flagProduct, setFlagProduct] = useState(false)
+  const [flag1, setFlag1] = useState();
+  const [flagSearch, setFlagSearch] = useState("false")
 
   // useEffect(() => {
   //   console.log("detailsInvoice", detailsInvoice);
@@ -82,6 +89,8 @@ function AllInvoices(props) {
     // dispatch(actions.getAllProduct())
     getAllInvoicesToBuisness()
     dispatch(actions.setViewConversion('false'))
+    setFlagSaveInvoice(false)
+    dispatch(actions.setFlagFromTable(false))
 
     // setsearchinvice(props.allInvoices)
   }, []);
@@ -151,49 +160,30 @@ function AllInvoices(props) {
     }
     return isInvoicePayed;
   }
-  const handlesearchby = (value) => {
-    setSearchby(value);
-    setDel(true)
-  }
-  const changeInput = (val) => {
-    setSearchTerm(val)
-  }
   const showInvoiceById = (invoice) => {
+    dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))
     setDisplayInvoice("false")
     console.log("props.allproduct", props.allproduct)
-    // invoice.products.map((prrr, index) => {
-    //    console.log(props.allproduct.find(x => x._id === prrr))
-    // })
-    // dispatch(actions.setInvoice({
-    //   products: [],
-    //   type: "invoice"
-    // }))
     dispatch(actions.setDetailsContact({}))
     dispatch(actions.setInvoiceShow(invoice))
     dispatch(actions.setPDelete(['']))
-
+    dispatch(actions.setResetAllNewProduct())
+    dispatch(actions.setFlagPush(true))
     history.push(`/${userName}/invoice/edit/` + invoice._id)
-    // $.ajax({
-    //   url: 'https://finance.leader.codes/show/' + theId,
-    //   type: 'GET',
-    //   withCradentials: true,
-    //   async: false,
-    //   contentType: 'application/json; charset=utf-8',
-    //   dataType: 'json',
-    //   success: async function (invoiceDetailsView) {
-    //     console.log("success", invoiceDetailsView)
-    //     await dispatch(actions.setInvoiceShow(invoiceDetailsView)  );
-    //     history.push("/show/" + theId)
-    //   },
-    // });
   }
+
+  useEffect(() => {
+    if (flagView === true)
+      setShowViewInvoiceInModal(true)
+  }, [flagView])
 
   const showInvoiceByIdAcord = (invoice, index) => {
 
     debugger
     setDisplayInvoice("true")
+    setFlagView(true)
     dispatch(actions.setInvoiceShow(invoice))
     // dispatch(actions.setInvoicecye('eye'+index))
     // dispatch(actions.setInvoice(  {
@@ -265,21 +255,24 @@ function AllInvoices(props) {
       }
     </tr>
   }
-  const filterby = () => {
-    console.log("filter")
-    if (searchby === "") {
-      setsearchinvice(props.allInvoices)
-    }
-    if (searchby === "customerInvoice") {
-      console.log("tamar")
-      console.log()
-      let arr = props.allInvoices.filter(invoice => invoice.invoiceNumber === 3000)
-      console.log(arr);
-      setsearchinvice(arr);
-      setDel(true)
 
-    }
-  }
+  // const filterby = () => {
+  //   console.log("filter")
+  //   if (searchby === "") {
+  //     setsearchinvice(props.allInvoices)
+  //   }
+  //   if (searchby === "customerInvoice") {
+  //     console.log("tamar")
+  //     console.log()
+  //     let arr = props.allInvoices.filter(invoice => invoice.invoiceNumber === 3000)
+  //     console.log(arr);
+  //     setsearchinvice(arr);
+  //     setDel(true)
+
+  //   }
+  // }
+
+
   const showInvoiceByIdAcord11 = (invoice) => {
     dispatch(actions.setInvoiceShow(invoice))
   }
@@ -289,47 +282,88 @@ function AllInvoices(props) {
     setFlag1(value)
     history.push(`/${userName}/invoice`)
   }
+  const clickSearch = (value) => {
+    setFlagSearch(value)
+  }
+  const filtersearchInvoices = useSelector(state => state.invoiceReducer.filteredinvoices);;
+
+  const [filteredinvoices, setfilteredinvoices] = useState('')
+
+  const searchInvoices = (searchInvoice) => {
+    debugger
+    dispatch(actions.setFilteredInvoices(filteredinvoices))
+    var invoices = props.allInvoices
+    invoices.forEach(invoice => {
+      if (invoice.contactOneTime.name != undefined && invoice.contactOneTime.name.toLowerCase().indexOf(searchInvoice) > -1) {
+        console.log("filteredinvoices", invoice.contactOneTime.name);
+        setfilteredinvoices(invoice)
+        debugger
+        dispatch(actions.setFilteredInvoices(filteredinvoices))
+        console.log("successfilteredinvoices")
+      }
+    });
+    console.log(filteredinvoices);
+  }
+
+  const search = (result) => {
+    if (result != "") {
+      console.log(result);
+      searchInvoices(result)
+    }
+    else {
+      dispatch(actions.setFilteredInvoices(props.allInvoices))
+    }
+  }
+
   return (
     <>
       <div className="container-fluid con" style={{
-        height: "88vh",
-        width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+        height: "95%",
+        width: "95%",
       }}>
-        <div className="row ">
+        <div className="row" >
           <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
-            <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Invoices</h1>
-          </div>
-          <div className="col-8 d-flex justify-content-end ">
-            <div onClick={() => changeFlag(true)} >
-              <button className="newProd11">New Invoice +</button>
+            <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Documents</h1>
+            <div style={{ width: 50 + '%' }}>
+              <ButtonPlus></ButtonPlus>
             </div>
           </div>
-        </div>
-        {
-          history.location.pathname == `/${userName}/allDocuments` && flag === true && dispatch(actions.setResetSaveSum()) && dispatch(actions.setFlagIfEmpty(false))
-          && dispatch(actions.setResetAllNewProduct()) && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
-          dispatch(actions.setProductAfterDelete([])) && dispatch(actions.setDetailsContact({})) && dispatch(actions.setResetContactedit({})) && dispatch(actions.setInvoice({
-            products: [],
-            type: "invoice"
-          })) &&
-          history.push(`/${userName}/invoice`)
-        }
 
+          {/* <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices> */}
+          <div className="col-8 d-flex justify-content-end ">
+            <div className="d-flex flex-row" style={{ display: "inline" }}
+              onClick={() => clickSearch(true)}>
+              <div>
+                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
+                  onChange={(e) => search(e.target.value)}>
+                </input>
+              </div>
+              <div className={flagSearch === true ? "SearchIconClick" : "SearchIcon"}>
+                <BsSearch
+                  style={{ color: "gray", fontWeight: "bold" }}>
+                </BsSearch>
+              </div>
+            </div>
+            {/* <div onClick={() => changeFlag(true)} >
+              <button className="newProd11">New Invoice +</button>
+            </div> */}
+          </div>
+        </div >
         {/* <div className="col-8 d-flex justify-content-end ">
             <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices>
           </div>
         </div> */}
-        <div className="wrap_table">
+        < div className="wrap_table" >
           <div className="row">
             <div className="col">
               <div className="table-responsive">
                 {flagLoud &&
                   <div class="d-flex justify-content-center"
                     className={flagLoud ? "d-flex justify-content-center oposity" : "d-flex justify-content-center"}>
-                    <LeaderLouder></LeaderLouder></div>}
-                <table className="table table-hover accordion" id="accordionExample"
-                  style={{ backgroundColor: "white", fontSize: "14px" }}
-                >
+                    <LeaderLouder></LeaderLouder>
+                  </div>
+                }
+                <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px" }}>
                   <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
                     <tr>
                       <th style={{ width: "5%", backgroundColor: "white", border: "none" }}></th>
@@ -404,21 +438,22 @@ function AllInvoices(props) {
 
                             </tr>
                             {/* <tr> */}
-                            <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
+                            {/* <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
                               "border": "none",
                               "height": "0px",
-                              /* padding-top: 0px; */
                               "padding": "0px"
-                            }}>
-                              <div className="d-flex justify-content-around">
+                            }}> */}
+                            {/* <div className="d-flex justify-content-around">
                                 <div class="collapse" id={"collapsePicture" + index} data-parent="#accordionExample">
-                                  <div style={{ width: '45vw', height: '5vh', display: "inline-block", boxShadow: "0px 3px 6px #0a26b126" }}>
-                                    {/* {dispatch(actions.setInvoiceShow(invoice))} */}
+                                  <div style={{ width: '45vw', height: '5vh', display: "inline-block", boxShadow: "0px 3px 6px #0a26b126" }}> */}
+                            {/* {dispatch(actions.setInvoiceShow(invoice))} */}
 
 
-                                    {invoiceDetailsView._id === invoice._id && <New_Invoice></New_Invoice>}
-                                  </div>
-                                </div></div></td>
+                            {/* {invoiceDetailsView._id === invoice._id && <New_Invoice></New_Invoice>} */}
+                            {/* </div>
+                                </div>
+                                </div> */}
+                            {/* </td> */}
                           </>
                         )
                       })
@@ -427,11 +462,12 @@ function AllInvoices(props) {
 
 
                 </table>
+                <ModalToViewInvoice></ModalToViewInvoice>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div >
+          </div >
+        </div >
+      </div >
 
       {/* <div className="container d-flex justify-content-center mt-5 mb-5">
         <table className="table table-striped table-hover mt-3 ml-5 mr-5" responsive>‏
