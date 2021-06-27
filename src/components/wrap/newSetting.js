@@ -113,10 +113,10 @@ export default function NewSetting(props) {
       history.push(`/${userName}/product`)
       dispatch(actions.setInvoiceSave(null))
     }
-    if (specificRoute === "Payments") {
-      history.push(`/${userName}/payments`)
-      dispatch(actions.setInvoiceSave(null))
-    }
+    // if (specificRoute === "Payments") {
+    //   history.push(`/${userName}/payments`)
+    //   dispatch(actions.setInvoiceSave(null))
+    // }
   }
 
 
@@ -185,14 +185,14 @@ export default function NewSetting(props) {
               <li className="li_hidden"><div className={window.location.href.split('/')[4] == "customers" ?
                 "n" : "l"}>Contacts</div></li>
             </li>
-            <li className="kkk" onClick={() => checkIfBuisness("Payments")}>
+            {/* <li className="kkk" onClick={() => checkIfBuisness("Payments")}>
               <li className={window.location.href.split('/')[4] == "payments" ?
                 "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
                 <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
               </li>
               <li className="li_hidden"><div className={window.location.href.split('/')[4] == "payments" ?
                 "n" : "l"}>Payments</div></li>
-            </li>
+            </li> */}
           </ul>
         </ul>
 
