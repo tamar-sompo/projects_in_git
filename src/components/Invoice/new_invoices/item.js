@@ -548,7 +548,7 @@ function Item(props) {
                 list="productname"
                 className='cell'
                 size="7"
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' :  new_product[props.index].name? new_product[props.index].name:''}
+                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
               />
               <datalist id="productname">
@@ -562,7 +562,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <Cell
                 onFocus={() => cleanInput1('name')}
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : new_product[props.index].name ? new_product[props.index].name : ''}
+                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
@@ -575,7 +575,7 @@ function Item(props) {
               placeholder='descripition'
               onFocus={() => cleanInput1('description')}
               disabled={displayInvoice === "true" ? "" : "disable"}
-              value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : new_product[props.index].description ? new_product[props.index].description : ''}
+              value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
             ></Cell>
@@ -597,7 +597,7 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : new_product[props.index].price ? new_product[props.index].price : ''}
+              value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
@@ -627,7 +627,7 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : new_product[props.index].discount ? new_product[props.index].discount : ''}
+              value={dtp && dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
