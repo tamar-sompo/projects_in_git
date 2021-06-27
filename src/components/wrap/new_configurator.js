@@ -187,6 +187,7 @@ function NewConfigorator(props) {
 
 useEffect(()=>{
 if(flagPush===true){
+    alert("flagpush")
     if (window.location.href.indexOf("invoice/edit") != -1
     && flagFromTable === false
 ) {

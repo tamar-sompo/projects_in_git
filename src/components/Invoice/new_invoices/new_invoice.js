@@ -112,6 +112,7 @@ function New_Invoice(props) {
     debugger
     let summ = 0
     if (window.location.href.indexOf("view") != -1) {
+      dispatch(actions.setsendMessage("false"))
       detailsInvoice.products.filter(x =>
         summ += x.sum_product
       )
@@ -191,6 +192,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
+      alert("ffff")
      
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
@@ -707,12 +709,9 @@ function New_Invoice(props) {
 
   return (
     <>
-      {/* <div className="container-fluid con" 
-      
-      > */}
 
 
-      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '100vh' : '80vh' }}>
+      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
         <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
           onChange={(e) => addImageList(e.target.files[0])} />
 
@@ -907,19 +906,21 @@ function New_Invoice(props) {
                     <span className="design_text_contact">{shortDate}</span></div>
                 </div>
                 <div className="row">
-                  <div class>
+                  <div className="col-6">
                     <span className="design_text_contact">Due Date:</span></div>
-                  <input
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    className="design_text_contact"
-                    // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
-                    type="Date"
-                    size="6"
-                    defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
-                    onChange={onFieldChanged('dueDate')}
-                    onClick={() => setFocus('dueDate')}
-                  >
-                  </input>
+                  <div className="col-6">
+                    <input
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      className="design_text_contact"
+                      // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
+                      type="Date"
+                      size="6"
+                      defaultValue={detailsInvoice ? detailsInvoice.dueDate ? convertdate(detailsInvoice.dueDate) : convertdate(invoice.dueDate) ? convertdate(invoice.dueDate) : convertdate(new Date()) : convertdate(new Date())}
+                      onChange={onFieldChanged('dueDate')}
+                      onClick={() => setFocus('dueDate')}
+                    >
+                    </input>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1061,8 +1062,7 @@ function New_Invoice(props) {
                   <div className="">
                     <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                   <div className="">
-
-                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? saveSum2.toFixed(2) : saveSum ? "$"+ saveSum.toFixed(2) :
+                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$"+saveSum2.toFixed(2) : saveSum ? "$"+saveSum.toFixed(2) :
                       ''}</span></div>
                 </div>
               </div>
@@ -1070,6 +1070,8 @@ function New_Invoice(props) {
             <div className="row d-flex justify-content-center">
               {/* <DigitalSignature /> */}
             </div>
+
+
 
             {/* <Col md={{ span: 4, offset: 9 }} className="total-temp1 text-right">
                 <Row className=' font-weight-bold'>

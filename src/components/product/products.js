@@ -62,7 +62,7 @@ function Products(props) {
     const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const buisness = useSelector(state => state.buisnessReducer.buisness)
-    const [flagField, setFlagField]=useState(false)
+    const [flagField, setFlagField] = useState(false)
     let contacts = [];
     const [chooselinep, setChooselinep] = useState({
         flag1: false,
@@ -277,13 +277,13 @@ function Products(props) {
                 <MassageFormat></MassageFormat>
             } */}
             <div className="container-fluid con" style={{
-                height: "88vh",
-                width: "90%",
-                borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+                height: "95%",
+                width: "86%",
+
             }}>
                 <div className="row ">
                     {/* <div className="col d-flex flex-row style={{ height: 15 + 'vh' }}"> */}
-                    <div className="col d-flex row" style={{ height: 15 + 'vh' }}>
+                    <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Products</h1>
                         {/* <div onClick={() => changeFlag(true)} style={{ width: 50 + '%' }}> */}
                         {/* <ButtonPlus ></ButtonPlus> */}

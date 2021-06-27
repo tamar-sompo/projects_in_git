@@ -7,7 +7,6 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
-  debugger
   if (action.type === 'SET_IMAGE') {
     // var fileToUpload = $("#uploadInput")[0].files[0];
     var myFile = new FormData();
@@ -28,7 +27,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
         // })
         if (action.payload.to === "product") {
           console.log(action.payload.to)
-          dispatch(actions.setNewProductTable({ key:"images" , value: response.data.url}))
+          dispatch(actions.setNewProductTable({ key: "images", value: response.data.url }))
         }
         // dispatch(actions.setImgProduct(response.data.url))}
         if (action.payload.to === "logo") {

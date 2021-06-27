@@ -35,8 +35,8 @@ export default function NewSetting(props) {
   const invoice = useSelector(state => state.invoiceReducer.invoice);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
   const [flagFirstB, setFlagFirstB] = useState(false)
-  const [flagFirst, setFlagFirst] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
+  const [flagFirst, setFlagFirst] = useState(false)
   const [flagIfSave, setFlagIfSave]=useState(false)
   const [index, setIndex]=useState(0)
   console.log("allBuisnessToUser", allBuisnessToUser)
@@ -55,7 +55,7 @@ export default function NewSetting(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("black"))
+          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
 
         }
       })
@@ -86,15 +86,6 @@ export default function NewSetting(props) {
             console.log("seyttttttt", setspecificRoute)
             setFlagModal("otherPage")
             setShowMessage(true)
-            
-          // }
-          // else{
-          //   routePage()
-          //   dispatch(actions.setFlagModal(""))
-          //   dispatch(actions.setShowMessage(false))
-          //   dispatch(actions.setButtonClick(""))
-          //   dispatch(actions.setModalBody(""))
-          // }
         }
       }
       else {

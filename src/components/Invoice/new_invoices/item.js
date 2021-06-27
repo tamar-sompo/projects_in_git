@@ -52,8 +52,7 @@ function Item(props) {
   const totalProductRef = useRef([]);
 
   useEffect(() => {
- 
-   dispatch(actions.setflagBorderProduct(false))
+    dispatch(actions.setflagBorderProduct(false))
   }, [])
 
   useEffect(() => {
@@ -531,7 +530,7 @@ function Item(props) {
   return (
     <>
 
-      <div className="row" style={flagBorderProduct? { border: '1px solid red', width: '100%' } : { border: "none" }}>
+      <div className="row" style={flagBorderProduct ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
@@ -616,7 +615,6 @@ function Item(props) {
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               //  style={{width:"15%", height:"60%"}}
-              // max="100"
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
