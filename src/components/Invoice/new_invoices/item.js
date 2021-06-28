@@ -13,6 +13,8 @@ import { number, object } from 'yup';
 import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 function Item(props) {
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
@@ -541,7 +543,7 @@ function Item(props) {
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
-              <input
+              <input aria-label="empty textarea"
 
                 onFocus={() => cleanInput1('name')}
                 name="product"
@@ -550,7 +552,7 @@ function Item(props) {
                 size="7"
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              />
+              ></input>
               <datalist id="productname">
                 {allproduct.length > 0 && allproduct.map(x => {
                   return (<option>{x.name}</option>)
@@ -560,25 +562,32 @@ function Item(props) {
 
             </div> :
             <div className="inputproduct" style={{ width: "35%" }}>
-              <Cell
+              <TextareaAutosize aria-label="empty textarea"
+
+                disabled={displayInvoice === "true" ? "disable" : ""}
+                className='cell design_text ffgf'
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
-                disabled={displayInvoice === "true" ? "" : "disable"}
+                // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
-              > </Cell>
+                maxRows={2}
+              > </TextareaAutosize>
 
             </div>}
           <div className="inputproduct" style={{ width: "55%" }} >
-            <Cell
+            <TextareaAutosize aria-label="empty textarea"
 
-              placeholder='descripition'
+              maxRows={2}
+              disabled={displayInvoice === "true" ? "disable" : ""}
+              className='cell design_text ffgf'
+              // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
-              disabled={displayInvoice === "true" ? "" : "disable"}
+              // disabled={displayInvoice === "true" ? "" : "disable"}
               value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
-            ></Cell>
+            ></TextareaAutosize>
           </div>
 
         </div>

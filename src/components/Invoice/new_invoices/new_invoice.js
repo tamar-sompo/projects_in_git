@@ -478,11 +478,11 @@ function New_Invoice(props) {
 
   // }
   const onFieldChanged = (fieldName, e) => {
-    console.log("eeeee", e.target.value)
-  
+    console.log("eeeee", fieldName, e.target.value)
+    debugger
     dispatch(actions.setFlagIfEmpty(true))
     const value = e.target.value;
-    if (fieldName = "dueDate")
+    if (fieldName == "dueDate")
       updateinvoiceField({ key: fieldName, value: convertdate(value) })
     else
       updateinvoiceField({ key: fieldName, value: value })
@@ -724,6 +724,7 @@ function New_Invoice(props) {
   const resetType = (e) => {
     e.target.value = ""
     // alert("oo")
+
     updateinvoiceField({ key: "type", value: undefined })
 
   }
@@ -949,16 +950,16 @@ function New_Invoice(props) {
             <div className="row d-flex justify-content-center" style={{ paddingTop: "6%", paddingBottom: "6%" }}>
               <input
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                // placeholder='Invoice Name'
+                placeholder='Invoice Name'
                 // id='title-temp1'
                 onFocus={resetType}
                 className="design_invoicename"
                 maxlength="15"
                 ref={refLevel3}
-                value={invoice.type ? invoice.type : detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : "Invoice Name" : "Invoice Name"}
-                onClick={(e) => setRefLevel3()}
+                value={invoice.type ? invoice.type : detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : "" : ""}
+                // onClick={(e) => setRefLevel3()}
                 onChange={(e) => onFieldChanged('type', e)}
-                onClick={() => setFocus('type')}
+                // onClick={() => setFocus('type')}
                 bgColor={props.colors ? props.colors[2] : 'black'}
               >
               </input>
