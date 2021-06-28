@@ -29,6 +29,7 @@ import BuisnessForm from '../forms/buisnessForm.js';
 import Buisness from '../Invoice/Business/business.js';
 import Contactsiframe from '../customers/contactiframe.js';
 import MassageFormat from '../Useful/messageFormat'
+import SettingBuisnessForm from '../forms/settingBusinessFrom';
 
 import './fiances.css'
 
@@ -48,6 +49,7 @@ import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
 import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
+import ModalNameInvoice from '../Invoice/modalNameInvoice'
 
 
 export default function Fiances() {
@@ -94,7 +96,7 @@ export default function Fiances() {
     return (
         <>
 
-
+            <ModalNameInvoice></ModalNameInvoice>
             <MessageSave></MessageSave>
             <Router >
                 <div className="container-fluid">
@@ -134,6 +136,7 @@ export default function Fiances() {
                                 <Route path="/:userName/add_buisness" component={BuisnessForm} />
                                 {/* <Route path="/:userName/newContact" component={createContact} /> */}
                                 <Route path="/:userName/product" component={Products} />
+                                <Route path="/:userName/setting" component={SettingBuisnessForm} />
                                 {/* <Route exact path="/:userName" component={HomePage} /> */}
                             </Switch>
                             {/* <div className="sendEmailFromList" style={{
