@@ -312,6 +312,7 @@ function New_Invoice(props) {
       setFirstFlagSaveContact1(true)
     else {
       if (buttonClick === "saveContact1") {
+        dispatch(actions.setFlagMessageContact(false))
         dispatch(actions.setFlagModal("successContact"))
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
