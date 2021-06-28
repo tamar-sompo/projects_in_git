@@ -21,7 +21,9 @@ import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
 import * as Yup from "yup"
 import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
-
+import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
+import { BiCalendar, BiPlus } from 'react-icons/bi';
+import { GiWireframeGlobe } from 'react-icons/gi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 // import uploadAnimation from '../assets/louder.gif'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -267,7 +269,7 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "88vh", width: "90%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+          height: "95%", width: "90%", overflowY: "auto"
         }}>
         {/* {
         show ?
@@ -289,336 +291,307 @@ function BuisnessList(props) {
             })
           }):""}>
         </Select> */}
-        <div className="row titleBuisness d-flex justify-content-center flex-column space-between">
-          <div><h1 style={{ fontFamily: "'Lato', sans-serif" }}
-            id="firstTitle">Buisness Details</h1>
-            <div class="row">
-              <hr class="my-4 col-2 col-xl-2 col-lg-3 col-md-8 col-sm-4" style={{
-                backgroundColor: "#917BDF",
-                height: "2px",
-                borderWidth: "0",
-              }} />
+        <div className="row d-flex">
+          <div className="col-10 font">
+            Buisness Details
+          </div>
+          <div class="d-flex justify-content-end">
+            <div className="col-2">
+              <Button
+                onClick={(e) => saveNewBuisness()}
+                style={{
+                  backgroundColor: "#917BDF", borderColor: "#917BDF", width: "13vh",
+                  marginBottom: "2vh"
+                }}
+              // class="saveBuisness"
+              >
+                Save
+              </Button>
             </div>
-            {/* <div style={{ height: "20%" }}></div> */}
           </div>
         </div>
-        {/* 
-        <div style={{ height: "4%" }}></div> */}
-        <div class="col-12 d-flex justify-content-start flex-column align-items-center ">
-          <div  >
-            <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-              onChange={(e) => addImage1(e.target.files[0])} />
-            <button onClick={onButtonClick} className="rounded" className={classes.buttonUpload}>
-              {detailsBusiness && detailsBusiness.imgLogo ?
-                <img
-                  // id='userLogo-temp1'
-                  className={classes.imgUpload}
-                  src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
-                  // src={urlLogo? urlLogo :""}
-                  alt="Logo"
-                  title="Your Logo Here"
-                  onClick={() => onButtonClick("logo")}
-                /> :
-                <HiUpload id="icon" className={classes.iconUpload} />}
-            </button>
+        <hr />
+        <div>
+          <div className="colorWhite">
+            Company Information
           </div>
-
           <div>
-            <p style={{ fontSize: "60%", marginLeft: "0px" }}>upload image</p>
+            <div>Logo</div>
+            <div  >
+              <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                onChange={(e) => addImage1(e.target.files[0])} />
+              <button onClick={onButtonClick} className="rounded"
+                style={{
+                  width: "13vh",
+                  height: "13vh",
+                  marginTop: "2vh",
+                  borderRadius: "1vh",
+                  backgroundColor: "#F6F6FA"
+                }}
+                className={classes.buttonUpload}>
+                {detailsBusiness && detailsBusiness.imgLogo ?
+                  <img
+                    // id='userLogo-temp1'
+                    className={classes.imgUpload}
+                    src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                    // src={urlLogo? urlLogo :""}
+                    alt="Logo"
+                    title="Your Logo Here"
+                    style={{}}
+                    onClick={() => onButtonClick("logo")}
+                  /> :
+                  <HiUpload id="icon" className={classes.iconUpload} />}
+                <br></br>
+                <div className="uploadImage">Upload</div>
+
+              </button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
+              <div className="row">
+                <div>
+                  <div className="font2">Business Name</div>
+
+                  <input className="inptStyle" name='name' type="text"
+                    autoComplete="new-password"
+                    value={userFiled.name ? userFiled.name : ""}
+                    onChange={(e) => fieldChanged(e, 'name')}
+                    style={{ width: "42rem", fontSize: "small" }}></input>
+                  {errorMessage == '#enter your Buisness name' &&
+                    <div className="required">{errorMessage}</div>}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
+                  <div className="font2">Company Phone</div>
+                  <input className="inptStyle" name='phone' type="text"
+                    value={userFiled.phone ? userFiled.phone : ""}
+                    onChange={(e) => { fieldChanged(e, 'phone') }}
+                    style={{ width: "20rem", fontSize: "small" }}></input>
+                  {errorMessage4 == '#Invalid phone' &&
+                    <div className="required">{errorMessage4}</div>}
+                </div>
+                <div className="col-5">
+                  <div className="font2">Company Email</div>
+                  <input name='email' type="text"
+                    className="inptStyle"
+                    value={userFiled.email ? userFiled.email : ""}
+                    onChange={(e) => fieldChanged(e, 'email')}
+                    style={{ width: "20rem", fontSize: "small" }}></input>
+                  {errorMessage3 == '#Invalid email address' &&
+                    <div className="required">{errorMessage3}</div>}
+                </div>
+              </div>
+              <div className="row" style={{ marginTop: "0.5vh" }}>
+                <div>
+                  <div className="font2">Address</div>
+                  <input className="inptStyle" name='address' type="text"
+                    value={userFiled.address ? userFiled.address : ""}
+                    onChange={(e) => fieldChanged(e, 'address')}
+                    style={{ width: "42rem", fontSize: "small" }}></input>
+                  {errorMessage6 == '#enter Address' &&
+                    <div className="required">{errorMessage6}</div>}
+                </div>
+              </div>
+            </div>
+            <div className="col-5">
+              <div className="row">
+                <div>
+                  <div className="font2">Website</div>
+                  <input className="inptStyle" name='website' type="text"
+                    value={userFiled.socialmedias ?
+                      userFiled.socialmedias.website ? userFiled.socialmedias.website :
+                        "" : ""}
+                    onChange={(e) => websiteChanged(e, 'website')}
+                    style={{ width: "35rem", fontSize: "small" }}></input>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-3.5" style={{ marginRight: "3vh" }}>
+                  <div className="font2">Dealer License</div>
+                  <input className="inptStyle" name='numberDeals' type="number"
+                    value={userFiled.numberDeals ? userFiled.numberDeals : ""}
+                    onChange={(e) => fieldChanged(e, 'numberDeals')}
+                    style={{ width: "12rem", fontSize: "small" }}></input>
+                  {errorMessage2 == '#enter your Number-Dealds' &&
+                    <div className="required">{errorMessage2}</div>}
+                </div>
+                <div className="col-3.5">
+                  <div className="font2">Vat</div>
+                  <input className="inptStyle" name='vat' type="text"
+                    value={userFiled.vat ? userFiled.vat : ""}
+                    onChange={(e) => fieldChanged(e, 'vat')}
+                    style={{ width: "12rem", fontSize: "small" }}></input>
+                </div>
+              </div>
+              <div className="row" >
+                <div className="col-5" style={{ paddingLeft: "0vh" }}>
+                  <div className="font2">Country</div>
+                  <input className="inptStyle" type="text" name="country" list="country"
+                    value={userFiled.country ? userFiled.country : ""}
+                    onFocus={(e) => selectCountry(e)}
+                    onBlur={(e) => { onChangeCountry(e.target.value) }}
+                    onChange={(e) => fieldChanged(e, 'country')}
+                    style={{ width: "20rem", fontSize: "small" }}></input>
+                  <datalist id="country">
+                    {allCountry ? allCountry.map(x => {
+                      return (
+                        <option>{x.name}</option>)
+                    }) : ''}
+                  </datalist>
+                </div>
+                <div className="col-5">
+                  <div className="font2">City</div>
+                  <input className="inptStyle" type="text" name="city" list="city"
+                    value={userFiled.city ? userFiled.city : ""}
+                    onChange={(e) => fieldChanged(e, 'city')}
+                    style={{ width: "20rem", fontSize: "small" }}></input>
+                  {errorMessage5 == '#enter City' &&
+                    <div className="required">{errorMessage5}</div>}
+                  <datalist id="city">
+                    {allCities ? allCities.map(x => {
+                      return (
+                        <option>{x.name}</option>)
+                    }) : ''}
+                  </datalist>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <Formik>
-          <Form noValidate id="bisnD">
-            <div className="row py-5 px-5">
-              {/* <col></col> */}
-              <div className="col-2"></div>
-              <div className="col-2"></div>
-              <div className="col-8">
-                <div className="row">
-                  <div className="col-lg-3 col-sm-12" >
-                    <div className="row">
-                      <lable className="col control-label" id="lableType">Buisness name</lable>
-                    </div>
-                    <div className="row" >
-                      <div className="col">
-                        <Field name='name' type="text" class="i_topic"
-                          value={userFiled.name ? userFiled.name : ""}
-                          onChange={(e) => fieldChanged(e, 'name')}
-                        />
-                        {errorMessage == '#enter your Buisness name' &&
-                          <div className="required">{errorMessage}</div>
-                        }
-                        {/* <ErrorMessage name="name"
-                          component="div"
-                          className="erroeForm" /> */}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Buisness email</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='email' type="text" class="i_topic"
-                          value={userFiled.email ? userFiled.email : ""}
-                          onChange={(e) => fieldChanged(e, 'email')}
-                        />
-                        {errorMessage3 == '#Invalid email address' &&
-                          <div className="required">{errorMessage3}</div>}
-                        {/* /* <ErrorMessage name="email"
-                          component="div"
-                          className="erroeForm" /> */ }
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Buisness phone</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='phone' type="text" class="i_topic"
-                          value={userFiled.phone ? userFiled.phone : ""}
-                          onChange={(e) => { fieldChanged(e, 'phone') }}
-                        />
-                        {errorMessage4 == '#Invalid phone' &&
-                          <div className="required">{errorMessage4}</div>}
-                      </div>
-                    </div>
-                  </div>
+        <hr className="hrStyle"></hr>
+        {/* <div>
+          <div className="colorWhite">
+            Personal Information
+          </div>
+          <div className="row">
+            <div className="col-3">
+              <div className="font2">Username</div>
+              <input className="inptStyle"
+                style={{ width: "27rem", marginTop: "0.5vh" }}></input>
+            </div>
+            <div className="col-3">
+              <div className="font2">Birthday</div>
+              <div className="row">
+                <div className="col-3">
+                  <input className="inptStyle"
+                    style={{ width: "10rem", marginLeft: "2vh" }}>
+                  </input>
+                </div>
+                <div >
+                  <BiCalendar className="styleicon uniq"  ></BiCalendar>
                 </div>
               </div>
             </div>
-
-            <div className="row py-5 px-5">
-              <div className="col-2"></div>
-              <div className="col-2"></div>
-              <div className="col-8">
-                <div className="row">
-                  <div className="col-lg-3 col-sm-12" >
-                    <div className="row">
-                      <lable className="col control-label" id="lableType">Country</lable>
-                    </div>
-                    <div className="row" >
-                      <div className="col">
-                        <input type="text" name="country" list="country" class="i_topic"
-                          value={userFiled.country ? userFiled.country : ""}
-                          onFocus={(e) => selectCountry(e)}
-                          onBlur={(e) => { onChangeCountry(e.target.value) }}
-                          onChange={(e) => fieldChanged(e, 'country')}
-                        />
-                        <datalist id="country">
-                          {allCountry ? allCountry.map(x => {
-                            return (
-                              <option>{x.name}</option>)
-                          }) : ''}
-                        </datalist>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">City</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <input type="text" name="city" list="city" class="i_topic"
-                          value={userFiled.city ? userFiled.city : ""}
-                          onChange={(e) => fieldChanged(e, 'city')}
-                        />
-                        {errorMessage5 == '#enter City' &&
-                          <div className="required">{errorMessage5}</div>}
-                        <datalist id="city">
-                          {allCities ? allCities.map(x => {
-                            return (
-                              <option>{x.name}</option>)
-                          }) : ''}
-                        </datalist>
-                        {/* <Select className="col-15" name="country" class="i_topic" id="country"
-                          components={{ IndicatorSeparator: () => null }}
-                          style={{
-                            border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
-                            webkitAppearance: "none",
-                            mozAppearance: "none",
-                            appearance: "none"
-                          }}
-                          // class="form-select-lg mr-2"
-                          // defaultValue={{ label: "Your city", value: "" }}
-                          // onChange={chooseCurrentBuisness}
-                          // onChange={(e) => fieldChanged(e, 'city')}
-                          options={allCities ? allCities.map((item) => {
-                            return ({
-                              "label": item.fields.name,
-                              "value": item
-                            })
-                          }) : ""}
-                          >
-                        </Select> */}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Street</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='address' type="text" class="i_topic"
-                          value={userFiled.address ? userFiled.address : ""}
-                          onChange={(e) => fieldChanged(e, 'address')}
-                        />
-                        {errorMessage6 == '#enter Address' &&
-                          <div className="required">{errorMessage6}</div>}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div> */}
+        {/* <hr className="hrStyle"></hr> */}
+        <div>
+          <div className="colorWhite">Social media</div>
+          <div style={{ paddingBottom: "2vh" }}>media</div>
+          {/* <div className="row">
+            <div className="inptStyle widthIcon">
+              <GiWireframeGlobe className="styleicon"></GiWireframeGlobe>
             </div>
-
-
-            <div className="row
-             py-5 px-5"
-             >
-              <div className="col-2"></div>
-              <div className="col-2"></div>
-              <div className="col-8">
-                <div className="row">
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Website</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='website' type="text" class="i_topic"
-                          value={userFiled.socialmedias ?
-                            userFiled.socialmedias.website ? userFiled.socialmedias.website :
-                              "" : ""}
-                          onChange={(e) => websiteChanged(e, 'website')}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Vat</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='vat' type="text" class="i_topic"
-                          // onBlur={(e) => { fieldChanged(e, 'vat') }}
-                          value={userFiled.vat ? userFiled.vat : ""}
-                          onChange={(e) => fieldChanged(e, 'vat')}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-sm-12">
-                    <div className="row">
-                      <div className="col" id="lableType">Number-Deals</div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-2">
-                        <Field name='numberDeals' type="text" class="i_topic"
-                          // onChange={(e) => { fieldChanged(e, 'numberDeals') }}
-                          value={userFiled.numberDeals ? userFiled.numberDeals : ""}
-                          onChange={(e) => fieldChanged(e, 'numberDeals')}
-                        />
-                        {errorMessage2 == '#enter your Number-Dealds' &&
-                          <div className="required">{errorMessage2}</div>
-                        }
-                        {/* <ErrorMessage name="numberDeals"
-                          component="div"
-                          className="erroeForm" /> */}
-
-                      </div>
-                    </div>
-                  </div>
-                  {/* <div className="col-lg-3 col-sm-12"> */}
-                  {/* <div className="row">
-                      <div className="col" id="lableType">Your logo</div>
-                    </div> */}
-                  {/* <div className="row"> */}
-                  {/* <div className="col pr-2"> */}
-                  {/* <IconContext.Provider */}
-                  {/* value={{ color: 'blue' }}> */}
-                  {/* <input name='buisnessLogo' */}
-                  {/* // type="file"
-                          //  className="i_topic d flex justify-content-center align-items-center"
-                          //  placeholder={buisness.imgLogo} 
-                          // value={user.companyName}
-                          //  onBlur={onFieldChanged('imgLogo')}
-                          // style={{ width: "40%", height: "100%", display: 'none' }}
-                          // aria-describedby="basic-addon2"
-                          // ref={inputFile}
-                          // onChange={(e) => addImage(e.target.files[0])} 
-                          // {...register("imgLogo")}
-                          /> */}
-                  {/* <button onClick={onButtonClick} className="rounded"   */}
-                  {/* className={classes.buttonUpload}   */}
-
-                  {/* <FixLogoBuisness> </FixLogoBuisness> */}
-
-                  {/* </IconContext.Provider> */}
-                  {/* </div>
-                    </div>
-                  </div> */}
-                </div>
-                {/* <div className="col-lg-3 col-sm-12">
-                  <div className="row">
-                    <div className="col" id="lableType">Your logo</div>
-                  </div>
-                  <div className="row">
-                    <div className="col pr-2">
-                      <IconContext.Provider
-                        value={{ color: 'blue' }}> */}
-                {/* <input name='buisnessLogo' */}
-                {/* // type="file"
-                          //  className="i_topic d flex justify-content-center align-items-center"
-                          //  placeholder={buisness.imgLogo} 
-                          // value={user.companyName}
-                          //  onBlur={onFieldChanged('imgLogo')}
-                          // style={{ width: "40%", height: "100%", display: 'none' }}
-                          // aria-describedby="basic-addon2"
-                          // ref={inputFile}
-                          // onChange={(e) => addImage(e.target.files[0])} 
-                          // {...register("imgLogo")}
-                          /> */}
-                {/* <button onClick={onButtonClick} className="rounded"   */}
-                {/* className={classes.buttonUpload}   */}
-
-                {/* <FixLogoBuisness> </FixLogoBuisness>*/}
-
-                {/* </IconContext.Provider>  */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* </div> */}
+            <input className="inptStyle iconInput"
+              defaultValue="Add Your Website"
+            ></input>
+          </div> */}
+          <div style={{ marginLeft: "2vh" }}>
+            <div className="row">
+              <div className="inptStyle widthIcon" >
+                <SiFacebook className="styleicon"></SiFacebook>
               </div>
+              <input className="inptStyle iconInput"
+                defaultValue="Add Your Facebook"
+              ></input>
             </div>
-
-            <div className="row content d-flex justify-content-center">
-              <div className="col-2" style={{
-                paddingTop: "3vh",
-                paddingRight: "6vh",
-              }}>
-                <Button
-                  onClick={(e) => saveNewBuisness()}
-                  style={{
-                    backgroundColor: "#917BDF", borderColor: "#917BDF", minWidth: "100%",
-                    width: "130%", height: "100%", fontSize: "200%"
-                  }}
-                  class="saveBuisness"
-                >
-                    SAVE
-                  </Button>
+            <div className="row">
+              <div className="inptStyle widthIcon">
+                <SiWhatsapp className="styleicon"></SiWhatsapp>
               </div>
+              <input className="inptStyle iconInput"
+                defaultValue="Add Your Whatsapp"
+              ></input>
             </div>
-          </Form>
-        </Formik>
+            <div className="row">
+              <div className="inptStyle widthIcon">
+                <SiInstagram className="styleicon"></SiInstagram>
+              </div>
+              <input className="inptStyle iconInput"
+                defaultValue="Add Your Instagram"
+              ></input>
+            </div>
+            <div className="row">
+              <div className="inptStyle widthIcon">
+                <SiYoutube className="styleicon"></SiYoutube>
+              </div>
+              <input className="inptStyle iconInput"
+                defaultValue="Add Your Youtube"
+              ></input>
+            </div>
+            <div className="row">
+              <div className="inptStyle widthIcon">
+                <BiPlus className="styleicon"></BiPlus>
+              </div>
+              <input className="inptStyle iconInput"
+                defaultValue="Add Your Media"
+              ></input>
+            </div>
+          </div>
+        </div>
       </div>
+      {/* <div className="row"
+        // style={{height:"90vh"}}
+        >
+          <div className="col-3 align-items-center">
+            <div className="font2" style={{ height: "30vh", marginBottom: "2vh" }}>
+              Profil Image
+              <hr />
+              <div class="col-12 d-flex justify-content-start flex-column align-items-center poo">
+                <div  >
+                  <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                    onChange={(e) => addImage1(e.target.files[0])} />
+                  <button onClick={onButtonClick} className="rounded"
+                    style={{
+                      backgroundColor: "grey",
+                      color: "white",
+                      width: "10vh",
+                      height: "10vh"
+                    }}
+                    className={classes.buttonUpload}>
+                    {detailsBusiness && detailsBusiness.imgLogo ?
+                      <img
+                        // id='userLogo-temp1'
+                        className={classes.imgUpload}
+                        src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                        // src={urlLogo? urlLogo :""}
+                        alt="Logo"
+                        title="Your Logo Here"
+                        style={{}}
+                        onClick={() => onButtonClick("logo")}
+                      /> :
+                      <HiUpload id="icon" className={classes.iconUpload} />}
+                    <br></br>
+                    <div className="uploadImage">Upload</div>
+
+                  </button>
+                </div>
+              </div>
+            </div> */}
+
+      {/* <div className="font2" style={{ height: "40vh" }}>
+              Social Networks
+              <hr />
+            </div>
+          </div>
+
+          <div className="col-8 font2" style={{ height: "72vh" }}>
+            Personal Information
+            <hr />
+          </div>
+        </div> */}
     </>
   )
 };

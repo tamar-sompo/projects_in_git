@@ -10,7 +10,7 @@ import $ from "jquery";
 import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SearchInvoices from './searchInvoices'
+import SearchInvoices from '../notUse/searchInvoices'
 import '../customers/customers.css'
 import { MdEdit, MdDelete, MdContentCopy, MdRemoveRedEye, MdShare } from 'react-icons/md'
 import ButtonPlus from '../forms/buttonPlus'
@@ -171,6 +171,7 @@ function AllInvoices(props) {
     dispatch(actions.setPDelete(['']))
     dispatch(actions.setResetAllNewProduct())
     dispatch(actions.setFlagPush(true))
+    dispatch(actions.setFlagPush1(true))
     history.push(`/${userName}/invoice/edit/` + invoice._id)
   }
 

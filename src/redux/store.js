@@ -67,13 +67,12 @@ import invoiceReducer from './reducers/invoiceRreducer';
 import userReducer from './reducers/userReducer';
 import customerReducer from './reducers/customerReducer';
 import LogoReducer from './reducers/LogoReducer'
-import listReducer from './reducers/listReducer';
 import productReducer from './reducers/productReducer';
 import exportInvoiceReducer from './reducers/exportInvoiceReducer';
 import designReducer from './reducers/designReducer';
 import displayComponents from './reducers/displayComponents';
 import buisnessReducer from './reducers/buisnessReducer';
-import companyReducer from './reducers/companyReducer';
+import companyReducer from '../components/notUse/companyReducer';
 import cityByCountryReducer from './reducers/cityByCountryReducer'
 import messageReducer from './reducers/messageReducer'
 import paymentsReducer from './reducers/paymentsReducer.js'
@@ -81,7 +80,7 @@ import paymentsReducer from './reducers/paymentsReducer.js'
 //רשימת הרדוסרים
 const reducer = combineReducers({
     LogoReducer, displayComponents, invoiceReducer, customerReducer, userReducer, publicReducer, cityByCountryReducer, paymentsReducer,
-    productReducer, exportInvoiceReducer, companyReducer, designReducer, buisnessReducer, form: formReducer, listReducer, messageReducer
+    productReducer, exportInvoiceReducer, companyReducer, designReducer, buisnessReducer, form: formReducer, messageReducer
 })
 // רשימת הפונקציות שיש בכל המידלוורס
 const store = createStore(

@@ -75,6 +75,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         await dispatch(actions.setInvoiceShow(data.invoice))
         await dispatch(actions.setInvoiceSave(data))
         await dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setFlagPush1(true))
         await dispatch(actions.setFlagPush(true))
         // dispatch(actions.setsendMessage("true"))
         dispatch(actions.setGetAllInvoicesToBuisness())
@@ -155,6 +156,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
         // console.log()
 
         await dispatch(actions.setViewConversion("true"))
+        await dispatch(actions.setFlagPush1(true))
         await dispatch(actions.setFlagPush(true))
         dispatch(actions.setGetAllInvoicesToBuisness(invoice1))
 

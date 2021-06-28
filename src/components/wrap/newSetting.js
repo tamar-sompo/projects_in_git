@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './newSetting.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
-import $ from 'jquery'
-import Design_Menu from '../design_menu'
+import { RiSettings2Fill } from 'react-icons/ri';
 
 
 export default function NewSetting(props) {
@@ -34,10 +31,8 @@ export default function NewSetting(props) {
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
   const invoice = useSelector(state => state.invoiceReducer.invoice);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
-  const [flagFirstB, setFlagFirstB] = useState(false)
-  const [flagFirst, setFlagFirst] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
-  const [flagIfSave, setFlagIfSave] = useState(false)
+  const [flagFirst, setFlagFirst] = useState(false)
   const [index, setIndex] = useState(0)
   console.log("allBuisnessToUser", allBuisnessToUser)
 
@@ -55,7 +50,7 @@ export default function NewSetting(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("black"))
+          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
 
         }
       })
@@ -86,15 +81,6 @@ export default function NewSetting(props) {
           console.log("seyttttttt", setspecificRoute)
           setFlagModal("otherPage")
           setShowMessage(true)
-
-          // }
-          // else{
-          //   routePage()
-          //   dispatch(actions.setFlagModal(""))
-          //   dispatch(actions.setShowMessage(false))
-          //   dispatch(actions.setButtonClick(""))
-          //   dispatch(actions.setModalBody(""))
-          // }
         }
       }
       else {
@@ -125,9 +111,11 @@ export default function NewSetting(props) {
     }
     if (specificRoute === "Payments") {
       history.push(`/${userName}/payments`)
+    if (specificRoute === "Setting") {
+      history.push(`/${userName}/setting`)
       dispatch(actions.setInvoiceSave(null))
     }
-  }
+  }}
 
 
 
@@ -146,7 +134,7 @@ export default function NewSetting(props) {
       {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
       <div className={`container-fluid 
-      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >    {/* <Design_Menu /> */}
+      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >
 
         <ul class="list-group list-group-flush d-flex flex-column r">
           <ul class="list-group d-flex flex-column border-hidden">
@@ -195,14 +183,19 @@ export default function NewSetting(props) {
               <li className="li_hidden"><div className={window.location.href.split('/')[4] == "customers" ?
                 "n" : "l"}>Contacts</div></li>
             </li>
-            {/* <li className="kkk" onClick={() => checkIfBuisness("Payments")}>
-              <li className={window.location.href.split('/')[4] == "payments" ?
+            {/* <li className="list-group-item yy d-flex align-items-center" >
+              <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
+            </li>
+            <li className="li_hidden"><div className="l" onClick={() =>checkIfBuisness("Contacts")} >Contacts</div></li> */}
+            <li className="kkk" onClick={() => checkIfBuisness("Setting")}>
+              <li className={window.location.href.split('/')[4] == "setting" ?
                 "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
-                <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
+                <RiSettings2Fill size="lg"></RiSettings2Fill>
+                {/* <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon> */}
               </li>
-              <li className="li_hidden"><div className={window.location.href.split('/')[4] == "payments" ?
-                "n" : "l"}>Payments</div></li>
-            </li> */}
+              <li className="li_hidden"><div className={window.location.href.split('/')[4] == "setting" ?
+                "ns" : "ls"}>Setting</div></li>
+            </li>
           </ul>
         </ul>
 
@@ -235,14 +228,5 @@ export default function NewSetting(props) {
       {/* <div className="trtr" style={{width:"50px",height:"50px",backgroundColor:"red"}}>fgyueryfggfgfgfggfgfg</div> */}
     </>
   )
-}
-    // const mapStateToProps=(state)=>{
-
-    // }
-    // const mapDispatchToProps=(dispatch)=>{
-    //   return{ 
-    //      getproduct:()=>dispatch({type:"GET_ALL_PRODUCT"}),
-    //      setDetailsView:(e)=>dispatch(actions.setInvoiceShow(e))
-    //     }
-
-    // }
+      }
+   

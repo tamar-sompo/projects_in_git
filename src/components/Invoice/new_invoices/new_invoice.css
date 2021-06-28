@@ -172,6 +172,13 @@ text-align: left !important;
     opacity: 0.5;
 }
 
+::-webkit-calendar-picker-indicator{
+   padding-right: 0px !important;
+}
+/* #bgImg{
+    cursor: pointer;
+    
+} */
 .design_buisness:focus{
     border:none
 

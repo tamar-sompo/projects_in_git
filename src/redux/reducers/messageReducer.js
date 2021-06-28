@@ -12,11 +12,16 @@ const initialState = {
     buttonClick:"",
     flagSaveInvoice:false,
     modalBody:"",
-    showViewInvoiceInModal:false
+    showViewInvoiceInModal:false,
+    showModalName:false,
  
 }
 
 const message = {
+
+    setShowModalName(state, action){
+        state.showModalName=action.payload
+    },
 
     setShowViewInvoiceInModal(state,action){
             state.showViewInvoiceInModal=action.payload

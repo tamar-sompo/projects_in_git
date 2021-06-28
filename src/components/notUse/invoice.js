@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import './invoice.css';
+// import './invoice.css';
 import './invoiceTemp1.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row, Container, Button } from 'react-bootstrap'
@@ -19,7 +19,6 @@ import DigitalSignature from '../Invoice/digitalSignature';
 import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
-import ShowCompany from '../showCompany'
 // import flowerbackground from '../assets/flo.jpg'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
@@ -117,7 +116,7 @@ function Invoice(props) {
   const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
   const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
-  const [flagBorderToCol, setFlagBorderToCol]=useState(false)
+  const [flagBorderToCol, setFlagBorderToCol] = useState(false)
   // useEffect(()=>{
   //   if (window.location.href.indexOf("view") != -1){
   //     dispatch(actions.setInvoiceShow(detailsInvoice))
@@ -1285,11 +1284,11 @@ function Invoice(props) {
                 <Col className='m-0 p-0'>
                   {
 
-flagBorderProduct && flagBorderProduct.map((product, index)=>{
-  if(flagBorderProduct[index]===true)
-     return  <span style={{ color: 'red' }}>product is require</span>
-}) 
-// $('.left_nav').addClass('border_configurator') 
+                    flagBorderProduct && flagBorderProduct.map((product, index) => {
+                      if (flagBorderProduct[index] === true)
+                        return <span style={{ color: 'red' }}>product is require</span>
+                    })
+                    // $('.left_nav').addClass('border_configurator') 
 
 
                     // flagBorderProduct ?
@@ -1468,10 +1467,11 @@ export const Item = (props) => {
   const vv3 = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
-    invoice.products && invoice.products.map((product, index)=>{
+    invoice.products && invoice.products.map((product, index) => {
       if (invoice.products[index].id == "null") {
-      dispatch(actions.setflagBorderProduct({index:index, value:false}))}
-  }) 
+        dispatch(actions.setflagBorderProduct({ index: index, value: false }))
+      }
+    })
     // if (invoice.products[0].id == "null") {
     //   dispatch(actions.setflagBorderProduct(false))
     // }
@@ -1549,10 +1549,11 @@ export const Item = (props) => {
 
 
   const updateCell = (title1, e) => {
-    invoice.products && invoice.products.map((product, index)=>{
+    invoice.products && invoice.products.map((product, index) => {
       if (invoice.products[index].id == "null") {
-      dispatch(actions.setflagBorderProduct({index:index, value:false}))}
-  }) 
+        dispatch(actions.setflagBorderProduct({ index: index, value: false }))
+      }
+    })
     // if (invoice.products[0].id == "null") {
     //   dispatch(actions.setflagBorderProduct(false))
     // }

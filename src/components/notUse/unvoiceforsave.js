@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useRef, useState } from 'react';
-import './invoice.css';
+// import './invoice.css';
 // import './invoiceTemp1.css';
 import '../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,11 +14,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from 'react-select'
 import $ from 'jquery'
 // import {Link} from "react-router-dom";
-import DigitalSignature from './digitalSignature';
+import DigitalSignature from '../Invoice/digitalSignature';
 import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM from 'react-dom';
-import ShowCompany from '../showCompany'
 // import flowerbackground from '../assets/flo.jpg'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 import { ListItemIcon } from '@material-ui/core';
@@ -135,7 +134,7 @@ function Invoice(props) {
   const invoice = useSelector(state => state.invoiceReducer.invoice);
   const prodactions = [...invoice.products];
   const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
-  let productSelect=useSelector(state => state.productReducer.productSelect);
+  let productSelect = useSelector(state => state.productReducer.productSelect);
   let history = useHistory()
   const p = useSelector(state => state.displayComponents.p);
   useEffect(() => {
@@ -199,13 +198,13 @@ function Invoice(props) {
         let oo = p.find(y => y === x.name);
         if (oo == undefined) {
           console.log("hi")
-         dispatch(actions.setProductSelect(x)) 
-          console.log("productSelect",productSelect)
-        // dispatch(actions.setProductSelect(x))  
+          dispatch(actions.setProductSelect(x))
+          console.log("productSelect", productSelect)
+          // dispatch(actions.setProductSelect(x))  
         }
 
       })
-console.log("productSelect5",productSelect)
+    console.log("productSelect5", productSelect)
     if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
 
       console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
@@ -240,42 +239,44 @@ console.log("productSelect5",productSelect)
     // let productss=[...detailsInvoice.products]
     // productss.splice(index, 1)
     if (detailsInvoice.products && detailsInvoice.products.length > 0) {
-      let productSelect3id=detailsInvoice.products[index];
-      let productSelect3=allproduct.find(x=>x._id===productSelect3id)
-      if(p.length!==detailsInvoice.products.length){
-        let prr=[...p]
-        prr.map((pr,ind)=>{
-           if(pr===productSelect3.name){
-           console.log("ind",ind,pr)
-              prr.splice(ind,1)  
-               dispatch(actions.setPDelete(prr));}
+      let productSelect3id = detailsInvoice.products[index];
+      let productSelect3 = allproduct.find(x => x._id === productSelect3id)
+      if (p.length !== detailsInvoice.products.length) {
+        let prr = [...p]
+        prr.map((pr, ind) => {
+          if (pr === productSelect3.name) {
+            console.log("ind", ind, pr)
+            prr.splice(ind, 1)
+            dispatch(actions.setPDelete(prr));
+          }
         })
-     }
+      }
       console.log("productss", detailsInvoice.products)
       let productss = [...detailsInvoice.products]
       productss.splice(index, 1);
       dispatch(actions.setProductionAfterDelete(productss))
     }
     else {
-      
-    let productSelect3id=invoice.products[index];
-    let productSelect3=allproduct.find(x=>x._id===productSelect3id)
-   console.log("productSelect3",productSelect3)
-  //  dispatch(actions.setPDelete(productSelect3.name))
-  //  console.log("productSelect3",productSelect3.name)
-   console.log("productSelect3",p)
-   console.log("tammmm",p.length,invoice.products.length)
-   if(p.length!==invoice.products.length){
-   let prr=[...p]
-   prr.map((pr,ind)=>{
-      if(pr===productSelect3.name){
-      console.log("ind",ind,pr)
-         prr.splice(ind,1)  
-          dispatch(actions.setPDelete(prr));}
-   })
-}
-    //  dispatch(actions.setProductSelect(productSelect3))
-      console.log("productSelect2",productSelect)
+
+      let productSelect3id = invoice.products[index];
+      let productSelect3 = allproduct.find(x => x._id === productSelect3id)
+      console.log("productSelect3", productSelect3)
+      //  dispatch(actions.setPDelete(productSelect3.name))
+      //  console.log("productSelect3",productSelect3.name)
+      console.log("productSelect3", p)
+      console.log("tammmm", p.length, invoice.products.length)
+      if (p.length !== invoice.products.length) {
+        let prr = [...p]
+        prr.map((pr, ind) => {
+          if (pr === productSelect3.name) {
+            console.log("ind", ind, pr)
+            prr.splice(ind, 1)
+            dispatch(actions.setPDelete(prr));
+          }
+        })
+      }
+      //  dispatch(actions.setProductSelect(productSelect3))
+      console.log("productSelect2", productSelect)
       let productss = [...invoice.products]
       console.log("productss1111", productss)
       productss.splice(index, 1)
@@ -520,13 +521,13 @@ console.log("productSelect5",productSelect)
               {detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ?
                 detailsInvoice.products.map((p, index) =>
                   <Item key={index} pro={p}
-                  productSelect={productSelect}
+                    productSelect={productSelect}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
                     onItemDeleted={() => deleteItemFromStore(index)} />) :
                 invoice.products.map((p, index) =>
-                  <Item key={index} 
-                  productSelect={productSelect}
+                  <Item key={index}
+                    productSelect={productSelect}
                     pro={p}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
@@ -553,7 +554,7 @@ console.log("productSelect5",productSelect)
                   // onClick={changeCurrentComponent("Content")}         
                   >
                     Comment +
-                                   </Button>
+                  </Button>
                 </Row>
               </Col>
 
@@ -683,9 +684,9 @@ export const Item = (props) => {
   // console.log("vvv",vvv);
   const dispatch = useDispatch();
   const {
-   
-    onItemChanged, onItemDeleted,productSelect } = props;
-    // console.log("mumumuuuuuuuuu",mumumuuuuuuuuu)
+
+    onItemChanged, onItemDeleted, productSelect } = props;
+  // console.log("mumumuuuuuuuuu",mumumuuuuuuuuu)
 
   const updateCell = (title) => (value) => {
     onItemChanged({ [title]: value })
@@ -708,7 +709,7 @@ export const Item = (props) => {
   //   )
   // }
   useEffect(() => {
-  
+
     console.log("props.pro", props.pro)
     if (props.pro != "null") {
       setProd(allproduct.find(x => x._id === props.pro))
@@ -739,14 +740,14 @@ export const Item = (props) => {
         </Col>
         {/* {props.allproduct.find(x=>x.id==props.id)} */}
         {props.pro == "null" ?
-        
+
           <Col>
-            <Select className="select_p" onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv2(e)} options={productSelect.map((x)=>{
-           return ({
-                    "label": x.name,
-                    "value": x
-                  })
-})}
+            <Select className="select_p" onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv2(e)} options={productSelect.map((x) => {
+              return ({
+                "label": x.name,
+                "value": x
+              })
+            })}
 
             /></Col>
           :
