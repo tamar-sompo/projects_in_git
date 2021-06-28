@@ -813,7 +813,7 @@ function New_Invoice(props) {
                 />
               </div>
             </div>
-            <div className='row' style={{ paddingRight: "2%", paddingLeft: "10%", paddingTop: "5%" }}>
+            <div className='row' style={{ paddingRight: "2%", paddingLeft: "8%", paddingTop: "5%" }}>
               <div className="col-4 d-flex flex-column">
                 <span className="design_text_contact">
                   To:

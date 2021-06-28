@@ -4,6 +4,7 @@ import { Col, Row, Container, Button, Modal } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import messageSave from './messageSave.css'
+import './modalNameInvoice.css'
 function ModalNameInvoice(props) {
     const dispatch = useDispatch();
     const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
@@ -41,7 +42,7 @@ const OKNameInvoice=()=>{
 
     return (
         <>
-            <Modal className="popUpAnswerTest" id='popUpAlertId' show={showModalName} onHide={handleClose}
+            <Modal className="popUpAnswerTest1" id='popUpAlertId' show={showModalName} onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
                 // onHide={() => setShowMessage(false)}
@@ -52,28 +53,35 @@ const OKNameInvoice=()=>{
 
                 <Modal.Body style={{ paddingTop: '0px', textAlign: 'center' }}>
 
-                    <h1 style={{ marginTop: '7%', paddingRight: '1%', marginBottom: '0.1rem', color: '#343a40e0', paddingBottom: '6vh', fontSize: '1.7rem' }}>
-                    name invoice
+                    <h1 style={{ marginTop: '3%', paddingRight: '1%', marginBottom: '0.1rem', color: '#343a40e0', paddingBottom: '8%', fontSize: '1.7rem' }}>
+                    INVOICE NAME
                         </h1>
                         <input
                 placeholder='Invoice Name'
                 // id='title-temp1'
-                className="design_invoicename"
+                className="fieldNmaeCss"
+                // className="design_invoicename"
                 maxlength="15"
                 value={detailsInvoice ? detailsInvoice.type ? detailsInvoice.type : invoice.type ? invoice.type : "" : ""}
                 onChange={onFieldChanged('type')}
                 onClick={() => setFocus('type')}
               >
               </input>
-
-                    <Button variant="secondary" 
-                    style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
+              <div class="d-flex justify-content-center" style={{width:"100%"}}>
+                    <Button variant="secondary"
+                  
+                    style={{ width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem",
+                     marginBottom: "2vh",
+                     cursor: "pointer" }}
                     onClick={OKNameInvoice}
                     >
                        OK 
                     </Button>
+                    </div>
+</Modal.Body >
+
                    
-                </Modal.Body >
+                
             </Modal>
 
         </>
