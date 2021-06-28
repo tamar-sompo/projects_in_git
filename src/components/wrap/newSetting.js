@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './newSetting.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
-import $ from 'jquery'
-import Design_Menu from '../notUse/design_menu'
+import { RiSettings2Fill } from 'react-icons/ri';
 
 
 export default function NewSetting(props) {
@@ -135,7 +132,7 @@ export default function NewSetting(props) {
       {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
       <div className={`container-fluid 
-      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >    {/* <Design_Menu /> */}
+      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >
 
         <ul class="list-group list-group-flush d-flex flex-column r">
           <ul class="list-group d-flex flex-column border-hidden">
