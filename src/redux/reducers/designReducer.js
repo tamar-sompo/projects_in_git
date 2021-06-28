@@ -4,7 +4,7 @@ import produce from 'immer';
 import createReducer from "./reducerUtils";
 // import bInvoice from '../../components/assets/flo.jpg';
 import Untitled from '../../Img/Untitled-1.jpg'
-import { SettingsPhoneTwoTone } from '@material-ui/icons';
+// import { SettingsPhoneTwoTone } from '@material-ui/icons'
 // import flower from '../../'
 const initialState = {
   // ../../Img/Untitled-1.jpg
@@ -27,7 +27,7 @@ const initialState = {
   ],
   colors: ['black', 'black', 'black', 'black'],
   componentConfigurator: "",
- 
+
 }
 
 const designReducer = {
@@ -35,7 +35,7 @@ const designReducer = {
   setIsLevel(state, action) {
     state.isLevel = action.payload;
   },
- 
+
 
   setImageInvoice(state, action) {
     state.imageInvoice = action.payload;
@@ -58,7 +58,7 @@ const designReducer = {
   setShow(state, action) {
     state.show = action.payload;
   },
-  setNameAction(state, action){
+  setNameAction(state, action) {
     state.nameAction = action.payload;
   }
 }

@@ -140,7 +140,7 @@ const store = createStore(
 var url = window.location;
 console.log(url);
 store.dispatch(actions.setUserName(url.pathname.split('/')[1]))
-if (window.location.hostname == "localhost") {
+if (window.location.hostname === "localhost") {
     console.log("localhost");
     let userName = "ruthF"
     let jwtFromCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEdGN4dFJueERlWXhNcjNZUWZxWWtQWDhsUmgyIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIzMzE0NzM5fQ.lvFAravaFf6h_A3BQPMjKu1831pwM3ySvqtkAmNrOJw"
@@ -148,24 +148,24 @@ if (window.location.hostname == "localhost") {
 
     store.dispatch(actions.setTokenFromCookies(jwtFromCookie));
     store.dispatch(actions.setUserName(userName))
-    if (window.location.href.indexOf("view") != -1) {
+    if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
         debugger
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
-        if (window.location.pathname.split("/").pop() != "") {
+        if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }
     }
 }
 else {
-    if (window.location.href.indexOf("view") != -1) {
+    if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
         debugger
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
-        if (window.location.pathname.split("/").pop() != "") {
+        if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }

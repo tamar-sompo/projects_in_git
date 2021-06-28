@@ -1,7 +1,6 @@
 import produce from 'immer'
 import createReducer from "./reducerUtils";
 import Untitled from '../../Img/Untitled-1.jpg'
-import { actions } from '../actions/All_actions';
 const initialState = {
         allProducts: [],
         newProduct: [{}],
@@ -18,8 +17,8 @@ const initialState = {
 
 }
 const products = {
-        setResetAllNewProduct(state, action){
-               state.newProduct=[]
+        setResetAllNewProduct(state, action) {
+                state.newProduct = []
         },
         editProduct11(state, action) {
                 debugger
