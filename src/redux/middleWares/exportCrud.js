@@ -28,12 +28,12 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     console.log("url", url)
     let text = getState().exportInvoiceReducer.emailDetails.html
     let textToPaypal = "Attached is a link to pay"
-    let html = "change"
+    // let html = "change"
     // if(linkPayToContact){
     //   let html = `${text} <br /> ${url} <br /> ${textToPaypal} <br /> ${linkPayToContact}`
     // }
     // else{
-    // let html = `${text} <br /> ${url}`
+    let html = `${text} <br /> ${url}`
     // }
     const email = {
       from: `${userName}@mails.codes`,
