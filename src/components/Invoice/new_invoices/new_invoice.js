@@ -193,7 +193,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     if (flagPush === true) {
-     
+
       console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
@@ -202,7 +202,7 @@ function New_Invoice(props) {
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
-     
+
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)
@@ -732,19 +732,19 @@ function New_Invoice(props) {
               if (displayInvoice === "false") func1(event)
             }}
             style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
-            <div className="row d-flex justify-content-center">
-            {detailsBusiness && detailsBusiness.imgLogo ?
-              <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                // id='bgImg'
-                style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
-                src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
-                alt="Logo"
-                title="Your Logo Here"
-              />
-              :
-              <div className="mt-5">
-               <h1>{detailsBusiness.name}</h1>
-             </div>} 
+            <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
+              {detailsBusiness && detailsBusiness.imgLogo ?
+                <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
+                  // id='bgImg'
+                  style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
+                  src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                  alt="Logo"
+                  title="Your Logo Here"
+                />
+                :
+                <div className="mt-5">
+                  <h1>{detailsBusiness.name}</h1>
+                </div>}
             </div>
             <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%" }}>
               {/* <div className="col-2"></div> */}

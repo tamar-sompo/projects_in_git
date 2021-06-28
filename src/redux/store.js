@@ -58,6 +58,7 @@ import {
     sendLinkToMail
 } from './middleWares/exportCrud';
 import {
+    setClientIdToBuisness,
     getLinkToPayWithPaypal
 } from './middleWares/paymentsCrud';
 
@@ -75,7 +76,7 @@ import buisnessReducer from './reducers/buisnessReducer';
 import companyReducer from './reducers/companyReducer';
 import cityByCountryReducer from './reducers/cityByCountryReducer'
 import messageReducer from './reducers/messageReducer'
-import paymentsReducer from './reducers/paymantsReducer.js'
+import paymentsReducer from './reducers/paymentsReducer.js'
 
 //רשימת הרדוסרים
 const reducer = combineReducers({
@@ -87,6 +88,7 @@ const store = createStore(
     reducer,
     composeWithDevTools(
         applyMiddleware(
+            setClientIdToBuisness,
             getLinkToPayWithPaypal,
             getAllCountry,
             getAllCitiesByCountry,

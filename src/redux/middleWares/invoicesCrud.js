@@ -54,6 +54,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
   if (action.type === 'SET_SAVE_INVOICE') {
     debugger
     let buisnessId = getState().buisnessReducer.buisness
+    let currentBuisness = getState().buisnessReducer.currentBuisness
     console.log("buisnessId", buisnessId)
     let invoice = action.payload
     console.log("iiinvoice", invoice)
@@ -83,7 +84,11 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        if(currentBuisness.clientId){
+          console.log("if")
         dispatch(actions.setSendLinkPaypal())
+        console.log("ifff")
+      }
         // dispatch(actions.getFcmtoken());
       },
       error: function (err) {

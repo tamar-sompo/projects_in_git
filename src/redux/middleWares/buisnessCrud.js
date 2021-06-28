@@ -91,8 +91,8 @@ export const updateBuisnessById = ({ dispatch, getState }) => next => action => 
   if (action.type === 'SET_UPDATE_BUSINESS_CARD') {
     let update = getState().buisnessReducer.updateBusiness.id;
     let current = getState().buisnessReducer.currentBuisness._id;
-    console.log("update", update)
-    console.log("current", current)
+    // console.log("update", update)
+    // console.log("current", current)
     const body = getState().buisnessReducer.updateBusiness;
     const buisnessId = action.payload;
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateBuisness/${buisnessId}`

@@ -82,11 +82,11 @@ export default function NewSetting(props) {
         else {
           console.log("invoiceeeewwww", setspecificRoute)
           // if (flagSaveInvoice === false) {
-            setModalBody("Do you want to save Invoice?")
-            console.log("seyttttttt", setspecificRoute)
-            setFlagModal("otherPage")
-            setShowMessage(true)
-            
+          setModalBody("Do you want to save Invoice?")
+          console.log("seyttttttt", setspecificRoute)
+          setFlagModal("otherPage")
+          setShowMessage(true)
+
           // }
           // else{
           //   routePage()
@@ -110,23 +110,23 @@ export default function NewSetting(props) {
     dispatch(actions.setInvoiceSave(null))
     if (specificRoute === "Documents")
       history.push(`/${userName}/allDocuments`)
-      if (specificRoute === "Business"){
-        history.push(`/${userName}/buisness`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Contacts"){
-        history.push(`/${userName}/customers`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Products"){
-        history.push(`/${userName}/product`)
-        dispatch(actions.getAllProduct())
-        dispatch(actions.setInvoiceSave(null))
-      }
-         // if (specificRoute === "Payments") {
-    //   history.push(`/${userName}/payments`)
-    //   dispatch(actions.setInvoiceSave(null))
-    // }
+    if (specificRoute === "Business") {
+      history.push(`/${userName}/buisness`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Contacts") {
+      history.push(`/${userName}/customers`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Products") {
+      history.push(`/${userName}/product`)
+      dispatch(actions.getAllProduct())
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Payments") {
+      history.push(`/${userName}/payments`)
+      dispatch(actions.setInvoiceSave(null))
+    }
   }
 
 
