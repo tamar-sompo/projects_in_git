@@ -362,6 +362,7 @@ function BuisnessList(props) {
 
                   <input className="inptStyle" name='name' type="text"
                   autoComplete="new-password"
+                  ////בגלל ששומרים לודקר עד ששומרים בשביל מעבר בין עמודים
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
                     style={{ width: "42rem", fontSize: "small" }}></input>

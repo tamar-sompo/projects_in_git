@@ -195,7 +195,7 @@ function SettingBuisnessList(props) {
             debugger
             const tmpSave = changeCurrentBusiness();
             debugger
-            dispatch(actions.setBuisnessToServer(tmpSave))
+            dispatch(actions.setUpdateBusinessCard(tmpSave))
             setErrorMessage('');
             setErrorMessage2('');
             setErrorMessage3('');
