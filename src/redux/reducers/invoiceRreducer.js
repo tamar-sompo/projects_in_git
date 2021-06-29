@@ -57,12 +57,19 @@ const initialState = {
     flagFromTable: false,
     flagPush: false,
     filteredInvoices: [],
+    flagSaveP:false
     // specificRoute: ''
 
 }
 
 
 const invoices = {
+
+    setFlagSaveP(state, action){
+            state.flagSaveP=action.payload
+    },
+
+
     setFilteredInvoices(state, action) {
         state.filteredInvoices = action.payload
     },

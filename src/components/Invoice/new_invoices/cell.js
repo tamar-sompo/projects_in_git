@@ -21,7 +21,7 @@ function Cell(props) {
             type={type}
             onFocus={onFocus}
             disabled={displayInvoice === "true" ? "disable" : ""}
-            className={props.flagValidPrice ? 'cell design_text validB' : 'cell design_text '}
+            className={props.flagValidName ? 'cell design_text validB' : 'cell design_text '}
             // className='cell design_text'
             // maxlength="15"
             size="7"

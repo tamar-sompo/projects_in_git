@@ -50,10 +50,55 @@ function Item(props) {
   const dispatch = useDispatch();
   const { onItemChanged, onItemDeleted, productSelect } = props;
   const totalProductRef = useRef([]);
+  // const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
 
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
   }, [])
+
+useEffect(()=>{
+if(colorFlagShowSaveP==="red"){
+  if (dtp._id) {
+    if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
+      setflagValidPrice(false)
+      setflagValidName(false)
+    }
+    else {
+      if (new_product[props.index].name) {
+        setflagValidName(true)
+        console.log("flagValidName", flagValidName)
+      }
+      if (dtp.price) {
+        setflagValidPrice(true)
+        console.log("flagValidPhone", flagValidPrice)
+      }
+    }
+  }
+  else {
+    // alert("hhhh", new_product)
+    console.log('new_product', new_product)
+    debugger
+    if (props.pro.id === "null" || props.pro.id === undefined) {
+      if (new_product[props.index].name && new_product[props.index].price) {
+        setflagValidPrice(false)
+        setflagValidName(false)
+      }
+      else {
+        if (!new_product[props.index].name) {
+          setflagValidName(true)
+          console.log("flagValidName", flagValidName)
+        }
+        if (!new_product[props.index].price) {
+          setflagValidPrice(true)
+          console.log("flagValidPhone", flagValidPrice)
+        }
+      }
+    }
+  }
+}
+},[colorFlagShowSaveP])
+
+
 
   useEffect(() => {
     debugger
@@ -596,6 +641,7 @@ function Item(props) {
               <Cell
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
+                flagValidName={flagValidName}
                 value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
                 disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
@@ -628,10 +674,10 @@ function Item(props) {
               style={{ width: "100%", height: "100%" }}
               onFocus={() => cleanInput1('price')}
               id="validation-example-3-field2"
-              // flagValidPrice={flagValidPrice}
+              // flagValidPrice={}
               name="price"
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidName ? 'cell design_text  validB' : 'cell design_text'}
+              className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
