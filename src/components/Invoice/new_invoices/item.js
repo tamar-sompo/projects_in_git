@@ -13,6 +13,8 @@ import { number, object } from 'yup';
 import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 function Item(props) {
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
@@ -50,8 +52,7 @@ function Item(props) {
   const dispatch = useDispatch();
   const { onItemChanged, onItemDeleted, productSelect } = props;
   const totalProductRef = useRef([]);
-  // const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
-
+  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
   }, [])
@@ -159,7 +160,7 @@ function Item(props) {
     setflagValidPrice(false)
     setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
-
+    setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products[0].id == "null") {
@@ -215,6 +216,7 @@ function Item(props) {
   const vv = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
+    setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))
 
@@ -249,6 +251,7 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    setFlagSaveP(false)
     console.log("ttt", e)
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
     dispatch(actions.setFlagIfEmpty(true))
@@ -272,7 +275,7 @@ function Item(props) {
     }
     debugger
     if (title1 === "discount") {
-      dtp.price && props.pro.amount ?
+      dtp && dtp.price && props.pro.amount ?
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
         new_product[props.index].price && amountProductInvoice &&
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
@@ -283,7 +286,7 @@ function Item(props) {
         new_product[props.index].discount ?
           dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
           dispatch(actions.setSum({ sum: e.target.value * amount2, index1: props.index })) :
-        dtp.discount ?
+        dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
@@ -295,12 +298,12 @@ function Item(props) {
 
       dispatch(actions.setAmountToProduct({ amount: e.target.value, index1: props.index }))
       dispatch(actions.setProductAmount(e.target.value))
-      dtp.price ? dtp.discount ?
+      dtp && dtp.price ? dtp && dtp.discount ?
         dispatch(actions.setSum({ sum: e.target.value * dtp.price * (1 - (dtp.discount / 100)), index1: props.index })) :
         new_product[props.index].discount ?
           dispatch(actions.setSum({ sum: e.target.value * dtp.price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
           dispatch(actions.setSum({ sum: e.target.value * dtp.price, index1: props.index })) :
-        dtp.discount ?
+        dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
@@ -393,22 +396,24 @@ function Item(props) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
-    if (dtp._id) {
-      if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
+    if (dtp && dtp._id) {
+      if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
         dispatch(actions.setProductId1(dtp._id))
         dispatch(actions.editProduct(props.index))
         setflagValidPrice(false)
         setflagValidName(false)
       }
       else {
-        if (new_product[props.index].name) {
+        if (!new_product[props.index].name && !dtp.name) {
           setflagValidName(true)
           console.log("flagValidName", flagValidName)
         }
-        if (dtp.price) {
+        else { setflagValidName(false) }
+        if (!dtp.price && !new_product[props.index].price) {
           setflagValidPrice(true)
           console.log("flagValidPhone", flagValidPrice)
         }
+        else { (setflagValidPrice(false)) }
       }
     }
     else {
@@ -426,10 +431,12 @@ function Item(props) {
             setflagValidName(true)
             console.log("flagValidName", flagValidName)
           }
+          else { setflagValidName(false) }
           if (!new_product[props.index].price) {
             setflagValidPrice(true)
             console.log("flagValidPhone", flagValidPrice)
           }
+          else { setflagValidPrice(false) }
         }
       }
     }
@@ -569,22 +576,26 @@ function Item(props) {
       }
       debugger
       if (fieldName === "discount") {
-        dtp.price && props.pro.amount ?
+        dtp && dtp.price && props.pro.amount ?
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
           new_product[props.index].price && amountProductInvoice &&
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
       }
       if (fieldName === "price") {
-        amount2 ? dtp.discount ?
+        amount2 ? dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
             dispatch(actions.setSum({ sum: value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
             dispatch(actions.setSum({ sum: value * amount2, index1: props.index })) :
-          dtp.discount ?
+          dtp ? dtp.discount ?
             dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
             new_product[props.index].discount ?
               dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+              dispatch(actions.setSum({ sum: value * amountProductInvoice, index1: props.index })) :
+            new_product[props.index].discount ?
+              dispatch(actions.setSum({ sum: value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
               dispatch(actions.setSum({ sum: value * amountProductInvoice, index1: props.index }))
+
       }
 
 
@@ -617,7 +628,7 @@ function Item(props) {
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
-              <input
+              <input aria-label="empty textarea"
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
                 name="product"
@@ -626,9 +637,9 @@ function Item(props) {
                 className={flagValidName ? 'cell  validB' : 'cell '}
                 // maxlength="15" 
                 size="7"
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
+                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              />
+              ></input>
               <datalist id="productname">
                 {allproduct.length > 0 && allproduct.map(x => {
                   return (<option>{x.name}</option>)
@@ -638,27 +649,33 @@ function Item(props) {
 
             </div> :
             <div className="inputproduct" style={{ width: "35%" }}>
-              <Cell
+              <TextareaAutosize aria-label="empty textarea"
                 autoComplete="new-password"
+                disabled={displayInvoice === "true" ? "disable" : ""}
+                className={flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                // className='cell design_text ffgf'
                 onFocus={() => cleanInput1('name')}
-                flagValidName={flagValidName}
-                value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
-                disabled={displayInvoice === "true" ? "" : "disable"}
+                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
+                // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
-              > </Cell>
+                maxRows={2}
+              > </TextareaAutosize>
 
             </div>}
           <div className="inputproduct" style={{ width: "55%" }} >
-            <Cell
+            <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
-              placeholder='descripition'
+              maxRows={2}
+              disabled={displayInvoice === "true" ? "disable" : ""}
+              className='cell design_text ffgf'
+              // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
-              disabled={displayInvoice === "true" ? "" : "disable"}
-              value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : ''}
+              // disabled={displayInvoice === "true" ? "" : "disable"}
+              value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
-            ></Cell>
+            ></TextareaAutosize>
           </div>
 
         </div>
@@ -680,7 +697,7 @@ function Item(props) {
               className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
+              value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
@@ -711,7 +728,7 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
+              value={dtp && dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
@@ -737,14 +754,14 @@ function Item(props) {
 
 
           </div>
-          {displayInvoice === "false" &&
-            <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
-              {
-                flagShowSaveP[props.index] &&
-                <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
 
-              }
+          <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
+            {
+              flagShowSaveP[props.index] &&
+              <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
 
+            }
+            {displayInvoice === "false" &&
               <button id='1'
                 style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
                 onClick={() => {
@@ -753,8 +770,8 @@ function Item(props) {
                 className={invoice.products.length === 1 ? "cinput" : ""} style={{
                   marginLeft: "33%",
                   width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
-                }}>delete</button>
-            </div>}
+                }}>delete</button>}
+          </div>
         </div>
       </div>
       {/*       

@@ -21,13 +21,15 @@ import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
 import * as Yup from "yup"
 import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
-
-import LeaderLouder from '../../components/Useful/leaderLouder'
-import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
 import { BiCalendar, BiPlus } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
-
+import LeaderLouder from '../../components/Useful/leaderLouder'
+import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
+// import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
+// import { BiCalendar, BiPlus } from 'react-icons/bi';
+// import { GiWireframeGlobe } from 'react-icons/gi';
+// 
 // import {CgCalendarDates} from 'react-icons/cg';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -126,7 +128,7 @@ function BuisnessList(props) {
       updateWebsite({ key: 'website', value: "" })
       updateBuisnessField({ key: 'vat', value: "" })
       updateBuisnessField({ key: 'numberDeals', value: "" })
-      
+
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
@@ -256,8 +258,8 @@ function BuisnessList(props) {
     }
     const value = e.target.value;
     // if (value !== "false") {
-      console.log("value", value)
-      updateBuisnessField({ key: fieldName, value: value })
+    console.log("value", value)
+    updateBuisnessField({ key: fieldName, value: value })
     // }
   }
   const onload = (e, fieldName) => {
@@ -295,9 +297,28 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
-          overflowY: "auto"
+          height: "95%", width: "90%", overflowY: "auto"
         }}>
+        {/* {
+        show ?
+            <Alert variant="success"> 
+             vvvvvv
+            </Alert>
+          : ""}
+        <Button onClick={() => setShow(false)}>Show Alert</Button> */}
+        {/* <Select
+        components={{ IndicatorSeparator:() => null }}
+          style={{ border: "0", boxShadow: "none", fontSize: "160%", maxWidth:"90%"}}
+          class="form-select-lg mr-2"
+          defaultValue={{ label: "Your Buisness", value: "" }}
+          onChange={chooseCurrentBuisness}
+          options={allBuisnessToUser? allBuisnessToUser.map((buisness) => {
+            return ({
+              "label": buisness.name,
+              "value": buisness
+            })
+          }):""}>
+        </Select> */}
         <div className="row d-flex">
           <div className="col-10 font">
             Buisness Details
@@ -361,8 +382,8 @@ function BuisnessList(props) {
                   <div className="font2">Business Name</div>
 
                   <input className="inptStyle" name='name' type="text"
-                  autoComplete="new-password"
-                  ////בגלל ששומרים לודקר עד ששומרים בשביל מעבר בין עמודים
+                    autoComplete="new-password"
+                    ////בגלל ששומרים לודקר עד ששומרים בשביל מעבר בין עמודים
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
@@ -371,7 +392,7 @@ function BuisnessList(props) {
                 </div>
               </div>
               <div className="row">
-                <div className="col-5" style={{paddingLeft: "0vh", marginRight: "3vh"}}>
+                <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
                   <input className="inptStyle" name='phone' type="text"
                     value={userFiled.phone ? userFiled.phone : ""}
@@ -416,7 +437,7 @@ function BuisnessList(props) {
                 </div>
               </div>
               <div className="row">
-                <div className="col-3.5" style={{ marginRight: "3vh"}}>
+                <div className="col-3.5" style={{ marginRight: "3vh" }}>
                   <div className="font2">Dealer License</div>
                   <input className="inptStyle" name='numberDeals' type="number"
                     value={userFiled.numberDeals ? userFiled.numberDeals : ""}
@@ -434,7 +455,7 @@ function BuisnessList(props) {
                 </div>
               </div>
               <div className="row" >
-                <div className="col-5" style={{paddingLeft: "0vh"}}>
+                <div className="col-5" style={{ paddingLeft: "0vh" }}>
                   <div className="font2">Country</div>
                   <input className="inptStyle" type="text" name="country" list="country"
                     value={userFiled.country ? userFiled.country : ""}
@@ -600,6 +621,56 @@ function BuisnessList(props) {
           </div>
         </div> */}
       </div>
+      {/* <div className="row"
+        // style={{height:"90vh"}}
+        >
+          <div className="col-3 align-items-center">
+            <div className="font2" style={{ height: "30vh", marginBottom: "2vh" }}>
+              Profil Image
+              <hr />
+              <div class="col-12 d-flex justify-content-start flex-column align-items-center poo">
+                <div  >
+                  <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                    onChange={(e) => addImage1(e.target.files[0])} />
+                  <button onClick={onButtonClick} className="rounded"
+                    style={{
+                      backgroundColor: "grey",
+                      color: "white",
+                      width: "10vh",
+                      height: "10vh"
+                    }}
+                    className={classes.buttonUpload}>
+                    {detailsBusiness && detailsBusiness.imgLogo ?
+                      <img
+                        // id='userLogo-temp1'
+                        className={classes.imgUpload}
+                        src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                        // src={urlLogo? urlLogo :""}
+                        alt="Logo"
+                        title="Your Logo Here"
+                        style={{}}
+                        onClick={() => onButtonClick("logo")}
+                      /> :
+                      <HiUpload id="icon" className={classes.iconUpload} />}
+                    <br></br>
+                    <div className="uploadImage">Upload</div>
+
+                  </button>
+                </div>
+              </div>
+            </div> */}
+
+      {/* <div className="font2" style={{ height: "40vh" }}>
+              Social Networks
+              <hr />
+            </div>
+          </div>
+
+          <div className="col-8 font2" style={{ height: "72vh" }}>
+            Personal Information
+            <hr />
+          </div>
+        </div> */}
     </>
   )
 };

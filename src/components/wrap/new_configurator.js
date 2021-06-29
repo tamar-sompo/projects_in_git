@@ -59,6 +59,7 @@ function NewConfigorator(props) {
     // dispatch(actions.setFlagFromTable(true))
     const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
     const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+    const showModalName = useSelector(state => state.messageReducer.showModalName);
 
 
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
@@ -66,16 +67,16 @@ function NewConfigorator(props) {
 
     // const invoice = useSelector(state => state.invoiceReducer.invoice);
     // {type:'SET_SYSTEM_WAVE'})
-    const history = useHistory()
+    //     const history = useHistory()
 
-    const changeBackground = (e) => {
-        // props.history.push("/" + props.user)
-        $(document).ready(function () {
-            $("li").removeClass("li-back")
-            $(e).addClass("li-back")
-        })
+    //     const changeBackground = (e) => {
+    //         // props.history.push("/" + props.user)
+    //         $(document).ready(function () {
+    //             $("li").removeClass("li-back")
+    //             $(e).addClass("li-back")
+    //         })
 
-    }
+
     // useEffect(() => {
     //     dispatch(actions.setflagBorderProduct(false))
     //     // $('.left_nav').addClass('border_configurator') 
@@ -279,11 +280,20 @@ function NewConfigorator(props) {
 
     //                 }
 
+    //         if (flagSaveinvoice1 === false)
+    //             setFlagSaveinvoice1(true)
+    //         else
 
     //         }
 
     // }, [viewConversion])
 
+    //                     history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+    //                 }
+    //                 else
+    //                     if (flagFromTable === false) {
+    //                         // alert('opopo')
+    //                         // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
 
     // const save = () => {
     //     setIslevel(3);
@@ -324,7 +334,7 @@ function NewConfigorator(props) {
 
                             {/* <button
                                 // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
-                                onClick={save1}
+                                // onClick={save1}
                                 className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
                             >
                                 {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}

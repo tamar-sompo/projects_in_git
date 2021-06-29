@@ -17,7 +17,7 @@ const initialState = {
     allAccep: '',
     invoice: {
         products: [],
-        type: "invoice"
+        // type: "invoice"
     },
     amountProductInvoice: 0,
     invoiceId: "",
@@ -56,8 +56,9 @@ const initialState = {
     flagView: false,
     flagFromTable: false,
     flagPush: false,
+    flagPush1: false,
     filteredInvoices: [],
-    flagSaveP:false
+    flagSaveP: false
     // specificRoute: ''
 
 }
@@ -65,11 +66,13 @@ const initialState = {
 
 const invoices = {
 
-    setFlagSaveP(state, action){
-            state.flagSaveP=action.payload
+    setFlagSaveP(state, action) {
+        state.flagSaveP = action.payload
     },
 
-
+    setFlagPush1(state, action) {
+        state.flagPush1 = action.payload
+    },
     setFilteredInvoices(state, action) {
         state.filteredInvoices = action.payload
     },

@@ -152,6 +152,38 @@ h2 {
 .hrStyle{
   margin-top: 2rem !important;
 }
+
+.hederN{
+  width:32% ;
+}
+.hederP{
+ width:20% ;
+}
+.hederD{
+ width:50% ;
+}
+.btn-link1 {
+ color: #8e73ec;
+ background-color: white !important;
+ font-weight: bold;
+ width: 5rem;
+ height: 4vh;
+ margin-top: 5%;
+}
+.btn-link2{
+ color: #8e73ec;
+ background-color: #8E73EC22 !important;
+ font-weight: bold;
+ width: 5rem;
+ height: 4vh;
+ margin-top: 5%;
+}
+.btn-link1:hover{
+ color: #8e73ec;
+}
+.btn-link2:hover{
+ color: #8e73ec;
+}
 .widthIcon{
   width: 5vh;
   height: 5vh;
@@ -173,4 +205,18 @@ h2 {
   position: absolute;
   margin-top: 1.5vh;
   margin-left: 3.5vh;
+}
+.fieldProductCss{
+  border: none;
+  height: 5vh;
+  width: 90%;
+  background: rgb(245 244 244);
+  border-radius: 1vh;
+}
+.fieldProductCssD{
+  border: none;
+  height: 5vh;
+  width: 100%;
+  background: rgb(245 244 244);
+  border-radius: 1vh;
 }

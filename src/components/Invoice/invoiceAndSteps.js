@@ -270,7 +270,7 @@ export default function InvoiceAndSteps(props) {
 
 
   const save1 = () => {
-
+    debugger
     // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
     //     dispatch(actions.setflagBorderProduct(true))
     // }
@@ -286,7 +286,7 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     //     setFlagToCheck(true)
-
+    debugger
     if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
       (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
       ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
@@ -379,6 +379,68 @@ export default function InvoiceAndSteps(props) {
       setShowMessage(true)
     }
   }
+
+
+  useEffect(() => {
+
+    if (flagSaveinvoice1 === false)
+      setFlagSaveinvoice1(true)
+    else
+
+      if (viewConversion === "true") {
+
+        dispatch(actions.setViewConversion('false'))
+        if (history.location.pathname === `/${userName}/invoice`) {
+
+          history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+        }
+        else
+          if (flagFromTable === false) {
+            // alert('opopo')
+            // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+
+          }
+
+
+      }
+
+  }, [viewConversion])
+
+
+  // const save = () => {
+  //   setIslevel(3);
+  //   // setFlagSaveInvoice(true)
+  //   dispatch(actions.setFlagIfEmpty(false))
+  //   if (history.location.pathname === `/${userName}/invoice`) {
+
+  //     dispatch(actions.setSaveInvoice(invoice))
+  //   }
+  //   else {
+
+  //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+  //     console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+  //     debugger
+  //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
+  //     dispatch(actions.setUpdateInvoice())
+  //   }
+  //   console.log("save", invoice)
+  //   // sendWave()
+  // }
+
+  // const backtoAllInvoices = () => {
+  //   if (flagIfEmpty == false) {
+  //     history.push(`/${userName}/allDocuments`)
+  //     dispatch(actions.setFlagModal(""))
+  //     dispatch(actions.setShowMessage(false))
+  //     dispatch(actions.setButtonClick(""))
+  //     dispatch(actions.setModalBody(""))
+  //   }
+  //   else {
+  //     setModalBody("Do you want to save Invoice?")
+  //     setFlagModal("otherPage")
+  //     setShowMessage(true)
+  //   }
+  // }
   return (
     <>
 
