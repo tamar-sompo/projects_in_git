@@ -56,47 +56,47 @@ function Item(props) {
     dispatch(actions.setflagBorderProduct(false))
   }, [])
 
-useEffect(()=>{
-if(colorFlagShowSaveP==="red"){
-  if (dtp._id) {
-    if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
-      setflagValidPrice(false)
-      setflagValidName(false)
-    }
-    else {
-      if (new_product[props.index].name) {
-        setflagValidName(true)
-        console.log("flagValidName", flagValidName)
-      }
-      if (dtp.price) {
-        setflagValidPrice(true)
-        console.log("flagValidPhone", flagValidPrice)
-      }
-    }
-  }
-  else {
-    // alert("hhhh", new_product)
-    console.log('new_product', new_product)
-    debugger
-    if (props.pro.id === "null" || props.pro.id === undefined) {
-      if (new_product[props.index].name && new_product[props.index].price) {
-        setflagValidPrice(false)
-        setflagValidName(false)
+  useEffect(() => {
+    if (colorFlagShowSaveP === "red") {
+      if (dtp._id) {
+        if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
+          setflagValidPrice(false)
+          setflagValidName(false)
+        }
+        else {
+          if (new_product[props.index].name) {
+            setflagValidName(true)
+            console.log("flagValidName", flagValidName)
+          }
+          if (dtp.price) {
+            setflagValidPrice(true)
+            console.log("flagValidPhone", flagValidPrice)
+          }
+        }
       }
       else {
-        if (!new_product[props.index].name) {
-          setflagValidName(true)
-          console.log("flagValidName", flagValidName)
-        }
-        if (!new_product[props.index].price) {
-          setflagValidPrice(true)
-          console.log("flagValidPhone", flagValidPrice)
+        // alert("hhhh", new_product)
+        console.log('new_product', new_product)
+        debugger
+        if (props.pro.id === "null" || props.pro.id === undefined) {
+          if (new_product[props.index].name && new_product[props.index].price) {
+            setflagValidPrice(false)
+            setflagValidName(false)
+          }
+          else {
+            if (!new_product[props.index].name) {
+              setflagValidName(true)
+              console.log("flagValidName", flagValidName)
+            }
+            if (!new_product[props.index].price) {
+              setflagValidPrice(true)
+              console.log("flagValidPhone", flagValidPrice)
+            }
+          }
         }
       }
     }
-  }
-}
-},[colorFlagShowSaveP])
+  }, [colorFlagShowSaveP])
 
 
 
@@ -723,11 +723,11 @@ if(colorFlagShowSaveP==="red"){
             ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
-          <CurrencyInput
+            <CurrencyInput
               id="validation-example-3-field2"
               name="sumCalcCurrencyInput"
               className="sum1 cell"
-              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2): ''}
+              value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
             {/* <input

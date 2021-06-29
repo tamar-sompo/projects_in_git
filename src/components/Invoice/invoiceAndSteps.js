@@ -149,29 +149,29 @@ export default function InvoiceAndSteps(props) {
     else {
       if (flagOfterValidation === true) {
         dispatch(actions.setFlagOfterValidation(false))
-      if (flagToCheck === true) {
-        setFlagToCheck(false)
-        if (flagSaveP === false) {
-          // alert("yy")
-          debugger
-          if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
-            dispatch(actions.setflagBorderProduct(true))
-          }
-          else {
-            dispatch(actions.setflagBorderProduct(false))
-            if (flagMessageContact) {
-              setShowMessage(true)
-              setFlagModal("contact")
-              setModalBody("how do you want to save contact changes?")
+        if (flagToCheck === true) {
+          setFlagToCheck(false)
+          if (flagSaveP === false) {
+            // alert("yy")
+            debugger
+            if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
+              dispatch(actions.setflagBorderProduct(true))
             }
             else {
-              nameInvoice()
+              dispatch(actions.setflagBorderProduct(false))
+              if (flagMessageContact) {
+                setShowMessage(true)
+                setFlagModal("contact")
+                setModalBody("how do you want to save contact changes?")
+              }
+              else {
+                nameInvoice()
+              }
             }
           }
         }
       }
     }
-  }
   }, [flagToCheck, flagOfterValidation])
 
   useEffect(() => {
@@ -288,20 +288,20 @@ export default function InvoiceAndSteps(props) {
     //     setFlagToCheck(true)
 
     if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
-    (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
-    ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
+      (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
+      ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
 
-    setFlagSaveP(true)
+      setFlagSaveP(true)
     }
-        flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-          setFlagToCheck(true)
-          if (flag === true) {
-            setFlagSaveP(true)
-            dispatch(actions.setColorFlagShowSaveP("red"))
-          }
-        })
+    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      setFlagToCheck(true)
+      if (flag === true) {
+        setFlagSaveP(true)
+        dispatch(actions.setColorFlagShowSaveP("red"))
+      }
+    })
 
-      // checkIfFalse()
+    // checkIfFalse()
   }
 
   // async function save1() {

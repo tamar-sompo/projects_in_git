@@ -16,20 +16,20 @@ function Cell(props) {
     const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
     return (
         <>
-        <input
-            // id={id}
-            type={type}
-            onFocus={onFocus}
-            disabled={displayInvoice === "true" ? "disable" : ""}
-            className={props.flagValidName ? 'cell design_text validB' : 'cell design_text '}
-            // className='cell design_text'
-            // maxlength="15"
-            size="7"
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-       />
-           </>
+            <input
+                // id={id}
+                type={type}
+                onFocus={onFocus}
+                disabled={displayInvoice === "true" ? "disable" : ""}
+                className={props.flagValidName ? 'cell design_text validB' : 'cell design_text '}
+                // className='cell design_text'
+                // maxlength="15"
+                size="7"
+                value={value}
+                onBlur={onBlur}
+                onChange={onChange}
+            />
+        </>
     )
 }
 export default Cell
