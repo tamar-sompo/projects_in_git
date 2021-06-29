@@ -37,8 +37,8 @@ export default function NewSetting(props) {
   const [flagFirstB, setFlagFirstB] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
-  const [flagIfSave, setFlagIfSave]=useState(false)
-  const [index, setIndex]=useState(0)
+  const [flagIfSave, setFlagIfSave] = useState(false)
+  const [index, setIndex] = useState(0)
   console.log("allBuisnessToUser", allBuisnessToUser)
 
   const setdispatch = () => {
@@ -72,7 +72,7 @@ export default function NewSetting(props) {
     else {
       console.log("rrrrrrrr", setspecificRoute)
       if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") != -1) {
-        if (flagIfEmpty==false) {
+        if (flagIfEmpty == false) {
           routePage()
           dispatch(actions.setFlagModal(""))
           dispatch(actions.setShowMessage(false))
@@ -82,10 +82,10 @@ export default function NewSetting(props) {
         else {
           console.log("invoiceeeewwww", setspecificRoute)
           // if (flagSaveInvoice === false) {
-            setModalBody("Do you want to save Invoice?")
-            console.log("seyttttttt", setspecificRoute)
-            setFlagModal("otherPage")
-            setShowMessage(true)
+          setModalBody("Do you want to save Invoice?")
+          console.log("seyttttttt", setspecificRoute)
+          setFlagModal("otherPage")
+          setShowMessage(true)
         }
       }
       else {
@@ -101,27 +101,27 @@ export default function NewSetting(props) {
     dispatch(actions.setInvoiceSave(null))
     if (specificRoute === "Documents")
       history.push(`/${userName}/allDocuments`)
-      if (specificRoute === "Business"){
-        history.push(`/${userName}/buisness`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Contacts"){
-        history.push(`/${userName}/customers`)
-        dispatch(actions.setInvoiceSave(null))
-      }
-      if (specificRoute === "Products"){
-        history.push(`/${userName}/product`)
-        dispatch(actions.getAllProduct())
-        dispatch(actions.setInvoiceSave(null))
-      }
+    if (specificRoute === "Business") {
+      history.push(`/${userName}/buisness`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Contacts") {
+      history.push(`/${userName}/customers`)
+      dispatch(actions.setInvoiceSave(null))
+    }
+    if (specificRoute === "Products") {
+      history.push(`/${userName}/product`)
+      dispatch(actions.getAllProduct())
+      dispatch(actions.setInvoiceSave(null))
+    }
   }
 
 
 
   const checkIfBuisness = (value) => {
-    setIndex(index+1)
+    setIndex(index + 1)
     setspecificRoute(value)
-    setIndex(index+1)
+    setIndex(index + 1)
     if (allBuisnessToUser === undefined) {
       history.push(`/${userName}/add_buisness`)
     }
@@ -135,23 +135,22 @@ export default function NewSetting(props) {
       <div className={`container-fluid 
       ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >    {/* <Design_Menu /> */}
 
-        <ul class="list-group list-group-flush d-flex flex-column r">
-          <ul class="list-group d-flex flex-column border-hidden">
+        <ul class="list-group list-group-flush d-flex flex-column " style={{ marginTop: "30%" }}>
 
-            <li className="kkk" onClick={() => checkIfBuisness("Business")}>
+          {/* <li className="kkk" onClick={() => checkIfBuisness("Business")}>
               <li className={window.location.href.split('/')[4] == "buisness" ?
                 "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"}>
                 <FontAwesomeIcon size="lg" icon={['fas', 'archive']}></FontAwesomeIcon>
               </li>
               <li className="li_hidden"><div className={window.location.href.split('/')[4] == "buisness" ?
                 "n" : "l"}>Buisness</div></li>
-            </li>
-            {/* <li className="list-group-item yy d-flex align-items-center" >
+            </li> */}
+          {/* <li className="list-group-item yy d-flex align-items-center" >
               <FontAwesomeIcon size="lg" icon={['fas', 'archive']}></FontAwesomeIcon>
             </li>
             <li className="li_hidden"><div className="l" style={{ textDecoration: "none" }} onClick={() => checkIfBuisness("Business")}>Buisness</div></li> */}
 
-            <li className="kkk" onClick={() => checkIfBuisness("Documents")}>
+          {/* <li className="kkk" onClick={() => checkIfBuisness("Documents")}>
               <li className={window.location.href.split('/')[4] == "allDocuments" ||
                 window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
                 "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
@@ -161,39 +160,52 @@ export default function NewSetting(props) {
                 window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
                 "dd" : "d"}>Documents</div></li>
             </li>
-            {/* <li className="list-group-item yy d-flex align-items-center">
+           */}
+          <li className={window.location.href.split('/')[4] == "buisness" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Business")}>
+            <div>
+              <FontAwesomeIcon size="lg" icon={['fas', 'archive']}></FontAwesomeIcon>
+            </div>
+            <div>Buisness</div>
+          </li>
+          <li className={window.location.href.split('/')[4] == "allDocuments" ||
+            window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Documents")}>
+            <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'receipt']}></FontAwesomeIcon>
-            </li>
-            <li className="li_hidden"><div className="d" onClick={() => checkIfBuisness("Documents")}>Documents</div></li> */}
-
-            <li className="kkk" onClick={() => checkIfBuisness("Products")}>
-              <li className={window.location.href.split('/')[4] == "product" ?
-                "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
-                <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
-              </li>
-              <li className="li_hidden"><div className={window.location.href.split('/')[4] == "product" ?
-                "n" : "l"}>Products</div></li>
-            </li>
-            {/* <li className="list-group-item yy d-flex align-items-center">
+            </div>
+            <div>Documents</div>
+          </li>
+          <li className={window.location.href.split('/')[4] == "product" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Products")}>
+            <div>
+              <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
+            </div>
+            <div>Products</div>
+          </li>
+          <li className={window.location.href.split('/')[4] == "customers" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Contacts")}>
+            <div>
+              <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
+            </div>
+            <div>Contacts</div>
+          </li>
+          {/* <li className="list-group-item yy d-flex align-items-center">
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
             </li>
             <li className="li_hidden"><div onClick={()=>checkIfBuisness("Products")} className="l" >Products</div></li> */}
 
-            <li className="kkk" onClick={() => checkIfBuisness("Contacts")}>
+          {/* <li className="kkk" onClick={() => checkIfBuisness("Contacts")}>
               <li className={window.location.href.split('/')[4] == "customers" ?
                 "list-group-item yyyy d-flex align-items-center" : "list-group-item yy d-flex align-items-center"} >
                 <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
               </li>
               <li className="li_hidden"><div className={window.location.href.split('/')[4] == "customers" ?
                 "n" : "l"}>Contacts</div></li>
-            </li>
-            {/* <li className="list-group-item yy d-flex align-items-center" >
+            </li> */}
+          {/* <li className="list-group-item yy d-flex align-items-center" >
               <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
             </li>
             <li className="li_hidden"><div className="l" onClick={() =>checkIfBuisness("Contacts")} >Contacts</div></li> */}
 
-          </ul>
         </ul>
+        {/* </ul> */}
 
         {/* <ul class="list-group list-group-flush d-flex flex-column r">
           <ul class="list-group d-flex flex-column border-hidden">
