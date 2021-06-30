@@ -296,13 +296,16 @@ function Products(props) {
                     </div>
                     <div className="col-8 d-flex justify-content-end ">
                         <div className="d-flex flex-row" style={{ display: "inline" }}
-                            onClick={() => clickSearch(true)}>
+                            onClick={() => clickSearch(true)}
+                        >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}>
+                                    onChange={(e) => search(e.target.value)}
+                                    onMouseOut={() => clickSearch(false)}
+                                >
                                 </input>
                             </div>
-                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center" : "SearchIcon d-flex justify-content-center align-items-center"}>
+                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center " : "SearchIcon d-flex justify-content-center align-items-center "}>
                                 <BsSearch
                                     style={{ color: "gray", fontWeight: "bold" }}>
                                 </BsSearch>

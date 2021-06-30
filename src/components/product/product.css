@@ -78,29 +78,33 @@ button[disabled], html input[disabled] {
   }
   .backgroundSearchClick{
     background-color: #F8F8F8;
-    padding: .4rem;
-    width: 18rem;
-    height: 4vh;
-    border-radius: 5%;
-    border:none
+    padding         : .4rem;
+    width           : 18rem;
+    height          : 4vh;
+    border-radius   : 5%;
+    border          : none
   }
+  /* .backgroundSearchClick{
+  display:none
+  } */
   .SearchIcon{
     background-color: #F8F8F8;
-    margin-right: 1rem;
-    padding: .4rem;
-    padding-left: .7rem;
-    height: 4vh;
-    width: 4vh;
-    border-radius: 50%;
-    border:none
+    margin-right    : 1rem;
+    padding         : .4rem;
+    padding-left    : .7rem;
+    height          : 4vh;
+    width           : 4vh;
+    border-radius   : 50%;
+    border          : none
   }
-  .SearchIconClick{
+  
+  .SearchIconClick {
     background-color: #F8F8F8;
-    margin-right: 1rem;
-    padding: .4rem;
-    padding-left: .7rem;
-    height: 4vh;
-    width: 4vh;
-    border-radius: 5%;
-    border:none
+    margin-right    : 1rem;
+    padding         : .4rem;
+    padding-left    : .7rem;
+    height          : 4vh;
+    width           : 4vh;
+    border-radius   : 5%;
+    border          : none
   }

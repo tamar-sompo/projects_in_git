@@ -13,7 +13,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default function Share(props) {
 
-
+    console.log("props.invoiceFhone", props.invoiceFhone)
     const dispatch = useDispatch();
     const sendEmail = () => dispatch(actions.setSendLinkToEmail())
     const [pdfDisplay, setPdfDisplay] = useState(false);
@@ -38,17 +38,17 @@ export default function Share(props) {
         let businessPhone;
         let businessPhoneWatsapp;
         let businessPhoneWatsapp1;
-
+        let contactPhone
         debugger
         if (flagSave1 === true) {
             businessPhone = invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                 invoice.contactOneTime.phone : "";
         }
-        else {
+        else if (flagSave1 === false) {
             const contact1 = allContact.find(contact => contact.email === emailcontact)
             contactPhone = contact1 ? contact1.phone : "";
         }
-        businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : "";
+        businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : props.invoiceFhone ? props.invoiceFhone.substring(1) : "";
         businessPhoneWatsapp1 = businessPhoneWatsapp ? 972 + businessPhoneWatsapp : "";
         console.log("businessPhone", businessPhoneWatsapp1)
     }
@@ -68,14 +68,14 @@ export default function Share(props) {
                 {/* //    "icons":"ico"} icon={['fas', 'share-alt']}></FontAwesomeIcon>}>  */}
                 <Dropdown.Item onClick={() => setMail()}>
                     <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} />  Email</Dropdown.Item>
-                {invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
+                {props.invoiceFhone || allContact && allContact.find(x => x.email === emailcontact) && allContact.find(x => x.email === emailcontact).phone || invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                     <Dropdown.Item onClick={() => sendWhatsApp()}
                         href={`https://wa.me/${businessPhoneWatsapp1}?text=${`https://finance.leader.codes/${userName}/view/${invoiceId}`}`} target="_blank" >
                         <FontAwesomeIcon size='1.5x' className='insertIcon font-weight-bold'
                             icon={['fab', 'whatsapp']} />
                         Whatsapp
-                    </Dropdown.Item> : ""}
-
+                    </Dropdown.Item> : ""
+                }
                 {/* <Dropdown.Item href="#/action-3">
          <FontAwesomeIcon    className='insertIcon' size='1x' icon={['fas', 'file-pdf']}/> Print</Dropdown.Item> */}
 

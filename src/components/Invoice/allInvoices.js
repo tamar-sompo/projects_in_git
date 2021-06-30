@@ -346,11 +346,13 @@ function AllInvoices(props) {
                                   {
                                     chooselinei.isShown && chooselinei.index === invoice._id && (
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
-                                        <Share fl={1} />
+                                        <Share fl={1}
+                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} />
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
                                         {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
                                         <MdContentCopy id="icon"></MdContentCopy> */}
-                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank">
+                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
+                                          style={{ paddingTop: "0px", marginTop: "0px" }}>
                                           <MdRemoveRedEye id="icon"
                                             data-toggle="collapse"
                                             data-target={"#collapsePicture" + index}
@@ -366,20 +368,6 @@ function AllInvoices(props) {
                                 </div>
                               </td>
                             </tr>
-
-                            {/* <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
-                              "border": "none",
-                              "height": "0px",
-                              "padding-top": "0px",
-                              "padding": "0px"
-                            }}>
-                              <div className="d-flex justify-content-around">
-                                <div class="collapse" id={"collapsePicture" + index} data-parent="#accordionExample">
-                                  <div style={{ width: '45vw', height: '5vh', display: "inline-block", boxShadow: "0px 3px 6px #0a26b126" }}>
-                                    {invoiceDetailsView._id === invoice._id && <New_Invoice></New_Invoice>}
-                                  </div>
-                                </div></div>
-                            </td> */}
                           </>
                         )
                       })
@@ -392,25 +380,7 @@ function AllInvoices(props) {
         </div>
 
       </div>
-      {/* <div className="container d-flex justify-content-center mt-5 mb-5">
-        <table className="table table-striped table-hover mt-3 ml-5 mr-5" responsive>‏
-            <thead>
-            <tr>
-              <th clasaName="col">#</th>
-              <th clasaName="col">invoice-number</th>
-              <th clasaName="col">clientName</th>
-              <th clasaName="col">clientPhone</th>
-              <th clasaName="col">Payment status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {getAllInvoices()}
-          </tbody>
-        </table>
-      </div> */}
     </>
-
-
   )
 }
 const mapDispatchToProps = (dispatch) => {
