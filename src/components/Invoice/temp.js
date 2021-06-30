@@ -542,7 +542,7 @@ function Invoice(props) {
             dispatch(actions.setColorFlagShowSaveP("red"))
         }
         else {
-            dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+            dispatch(actions.setColorFlagShowSaveP("#707071"))
             dispatch(actions.setResetNewProduct({}))
             dispatch(actions.setProductSelectLimit([]))
             allproduct.length > 0 && allproduct.map(
@@ -599,7 +599,7 @@ function Invoice(props) {
     }
     const deleteItemFromStore = (index) => {
         debugger
-        dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+        dispatch(actions.setColorFlagShowSaveP("#707071"))
         dispatch(actions.setFlagShowSaveP(false))
         dispatch(actions.setDeleteSaveSum(index))
         // setsaveSum2(saveSum-saveSum2)
@@ -1787,7 +1787,7 @@ export const Item = (props) => {
                 {/* <button style={{ width: "25px", height: "20px", backgroundColor: 'transparent', border: "none" }} onClick={savepr}>save</button> */}
                 {/* <Col >
        </Col> */}
-                <Col md={1} style={{ backgroundColor: '#DBD0D7', height: "100%" }}>
+                <Col md={1} style={{ backgroundColor: '#707071', height: "100%" }}>
                     <div className='py-3' ref={totalProductRef}>
                         <input
                             className="sum1"

@@ -119,7 +119,8 @@ export default function InvoiceAndSteps(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
+
         }
       })
       setShowMessage(false)
@@ -162,7 +163,8 @@ export default function InvoiceAndSteps(props) {
     if (flagFirstToP === false)
       setFlagFirstToP(true)
     else {
-      if (colorFlagShowSaveP === "#DBD0D7")
+      // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      if (colorFlagShowSaveP === "#707071")
         setFlagSaveP(false)
       else {
         dispatch(actions.setColorFlagShowSaveP("red"))
@@ -179,7 +181,7 @@ export default function InvoiceAndSteps(props) {
   
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagModal(""))
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
