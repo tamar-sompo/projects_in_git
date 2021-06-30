@@ -354,10 +354,13 @@ export default function InvoiceAndSteps(props) {
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
-
-      dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-      console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      debugger
+      if (detailsInvoice._id) {
+        dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+      }
+      else
+        dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
+      // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+      // debugger
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }

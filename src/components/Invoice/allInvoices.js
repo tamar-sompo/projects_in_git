@@ -350,7 +350,9 @@ function AllInvoices(props) {
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
                                         {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
                                         <MdContentCopy id="icon"></MdContentCopy> */}
-                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank">
+                                        
+                                        <a href={`https://localhost:3000
+                                        /${userName}/view/${invoice._id}`} target="_blank">
                                           <MdRemoveRedEye id="icon"
                                             data-toggle="collapse"
                                             data-target={"#collapsePicture" + index}

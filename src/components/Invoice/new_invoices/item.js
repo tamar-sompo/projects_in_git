@@ -653,6 +653,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
                 autoComplete="new-password"
+                style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 className={flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
@@ -669,6 +670,7 @@ function Item(props) {
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
               maxRows={2}
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'
               // placeholder='descripition'
@@ -694,6 +696,7 @@ function Item(props) {
               id="validation-example-3-field2"
               // flagValidPrice={}
               name="price"
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
