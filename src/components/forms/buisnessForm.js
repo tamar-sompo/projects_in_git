@@ -297,7 +297,8 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "95%", width: "90%", overflowY: "auto"
+          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+          overflowY: "auto"
         }}>
         {/* {
         show ?
