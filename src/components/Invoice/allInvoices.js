@@ -280,7 +280,7 @@ function AllInvoices(props) {
                 >
                 </input>
               </div>
-              <div className={flagSearch === true ? "SearchIconClick" : "SearchIcon"}>
+              <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center " : "SearchIcon d-flex justify-content-center align-items-center "}>
                 <BsSearch
                   style={{ color: "gray", fontWeight: "bold" }}>
                 </BsSearch>
