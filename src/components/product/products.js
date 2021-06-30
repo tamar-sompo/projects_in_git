@@ -302,7 +302,7 @@ function Products(props) {
                                     onChange={(e) => search(e.target.value)}>
                                 </input>
                             </div>
-                            <div className={flagSearch === true ? "SearchIconClick" : "SearchIcon"}>
+                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center" : "SearchIcon d-flex justify-content-center align-items-center"}>
                                 <BsSearch
                                     style={{ color: "gray", fontWeight: "bold" }}>
                                 </BsSearch>

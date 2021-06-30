@@ -170,7 +170,7 @@ function AllInvoices(props) {
 
     debugger
     setDisplayInvoice("true")
-    setFlagView(true)
+    // setFlagView(true)
     dispatch(actions.setInvoiceShow(invoice))
   }
 
@@ -280,7 +280,7 @@ function AllInvoices(props) {
                 >
                 </input>
               </div>
-              <div className={flagSearch === true ? "SearchIconClick" : "SearchIcon"}>
+              <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center " : "SearchIcon d-flex justify-content-center align-items-center "}>
                 <BsSearch
                   style={{ color: "gray", fontWeight: "bold" }}>
                 </BsSearch>
@@ -348,11 +348,18 @@ function AllInvoices(props) {
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
                                         <Share fl={1} />
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
-                                        <MdRemoveRedEye id="icon"
-                                          data-toggle="collapse"
-                                          data-target={"#collapsePicture" + index}
-                                          aria-expanded="false"
-                                          onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
+                                        {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
+                                        <MdContentCopy id="icon"></MdContentCopy> */}
+                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank">
+                                          <MdRemoveRedEye id="icon"
+                                            data-toggle="collapse"
+                                            data-target={"#collapsePicture" + index}
+                                            aria-expanded="false"
+                                            onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
+                                        </a>
+                                        {/* <Share fl={1}/> */}
+                                        {/* <span id="icon" className="glyphicon glyphicon-eye-open addIcon" aria-hidden="true"
+                                            // onClick={() => showInvoiceById(invoice._id)}></span> */}
                                       </div>
                                     )
                                   }
