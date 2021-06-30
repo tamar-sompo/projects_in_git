@@ -321,7 +321,8 @@ function Products(props) {
                                     <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
                                         <tr>
                                             {/* <th style={{ width: "5%", backgroundColor: "white", border: "none" }}></th> */}
-                                            <th></th>
+                                            <th
+                                            ></th>
                                             <th>NAME</th>
                                             <th>DESCRIPTION</th>
                                             <th>PRICE</th>
@@ -331,13 +332,16 @@ function Products(props) {
                                         </tr>
                                     </thead>
                                     {flag1 == true &&
-                                        <td colSpan="7" style={{
-                                            "border": "none",
-                                            "height": "0px",
-                                            /* padding-top: 0px; */
-                                            "padding": "3px",
-                                            marginTop: "12px"
-                                        }}>
+                                        <td
+                                            colSpan="6"
+                                            style={{
+                                                "border": "none",
+                                                "height": "0px",
+                                                /* padding-top: 0px; */
+                                                "padding": "3px",
+                                                marginTop: "12px"
+                                            }}
+                                        >
                                             <div className="d-flex justify-content-around">
                                                 <ProductForm changeFlag={changeFlag} flag1={flag1}></ProductForm>
                                             </div>
