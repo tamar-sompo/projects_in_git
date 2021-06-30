@@ -59,7 +59,7 @@ function Item(props) {
 
   useEffect(() => {
     if (colorFlagShowSaveP === "red") {
-      if (dtp._id) {
+      if (dtp && dtp._id) {
         if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
           setflagValidPrice(false)
           setflagValidName(false)
@@ -69,7 +69,7 @@ function Item(props) {
             setflagValidName(true)
             console.log("flagValidName", flagValidName)
           }
-          if (dtp.price) {
+          if (dtp && dtp.price) {
             setflagValidPrice(true)
             console.log("flagValidPhone", flagValidPrice)
           }
