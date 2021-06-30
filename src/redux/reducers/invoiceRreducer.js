@@ -53,18 +53,26 @@ const initialState = {
     flagOfterValidation: false,
     flagTmpSave: false,
     flagIfEmpty: false,
+    flagIfEmptyProduct: false,
     flagView: false,
     flagFromTable: false,
     flagPush: false,
     flagPush1: false,
     filteredInvoices: [],
-    flagSaveP: false
-    // specificRoute: ''
-
+    flagSaveP: false,
+    borderProductInvoice:false
 }
 
 
 const invoices = {
+
+setFlagIfEmptyProduct(state, action){
+state.flagIfEmptyProduct=action.payload
+},
+
+    setBorderProductInvoice(state,action){
+        state.borderProductInvoice=action.payload
+    },
 
     setFlagSaveP(state, action) {
         state.flagSaveP = action.payload
