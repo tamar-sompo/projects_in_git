@@ -77,6 +77,7 @@ text-align: left !important;
     padding-top: 7% !important;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 #userLogo-temp1{
@@ -166,9 +167,8 @@ text-align: left !important;
     background: transparent;
 }
 .validB{
-    border: solid !important;
-    border-color: red!important;
-  }
+    border:1px solid red!important;
+}
 .flagLoudOp{
     opacity: 0.5;
 }
