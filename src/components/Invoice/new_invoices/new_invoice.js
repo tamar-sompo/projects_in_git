@@ -220,6 +220,7 @@ function New_Invoice(props) {
       else {
 
         if (window.location.href.indexOf('invoice/edit') != -1) {
+          dispatch(actions.setPushNewProduct({}))
           setDisplayInvoice("false")
         }
 
