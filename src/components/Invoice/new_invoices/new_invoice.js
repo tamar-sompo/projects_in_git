@@ -225,6 +225,7 @@ function New_Invoice(props) {
 
         let summ = 0
         if (detailsInvoice.products && detailsInvoice.products.length > 0) {
+          dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
           detailsInvoice.products.filter(x =>
             dispatch(actions.setPushNewProduct({})))
           detailsInvoice.products.filter(x =>
