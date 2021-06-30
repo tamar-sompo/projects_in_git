@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
-// import './invoice.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Col, Row, Container, Button } from 'react-bootstrap';
 import './form.css';
@@ -60,8 +59,9 @@ function ProductForm(props) {
   const inputText = useRef(null);
   const dispatch = useDispatch();
   // const changeComponent = (component1) => dispatch(actions.setComponentConfigurator(component1))
-  const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
+  // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
   const newProductTable = useSelector(state => state.productReducer.newProductTable)
+  console.log("newProductTable.images", newProductTable.images);
 
 
 
@@ -103,48 +103,33 @@ function ProductForm(props) {
   }
 
   const addImage = (event) => {
-    console.log('vdhggggg');
     if (event) {
-      console.log('event', event)
       let reader = new FileReader();
-      const image = reader.result;
+      let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-        // console.log('reader.result',reader.result[0])
-        const objectImage = { 'image': event, 'to': 'product' }
-        props.setImage(objectImage)
+        debugger
+        imageToStor = { 'image': event, 'to': 'product' }
+        dispatch(actions.setImage(imageToStor))
+        console.log("imageee12kkkkkkkkkkkk", imageToStor)
       }
       reader.readAsDataURL(event)
-      console.log('imagep', props.imgProduct)
     }
   }
 
+  const updateCellPrice = (_value, fieldName) => {
+    if (!fieldName) {
+      return;
+    }
+    if (!_value) {
+      dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
+      return
+    }
 
-
-const updateCellPrice = (_value ,fieldName)=> {
-        if (!fieldName) {
-          return;
-        }
-        if (!_value) {
-          dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
-          return
-          //  dispatch({
-          //   fieldName,
-          //   value: {
-          //     value: undefined,
-          //     validationClass: '',
-          //     errorMessage: '',
-          //   },
-          // });
-        }
-    
-        const value = Number(_value);
-        if (!Number.isNaN(value)) {
-          dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
-        }
-      }
-
-
-
+    const value = Number(_value);
+    if (!Number.isNaN(value)) {
+      dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
+    }
+  }
 
   return (
     <>
@@ -162,44 +147,22 @@ const updateCellPrice = (_value ,fieldName)=> {
               backgroundColor: "#F6F6FA"
             }}
             className={classes.buttonUpload}>
-            {props.newProduct[0] && props.newProduct[0].images ?
-              <img
-                className={classes.imgUpload}
-                src={newProductTable ? newProductTable.images : ""}
-                alt="Logo"
-                title="Your Logo Here"
-                onClick={() => onButtonClick("logo")}
-              /> :
-              <HiUpload id="icon" className={classes.iconUpload} />}
+            {
+              newProductTable && newProductTable.images ?
+                // props.newProduct[0] && props.newProduct[0].images ?
+                <img
+                  className={classes.imgUpload}
+                  src={newProductTable ? newProductTable.images : ""}
+                  alt="Logo"
+                  title="Your Logo Here"
+                  onClick={() => onButtonClick("logo")}
+                /> :
+                <HiUpload id="icon" className={classes.iconUpload} />
+            }
             <br></br>
             <div className="uploadImage">Upload</div>
           </button>
         </div>
-        {/* <div className="col-3">
-          <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-            onChange={(e) => addImage(e.target.files[0])} />
-          <button onClick={onButtonClick} className="rounded"
-            style={{
-              width: "13vh",
-              height: "13vh",
-              marginTop: "2vh",
-              borderRadius: "1vh",
-              backgroundColor: "#F6F6FA"
-            }}
-            className={classes.buttonUpload}>
-            {props.newProduct[0] && props.newProduct[0].images ?
-              <img
-                className={classes.imgUpload}
-                src={newProductTable ? newProductTable.images : ""}
-                alt="Logo"
-                title="Your Logo Here"
-                onClick={() => onButtonClick("logo")}
-              /> :
-              <HiUpload id="icon" className={classes.iconUpload} />}
-            <br></br>
-            <div className="uploadImage">Upload</div>
-          </button>
-        </div> */}
         <div className="row">
           <div className="hederN">
             <label> Name</label>
@@ -221,80 +184,27 @@ const updateCellPrice = (_value ,fieldName)=> {
               prefix={'$'}
             />
 
-            {/* <input className="fieldProductCss"
-              value={newProductTable ? newProductTable.price : ''}
-              onChange={(e) => onFieldEdit('price', e)}
-            ></input> */}
-
           </div>
         </div>
-
-
-
-
-        <div class="container col-9" style={{ height: 16 + 'vh', width: '67%' }}>
-          <div class="row">
-            <div className="col-3">
-              <p className="ff">name product:</p>
-            </div>
-            <div className="col-3 in">
-              <input className="form-control form-control-sm"
-                value={newProductTable ? newProductTable.name : ''}
-                className={classes.inputStyle} onChange={(e) => onFieldEdit('name', e)} />
-            </div>
-            <div className="col-3">
-              <p className="ff">description:</p>
-            </div>
-            <div className="col-3 in">
-              <input className="form-control form-control-sm" className={classes.inputStyle}
-                value={newProductTable ? newProductTable.description : ''}
-                onChange={(e) => onFieldEdit('description', e)} />
-
-            </div>
+        <div className="row">
+          <div className="hederD">
+            <label> Discription</label>
+            <input className="fieldProductCssD"
+              value={newProductTable ? newProductTable.description : ''}
+              onChange={(e) => onFieldEdit('description', e)}
+            ></input>
           </div>
-
-          <div class="row">
-            <div className="col-3">
-              <p className="ff">price:</p>
-            </div>
-            <div className="col-3 in">
-              <input className="form-control form-control-sm" className={classes.inputStyle}
-                value={newProductTable ? newProductTable.price : ''}
-                onChange={(e) => onFieldEdit('price', e)} />
-            </div>
-            <div className="col-3">
-              <p className="ff">amount:</p>
-            </div>
-
-            <div className="col-3 in">
-              <input className="form-control form-control-sm" className={classes.inputStyle}
-                value={newProductTable ? newProductTable.amount : ''}
-                onChange={(e) => onFieldEdit('amount', e)} />
-            </div>
-          </div>
-
-          <div class="row">
-            <div className="col-4 in" style={{ right: -80 + '%' }}>
-              <button type="button" class="btn btn-link" onClick={changeFlag}>close</button>
-              {/* <button type="button" class="btn btn-link" onClick={clearObject}>delete</button> */}
-              <button type="button" class="btn btn-link" onClick={addNewProduct}>save</button>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          {console.log('imagep', props.imgProduct)}
+          <button type="button" class="btn btn-link1" onClick={changeFlag}>cancel</button>
+          <button type="button" class="btn btn-link2" onClick={addNewProduct}>save</button>
         </div>
       </div>
-      {/* <button onClick={addNewProduct}></button> */}
-
     </>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    componentConfigurator: state.companyReducer.componentConfigurator,
+    // componentConfigurator: state.companyReducer.componentConfigurator,
     new: state.productReducer.newProduct,
     imgProduct: state.productReducer.imgProduct,
     newProduct: state.productReducer.newProduct
@@ -310,5 +220,4 @@ const mapDispatchToProps = (dispatch) => ({
   setImage: (objectImage) => dispatch(actions.setImage(objectImage))
   // setImgProduct:(img)=>dispatch(actions.setSignatureToServerP(img))
 })
-
 export default connect(mapStateToProps, mapDispatchToProps)(ProductForm)
