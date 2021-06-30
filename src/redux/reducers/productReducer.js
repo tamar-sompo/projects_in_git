@@ -14,12 +14,12 @@ const initialState = {
         productSelect: [],
         productId: "",
         flagShowSaveP: [false],
-        colorFlagShowSaveP: "#DBD0D7",
+        colorFlagShowSaveP: "#707071",
 
 }
 const products = {
-        setResetAllNewProduct(state, action){
-               state.newProduct=[]
+        setResetAllNewProduct(state, action) {
+                state.newProduct = []
         },
         editProduct11(state, action) {
                 debugger

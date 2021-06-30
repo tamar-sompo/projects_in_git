@@ -184,7 +184,7 @@ function AllInvoices(props) {
 
     debugger
     setDisplayInvoice("true")
-    setFlagView(true)
+    // setFlagView(true)
     dispatch(actions.setInvoiceShow(invoice))
     // dispatch(actions.setInvoicecye('eye'+index))
     // dispatch(actions.setInvoice(  {

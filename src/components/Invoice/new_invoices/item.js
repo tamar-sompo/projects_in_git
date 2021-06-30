@@ -159,7 +159,7 @@ function Item(props) {
   const vv3 = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
@@ -217,7 +217,7 @@ function Item(props) {
     setflagValidPrice(false)
     setflagValidName(false)
     setFlagSaveP(false)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (detailsInvoice.products[0] && detailsInvoice.products[0].id == "null") {
@@ -251,9 +251,11 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    setflagValidPrice(false)
+    setflagValidName(false)
     setFlagSaveP(false)
     console.log("ttt", e)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
@@ -446,7 +448,7 @@ function Item(props) {
       debugger
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
-      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
       dispatch(actions.setFlagShowSaveP({ index: props.index, value: false }))
       if (saveSum > 0)
         dispatch(actions.setDeleteSaveSum(props.index))
@@ -768,7 +770,7 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "cinput" : ""} style={{
                   marginLeft: "33%",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>

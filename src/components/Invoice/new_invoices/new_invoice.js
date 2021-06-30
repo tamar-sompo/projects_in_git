@@ -640,7 +640,7 @@ function New_Invoice(props) {
     // dispatch(actions.setProductAmount(0))
 
     if (flagIfSave === false) {
-      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
       // dispatch(actions.setResetNewProduct({}))
       dispatch(actions.setProductSelectLimit([]))
       ////////////////////////////////////////////////////////להחזיר בינתיים הורדתי אתזה
@@ -704,7 +704,7 @@ function New_Invoice(props) {
     debugger
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
     if (saveSum >= 0) {
       dispatch(actions.setDeleteSaveSum(index))
@@ -1590,7 +1590,7 @@ function New_Invoice(props) {
                 <div className="col-3">
                   {displayInvoice === "false" &&
 
-                    <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "35%", height: "100%", backgroundColor: "#DBD0D7", color: "white", fontSize: "0.7vw" }}>Add New
+                    <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "38%", height: "100%", backgroundColor: "#707071", color: "white", fontSize: "0.7vw" }}>Add New
                     </button>
 
                   }
