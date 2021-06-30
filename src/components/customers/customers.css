@@ -1,39 +1,47 @@
-.tbl_customers{
+.tbl_customers {
   font-size: large;
 }
-.wrap_table{
+
+.wrap_table {
   overflow-y: auto;
   overflow-x: hidden;
-  width: 100%;
+  width     : 100%;
 
   display: inline-block;
-  height: 85%;
+  height : 85%;
 }
+
 .wrap_table::-webkit-scrollbar {
-  width: 0.3em; 
-} 
+  width: 0.3em;
+}
+
 .wrap_table::-webkit-scrollbar-track {
-    background: rgb(201, 196, 196) 0% 0% no-repeat padding-box;
-    border-radius: 10px;
-    opacity: 0.15; }
+  background   : rgb(201, 196, 196) 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  opacity      : 0.15;
+}
 
-    .con{
-        padding: 3%  !important;background-color: white;
-    }
-    .has-search {
-   margin-left: 27px;
- /* display: inline; */
+.con {
+  padding         : 3% !important;
+  background-color: white;
+}
+
+.has-search {
+  margin-left: 27px;
+  /* display : inline; */
 
 
-  }
-  .form-control{
-      height:4vh  !important;
-      width:15vw !important;
-      background:
-      #EBEAEA 0% 0% no-repeat padding-box;
-      
-  }
-  /* ::placeholder {
+}
+
+.form-control {
+  height: 4vh !important;
+  width : 15vw !important;
+  background:
+    #EBEAEA 0% 0% no-repeat padding-box;
+
+}
+
+/* ::placeholder {
   font-size: 0.6vw;
  
   
@@ -41,89 +49,86 @@
   color: #8D8DAE;
   opacity: 1;
   } */
-  .ff{
-      padding-left: 11px;
-      color: #9797B6 0% 0% no-repeat padding-box;
-      opacity: 1;
-      /* top:12px;
+.ff {
+  padding-left: 11px;
+  color       : #9797B6 0% 0% no-repeat padding-box;
+  opacity     : 1;
+  /* top      :12px;
       position: absolute;
-      z-index: 2;
-      display: block; 
-      right:25px; */
-  }
-  .label1{
-      font: var(--unnamed-font-style-normal) normal bold 16px/19px Lato;
-text-align: center;
+      z-index : 2;
+      display : block; 
+      right   :25px; */
+}
 
-/* letter-spacing: 0.32px; */
-color: #8D8DAE;
-opacity: 1;
-      padding-right: 0.75vw;
-     /* font-size:0.8vw;
+.label1 {
+  font      : var(--unnamed-font-style-normal) normal bold 16px/19px Lato;
+  text-align: center;
+
+  /* letter-spacing: 0.32px; */
+  color        : #8D8DAE;
+  opacity      : 1;
+  padding-right: 0.75vw;
+  /* font-size :0.8vw;
      
-     opacity: 1; */
-   
-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
-  .wraplabel{
-      
-      display: inline-block;
-      padding-top: 7px;
-          margin-left: 27px
-  }
-  .wrapsearch{
-      box-shadow:0px 0px 1px 1px #ccc;
-      background: #F6F5FC 0% 0% no-repeat padding-box;
-border: 0.10000000149011612px solid #F6F5FC;
-border-radius: 7px;
-opacity: 1;
-    
-      /* background: #F6F5FC 0% 0% no-repeat padding-box; */
-      height: 60px;
-      width: 230px;
-  }
- 
+     opacity   : 1; */
+
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.wraplabel {
+
+  display    : inline-block;
+  padding-top: 7px;
+  margin-left: 27px
+}
+
+.wrapsearch {
+  box-shadow   : 0px 0px 1px 1px #ccc;
+  background   : #F6F5FC 0% 0% no-repeat padding-box;
+  border       : 0.10000000149011612px solid #F6F5FC;
+  border-radius: 7px;
+  opacity      : 1;
+
+  /* background: #F6F5FC 0% 0% no-repeat padding-box; */
+  height: 60px;
+  width : 230px;
+}
+
 .myTextBox {
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
+  border-top-style      : hidden;
+  border-right-style    : hidden;
+  border-left-style     : hidden;
   /* border-bottom-style: groove; */
-  border-bottom-color: dimgray;
-  border-bottom-width: 1px;
-  
-height: 90%;
+  border-bottom-color   : dimgray;
+  border-bottom-width   : 1px;
+
+  height    : 90%;
   background: transparent;
- }
-  /* I made the background-color same as the page's background-color because this leaves just a line to type on. */
-  .myTextBox:focus {
-    /* This is the CSS code that runs when 'myTextBox' is focused */
-    
-    /* border-bottom: black; */
-  }
+}
+
+/* I made the background-color same as the page's background-color because this leaves just a line to type on. */
 /* input[type="text"]
 {
   font-size: 0.6vw;
   width: 10vw;
   height: 3vw;
 } */
-th{
-  position: sticky;
-  width: 13%;
-  text-align: left;
-  font-size: 1.1rem;
+th {
+  position      : sticky;
+  width         : 13%;
+  text-align    : left;
+  font-size     : 1.1rem;
   letter-spacing: 0px;
-  color: #05131D;
-  opacity: 1;
-  font-family: 'Roboto', sans-serif;
+  color         : #05131D;
+  opacity       : 1;
+  font-family   : 'Roboto', sans-serif;
 }
-td{
+
+td {
   /* font-family: 'Roboto', sans-serif; */
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.tdemail{
-/* overflow-x: auto;
-width: 50%; */
-}
+
 /* .tdemail::-webkit-scrollbar {
   width: 0.091em; 
 } 
@@ -132,55 +137,64 @@ width: 50%; */
     border-radius: 2px;
     opacity: 0.15; } */
 
-    .tgtg{
-        width: 158px;
-        overflow-x: auto;
-    
-        
-    }
-    .td_side_edit_delete_copy #icon{
-      color: #C90A0A;
-    
-     }    
-.tgtg::-webkit-scrollbar{
-  width: 0.01em;
-  height: 0.01em;
-  
-}
-.tgtg::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+.tgtg {
+  width     : 158px;
+  overflow-x: auto;
 
-  border: 0.1px solid #D6D6D6;
+
+}
+
+.td_side_edit_delete_copy #icon {
+  color: #C90A0A;
+
+}
+
+.tgtg::-webkit-scrollbar {
+  width : 0.01em;
+  height: 0.01em;
+
+}
+
+.tgtg::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.00);
+
+  border       : 0.1px solid #D6D6D6;
   border-radius: 10px;
 }
+
 .tgtg::-webkit-scrollbar-thumb {
   background-color: #D6D6D6;
-  border-radius: 10px;
- 
+  border-radius   : 10px;
+
 }
-.td_tt
-{
-    width: 5%;
-    /* border:none; */
-    /* border-top: 0px !important; */
+
+.td_tt {
+  width        : 5%;
+  /* border    :none; */
+  /* border-top: 0px !important; */
 }
-.img{
+
+.img {
   background: transparent url() 0% 0% no-repeat padding-box;
 }
-.td_checbox{
-  width: 5%;
-  border:none;
+
+.td_checbox {
+  width     : 5%;
+  border    : none;
   border-top: 0px !important;
 }
-tr:hover #td_hover{
-    background-color: white;
-} 
-.y:hover .tooltiptext{
-    visibility: visible;
+
+tr:hover #td_hover {
+  background-color: white;
 }
-.tooltiptext{
+
+.y:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltiptext {
   visibility: hidden;
- 
+
   background-color: black;
 
 
@@ -189,17 +203,18 @@ tr:hover #td_hover{
 
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
+  z-index : 1;
 }
 
 .y {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position     : relative;
+  display      : inline-block;
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
-.tool{
+.tool {
   background-color: black;
-   width: 50px;
+  width           : 50px;
 }
