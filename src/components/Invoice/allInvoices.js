@@ -419,12 +419,13 @@ function AllInvoices(props) {
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
                                         {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
                                         <MdContentCopy id="icon"></MdContentCopy> */}
-                                        <MdRemoveRedEye id="icon"
-                                          data-toggle="collapse"
-                                          data-target={"#collapsePicture" + index}
-                                          aria-expanded="false"
-                                          onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
-
+                                        <a href={`https://finance.leader.codes/ruthF/view/${invoice._id}`} target="_blank">
+                                          <MdRemoveRedEye id="icon"
+                                            data-toggle="collapse"
+                                            data-target={"#collapsePicture" + index}
+                                            aria-expanded="false"
+                                            onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
+                                        </a>
                                         {/* <Share fl={1}/> */}
                                         {/* <span id="icon" className="glyphicon glyphicon-eye-open addIcon" aria-hidden="true"
                                             // onClick={() => showInvoiceById(invoice._id)}></span> */}

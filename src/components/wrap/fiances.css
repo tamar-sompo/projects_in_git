@@ -1,4 +1,3 @@
-
 .ss:hover{
     width: 130%;   
    }
@@ -11,12 +10,12 @@
    }
  
    .width_wrap{
-       width: 96vw;
+       width: 98%;
        
    }
    .width_email{
-       width: 20vw;
+       width: 18%;
    }
    .width_wrap_withemail{
-       width: 76vw;
+       width: 82%;
    }

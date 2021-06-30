@@ -192,7 +192,7 @@ export default function NewSetting(props) {
           </li>
           <li className={window.location.href.split('/')[4] == "setting" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Setting")}>
             <div>
-              <RiSettings2Fill size="sm"></RiSettings2Fill>
+              <FontAwesomeIcon size="lg" icon={['fas', 'cog']}></FontAwesomeIcon>
             </div>
             <div>Setting</div>
           </li>

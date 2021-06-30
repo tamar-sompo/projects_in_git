@@ -193,8 +193,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .validB {
-    border: 1.5px solid !important;
-    border-color: red !important;
+    border: 1px solid red !important;
+    /* border-color: red !important; */
 }
 
 .flagLoudOp {

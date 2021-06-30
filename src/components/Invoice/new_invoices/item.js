@@ -685,10 +685,9 @@ function Item(props) {
 
 
 
-          <div className="inputproduct" style={{ width: "20%" }}>
+          <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               autoComplete="new-password"
-              style={{ width: "100%", height: "100%" }}
               onFocus={() => cleanInput1('price')}
               id="validation-example-3-field2"
               // flagValidPrice={}
