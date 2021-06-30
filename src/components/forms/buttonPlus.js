@@ -47,15 +47,8 @@ function ButtonPlus(props) {
 
   return (
     <>
-      <button className={classes.button} onClick={() => changeFlag(true)}
-        style={{ backgroundColor: 'transparent', border: 'none', borderRadius: 50 + 'px', height: 40 + '%', width: 40 + '%' }}>
-        <FontAwesomeIcon style={{ color: '#8E73EC', height: 100 + '%', width: 100 + '%' }}
-          // className={classes.icon}
-          className='iconBtnConfig pr-2 pt-1'
-          size='2x'
-          icon={['fas', 'plus-circle']}
-        >
-        </FontAwesomeIcon> </button>
+      <button onClick={() => changeFlag(true)}
+        className="newProd11">New Invoice +</button>
       {
         history.location.pathname == `/${userName}/allDocuments` && dispatch(actions.setFlagPush(true)) && dispatch(actions.setFlagPush1(true)) && flag === true && dispatch(actions.setResetSaveSum(0)) && dispatch(actions.setFlagIfEmpty(false))
         && dispatch(actions.setResetAllNewProduct()) && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&

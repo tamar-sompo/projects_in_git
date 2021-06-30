@@ -15,11 +15,20 @@ const initialState = {
         productId: "",
         flagShowSaveP: [false],
         colorFlagShowSaveP: "#DBD0D7",
+        filteredProducts: [],
 
 }
 const products = {
-        setResetAllNewProduct(state, action){
-               state.newProduct=[]
+        setFilteredProducts(state, action) {
+                debugger
+                state.filteredProducts = action.payload
+        },
+        setFilteredProducts1(state, action) {
+                debugger
+                state.filteredProducts.push(action.payload)
+        },
+        setResetAllNewProduct(state, action) {
+                state.newProduct = []
         },
         editProduct11(state, action) {
                 debugger
