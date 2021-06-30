@@ -76,6 +76,10 @@ const invoices = {
     setFilteredInvoices(state, action) {
         state.filteredInvoices = action.payload
     },
+    setFilteredInvoices1(state, action) {
+        debugger
+        state.filteredInvoices.push(action.payload)
+    },
     // setSpecificRoute(state, action) {
     //     state.specificRoute = action.payload
     // },

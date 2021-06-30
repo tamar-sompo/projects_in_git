@@ -9,6 +9,8 @@ import Configurator from './new_configurator';
 // import Nav_Right from './nav_right';
 import AllInvoices from '../Invoice/allInvoices';
 import Products from '../product/products';
+import SettingBuisnessForm from '../forms/settingBusinessFrom';
+
 // import createContact from '../Invoice/createContact';
 // import Customers from '../customers/cutomers';
 // import InvoiceShow from '../Invoice/invoiceShow';
@@ -143,6 +145,9 @@ export default function Fiances() {
                                     <Route path="/:userName/add_buisness" component={BuisnessForm} />
                                     {/* <Route path="/:userName/newContact" component={createContact} /> */}
                                     <Route path="/:userName/product" component={Products} />
+
+                                    <Route path="/:userName/setting" component={SettingBuisnessForm} />
+
                                     {/* <Route exact path="/:userName" component={HomePage} /> */}
                                 </Switch>
                                 {/* <div className="sendEmailFromList" style={{

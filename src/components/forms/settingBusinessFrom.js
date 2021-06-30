@@ -377,7 +377,7 @@ function SettingBuisnessList(props) {
                 <LeaderLouder></LeaderLouder>}
             <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
                 style={{
-                    height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+                    height: "95%", width: "98%",
                     overflowY: "auto"
                 }}>
                 <div className="row d-flex">
