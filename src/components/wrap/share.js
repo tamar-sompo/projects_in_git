@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import { MdShare } from 'react-icons/md'
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 import PdfModal from '../Pdf/pdfModal';
@@ -13,7 +14,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default function Share(props) {
 
-
+    console.log("props.invoiceFhone", props.invoiceFhone)
     const dispatch = useDispatch();
     const sendEmail = () => dispatch(actions.setSendLinkToEmail())
     const [pdfDisplay, setPdfDisplay] = useState(false);
@@ -38,17 +39,17 @@ export default function Share(props) {
         let businessPhone;
         let businessPhoneWatsapp;
         let businessPhoneWatsapp1;
-
+        let contactPhone
         debugger
         if (flagSave1 === true) {
             businessPhone = invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                 invoice.contactOneTime.phone : "";
         }
-        else {
+        else if (flagSave1 === false) {
             const contact1 = allContact.find(contact => contact.email === emailcontact)
             contactPhone = contact1 ? contact1.phone : "";
         }
-        businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : "";
+        businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : props.invoiceFhone ? props.invoiceFhone.substring(1) : "";
         businessPhoneWatsapp1 = businessPhoneWatsapp ? 972 + businessPhoneWatsapp : "";
         console.log("businessPhone", businessPhoneWatsapp1)
     }
@@ -56,30 +57,30 @@ export default function Share(props) {
     const setMail = () => {
         dispatch(actions.setsendMessage("true"))
     }
-
     return (
         <>
             {pdfDisplay === true && <PdfModal setPdfDisplay={setPdfDisplay} />}
-
-            <DropdownButton id={props && props.fl == 1 ? "dropdown-basic" : "dropdown-basic-button"}
-                title={<MdShare className={props && props.fl == 1 ? "inv" : "navt"} id={props && props.fl == 1 ?
-                    "icons" : "ico"}> </MdShare>}>
-                {/* //   title={<FontAwesomeIcon className={props && props.fl == 1?  */}
-                {/* //    "icons":"ico"} icon={['fas', 'share-alt']}></FontAwesomeIcon>}>  */}
-                <Dropdown.Item onClick={() => setMail()}>
-                    <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} />  Email</Dropdown.Item>
-                {invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
-                    <Dropdown.Item onClick={() => sendWhatsApp()}
-                        href={`https://wa.me/${businessPhoneWatsapp1}?text=${`https://finance.leader.codes/${userName}/view/${invoiceId}`}`} target="_blank" >
-                        <FontAwesomeIcon size='1.5x' className='insertIcon font-weight-bold'
-                            icon={['fab', 'whatsapp']} />
-                        Whatsapp
-                    </Dropdown.Item> : ""}
-
-                {/* <Dropdown.Item href="#/action-3">
+            <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Share</p>} placement="bottom">
+                <DropdownButton id={props && props.fl == 1 ? "dropdown-basic" : "dropdown-basic-button"}
+                    title={<MdShare className={props && props.fl == 1 ? "inv" : "navt"} id={props && props.fl == 1 ?
+                        "icons" : "ico"}> </MdShare>}>
+                    {/* //   title={<FontAwesomeIcon className={props && props.fl == 1?  */}
+                    {/* //    "icons":"ico"} icon={['fas', 'share-alt']}></FontAwesomeIcon>}>  */}
+                    <Dropdown.Item onClick={() => setMail()}>
+                        <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} />  Email</Dropdown.Item>
+                    {props.invoiceFhone || allContact && allContact.find(x => x.email === emailcontact) && allContact.find(x => x.email === emailcontact).phone || invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
+                        <Dropdown.Item onClick={() => sendWhatsApp()}
+                            href={`https://wa.me/${businessPhoneWatsapp1}?text=${`https://finance.leader.codes/${userName}/view/${invoiceId}`}`} target="_blank" >
+                            <FontAwesomeIcon size='1.5x' className='insertIcon font-weight-bold'
+                                icon={['fab', 'whatsapp']} />
+                            Whatsapp
+                        </Dropdown.Item> : ""
+                    }
+                    {/* <Dropdown.Item href="#/action-3">
          <FontAwesomeIcon    className='insertIcon' size='1x' icon={['fas', 'file-pdf']}/> Print</Dropdown.Item> */}
 
-            </DropdownButton>
+                </DropdownButton>
+            </Tooltip>
         </>
     );
 }
