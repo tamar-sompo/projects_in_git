@@ -54,41 +54,41 @@ function Item(props) {
   const totalProductRef = useRef([]);
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
-  const [flagToBroder, setFlagToBroder]=useState(false)
+  const [flagToBroder, setFlagToBroder] = useState(false)
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
     dispatch(actions.setFlagIfEmptyProduct(false))
-    
+
   }, [])
 
-  useEffect(()=>{
-    if(borderProductInvoice){
-      if(history.location.pathname === `/${userName}/invoice`){
-        if(props.index){
-            if(invoice.products[props.index]){
-              if(invoice.products[props.index].id==="null")
-                setFlagToBroder(true)
-            }
+  useEffect(() => {
+    if (borderProductInvoice) {
+      if (history.location.pathname === `/${userName}/invoice`) {
+        if (props.index) {
+          if (invoice.products[props.index]) {
+            if (invoice.products[props.index].id === "null")
+              setFlagToBroder(true)
+          }
         }
-        else{
-          if(invoice.products[0]){
-            if(invoice.products[0].id==="null")
+        else {
+          if (invoice.products[0]) {
+            if (invoice.products[0].id === "null")
               setFlagToBroder(true)
           }
         }
       }
-      else{
-        if(props.index){
-            if(detailsInvoice.products[props.index]){
-              if(detailsInvoice.products[props.index].id==="null")
-                setFlagToBroder(true)
-            }
+      else {
+        if (props.index) {
+          if (detailsInvoice.products[props.index]) {
+            if (detailsInvoice.products[props.index].id === "null")
+              setFlagToBroder(true)
+          }
         }
       }
     }
     else
-    setFlagToBroder(false)
-  },[borderProductInvoice])
+      setFlagToBroder(false)
+  }, [borderProductInvoice])
 
 
 
@@ -576,6 +576,7 @@ function Item(props) {
     }
   }
   const updateCellPrice = (_value, fieldName) => {
+
     if (!fieldName) {
       return;
     }

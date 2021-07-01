@@ -3,27 +3,31 @@ import createReducer from "./reducerUtils";
 
 const initialState = {
     newBuisness: {
-        socialmedias:{},
-    },  
-    oldbuisness:"",
+        socialmedias: {},
+    },
+    settingBuisness: {
+        socialmedias: {},
+    },
+    oldbuisness: "",
     buisness: "",
-    updateBusiness: {   
-        socialmedias:{},     
+    updateBusiness: {
+        socialmedias: {},
     },
     allBuisness: [],
-    currentBuisness:{},
+    currentBuisness: {},
     allInvoices: [],
 
 }
 const buisness = {
-    setOldBuisness(state, action){
-         state.oldbuisness=action.payload
+    setOldBuisness(state, action) {
+        state.oldbuisness = action.payload
     },
     setGetBusiness(state, action) {
         state.buisness = action.payload
     },
-    
+
     setGeCurrenttBuisness(state, action) {
+        debugger
         state.currentBuisness = action.payload
     },
     setUpDateBuisness(state, action) {
@@ -73,6 +77,17 @@ const buisness = {
     setbuisnessWebsite(state, action) {
         state.newBuisness.socialmedias[action.payload.key] = action.payload.value
     },
+
+
+    setSettingBuisness(state, action) {
+        debugger
+        state.settingBuisness[action.payload.key] = action.payload.value
+    },
+    setSettingBuisnessWebsite(state, action) {
+        state.settingBuisness.socialmedias[action.payload.key] = action.payload.value
+    },
+
+
     setAllBuisness(state, action) {
         state.allBuisness = action.payload
     },
