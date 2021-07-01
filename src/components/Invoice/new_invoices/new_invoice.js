@@ -532,6 +532,7 @@ function New_Invoice(props) {
       if (allcontact1.find(x => x.name == e.target.value)) {
         let dc = allcontact1.find(x => x.name == e.target.value).email
         if (validatorEmail(dc)) {
+          setErrorMessage1(false);
           setValidName(true)
         }
         else setValidName(false)

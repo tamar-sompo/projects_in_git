@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyInput from 'react-currency-input-field';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 // import { borderRadius } from 'react-select/src/theme';
 
@@ -166,10 +167,11 @@ function ProductForm(props) {
         <div className="row">
           <div className="hederN">
             <label> Name</label>
-            <input className="fieldProductCss"
+            <TextareaAutosize className="fieldProductCss"
+              rowsMax="2"
               value={newProductTable ? newProductTable.name : ''}
               onChange={(e) => onFieldEdit('name', e)}
-            ></input>
+            ></TextareaAutosize>
           </div>
           <div className="hederP">
             <label> Price</label>
@@ -189,10 +191,11 @@ function ProductForm(props) {
         <div className="row">
           <div className="hederD">
             <label> Discription</label>
-            <input className="fieldProductCssD"
+            <TextareaAutosize className="fieldProductCssD"
+              rowsMax="2"
               value={newProductTable ? newProductTable.description : ''}
               onChange={(e) => onFieldEdit('description', e)}
-            ></input>
+            ></TextareaAutosize>
           </div>
           <button type="button" class="btn btn-link1" onClick={changeFlag}>cancel</button>
           <button type="button" class="btn btn-link2" onClick={addNewProduct}>save</button>
