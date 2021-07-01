@@ -1281,14 +1281,17 @@ function New_Invoice(props) {
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
                 <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
-                  <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                    type="text"
-                    className="design_text design_buisness"
-                    placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
-                    // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
-                    onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
-                    value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                  />
+                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                      type="text"
+                      className="design_text design_buisness"
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                      // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                      onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                      value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </a>
                 </div>
                 <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder">
                   <div >

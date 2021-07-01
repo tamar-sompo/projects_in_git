@@ -7,12 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions'
+import { useHistory } from 'react-router-dom';
 import './businessCard.css'
 
 export default function BusinessCard(props) {
+  let history = useHistory();
+
   const { buisnessName, buisnessWebsite, buisnessNumber, buisnessId, buisnessImg } = props
   console.log("buisnessImg", buisnessImg)
   const dispatch = useDispatch();
+  const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const business = useSelector(state => state.buisnessReducer.business);
   const updateBusiness = useSelector(state => state.buisnessReducer.updateBusiness);
@@ -38,11 +42,15 @@ export default function BusinessCard(props) {
     updateWebsite({ key: fieldName, value: value })
   }
   const edit = () => {
+    history.push(`/${userName}/setting`)
+
     setEditable(!editable)
     updatedetailsBusiness({ key: 'id', value: buisnessId })
   }
   const save = () => {
     updateDetailss(buisnessId)
+    // const currentBuisness = allBuisnessToUser.find(x => x._id === buisnessId)
+    // updateDetailss(currentBuisness)
     setEditable(!editable)
   }
   const remove = () => {
