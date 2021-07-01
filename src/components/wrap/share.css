@@ -44,10 +44,12 @@ display: none;
 #dropdown-basic{
   padding: 0px;
   background: none !important;
+  font-weight: bold;
 }
 #dropdown-basic:hover{
   color:rgb(142, 115, 236);
 }
 .inv{
   vertical-align: top !important;
+  margin-top: -1px;
 }

@@ -8,7 +8,9 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions'
 import { useHistory } from 'react-router-dom';
-import './businessCard.css'
+import './businessCard.css';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export default function BusinessCard(props) {
   let history = useHistory();
@@ -158,33 +160,36 @@ export default function BusinessCard(props) {
           />
         </Card.Text>
         {!editable ?
-          <button
-            className='btn btn-light m-auto'
-            onClick={(e) => edit()}
-          >
-            <FontAwesomeIcon
-              className='m-auto editIcon'
-              size='1x'
-              icon={['fas', 'pen']}
-              style={{ color: 'gray' }}
-            />
-          </button> :
+          <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+            <button
+              className='btn btn-light m-auto'
+              onClick={(e) => edit()}
+            >
+              <FontAwesomeIcon
+                className='m-auto editIcon'
+                size='1x'
+                icon={['fas', 'pen']}
+                style={{ color: 'gray' }}
+              />
+            </button>
+          </Tooltip> :
           <button
             className='m-auto editIcon'
             onClick={(e) => save()}
           >save</button>}
-
-        <button
-          className='btn btn-trash'
-          onClick={(e) => remove()}
-        >
-          <FontAwesomeIcon
-            className='m-auto'
-            size='1x'
-            icon={['fas', 'trash']}
-            style={{ color: 'gray' }}
-          />
-        </button>
+        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+          <button
+            className='btn btn-trash'
+            onClick={(e) => remove()}
+          >
+            <FontAwesomeIcon
+              className='m-auto'
+              size='1x'
+              icon={['fas', 'trash']}
+              style={{ color: 'gray' }}
+            />
+          </button>
+        </Tooltip>
       </Card.Body>
     </Card>
   )

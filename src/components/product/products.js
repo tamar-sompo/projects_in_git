@@ -15,6 +15,8 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { HiUpload } from "react-icons/hi";
 import CurrencyInput from 'react-currency-input-field';
 import { BsSearch } from 'react-icons/bs'
+import Tooltip from '@material-ui/core/Tooltip';
+
 // import e from 'cors';
 // import MassageFormat from '../Useful/messageFormat'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -447,18 +449,22 @@ function Products(props) {
                                                                     {
                                                                         chooselinep.isShow && chooselinep.index === product._id && (
                                                                             <div >
-                                                                                <button className="btnDis"
-                                                                                    onClick={() => setDisable(product)}
-                                                                                >
-                                                                                    <MdEdit id="icon"
-                                                                                    ></MdEdit>
-                                                                                </button>
-                                                                                <button className="btnDis"
-                                                                                    onClick={() => deleteProduct1(product._id, index)}
-                                                                                >
-                                                                                    <MdDelete id="icon"
-                                                                                    />
-                                                                                </button>
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => setDisable(product)}
+                                                                                    >
+                                                                                        <MdEdit id="icon"
+                                                                                        ></MdEdit>
+                                                                                    </button>
+                                                                                </Tooltip>
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => deleteProduct1(product._id, index)}
+                                                                                    >
+                                                                                        <MdDelete id="icon"
+                                                                                        />
+                                                                                    </button>
+                                                                                </Tooltip>
                                                                             </div>
                                                                         )
                                                                     }

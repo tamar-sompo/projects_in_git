@@ -10,11 +10,11 @@ export default function Invoicelink() {
 
             </div>
             <div className="row">
-                <div className="col-3"></div>
-                <div className="col-6 ">
+                <div className="" style={{ width: "23%" }}></div>
+                <div className="" style={{ width: "54%" }}>
                     <New_invoice />
                 </div>
-                <div className="col-3"></div>
+                <div className="" style={{ width: "23%" }}></div>
                 {/* <div className="col -1 d-flex justify-content-end" style={{ height: "100vh" }}>
         <div onMouseEnter={handleshowSetting} onMouseLeave={handleshowSetting} className="ss d-flex align-items-center justify-content-end"  >
 

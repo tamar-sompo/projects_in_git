@@ -62,6 +62,7 @@ export default function NewSetting(props) {
       setShowMessage(false)
       setButtonClick("")
       routePage()
+      console.log("specific route", specificRoute)
     }
   }, [buttonClick])
 
@@ -70,7 +71,7 @@ export default function NewSetting(props) {
     if (flagFirst === false)
       setFlagFirst(true)
     else {
-      console.log("rrrrrrrr", setspecificRoute)
+      console.log("rrrrrrrr", specificRoute)
       if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") != -1) {
         if (flagIfEmpty == false) {
           routePage()
@@ -80,10 +81,10 @@ export default function NewSetting(props) {
           dispatch(actions.setModalBody(""))
         }
         else {
-          console.log("invoiceeeewwww", setspecificRoute)
+          console.log("invoiceeeewwww", specificRoute)
           // if (flagSaveInvoice === false) {
           setModalBody("Do you want to save Invoice?")
-          console.log("seyttttttt", setspecificRoute)
+          console.log("seyttttttt", specificRoute)
           setFlagModal("otherPage")
           setShowMessage(true)
         }
@@ -97,10 +98,15 @@ export default function NewSetting(props) {
   }, [index])
 
   const routePage = () => {
+    console.log("specific route function", specificRoute)
     dispatch(actions.setsendMessage("false"))
     dispatch(actions.setInvoiceSave(null))
-    if (specificRoute === "Documents")
-      history.push(`/${userName}/allDocuments`)
+    if (specificRoute === "Documents"){
+      console.log("specific route function all document", specificRoute)
+       history.push(`/${userName}/allDocuments`)
+       
+    }
+     
     if (specificRoute === "Business") {
       history.push(`/${userName}/buisness`)
       dispatch(actions.setInvoiceSave(null))
@@ -111,6 +117,7 @@ export default function NewSetting(props) {
     }
     if (specificRoute === "Products") {
       history.push(`/${userName}/product`)
+      console.log("specific route function all product", specificRoute)
       dispatch(actions.getAllProduct())
       dispatch(actions.setInvoiceSave(null))
     }
