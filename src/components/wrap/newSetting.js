@@ -55,7 +55,7 @@ export default function NewSetting(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
 
         }
       })

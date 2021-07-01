@@ -1,6 +1,6 @@
-.con{
+/* .con{
     background-color: white;
-}
+} */
 .inputP{
     /* border:none !important; */
     border-top-style: hidden;
@@ -17,7 +17,6 @@
     /* outline: none; */
     border-bottom: 1px solid black;
 }
-
 .inputF{
     border-bottom-style: none !important;
     border: none !important;
@@ -27,15 +26,15 @@ button[disabled], html input[disabled] {
     /* cursor: default; */
     background: transparent;
 }
-/* .allInput{ */
-    /* font-size: 129% !important; */
-    /* background: transparent;
-} */
 .td_side_edit_delete_copy #icon {
     color: gray;
 }
 .td_side_edit_delete_copy #icon:hover {
     color: rgb(142, 115, 236);
+
+}
+.btnDis{
+    background: none !important;
 }
 .newProd11{
     background-color: rgb(142, 115, 236)!important;
@@ -65,3 +64,43 @@ button[disabled], html input[disabled] {
 .serch :hover {
     width: 15% !important;
 }
+.table>tbody>tr>td,
+ .table>tbody>tr>th, .table>tfoot>tr>td, 
+ .table>tfoot>tr>th, .table>thead>tr>td, 
+ .table>thead>tr>th {
+    vertical-align: middle !important;
+    /* padding: 8px;
+    line-height: 1.42857143;
+    border-top: 1px solid #ddd; */
+}
+.backgroundSearch{
+    display:none
+  }
+  .backgroundSearchClick{
+    background-color: #F8F8F8;
+    padding: .4rem;
+    width: 18rem;
+    height: 4vh;
+    border-radius: 5%;
+    border:none
+  }
+  .SearchIcon{
+    background-color: #F8F8F8;
+    margin-right: 1rem;
+    padding: .4rem;
+    padding-left: .7rem;
+    height: 4vh;
+    width: 4vh;
+    border-radius: 50%;
+    border:none
+  }
+  .SearchIconClick{
+    background-color: #F8F8F8;
+    margin-right: 1rem;
+    padding: .4rem;
+    padding-left: .7rem;
+    height: 4vh;
+    width: 4vh;
+    border-radius: 5%;
+    border:none
+  }

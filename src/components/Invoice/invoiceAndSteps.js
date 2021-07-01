@@ -126,7 +126,7 @@ export default function InvoiceAndSteps(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
 
         }
       })
@@ -180,7 +180,7 @@ export default function InvoiceAndSteps(props) {
       setFlagFirstToP(true)
     else {
       // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-      if (colorFlagShowSaveP === "#DBD0D7")
+      if (colorFlagShowSaveP === "#707071")
         setFlagSaveP(false)
       else {
         dispatch(actions.setColorFlagShowSaveP("red"))
@@ -280,7 +280,7 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setFlagValidation(true))
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagModal(""))
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
@@ -354,10 +354,13 @@ export default function InvoiceAndSteps(props) {
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
-
-      dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-      console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      debugger
+      if (detailsInvoice._id) {
+        dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+      }
+      else
+        dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
+      // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+      // debugger
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }

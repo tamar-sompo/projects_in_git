@@ -104,7 +104,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
           dispatch(actions.setProduct1(data))
           dispatch(actions.setAddProduct(data))
           dispatch(actions.setFlagShowSaveP({ index: action.payload, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
         }
         else {
           console.log("success add product", data)
@@ -182,7 +182,7 @@ export const updateProductById = ({ dispatch, getState }) => next => action => {
         // dispatch(actions.getAllProduct())
         if (!action.payload.key) {
           dispatch(actions.setFlagShowSaveP({ index: action.payload, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
         }
         // dispatch(actions.setGetAllBuisness(product))
       },

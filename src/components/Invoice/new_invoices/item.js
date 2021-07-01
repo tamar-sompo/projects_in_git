@@ -59,7 +59,7 @@ function Item(props) {
 
   useEffect(() => {
     if (colorFlagShowSaveP === "red") {
-      if (dtp._id) {
+      if (dtp && dtp._id) {
         if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
           setflagValidPrice(false)
           setflagValidName(false)
@@ -69,7 +69,7 @@ function Item(props) {
             setflagValidName(true)
             console.log("flagValidName", flagValidName)
           }
-          if (dtp.price) {
+          if (dtp && dtp.price) {
             setflagValidPrice(true)
             console.log("flagValidPhone", flagValidPrice)
           }
@@ -159,7 +159,7 @@ function Item(props) {
   const vv3 = (e) => {
     setflagValidPrice(false)
     setflagValidName(false)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
@@ -217,7 +217,7 @@ function Item(props) {
     setflagValidPrice(false)
     setflagValidName(false)
     setFlagSaveP(false)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (detailsInvoice.products[0] && detailsInvoice.products[0].id == "null") {
@@ -251,9 +251,11 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    setflagValidPrice(false)
+    setflagValidName(false)
     setFlagSaveP(false)
     console.log("ttt", e)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
@@ -446,7 +448,7 @@ function Item(props) {
       debugger
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
-      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
       dispatch(actions.setFlagShowSaveP({ index: props.index, value: false }))
       if (saveSum > 0)
         dispatch(actions.setDeleteSaveSum(props.index))
@@ -651,6 +653,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
                 autoComplete="new-password"
+                style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 className={flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
@@ -667,6 +670,7 @@ function Item(props) {
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
               maxRows={2}
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'
               // placeholder='descripition'
@@ -685,14 +689,14 @@ function Item(props) {
 
 
 
-          <div className="inputproduct" style={{ width: "20%" }}>
+          <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               autoComplete="new-password"
-              style={{ width: "100%", height: "100%" }}
               onFocus={() => cleanInput1('price')}
               id="validation-example-3-field2"
               // flagValidPrice={}
               name="price"
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
@@ -769,7 +773,7 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "cinput" : ""} style={{
                   marginLeft: "33%",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>
