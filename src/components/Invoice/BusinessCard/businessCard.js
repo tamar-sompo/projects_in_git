@@ -45,7 +45,7 @@ export default function BusinessCard(props) {
     history.push(`/${userName}/setting`)
 
     setEditable(!editable)
-    updatedetailsBusiness({ key: 'id', value: buisnessId })
+    // updatedetailsBusiness({ key: 'id', value: buisnessId })
   }
   const save = () => {
     updateDetailss(buisnessId)

@@ -20,6 +20,8 @@ import { debounce } from '@material-ui/core';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import './allInvoices.css';
 import Share from '../wrap/share';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -293,10 +295,6 @@ function AllInvoices(props) {
             </div>
           </div>
         </div>
-        {/* <div className="col-8 d-flex justify-content-end ">
-            <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices>
-          </div>
-        </div> */}
         <div className="wrap_table">
           <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
             <div className="col">
@@ -356,7 +354,8 @@ function AllInvoices(props) {
                                             data-toggle="collapse"
                                             data-target={"#collapsePicture" + index}
                                             aria-expanded="false"
-                                            onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
+                                            onClick={() => showInvoiceByIdAcord(invoice, index)}>
+                                          </MdRemoveRedEye>
                                         </a>
                                       </div>
                                     )
