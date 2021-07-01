@@ -9,6 +9,8 @@ import Configurator from './new_configurator';
 // import Nav_Right from './nav_right';
 import AllInvoices from '../Invoice/allInvoices';
 import Products from '../product/products';
+import SettingBuisnessForm from '../forms/settingBusinessFrom';
+
 // import createContact from '../Invoice/createContact';
 // import Customers from '../customers/cutomers';
 // import InvoiceShow from '../Invoice/invoiceShow';
@@ -29,7 +31,6 @@ import BuisnessForm from '../forms/buisnessForm.js';
 import Buisness from '../Invoice/Business/business.js';
 import Contactsiframe from '../customers/contactiframe.js';
 import MassageFormat from '../Useful/messageFormat'
-import SettingBuisnessForm from '../forms/settingBusinessFrom';
 
 import './fiances.css'
 
@@ -99,70 +100,79 @@ export default function Fiances() {
 
             <ModalNameInvoice></ModalNameInvoice>
             <MessageSave></MessageSave>
-            <Router >
+            <Router>
+
                 <div className="container-fluid">
                     <div className="row">
                         <Nav />
                     </div>
-                    <div className="row d-flex align-items-center" style={{ paddingRight: "1.3%", height: "93vh" }}>
-
-                        <div className="col-2 px-0 mt-0 flex_configurator">
+                    <div className="row " style={{ height: "93vh", width: "100vw" }}>
+                        {/* className="col-2 px-0 mt-0 flex_configurator" */}
+                        <div
+                            style={{ width: "4%" }} >
                             <Configurator />
                         </div>
                         {/* {isSendMessage == "true"} */}
-                        <div className={isSendMessage == "false" ? "col-10  d-flex justify-content-center align-items-center flex_main" : "col-9 d-flex justify-content-center align-items-center"}
-                            style={{ height: "94%", backgroundColor: "white", marginLeft: "0.6%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126" }}>
+                        <div className="d-flex justify-content-center" style={{ width: "96%", height: "100%" }}>
+                            <div
+                                className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}
+                                style={{ backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "0.5%", marginBottom: "0.5%" }}>
+                                {/* // style={{ backgroundColor: 'red', width: '40vh' }} */}
+                                {/* // className="d-flex justify-content-center" */}
+                                {/* > */}
 
-                            {/* <div className={isSendMessage == "true" ?
+
+                                {/* <div className={isSendMessage == "true" ?
                             "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
 
-                            {show && <div style={{
-                                zIndex: "999", position: "absolute",
-                                marginRight: "160vh", marginTop: "70vh",
-                                width: "250px"
-                            }}>
-                                <MassageFormat></MassageFormat> </div>}
-                            {/* <button style={{
+                                {show && <div style={{
+                                    zIndex: "999", position: "absolute",
+                                    marginRight: "160vh", marginTop: "70vh",
+                                    width: "250px"
+                                }}>
+                                    <MassageFormat></MassageFormat> </div>}
+                                {/* <button style={{
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
 
-                            <Switch>
-                                <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
-                                <Route path="/:userName/invoice" component={InvoiceAndSteps} />
-                                <Route path="/:userName/Invoice/Conversion" component={Conversion} />
-                                <Route path='/:userName/allDocuments' component={AllInvoices} />
-                                <Route path="/:userName/view/:theId" component={Invoice} />
-                                <Route path="/:userName/customers" component={Contactsiframe} />
-                                <Route path="/:userName/buisness" component={Business} />
-                                <Route path="/:userName/payments" component={Payments} />
-                                <Route path="/:userName/add_buisness" component={BuisnessForm} />
-                                {/* <Route path="/:userName/newContact" component={createContact} /> */}
-                                <Route path="/:userName/product" component={Products} />
-                                <Route path="/:userName/setting" component={SettingBuisnessForm} />
-                                {/* <Route exact path="/:userName" component={HomePage} /> */}
-                            </Switch>
-                            {/* <div className="sendEmailFromList" style={{
+                                <Switch>
+                                    <ProtectedRoute exact path="/:userName" user={TokenToString} component={HomePage} />
+                                    <Route path="/:userName/invoice" component={InvoiceAndSteps} />
+                                    <Route path="/:userName/Invoice/Conversion" component={Conversion} />
+                                    <Route path='/:userName/allDocuments' component={AllInvoices} />
+                                    <Route path="/:userName/view/:theId" component={Invoice} />
+                                    <Route path="/:userName/customers" component={Contactsiframe} />
+                                    <Route path="/:userName/buisness" component={Business} />
+                                    <Route path="/:userName/payments" component={Payments} />
+                                    <Route path="/:userName/add_buisness" component={BuisnessForm} />
+                                    {/* <Route path="/:userName/newContact" component={createContact} /> */}
+                                    <Route path="/:userName/product" component={Products} />
+                                    <Route path="/:userName/setting" component={SettingBuisnessForm} />
+                                    {/* <Route exact path="/:userName" component={HomePage} /> */}
+                                </Switch>
+                                {/* <div className="sendEmailFromList" style={{
                                 width: "17vw",
                                 border: "1px solid #917BDF",
                                 height: "90vh",
                                 display: "none",
                                 marginTop: "10vh"
                             }}> */}
-
+                            </div>
+                            {isSendMessage == "true" &&
+                                <div className="width_email justify-content-center align-items-center " style={{ height: "100%" }}>
+                                    <div className=" sendEmailFromList" style={{
+                                        width: "90%",
+                                        height: "100% ",
+                                        border: "1px solid #917BDF",
+                                        display: "none"
+                                    }}>
+                                        <Massage></Massage>
+                                    </div>
+                                </div>}
                         </div>
-
-                        {isSendMessage == "true" &&
-                            <div className=" col -1 d-flex justify-content-center align-items-center " style={{ height: "94%" }}>
-                                <div className=" sendEmailFromList" style={{
-                                    width: "90%",
-                                    height: "100% ",
-                                    border: "1px solid #917BDF",
-                                    display: "none"
-                                }}>
-                                    <Massage></Massage>
-                                </div>
-                            </div>}
                     </div>
+
+                    {/* </div> */}
                 </div>
 
 

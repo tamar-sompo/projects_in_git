@@ -25,7 +25,13 @@ import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
 import { BiCalendar, BiPlus } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
-// import uploadAnimation from '../assets/louder.gif'
+import uploadAnimation from '../assets/louder.gif'
+// import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
+// import { BiCalendar, BiPlus } from 'react-icons/bi';
+// import { GiWireframeGlobe } from 'react-icons/gi';
+// 
+// import {CgCalendarDates} from 'react-icons/cg';
+
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // const phoneRegExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 // const userSchema = Yup.object().shape({
@@ -55,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     height: 7 + 'vh',
     backgroundColor: 'transparent',
     border: '1px solid black',
-    borderRadius: 50 + '%',
+    borderRadius: 2 + 'vh',
     padding: 0
   },
   imgUpload: {
@@ -64,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     height: 10 + 'vh',
     backgroundColor: 'transparent',
     // border: '1px solid black',
-    borderRadius: 50 + '%',
+    // borderRadius: 50 + '%',
     padding: 0
   }
 }))
@@ -113,6 +119,7 @@ function BuisnessList(props) {
     else {
       setFlagLoud(false)
       updateBuisnessField({ key: 'name', value: "" })
+      updateBuisnessField({ key: 'imgLogo', value: "" })
       updateBuisnessField({ key: 'email', value: "" })
       updateBuisnessField({ key: 'phone', value: "" })
       updateBuisnessField({ key: 'country', value: "" })
@@ -121,6 +128,7 @@ function BuisnessList(props) {
       updateWebsite({ key: 'website', value: "" })
       updateBuisnessField({ key: 'vat', value: "" })
       updateBuisnessField({ key: 'numberDeals', value: "" })
+
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
@@ -217,12 +225,28 @@ function BuisnessList(props) {
   const selectCountry = (e) => {
     setCountry()
   }
+  // function isDigit(name) {
+  //   // var isValidName = false;
+  //   // if (/[!@#$%^&*(),.?":{}|<>]/g.test(name)) {
+  //   //   isValidName = false;
+  //   // }
+  //   // else {
+  //   if (/[+]/g.test(name) || /\d+/g.test(name)) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
   const fieldChanged = (e, fieldName) => {
     if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
     else {
       if (fieldName == 'name') setErrorMessage('')
       else {
-        if (fieldName == 'phone') { if (validatorPhone(e.target.value)) setErrorMessage4('') }
+        if (fieldName == 'phone') {
+          if (validatorPhone(e.target.value)) setErrorMessage4('')
+          // if (!isDigit(e.target.value)) {
+          //   e.target.value = "false"
+          // }
+        }
         else {
           if (fieldName == 'address') setErrorMessage6('')
           else {
@@ -233,8 +257,10 @@ function BuisnessList(props) {
       }
     }
     const value = e.target.value;
+    // if (value !== "false") {
     console.log("value", value)
     updateBuisnessField({ key: fieldName, value: value })
+    // }
   }
   const onload = (e, fieldName) => {
     const value = e;
@@ -262,6 +288,8 @@ function BuisnessList(props) {
       reader.readAsDataURL(event)
     }
   }
+
+
 
   return (
     <>
@@ -355,6 +383,7 @@ function BuisnessList(props) {
 
                   <input className="inptStyle" name='name' type="text"
                     autoComplete="new-password"
+                    ////בגלל ששומרים לודקר עד ששומרים בשביל מעבר בין עמודים
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
@@ -541,6 +570,56 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
+        {/* <div className="row"
+        // style={{height:"90vh"}}
+        >
+          <div className="col-3 align-items-center">
+            <div className="font2" style={{ height: "30vh", marginBottom: "2vh" }}>
+              Profil Image
+              <hr />
+              <div class="col-12 d-flex justify-content-start flex-column align-items-center poo">
+                <div  >
+                  <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                    onChange={(e) => addImage1(e.target.files[0])} />
+                  <button onClick={onButtonClick} className="rounded"
+                    style={{
+                      backgroundColor: "grey",
+                      color: "white",
+                      width: "10vh",
+                      height: "10vh"
+                    }}
+                    className={classes.buttonUpload}>
+                    {detailsBusiness && detailsBusiness.imgLogo ?
+                      <img
+                        // id='userLogo-temp1'
+                        className={classes.imgUpload}
+                        src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                        // src={urlLogo? urlLogo :""}
+                        alt="Logo"
+                        title="Your Logo Here"
+                        style={{}}
+                        onClick={() => onButtonClick("logo")}
+                      /> :
+                      <HiUpload id="icon" className={classes.iconUpload} />}
+                    <br></br>
+                    <div className="uploadImage">Upload</div>
+
+                  </button>
+                </div>
+              </div>
+            </div> */}
+
+        {/* <div className="font2" style={{ height: "40vh" }}>
+              Social Networks
+              <hr />
+            </div>
+          </div>
+
+          <div className="col-8 font2" style={{ height: "72vh" }}>
+            Personal Information
+            <hr />
+          </div>
+        </div> */}
       </div>
       {/* <div className="row"
         // style={{height:"90vh"}}

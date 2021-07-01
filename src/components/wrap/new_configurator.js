@@ -76,77 +76,84 @@ function NewConfigorator(props) {
     //             $(e).addClass("li-back")
     //         })
 
+
+    // useEffect(() => {
+    //     dispatch(actions.setflagBorderProduct(false))
+    //     // $('.left_nav').addClass('border_configurator') 
+    // }, [])
+    // useEffect(() => {
+    //     console.log("prevPath", prevPath)
+    //     if (prevPath == `/${userName}/invoice`) {
+    //         dispatch(actions.setPrevPath(''))
+    //         // alert('gyfsj')
     //     }
-    //     useEffect(() => {
-    //         dispatch(actions.setflagBorderProduct(false))
-    //         // $('.left_nav').addClass('border_configurator') 
-    //     }, [])
-    //     useEffect(() => {
-    //         console.log("prevPath", prevPath)
-    //         if (prevPath == `/${userName}/invoice`) {
-    //             dispatch(actions.setPrevPath(''))
-    //             // alert('gyfsj')
-    //         }
-    //     }, [Location])
-    //     // useEffect(() => {
+    // }, [Location])
+    // // useEffect(() => {
 
-    //     //     if (flagM === false) {
+    // //     if (flagM === false) {
 
-    //     //         setFlagM(true)
-    //     //     }
-    //     //     else {
-    //     //         if (showMessage === false) {
-    //     //             save();
-    //     //         }
-    //     //     }
-    //     // }, [showMessage])
+    // //         setFlagM(true)
+    // //     }
+    // //     else {
+    // //         if (showMessage === false) {
+    // //             save();
+    // //         }
+    // //     }
+    // // }, [showMessage])
+    // const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
 
-    //     useEffect(() => {
-    //         console.log("flagModal", flagModal)
-    //         if (flagFirst === false)
-    //             setFlagFirst(true)
-    //         else {
-    //             if (flagModal === "successContact") {
 
-    //                 save()
-    //             }
+    // useEffect(() => {
+    //     console.log("flagModal", flagModal)
+    //     if (flagFirst === false)
+    //         setFlagFirst(true)
+    //     else {
+    //         if (flagModal === "successContact") {
 
+    //             save()
     //         }
 
-    //     }, [flagModal])
+    //     }
 
-    //     useEffect(() => {
+    // }, [flagModal])
 
-    //         //    alert("uuu")
-    //         if (flagFirstB === false) {
-    //             setFlagFirstB(true)
-    //         }
-    //         else {
-    //             if (buttonClick === "saveInvoiceOtherPage")
-    //                 save1()
-    //         }
-    //     }, [buttonClick])
+    // useEffect(() => {
 
-    //     useEffect(() => {
-    //         if (first === false) {
-    //             setFirst(true)
-    //             //   setFlagToCheck(false)
-    //             //   dispatch(actions.setflagBorderProduct(false))
-    //             //   setFlagSaveP(false)
-    //             //   dispatch(actions.setColorFlagShowSaveP("black"))
-    //         }
+    //     //    alert("uuu")
+    //     if (flagFirstB === false) {
+    //         setFlagFirstB(true)
+    //     }
+    //     else {
+    //         if (buttonClick === "saveInvoiceOtherPage")
+    //             save1()
+    //     }
 
-    //         else {
-    //             if (flagToCheck === true) {
-    //                 setFlagToCheck(false)
-    //                 if (flagSaveP === false) {
-    //                     // alert("yy")
-    //                     debugger
-    //                     if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
-    //                         dispatch(actions.setflagBorderProduct(true))
-    //                     }
-    //                     else {
-    //                         dispatch(actions.setflagBorderProduct(false))
+
+    // }, [buttonClick])
+
+    // useEffect(() => {
+    //     if (first === false) {
+    //         setFirst(true)
+    //         //   setFlagToCheck(false)
+    //         //   dispatch(actions.setflagBorderProduct(false))
+    //         //   setFlagSaveP(false)
+    //         //   dispatch(actions.setColorFlagShowSaveP("black"))
+    //     }
+
+    //     else {
+    //         if (flagToCheck === true) {
+    //             setFlagToCheck(false)
+    //             if (flagSaveP === false) {
+    //                 // alert("yy")
+    //                 debugger
+    //                 if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
+    //                     dispatch(actions.setflagBorderProduct(true))
+    //                 }
+    //                 else {
+    //                     dispatch(actions.setflagBorderProduct(false))
+    //                     if (flagOfterValidation) {
+    //                         debugger
+    //                         dispatch(actions.setFlagOfterValidation(false))
     //                         if (flagMessageContact) {
     //                             setShowMessage(true)
     //                             setFlagModal("contact")
@@ -159,54 +166,70 @@ function NewConfigorator(props) {
     //                 }
     //             }
     //         }
+    //     }
 
-    //     }, [flagToCheck])
+    // }, [flagToCheck])
 
-    //     useEffect(() => {
-    //         if (flagFirstToP === false)
-    //             setFlagFirstToP(true)
+    // useEffect(() => {
+    //     if (flagFirstToP === false)
+    //         setFlagFirstToP(true)
+    //     else {
+    //         // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    //         if (colorFlagShowSaveP === "#DBD0D7")
+    //             setFlagSaveP(false)
     //         else {
-    //             // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-    //             if (colorFlagShowSaveP === "#DBD0D7")
-    //                 setFlagSaveP(false)
-    //             else {
-    //                 dispatch(actions.setColorFlagShowSaveP("red"))
-    //                 setFlagSaveP(true)
-    //             }
-    //             //     if (flag === true) {
-    //             //         setFlagSaveP(true)
-    //             //         dispatch(actions.setColorFlagShowSaveP("red"))
-    //             //     }
-    //             //   })
-    //             //   if(flagSaveP===false)
-    //             //     save1()
+    //             dispatch(actions.setColorFlagShowSaveP("red"))
+    //             setFlagSaveP(true)
     //         }
-    //     }, [colorFlagShowSaveP])
+    //         //     if (flag === true) {
+    //         //         setFlagSaveP(true)
+    //         //         dispatch(actions.setColorFlagShowSaveP("red"))
+    //         //     }
+    //         //   })
+    //         //   if(flagSaveP===false)
+    //         //     save1()
+    //     }
+    // }, [colorFlagShowSaveP])
 
-    // useEffect(()=>{
-    // if(flagPush===true){
-    //     if (window.location.href.indexOf("invoice/edit") != -1
-    //     && flagFromTable === false
-    // ) {
-    //     dispatch(actions.setFlagIfEmpty(false))
-    //     dispatch(actions.setFlagMessage(false))
-    //     dispatch(actions.setDislayInvoice("false"));
-    //     dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
-    //     dispatch(actions.setPDelete(['']))
-    //     dispatch(actions.setResetAllNewProduct())
-    // }
+    // useEffect(() => {
+    //     if (flagPush === true) {
+    //         if (window.location.href.indexOf("invoice/edit") != -1
+    //             && flagFromTable === false
+    //         ) {
+    //             dispatch(actions.setFlagIfEmpty(false))
+    //             dispatch(actions.setFlagMessage(false))
+    //             dispatch(actions.setDislayInvoice("false"));
+    //             dispatch(actions.setGetInvoiceId(invoiceSave.invoice._id))
+    //             dispatch(actions.setPDelete(['']))
+    //             dispatch(actions.setResetAllNewProduct())
+    //         }
 
-    // if (flagFromTable === true)
-    //     dispatch(actions.setFlagFromTable(false))
-    // }
-    // },[flagPush])
+    //         if (flagFromTable === true)
+    //             dispatch(actions.setFlagFromTable(false))
+    //     }
+    // }, [flagPush])
+    // // const save1 = () => {
+    // //     debugger
+    // //     dispatch(actions.setFlagValidation(true))
+
+    // //     // if (flagMessage)
+    // //     //     setShowMessage(true)
+    // //     // else
+    // //     //     save()
+    // // }
+    // useEffect(() => {
+    //     debugger
+    //     if (flagOfterValidation === true) {
+    //         dispatch(actions.setFlagOfterValidation(false))
+    //         // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+    //         //     dispatch(actions.setflagBorderProduct(true))
+
+    //         // }
+    //         // else {
+    //         // dispatch(actions.setflagBorderProduct(false))
 
 
-
-
-    //     async function save1() {
-    //         dispatch(actions.setFlagPush(false))
-    //         dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    //         // if (flagOfterValidation === false) {
     //         dispatch(actions.setFlagModal(""))
     //         dispatch(actions.setShowMessage(false))
     //         dispatch(actions.setButtonClick(""))
@@ -219,20 +242,51 @@ function NewConfigorator(props) {
     //                 dispatch(actions.setColorFlagShowSaveP("red"))
     //             }
     //         })
-
+    //         // }
+    //         // }
     //     }
+    // }, [flagOfterValidation])
+
+    // const save1 = () => {
+
+    //     if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+    //         dispatch(actions.setflagBorderProduct(true))
+    //     }
+    //     else {
+    //         dispatch(actions.setflagBorderProduct(false))
+    //     }
+    //     dispatch(actions.setFlagValidation(true))
+    //     //   checkIfFalse()
+    // }
 
 
-    //     useEffect(() => {
+    // useEffect(() => {
+
+    //     if (flagSaveinvoice1 === false)
+    //         setFlagSaveinvoice1(true)
+    //     else
+
+    //         if (viewConversion === "true") {
+    //             dispatch(actions.setShowInInvoice(false))
+    //             dispatch(actions.setViewConversion('false'))
+    //             if (history.location.pathname === `/${userName}/invoice`) {
+
+    //                 history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+    //             }
+    //             else
+    //                 if (flagFromTable === false) {
+    //                     // alert('opopo')
+    //                     // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+
+    //                 }
 
     //         if (flagSaveinvoice1 === false)
     //             setFlagSaveinvoice1(true)
     //         else
 
-    //             if (viewConversion === "true") {
+    //         }
 
-    //                 dispatch(actions.setViewConversion('false'))
-    //                 if (history.location.pathname === `/${userName}/invoice`) {
+    // }, [viewConversion])
 
     //                     history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
     //                 }
@@ -241,33 +295,25 @@ function NewConfigorator(props) {
     //                         // alert('opopo')
     //                         // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
 
-    //                     }
+    // const save = () => {
+    //     setIslevel(3);
+    //     // setFlagSaveInvoice(true)
+    //     dispatch(actions.setFlagIfEmpty(false))
+    //     if (history.location.pathname === `/${userName}/invoice`) {
 
-
-    //             }
-
-    //     }, [viewConversion])
-
-
-    //     const save = () => {
-    //         setIslevel(3);
-    //         // setFlagSaveInvoice(true)
-    //         dispatch(actions.setFlagIfEmpty(false))
-    //         if (history.location.pathname === `/${userName}/invoice`) {
-
-    //             dispatch(actions.setSaveInvoice(invoice))
-    //         }
-    //         else {
-
-    //             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-    //             console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-    //             debugger
-    //             updateinvoiceField({ key: "products", value: detailsInvoice.products });
-    //             dispatch(actions.setUpdateInvoice())
-    //         }
-    //         console.log("save", invoice)
-    //         // sendWave()
+    //         dispatch(actions.setSaveInvoice(invoice))
     //     }
+    //     else {
+
+    //         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+    //         console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+    //         debugger
+    //         updateinvoiceField({ key: "products", value: detailsInvoice.products });
+    //         dispatch(actions.setUpdateInvoice())
+    //     }
+    //     console.log("save", invoice)
+    //     // sendWave()
+    // }
 
     return (
         <>

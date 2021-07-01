@@ -61,6 +61,7 @@ function ProductForm(props) {
   // const changeComponent = (component1) => dispatch(actions.setComponentConfigurator(component1))
   // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
   const newProductTable = useSelector(state => state.productReducer.newProductTable)
+  console.log("newProductTable.images", newProductTable.images);
 
 
 
@@ -102,22 +103,18 @@ function ProductForm(props) {
   }
 
   const addImage = (event) => {
-    console.log('vdhggggg');
     if (event) {
-      console.log('event', event)
       let reader = new FileReader();
-      const image = reader.result;
+      let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-        // console.log('reader.result',reader.result[0])
-        const objectImage = { 'image': event, 'to': 'product' }
-        props.setImage(objectImage)
+        debugger
+        imageToStor = { 'image': event, 'to': 'product' }
+        dispatch(actions.setImage(imageToStor))
+        console.log("imageee12kkkkkkkkkkkk", imageToStor)
       }
       reader.readAsDataURL(event)
-      console.log('imagep', props.imgProduct)
     }
   }
-
-
 
   const updateCellPrice = (_value, fieldName) => {
     if (!fieldName) {
@@ -126,14 +123,6 @@ function ProductForm(props) {
     if (!_value) {
       dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
       return
-      //  dispatch({
-      //   fieldName,
-      //   value: {
-      //     value: undefined,
-      //     validationClass: '',
-      //     errorMessage: '',
-      //   },
-      // });
     }
 
     const value = Number(_value);
@@ -161,44 +150,22 @@ function ProductForm(props) {
               backgroundColor: "#F6F6FA"
             }}
             className={classes.buttonUpload}>
-            {props.newProduct[0] && props.newProduct[0].images ?
-              <img
-                className={classes.imgUpload}
-                src={newProductTable ? newProductTable.images : ""}
-                alt="Logo"
-                title="Your Logo Here"
-                onClick={() => onButtonClick("logo")}
-              /> :
-              <HiUpload id="icon" className={classes.iconUpload} />}
+            {
+              newProductTable && newProductTable.images ?
+                // props.newProduct[0] && props.newProduct[0].images ?
+                <img
+                  className={classes.imgUpload}
+                  src={newProductTable ? newProductTable.images : ""}
+                  alt="Logo"
+                  title="Your Logo Here"
+                  onClick={() => onButtonClick("logo")}
+                /> :
+                <HiUpload id="icon" className={classes.iconUpload} />
+            }
             <br></br>
             <div className="uploadImage">Upload</div>
           </button>
         </div>
-        {/* <div className="col-3">
-          <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-            onChange={(e) => addImage(e.target.files[0])} />
-          <button onClick={onButtonClick} className="rounded"
-            style={{
-              width: "13vh",
-              height: "13vh",
-              marginTop: "2vh",
-              borderRadius: "1vh",
-              backgroundColor: "#F6F6FA"
-            }}
-            className={classes.buttonUpload}>
-            {props.newProduct[0] && props.newProduct[0].images ?
-              <img
-                className={classes.imgUpload}
-                src={newProductTable ? newProductTable.images : ""}
-                alt="Logo"
-                title="Your Logo Here"
-                onClick={() => onButtonClick("logo")}
-              /> :
-              <HiUpload id="icon" className={classes.iconUpload} />}
-            <br></br>
-            <div className="uploadImage">Upload</div>
-          </button>
-        </div> */}
         <div className="row">
           <div className="hederN">
             <label> Name</label>
@@ -220,11 +187,6 @@ function ProductForm(props) {
               prefix={'$'}
             />
 
-            {/* <input className="fieldProductCss"
-              value={newProductTable ? newProductTable.price : ''}
-              onChange={(e) => onFieldEdit('price', e)}
-            ></input> */}
-
           </div>
         </div>
         <div className="row">
@@ -235,7 +197,7 @@ function ProductForm(props) {
               onChange={(e) => onFieldEdit('description', e)}
             ></input>
           </div>
-          <button type="button" class="btn btn-link1" onClick={changeFlag}>close</button>
+          <button type="button" class="btn btn-link1" onClick={changeFlag}>cancel</button>
           <button type="button" class="btn btn-link2" onClick={addNewProduct}>save</button>
         </div>
       </div>

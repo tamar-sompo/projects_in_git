@@ -1,4 +1,3 @@
-
 .ss:hover{
     width: 130%;   
    }
@@ -9,12 +8,14 @@
        width:50%;
        height:100%;
    }
-   .flex_configurator{
-    flex: 0 0 5.666667%;
-}
-.flex_main {
-    flex: 0 0 93.333333%;
-    max-width: 93.333333%;
-    padding-left: 0px;
-    padding-right: 0px;
+ 
+   .width_wrap{
+       width: 98%;
+       
+   }
+   .width_email{
+       width: 18%;
+   }
+   .width_wrap_withemail{
+       width: 82%;
    }

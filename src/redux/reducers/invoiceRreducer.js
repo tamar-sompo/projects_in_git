@@ -53,9 +53,9 @@ const initialState = {
     flagView: false,
     flagFromTable: false,
     flagPush: false,
-    flagPush1:false,
+    flagPush1: false,
     filteredInvoices: [],
-    flagSaveP:false
+    flagSaveP: false
     // specificRoute: ''
 
 }
@@ -63,8 +63,8 @@ const initialState = {
 
 const invoices = {
 
-    setFlagSaveP(state, action){
-        state.flagSaveP=action.payload
+    setFlagSaveP(state, action) {
+        state.flagSaveP = action.payload
     },
 
     setFlagPush1(state, action) {
@@ -72,6 +72,10 @@ const invoices = {
     },
     setFilteredInvoices(state, action) {
         state.filteredInvoices = action.payload
+    },
+    setFilteredInvoices1(state, action) {
+        debugger
+        state.filteredInvoices.push(action.payload)
     },
     // setSpecificRoute(state, action) {
     //     state.specificRoute = action.payload

@@ -73,7 +73,7 @@ function Business(props) {
                   buisnessName={buisness.name}
                   buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
                   buisnessNumber={buisness.numberDeals ? buisness.numberDeals : ''}
-                  buisnessImg={buisness.imgLogo ? buisness.imgLogo : logo1}
+                  buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
                 />
               </div>
             ) : <div>You have no Business</div>

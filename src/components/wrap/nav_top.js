@@ -17,8 +17,10 @@ import { ImLink } from 'react-icons/im'
 
 // import BuisnessList from '../forms/buisnessForm';
 
+import { useHistory } from 'react-router-dom';
 
 export default function Nav() {
+  let history = useHistory();
   const dispatch = useDispatch();
   const [copy, setCopy] = useState(false);
   const userName = useSelector(state => state.publicReducer.userName);
@@ -47,7 +49,9 @@ export default function Nav() {
     dispatch(actions.setsendMessage("true"))
   }
 
-
+  const send = () => {
+    history.push(`/${userName}/`)
+  }
   return (
 
     // <div className="col-11 d-flex justify-content-end" >
@@ -60,45 +64,49 @@ export default function Nav() {
         <div
         // style={{ display: "inline-block" }}
         >
-          {/* <img src={logo} alt={"logo"} width="130px" /> */}
+          <img src={logo} alt={"logo"} width="130px"
+            className="pointer"
+            // style={{ cursor: "pointer" }}
+            onClick={(e) => send()}
+          />
         </div></div>
 
-        <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
+      <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
 
 
-{invoiceSave ? invoiceSave.invoice ? invoiceSave.invoice._id ?
-<div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
-  <div className="copy" style={{ border: "solid 1px #917BDF"}}>
-  <CopyToClipboard 
-  text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
-    onCopy={() => {
-      setCopy(true)
-      setTimeout(() => {
-        setCopy(false)
-      }, 3000);
-    }}>
-    <div className="linkCopydiv pointer"  style={{ display:"inline" }}>
-      <span className="linkCopyspan px-3">
-        <span>{`https://finance.leader.codes/${invoiceSave.invoice._id.slice(0, 5)}${"..."}`}</span>
-      </span>
-      <span className="linkCopyicon px-1"
-      // onClick={()=>setMail()}
-      >
-        {/* <FontAwesomeIcon className="ic" size="2x" icon={['fas', 'link']}
+        {invoiceSave ? invoiceSave.invoice ? invoiceSave.invoice._id ?
+          <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
+            <div className="copy" style={{ border: "solid 1px #917BDF" }}>
+              <CopyToClipboard
+                text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
+                onCopy={() => {
+                  setCopy(true)
+                  setTimeout(() => {
+                    setCopy(false)
+                  }, 3000);
+                }}>
+                <div className="linkCopydiv pointer" style={{ display: "inline" }}>
+                  <span className="linkCopyspan px-3">
+                    <span>{`https://finance.leader.codes/${invoiceSave.invoice._id.slice(0, 5)}${"..."}`}</span>
+                  </span>
+                  <span className="linkCopyicon px-1"
+                  // onClick={()=>setMail()}
+                  >
+                    {/* <FontAwesomeIcon className="ic" size="2x" icon={['fas', 'link']}
         ></FontAwesomeIcon> */}
-        <ImLink className="ic" size="2x" icon={['fas', 'link']}
-        ></ImLink>
-      </span>
-      {copy && <span className="px-3 alert-copy">Test Link Copied!</span>}
-    </div>
-  </CopyToClipboard>
-  </div>
-  <div className="share">
-                <Share fl={2}/>
-</div>
-  </div>
-   : "" : "" : ""} 
-</div>
+                    <ImLink className="ic" size="2x" icon={['fas', 'link']}
+                    ></ImLink>
+                  </span>
+                  {copy && <span className="px-3 alert-copy">Test Link Copied!</span>}
+                </div>
+              </CopyToClipboard>
+            </div>
+            <div className="share">
+              <Share fl={2} />
+            </div>
+          </div>
+          : "" : "" : ""}
+      </div>
 
       {/* <button onClick={()=>setMail()}>email</button> */}
       {/* <div className="col-5 d-flex justify-content-end" > */}

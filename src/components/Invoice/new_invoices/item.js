@@ -13,6 +13,8 @@ import { number, object } from 'yup';
 import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 function Item(props) {
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
@@ -56,6 +58,50 @@ function Item(props) {
   }, [])
 
   useEffect(() => {
+    if (colorFlagShowSaveP === "red") {
+      if (dtp && dtp._id) {
+        if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
+          setflagValidPrice(false)
+          setflagValidName(false)
+        }
+        else {
+          if (new_product[props.index].name) {
+            setflagValidName(true)
+            console.log("flagValidName", flagValidName)
+          }
+          if (dtp && dtp.price) {
+            setflagValidPrice(true)
+            console.log("flagValidPhone", flagValidPrice)
+          }
+        }
+      }
+      else {
+        // alert("hhhh", new_product)
+        console.log('new_product', new_product)
+        debugger
+        if (props.pro.id === "null" || props.pro.id === undefined) {
+          if (new_product[props.index].name && new_product[props.index].price) {
+            setflagValidPrice(false)
+            setflagValidName(false)
+          }
+          else {
+            if (!new_product[props.index].name) {
+              setflagValidName(true)
+              console.log("flagValidName", flagValidName)
+            }
+            if (!new_product[props.index].price) {
+              setflagValidPrice(true)
+              console.log("flagValidPhone", flagValidPrice)
+            }
+          }
+        }
+      }
+    }
+  }, [colorFlagShowSaveP])
+
+
+
+  useEffect(() => {
     debugger
     console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
@@ -71,6 +117,9 @@ function Item(props) {
     }
     console.log("totalProductRef")
   }, [allproduct])
+
+
+
   useEffect(() => {
     debugger
     console.log("pppp")
@@ -108,7 +157,9 @@ function Item(props) {
     }
   }, [allproduct])
   const vv3 = (e) => {
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    setflagValidPrice(false)
+    setflagValidName(false)
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
@@ -163,8 +214,10 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
+    setflagValidPrice(false)
+    setflagValidName(false)
     setFlagSaveP(false)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (detailsInvoice.products[0] && detailsInvoice.products[0].id == "null") {
@@ -198,9 +251,11 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    setflagValidPrice(false)
+    setflagValidName(false)
     setFlagSaveP(false)
     console.log("ttt", e)
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
     if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
@@ -335,6 +390,8 @@ function Item(props) {
       }
     }
   }
+  const [flagValidPrice, setflagValidPrice] = useState(false);
+  const [flagValidName, setflagValidName] = useState(false);
   const savepr = () => {
     debugger
     if (amountProductInvoice != 0) {
@@ -342,15 +399,47 @@ function Item(props) {
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
     if (dtp && dtp._id) {
-      dispatch(actions.setProductId1(dtp._id))
-      dispatch(actions.editProduct(props.index))
+      if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+        dispatch(actions.setProductId1(dtp._id))
+        dispatch(actions.editProduct(props.index))
+        setflagValidPrice(false)
+        setflagValidName(false)
+      }
+      else {
+        if (!new_product[props.index].name && !dtp.name) {
+          setflagValidName(true)
+          console.log("flagValidName", flagValidName)
+        }
+        else { setflagValidName(false) }
+        if (!dtp.price && !new_product[props.index].price) {
+          setflagValidPrice(true)
+          console.log("flagValidPhone", flagValidPrice)
+        }
+        else { (setflagValidPrice(false)) }
+      }
     }
     else {
       // alert("hhhh", new_product)
-      console.log('new_product', new_product[props.index])
+      console.log('new_product', new_product)
       debugger
       if (props.pro.id === "null" || props.pro.id === undefined) {
-        dispatch(actions.setNewProductServer(props.index))
+        if (new_product[props.index].name && new_product[props.index].price) {
+          dispatch(actions.setNewProductServer(props.index))
+          setflagValidPrice(false)
+          setflagValidName(false)
+        }
+        else {
+          if (!new_product[props.index].name) {
+            setflagValidName(true)
+            console.log("flagValidName", flagValidName)
+          }
+          else { setflagValidName(false) }
+          if (!new_product[props.index].price) {
+            setflagValidPrice(true)
+            console.log("flagValidPhone", flagValidPrice)
+          }
+          else { setflagValidPrice(false) }
+        }
       }
     }
   }
@@ -359,7 +448,7 @@ function Item(props) {
       debugger
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
-      dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
       dispatch(actions.setFlagShowSaveP({ index: props.index, value: false }))
       if (saveSum > 0)
         dispatch(actions.setDeleteSaveSum(props.index))
@@ -541,16 +630,18 @@ function Item(props) {
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
-              <input
-
+              <input aria-label="empty textarea"
+                autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
                 name="product"
                 list="productname"
-                className='cell'
+                // className='cell'
+                className={flagValidName ? 'cell  validB' : 'cell '}
+                // maxlength="15" 
                 size="7"
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              />
+              ></input>
               <datalist id="productname">
                 {allproduct.length > 0 && allproduct.map(x => {
                   return (<option>{x.name}</option>)
@@ -560,25 +651,35 @@ function Item(props) {
 
             </div> :
             <div className="inputproduct" style={{ width: "35%" }}>
-              <Cell
+              <TextareaAutosize aria-label="empty textarea"
+                autoComplete="new-password"
+                style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
+                disabled={displayInvoice === "true" ? "disable" : ""}
+                className={flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                // className='cell design_text ffgf'
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
-                disabled={displayInvoice === "true" ? "" : "disable"}
+                // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
-              > </Cell>
+                maxRows={2}
+              > </TextareaAutosize>
 
             </div>}
           <div className="inputproduct" style={{ width: "55%" }} >
-            <Cell
-
-              placeholder='descripition'
+            <TextareaAutosize aria-label="empty textarea"
+              autoComplete="new-password"
+              maxRows={2}
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
+              disabled={displayInvoice === "true" ? "disable" : ""}
+              className='cell design_text ffgf'
+              // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
-              disabled={displayInvoice === "true" ? "" : "disable"}
+              // disabled={displayInvoice === "true" ? "" : "disable"}
               value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
-            ></Cell>
+            ></TextareaAutosize>
           </div>
 
         </div>
@@ -590,12 +691,15 @@ function Item(props) {
 
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
-              // style={{width:"100%", height:"100%"}}
+              autoComplete="new-password"
               onFocus={() => cleanInput1('price')}
               id="validation-example-3-field2"
+              // flagValidPrice={}
               name="price"
+              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className='cell design_text'
+              className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
+              // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
               onValueChange={updateCellPrice}
@@ -612,6 +716,7 @@ function Item(props) {
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
+              autoComplete="new-password"
               onFocus={() => cleanInput1('amount')}
               value={props.pro.amount}
               onChange={(e) => updateCell('amount', e)}
@@ -668,7 +773,7 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "cinput" : ""} style={{
                   marginLeft: "33%",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #DBD0D7", color: "#DBD0D7", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>

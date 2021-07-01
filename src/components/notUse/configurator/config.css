@@ -21,10 +21,7 @@
     font-size: 12px;     
     color: #B1B2BC;
 }
-.fontConfig{
-  /* font-size: 70% !important; */
-  /* color:rgb(0, 0, 0) !important */
-}
+
 .iconBtnConfig{
     padding: auto;
     color:#B1B2BC;
@@ -140,9 +137,6 @@ border:white
  border:1px solid white;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0A1028; 
+  background: #0A1028 ; 
   border-radius: 10px;
-}
-.paleta-row:hover{
-/* background-color: red; */
 }

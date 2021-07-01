@@ -1,126 +1,113 @@
-.list-group-item {
-    background: #0A102E 0% 0% no-repeat padding-box;
-    border    : none;
-    color     : white;
+.li_wrapi{
+   color: white;
+   margin-bottom: 20%;
 }
-
+.li_wrapi:hover{
+    margin-bottom: 20%;
+    color: white;
+    background: transparent linear-gradient(90deg,rgba(145,123,223,0.18) 0% ,rgba(145,123,223,0.18) 35%, #006C8000 100%) 0% 0% no-repeat padding-box;
+    border-left: 2px solid #917BDF;
+}
+.li_wrapi_focus{
+    margin-bottom: 20%;
+    color: white;
+    background-color:#917BDF ;
+}
+/* .list-group-item{
+    background: #0A102E 0% 0% no-repeat padding-box; 
+    border:none;
+    color:white;  
+} */
 /* .list-group-item:hover{
     background:#917BDF !important;
 }  */
-.l {
-    color          : white;
-    font-size      : 10px;
-    padding-left   : 16%;
-    /* font-size   : 200%;   */
-    text-decoration: none !important;
-}
+/* .l{
+    color: white;
+    font-size: 10px;
+    padding-left:  16%;
 
-.ls {
-    color          : white;
-    font-size      : 10px;
-    padding-left   : 2vh;
-    /* font-size   : 200%;   */
-    text-decoration: none !important;
-}
-
-.ns {
-    color           : white;
-    font-size       : 10px;
-    padding-left    : 2vh;
+  text-decoration: none!important;
+} */
+/* .d{
+    color: white;
+    font-size: 10px;
+    padding-left:12%;
+    text-decoration: none!important;
+} */
+/* .n{
+    color: white;
+    font-size: 10px;
+    padding-left:  1.5vh;
     background-color: #917BDF;
     text-decoration : none !important;
 }
-
-.d {
-    color          : white;
-    font-size      : 10px;
-    padding-left   : 12%;
-    text-decoration: none !important;
-}
-
-.n {
-    color           : white;
-    font-size       : 10px;
-    padding-left    : 12%;
+.ns{
+    color: white;
+    font-size: 10px;
+    padding-left:  2vh;
     background-color: #917BDF;
-    text-decoration : none !important;
-}
-
-.dd {
-    color           : white;
-    font-size       : 10px;
-    padding-left    : 12%;
+  text-decoration: none!important;
+} */
+/* .dd{
+    color: white;
+    font-size: 10px;
+    padding-left:  12%;
     background-color: #917BDF;
-    text-decoration : none !important;
-}
+  text-decoration: none!important;
+} */
 
-.border-hidden {
+/* .border-hidden{
     border-radius: 0px 13px 0px 0px;
-}
+} */
 
-.yy {
-    height             : 5vh;
-    /* background-color: "#0A102E"; */
-    border             : none;
-    color              : white;
-    padding-left       : 13%;
-}
-
-.yyyy {
-    height          : 5vh;
+/* .yy{
+    height: 5vh;
+        /* background-color: "#0A102E"; */
+         
+/* }  */
+/* .yyyy{
+    height: 5vh;
     background-color: #917BDF;
-    border          : none;
-    color           : white;
-    padding-left    : 13%;
-}
-
+         border: none;
+        color: white;
+        padding-left: 13%;
+} */
 /* .kkk:hover{
     background:#5c5770 !important;
     background: transparent linear-gradient(90deg,rgba(145,123,223,0.18) 0% ,rgba(145,123,223,0.18) 35%, #006C8000 100%) 0% 0% no-repeat padding-box;
     color: white !important;
 } */
-.li_hidden {
-    height: 5vh !important;
-}
-
-.li_hidden:hover {
+/* .li_hidden{
+    height: 5vh  !important;
+} */
+/* .li_hidden:hover{
+   background-color: transparent !important;
+} */
+/* .li_hidden:focus{
     background-color: transparent !important;
-}
-
-.li_hidden:focus {
-    background-color: transparent !important;
-}
-
-.i {
-    width : 15px !important;
+} */
+/* .i{
+    width:15px !important;
     height: 15px !important;
-}
+} */
+/* .l:hover{
+   border:none;
+   color: white;
+   /* text-decoration:none; */
 
-.l:hover {
-    border            : none;
-    color             : white;
-    /* text-decoration:none; */
-
-}
-
-.yy:hover {
+/* }  */
+/* .yy:hover{
     border-left: 2px solid #917BDF;
     background : transparent linear-gradient(90deg, rgba(145, 123, 223, 0.18) 0%, rgba(145, 123, 223, 0.18) 35%, #006C8000 100%) 0% 0% no-repeat padding-box;
 
     color: white !important;
 }
-
-.li_wrap {
-    padding-left: 13%;
-}
-
-.ttt {
-    animation           : ttt 0.6s forwards;
-    /* -webkit-animation: ttt 0.5s forwards; */
-}
-
-.ii {
-    animation        : ii 0.1s forwards;
+.ttt{
+    animation:ttt 0.6s forwards;
+   
+} */
+/* .ii{
+    animation:ii 0.1s forwards;
     -webkit-animation: ii 0.1s forwards;
 }
 
@@ -143,11 +130,8 @@
 }
 
 @-webkit-keyframes ttt {
-    100% {
-        -webkit-transform: translateX(0%);
-    }
-}
-
+    100% { -webkit-transform: translateX(0%); }
+} */
 /* .mnmn{
     background-color: brown;
 }

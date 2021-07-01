@@ -67,6 +67,7 @@ export default function InvoiceAndSteps(props) {
   const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
+  const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -128,7 +129,7 @@ export default function InvoiceAndSteps(props) {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
 
         }
       })
@@ -149,36 +150,39 @@ export default function InvoiceAndSteps(props) {
     }
 
     else {
-      if (flagToCheck === true) {
-        setFlagToCheck(false)
-        if (flagSaveP === false) {
-          // alert("yy")
-          debugger
-          if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
-            dispatch(actions.setflagBorderProduct(true))
-          }
-          else {
-            dispatch(actions.setflagBorderProduct(false))
-            if (flagMessageContact) {
-              setShowMessage(true)
-              setFlagModal("contact")
-              setModalBody("how do you want to save contact changes?")
+      if (flagOfterValidation === true) {
+        dispatch(actions.setFlagOfterValidation(false))
+        if (flagToCheck === true) {
+          setFlagToCheck(false)
+          if (flagSaveP === false) {
+            // alert("yy")
+            debugger
+            if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
+              dispatch(actions.setflagBorderProduct(true))
             }
             else {
-              nameInvoice()
+              dispatch(actions.setflagBorderProduct(false))
+              if (flagMessageContact) {
+                setShowMessage(true)
+                setFlagModal("contact")
+                setModalBody("how do you want to save contact changes?")
+              }
+              else {
+                nameInvoice()
+              }
             }
           }
         }
       }
     }
-
-  }, [flagToCheck])
+  }, [flagToCheck, flagOfterValidation])
 
   useEffect(() => {
     if (flagFirstToP === false)
       setFlagFirstToP(true)
     else {
-      if (colorFlagShowSaveP === "#DBD0D7")
+      // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      if (colorFlagShowSaveP === "#707071")
         setFlagSaveP(false)
       else {
         dispatch(actions.setColorFlagShowSaveP("red"))
@@ -209,29 +213,75 @@ export default function InvoiceAndSteps(props) {
   }, [flagPush1])
 
 
-  const nameInvoice = async () => {
+  const nameInvoice = () => {
+    // alert("uuu")
     if (history.location.pathname == `/${userName}/invoice` && invoice.type ||
-      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type) {
-      //  await products()
+      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)
       save()
-    }
     else {
       dispatch(actions.setShowModalName(true))
-      //  await products()
     }
   }
 
-  async function save1() {
+  // useEffect(() => {
+  //   debugger
+  //   if (flagOfterValidation === true) {
+  //     dispatch(actions.setFlagOfterValidation(false))
+  //     // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+  //     //     dispatch(actions.setflagBorderProduct(true))
 
+  //     // }
+  //     // else {
+  //     // dispatch(actions.setflagBorderProduct(false))
+
+
+  //     // if (flagOfterValidation === false) {
+  //     dispatch(actions.setFlagModal(""))
+  //     dispatch(actions.setShowMessage(false))
+  //     dispatch(actions.setButtonClick(""))
+  //     dispatch(actions.setModalBody(""))
+  //     setFlagToCheck(true)
+  //     // if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
+  //     //   (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
+  //     //   ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
+
+  //     //   setFlagSaveP(true)
+  //     // }
+  //     // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+  //     //   setFlagToCheck(true)
+  //     //   if (flag === true) {
+  //     //     setFlagSaveP(true)
+  //     //     dispatch(actions.setColorFlagShowSaveP("red"))
+  //     //   }
+  //     // })
+  //     // }
+  //     // }
+  //   }
+  // }, [flagOfterValidation])
+
+
+
+
+
+
+  const save1 = () => {
+    debugger
+    // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
+    //     dispatch(actions.setflagBorderProduct(true))
+    // }
+    // else {
+    //     dispatch(actions.setflagBorderProduct(false))
+    // }
+    dispatch(actions.setFlagValidation(true))
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagModal(""))
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
-    setFlagToCheck(true)
-
+    //     setFlagToCheck(true)
+    debugger
     if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
       (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
       ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
@@ -246,7 +296,22 @@ export default function InvoiceAndSteps(props) {
       }
     })
 
+    // checkIfFalse()
   }
+
+  // async function save1() {
+  //   dispatch(actions.setFlagPush(false))
+  //   dispatch(actions.setFlagPush1(false))
+  //   dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
+  //   dispatch(actions.setFlagModal(""))
+  //   dispatch(actions.setShowMessage(false))
+  //   dispatch(actions.setButtonClick(""))
+  //   dispatch(actions.setModalBody(""))
+  //   setFlagToCheck(true)
+
+
+
+  // }
 
 
   useEffect(() => {
@@ -295,9 +360,13 @@ dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
-      dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-      console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      debugger
+      if (detailsInvoice._id) {
+        dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+      }
+      else
+        dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
+      // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+      // debugger
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }
@@ -319,6 +388,68 @@ dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
       setShowMessage(true)
     }
   }
+
+
+  useEffect(() => {
+
+    if (flagSaveinvoice1 === false)
+      setFlagSaveinvoice1(true)
+    else
+
+      if (viewConversion === "true") {
+
+        dispatch(actions.setViewConversion('false'))
+        if (history.location.pathname === `/${userName}/invoice`) {
+
+          history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+        }
+        else
+          if (flagFromTable === false) {
+            // alert('opopo')
+            // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
+
+          }
+
+
+      }
+
+  }, [viewConversion])
+
+
+  // const save = () => {
+  //   setIslevel(3);
+  //   // setFlagSaveInvoice(true)
+  //   dispatch(actions.setFlagIfEmpty(false))
+  //   if (history.location.pathname === `/${userName}/invoice`) {
+
+  //     dispatch(actions.setSaveInvoice(invoice))
+  //   }
+  //   else {
+
+  //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+  //     console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+  //     debugger
+  //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
+  //     dispatch(actions.setUpdateInvoice())
+  //   }
+  //   console.log("save", invoice)
+  //   // sendWave()
+  // }
+
+  // const backtoAllInvoices = () => {
+  //   if (flagIfEmpty == false) {
+  //     history.push(`/${userName}/allDocuments`)
+  //     dispatch(actions.setFlagModal(""))
+  //     dispatch(actions.setShowMessage(false))
+  //     dispatch(actions.setButtonClick(""))
+  //     dispatch(actions.setModalBody(""))
+  //   }
+  //   else {
+  //     setModalBody("Do you want to save Invoice?")
+  //     setFlagModal("otherPage")
+  //     setShowMessage(true)
+  //   }
+  // }
   return (
     <>
 

@@ -6,9 +6,9 @@
   height    : 80%;
 }
 
-.con {
+/* .con {
   background-color: white;
-}
+} */
 
 tr.expandable>td>.inner {
   margin  : 15px;
@@ -66,48 +66,10 @@ tr.expandable>td>.inner {
   padding-top     : 2%;
 }
 
-/* .backgroundSearch{
-  background-color: #F8F8F8;
-  margin-right: 1rem;
-  padding: .4rem;
-  padding-left: .7rem;
-  height: 4vh;
-  width: 4vh;
-  border-radius: 50%
-}
-.backgroundSearchClick:hover{
-  background-color: #F8F8F8;
-  margin-right: 1rem;
-  padding: .4rem;
-  width: 20rem;
-  height: 4vh;
-  border-radius: 5%;
-  padding-left: 18.3rem;
+.backgroundSearch{
+  display:none
 }
 .backgroundSearchClick{
-  background-color: #F8F8F8;
-  margin-right: 1rem;
-  padding: .4rem;
-  padding-left: .7rem;
-  height: 4vh;
-  width: 4vh;
-  border-radius: 50%
-} */
-.backgroundSearch {
-  display: none
-}
-
-/* .backgroundSearchClick{
-  background-color: #F8F8F8;
-  margin-right: 1rem;
-  padding: .4rem;
-  padding-left: .7rem;
-  height: 4vh;
-  width: 4vh;
-  border-radius: 50%;
-  border:none
-}  */
-.backgroundSearchClick {
   background-color: #F8F8F8;
   padding         : .4rem;
   width           : 18rem;
@@ -115,8 +77,10 @@ tr.expandable>td>.inner {
   border-radius   : 5%;
   border          : none
 }
-
-.SearchIcon {
+/* .backgroundSearchClick{
+display:none
+} */
+.SearchIcon{
   background-color: #F8F8F8;
   margin-right    : 1rem;
   padding         : .4rem;

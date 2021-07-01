@@ -165,9 +165,8 @@ text-align: left !important;
     background: transparent;
 }
 .validB{
-    border: solid !important;
-    border-color: red!important;
-  }
+    border:1px solid red!important;
+}
 .flagLoudOp{
     opacity: 0.5;
 }
