@@ -13,7 +13,8 @@ import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyInput from 'react-currency-input-field';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
+import { useState } from 'react';
+// import '../Invoice/invoice.css'
 // import { borderRadius } from 'react-select/src/theme';
 
 
@@ -74,15 +75,45 @@ function ProductForm(props) {
     console.log('ffllaagg', props.flag);
     props.changeFlag(false)
   }
+  const [flagName2, setflagName2] = useState(false)
+  const [flagPrice2, setflagPrice2] = useState(false)
+  const [flagName, setflagName] = useState(true)
+  const [flagPrice, setflagPrice] = useState(true)
 
   const onFieldEdit = (fieldName, e) => {
+    debugger
+    if (fieldName == 'name') {
+      if (e.target.value) {
+        setflagName(false)
+        setflagName2(false)
+      }
+      else {
+        setflagName(true)
+        setflagName2(true)
+      }
+    }
+    // else {
+    //   if (fieldName == 'price') {
+    //     setflagPrice(false)
+    //     setflagPrice2(false)
+    //   }
+    // }
     const value = e.target.value;
     dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     // props.setNewProduct({ index: 0, key: fieldName, value: value })
   }
   const addNewProduct = () => {
-    dispatch(actions.setNewProductServer())
-    props.changeFlag(false)
+    debugger
+    if (!flagName && !flagPrice) {
+      dispatch(actions.setNewProductServer())
+      props.changeFlag(false)
+    }
+    else {
+      if (flagName) setflagName2(true)
+      else setflagName2(false)
+      if (flagPrice) setflagPrice2(true)
+      else setflagPrice2(false)
+    }
     // props.setNewProduct1({})
     // dispatch(actions.setResetNewProduct(0))
     // inputText.current.value="";
@@ -118,6 +149,17 @@ function ProductForm(props) {
   }
 
   const updateCellPrice = (_value, fieldName) => {
+    debugger
+    if (fieldName == 'price') {
+      if (_value) {
+        setflagPrice(false)
+        setflagPrice2(false)
+      }
+      else {
+        setflagPrice(true)
+        setflagPrice2(true)
+      }
+    }
     if (!fieldName) {
       return;
     }
@@ -167,7 +209,9 @@ function ProductForm(props) {
         <div className="row">
           <div className="hederN">
             <label> Name</label>
-            <TextareaAutosize className="fieldProductCss"
+            <TextareaAutosize
+              // className="fieldProductCss"
+              className={flagName2 ? 'fieldProductCss valid' : 'fieldProductCss'}
               rowsMax="2"
               value={newProductTable ? newProductTable.name : ''}
               onChange={(e) => onFieldEdit('name', e)}
@@ -179,8 +223,8 @@ function ProductForm(props) {
             <CurrencyInput
               id="validation-example-3-field2"
               name="price"
-              className="fieldProductCss"
-              // className={`form-control ${state.field2.validationClass}`}
+              // className="fieldProductCss"
+              className={flagPrice2 ? 'fieldProductCss valid' : 'fieldProductCss'}
               value={newProductTable ? newProductTable.price : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
@@ -192,6 +236,7 @@ function ProductForm(props) {
           <div className="hederD">
             <label> Discription</label>
             <TextareaAutosize className="fieldProductCssD"
+              // className={flagPrice && 'validB'}
               rowsMax="2"
               value={newProductTable ? newProductTable.description : ''}
               onChange={(e) => onFieldEdit('description', e)}

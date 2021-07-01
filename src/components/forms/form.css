@@ -221,3 +221,7 @@ h2 {
   background: rgb(245 244 244);
   border-radius: 1vh;
 }
+.valid{
+  border: 1px solid red !important;
+  /* border: 1.5px red solid; */
+}
