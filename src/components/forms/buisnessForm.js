@@ -339,7 +339,7 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div>
           <div className="colorWhite">
             Company Information
@@ -490,7 +490,7 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        <hr className="hrStyle"></hr>
+        {/* <hr className="hrStyle"></hr> */}
         {/* <div>
           <div className="colorWhite">
             Personal Information

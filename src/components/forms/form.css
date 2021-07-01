@@ -126,7 +126,8 @@ h2 {
   height: 20%;
 }
 .colorWhite{
-  color: #917BDF;
+  margin-top: 2vh;
+  color:black;
   font-weight: bold;
   margin-bottom: 2vh;
 }

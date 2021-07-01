@@ -395,6 +395,7 @@ function New_Invoice(props) {
         tmp3 = validatorPhone(contactedit.phone);
       }
       if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
+        debugger
         setErrorMessage1(false)
         setErrorMessage2(false)
         dispatch(actions.setFlagValidation(false))
@@ -415,12 +416,12 @@ function New_Invoice(props) {
           else { dispatch(actions.setFlagTmpSave(false)) }
         }
         else {
-          if (!contactedit.email) {
+          if (!contactedit.email && !validName) {
             setErrorMessage1(true)
             dispatch(actions.setFlagValidation(false))
           }
           else {
-            if (!validatorEmail(contactedit.email)) {
+            if (!validatorEmail(contactedit.email) && !validName) {
               dispatch(actions.setFlagValidation(false))
               setErrorMessage1(true)
             }
@@ -1336,7 +1337,7 @@ function New_Invoice(props) {
                     name="city" list="contactname"
                     id='headers-name'
                     disabled={displayInvoice === "true" ? "disable" : ""}
-
+                    autoComplete="new-password"
                     placeholder="contact name"
                     // className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
                     className="design_text_contact_name"

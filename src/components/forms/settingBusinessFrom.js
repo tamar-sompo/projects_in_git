@@ -372,7 +372,7 @@ function SettingBuisnessList(props) {
                         </div>
                     </div>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div>
                     <div className="colorWhite">
                         Company Information
@@ -533,7 +533,7 @@ function SettingBuisnessList(props) {
                         </div>
                     </div>
                 </div>
-                <hr className="hrStyle"></hr>
+                {/* <hr className="hrStyle"></hr> */}
                 <div>
                     <div className="colorWhite">Social media</div>
                     <div style={{ paddingBottom: "2vh" }}>media</div>
