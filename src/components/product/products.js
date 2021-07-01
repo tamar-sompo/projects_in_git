@@ -20,6 +20,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 // import e from 'cors';
 // import MassageFormat from '../Useful/messageFormat'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -382,7 +383,8 @@ function Products(props) {
                                                                 }
                                                             </td>
                                                             <td>
-                                                                <input type="text" style={{ background: "transparent" }}
+                                                                <TextareaAutosize type="text" style={{ background: "transparent" }}
+                                                                    rowsMax="2"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
@@ -394,22 +396,24 @@ function Products(props) {
                                                                 />
                                                             </td>
                                                             <td>
-                                                                {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ?
-                                                                    <>
-                                                                        <input type="text"
-                                                                            className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
-                                                                            value={dis.id === product._id && dis.inpDis == "" ?
-                                                                                newProductTable.description :
-                                                                                dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
-                                                                                    newProductTable.description : product.description}
-                                                                            onChange={(e) => onFieldEdit('description', e)}
-                                                                            onFocus={() => resetFeild('description', product)}
-                                                                            disabled={dis.id === product._id ? dis.inpDis : "disable"}
-                                                                        /></>
-                                                                    : <div>
+                                                                {/* {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ? */}
+                                                                <>
+                                                                    <TextareaAutosize type="text"
+                                                                        rowsMax="2"
+                                                                        className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                        value={dis.id === product._id && dis.inpDis == "" ?
+                                                                            newProductTable.description :
+                                                                            dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                                newProductTable.description : product.description}
+                                                                        onChange={(e) => onFieldEdit('description', e)}
+                                                                        onFocus={() => resetFeild('description', product)}
+                                                                        disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                    />
+                                                                </>
+                                                                {/* : <div>
                                                                         {mmm(product.description)}
                                                                     </div>
-                                                                }
+                                                                } */}
                                                             </td>
                                                             <td>
                                                                 <input type="text"

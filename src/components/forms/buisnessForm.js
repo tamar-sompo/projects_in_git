@@ -26,6 +26,7 @@ import { BiCalendar, BiPlus } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
+// import '../Invoice/invoice.css'
 // import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
 // import { BiCalendar, BiPlus } from 'react-icons/bi';
 // import { GiWireframeGlobe } from 'react-icons/gi';
@@ -297,7 +298,8 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "95%", width: "90%", overflowY: "auto"
+          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+          overflowY: "auto"
         }}>
         {/* {
         show ?
@@ -338,7 +340,7 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div>
           <div className="colorWhite">
             Company Information
@@ -489,7 +491,7 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        <hr className="hrStyle"></hr>
+        {/* <hr className="hrStyle"></hr> */}
         {/* <div>
           <div className="colorWhite">
             Personal Information
