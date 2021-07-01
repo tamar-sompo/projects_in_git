@@ -469,25 +469,25 @@ function Products(props) {
                                                                     }
                                                                 </div>
                                                             </td>
-                                                        </tr>
+                                                        </tr >
                                                     )
-                                                })
+})
                                             }
-                                        </tbody> :
-                                        <div></div>
+                                        </tbody > :
+<div></div>
                                     }
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+                                </table >
+                            </div >
+                        </div >
+                    </div >
+                </div >
+            </div > * /}
 
-            <div className="container-fluid con" style={{
-                height: "86vh",
-                width: "98%"
-                // , borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
-            }}>
+    < div className = "container-fluid con" style = {{
+    height: "86vh",
+        width: "98%"
+    // , borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+}}>
                 <div className="row ">
                     <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Product</h1>
@@ -690,7 +690,7 @@ function Products(props) {
                     </div>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 }
