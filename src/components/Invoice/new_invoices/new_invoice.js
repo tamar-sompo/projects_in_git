@@ -220,11 +220,13 @@ function New_Invoice(props) {
       else {
 
         if (window.location.href.indexOf('invoice/edit') != -1) {
+          dispatch(actions.setPushNewProduct({}))
           setDisplayInvoice("false")
         }
 
         let summ = 0
         if (detailsInvoice.products && detailsInvoice.products.length > 0) {
+          // dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
           detailsInvoice.products.filter(x =>
             dispatch(actions.setPushNewProduct({})))
           detailsInvoice.products.filter(x =>
