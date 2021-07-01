@@ -90,6 +90,7 @@ function New_Invoice(props) {
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
   const saveSumView = useSelector(state => state.invoiceReducer.saveSumView)
   const [saveSum2, setsaveSum2] = useState(0)
+  console.log("summ", saveSum2)
   const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
   const [flagcontactFromInvoice1, setflagcontactFromInvoice1] = useState(false)
   const [flagdetailsContact, setflagdetailsContact] = useState(false)
@@ -118,7 +119,8 @@ function New_Invoice(props) {
         summ += x.sum_product
       )
       setsaveSum2(summ)
-      console.log("111s")
+      dispatch(actions.setTotalProductsTable(summ))
+      console.log("111s", summ)
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
       setIslevel(1);
@@ -578,7 +580,7 @@ function New_Invoice(props) {
     //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
     //     console.log("detailsInvoice", detailsInvoice._id)
     //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
-    //     dispatch(actions.setUpdateInvoice(invoice))
+    //     dispatch(actions.(invoice))
     //   }
 
     //   console.log("saveeee", invoice)
@@ -730,6 +732,11 @@ function New_Invoice(props) {
     // alert("oo")
     updateinvoiceField({ key: "type", value: undefined })
 
+  }
+
+  const setTotal = (e) => {
+    console.log("setTotal", e)
+    dispatch(actions.setTotalProductsTable(e))
   }
 
   return (
@@ -1094,7 +1101,7 @@ function New_Invoice(props) {
                   <div className="" style={{ paddingRight: "9%" }} >
                     <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                   <div className="">
-                    <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
+                    <span className="design_text" style={{ fontWeight: "bold" }} onChange={(e) => setTotal(e.target.value)}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
                       ''}</span></div>
                 </div>
               </div>

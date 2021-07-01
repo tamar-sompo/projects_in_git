@@ -39,8 +39,8 @@ export default function Share(props) {
             setWatsappText(`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`)
             if (linkPayToContact) {
                 console.log("linkkk")
-                setWatsappText = `https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id} 
-                <br /> Attached is a link to pay <br /> ${linkPayToContact}`
+                setWatsappText(`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id} 
+                <br /> Attached is a link to pay <br /> ${linkPayToContact}`)
             }
         }
     }, [invoiceSave, linkPayToContact])
@@ -49,7 +49,6 @@ export default function Share(props) {
     return (
         <>
             {pdfDisplay === true && <PdfModal setPdfDisplay={setPdfDisplay} />}
-
             <DropdownButton id={props && props.fl == 1 ? "dropdown-basic" : "dropdown-basic-button"}
                 title={<MdShare className={props && props.fl == 1 ? "inv" : "navt"} id={props && props.fl == 1 ?
                     "icons" : "ico"}> </MdShare>}>

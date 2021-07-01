@@ -59,7 +59,8 @@ import {
 } from './middleWares/exportCrud';
 import {
     setClientIdToBuisness,
-    getLinkToPayWithPaypal
+    getLinkToPayWithPaypal,
+    setPaymentDetailsToPayServer
 } from './middleWares/paymentsCrud';
 
 import publicReducer from './reducers/publicReducer';
@@ -88,6 +89,7 @@ const store = createStore(
     composeWithDevTools(
         applyMiddleware(
             setClientIdToBuisness,
+            setPaymentDetailsToPayServer,
             getLinkToPayWithPaypal,
             getAllCountry,
             getAllCitiesByCountry,

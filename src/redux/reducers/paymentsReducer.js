@@ -4,7 +4,9 @@ import createReducer from "./reducerUtils";
 const initialState = {
   buisnessPaypalDetails:{},
   linkPayToContact:"",
-  paypalSubscription:false
+  paypalSubscription:false,
+  paypalInvoiceProductsTable:[],
+  totalProductsTable:""
  }
 
 const payments = {
@@ -16,6 +18,12 @@ const payments = {
     },
     setBuisnessPaypalSubscription(state, action) {
         state.paypalSubscription = action.payload
+    },
+    setPaypalInvoiceProductsTable(state, action) {
+        state.paypalInvoiceProductsTable = action.payload
+    },
+    setTotalProductsTable(state, action) {
+        state.totalProductsTable = action.payload
     }
 }
 export default produce((state, action) => createReducer(state, action, payments), initialState);

@@ -17,7 +17,8 @@ import New_Invoice from './new_invoices/new_invoice'
 import { useHistory } from 'react-router-dom';
 // import productForm from '../forms/productForm'
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
-import { AirlineSeatReclineExtra } from '@material-ui/icons';
+import { AirlineSeatReclineExtra, SettingsInputAntennaTwoTone } from '@material-ui/icons';
+import { FiCornerDownLeft } from 'react-icons/fi';
 
 export default function InvoiceAndSteps(props) {
   // let history = useHistory();
@@ -28,11 +29,13 @@ export default function InvoiceAndSteps(props) {
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
   const userName = useSelector(state => state.publicReducer.userName);
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+  console.log("pr", detailsInvoice)
   // const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const setViewConversion = () => dispatch(actions.setViewConversion())
   const prevPath = useSelector(state => state.displayComponents.prevPath)
   const sendWave = () => dispatch(actions.setSystemWave())
   const [flagM, setFlagM] = useState(false)
+  const [state, setState] = useState([])
   const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
   const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
   const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
@@ -75,7 +78,8 @@ export default function InvoiceAndSteps(props) {
   const history = useHistory()
 
   // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-  // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+  const detailsProducts = useSelector(state => state.invoiceReducer.invoice.products);
+  const allproduct = useSelector(state => state.productReducer.allProducts);
 
   // const invoice = useSelector(state => state.invoiceReducer.invoice);
   // {type:'SET_SYSTEM_WAVE'})
@@ -171,24 +175,15 @@ export default function InvoiceAndSteps(props) {
   }, [flagToCheck])
 
   useEffect(() => {
-
     if (flagFirstToP === false)
       setFlagFirstToP(true)
     else {
-      // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
       if (colorFlagShowSaveP === "#DBD0D7")
         setFlagSaveP(false)
       else {
         dispatch(actions.setColorFlagShowSaveP("red"))
         setFlagSaveP(true)
       }
-      //     if (flag === true) {
-      //         setFlagSaveP(true)
-      //         dispatch(actions.setColorFlagShowSaveP("red"))
-      //     }
-      //   })
-      //   if(flagSaveP===false)
-      //     save1()
     }
   }, [colorFlagShowSaveP])
 
@@ -214,17 +209,20 @@ export default function InvoiceAndSteps(props) {
   }, [flagPush1])
 
 
-  const nameInvoice = () => {
-    // alert("uuu")
+  const nameInvoice = async () => {
     if (history.location.pathname == `/${userName}/invoice` && invoice.type ||
-      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type)
+      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.type) {
+      //  await products()
       save()
+    }
     else {
       dispatch(actions.setShowModalName(true))
+      //  await products()
     }
   }
 
   async function save1() {
+
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
@@ -275,18 +273,28 @@ export default function InvoiceAndSteps(props) {
       }
 
   }, [viewConversion])
+  
+  const products = async () => {
+    console.log("innnnn")
+    if (detailsProducts) {
+      let invoiceProduct = []
+      detailsProducts.map((product) => {
+        invoiceProduct.push(allproduct.filter(pro => pro._id == product.id)[0])
+      })
+      
+dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
+    }
+  }
 
 
-  const save = () => {
+  const save = async () => {
     setIslevel(3);
-    // setFlagSaveInvoice(true)
     dispatch(actions.setFlagIfEmpty(false))
     if (history.location.pathname === `/${userName}/invoice`) {
-
+      await products()
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
-
       dispatch(actions.setGetInvoiceById(detailsInvoice._id))
       console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
       debugger

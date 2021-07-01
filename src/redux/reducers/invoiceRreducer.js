@@ -367,9 +367,9 @@ const invoices = {
     // setSaveInvoice(state, action) {
     //     state.invoice = { ...state.invoice };
     // },
-    setUpdateInvoice(state, action) {
-        state.invoiceId = action.payload;
-    },
+    // setUpdateInvoice(state, action) {
+    //     state.invoiceId = action.payload;
+    // },
     setRemoveInvoice(state, action) {
         state.invoiceId = action.payload;
     }
