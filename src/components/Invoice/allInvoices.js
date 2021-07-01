@@ -349,19 +349,15 @@ function AllInvoices(props) {
                                         <Share fl={1}
                                           invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} />
                                         <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
-                                        {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
-                                        <MdContentCopy id="icon"></MdContentCopy> */}
                                         <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
-                                          style={{ paddingTop: "0px", marginTop: "0px" }}>
+                                          style={{ height: "14px" }}>
                                           <MdRemoveRedEye id="icon"
+                                            style={{ verticalAlign: "top" }}
                                             data-toggle="collapse"
                                             data-target={"#collapsePicture" + index}
                                             aria-expanded="false"
                                             onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
                                         </a>
-                                        {/* <Share fl={1}/> */}
-                                        {/* <span id="icon" className="glyphicon glyphicon-eye-open addIcon" aria-hidden="true"
-                                            // onClick={() => showInvoiceById(invoice._id)}></span> */}
                                       </div>
                                     )
                                   }
