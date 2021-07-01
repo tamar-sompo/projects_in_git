@@ -99,13 +99,12 @@ export default function InvoiceAndSteps(props) {
 
 
 
-//איך חזר מהמודל
+  //איך חזר מהמודל
   useEffect(() => {
     console.log("flagModal", flagModal)
     if (flagModal === "successContact")
       nameInvoice()
     if (flagModal === "successNameInvoice") {
-      // alert("ghjhg")
       save()
     }
   }, [flagModal])
@@ -139,17 +138,17 @@ export default function InvoiceAndSteps(props) {
     else {
       if (flagOfterValidation === true) {
         dispatch(actions.setFlagOfterValidation(false))
-       if (flagToCheck === true) {
+        if (flagToCheck === true) {
           setFlagToCheck(false)
-          if (flagSaveP === false && borderProductInvoice===false) {
-              dispatch(actions.setBorderProductInvoice(false))
-              if (flagMessageContact) {
-                setShowMessage(true)
-                setFlagModal("contact")
-                setModalBody("how do you want to save contact changes?")
-              }
-              else {
-                nameInvoice()
+          if (flagSaveP === false && borderProductInvoice === false) {
+            dispatch(actions.setBorderProductInvoice(false))
+            if (flagMessageContact) {
+              setShowMessage(true)
+              setFlagModal("contact")
+              setModalBody("how do you want to save contact changes?")
+            }
+            else {
+              nameInvoice()
             }
           }
         }
@@ -174,11 +173,11 @@ export default function InvoiceAndSteps(props) {
   }, [colorFlagShowSaveP])
 
 
-//בלחיצה על שמירה מתחיל את הבדיקות תקינות 
+  //בלחיצה על שמירה מתחיל את הבדיקות תקינות 
   const save1 = () => {
     debugger
     //איפוס כל המשתנים
-  
+
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -186,16 +185,22 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
-     dispatch(actions.setFlagValidation(true))
+    dispatch(actions.setFlagValidation(true))
     debugger
     //בודק אם יש מוצר ריק בחשבונית
-    if(history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" && flagIfEmptyProduct===false || 
-        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null" && flagIfEmptyProduct===false||
-        history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[invoice.products.length - 1].id === "null" && flagIfEmptyProduct===false||
-        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" && flagIfEmptyProduct===false)
-    {
+    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
+      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
+      ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+
       setFlagSaveP(true)
       dispatch(actions.setBorderProductInvoice(true))
+    }
+    else {
+      if (window.location.href.indexOf('edit')!=-1) {
+        alert("detailsInvoice.products[detailsInvoice.products.length - 1].id" + detailsInvoice.products[detailsInvoice.products.length - 1].id)
+        alert(window.location.href)
+      }
     }
 
     //בדיקה אם יש מוצר לא שמור
@@ -206,7 +211,7 @@ export default function InvoiceAndSteps(props) {
         dispatch(actions.setColorFlagShowSaveP("red"))
       }
     })
-   
+
   }
 
 
@@ -243,7 +248,7 @@ export default function InvoiceAndSteps(props) {
     }
   }
 
-//השמירה של החשבונית
+  //השמירה של החשבונית
   const save = () => {
     setIslevel(3);
     dispatch(actions.setFlagIfEmpty(false))

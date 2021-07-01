@@ -160,7 +160,7 @@ if (window.location.hostname == "localhost") {
     store.dispatch(actions.setUserName(userName))
     if (window.location.href.indexOf("view") != -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
-        debugger
+
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() != "") {
@@ -172,7 +172,7 @@ if (window.location.hostname == "localhost") {
 else {
     if (window.location.href.indexOf("view") != -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
-        debugger
+
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() != "") {
@@ -185,25 +185,25 @@ else {
     console.log("params", params)
     let jwtGlobal = params.get('jwt');
     console.log("jwtGlobal", jwtGlobal)
-    debugger
+
     if (jwtGlobal) {
-        debugger
+
         let newUrl = window.location.href
         newUrl = newUrl.split('?jwt=')
         newUrl = newUrl[0]
         let date = new Date(Date.now() + 86400e3);
         date = date.toUTCString();
         var expires = "expires=" + date;
-        debugger
+
         if (!(document.cookie.split(";").filter(s => s.includes('devJwt'))[0]) || document.cookie.split(";").filter(s => s.includes('devJwt'))[0] === '')
             document.cookie = "devJwt" + "=" + jwtGlobal + ";" + expires + ";domain=leader.codes;path=/";
-        debugger
+
         window.location.replace(newUrl)
 
         store.dispatch(actions.setTokenFromCookies(jwtGlobal));
 
         // if (window.location.href.indexOf("view") != -1) {
-        //     debugger
+        //      
         //     console.log("njnj")
         //     store.dispatch(actions.setDislayInvoice("true"))
         //     if (window.location.pathname.split("/").pop() != "") {

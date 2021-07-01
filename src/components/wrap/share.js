@@ -39,7 +39,7 @@ export default function Share(props) {
         let businessPhoneWatsapp;
         let businessPhoneWatsapp1;
 
-        debugger
+
         if (flagSave1 === true) {
             businessPhone = invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                 invoice.contactOneTime.phone : "";

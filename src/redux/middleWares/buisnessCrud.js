@@ -53,7 +53,7 @@ export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
   console.log("arrived to newBuisnessToUser crud")
   // if (action.type === 'SET_SEND_NEW_BUISNESS') 
   if (action.type === 'SET_BUISNESS_TO_SERVER') {
-    debugger
+
     console.log("setBuisness")
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newBuisness`
     // let buisness = getState().buisnessReducer.newBuisness
@@ -68,20 +68,20 @@ export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(buisness),
       success: (result) => {
-        debugger
+
         console.log("dresult", result)
         checkPermission(result).then((ifOk) => {
-        console.log("okNewBuisness", result)
-        dispatch(actions.setShow(true))
-        dispatch(actions.setNameAction("Adding a business successfully"))
-        dispatch(actions.setGetBusiness(result.buisness._id))
-        dispatch(actions.setGeCurrenttBuisness(result.buisness))
-        // dispatch(actions.setSaveInvoice("true"))
-        dispatch(actions.setGetAllBuisness())
-        dispatch(actions.getAllProduct(result.buisness._id))
+          console.log("okNewBuisness", result)
+          dispatch(actions.setShow(true))
+          dispatch(actions.setNameAction("Adding a business successfully"))
+          dispatch(actions.setGetBusiness(result.buisness._id))
+          dispatch(actions.setGeCurrenttBuisness(result.buisness))
+          // dispatch(actions.setSaveInvoice("true"))
+          dispatch(actions.setGetAllBuisness())
+          dispatch(actions.getAllProduct(result.buisness._id))
 
-        console.log("successDispatchNewBuisness", result)
-        // alert('Your new business has been successfully saved!');
+          console.log("successDispatchNewBuisness", result)
+          // alert('Your new business has been successfully saved!');
         })
       },
       error: (err) => {
@@ -111,9 +111,9 @@ export const getAllbuisnessToUser = ({ dispatch, getState }) => next => action =
       success: (data) => {
         console.log("dataSucsessGetAllbuisness", data)
         checkPermission(data).then((ifOk) => {
-        console.log("okGetAllBuisness", data)
-        dispatch(actions.setAllBuisness(data))
-        console.log("successDispatchAllBuisness", data)
+          console.log("okGetAllBuisness", data)
+          dispatch(actions.setAllBuisness(data))
+          console.log("successDispatchAllBuisness", data)
         })
       },
       error: (err) => {
@@ -147,11 +147,11 @@ export const updateBuisnessById = ({ dispatch, getState }) => next => action => 
       data: JSON.stringify(body),
       success: (data) => {
         // checkPermission(data).then((ifOk) => {
-          // dispatch(actions.setGetAllBuisness(data))
-          // dispatch(actions.setUpDateBuisness({}))
-          if (update == current) {
-            dispatch(actions.getLastBuisness())
-            console.log("currentUpdate")
+        // dispatch(actions.setGetAllBuisness(data))
+        // dispatch(actions.setUpDateBuisness({}))
+        if (update == current) {
+          dispatch(actions.getLastBuisness())
+          console.log("currentUpdate")
           // }
           // console.log('success update business num ' + buisnessId)
         }
@@ -215,7 +215,7 @@ export const getBuisnessById = ({ dispatch, getState }) => next => action => {
       dataType: 'json',
       success: function (buisness) {
         console.log("upDateBuisness", buisness)
-        debugger
+
 
         dispatch(actions.setGetCurrenttBuisness(buisness))
 
@@ -245,13 +245,13 @@ export const getUserByUserName = ({ dispatch, getState }) => next => action => {
       success: (data) => {
         console.log("dataSucsessGetUserByUserName", data)
         checkPermission(data).then((ifOk) => {
-        console.log("okGetUserByUserName", data)
-        delete data._id;
-        delete data.uid;
-        dispatch(actions.setGetUserByUserName(data))
-        dispatch(actions.setBuisnessToServer(data))
-        // dispatch(actions.set_Buisness_Id(''))
-        console.log("successDispatchUserByUserName", data)
+          console.log("okGetUserByUserName", data)
+          delete data._id;
+          delete data.uid;
+          dispatch(actions.setGetUserByUserName(data))
+          dispatch(actions.setBuisnessToServer(data))
+          // dispatch(actions.set_Buisness_Id(''))
+          console.log("successDispatchUserByUserName", data)
         })
       },
       error: (err) => {
@@ -283,14 +283,14 @@ export const getLastBuisness = ({ dispatch, getState }) => next => action => {
       success: (data) => {
         console.log("dataSucsessLastBuisness", data)
         checkPermission(data).then((ifOk) => {
-        console.log("okGetLastBuisness", data)
-        dispatch(actions.setGetCurrenttBuisness(data))
-        // dispatch(actions.setGetAllBuisness(data))
-        // dispatch(actions.setBuisnessId(data._id))
-        dispatch(actions.setGetBusiness(data._id))
-        dispatch(actions.getAllProduct(data._id))
+          console.log("okGetLastBuisness", data)
+          dispatch(actions.setGetCurrenttBuisness(data))
+          // dispatch(actions.setGetAllBuisness(data))
+          // dispatch(actions.setBuisnessId(data._id))
+          dispatch(actions.setGetBusiness(data._id))
+          dispatch(actions.getAllProduct(data._id))
 
-        console.log("successDispatchLastBuisness", data._id)
+          console.log("successDispatchLastBuisness", data._id)
         })
       },
       error: (err) => {

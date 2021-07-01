@@ -132,7 +132,7 @@ function SettingBuisnessList(props) {
     }, [allBuisness])
 
     const validatorPhone = (v) => {
-        debugger
+
         const tmp = v.length == 13 && v.includes('+');
         return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
     }
@@ -143,14 +143,14 @@ function SettingBuisnessList(props) {
     const [tmpSave, setTmpSave] = useState(JSON.parse(JSON.stringify(currentBuisness)));
 
     const changeCurrentBusiness = (index, value) => {
-        debugger
+
         if (index !== "socialmedias") {
             // setTmpSave[index](value);
             setTmpSave({ ...tmpSave, index: "value" })
 
         }
         else {
-            debugger
+
             // setTmpSave.socialmedias.website(value);
         }
         // const tmpSave = { ...currentBuisness };
@@ -165,7 +165,7 @@ function SettingBuisnessList(props) {
         //         }
         //     }
         //     else {
-        //         debugger
+        //          
         //         if (userFiled[i].website) {
         //             tmpSave.socialmedias.website = userFiled.socialmedias.website;
         //         }
@@ -196,7 +196,7 @@ function SettingBuisnessList(props) {
                 tmp1 = validatorEmail(currentBuisness.email)
         }
         if (userFiled.phone) {
-            debugger
+
             tmp3 = validatorPhone(userFiled.phone);
         }
         else {
@@ -205,11 +205,11 @@ function SettingBuisnessList(props) {
         }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-            debugger
+
             // const tmpSave = changeCurrentBusiness();
             delete setTmpSave._id;
             delete setTmpSave.uid;
-            debugger
+
             console.log("tmpSave", tmpSave)
             dispatch(actions.setBuisnessToServer(tmpSave))
             setErrorMessage('');
@@ -298,7 +298,7 @@ function SettingBuisnessList(props) {
 
     const onChangeCountry = (data) => {
         console.log("onChangeCounrty")
-        debugger
+
         setCities(data)
     }
     const selectCountry = (e) => {

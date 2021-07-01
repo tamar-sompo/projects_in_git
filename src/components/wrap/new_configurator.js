@@ -145,14 +145,14 @@ function NewConfigorator(props) {
     //             setFlagToCheck(false)
     //             if (flagSaveP === false) {
     //                 // alert("yy")
-    //                 debugger
+    //                  
     //                 if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
     //                     dispatch(actions.setflagBorderProduct(true))
     //                 }
     //                 else {
     //                     dispatch(actions.setflagBorderProduct(false))
     //                     if (flagOfterValidation) {
-    //                         debugger
+    //                          
     //                         dispatch(actions.setFlagOfterValidation(false))
     //                         if (flagMessageContact) {
     //                             setShowMessage(true)
@@ -209,7 +209,7 @@ function NewConfigorator(props) {
     //     }
     // }, [flagPush])
     // // const save1 = () => {
-    // //     debugger
+    // //      
     // //     dispatch(actions.setFlagValidation(true))
 
     // //     // if (flagMessage)
@@ -218,7 +218,7 @@ function NewConfigorator(props) {
     // //     //     save()
     // // }
     // useEffect(() => {
-    //     debugger
+    //      
     //     if (flagOfterValidation === true) {
     //         dispatch(actions.setFlagOfterValidation(false))
     //         // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
@@ -307,7 +307,7 @@ function NewConfigorator(props) {
 
     //         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
     //         console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-    //         debugger
+    //          
     //         updateinvoiceField({ key: "products", value: detailsInvoice.products });
     //         dispatch(actions.setUpdateInvoice())
     //     }

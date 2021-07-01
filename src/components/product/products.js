@@ -139,7 +139,7 @@ function Products(props) {
 
         }
         if (searchby === "userProduct") {
-            debugger;
+            ;
             //  searchcontact.push
             searchproduct = props.allproduct.filter(product =>
                 (product.user != null && product.user.toLowerCase().includes(searchTerm)));
@@ -260,7 +260,7 @@ function Products(props) {
 
     //   const [filteredinvoices, setfilteredinvoices] = useState()
     const searchProducts = (searchproduct) => {
-        debugger
+
         dispatch(actions.setFilteredProducts([]))
         var products = props.allproduct
         products.forEach(prod => {

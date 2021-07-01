@@ -29,7 +29,7 @@ export default function HomePage(props) {
   //  useEffect(()=>{
   //    console.log("ghgh1")
   //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
-  //    debugger
+  //     
   //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
   //       console.log("ghgh2")
   //       dispatch(actions.getLastBuisness())
@@ -45,7 +45,7 @@ export default function HomePage(props) {
 
   //  const  checkIfBuisness = (value) => {
   //   let specificRoute = value;
-  //   debugger
+  //    
   //   if (allBuisnessToUser === undefined) {
   //     history.push(`/${userName}/add_buisness`)
   //   }     
@@ -67,7 +67,7 @@ export default function HomePage(props) {
 
   //  const  checkIfBuisness = (value) => {
   //   let specificRoute = value;
-  //   debugger
+  //    
   //   if (allBuisnessToUser === undefined) {
   //     history.push(`/${userName}/add_buisness`)
   //   }     
@@ -85,46 +85,46 @@ export default function HomePage(props) {
   //   }
   // }
 
-//  useEffect(()=>{
-//    console.log("ghgh1")
-//    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
-//    debugger
-//     if (allBuisnessToUser && allBuisnessToUser.length>0) {
-//       console.log("ghgh2")
-//       dispatch(actions.getLastBuisness())
-//       // dispatch(actions.setGetUserByUsername())
-//     }
-//     if (allBuisnessToUser === undefined) {
-//       console.log("ghgh3")
-//       // history.push(`/${userName}/add_buisness`)
-//       // dispatch(actions.setGetUserByUsername())
-//       }
-//  },[allBuisnessToUser])
-
- 
-//  const  checkIfBuisness = (value) => {
-//   let specificRoute = value;
-//   debugger
-//   if (allBuisnessToUser === undefined) {
-//     history.push(`/${userName}/add_buisness`)
-//   }     
-//   else if (specificRoute === "Business") {
-//     history.push(`/${userName}/buisness`)
-//   }
-//   else if (specificRoute === "Documents") {
-//     history.push(`/${userName}/allDocuments`)
-//   }
-//   else if (specificRoute === "Contacts") {
-//     history.push(`/${userName}/customers`)
-//   }
-//   else if (specificRoute === "Products") { 
-//     history.push(`/${userName}/product`)
-//   }
-// }
+  //  useEffect(()=>{
+  //    console.log("ghgh1")
+  //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
+  //     
+  //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
+  //       console.log("ghgh2")
+  //       dispatch(actions.getLastBuisness())
+  //       // dispatch(actions.setGetUserByUsername())
+  //     }
+  //     if (allBuisnessToUser === undefined) {
+  //       console.log("ghgh3")
+  //       // history.push(`/${userName}/add_buisness`)
+  //       // dispatch(actions.setGetUserByUsername())
+  //       }
+  //  },[allBuisnessToUser])
 
 
-useEffect(()=>{
-  if (specificRoute === "Invoice") 
+  //  const  checkIfBuisness = (value) => {
+  //   let specificRoute = value;
+  //    
+  //   if (allBuisnessToUser === undefined) {
+  //     history.push(`/${userName}/add_buisness`)
+  //   }     
+  //   else if (specificRoute === "Business") {
+  //     history.push(`/${userName}/buisness`)
+  //   }
+  //   else if (specificRoute === "Documents") {
+  //     history.push(`/${userName}/allDocuments`)
+  //   }
+  //   else if (specificRoute === "Contacts") {
+  //     history.push(`/${userName}/customers`)
+  //   }
+  //   else if (specificRoute === "Products") { 
+  //     history.push(`/${userName}/product`)
+  //   }
+  // }
+
+
+  useEffect(() => {
+    if (specificRoute === "Invoice")
       history.push(`/${userName}/allDocuments`)
     if (specificRoute === "Buisness")
       history.push(`/${userName}/buisness`)
