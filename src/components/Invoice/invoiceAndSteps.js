@@ -115,18 +115,18 @@ export default function InvoiceAndSteps(props) {
     if (buttonClick === "saveInvoiceOtherPage")
       save1()
 
-    if (buttonClick === "continuOtherPage") {
-      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-        if (flag === true) {
-          dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#707071"))
+    // if (buttonClick === "continuOtherPage") {
+    //   flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    //     if (flag === true) {
+    //       dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
+    //       dispatch(actions.setColorFlagShowSaveP("#707071"))
 
-        }
-      })
-      setShowMessage(false)
-      setButtonClick("")
-      history.push(`/${userName}/allDocuments`)
-    }
+    //     }
+    //   })
+    //   setShowMessage(false)
+    //   setButtonClick("")
+    //   history.push(`/${userName}/allDocuments`)
+    // }
     // }
   }, [buttonClick])
 
