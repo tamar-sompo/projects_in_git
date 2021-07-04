@@ -21,10 +21,8 @@ function Business(props) {
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const allInvoices = useSelector(state => state.buisnessReducer.allInvoices);
-
   useEffect(() => {
   })
-
 
   const changeFlag = (value) => {
     debugger
@@ -73,7 +71,7 @@ function Business(props) {
                   buisnessName={buisness.name}
                   buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
                   buisnessNumber={buisness.numberDeals ? buisness.numberDeals : ''}
-                  buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
+                  buisnessImg={buisness.imgLogo ? buisness.imgLogo : logo1}
                 />
               </div>
             ) : <div>You have no Business</div>

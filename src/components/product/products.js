@@ -172,14 +172,29 @@ function Products(props) {
 
 
     const onFieldEdit = (fieldName, e) => {
-
+        debugger
+        // if (fieldName == 'name') {
+        //     if (e.target.value) {
+        //         setflagName(false)
+        //     }
+        //     else setflagName(true)
+        // }
+        // else {
+        //     if (fieldName == 'price') {
+        //         if (e.target.value) {
+        //             setflagPrice(false)
+        //         }
+        //         else setflagPrice(true)
+        //     }
+        // }
         setFlagField(true)
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
-
+    // const [flagName, setflagName] = useState(false)
+    // const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
-
+        debugger
         setDis({ id: product._id })
         if (dis.flag === 0) {
             // alert("inpDis:")
@@ -191,10 +206,19 @@ function Products(props) {
             if (dis.inpDis == "") {
                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
                 // dispatch(actions.setProductId({key: "table", value:product._id}))
+                // if (product.name && product.price) {
                 if (flagField === true) {
                     dispatch(actions.editProduct({ key: "table", value: product._id }))
                     setFlagField(false)
+                    // setflagName(false)
+                    // setflagPrice(false)
                 }
+                // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                // }
+                // else {
+                //     if (!product.name) setflagName(true)
+                //     if (!product.price) setflagPrice(true)
+                // }
 
 
             }
@@ -582,7 +606,12 @@ function Products(props) {
                                                             <td>
                                                                 <TextareaAutosize type="text" style={{ background: "transparent" }}
                                                                     rowsMax="2"
-                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    className={dis.id === product._id ?
+                                                                        dis.inpDis == "disable" ? "inputF" :
+                                                                            // flagName ?
+                                                                            //     "inputP validB"
+                                                                            //      : 
+                                                                            "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
                                                                         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
@@ -613,7 +642,7 @@ function Products(props) {
                                                                  } */}
                                                             </td>
                                                             <td>
-                                                                <input type="text"
+                                                                <input type="number"
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
