@@ -30,7 +30,12 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     let textToPaypal = "Attached is a link to pay"
     let html
     if(linkPayToContact){
-       html = `${text} <br /> ${url} <br /> <br /> ${textToPaypal} <br /> ${linkPayToContact}`
+       html = `${text} <br /> ${url} <br /> <br /> <br />
+       <button style={{'layout':'vertical', 'color':'blue', 'hape':'rect', 'label':'paypal'}} 
+       id="paypal-button-container">
+       <a href=${linkPayToContact}/>
+       </button>`
+      //  ${textToPaypal} <br /> ${linkPayToContact}`
     }
     else{
      html = `${text} <br /> ${url}`

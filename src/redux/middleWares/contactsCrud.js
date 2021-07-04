@@ -42,7 +42,7 @@ export const getContactToUserById = ({ dispatch, getState }) => next => action =
 export const getAllContactsToUser = ({ dispatch, getState }) => next => action => {
   if (action.type === 'GET_ALL_CONTACT_BY_USER') {
     // let id = action.payload
-    debugger
+
     console.log('llll')
     let userName = getState().publicReducer.userName
     console.log('llll', getState().publicReducer.userName, getState().publicReducer.tokenFromCookies)
@@ -55,7 +55,7 @@ export const getAllContactsToUser = ({ dispatch, getState }) => next => action =
           'Content-Type': 'application/json'
         }
       }).then((res) => res.json()).then((resJson) => {
-        debugger
+
         dispatch(actions.setAllContacts(resJson))
 
         // dispatch(actions.setShowMessage(false))
@@ -196,7 +196,7 @@ export const updateContat = ({ dispatch, getState }) => next => action => {
               dispatch(actions.setFlagModal("successContact"))
               dispatch(actions.setShowMessage(false))
               dispatch(actions.setButtonClick(""))
-              dispatch(actions. setModalBody(""))
+              dispatch(actions.setModalBody(""))
             })
           })
         }

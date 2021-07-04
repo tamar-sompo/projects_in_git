@@ -156,7 +156,7 @@ export default function InvoiceAndSteps(props) {
           setFlagToCheck(false)
           if (flagSaveP === false) {
             // alert("yy")
-            debugger
+
             if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
               dispatch(actions.setflagBorderProduct(true))
             }
@@ -224,7 +224,7 @@ export default function InvoiceAndSteps(props) {
   }
 
   // useEffect(() => {
-  //   debugger
+  //   
   //   if (flagOfterValidation === true) {
   //     dispatch(actions.setFlagOfterValidation(false))
   //     // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
@@ -265,7 +265,7 @@ export default function InvoiceAndSteps(props) {
 
 
   const save1 = () => {
-    debugger
+
     // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
     //     dispatch(actions.setflagBorderProduct(true))
     // }
@@ -281,7 +281,7 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     //     setFlagToCheck(true)
-    debugger
+
     if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
       (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
       ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
@@ -338,18 +338,33 @@ export default function InvoiceAndSteps(props) {
       }
 
   }, [viewConversion])
-  
+
+
   const products = async () => {
+  debugger
     console.log("innnnn")
     if (detailsProducts) {
       let invoiceProduct = []
-      detailsProducts.map((product) => {
+    console.log("popo", invoiceProduct)
+      await detailsProducts.map((product) => {
         invoiceProduct.push(allproduct.filter(pro => pro._id == product.id)[0])
       })
-      
-dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
+      let newItem;
+      let newArray=[]
+      console.log("nn", newArray)
+   await invoiceProduct.map((p) =>{
+        newItem =  {
+        name:p.name,
+          sku:"01",
+          price:p.price,
+          currency:"USD",
+          quantity:p.amount,} 
+        newArray.push(newItem)
+      })
+      dispatch(actions.setPaypalInvoiceProductsTable(newArray))
     }
   }
+
 
 
   const save = async () => {
@@ -366,7 +381,7 @@ dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
       else
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
       // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      // debugger
+      // 
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }
@@ -428,7 +443,7 @@ dispatch(actions.setPaypalInvoiceProductsTable(invoiceProduct))
 
   //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
   //     console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-  //     debugger
+  //     
   //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
   //     dispatch(actions.setUpdateInvoice())
   //   }

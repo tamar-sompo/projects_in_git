@@ -143,9 +143,9 @@ function Invoice(props) {
     console.log("useeeeeeeeeeeeeeeeeeeeee", detailsInvoice)
     // dispatchgetbusiness()
     updateinvoiceField({ date: convertdate(new Date()) })
-    // updateinvoiceField({ buisness: detailsBusiness._id })
+      // updateinvoiceField({ buisness: detailsBusiness._id })
 
-    debugger;
+      ;
     if (history.location.pathname === `/${userName}/invoice`) {
       console.log("useeeeeeeeeeeeeeeeeeeeee1111111")
       setInvoiceShow({})
@@ -192,7 +192,7 @@ function Invoice(props) {
     dispatch(actions.setProductSelectLimit([]))
     allproduct.map(
       function (x) {
-        debugger;
+        ;
         // console.log("marrrrr11rrr", x)
         console.log("p", p)
         let oo = p.find(y => y === x.name);
@@ -208,7 +208,7 @@ function Invoice(props) {
     if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
 
       console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-      debugger;
+        ;
       const newProdactions = [...detailsInvoice.products];
       // console.log("newProdactions",newProdactions)
       newProdactions.push('null');
@@ -220,7 +220,7 @@ function Invoice(props) {
     //  }
     else {
 
-      debugger;
+      ;
       console.log("ghg")
       dispatch(actions.setProducts('null'));
       console.log("invoiceee", invoice)
@@ -654,7 +654,7 @@ export const Item = (props) => {
 
   console.log("allproductctctctc", allproduct)
   // const set_product=(e)=>{
-  //    debugger;
+  //    ;
   //   console.log("productssss",e)
   //   dispatch(actions.setProduction(e.value))
   //  return <Item></Item>
@@ -695,7 +695,7 @@ export const Item = (props) => {
 
   // const searchP=(e)=>
   // {
-  //   debugger;
+  //   ;
   //   console.log("allpr",allproduct)
   //   let val=e.target.value.toLowerCase();
 

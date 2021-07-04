@@ -134,7 +134,7 @@ function BuisnessList(props) {
   }, [allBuisness])
 
   const validatorPhone = (v) => {
-    debugger
+
     const tmp = v.length == 13 && v.includes('+');
     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
   }
@@ -158,7 +158,7 @@ function BuisnessList(props) {
       tmp1 = validatorEmail(userFiled.email)
     }
     if (userFiled.phone) {
-      debugger
+
       tmp3 = validatorPhone(userFiled.phone);
     }
     if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
@@ -219,7 +219,7 @@ function BuisnessList(props) {
 
   const onChangeCountry = (data) => {
     console.log("onChangeCounrty")
-    debugger
+
     setCities(data)
   }
   const selectCountry = (e) => {

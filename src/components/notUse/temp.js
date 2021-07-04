@@ -130,15 +130,15 @@ function Invoice(props) {
     const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
     console.log("flagLoud", flagLoud)
     useEffect(() => {
-        debugger
+
         console.log("invoiceSave", invoiceSave)
         dispatch(actions.setShowInInvoice(false))
     }, [invoiceSave])
 
     useEffect(() => {
-        debugger
+
         // if (window.location.href.indexOf("view") != -1) {
-        //   debugger
+        //   
         //   console.log("njnj")
         //   setDisplayInvoice("true")
         //   if (window.location.pathname.split("/").pop() != "") {
@@ -147,7 +147,7 @@ function Invoice(props) {
         //     // dispatch(actions.setInvoiceShow())
         //   }
         // }
-        debugger
+
         // if(history.location.pathname==="/")
         console.log("111s")
         dispatch(actions.setViewConversion('false'))
@@ -163,7 +163,7 @@ function Invoice(props) {
         }
         else {
             if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-                debugger
+
                 console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
                 setsaveContactOne({
                     flag: true,
@@ -172,7 +172,7 @@ function Invoice(props) {
                     phone: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.phone : '',
                     address: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.address : '',
                 })
-                debugger
+
                 setcontactedit({
                     name: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.name,
                     email: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.email,
@@ -181,7 +181,7 @@ function Invoice(props) {
                 })
             }
             else {
-                debugger
+
                 console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
                 let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
                 setContactFromInvoice(ojectContact)
@@ -224,7 +224,7 @@ function Invoice(props) {
 
     }, [allcontact1, detailsBusiness, allproduct])
     useEffect(() => {
-        debugger
+
         console.log("saveContactOne", saveContactOne)
         console.log("contactedit", contactedit)
         updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
@@ -234,11 +234,11 @@ function Invoice(props) {
     useEffect(() => {
     }, [invoiceeye])
     useEffect(() => {
-        debugger
+
         if (flagcontactFromInvoice1 == false)
             setflagcontactFromInvoice1(true)
         else {
-            debugger
+
             setcontactedit({
                 name: contactFromInvoice && contactFromInvoice.name,
                 email: contactFromInvoice && contactFromInvoice.email,
@@ -261,9 +261,9 @@ function Invoice(props) {
     }
 
     const saveContact1 = () => {
-        debugger
+
         if (!detailscontact.contact) {
-            debugger
+
             console.log(contactFromInvoice, contactedit)
             setsaveContactOne({
                 flag: true,
@@ -297,7 +297,7 @@ function Invoice(props) {
     const [firstTmp, setfirstTmp] = useState(false);
 
     const validatorPhone = (v) => {
-        debugger
+
         const tmp = v.length == 13 && v.includes('+');
         return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
     }
@@ -305,14 +305,14 @@ function Invoice(props) {
         return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
     }
     useEffect(() => {
-        debugger
+
         if (firstTmp) {
             let tmp3 = true;
             if (contactedit.phone) {
                 tmp3 = validatorPhone(contactedit.phone);
             }
             if (validatorEmail(contactedit.email) && tmp3) {
-                debugger
+
                 setErrorMessage1(false)
                 setErrorMessage2(false)
                 dispatch(actions.setFlagValidation(false))
@@ -349,7 +349,7 @@ function Invoice(props) {
 
     }, [])
     const saveContact = () => {
-        debugger
+
         // let tmp1 = true;
         // let tmp3 = true;
         // if (contactedit.phone) {
@@ -368,13 +368,13 @@ function Invoice(props) {
             if (detailscontact && detailscontact.contact && detailscontact.contact._id) {
                 console.log("contacteditttt", contactedit)
                 dispatch(actions.setContactId(detailscontact.contact._id))
-                debugger
+
                 dispatch(actions.updateContact(contactedit))
                 // setErrorMessage1(false)
                 // setErrorMessage2(false)
             }
             else {
-                debugger
+
                 console.log("contacteditttt", contactedit)
                 dispatch(actions.createContact(contactedit))
                 console.log("newContact.emai", newContact.email)
@@ -398,14 +398,14 @@ function Invoice(props) {
         // }
     }
     useEffect(() => {
-        debugger
+
         console.log("detailscontact", detailscontact)
         if (flagdetailsContact == false)
             setflagdetailsContact(true)
         else {
             console.log("contactedit444", contactedit)
             console.log("contactedit444", contactFromInvoice)
-            debugger
+
             setsaveContactOne({
                 name: detailscontact.contact && detailscontact.contact.name,
                 email: detailscontact.contact && detailscontact.contact.email,
@@ -464,7 +464,7 @@ function Invoice(props) {
     }
 
     const resetfieldcontactname = (field, e) => {
-        debugger
+
         // e.currentTarget.value = ''  
 
         if (detailsInvoice && detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -533,7 +533,7 @@ function Invoice(props) {
         dispatch(actions.setProductAmount(0))
         // setsaveSum2(saveSum + saveSum2)
 
-        debugger
+
         dispatch(actions.setFlagSavePr(true))
         // dispatch(actions.setProductAmount(0))
 
@@ -558,7 +558,7 @@ function Invoice(props) {
             if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
 
                 console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-                debugger;
+                    ;
                 const newProdactions = [...detailsInvoice.products];
                 // console.log("newProdactions",newProdactions)
                 // newProdactions.push({ id: 'null', amount: 0 });
@@ -597,7 +597,7 @@ function Invoice(props) {
         console.log("saveeee", invoice)
     }
     const deleteItemFromStore = (index) => {
-        debugger
+
         dispatch(actions.setColorFlagShowSaveP("#707071"))
         dispatch(actions.setFlagShowSaveP(false))
         dispatch(actions.setDeleteSaveSum(index))
@@ -631,9 +631,9 @@ function Invoice(props) {
             console.log("productSelect3", productSelect3id)
             let productSelect3 = allproduct.find(x => x._id === productSelect3id)
             console.log("productSelect3", productSelect3)
-            debugger
+
             if (p.length !== invoice.products.length && productSelect3id != "null") {
-                debugger
+
                 let prr = [...p]
                 prr.map((pr, ind) => {
                     if (pr === productSelect3.name) {
@@ -729,7 +729,7 @@ function Invoice(props) {
 
     const changeBg = (event) => {
         if (event.target === event.currentTarget) {
-            debugger;
+            ;
             setBorderBgImage("true")
             setIsMouseTooltipVisible(true)
         }
@@ -744,13 +744,13 @@ function Invoice(props) {
     }
 
     // useEffect(() => {
-    //   debugger
+    //   
     //   console.log(invoice.imageFrame);
     //   console.log(invoice.imgLogo);
     // }, [invoice])
 
     const resetfieldcontact = (fieldName, e) => {
-        debugger
+
         // alert('p')
         console.log("resetfieldcontact")
         if (detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -767,7 +767,7 @@ function Invoice(props) {
         }
     }
     const ooo = () => {
-        debugger
+
         console.log("enterrrrrrr", detailsInvoice)
     }
 
@@ -1288,7 +1288,7 @@ export const Item = (props) => {
     // const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
     // console.log("flagLoud", flagLoud)
     // useEffect(() => {
-    //   debugger
+    //   
     //   console.log("invoiceSave", invoiceSave)
     //   dispatch(actions.setShowInInvoice(false))
     // }, [invoiceSave])
@@ -1332,7 +1332,7 @@ export const Item = (props) => {
             }
             if (history.location.pathname === `/${userName}/invoice`) {
                 // dispatch(actions.deleteLastProductInvoice());
-                debugger
+
                 if (props.pro.id === 'null') {
                     dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
                     // dispatch(actions.setProduct1({}))
@@ -1354,11 +1354,11 @@ export const Item = (props) => {
 
 
     const vv3 = (e) => {
-        debugger
+
         setflagValidPrice(false)
         setflagValidName(false)
         if (history.location.pathname !== `/${userName}/invoice`) {
-            debugger
+
             setflagValidPrice(false)
             setflagValidName(false)
             vv(e)
@@ -1372,7 +1372,7 @@ export const Item = (props) => {
                 dispatch(actions.setProduct1(product6))
                 setdtp(product6)
                 setamount2(1)
-                debugger
+
                 dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
                 dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
                 dispatch(actions.setResetNewProduct({}))
@@ -1385,7 +1385,7 @@ export const Item = (props) => {
 
                 // setnameProduct(e.target.value)
             }
-            debugger
+
             dispatch(actions.setNewProduct({ key: "name", value: e.target.value }))
             // setproduct10({ ...product10, "name": e.target.value })
         }
@@ -1409,7 +1409,7 @@ export const Item = (props) => {
             dispatch(actions.setP(product6._id))
             // setnameProduct(e.target.value)
         }
-        debugger
+
         dispatch(actions.setNewProduct({ key: "name", value: e.target.value }))
     }
     const { vvv } = props
@@ -1433,7 +1433,7 @@ export const Item = (props) => {
             }
 
         }
-        debugger
+
         if (title1 === "discount") {
             dtp.price && props.pro.amount ?
                 dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
@@ -1515,7 +1515,7 @@ export const Item = (props) => {
     }
     const cleanInput1 = (field1) => {
         if (field1 === "amount") {
-            debugger
+
             if (amount2 != undefined) {
                 dispatch(actions.setProductAmount(amount2))
                 setamount2(undefined)
@@ -1531,11 +1531,11 @@ export const Item = (props) => {
         }
     }
     // useEffect(() => {
-    //   debugger
+    //   
     //   console.log("discountp", discountp)
     // }, [discountp])
     const calcdiscountp = (e) => {
-        // debugger
+        // 
         // console.log("discountp11", discountp)
 
         setdiscountp(e.target.value)
@@ -1546,7 +1546,7 @@ export const Item = (props) => {
     const [flagValidPrice, setflagValidPrice] = useState(false);
     const [flagValidName, setflagValidName] = useState(false);
     const savepr = () => {
-        debugger
+
         if (amountProductInvoice != 0) {
             setamount2(amountProductInvoice)
             // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
@@ -1572,7 +1572,7 @@ export const Item = (props) => {
         else {
             // alert("hhhh", new_product)
             console.log('new_product', new_product)
-            debugger
+
             if (props.pro.id === "null" || props.pro.id === undefined) {
                 if (new_product.name && new_product.price) {
                     dispatch(actions.setNewProductServer())
@@ -1602,10 +1602,10 @@ export const Item = (props) => {
     // }
 
     useEffect(() => {
-        debugger
+
         // alert("yy")
         console.log("dtp", dtp, "flagcalc", flagcalc, "sum", sum, "calcSumProduct", calcSumProduct)
-        debugger
+
         if (!flagcalc) {
             // if (!dtp._id)
             //   setCalcSumProduct(0)
@@ -1645,7 +1645,7 @@ export const Item = (props) => {
 
     // useEffect(() => {
     //   console.log("dtp", dtp, "calcSumProduct", calcSumProduct)
-    //   debugger
+    //   
     //   if (!flagSumProduct) {
     //     setSum(props.pro.sum_product)
     //     setflagSumProduct(true)
@@ -1667,7 +1667,7 @@ export const Item = (props) => {
 
     // }, [calcSumProduct])
     // useEffect(()=>{
-    //   debugger
+    //   
     //   if(!flagsetSum)
     //   setflagsetSum(true)
     //   else

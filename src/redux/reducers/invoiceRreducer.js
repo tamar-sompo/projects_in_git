@@ -74,7 +74,7 @@ const invoices = {
         state.filteredInvoices = action.payload
     },
     setFilteredInvoices1(state, action) {
-        debugger
+
         state.filteredInvoices.push(action.payload)
     },
     // setSpecificRoute(state, action) {
@@ -96,7 +96,7 @@ const invoices = {
         state.flagIfEmpty = action.payload
     },
     setShowInInvoice(state, action) {
-        debugger
+
         state.showLoud = action.payload
     },
     setFlagValidation(state, action) {
@@ -106,12 +106,12 @@ const invoices = {
         state.flagTmpSave = action.payload
     },
     setFlagOfterValidation(state, action) {
-        debugger
+
         state.flagOfterValidation = action.payload
     },
 
     setSaveSumView(state, action) {
-        debugger
+
         state.saveSumView = state.saveSumView + action.payload
     },
     setflagBorderProduct(state, action) {
@@ -124,7 +124,7 @@ const invoices = {
         state.calcSumProduct = action.payload
     },
     setInvoiceSave(state, action) {
-        debugger
+
         console.log("invoice reducer t unvoice save", action.payload)
         state.invoiceSave = action.payload
     },
@@ -144,7 +144,7 @@ const invoices = {
     },
     r(state, action) {
         console.log("vhuaaaa")
-        debugger
+
         state.invoiceDetailsView[action.payload] = undefined
     },
     setResetContactedit(state, action) {
@@ -227,7 +227,7 @@ const invoices = {
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-        debugger
+
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
@@ -285,7 +285,7 @@ const invoices = {
     // state.prod
     // },
     setAmountToProduct(state, action) {
-        debugger
+
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0)
             state.invoiceDetailsView.products[action.payload.index1].amount = action.payload.amount
 
@@ -307,7 +307,7 @@ const invoices = {
         state.saveSum = action.payload
     },
     setSum(state, action) {
-        debugger
+
         state.saveSum = 0
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
@@ -327,7 +327,7 @@ const invoices = {
     //     state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
     // },
     setDeleteSaveSum(state, action) {
-        debugger
+
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0)
             state.saveSum = (state.saveSum) - state.invoiceDetailsView.products[action.payload].sum_product
 

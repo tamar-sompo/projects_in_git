@@ -78,7 +78,7 @@ function Item(props) {
       else {
         // alert("hhhh", new_product)
         console.log('new_product', new_product)
-        debugger
+
         if (props.pro.id === "null" || props.pro.id === undefined) {
           if (new_product[props.index].name && new_product[props.index].price) {
             setflagValidPrice(false)
@@ -102,7 +102,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    debugger
+
     console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
     }
@@ -121,7 +121,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    debugger
+
     console.log("pppp")
     dispatch(actions.setFlagSavePr(false))
     if (flagPro === false) {
@@ -129,7 +129,7 @@ function Item(props) {
       setFlagPro(true)
     }
     else {
-      debugger
+
       if (props.pro.id === 'null') {
         setdtp(allproduct.length > 0 && allproduct.find(x => x._id === product1._id))
       }
@@ -138,7 +138,7 @@ function Item(props) {
         setdtp(allproduct.length > 0 && allproduct.find(x => x._id === props.pro.id))
       }
       if (history.location.pathname === `/${userName}/invoice`) {
-        debugger
+
         if (props.pro.id === 'null') {
           dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
           // dispatch(actions.setProduct1({}))
@@ -166,12 +166,12 @@ function Item(props) {
     if (invoice.products[0].id == "null") {
       dispatch(actions.setflagBorderProduct(false))
     }
-    debugger
+
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
     }
     else {
-      debugger
+
       console.log("trfgyuhytfdrtfgh")
       if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
         let product6 = allproduct.find(x => x.name === e.target.value)
@@ -179,7 +179,7 @@ function Item(props) {
         dispatch(actions.setProduct1(product6))
         setdtp(product6)
         setamount2(1)
-        debugger
+
         dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
         dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
         // dispatch(actions.setResetNewProduct({}))
@@ -204,7 +204,7 @@ function Item(props) {
                   setFlagShowSaveP({ index: props.index, value: false })
         }
       }
-      debugger
+
 
       if (invoice.products.length === 1)
         dispatch(actions.setPushNewProduct({}))
@@ -238,7 +238,7 @@ function Item(props) {
       dispatch(actions.setP(product6._id))
       // setnameProduct(e.target.value)
     }
-    debugger
+
     if (detailsInvoice.products.length === 1)
       dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
@@ -275,7 +275,7 @@ function Item(props) {
           setFlagShowSaveP({ index: props.inedx, value: true })
       }
     }
-    debugger
+
     if (title1 === "discount") {
       dtp && dtp.price && props.pro.amount ?
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
@@ -370,7 +370,7 @@ function Item(props) {
   const cleanInput1 = (field1) => {
     // setindexof(props.index)
     if (field1 === "amount") {
-      debugger
+
       if (amount2 != undefined) {
         dispatch(actions.setProductAmount(amount2))
         setamount2(undefined)
@@ -393,7 +393,7 @@ function Item(props) {
   const [flagValidPrice, setflagValidPrice] = useState(false);
   const [flagValidName, setflagValidName] = useState(false);
   const savepr = () => {
-    debugger
+
     if (amountProductInvoice != 0) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
@@ -421,7 +421,7 @@ function Item(props) {
     else {
       // alert("hhhh", new_product)
       console.log('new_product', new_product)
-      debugger
+
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
           dispatch(actions.setNewProductServer(props.index))
@@ -445,7 +445,7 @@ function Item(props) {
   }
   const clearProduct = () => {
     if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
-      debugger
+
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
       dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -455,7 +455,7 @@ function Item(props) {
       // setsaveSum2(saveSum-saveSum2)
       dispatch(actions.setResetNewProduct(props.index))
       dispatch(actions.setProductFirst({ index: props.index, id: 'null', amount: null, sum_product: null }))
-      debugger
+
       document.querySelectorAll('input.cell').forEach(
         input => (input.value = "")
       )
@@ -483,7 +483,7 @@ function Item(props) {
           setFlagShowSaveP({ index: props.inedx, value: true })
       }
     }
-    debugger
+
     if (title1 === "discount") {
       dtp.price && props.pro.amount ?
         dispatch(actions.setSum({ sum: (1 - (e / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
@@ -576,7 +576,7 @@ function Item(props) {
             setFlagShowSaveP({ index: props.inedx, value: true })
         }
       }
-      debugger
+
       if (fieldName === "discount") {
         dtp && dtp.price && props.pro.amount ?
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :

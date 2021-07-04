@@ -19,7 +19,7 @@ export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action 
     return fetch(
       // `https://public.opendatasoft.com/api/records/1.0/search/?dataset=geonames-all-cities-with-a-population-1000&q=israel&facet=timezone&facet=country`
       // `https://public.opendatasoft.com/api/records/1.0/search/?dataset=geonames-all-cities-with-a-population-1000&q=israel&facet=timezone&facet=country&refine.country=Israel `
-       `https://api.geonames.org/searchJSON?username=ksuhiyp&country=
+      `https://api.geonames.org/searchJSON?username=ksuhiyp&country=
        ${countryName}&maxRows=1000&style=SHORT`
       , {
         method: 'GET',
@@ -62,9 +62,9 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
   // export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action => {
   //   console.log("allCities")
   //   if (action.type === 'GET_CITY_BY_COUNTRY') {
-  //     debugger
+  //     
   //     let countryName = action.payload;
-  //     debugger
+  //     
   //     // return new Promise((resolve, reject) => {
   //     let urlData = `https://finance.leader.codes/api/${countryName}/getAllCitiesByCountry`
   //     $.ajax({

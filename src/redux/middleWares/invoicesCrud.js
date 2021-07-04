@@ -52,7 +52,7 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
 export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action => {
 
   if (action.type === 'SET_SAVE_INVOICE') {
-    debugger
+
     let buisnessId = getState().buisnessReducer.buisness
     let currentBuisness = getState().buisnessReducer.currentBuisness
     console.log("buisnessId", buisnessId)
@@ -89,8 +89,8 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         // if(currentBuisness.clientId){
         //   console.log("if")
         dispatch(actions.setSendLinkPaypal())
-      //   console.log("ifff")
-      // }
+        //   console.log("ifff")
+        // }
         // dispatch(actions.getFcmtoken());
       },
       error: function (err) {
@@ -133,11 +133,12 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_INVOICE') {
     console.log("setUpdateInvoice")
     let invoice
-    if (action.payload){
-       invoice = action.payload}
-      else{
-       invoice = getState().invoiceReducer.invoice;
-      }
+    if (action.payload) {
+      invoice = action.payload
+    }
+    else {
+      invoice = getState().invoiceReducer.invoice;
+    }
     console.log("action.payload", action.payload)
     let invoiceId = getState().invoiceReducer.invoiceId;
     console.log("invoice", invoiceId)

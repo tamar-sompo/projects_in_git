@@ -168,7 +168,7 @@ function AllInvoices(props) {
 
   const showInvoiceByIdAcord = (invoice, index) => {
 
-    debugger
+
     setDisplayInvoice("true")
     // setFlagView(true)
     dispatch(actions.setInvoiceShow(invoice))
@@ -237,7 +237,7 @@ function AllInvoices(props) {
 
   const [filteredinvoices, setfilteredinvoices] = useState()
   const searchInvoices = (searchInvoice) => {
-    debugger
+
     dispatch(actions.setFilteredInvoices([]))
     var invoices = props.allInvoices
     invoices.forEach(invoice => {

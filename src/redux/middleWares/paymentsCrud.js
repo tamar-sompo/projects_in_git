@@ -18,16 +18,18 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
   if (action.type === 'SET_SEND_LINK_PAYPAL') {
     console.log("paypalcrud")
     let status = action.payload
-    let products = getState().paymentsReducer.paypalInvoiceProductsTable
-    let totalToPAy = getState().paymentsReducer.paypalInvoiceProductsTable
+    let items = getState().paymentsReducer.paypalInvoiceProductsTable
+    console.log("items", items)
+    // let totalToPAy = getState().paymentsReducer.paypalInvoiceProductsTable
     //   let buisnessPaypalDetails = getState().buisnessPaypalDetails;
     let buisnessPaypalDetails = {
       clientId:
         "AWq9mFvKACDopYu_DzcvIQlqrUT3uWfd84-Q2ZtmL-iwuo3ZwruoELFnDD0_PA1joYdfGVi1Pmz3unUy",
       // clientSecret:
         // "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
-        products:products,
-        total:totalToPAy
+        // products:products,
+    //     
+     items:items
     }
     let username = getState().publicReducer.userName;
     let urlData = `https://pay.leader.codes/ohevzion/payByPaypal`
