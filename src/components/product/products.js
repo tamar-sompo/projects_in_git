@@ -577,7 +577,7 @@ function Products(props) {
                                                                         </div>
                                                                     </>
                                                                     :
-                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{  height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>

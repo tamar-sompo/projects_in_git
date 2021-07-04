@@ -20,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
 import { AirlineSeatReclineExtra } from '@material-ui/icons';
 import { Button } from 'react-bootstrap';
-
+import Massage from '../Export/email.js'
 export default function InvoiceAndSteps(props) {
   // let history = useHistory();
   const Location = useLocation()
@@ -69,6 +69,8 @@ export default function InvoiceAndSteps(props) {
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
+  const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
+
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -296,9 +298,9 @@ export default function InvoiceAndSteps(props) {
       }
   }, [viewConversion])
 
-useEffect(()=>{
-  dispatch(actions.setDisplayBoxShadow(true))
-})
+  useEffect(() => {
+    dispatch(actions.setDisplayBoxShadow(true))
+  })
   return (
     <>
 
@@ -341,15 +343,27 @@ useEffect(()=>{
               <New_Invoice />
             </div></div>
           <div className="col-2">
-            <div className="d-flex justify-content-center align-items-center" style={{ paddingTop: "10%", height: "fit-content" }}>
+            {isSendMessage == "true" &&
+              <div className=" d-flex justify-content-center align-items-center " style={{ height: "100%" }}>
+                <div className=" sendEmailFromList" style={{
+                  backgroundColor: "white",
+                  width: "90%",
+                  height: "97% ",
+                  border: "1px solid #917BDF",
+                  display: "none"
+                }}>
+                  <Massage></Massage>
+                </div>
+              </div>}
+            {/* <div className="d-flex justify-content-center align-items-center" style={{ paddingTop: "10%", height: "fit-content" }}>
               <button
                 // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
                 onClick={save1}
                 className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
               >
                 {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-              </button>
-            </div>
+              </button> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
