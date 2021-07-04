@@ -181,8 +181,20 @@ text-align: left !important;
     
 }
 .design_buisness:focus{
-    border:none
+    border:none;
+    cursor:default
+    
 
+}
+.design_buisness{
+    cursor: default;
+
+}.cursor_default{
+    cursor: default;
+
+}
+.cursor_pointer{
+    cursor:pointer
 }
 .wrapBuisnessBorder{
     padding-bottom: 4%;

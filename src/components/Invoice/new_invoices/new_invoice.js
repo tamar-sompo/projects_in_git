@@ -1436,24 +1436,24 @@ function New_Invoice(props) {
                 <div className='col-4' onClick={() => focus_steps('Content', 3)} style={{ paddingTop: "4%", paddingLeft: "4%" }}>
                   <div className="row">
                     <div className="col-6 " >
-                      <span className=" design_text_contact design_text_contactname">Invoice</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">Invoice</span></div>
                     <div className="col-6" style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-6" >
-                      <span className="design_text_contact">Date:{() => convertdate(detailsInvoice.date)}</span></div>
+                      <span className="design_text_contact cursor_default">Date:{() => convertdate(detailsInvoice.date)}</span></div>
                     <div className="col-6 " style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact">{shortDate}</span></div>
+                      <span className="design_text_contact cursor_default">{shortDate}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-4">
-                      <span className="design_text_contact">Due Date:</span></div>
+                      <span className="cursor_default design_text_contact">Due Date:</span></div>
                     <div className="col-8" style={{ paddingLeft: "0px" }}>
                       <input
                         style={{ backgroundColor: "transparent" }}
                         disabled={displayInvoice === "true" ? "disable" : ""}
-                        className="design_text_contact"
+                        className="cursor_pointer design_text_contact"
                         // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
                         type="date"
                         size="1"
@@ -1503,9 +1503,9 @@ function New_Invoice(props) {
                 <div className=" table_title bold col-1" ></div>
                 <div className=" table_title bold col-1 nonborder" ></div> */}
                   <div className=" nonborder col-6 d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "10%" }}></div>
-                    <div className=" table_title bold" style={{ width: "35%" }}>Product Name</div>
-                    <div className=" table_title bold" style={{ width: "55%" }}>Description</div>
+                    <div className="cursor_default table_title bold" style={{ width: "10%" }}></div>
+                    <div className="cursor_default table_title bold" style={{ width: "35%" }}>Product Name</div>
+                    <div className="cursor_default table_title bold" style={{ width: "55%" }}>Description</div>
                   </div>
                   {/* <div className=" table_title bold" style={{ width: "15%" }}>Product Name</div>
                 <div className=" table_title bold" style={{ width: "24%" }}>Description</div>
@@ -1513,10 +1513,10 @@ function New_Invoice(props) {
                 <div className=" table_title bold" style={{ width: "10%" }}>Quantity</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Discount</div>
                 <div className=" table_title bold" style={{ width: "10%" }}></div> */}
-                  <div className=" table_title bold col-6  d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "25%" }}>Unit Price</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Quantity</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Discount</div>
+                  <div className="cursor_default table_title bold col-6  d-flex justify-content-center" >
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Unit Price</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Quantity</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Discount</div>
                     <div style={{ width: "15%" }}> </div>
                     <div style={{ width: "10%" }}> </div>
                   </div>
@@ -1607,9 +1607,9 @@ function New_Invoice(props) {
                 <div className="col-3 ">
                   <div className=" d-flex flex-row" style={{ paddingLeft: "34%" }}>
                     <div className="" style={{ paddingRight: "9%" }} >
-                      <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
+                      <span className="cursor_default design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                     <div className="">
-                      <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
+                      <span className="cursor_default design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
                         ''}</span></div>
                   </div>
                 </div>

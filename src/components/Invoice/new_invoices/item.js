@@ -747,7 +747,7 @@ function Item(props) {
             <CurrencyInput
               id="validation-example-3-field2"
               name="sumCalcCurrencyInput"
-              className="sum1 cell"
+              className="cursor_default sum1 cell"
               value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
