@@ -71,6 +71,7 @@ export default function Fiances() {
     const drawerWidth = '15%';
     const [showSetting, setshowSetting] = useState(false);
     const show = useSelector(state => state.designReducer.show);
+    const displayBoxShadow = useSelector(state => state.invoiceReducer.displayBoxShadow);
     const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
     console.log("isSendMessage", isSendMessage)
 
@@ -93,6 +94,9 @@ export default function Fiances() {
         }
     }
         , [isSendMessage])
+    useEffect(() => {
+
+    }, [displayBoxShadow])
 
     return (
         <>
@@ -115,7 +119,7 @@ export default function Fiances() {
                         <div className="d-flex justify-content-center" style={{ width: "96%", height: "100%" }}>
                             <div
                                 className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}
-                                style={{ backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "0.5%", marginBottom: "0.5%" }}>
+                                style={displayBoxShadow ? { marginTop: "0.5%", marginBottom: "0.5%" } : { backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "0.5%", marginBottom: "0.5%" }}>
                                 {/* // style={{ backgroundColor: 'red', width: '40vh' }} */}
                                 {/* // className="d-flex justify-content-center" */}
                                 {/* > */}
@@ -159,10 +163,10 @@ export default function Fiances() {
                             }}> */}
                             </div>
                             {isSendMessage == "true" &&
-                                <div className="width_email justify-content-center align-items-center " style={{ height: "100%" }}>
+                                <div className="width_email d-flex justify-content-center align-items-center " style={{ height: "100%" }}>
                                     <div className=" sendEmailFromList" style={{
                                         width: "90%",
-                                        height: "100% ",
+                                        height: "97% ",
                                         border: "1px solid #917BDF",
                                         display: "none"
                                     }}>

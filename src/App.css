@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 body{
-  background:
-  #EBEAEA 0% 0% no-repeat padding-box;
+  background:#F7F7F7;
+  /* #EBEAEA 0% 0% no-repeat padding-box; */
   overflow: hidden;
 }
-html{
-  /* overflow: hidden; */
-}
+
 .header{
   top: 111px;
 left: 120px;
@@ -18,9 +16,7 @@ border-radius: 8px;
 opacity: 1;
 }
 
-#configuration1{
-  /* overflow: auto; */
-}
+
 .fff{
   overflow-y: scroll;
   position:relative;

@@ -84,6 +84,7 @@ function Products(props) {
     }
 
     useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
         // alert("allp")
         // dispatch(actions.getAllProduct())
     }, [])
@@ -495,7 +496,7 @@ function Products(props) {
                         >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}
+                                    onChange={(e) => search(e.target.value.toLowerCase())}
                                     onMouseOut={() => clickSearch(false)}
                                 >
                                 </input>

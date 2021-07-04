@@ -184,11 +184,34 @@ text-align: left !important;
 }
 #bgImg{
     cursor: pointer;
-    
+    border: 2px dashed #70707047;
 }
-.design_buisness:focus{
-    border:none
+.icon_chevron{
+    color: "#8D8DAE"
+}
+.backTo:hover {
+    color: black !important;
+}
+.backTo:focus{
+    border: none !important;
+}
 
+.design_buisness:focus{
+    border:none;
+    cursor:default
+}
+.design_buisness{
+    cursor: default;
+
+}.cursor_default{
+    cursor: default;
+
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+}
+.cursor_pointer{
+    cursor:pointer
 }
 .wrapBuisnessBorder{
     padding-bottom: 4%;

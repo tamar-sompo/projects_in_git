@@ -317,50 +317,9 @@ function NewConfigorator(props) {
 
     return (
         <>
-            {console.log("setFlagSaveP", flagSaveP)}
             <div className="left_nav border_configurator">
-                {/* {console.log("new con window.location.href.indexOf",window.location.href.indexOf("invoice") )} */}
-                {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
+                <NewSetting ></NewSetting></div>
 
-                    <>
-                        {/* {alert("nnnnn")} */}
-
-                        <div style={{ position: "relative" }}>
-                            <NewSetting ></NewSetting></div>
-                        <div
-                            className="try"
-                        // className={colorFlagShowSaveP==="red" ? "noClick" : "try"}
-                        >
-
-                            {/* <button
-                                // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
-                                // onClick={save1}
-                                className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
-                            >
-                                {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-                            </button> */}
-                        </div>
-
-
-
-                    </>
-                    :
-                    $('.left_nav').addClass('border_configurator') &&
-                    <>
-                        {/* {alert("fffff")} */}
-                        <div style={{ marginTop: '25%' }}>
-                            <NewSetting ></NewSetting>
-                        </div>
-                        {/* <button 
-                    onClick={save}
-                    className="saving1 mt-2 mb-2"
-                >
-                    Save</button> */}
-
-                    </>
-
-                }
-            </div>
 
 
         </>

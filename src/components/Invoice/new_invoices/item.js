@@ -18,7 +18,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
 function Item(props) {
-  const setClickSave=(status) => dispatch(actions.setClickSave(status))
+  const setClickSave = (status) => dispatch(actions.setClickSave(status))
   const clickSave = useSelector(state => state.invoiceReducer.clickSave);
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
   const p = useSelector(state => state.displayComponents.p);
@@ -49,7 +49,7 @@ function Item(props) {
   const setFlagShowSaveP = (status) => dispatch(actions.setFlagShowSaveP(status))
   const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
-  const validProduct=useSelector(state => state.invoiceReducer.validProduct);
+  const validProduct = useSelector(state => state.invoiceReducer.validProduct);
   const [indexfocus, setindexof] = useState(null)
   const { vvv } = props
   const dispatch = useDispatch();
@@ -59,16 +59,15 @@ function Item(props) {
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
   const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
   const flagValidPrice = useSelector(state => state.invoiceReducer.flagValidPrice)
-  const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
-  const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
-  const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
+  const setflagValidPrice = (status) => dispatch(actions.setflagValidPrice(status))
+  const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
+  const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
   // const [flagValidPrice, setflagValidPrice] = useState(false);
   // const [flagValidName, setflagValidName] = useState(false);
   useEffect(() => {
-    dispatch(actions.setflagBorderProduct(false))
-    dispatch(actions.setFlagIfEmptyProduct(false))
-
+    // setflagValidPrice(false)
+    // setflagValidName(false)
   }, [])
 
   useEffect(() => {
@@ -82,7 +81,7 @@ function Item(props) {
         }
         else {
           if (invoice.products[0]) {
-            if (invoice.products[0].id === "null" || invoice.products[0].id === undefined )
+            if (invoice.products[0].id === "null" || invoice.products[0].id === undefined)
               setFlagToBroder(true)
           }
         }
@@ -101,60 +100,60 @@ function Item(props) {
   }, [borderProductInvoice])
 
 
-  useEffect(()=>{
-if(clickSave===true){
-  setClickSave(false)
-  // alert("clickkkk")
-  // setClickSave(false)
-  if (dtp && dtp._id) {
-    if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
-      setflagValidPrice(false)
-      setflagValidName(false)
-      dispatch(actions.setValidProduct(true))
-    }
-    else {
-      if (!new_product[props.index].name) {
-        setflagValidName(true)
-        // dispatch(actions.setInvalidProduct(true))
-        console.log("flagValidName", flagValidName)
-      }
-      if (dtp && !dtp.price) {
-        setflagValidPrice(true)
-        // dispatch(actions.setInvalidProduct(true))
-        console.log("flagValidPhone", flagValidPrice)
-      }
-    }
-  }
-  else {
-    // alert("hhhh", new_product)
-    console.log('new_product', new_product)
-
-    if (props.pro.id === "null" || props.pro.id === undefined) {
-      if (new_product[props.index].name && new_product[props.index].price) {
-        setflagValidPrice(false)
-        setflagValidName(false)
-        dispatch(actions.setValidProduct(true))
+  useEffect(() => {
+    if (clickSave === true) {
+      setClickSave(false)
+      // alert("clickkkk")
+      // setClickSave(false)
+      if (dtp && dtp._id) {
+        if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+          setflagValidPrice(false)
+          setflagValidName(false)
+          dispatch(actions.setValidProduct(true))
+        }
+        else {
+          if (!new_product[props.index].name) {
+            setflagValidName(true)
+            // dispatch(actions.setInvalidProduct(true))
+            console.log("flagValidName", flagValidName)
+          }
+          if (dtp && !dtp.price) {
+            setflagValidPrice(true)
+            // dispatch(actions.setInvalidProduct(true))
+            console.log("flagValidPhone", flagValidPrice)
+          }
+        }
       }
       else {
-       
-        if (!new_product[props.index].name) {
-          setflagValidName(true)
-          dispatch(actions.setValidProduct(false))
-          // dispatch(actions.setInvalidProduct(true))
-          console.log("flagValidName", flagValidName)
-        }
-        if (!new_product[props.index].price) {
-          //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
-          setflagValidPrice(true)
-          dispatch(actions.setValidProduct(false))
-          // dispatch(actions.setInvalidProduct(true))
-          console.log("flagValidPhone", flagValidPrice)
+        // alert("hhhh", new_product)
+        console.log('new_product', new_product)
+
+        if (props.pro.id === "null" || props.pro.id === undefined) {
+          if (new_product[props.index].name && new_product[props.index].price) {
+            setflagValidPrice(false)
+            setflagValidName(false)
+            dispatch(actions.setValidProduct(true))
+          }
+          else {
+
+            if (!new_product[props.index].name) {
+              setflagValidName(true)
+              dispatch(actions.setValidProduct(false))
+              // dispatch(actions.setInvalidProduct(true))
+              console.log("flagValidName", flagValidName)
+            }
+            if (!new_product[props.index].price) {
+              //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
+              setflagValidPrice(true)
+              dispatch(actions.setValidProduct(false))
+              // dispatch(actions.setInvalidProduct(true))
+              console.log("flagValidPhone", flagValidPrice)
+            }
+          }
         }
       }
     }
-  }
-}
-  },[clickSave])
+  }, [clickSave])
 
 
   useEffect(() => {
@@ -213,8 +212,8 @@ if(clickSave===true){
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-  
- 
+
+
 
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
@@ -223,6 +222,7 @@ if(clickSave===true){
 
       console.log("trfgyuhytfdrtfgh")
       if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
+        setflagValidPrice(false)
         let product6 = allproduct.find(x => x.name === e.target.value)
         console.log("product6", product6)
         dispatch(actions.setProduct1(product6))
@@ -263,15 +263,17 @@ if(clickSave===true){
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-   
+
     setflagValidName(false)
+    // setflagValidName(false)
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
-debugger
-  
+    debugger
+
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
+      setflagValidPrice(false)
       let product6 = allproduct.find(x => x.name === e.target.value)
       dispatch(actions.setProduct1(product6))
       // dispatch(actions.setProduct1(product6))
@@ -286,19 +288,19 @@ debugger
       dispatch(actions.setP(product6._id))
       // setnameProduct(e.target.value)
     }
-    else{
-      if (e.target.value && e.target.value != "" ) {
-      setFlagShowSaveP({ index: props.index, value: true })
-    }
     else {
-      if (e.target.value == "")
-        if (!new_product[props.index].description || new_product[props.index].description == "")
-          if (!new_product[props.index].price || new_product[props.index].price == "")
-            if (!new_product[props.index].discount || new_product[props.index].discount == "")
-              setFlagShowSaveP({ index: props.index, value: false })
+      if (e.target.value && e.target.value != "") {
+        setFlagShowSaveP({ index: props.index, value: true })
+      }
+      else {
+        if (e.target.value == "")
+          if (!new_product[props.index].description || new_product[props.index].description == "")
+            if (!new_product[props.index].price || new_product[props.index].price == "")
+              if (!new_product[props.index].discount || new_product[props.index].discount == "")
+                setFlagShowSaveP({ index: props.index, value: false })
+      }
     }
-    }
-    
+
 
     if (detailsInvoice.products.length === 1)
       dispatch(actions.setPushNewProduct({}))
@@ -313,9 +315,9 @@ debugger
 
   const updateCell = (title1, e) => {
     dispatch(actions.setBorderProductInvoice(false))
-    
-   
-   
+
+
+
     setFlagSaveP(false)
     debugger
     console.log("ttt", e)
@@ -531,7 +533,7 @@ debugger
 
 
   const updateCellPrice = (_value, fieldName) => {
-debugger
+    debugger
     if (!fieldName) {
       return;
     }
@@ -623,11 +625,11 @@ debugger
   }
   return (
     <>
-      <div 
-      className={`row `}
-       style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
-       >
-        
+      <div
+        className={`row `}
+        style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
+      >
+
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
@@ -657,8 +659,9 @@ debugger
                 autoComplete="new-password"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                className={!dtp.name &&  !new_product[props.index].name && flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
+                className={new_product[props.index] && !new_product[props.index].name && !dtp.name && flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
@@ -700,7 +703,7 @@ debugger
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={!dtp.price &&  !new_product[props.index].price && flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
+              className={new_product[props.index] && !new_product[props.index].price && !dtp.price && flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
@@ -749,7 +752,7 @@ debugger
             <CurrencyInput
               id="validation-example-3-field2"
               name="sumCalcCurrencyInput"
-              className="sum1 cell"
+              className="cursor_default sum1 cell"
               value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />

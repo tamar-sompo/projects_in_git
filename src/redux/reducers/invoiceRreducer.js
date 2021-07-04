@@ -66,7 +66,8 @@ const initialState = {
     flagPush1: false,
     filteredInvoices: [],
     flagSaveP: false,
-    borderProductInvoice: false
+    borderProductInvoice: false,
+    displayBoxShadow: false
 }
 
 
@@ -92,6 +93,13 @@ state.invalidProduct=action.payload
         state.clickSave=action.payload
     },
 
+    setFlagIfEmptyProduct(state, action) {
+        state.flagIfEmptyProduct = action.payload
+    },
+
+    setDisplayBoxShadow(state, action) {
+        state.displayBoxShadow = action.payload
+    },
     setFlagIfEmptyProduct(state, action) {
         state.flagIfEmptyProduct = action.payload
     },

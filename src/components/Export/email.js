@@ -167,52 +167,52 @@ function MultiSelectInput(props) {
     }
     return (
         <>
-        <div style={{ marginTop: "2vh" }}>
-            <div className="d-flex justify-content-end tag-remove mr-3"
-            onClick={() => {dispatch(actions.setsendMessage("false"))}}>x</div>
-            <div style={{ height: "6vh" }} >
-            </div>
-            {/* <div className="tag-remove"></div> */}
-            <h4 className="d-flex justify-content-center emailFormTitle"> Send an link to your customer </h4>
-            <hr className="d-flex justify-content-center"></hr>
+            <div style={{ marginTop: "2vh" }}>
+                <div className="d-flex justify-content-end tag-remove mr-3 pointer"
+                    onClick={() => { dispatch(actions.setsendMessage("false")) }}>x</div>
+                <div style={{ height: "6vh" }} >
+                </div>
+                {/* <div className="tag-remove"></div> */}
+                <h4 className="d-flex justify-content-center emailFormTitle"> Send an link to your customer </h4>
+                <hr className="d-flex justify-content-center"></hr>
 
-            <input className="d-flex justify-content-center subjectAndBodyEmail"
-                onFocus={(e) => e.currentTarget.placeholder = ''}
-                onChange={(e) => fieldChanged(e, 'to')}
-                placeholder="To"
-            /><div className="ml-5 errorMassage">{errorMessage}</div>
-            <input className="d-flex justify-content-center subjectAndBodyEmail"
-                onFocus={(e) => e.currentTarget.placeholder = ''}
-                onChange={(e) => fieldChanged(e, 'subject')}
-                placeholder="Subject" />
-            <input className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
-                onFocus={(e) => e.currentTarget.placeholder = ''}
-                onChange={(e) => fieldChanged(e, 'html')}
-                placeholder={"The Body Of The Message"}
-            />
-            <div style={{ height: "6vh" }}></div>
-            <div className="d-flex justify-content-center" onClick={() => toMailServer()}>
-                <FontAwesomeIcon
-                    size="2x"
-                    icon={['fas', 'paper-plane']}
-                    style={{ color: "#917BDF" }}
+                <input className="d-flex justify-content-center subjectAndBodyEmail"
+                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    onChange={(e) => fieldChanged(e, 'to')}
+                    placeholder="To"
+                /><div className="ml-5 errorMassage">{errorMessage}</div>
+                <input className="d-flex justify-content-center subjectAndBodyEmail"
+                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    onChange={(e) => fieldChanged(e, 'subject')}
+                    placeholder="Subject" />
+                <input className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
+                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    onChange={(e) => fieldChanged(e, 'html')}
+                    placeholder={"The Body Of The Message"}
                 />
+                <div style={{ height: "6vh" }}></div>
+                <div className="d-flex justify-content-center" onClick={() => toMailServer()}>
+                    <FontAwesomeIcon
+                        size="2x"
+                        icon={['fas', 'paper-plane']}
+                        style={{ color: "#917BDF" }}
+                    />
+                </div>
+                {successSendEmail == "true" &&
+                    <h2 className="d-flex justify-content-center">Send!</h2>}
+                {successSendEmail == "true" &&
+                    setTimeout(() => {
+                        dispatch(actions.setsendMessage("false"))
+                        dispatch(actions.setSuccessSendEmail("false"))
+                        dispatch(actions.setInvoiceSave(null))
+                    }, 3000)
+                }
             </div>
-            {successSendEmail == "true" &&
-                <h2 className="d-flex justify-content-center">Send!</h2>}
-            {successSendEmail == "true" &&
-                setTimeout(() => {
-                    dispatch(actions.setsendMessage("false"))
-                    dispatch(actions.setSuccessSendEmail("false"))
-                    dispatch(actions.setInvoiceSave(null))
-                }, 3000)
-            }
-        </div>
         </>
     );
 }
 export default connect(
-    (state) => { 
+    (state) => {
         return {
         }
     },

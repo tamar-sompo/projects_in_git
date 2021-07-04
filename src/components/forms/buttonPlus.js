@@ -50,7 +50,7 @@ function ButtonPlus(props) {
       <button onClick={() => changeFlag(true)}
         className="newProd11">New Invoice +</button>
       {
-        history.location.pathname == `/${userName}/allDocuments` && dispatch(actions.setFlagPush(true)) && dispatch(actions.setFlagPush1(true)) && flag === true && dispatch(actions.setResetSaveSum(0)) && dispatch(actions.setFlagIfEmpty(false))
+        history.location.pathname == `/${userName}/allDocuments` &&  dispatch(actions.setDisplayBoxShadow(true))&& dispatch(actions.setFlagPush(true)) && dispatch(actions.setFlagPush1(true)) && flag === true && dispatch(actions.setResetSaveSum(0)) && dispatch(actions.setFlagIfEmpty(false))
         && dispatch(actions.setResetAllNewProduct()) && dispatch(actions.setInvoiceShow({})) && dispatch(actions.setFlagMessage(false)) &&
         dispatch(actions.setProductAfterDelete([])) && dispatch(actions.setDetailsContact({})) && dispatch(actions.setResetContactedit({})) && dispatch(actions.setInvoice({
           products: [],
