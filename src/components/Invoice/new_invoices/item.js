@@ -49,7 +49,7 @@ function Item(props) {
   const setFlagShowSaveP = (status) => dispatch(actions.setFlagShowSaveP(status))
   const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
-
+  const validProduct=useSelector(state => state.invoiceReducer.validProduct);
   const [indexfocus, setindexof] = useState(null)
   const { vvv } = props
   const dispatch = useDispatch();
@@ -57,7 +57,14 @@ function Item(props) {
   const totalProductRef = useRef([]);
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
+  const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
+  const flagValidPrice = useSelector(state => state.invoiceReducer.invalidProduct)
+  const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
+  const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
+  const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
+  // const [flagValidPrice, setflagValidPrice] = useState(false);
+  // const [flagValidName, setflagValidName] = useState(false);
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
     dispatch(actions.setFlagIfEmptyProduct(false))
@@ -97,6 +104,9 @@ function Item(props) {
 
   useEffect(() => {
     if (colorFlagShowSaveP === "red") {
+      // if(validProduct===true)
+      //   dispatch(actions.setColorFlagShowSaveP("#707071"))
+
       if (dtp && dtp._id) {
         if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
           setflagValidPrice(false)
@@ -147,10 +157,12 @@ if(clickSave===true){
   //   else {
   //     if (new_product[props.index].name) {
   //       setflagValidName(true)
+  //       // dispatch(actions.setInvalidProduct(true))
   //       console.log("flagValidName", flagValidName)
   //     }
   //     if (dtp && dtp.price) {
   //       setflagValidPrice(true)
+  //       // dispatch(actions.setInvalidProduct(true))
   //       console.log("flagValidPhone", flagValidPrice)
   //     }
   //   }
@@ -167,19 +179,24 @@ if(clickSave===true){
   //     else {
   //       if (!new_product[props.index].name) {
   //         setflagValidName(true)
+  //         // dispatch(actions.setInvalidProduct(true))
   //         console.log("flagValidName", flagValidName)
   //       }
   //       if (!new_product[props.index].price) {
   //         setflagValidPrice(true)
+  //         // dispatch(actions.setInvalidProduct(true))
   //         console.log("flagValidPhone", flagValidPrice)
   //       }
   //     }
   //   }
   // }
 
-  dispatch(actions.setColorFlagShowSaveP("red"))
+  // if(flagValidName===false && flagValidPrice===false)
+
+  // setValidProduct(true)
   setClickSave(false)
-  dispatch(actions.setValidProduct(true))
+    dispatch(actions.setValidProduct(true))
+    // dispatch(actions.setColorFlagShowSaveP("red"))
 }
   },[clickSave])
 
@@ -499,8 +516,7 @@ if(clickSave===true){
       }
     }
   }
-  const [flagValidPrice, setflagValidPrice] = useState(false);
-  const [flagValidName, setflagValidName] = useState(false);
+
   const savepr = () => {
     debugger
     if (amountProductInvoice != 0) {

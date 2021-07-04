@@ -71,6 +71,11 @@ export default function InvoiceAndSteps(props) {
   const setClickSave=(status) => dispatch(actions.setClickSave(status))
   const clickSave = useSelector(state => state.invoiceReducer.clickSave);
   const validProduct=useSelector(state => state.invoiceReducer.validProduct);
+  const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
+  const flagValidPrice = useSelector(state => state.invoiceReducer.invalidProduct)
+  const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
+  const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
+  const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -162,6 +167,7 @@ export default function InvoiceAndSteps(props) {
   useEffect(()=>{
 if(validProduct===true){
   dispatch(actions.setValidProduct(false))
+  dispatch(actions.setColorFlagShowSaveP("#707071"))
   flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
     setFlagToCheck(true)
     if (flag === true) {

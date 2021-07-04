@@ -4,7 +4,11 @@ import createReducer from "./reducerUtils";
 const initialState = {
 
     // colors:['black','black','black','black'],
+
+    flagValidPrice:false,
+    flagValidName: false,
     clickSave:false,
+    invalidProduct:false,
     validProduct:false,
     valuesCalculate: [],
     total: [],
@@ -67,6 +71,17 @@ const initialState = {
 
 
 const invoices = {
+    setflagValidName(state, action){
+   state.flagValidName=action.payload
+    },
+
+    setflagValidPrice(state, action){
+        state.flagValidPrice=action.payload
+    },
+
+    setInvalidProduct(state, action){
+state.invalidProduct=action.payload
+    },
 
     setValidProduct(state, action){
         state.validProduct=action.payload
