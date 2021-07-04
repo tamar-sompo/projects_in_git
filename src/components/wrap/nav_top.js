@@ -27,7 +27,7 @@ export default function Nav() {
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness);
   const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
-
+  const flagSaveP = useSelector(state => state.invoiceReducer.flagSaveP)
   useEffect(() => {
     console.log("navTop")
   }, [invoiceSave])
@@ -112,11 +112,11 @@ export default function Nav() {
         {/* <div className="col-5 d-flex justify-content-end" > */}
 
         {/* <h2>{currentBuisness? currentBuisness.name? currentBuisness.name: "":""}</h2> */}
-        <div className="col-6">
-          {/* <button
-        
-          {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-        </button> */}
+        <div className="col-6 d-flex align-items-center justify-content-center">
+          <button
+            className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
+            {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+          </button>
         </div>
         <div className="col-6">  <Select
 

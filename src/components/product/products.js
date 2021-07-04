@@ -496,7 +496,7 @@ function Products(props) {
                         >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}
+                                    onChange={(e) => search(e.target.value.toLowerCase())}
                                     onMouseOut={() => clickSearch(false)}
                                 >
                                 </input>

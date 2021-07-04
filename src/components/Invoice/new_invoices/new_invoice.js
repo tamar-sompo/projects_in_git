@@ -1297,7 +1297,7 @@ function New_Invoice(props) {
                     />
                   </a>
                 </div>
-                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder">
+                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
@@ -1324,7 +1324,7 @@ function New_Invoice(props) {
                   <input readOnly
                     type="text"
                     disabled={displayInvoice === "true" ? "disable" : ""}
-                    size='20'
+                    // size='20'
                     className="design_text design_buisness"
                     placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
                     // onClick={() => setFocus('companyPhone')}
