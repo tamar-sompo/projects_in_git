@@ -142,9 +142,9 @@
 //     // if(falgView==false)
 //     // setFlagView(true)
 //     // else{
-//     debugger
+//      
 //     // if (window.location.href.indexOf("view") != -1) {
-//     //   debugger
+//     //    
 //     //   console.log("njnj")
 //     //   setDisplayInvoice("true")
 //     //   if (window.location.pathname.split("/").pop() != "") {
@@ -153,7 +153,7 @@
 //     //     // dispatch(actions.setInvoiceShow())
 //     //   }
 //     // }
-//     debugger
+//      
 
 //     // if(history.location.pathname==="/")
 //     if (window.location.href.indexOf("view") != -1) {
@@ -173,7 +173,7 @@
 //       }
 //       else {
 //         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-//           debugger
+//            
 //           console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
 //           setsaveContactOne({
 //             flag: true,
@@ -182,7 +182,7 @@
 //             phone: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.phone : '',
 //             address: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.address : '',
 //           })
-//           debugger
+//            
 //           setcontactedit({
 //             name: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.name,
 //             email: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.email,
@@ -191,7 +191,7 @@
 //           })
 //         }
 //         else {
-//           debugger
+//            
 //           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
 //           let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
 //           setContactFromInvoice(ojectContact)
@@ -247,9 +247,9 @@
 //     // if(falgView==false)
 //     // setFlagView(true)
 //     // else{
-//     debugger
+//      
 //     // if (window.location.href.indexOf("view") != -1) {
-//     //   debugger
+//     //    
 //     //   console.log("njnj")
 //     //   setDisplayInvoice("true")
 //     //   if (window.location.pathname.split("/").pop() != "") {
@@ -258,7 +258,7 @@
 //     //     // dispatch(actions.setInvoiceShow())
 //     //   }
 //     // }
-//     debugger
+//      
 
 //     // if(history.location.pathname==="/")
 //     console.log("111s")
@@ -276,7 +276,7 @@
 //     }
 //     else {
 //       if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-//         debugger
+//          
 //         console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
 //         setsaveContactOne({
 //           flag: true,
@@ -285,7 +285,7 @@
 //           phone: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.phone : '',
 //           address: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.address : '',
 //         })
-//         debugger
+//          
 //         setcontactedit({
 //           name: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.name,
 //           email: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.email,
@@ -294,7 +294,7 @@
 //         })
 //       }
 //       else {
-//         debugger
+//          
 //         console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
 //         let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
 //         setContactFromInvoice(ojectContact)
@@ -350,7 +350,7 @@
 //   const [firstTmp, setfirstTmp] = useState(false);
 
 //   const validatorPhone = (v) => {
-//     debugger
+//      
 //     const tmp = v.length == 13 && v.includes('+');
 //     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
 //   }
@@ -358,14 +358,14 @@
 //     return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
 //   }
 //   useEffect(() => {
-//     debugger
+//      
 //     if (firstTmp) {
 //       let tmp3 = true;
 //       if (contactedit.phone) {
 //         tmp3 = validatorPhone(contactedit.phone);
 //       }
 //       if (validatorEmail(contactedit.email) && tmp3) {
-//         debugger
+//          
 //         setErrorMessage1(false)
 //         setErrorMessage2(false)
 //         dispatch(actions.setFlagValidation(false))
@@ -404,7 +404,7 @@
 
 
 //   useEffect(() => {
-//     debugger
+//      
 //     console.log("saveContactOne", saveContactOne)
 //     console.log("contactedit", contactedit)
 //     updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
@@ -414,11 +414,11 @@
 //   useEffect(() => {
 //   }, [invoiceeye])
 //   useEffect(() => {
-//     debugger
+//      
 //     if (flagcontactFromInvoice1 == false)
 //       setflagcontactFromInvoice1(true)
 //     else {
-//       debugger
+//        
 //       setcontactedit({
 //         name: contactFromInvoice && contactFromInvoice.name ? contactedit.name : contactedit.name,
 //         email: contactFromInvoice && contactFromInvoice.email ? contactedit.email : contactedit.email,
@@ -441,9 +441,9 @@
 //   }
 
 //   const saveContact1 = () => {
-//     debugger
+//      
 //     if (!detailscontact.contact) {
-//       debugger
+//        
 //       console.log(contactFromInvoice, contactedit)
 //       setsaveContactOne({
 //         flag: true,
@@ -463,9 +463,9 @@
 //       })
 //   }
 //   const saveContact = () => {
-//     debugger
+//      
 //     setFlag(false)
-//     debugger
+//      
 //     if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
 //       let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
 
@@ -477,11 +477,11 @@
 //       if (detailscontact && detailscontact.contact && detailscontact.contact._id) {
 //         console.log("contacteditttt", contactedit)
 //         dispatch(actions.setContactId(detailscontact.contact._id))
-//         debugger
+//          
 //         dispatch(actions.updateContact(contactedit))
 //       }
 //       else {
-//         debugger
+//          
 //         console.log("contacteditttt", contactedit)
 //         dispatch(actions.createContact(contactedit))
 //         console.log("newContact.emai", newContact.email)
@@ -490,14 +490,14 @@
 
 //   }
 //   useEffect(() => {
-//     debugger
+//      
 //     console.log("detailscontact", detailscontact)
 //     if (flagdetailsContact == false)
 //       setflagdetailsContact(true)
 //     else {
 //       console.log("contactedit444", contactedit)
 //       console.log("contactedit444", contactFromInvoice)
-//       debugger
+//        
 //       setsaveContactOne({
 //         name: detailscontact.contact && detailscontact.contact.name,
 //         email: detailscontact.contact && detailscontact.contact.email,
@@ -507,7 +507,7 @@
 //     }
 //   }, [detailscontact])
 //   const onFieldChangeContact = (fieldName, e) => {
-//     debugger
+//      
 //     // if (fieldName == 'email') {
 //     //   if (e.target.value) {
 //     //     if (validatorEmail(e.target.value)) {
@@ -551,7 +551,7 @@
 //       }
 //     }
 //     else {
-//       debugger
+//        
 
 //       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
 //       dispatch(actions.setFlagMessage(true))
@@ -559,7 +559,7 @@
 //   }
 
 //   const resetfieldcontactname = (field, e) => {
-//     debugger
+//      
 //     // e.currentTarget.value = ''  
 
 //     if (detailsInvoice && detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -625,7 +625,7 @@
 //     dispatch(actions.setProductAmount(0))
 //     // setsaveSum2(saveSum + saveSum2)
 
-//     debugger
+//      
 //     dispatch(actions.setFlagSavePr(true))
 //     // dispatch(actions.setProductAmount(0))
 
@@ -650,7 +650,7 @@
 //       if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
 
 //         console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-//         debugger;
+//          ;
 //         const newProdactions = [...detailsInvoice.products];
 //         // console.log("newProdactions",newProdactions)
 //         // newProdactions.push({ id: 'null', amount: 0 });
@@ -696,7 +696,7 @@
 //   }
 //   const deleteItemFromStore = (index) => {
 
-//     debugger
+//      
 //     dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
 //     dispatch(actions.setFlagShowSaveP(false))
 //     dispatch(actions.setDeleteSaveSum(index))
@@ -730,9 +730,9 @@
 //       console.log("productSelect3", productSelect3id)
 //       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
 //       console.log("productSelect3", productSelect3)
-//       debugger
+//        
 //       if (p.length !== invoice.products.length && productSelect3id != "null") {
-//         debugger
+//          
 //         let prr = [...p]
 //         prr.map((pr, ind) => {
 //           if (pr === productSelect3.name) {
@@ -829,7 +829,7 @@
 
 //   const changeBg = (event) => {
 //     if (event.target === event.currentTarget) {
-//       debugger;
+//        ;
 //       setBorderBgImage("true")
 //       setIsMouseTooltipVisible(true)
 //     }
@@ -844,13 +844,13 @@
 //   }
 
 //   // useEffect(() => {
-//   //   debugger
+//   //    
 //   //   console.log(invoice.imageFrame);
 //   //   console.log(invoice.imgLogo);
 //   // }, [invoice])
 
 //   const resetfieldcontact = (fieldName, e) => {
-//     debugger
+//      
 //     // alert('p')
 //     console.log("resetfieldcontact")
 //     if (detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -867,7 +867,7 @@
 //     }
 //   }
 //   const ooo = () => {
-//     debugger
+//      
 //     console.log("enterrrrrrr", detailsInvoice)
 //   }
 
@@ -1331,15 +1331,15 @@
 //                   <Col md={4} className='text-right p-0'>{saveSum ? saveSum : ''}</Col>
 //                 </Row> */}
 //                   {/* <Row>
-                  
+
 //                   <Col md={4} className='font-weight-bold text-left'>Discounts:</Col>
-         
+
 //                   <Col md={4} className='text-right p-0'></Col>
 //                 </Row> */}
 //                   {/* <Row>
-      
+
 //                   <Col md={4} className='font-weight-bold text-left'>Taxes:</Col>
-                
+
 //                   <Col md={4} className='text-right p-0'>000</Col>
 //                 </Row> */}
 //                   <Row className=' font-weight-bold'>
@@ -1405,7 +1405,7 @@
 //   const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
 //   const [indexfocus, setindexof] = useState(null)
 //   useEffect(() => {
-//     debugger
+//      
 //     console.log("הגעתתתתת", props.pro)
 //     if (props.pro.id == "null") {
 //     }
@@ -1424,7 +1424,7 @@
 
 
 //   useEffect(() => {
-//     debugger
+//      
 //     console.log("pppp")
 //     dispatch(actions.setFlagSavePr(false))
 //     if (flagPro === false) {
@@ -1433,7 +1433,7 @@
 //     }
 //     //  setSum(props.pro.sum_product)}
 //     else {
-//       debugger
+//        
 //       if (props.pro.id === 'null') {
 //         // alert('null')
 //         setdtp(allproduct.find(x => x._id === product1._id))
@@ -1444,7 +1444,7 @@
 //       }
 //       if (history.location.pathname === `/${userName}/invoice`) {
 //         // dispatch(actions.deleteLastProductInvoice());
-//         debugger
+//          
 //         if (props.pro.id === 'null') {
 //           dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
 //           // dispatch(actions.setProduct1({}))
@@ -1475,7 +1475,7 @@
 //     // if (invoice.products[0].id == "null") {
 //     //   dispatch(actions.setflagBorderProduct(false))
 //     // }
-//     debugger
+//      
 //     if (history.location.pathname !== `/${userName}/invoice`) {
 //       vv(e)
 //     }
@@ -1487,7 +1487,7 @@
 //         dispatch(actions.setProduct1(product6))
 //         setdtp(product6)
 //         setamount2(1)
-//         debugger
+//          
 //         dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
 //         dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
 //         // dispatch(actions.setResetNewProduct({}))
@@ -1512,7 +1512,7 @@
 //                 setFlagShowSaveP(false)
 
 //       }
-//       debugger
+//        
 
 //       if (invoice.products.length === 1)
 //         dispatch(actions.setPushNewProduct({}))
@@ -1539,7 +1539,7 @@
 //       dispatch(actions.setP(product6._id))
 //       // setnameProduct(e.target.value)
 //     }
-//     debugger
+//      
 //     dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
 //   }
 //   const { vvv } = props
@@ -1567,7 +1567,7 @@
 //       }
 
 //     }
-//     debugger
+//      
 //     if (title1 === "discount") {
 //       dtp.price && props.pro.amount ?
 //         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
@@ -1650,7 +1650,7 @@
 //   const cleanInput1 = (field1) => {
 //     // setindexof(props.index)
 //     if (field1 === "amount") {
-//       debugger
+//        
 //       if (amount2 != undefined) {
 //         dispatch(actions.setProductAmount(amount2))
 //         setamount2(undefined)
@@ -1669,7 +1669,7 @@
 //     }
 //   }
 //   // useEffect(() => {
-//   //   debugger
+//   //    
 //   //   console.log("discountp", discountp)
 //   // }, [discountp])
 //   const calcdiscountp = (e) => {
@@ -1679,7 +1679,7 @@
 //   const [flagValidPrice, setflagValidPrice] = useState(false);
 //   const [flagValidName, setflagValidName] = useState(false);
 //   const savepr = () => {
-//     debugger
+//      
 //     if (amountProductInvoice != 0) {
 //       setamount2(amountProductInvoice)
 //       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
@@ -1691,7 +1691,7 @@
 //     else {
 //       // alert("hhhh", new_product)
 //       console.log('new_product', new_product[props.index])
-//       debugger
+//        
 //       if (props.pro.id === "null" || props.pro.id === undefined) {
 //         dispatch(actions.setNewProductServer(props.index))
 //       }
@@ -1707,10 +1707,10 @@
 //   // }
 
 //   useEffect(() => {
-//     debugger
+//      
 //     // alert("yy")
 //     console.log("dtp", dtp, "flagcalc", flagcalc, "sum", sum, "calcSumProduct", calcSumProduct)
-//     debugger
+//      
 //     if (!flagcalc) {
 //       // if (!dtp._id)
 //       //   setCalcSumProduct(0)
@@ -1750,7 +1750,7 @@
 
 //   // useEffect(() => {
 //   //   console.log("dtp", dtp, "calcSumProduct", calcSumProduct)
-//   //   debugger
+//   //    
 //   //   if (!flagSumProduct) {
 //   //     setSum(props.pro.sum_product)
 //   //     setflagSumProduct(true)
@@ -1772,7 +1772,7 @@
 
 //   // }, [calcSumProduct])
 //   // useEffect(()=>{
-//   //   debugger
+//   //    
 //   //   if(!flagsetSum)
 //   //   setflagsetSum(true)
 //   //   else
@@ -1785,14 +1785,14 @@
 //   // }
 //   const clearProduct = () => {
 //     if (invoice.products.length == 1) {
-//       debugger
+//        
 //       dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
 //       dispatch(actions.setFlagShowSaveP(false))
 //       dispatch(actions.setDeleteSaveSum(props.index))
 //       // setsaveSum2(saveSum-saveSum2)
 //       dispatch(actions.setResetNewProduct(props.index))
 //       dispatch(actions.setProductFirst({ index: props.index, id: 'null', amount: null, sum_product: null }))
-//       debugger
+//        
 //       document.querySelectorAll('input.cell').forEach(
 //         input => (input.value = "")
 //       )

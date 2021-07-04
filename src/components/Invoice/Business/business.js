@@ -14,7 +14,7 @@ import BusinessCard from '../BusinessCard/businessCard';
 
 function Business(props) {
   let history = useHistory();
-  let dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const [flag, setFlag] = useState()
 
@@ -22,15 +22,15 @@ function Business(props) {
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const allInvoices = useSelector(state => state.buisnessReducer.allInvoices);
 
-  useEffect(() => {
-  })
-
 
   const changeFlag = (value) => {
-    debugger
+
     setFlag(value)
   }
   console.log("changeFlag", changeFlag)
+  useEffect(() => {
+    dispatch(actions.setDisplayBoxShadow(false))
+  }, [])
 
   return (
     <div className="container-fluid con" style={{
@@ -73,7 +73,7 @@ function Business(props) {
                   buisnessName={buisness.name}
                   buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
                   buisnessNumber={buisness.numberDeals ? buisness.numberDeals : ''}
-                  buisnessImg={buisness.imgLogo? buisness.imgLogo: logo1}
+                  buisnessImg={buisness.imgLogo ? buisness.imgLogo : logo1}
                 />
               </div>
             ) : <div>You have no Business</div>

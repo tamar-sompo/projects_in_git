@@ -112,7 +112,7 @@ function New_Invoice(props) {
   const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
   useEffect(() => {
-    debugger
+
     let summ = 0
     if (window.location.href.indexOf("view") != -1) {
       dispatch(actions.setsendMessage("false"))
@@ -137,7 +137,7 @@ function New_Invoice(props) {
       else {
         // dispatch(actions.setPushNewProduct({}))
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-          debugger
+
           console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
@@ -146,7 +146,7 @@ function New_Invoice(props) {
             phone: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.phone : '',
             address: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.address : '',
           })
-          debugger
+
           setcontactedit({
             name: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.name,
             email: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.email,
@@ -155,7 +155,7 @@ function New_Invoice(props) {
           })
         }
         else {
-          debugger
+
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
@@ -243,7 +243,7 @@ function New_Invoice(props) {
 
 
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-          debugger
+
           console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
@@ -252,7 +252,7 @@ function New_Invoice(props) {
             phone: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.phone : '',
             address: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.address : '',
           })
-          debugger
+
           setcontactedit({
             name: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.name,
             email: detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.email,
@@ -261,7 +261,7 @@ function New_Invoice(props) {
           })
         }
         else {
-          debugger
+
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
@@ -329,17 +329,17 @@ function New_Invoice(props) {
         dispatch(actions.setModalBody(""))
       }
     }
-    debugger
+
     console.log("saveContactOne", saveContactOne)
     console.log("contactedit", contactedit)
     updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
   }, [saveContactOne])
   useEffect(() => {
-    debugger
+
     if (flagcontactFromInvoice1 == false)
       setflagcontactFromInvoice1(true)
     else {
-      debugger
+
       setcontactedit({
         name: contactFromInvoice && contactFromInvoice.name ? contactedit.name : contactedit.name,
         email: contactFromInvoice && contactFromInvoice.email ? contactedit.email : contactedit.email,
@@ -349,14 +349,14 @@ function New_Invoice(props) {
     }
   }, [contactFromInvoice])
   useEffect(() => {
-    debugger
+
     console.log("detailscontact", detailscontact)
     if (flagdetailsContact == false)
       setflagdetailsContact(true)
     else {
       console.log("contactedit444", contactedit)
       console.log("contactedit444", contactFromInvoice)
-      debugger
+
       setsaveContactOne({
         name: detailscontact.contact && detailscontact.contact.name,
         email: detailscontact.contact && detailscontact.contact.email,
@@ -382,7 +382,7 @@ function New_Invoice(props) {
   const [firstTmp, setfirstTmp] = useState(false);
 
   const validatorPhone = (v) => {
-    debugger
+
     const tmp = v.length == 13 && v.includes('+');
     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
   }
@@ -390,7 +390,7 @@ function New_Invoice(props) {
     return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
   }
   useEffect(() => {
-    debugger
+
     if (firstTmp) {
       let tmp3 = true;
       if (contactedit.phone) {
@@ -408,7 +408,7 @@ function New_Invoice(props) {
       }
       else {
         if ((validatorEmail(contactedit.email) || validName) && tmp3) {
-          debugger
+
           setErrorMessage1(false)
           setErrorMessage2(false)
           dispatch(actions.setFlagValidation(false))
@@ -439,15 +439,16 @@ function New_Invoice(props) {
         }
       }
     }
+    // }
     else (setfirstTmp(true))
   }, [flagValidation])
 
   /////////////////////////////////////////////////////////
   const saveContact1 = () => {
     dispatch(actions.setShowInInvoice(true))
-    debugger
+
     if (!detailscontact.contact) {
-      debugger
+
       console.log(contactFromInvoice, contactedit)
       setsaveContactOne({
         flag: true,
@@ -468,9 +469,9 @@ function New_Invoice(props) {
   }
   const saveContact = () => {
     dispatch(actions.setShowInInvoice(true))
-    debugger
+
     setFlag(false)
-    debugger
+
     if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
 
       let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
@@ -488,11 +489,11 @@ function New_Invoice(props) {
       if (detailscontact && detailscontact.contact && detailscontact.contact._id) {
         console.log("contacteditttt", contactedit)
         dispatch(actions.setContactId(detailscontact.contact._id))
-        debugger
+
         dispatch(actions.updateContact(contactedit))
       }
       else {
-        debugger
+
         console.log("contacteditttt", contactedit)
         dispatch(actions.createContact(contactedit))
         console.log("newContact.emai", newContact.email)
@@ -502,7 +503,7 @@ function New_Invoice(props) {
   }
 
   const onFieldChangeContact = (fieldName, e) => {
-    debugger
+
     if (fieldName == 'email') {
       if (e.target.value) {
         setValidName(false)
@@ -528,7 +529,7 @@ function New_Invoice(props) {
     }
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
-      debugger
+
       if (allcontact1.find(x => x.name == e.target.value)) {
         let dc = allcontact1.find(x => x.name == e.target.value).email
         if (validatorEmail(dc)) {
@@ -553,13 +554,13 @@ function New_Invoice(props) {
       }
     }
     else {
-      debugger
+
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       dispatch(actions.setFlagMessageContact(true))
     }
   }
   const resetfieldcontact = (fieldName, e) => {
-    debugger
+
     // alert('p')
     console.log("resetfieldcontact")
     if (detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -576,7 +577,7 @@ function New_Invoice(props) {
     }
   }
   // const resetfieldcontactname = (field, e) => {
-  //   debugger
+  //    
   //   // e.currentTarget.value = ''  
 
   //   if (detailsInvoice && detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -594,7 +595,7 @@ function New_Invoice(props) {
   // }
   const onFieldChanged = (fieldName, e) => {
     // console.log("eeeee", fieldName, e.target.value)
-    debugger
+
     dispatch(actions.setFlagIfEmpty(true))
     const value = e.target.value;
     if (fieldName === "dueDate")
@@ -632,7 +633,7 @@ function New_Invoice(props) {
     dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setProductAmount(0))
     // setsaveSum2(saveSum + saveSum2)
-    debugger
+
     dispatch(actions.setFlagSavePr(true))
     flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
       if (flag === true) {
@@ -663,7 +664,7 @@ function New_Invoice(props) {
 
         if (detailsInvoice.products[detailsInvoice.products.length - 1].id != "null") {
           console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-          debugger;
+            ;
           const newProdactions = [...detailsInvoice.products];
           // console.log("newProdactions",newProdactions)
           // newProdactions.push({ id: 'null', amount: 0 });
@@ -705,7 +706,8 @@ function New_Invoice(props) {
   }
 
   const deleteItemFromStore = (index) => {
-    debugger
+
+    dispatch(actions.setBorderProductInvoice(false))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -744,10 +746,10 @@ function New_Invoice(props) {
       console.log("productSelect3", productSelect3id)
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
       console.log("productSelect3", productSelect3)
-      debugger
+
       //////////////////////////////////////////////////////////////////////////////להחזיר אם לא
       // if (p.length !== invoice.products.length && productSelect3id != "null") {
-      //   debugger
+      //    
       //   let prr = [...p]
       //   prr.map((pr, ind) => {
       //     if (pr === productSelect3.name) {
@@ -823,7 +825,7 @@ function New_Invoice(props) {
   }
   const changeBg = (event) => {
     if (event.target === event.currentTarget) {
-      debugger;
+      ;
       setBorderBgImage("true")
       setIsMouseTooltipVisible(true)
     }
@@ -1297,7 +1299,7 @@ function New_Invoice(props) {
                     />
                   </a>
                 </div>
-                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder">
+                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
@@ -1324,7 +1326,7 @@ function New_Invoice(props) {
                   <input readOnly
                     type="text"
                     disabled={displayInvoice === "true" ? "disable" : ""}
-                    size='20'
+                    // size='20'
                     className="design_text design_buisness"
                     placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
                     // onClick={() => setFocus('companyPhone')}
@@ -1441,24 +1443,24 @@ function New_Invoice(props) {
                 <div className='col-4' onClick={() => focus_steps('Content', 3)} style={{ paddingTop: "4%", paddingLeft: "4%" }}>
                   <div className="row">
                     <div className="col-6 " >
-                      <span className=" design_text_contact design_text_contactname">Invoice</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">Invoice</span></div>
                     <div className="col-6" style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-6" >
-                      <span className="design_text_contact">Date:{() => convertdate(detailsInvoice.date)}</span></div>
+                      <span className="design_text_contact cursor_default">Date:{() => convertdate(detailsInvoice.date)}</span></div>
                     <div className="col-6 " style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact">{shortDate}</span></div>
+                      <span className="design_text_contact cursor_default">{shortDate}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-4">
-                      <span className="design_text_contact">Due Date:</span></div>
+                      <span className="cursor_default design_text_contact">Due Date:</span></div>
                     <div className="col-8" style={{ paddingLeft: "0px" }}>
                       <input
                         style={{ backgroundColor: "transparent" }}
                         disabled={displayInvoice === "true" ? "disable" : ""}
-                        className="design_text_contact"
+                        className=" design_text_contact"
                         // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
                         type="date"
                         size="1"
@@ -1508,9 +1510,9 @@ function New_Invoice(props) {
                 <div className=" table_title bold col-1" ></div>
                 <div className=" table_title bold col-1 nonborder" ></div> */}
                   <div className=" nonborder col-6 d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "10%" }}></div>
-                    <div className=" table_title bold" style={{ width: "35%" }}>Product Name</div>
-                    <div className=" table_title bold" style={{ width: "55%" }}>Description</div>
+                    <div className="cursor_default table_title bold" style={{ width: "10%" }}></div>
+                    <div className="cursor_default table_title bold" style={{ width: "35%" }}>Product Name</div>
+                    <div className="cursor_default table_title bold" style={{ width: "55%" }}>Description</div>
                   </div>
                   {/* <div className=" table_title bold" style={{ width: "15%" }}>Product Name</div>
                 <div className=" table_title bold" style={{ width: "24%" }}>Description</div>
@@ -1518,10 +1520,10 @@ function New_Invoice(props) {
                 <div className=" table_title bold" style={{ width: "10%" }}>Quantity</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Discount</div>
                 <div className=" table_title bold" style={{ width: "10%" }}></div> */}
-                  <div className=" table_title bold col-6  d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "25%" }}>Unit Price</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Quantity</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Discount</div>
+                  <div className="cursor_default table_title bold col-6  d-flex justify-content-center" >
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Unit Price</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Quantity</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Discount</div>
                     <div style={{ width: "15%" }}> </div>
                     <div style={{ width: "10%" }}> </div>
                   </div>
@@ -1539,7 +1541,8 @@ function New_Invoice(props) {
                   (window.location.href.indexOf("view") == -1 &&
                     detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
                   detailsInvoice.products.map((p, index) =>
-                    <Item key={index}
+                    <Item
+                      key={index}
                       pro={p}
                       arrColor={props.colors}
                       index={index}
@@ -1612,9 +1615,9 @@ function New_Invoice(props) {
                 <div className="col-3 ">
                   <div className=" d-flex flex-row" style={{ paddingLeft: "34%" }}>
                     <div className="" style={{ paddingRight: "9%" }} >
-                      <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
+                      <span className="cursor_default design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                     <div className="">
-                      <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
+                      <span className="cursor_default design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
                         ''}</span></div>
                   </div>
                 </div>

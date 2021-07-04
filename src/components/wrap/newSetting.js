@@ -101,12 +101,12 @@ export default function NewSetting(props) {
     console.log("specific route function", specificRoute)
     dispatch(actions.setsendMessage("false"))
     dispatch(actions.setInvoiceSave(null))
-    if (specificRoute === "Documents"){
+    if (specificRoute === "Documents") {
       console.log("specific route function all document", specificRoute)
-       history.push(`/${userName}/allDocuments`)
-       
+      history.push(`/${userName}/allDocuments`)
+
     }
-     
+
     if (specificRoute === "Business") {
       history.push(`/${userName}/buisness`)
       dispatch(actions.setInvoiceSave(null))
@@ -130,6 +130,7 @@ export default function NewSetting(props) {
 
 
   const checkIfBuisness = (value) => {
+    dispatch(actions.setDisplayBoxShadow(false))
     setIndex(index + 1)
     setspecificRoute(value)
     setIndex(index + 1)
