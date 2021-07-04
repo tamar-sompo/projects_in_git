@@ -19,42 +19,39 @@ import { useState } from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
-  inputStyle: {
-    width: 125 + '%',
-    backgroundColor: 'transparent',
-    borderTop: 'none',
-    borderLeft: 'none',
-    borderRight: 'none',
-    webkitBoxShadow: 'none',
-    height: 23 + 'px',
-    "&:focus": {
-      border: 'inset',
-    }
-  },
-  buttonUpload: {
-    display: 'inline-block',
-    width: 7 + 'vh',
-    height: 7 + 'vh',
-    backgroundColor: 'transparent',
-    border: '1px solid black',
-    borderRadius: 50 + '%',
-    padding: 0
-  },
-  imgUpload: {
-    display: 'inline-block',
-    width: 7 + 'vh',
-    height: 7 + 'vh',
-    backgroundColor: 'transparent',
-    // border: '1px solid black',
-    borderRadius: 50 + '%',
-    padding: 0
-  }
+  // inputStyle: {
+  //   width: 125 + '%',
+  //   backgroundColor: 'transparent',
+  //   borderTop: 'none',
+  //   borderLeft: 'none',
+  //   borderRight: 'none',
+  //   webkitBoxShadow: 'none',
+  //   height: 23 + 'px',
+  //   "&:focus": {
+  //     border: 'inset',
+  //   }
+  // },
+  // buttonUpload: {
+  //   display: 'inline-block',
+  //   width: 7 + 'vh',
+  //   height: 7 + 'vh',
+  //   backgroundColor: 'transparent',
+  //   border: '1px solid black',
+  //   borderRadius: 50 + '%',
+  //   padding: 0
+  // },
+  // imgUpload: {
+  //   display: 'inline-block',
+  //   width: 7 + 'vh',
+  //   height: 7 + 'vh',
+  //   backgroundColor: 'transparent',
+  //   // border: '1px solid black',
+  //   borderRadius: 50 + '%',
+  //   padding: 0
+  // }
 }))
 
-{/* <td>{item.name}</td>
-                            <td>{item.text}</td>
-                            <td>{item.price}</td>
-                            <td>{item.katalogNumber}</td> */}
+
 function ProductForm(props) {
   const classes = useStyles();
   const inputFile = useRef(null);
@@ -64,8 +61,6 @@ function ProductForm(props) {
   // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
   const newProductTable = useSelector(state => state.productReducer.newProductTable)
   console.log("newProductTable.images", newProductTable.images);
-
-
 
   useEffect(() => {
     // props.addProduct("sssss")
@@ -177,8 +172,9 @@ function ProductForm(props) {
   return (
     <>
       <div className="container" style={{ height: 23 + 'vh', width: '97%', padding: '0px', margin: '0px' }}>
-        <div className="col-3 col-md-2 col-sm-1"
-          style={{ paddingTop: '2%', paddingBottom: '2%', paddingLeft: '0px', paddingRight: '0px' }}>
+        <div
+          className="col-3 col-md-2 col-sm-1"
+          style={{ width: "12%", paddingTop: '2%', paddingBottom: '2%', paddingLeft: '0px', paddingRight: '0px' }}>
           <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
             onChange={(e) => addImage(e.target.files[0])} />
           <button onClick={onButtonClick} className="rounded"

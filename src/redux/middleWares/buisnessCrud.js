@@ -147,16 +147,17 @@ export const updateBuisnessById = ({ dispatch, getState }) => next => action => 
       // dataType: 'json',
       data: JSON.stringify(body),
       success: (data) => {
-        // checkPermission(data).then((ifOk) => {
-        // dispatch(actions.setGetAllBuisness(data))
-        // dispatch(actions.setUpDateBuisness({}))
-        if (update == current) {
-          dispatch(actions.getLastBuisness())
-          console.log("currentUpdate")
-          // }
-          // console.log('success update business num ' + buisnessId)
-        }
+        dispatch(actions.getAllProduct(data._id))
+        dispatch(actions.setGetBusiness(data._id))
+        dispatch(actions.setGeCurrenttBuisness())
+        // if (update == current) {
+        //   dispatch(actions.getLastBuisness())
+        //   console.log("currentUpdate")
+        //   console.log('success update business num ' + buisnessId)
+        // }
         // )
+        console.log('success update business num ' + buisnessId, data)
+
       },
       error: (err) => {
         console.log("error", err)
@@ -221,9 +222,9 @@ export const removeBuisnessById = ({ dispatch, getState }) => next => action => 
         console.log("removeBuisness", buisnessId)
         // {update == current?  dispatch(actions.getLastBuisness()):""}
         dispatch(actions.setGetAllBuisness())
-        if (update == current) {
-          dispatch(actions.getLastBuisness())
-        }
+        // if (update == current) {
+        dispatch(actions.getLastBuisness())
+        // }
       },
     });
   }
