@@ -198,8 +198,12 @@ function Item(props) {
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-    dispatch(actions.setFlagIfEmptyProduct(true))
-
+    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
+    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+      dispatch(actions.setFlagIfEmptyProduct(true))
+    }
     if (invoice.products[0].id == "null") {
       dispatch(actions.setflagBorderProduct(false))
     }
@@ -253,7 +257,12 @@ function Item(props) {
   const vv = (e) => {
 
     dispatch(actions.setBorderProductInvoice(false))
-    dispatch(actions.setFlagIfEmptyProduct(true))
+    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
+    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+      dispatch(actions.setFlagIfEmptyProduct(true))
+    }
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
@@ -296,7 +305,12 @@ function Item(props) {
 
   const updateCell = (title1, e) => {
     dispatch(actions.setBorderProductInvoice(false))
-    dispatch(actions.setFlagIfEmptyProduct(true))
+    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
+    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+      dispatch(actions.setFlagIfEmptyProduct(true))
+    }
     setflagValidPrice(false)
     setflagValidName(false)
     setFlagSaveP(false)
@@ -671,8 +685,11 @@ function Item(props) {
   }
   return (
     <>
-
-      <div className="row" style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
+      <div 
+      className={`row `}
+       style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
+       >
+        
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?

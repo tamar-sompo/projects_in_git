@@ -36,12 +36,23 @@ function MultiSelectInput(props) {
     const [selectedValue, setSelectedValue] = useState(null);
     const [valus, setValue] = useState(null);
     const [errorMessage, setErrorMessage] = useState(false);
+    const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+    const invoice = useSelector(state => state.invoiceReducer.invoice);
 
     const userName = useSelector(state => state.publicReducer.userName);
     const allcontacts = useSelector(state => state.customerReducer.allContact);
     const successSendEmail = useSelector(state => state.exportInvoiceReducer.successSendEmail);
     const emailDetails = useSelector(state => state.exportInvoiceReducer.emailDetails);
     const updateEmailField = (fieldToUpdate) => dispatch(actions.setEmailDetails(fieldToUpdate))
+
+    useEffect(()=>{
+        if (history.location.pathname == `/${userName}/invoice`)
+        updateEmailField({ key: "to", value:  invoice.contactOneTime.email})
+           
+        if(window.location.href.indexOf('invoice/edit'))
+        updateEmailField({ key: "to", value:  detailsInvoice.contactOneTime.email})
+  
+    },[])
     
 
     const fieldChanged = (e, fieldName) => {

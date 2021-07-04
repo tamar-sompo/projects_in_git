@@ -150,6 +150,7 @@ function AllInvoices(props) {
     dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))
+    // dispatch(actions.setInvoiceSave(invoice))
     setDisplayInvoice("false")
     console.log("props.allproduct", props.allproduct)
     dispatch(actions.setDetailsContact({}))
