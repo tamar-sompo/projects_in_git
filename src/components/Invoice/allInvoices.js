@@ -88,6 +88,7 @@ function AllInvoices(props) {
     // dispatch(actions.setDetailsContact({}))
     // dispatch(actions.setGetAllbuisness());
     // dispatch(actions.getAllProduct())
+    dispatch(actions.setDisplayBoxShadow(false))
     getAllInvoicesToBuisness()
     dispatch(actions.setViewConversion('false'))
     setFlagSaveInvoice(false)
@@ -149,6 +150,7 @@ function AllInvoices(props) {
     return isInvoicePayed;
   }
   const showInvoiceById = (invoice) => {
+    dispatch(actions.setDisplayBoxShadow(true))
     dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))

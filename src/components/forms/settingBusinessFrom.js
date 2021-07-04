@@ -110,7 +110,9 @@ function SettingBuisnessList(props) {
     // useEffect(() => {
     //   setUrlLogo(detailsBusiness.imgLogo)
     //  } ,[detailsBusiness.imgLogo])
-
+    useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
+    }, [])
 
     useEffect(() => {
         if (flag === "false")

@@ -57,7 +57,7 @@ export default function Nav() {
     // <div className="col-11 d-flex justify-content-end" >
 
 
-    <div className="nav_top1 container-fluid  d-flex align-items-center ">
+    <div className="nav_top1 container-fluid  d-flex align-items-center " style={{ padding: "0px" }}>
       {/* <div className="row" style={{ width: "100%" }}>
       </div> */}
       <div className="col-2 d-flex justify-content-start">

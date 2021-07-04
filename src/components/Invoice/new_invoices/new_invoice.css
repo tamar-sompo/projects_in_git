@@ -179,13 +179,21 @@ text-align: left !important;
 }
 #bgImg{
     cursor: pointer;
-    
+    border: 2px dashed #70707047;
 }
+.icon_chevron{
+    color: "#8D8DAE"
+}
+.backTo:hover {
+    color: black !important;
+}
+.backTo:focus{
+    border: none !important;
+}
+
 .design_buisness:focus{
     border:none;
     cursor:default
-    
-
 }
 .design_buisness{
     cursor: default;

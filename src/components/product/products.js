@@ -84,6 +84,7 @@ function Products(props) {
     }
 
     useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
         // alert("allp")
         // dispatch(actions.getAllProduct())
     }, [])

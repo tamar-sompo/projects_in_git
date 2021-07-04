@@ -60,18 +60,21 @@ const initialState = {
     flagPush1: false,
     filteredInvoices: [],
     flagSaveP: false,
-    borderProductInvoice:false
+    borderProductInvoice: false,
+    displayBoxShadow: false
 }
 
 
 const invoices = {
+    setDisplayBoxShadow(state, action) {
+        state.displayBoxShadow = action.payload
+    },
+    setFlagIfEmptyProduct(state, action) {
+        state.flagIfEmptyProduct = action.payload
+    },
 
-setFlagIfEmptyProduct(state, action){
-state.flagIfEmptyProduct=action.payload
-},
-
-    setBorderProductInvoice(state,action){
-        state.borderProductInvoice=action.payload
+    setBorderProductInvoice(state, action) {
+        state.borderProductInvoice = action.payload
     },
 
     setFlagSaveP(state, action) {

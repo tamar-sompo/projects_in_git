@@ -113,7 +113,9 @@ function BuisnessList(props) {
   //   setUrlLogo(detailsBusiness.imgLogo)
   //  } ,[detailsBusiness.imgLogo])
 
-
+  useEffect(() => {
+    dispatch(actions.setDisplayBoxShadow(false))
+  }, [])
   useEffect(() => {
     if (flag === "false")
       setFlag("true")
@@ -298,7 +300,8 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+          height: "86vh",
+          width: "98%",
           overflowY: "auto"
         }}>
         {/* {

@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import { withRouter, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './invoice.css';
+import './new_invoices/new_invoice.css';
 // import { connect, useDispatch, useSelector } from 'react-redux';
 import Steps from './steps.js';
 import $ from 'jquery'
@@ -19,6 +19,7 @@ import { useHistory } from 'react-router-dom';
 // import productForm from '../forms/productForm'
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
 import { AirlineSeatReclineExtra } from '@material-ui/icons';
+import { Button } from 'react-bootstrap';
 
 export default function InvoiceAndSteps(props) {
   // let history = useHistory();
@@ -99,7 +100,7 @@ export default function InvoiceAndSteps(props) {
 
 
 
-//איך חזר מהמודל
+  //איך חזר מהמודל
   useEffect(() => {
     console.log("flagModal", flagModal)
     if (flagModal === "successContact")
@@ -139,17 +140,17 @@ export default function InvoiceAndSteps(props) {
     else {
       if (flagOfterValidation === true) {
         dispatch(actions.setFlagOfterValidation(false))
-       if (flagToCheck === true) {
+        if (flagToCheck === true) {
           setFlagToCheck(false)
-          if (flagSaveP === false && borderProductInvoice===false) {
-              dispatch(actions.setBorderProductInvoice(false))
-              if (flagMessageContact) {
-                setShowMessage(true)
-                setFlagModal("contact")
-                setModalBody("how do you want to save contact changes?")
-              }
-              else {
-                nameInvoice()
+          if (flagSaveP === false && borderProductInvoice === false) {
+            dispatch(actions.setBorderProductInvoice(false))
+            if (flagMessageContact) {
+              setShowMessage(true)
+              setFlagModal("contact")
+              setModalBody("how do you want to save contact changes?")
+            }
+            else {
+              nameInvoice()
             }
           }
         }
@@ -174,11 +175,11 @@ export default function InvoiceAndSteps(props) {
   }, [colorFlagShowSaveP])
 
 
-//בלחיצה על שמירה מתחיל את הבדיקות תקינות 
+  //בלחיצה על שמירה מתחיל את הבדיקות תקינות 
   const save1 = () => {
     debugger
     //איפוס כל המשתנים
-  
+
     dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -186,14 +187,13 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
-     dispatch(actions.setFlagValidation(true))
+    dispatch(actions.setFlagValidation(true))
     debugger
     //בודק אם יש מוצר ריק בחשבונית
-    if(history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" && flagIfEmptyProduct===false || 
-        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null" && flagIfEmptyProduct===false||
-        history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[invoice.products.length - 1].id === "null" && flagIfEmptyProduct===false||
-        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" && flagIfEmptyProduct===false)
-    {
+    if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" && flagIfEmptyProduct === false ||
+      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null" && flagIfEmptyProduct === false ||
+      history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[invoice.products.length - 1].id === "null" && flagIfEmptyProduct === false ||
+      window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" && flagIfEmptyProduct === false) {
       setFlagSaveP(true)
       dispatch(actions.setBorderProductInvoice(true))
     }
@@ -206,7 +206,7 @@ export default function InvoiceAndSteps(props) {
         dispatch(actions.setColorFlagShowSaveP("red"))
       }
     })
-   
+
   }
 
 
@@ -243,7 +243,7 @@ export default function InvoiceAndSteps(props) {
     }
   }
 
-//השמירה של החשבונית
+  //השמירה של החשבונית
   const save = () => {
     setIslevel(3);
     dispatch(actions.setFlagIfEmpty(false))
@@ -268,6 +268,7 @@ export default function InvoiceAndSteps(props) {
 
   //בלחיצה על back
   const backtoAllInvoices = () => {
+    dispatch(actions.setDisplayBoxShadow(false))
     if (flagIfEmpty == false) {
       history.push(`/${userName}/allDocuments`)
       dispatch(actions.setFlagModal(""))
@@ -295,27 +296,34 @@ export default function InvoiceAndSteps(props) {
       }
   }, [viewConversion])
 
-
+useEffect(()=>{
+  dispatch(actions.setDisplayBoxShadow(true))
+})
   return (
     <>
 
       <div className="container-fluid" style={{ height: "100%" }}>
-        <div className="row" style={{ height: "100%" }}>
+        <div className="row" style={{ height: "100%", backgroundColor: "#F7F7F7" }}>
           <div className="col-2">
             <div className="d-flex flex-row align-items-center justufy-content-center" style={{ height: "fit-content", marginTop: "10%" }} >
-              <div style={{ height: "fit-content" }}>
-                <FontAwesomeIcon
-                  icon={['fas', 'chevron-left']}
-                ></FontAwesomeIcon>
-              </div>
+
               {/* <div style={{ display: "inline" }}>
             
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
               </svg></div> */}
-              <div style={{ height: "fit-content", color: "black", backgroundColor: "transparent", fontWeight: "bold", fontSize: "medium" }}>
-                <button onClick={backtoAllInvoices} style={{ color: "black", backgroundColor: "transparent", paddingTop: "10%", fontWeight: "bold", fontSize: "medium", paddingLeft: "20%" }}>back</button>
-              </div></div></div>
+
+              <span className="backTo">
+                <button onClick={backtoAllInvoices} style={{ color: "black", color: "#8D8DAE", backgroundColor: "transparent", fontWeight: "bold", fontSize: "small" }}>All Invoices</button>
+              </span>
+              <span className="d-flex align-items-center icon_chevron" >
+                <FontAwesomeIcon
+                  icon={['fas', 'chevron-right']}
+                ></FontAwesomeIcon>
+              </span>
+              <span>
+                <button style={{ color: "black", backgroundColor: "transparent", fontWeight: "bold", fontSize: "small" }}>my Invoice</button></span>
+            </div></div>
           <div className="col-8 gggff" style={{
             // height: "100%",
             // width: "86%"
@@ -325,6 +333,7 @@ export default function InvoiceAndSteps(props) {
               style={{
                 // display: "inline"
                 height: "100%",
+                backgroundColor: "#F7F7F7"
                 // width: "86%"
 
               }}
