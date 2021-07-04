@@ -4,6 +4,8 @@ import createReducer from "./reducerUtils";
 const initialState = {
 
     // colors:['black','black','black','black'],
+    clickSave:false,
+    validProduct:false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -65,6 +67,15 @@ const initialState = {
 
 
 const invoices = {
+
+    setValidProduct(state, action){
+        state.validProduct=action.payload
+    },
+
+
+    setClickSave(state, action){
+        state.clickSave=action.payload
+    },
 
     setFlagIfEmptyProduct(state, action) {
         state.flagIfEmptyProduct = action.payload

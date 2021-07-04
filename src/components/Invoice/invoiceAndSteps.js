@@ -67,7 +67,10 @@ export default function InvoiceAndSteps(props) {
   const flagIfEmptyProduct = useSelector(state => state.invoiceReducer.flagIfEmptyProduct);
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
-  const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
+  const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice);
+  const setClickSave=(status) => dispatch(actions.setClickSave(status))
+  const clickSave = useSelector(state => state.invoiceReducer.clickSave);
+  const validProduct=useSelector(state => state.invoiceReducer.validProduct);
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -114,19 +117,19 @@ export default function InvoiceAndSteps(props) {
     if (buttonClick === "saveInvoiceOtherPage")
       save1()
 
-    // if (buttonClick === "continuOtherPage") {
-    //   flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-    //     if (flag === true) {
-    //       dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-    //       dispatch(actions.setColorFlagShowSaveP("#707071"))
+    if (buttonClick === "saveInvoiceOtherPageBack") {
+      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+        if (flag === true) {
+          dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
+          dispatch(actions.setColorFlagShowSaveP("#707071"))
 
-    //     }
-    //   })
-    //   setShowMessage(false)
-    //   setButtonClick("")
-    //   history.push(`/${userName}/allDocuments`)
-    // }
-    // }
+        }
+      })
+      setShowMessage(false)
+      setButtonClick("")
+      history.push(`/${userName}/allDocuments`)
+    }
+    
   }, [buttonClick])
 
   //אחרי שבודק את המוצרים 
@@ -155,6 +158,23 @@ export default function InvoiceAndSteps(props) {
       }
     }
   }, [flagToCheck, flagOfterValidation])
+
+  useEffect(()=>{
+if(validProduct===true){
+  dispatch(actions.setValidProduct(false))
+  flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    setFlagToCheck(true)
+    if (flag === true) {
+      setFlagSaveP(true)
+      dispatch(actions.setColorFlagShowSaveP("red"))
+    }
+  })
+  dispatch(actions.setFlagValidation(true))
+    setClickSave(false)
+}
+  },[validProduct])
+
+
 
 
   //ברגע שמשתנה הצבע של הכפתור לשמירת מוצר בחשבונית כאן הוא משנה את הצבע של הפתור של השמירה של החשבונית
@@ -185,33 +205,22 @@ export default function InvoiceAndSteps(props) {
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
-    dispatch(actions.setFlagValidation(true))
+    // dispatch(actions.setFlagValidation(true))
+    setClickSave(true)
+    
     debugger
     //בודק אם יש מוצר ריק בחשבונית
-    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
-      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
-      ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false )) ||
-      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false ))) {
+    // if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
+    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
+    //   ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false )) ||
+    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false ))) {
 
-      setFlagSaveP(true)
-      dispatch(actions.setBorderProductInvoice(true))
-    }
-    else {
-      if (window.location.href.indexOf('edit')!=-1) {
-        alert("detailsInvoice.products[detailsInvoice.products.length - 1].id" + detailsInvoice.products[detailsInvoice.products.length - 1].id)
-        alert(window.location.href)
-      }
-    }
+    //   setFlagSaveP(true)
+    //   dispatch(actions.setBorderProductInvoice(true))
+    // }
 
     //בדיקה אם יש מוצר לא שמור
-    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-      setFlagToCheck(true)
-      if (flag === true) {
-        setFlagSaveP(true)
-        dispatch(actions.setColorFlagShowSaveP("red"))
-      }
-    })
-
+  
   }
 
 
@@ -273,7 +282,7 @@ export default function InvoiceAndSteps(props) {
 
   //בלחיצה על back
   const backtoAllInvoices = () => {
-    if (flagIfEmpty == false) {
+    if (flagIfEmpty === false) {
       history.push(`/${userName}/allDocuments`)
       dispatch(actions.setFlagModal(""))
       dispatch(actions.setShowMessage(false))
@@ -282,7 +291,7 @@ export default function InvoiceAndSteps(props) {
     }
     else {
       setModalBody("Do you want to save Invoice?")
-      setFlagModal("otherPage")
+      setFlagModal("otherPageInvoices")
       setShowMessage(true)
     }
   }

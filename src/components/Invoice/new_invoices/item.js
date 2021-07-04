@@ -16,7 +16,10 @@ import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
+
 function Item(props) {
+  const setClickSave=(status) => dispatch(actions.setClickSave(status))
+  const clickSave = useSelector(state => state.invoiceReducer.clickSave);
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
   const p = useSelector(state => state.displayComponents.p);
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
@@ -133,6 +136,52 @@ function Item(props) {
       }
     }
   }, [colorFlagShowSaveP])
+
+  useEffect(()=>{
+if(clickSave===true){
+  // if (dtp && dtp._id) {
+  //   if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
+  //     setflagValidPrice(false)
+  //     setflagValidName(false)
+  //   }
+  //   else {
+  //     if (new_product[props.index].name) {
+  //       setflagValidName(true)
+  //       console.log("flagValidName", flagValidName)
+  //     }
+  //     if (dtp && dtp.price) {
+  //       setflagValidPrice(true)
+  //       console.log("flagValidPhone", flagValidPrice)
+  //     }
+  //   }
+  // }
+  // else {
+  //   // alert("hhhh", new_product)
+  //   console.log('new_product', new_product)
+
+  //   if (props.pro.id === "null" || props.pro.id === undefined) {
+  //     if (new_product[props.index].name && new_product[props.index].price) {
+  //       setflagValidPrice(false)
+  //       setflagValidName(false)
+  //     }
+  //     else {
+  //       if (!new_product[props.index].name) {
+  //         setflagValidName(true)
+  //         console.log("flagValidName", flagValidName)
+  //       }
+  //       if (!new_product[props.index].price) {
+  //         setflagValidPrice(true)
+  //         console.log("flagValidPhone", flagValidPrice)
+  //       }
+  //     }
+  //   }
+  // }
+
+  dispatch(actions.setColorFlagShowSaveP("red"))
+  setClickSave(false)
+  dispatch(actions.setValidProduct(true))
+}
+  },[clickSave])
 
 
 
@@ -591,6 +640,7 @@ function Item(props) {
     }
   }
   const updateCellPrice = (_value, fieldName) => {
+
     if (!fieldName) {
       return;
     }
