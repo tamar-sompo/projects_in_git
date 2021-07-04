@@ -193,6 +193,9 @@ text-align: left !important;
     cursor: default;
 
 }
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+}
 .cursor_pointer{
     cursor:pointer
 }

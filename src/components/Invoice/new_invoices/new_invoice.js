@@ -1453,7 +1453,7 @@ function New_Invoice(props) {
                       <input
                         style={{ backgroundColor: "transparent" }}
                         disabled={displayInvoice === "true" ? "disable" : ""}
-                        className="cursor_pointer design_text_contact"
+                        className=" design_text_contact"
                         // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
                         type="date"
                         size="1"
