@@ -60,22 +60,22 @@ export default function Nav() {
     <div className="nav_top1 container-fluid  d-flex align-items-center " style={{ padding: "0px" }}>
       {/* <div className="row" style={{ width: "100%" }}>
       </div> */}
-      <div className="col-2 d-flex justify-content-start">
+      <div className="col-2 d-flex justify-content-start align-items-center" style={{ padding: "0px", paddingLeft: "1%" }}>
         <div
         // style={{ display: "inline-block" }}
         >
-          <img src={logo} alt={"logo"} width="130px"
+          <img src={logo} alt={"logo"}
             className="pointer"
-            // style={{ cursor: "pointer" }}
+            style={{ height: "30px" }}
             onClick={(e) => send()}
           />
         </div></div>
 
-      <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
+      <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
 
 
         {invoiceSave ? invoiceSave.invoice ? invoiceSave.invoice._id ?
-          <div className="col-9 d-flex justify-content-center" style={{ border: "3px black" }}>
+          <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
             <div className="copy" style={{ border: "solid 1px #917BDF" }}>
               <CopyToClipboard
                 text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
@@ -107,37 +107,44 @@ export default function Nav() {
           </div>
           : "" : "" : ""}
       </div>
+      <div className="col-2 d-flex flex-row">
+        {/* <button onClick={()=>setMail()}>email</button> */}
+        {/* <div className="col-5 d-flex justify-content-end" > */}
 
-      {/* <button onClick={()=>setMail()}>email</button> */}
-      {/* <div className="col-5 d-flex justify-content-end" > */}
+        {/* <h2>{currentBuisness? currentBuisness.name? currentBuisness.name: "":""}</h2> */}
+        <div className="col-6">
+          {/* <button
+        
+          {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+        </button> */}
+        </div>
+        <div className="col-6">  <Select
 
-      {/* <h2>{currentBuisness? currentBuisness.name? currentBuisness.name: "":""}</h2> */}
-      <Select
-        // className="col-4"
-        components={{ IndicatorSeparator: () => null }}
-        style={{
-          border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
-          // backgroundImage: ('../assets/newLogo.png'),
-          webkitAppearance: "none",
-          mozAppearance: "none",
-          appearance: "none"
-        }}
-        class="form-select-lg mr-2" className="css-yk16xz-control1"
-        value={{
-          label: currentBuisness ? currentBuisness._id ? currentBuisness.name : userName : userName,
-          value: currentBuisness ? currentBuisness._id ? currentBuisness : "" : ""
-        }}
-        onChange={chooseCurrentBuisness}
-        options={allBuisnessToUser ? allBuisnessToUser ? allBuisnessToUser.map((buisness) => {
-          return ({
-            label: <div><img src={buisness.imgLogo ? buisness.imgLogo : logo} height="25px" width="25px" /> {buisness.name}</div>,
-            value: JSON.stringify(buisness),
-          })
-        }) : "" : ""}>
-      </Select>
+          components={{ IndicatorSeparator: () => null }}
+          style={{
+            border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
+            // backgroundImage: ('../assets/newLogo.png'),
+            webkitAppearance: "none",
+            mozAppearance: "none",
+            appearance: "none"
+          }}
+          class="form-select-lg mr-2" className="css-yk16xz-control1"
+          value={{
+            label: currentBuisness ? currentBuisness._id ? currentBuisness.name : userName : userName,
+            value: currentBuisness ? currentBuisness._id ? currentBuisness : "" : ""
+          }}
+          onChange={chooseCurrentBuisness}
+          options={allBuisnessToUser ? allBuisnessToUser ? allBuisnessToUser.map((buisness) => {
+            return ({
+              label: <div><img src={buisness.imgLogo ? buisness.imgLogo : logo} height="25px" width="25px" /> {buisness.name}</div>,
+              value: JSON.stringify(buisness),
+            })
+          }) : "" : ""}>
+        </Select>
 
+        </div>
+      </div>
     </div>
-    // </div>
 
 
 

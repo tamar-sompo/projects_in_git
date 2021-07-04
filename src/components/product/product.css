@@ -20,6 +20,7 @@
 .inputF{
     border-bottom-style: none !important;
     border: none !important;
+    background: transparent;
     /* font-size: 129% !important; */
 }
 button[disabled], html input[disabled] {
