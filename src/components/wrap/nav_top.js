@@ -71,14 +71,14 @@ export default function Nav() {
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice);
-  const setClickSave=(status) => dispatch(actions.setClickSave(status))
+  const setClickSave = (status) => dispatch(actions.setClickSave(status))
   const clickSave = useSelector(state => state.invoiceReducer.clickSave);
-  const validProduct=useSelector(state => state.invoiceReducer.validProduct);
+  const validProduct = useSelector(state => state.invoiceReducer.validProduct);
   const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
   const flagValidPrice = useSelector(state => state.invoiceReducer.invalidProduct)
-  const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
-  const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
-  const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
+  const setflagValidPrice = (status) => dispatch(actions.setflagValidPrice(status))
+  const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
+  const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const new_product = useSelector(state => state.productReducer.newProduct)
 
 
@@ -132,7 +132,7 @@ export default function Nav() {
       nameInvoice()
     if (flagModal === "successNameInvoice") {
       // alert("saveeeeeee")
-        save()
+      save()
     }
   }, [flagModal])
 
@@ -153,7 +153,7 @@ export default function Nav() {
       setButtonClick("")
       history.push(`/${userName}/allDocuments`)
     }
-    
+
   }, [buttonClick])
 
   //אחרי שבודק את המוצרים 
@@ -164,7 +164,7 @@ export default function Nav() {
 
     else {
       // alert("validProduct" + validProduct)
-      if (flagOfterValidation === true && validProduct===true) {
+      if (flagOfterValidation === true && validProduct === true) {
         // alert("validProduct flagOfterValidation" +flagOfterValidation+ validProduct)
         dispatch(actions.setFlagOfterValidation(false))
         dispatch(actions.setValidProduct(false))
@@ -218,7 +218,7 @@ export default function Nav() {
     dispatch(actions.setModalBody(""))
     dispatch(actions.setClickSave(true))
     dispatch(actions.setFlagValidation(true))
-    
+
     debugger
     //בודק אם יש מוצר ריק בחשבונית
     // if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
@@ -239,7 +239,7 @@ export default function Nav() {
         dispatch(actions.setColorFlagShowSaveP("red"))
       }
     })
-  
+
   }
 
 
@@ -283,7 +283,7 @@ export default function Nav() {
     // alert('route'+history.location.pathname)
     dispatch(actions.setFlagIfEmpty(false))
     if (history.location.pathname === `/${userName}/invoice`) {
-      
+
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
@@ -316,9 +316,9 @@ export default function Nav() {
       }
   }, [viewConversion])
 
-// useEffect(()=>{
-//   dispatch(actions.setDisplayBoxShadow(true))
-// })
+  // useEffect(()=>{
+  //   dispatch(actions.setDisplayBoxShadow(true))
+  // })
 
 
 
@@ -382,17 +382,18 @@ export default function Nav() {
         {/* <div className="col-5 d-flex justify-content-end" > */}
 
         {/* <h2>{currentBuisness? currentBuisness.name? currentBuisness.name: "":""}</h2> */}
-        {
-          window.location.href.indexOf("invoice") !=-1 &&
-<div className="col-6 d-flex align-items-center justify-content-center">
-          <button
-          onClick={save1}
-            className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
-            {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-          </button>
+
+        <div className="col-6 d-flex align-items-center justify-content-center">
+          {
+            window.location.href.indexOf("invoice") != -1 &&
+            <button
+              onClick={save1}
+              className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
+              {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+            </button>}
         </div>
-        }
-        
+
+
         <div className="col-6">  <Select
 
           components={{ IndicatorSeparator: () => null }}

@@ -120,7 +120,7 @@ export default function Fiances() {
                             <div
                                 className="width_wrap d-flex justify-content-center align-items-center"
                                 // className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}
-                                style={displayBoxShadow ? { marginTop: "0.5%", marginBottom: "0.5%" } : { backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "0.5%", marginBottom: "0.5%" }}>
+                                style={displayBoxShadow ? { marginTop: "1%", marginBottom: "1%" } : { backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "1%", marginBottom: "1%" }}>
                                 {/* // style={{ backgroundColor: 'red', width: '40vh' }} */}
                                 {/* // className="d-flex justify-content-center" */}
                                 {/* > */}
@@ -163,7 +163,7 @@ export default function Fiances() {
                                 marginTop: "10vh"
                             }}> */}
                             </div>
-                          
+
                         </div>
                     </div>
 
