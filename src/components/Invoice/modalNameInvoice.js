@@ -36,6 +36,7 @@ function ModalNameInvoice(props) {
           updateinvoiceField({ key: fieldName, value: value })
       }
 const OKNameInvoice=()=>{
+    setFlagModal("")
     setFlagModal("successNameInvoice")
     dispatch(actions.setShowModalName(false))
 }

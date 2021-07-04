@@ -58,7 +58,7 @@ function Item(props) {
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
   const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
-  const flagValidPrice = useSelector(state => state.invoiceReducer.invalidProduct)
+  const flagValidPrice = useSelector(state => state.invoiceReducer.flagValidPrice)
   const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
   const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
@@ -101,105 +101,60 @@ function Item(props) {
   }, [borderProductInvoice])
 
 
+  useEffect(()=>{
+if(clickSave===true){
+  setClickSave(false)
+  // alert("clickkkk")
+  // setClickSave(false)
+  if (dtp && dtp._id) {
+    if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+      setflagValidPrice(false)
+      setflagValidName(false)
+      dispatch(actions.setValidProduct(true))
+    }
+    else {
+      if (!new_product[props.index].name) {
+        setflagValidName(true)
+        // dispatch(actions.setInvalidProduct(true))
+        console.log("flagValidName", flagValidName)
+      }
+      if (dtp && !dtp.price) {
+        setflagValidPrice(true)
+        // dispatch(actions.setInvalidProduct(true))
+        console.log("flagValidPhone", flagValidPrice)
+      }
+    }
+  }
+  else {
+    // alert("hhhh", new_product)
+    console.log('new_product', new_product)
 
-  useEffect(() => {
-    if (colorFlagShowSaveP === "red") {
-      // if(validProduct===true)
-      //   dispatch(actions.setColorFlagShowSaveP("#707071"))
-
-      if (dtp && dtp._id) {
-        if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
-          setflagValidPrice(false)
-          setflagValidName(false)
-        }
-        else {
-          if (new_product[props.index].name) {
-            setflagValidName(true)
-            console.log("flagValidName", flagValidName)
-          }
-          if (dtp && dtp.price) {
-            setflagValidPrice(true)
-            console.log("flagValidPhone", flagValidPrice)
-          }
-        }
+    if (props.pro.id === "null" || props.pro.id === undefined) {
+      if (new_product[props.index].name && new_product[props.index].price) {
+        setflagValidPrice(false)
+        setflagValidName(false)
+        dispatch(actions.setValidProduct(true))
       }
       else {
-        // alert("hhhh", new_product)
-        console.log('new_product', new_product)
-
-        if (props.pro.id === "null" || props.pro.id === undefined) {
-          if (new_product[props.index].name && new_product[props.index].price) {
-            setflagValidPrice(false)
-            setflagValidName(false)
-          }
-          else {
-            if (!new_product[props.index].name) {
-              setflagValidName(true)
-              console.log("flagValidName", flagValidName)
-            }
-            if (!new_product[props.index].price) {
-              setflagValidPrice(true)
-              console.log("flagValidPhone", flagValidPrice)
-            }
-          }
+       
+        if (!new_product[props.index].name) {
+          setflagValidName(true)
+          dispatch(actions.setValidProduct(false))
+          // dispatch(actions.setInvalidProduct(true))
+          console.log("flagValidName", flagValidName)
+        }
+        if (!new_product[props.index].price) {
+          //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
+          setflagValidPrice(true)
+          dispatch(actions.setValidProduct(false))
+          // dispatch(actions.setInvalidProduct(true))
+          console.log("flagValidPhone", flagValidPrice)
         }
       }
     }
-  }, [colorFlagShowSaveP])
-
-  useEffect(()=>{
-if(clickSave===true){
-  // if (dtp && dtp._id) {
-  //   if (new_product[props.index].name && dtp.price || new_product[props.index].price) {
-  //     setflagValidPrice(false)
-  //     setflagValidName(false)
-  //   }
-  //   else {
-  //     if (new_product[props.index].name) {
-  //       setflagValidName(true)
-  //       // dispatch(actions.setInvalidProduct(true))
-  //       console.log("flagValidName", flagValidName)
-  //     }
-  //     if (dtp && dtp.price) {
-  //       setflagValidPrice(true)
-  //       // dispatch(actions.setInvalidProduct(true))
-  //       console.log("flagValidPhone", flagValidPrice)
-  //     }
-  //   }
-  // }
-  // else {
-  //   // alert("hhhh", new_product)
-  //   console.log('new_product', new_product)
-
-  //   if (props.pro.id === "null" || props.pro.id === undefined) {
-  //     if (new_product[props.index].name && new_product[props.index].price) {
-  //       setflagValidPrice(false)
-  //       setflagValidName(false)
-  //     }
-  //     else {
-  //       if (!new_product[props.index].name) {
-  //         setflagValidName(true)
-  //         // dispatch(actions.setInvalidProduct(true))
-  //         console.log("flagValidName", flagValidName)
-  //       }
-  //       if (!new_product[props.index].price) {
-  //         setflagValidPrice(true)
-  //         // dispatch(actions.setInvalidProduct(true))
-  //         console.log("flagValidPhone", flagValidPrice)
-  //       }
-  //     }
-  //   }
-  // }
-
-  // if(flagValidName===false && flagValidPrice===false)
-
-  // setValidProduct(true)
-  setClickSave(false)
-    dispatch(actions.setValidProduct(true))
-    // dispatch(actions.setColorFlagShowSaveP("red"))
+  }
 }
   },[clickSave])
-
 
 
   useEffect(() => {
@@ -242,37 +197,24 @@ if(clickSave===true){
 
         if (props.pro.id === 'null') {
           dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
-          // dispatch(actions.setProduct1({}))
-          // dispatch(actions.setResetNewProduct({}))
         }
       }
       else {
-        // dispatch(actions.deleteLastProduct());
         if (props.pro.id === 'null') {
           dispatch(actions.setProductId2({ id: product1._id, index1: props.index }))
           dispatch(actions.setInvoceShow(detailsInvoice))
-          // dispatch(actions.setResetNewProduct({}))
         }
       }
 
     }
   }, [allproduct])
   const vv3 = (e) => {
-    dispatch(actions.setBorderProductInvoice(false))
-    setflagValidPrice(false)
     setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
-    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
-      dispatch(actions.setFlagIfEmptyProduct(true))
-    }
-    if (invoice.products[0].id == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
+  
+ 
 
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
@@ -321,27 +263,14 @@ if(clickSave===true){
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-
-    dispatch(actions.setBorderProductInvoice(false))
-    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
-    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
-      dispatch(actions.setFlagIfEmptyProduct(true))
-    }
+   
+    setflagValidName(false)
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
-    if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
-    console.log("e", e)
-    console.log("e.typeOf", typeof (e))
-
-    if (e.target.value && e.target.value != "") {
-      setFlagShowSaveP({ index: props.index, value: true })
-    }
+debugger
+  
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
       let product6 = allproduct.find(x => x.name === e.target.value)
       dispatch(actions.setProduct1(product6))
@@ -357,6 +286,19 @@ if(clickSave===true){
       dispatch(actions.setP(product6._id))
       // setnameProduct(e.target.value)
     }
+    else{
+      if (e.target.value && e.target.value != "" ) {
+      setFlagShowSaveP({ index: props.index, value: true })
+    }
+    else {
+      if (e.target.value == "")
+        if (!new_product[props.index].description || new_product[props.index].description == "")
+          if (!new_product[props.index].price || new_product[props.index].price == "")
+            if (!new_product[props.index].discount || new_product[props.index].discount == "")
+              setFlagShowSaveP({ index: props.index, value: false })
+    }
+    }
+    
 
     if (detailsInvoice.products.length === 1)
       dispatch(actions.setPushNewProduct({}))
@@ -371,15 +313,11 @@ if(clickSave===true){
 
   const updateCell = (title1, e) => {
     dispatch(actions.setBorderProductInvoice(false))
-    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined)) ||
-    ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
-    ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
-      dispatch(actions.setFlagIfEmptyProduct(true))
-    }
-    setflagValidPrice(false)
-    setflagValidName(false)
+    
+   
+   
     setFlagSaveP(false)
+    debugger
     console.log("ttt", e)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
@@ -591,72 +529,9 @@ if(clickSave===true){
       onItemDeleted()
   }
 
-  const updateCellprefix = (title1, e) => {
 
-    console.log("ttt", e)
-    if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
-
-    if (e.target.value && e.target.value != "") {
-      setFlagShowSaveP({ index: props.index, value: true })
-    }
-
-
-    for (var key in new_product[props.index]) {
-      if (new_product[props.index][key] && new_product[props.index][key] != "") {
-        if (flagShowSaveP === false)
-          setFlagShowSaveP({ index: props.inedx, value: true })
-      }
-    }
-
-    if (title1 === "discount") {
-      dtp.price && props.pro.amount ?
-        dispatch(actions.setSum({ sum: (1 - (e / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
-        new_product[props.index].price && amountProductInvoice &&
-        dispatch(actions.setSum({ sum: (1 - (e / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
-    }
-    if (title1 === "price") {
-      amount2 ? dtp.discount ?
-        dispatch(actions.setSum({ sum: e * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
-        new_product[props.index].discount ?
-          dispatch(actions.setSum({ sum: e * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-          dispatch(actions.setSum({ sum: e * amount2, index1: props.index })) :
-        dtp.discount ?
-          dispatch(actions.setSum({ sum: e * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
-          new_product[props.index].discount ?
-            dispatch(actions.setSum({ sum: e * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-            dispatch(actions.setSum({ sum: e * amountProductInvoice, index1: props.index }))
-
-    }
-
-
-    else {
-      dispatch(actions.setNewProduct({ index: props.index, key: title1, value: e.target.value }))
-    }
-
-
-
-
-    if (title1 == "price") {
-      if (e.target.value == "" && product1._id === undefined
-      )
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].discount || new_product[props.index].discount == "")
-              setFlagShowSaveP({ index: props.index, value: false })
-    }
-    if (title1 == "discount") {
-      if (e.target.value == "" && product1._id === undefined
-      )
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].price || new_product[props.index].price == "")
-              setFlagShowSaveP({ index: props.index, value: false })
-    }
-  }
   const updateCellPrice = (_value, fieldName) => {
-
+debugger
     if (!fieldName) {
       return;
     }
@@ -675,6 +550,7 @@ if(clickSave===true){
 
     const value = Number(_value);
     if (!Number.isNaN(value)) {
+      setflagValidPrice(false)
       // dispatch({
       //   fieldName,
       //   value: {
@@ -726,10 +602,6 @@ if(clickSave===true){
               dispatch(actions.setSum({ sum: value * amountProductInvoice, index1: props.index }))
 
       }
-
-
-
-
 
       if (fieldName == "price") {
         if (value == "" && product1._id === undefined
@@ -785,7 +657,7 @@ if(clickSave===true){
                 autoComplete="new-password"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                className={flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                className={!dtp.name &&  !new_product[props.index].name && flagValidName ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
@@ -828,7 +700,7 @@ if(clickSave===true){
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
+              className={!dtp.price &&  !new_product[props.index].price && flagValidPrice ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}

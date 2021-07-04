@@ -76,6 +76,7 @@ export default function InvoiceAndSteps(props) {
   const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
   const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
+  const new_product = useSelector(state => state.productReducer.newProduct)
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -113,7 +114,8 @@ export default function InvoiceAndSteps(props) {
     if (flagModal === "successContact")
       nameInvoice()
     if (flagModal === "successNameInvoice") {
-      save()
+      // alert("saveeeeeee")
+        save()
     }
   }, [flagModal])
 
@@ -144,12 +146,15 @@ export default function InvoiceAndSteps(props) {
     }
 
     else {
-      if (flagOfterValidation === true) {
+      // alert("validProduct" + validProduct)
+      if (flagOfterValidation === true && validProduct===true) {
+        // alert("validProduct flagOfterValidation" +flagOfterValidation+ validProduct)
         dispatch(actions.setFlagOfterValidation(false))
+        dispatch(actions.setValidProduct(false))
+        setClickSave(false)
         if (flagToCheck === true) {
           setFlagToCheck(false)
-          if (flagSaveP === false && borderProductInvoice === false) {
-            dispatch(actions.setBorderProductInvoice(false))
+          if (flagSaveP === false) {
             if (flagMessageContact) {
               setShowMessage(true)
               setFlagModal("contact")
@@ -162,23 +167,23 @@ export default function InvoiceAndSteps(props) {
         }
       }
     }
-  }, [flagToCheck, flagOfterValidation])
+  }, [flagToCheck, flagOfterValidation, validProduct])
 
-  useEffect(()=>{
-if(validProduct===true){
-  dispatch(actions.setValidProduct(false))
-  dispatch(actions.setColorFlagShowSaveP("#707071"))
-  flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-    setFlagToCheck(true)
-    if (flag === true) {
-      setFlagSaveP(true)
-      dispatch(actions.setColorFlagShowSaveP("red"))
-    }
-  })
-  dispatch(actions.setFlagValidation(true))
-    setClickSave(false)
-}
-  },[validProduct])
+  // useEffect(()=>{
+// if(validProduct===true){
+//   dispatch(actions.setValidProduct(false))
+//   dispatch(actions.setColorFlagShowSaveP("#707071"))
+//   flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+//     setFlagToCheck(true)
+//     if (flag === true) {
+//       setFlagSaveP(true)
+//       dispatch(actions.setColorFlagShowSaveP("red"))
+//     }
+//   })
+//   dispatch(actions.setFlagValidation(true))
+//     setClickSave(false)
+// }
+//   },[validProduct])
 
 
 
@@ -192,7 +197,6 @@ if(validProduct===true){
       if (colorFlagShowSaveP === "#707071")
         setFlagSaveP(false)
       else {
-        dispatch(actions.setColorFlagShowSaveP("red"))
         setFlagSaveP(true)
       }
     }
@@ -211,8 +215,8 @@ if(validProduct===true){
     dispatch(actions.setShowMessage(false))
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
-    // dispatch(actions.setFlagValidation(true))
-    setClickSave(true)
+    dispatch(actions.setClickSave(true))
+    dispatch(actions.setFlagValidation(true))
     
     debugger
     //בודק אם יש מוצר ריק בחשבונית
@@ -224,10 +228,19 @@ if(validProduct===true){
     //   setFlagSaveP(true)
     //   dispatch(actions.setBorderProductInvoice(true))
     // }
-
     //בדיקה אם יש מוצר לא שמור
+
+
+    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      setFlagToCheck(true)
+      if (flag === true) {
+        setFlagSaveP(true)
+        dispatch(actions.setColorFlagShowSaveP("red"))
+      }
+    })
   
   }
+
 
 
 
@@ -266,9 +279,10 @@ if(validProduct===true){
   //השמירה של החשבונית
   const save = () => {
     setIslevel(3);
+    // alert('route'+history.location.pathname)
     dispatch(actions.setFlagIfEmpty(false))
     if (history.location.pathname === `/${userName}/invoice`) {
-
+      
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
