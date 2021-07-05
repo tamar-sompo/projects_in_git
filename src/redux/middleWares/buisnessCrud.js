@@ -193,6 +193,7 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update a business successfully"))
         dispatch(actions.setGeCurrenttBuisness(data.buisness))
+        dispatch(actions.setGetAllBuisness())
       },
       error: (err) => {
         console.log("error", err)
