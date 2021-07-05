@@ -769,8 +769,12 @@ function Item(props) {
           <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
             {
               flagShowSaveP[props.index] &&
-              <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
-
+              <input
+                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+                onClick={savepr}
+                value="save"
+                className="btn"
+                type="submit" />
             }
             {displayInvoice === "false" &&
               <button id='1'
