@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../notUse/example.css';
+import '../example.css';
 
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
