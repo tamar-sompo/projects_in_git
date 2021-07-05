@@ -1,7 +1,6 @@
 import produce from 'immer'
 import createReducer from "./reducerUtils";
 import Untitled from '../../Img/Untitled-1.jpg'
-import { actions } from '../actions/All_actions';
 const initialState = {
         allProducts: [],
         newProduct: [{}],
@@ -73,7 +72,6 @@ const products = {
                 state.product1 = action.payload;
         },
         setAllProducts(state, action) {
-
                 state.allProducts = action.payload;
         },
         // setAddProduct(state, action) {

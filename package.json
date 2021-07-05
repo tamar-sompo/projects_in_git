@@ -54,6 +54,7 @@
     "react-native-img-placeholder": "^1.0.0",
     "react-navigation-drawer": "^2.6.0",
     "react-nice-dates": "^3.0.7",
+    "react-paypal-button-v2": "^2.6.3",
     "react-pdf": "^5.2.0",
     "react-pro-sidebar": "^0.6.0",
     "react-redux": "^7.2.2",

@@ -81,4 +81,17 @@
   width: 15vh;
   height: 10vh;
 }
+.bbb{
+  background: rgb(222, 222, 222,0.23)  !important ;  
+  bottom:0px !important;
+  border-bottom: 3px solid #917BDF !important; 
+   width: 100%;
+   height: 100%;
+   background: rgb(209, 209, 209,0.13) ;
+   border:none;
+   outline: none;
+   overflow: none;
+   color:white;
+   font-size:x-small;
+}
 

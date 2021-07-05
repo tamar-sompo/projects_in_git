@@ -6,7 +6,7 @@ import { withRouter, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './new_invoices/new_invoice.css';
 // import { connect, useDispatch, useSelector } from 'react-redux';
-import Steps from './steps.js';
+import Steps from '../notUse/steps.js';
 import $ from 'jquery'
 // import Conversion from './conversion.js'
 import ProductForm from '../forms/productForm.js';
@@ -30,11 +30,13 @@ export default function InvoiceAndSteps(props) {
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
   const userName = useSelector(state => state.publicReducer.userName);
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+  console.log("pr", detailsInvoice)
   // const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const setViewConversion = () => dispatch(actions.setViewConversion())
   const prevPath = useSelector(state => state.displayComponents.prevPath)
   const sendWave = () => dispatch(actions.setSystemWave())
   const [flagM, setFlagM] = useState(false)
+  const [state, setState] = useState([])
   const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
   const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
   const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
@@ -91,7 +93,8 @@ export default function InvoiceAndSteps(props) {
   const history = useHistory()
 
   // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-  // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+  const detailsProducts = useSelector(state => state.invoiceReducer.invoice.products);
+  const allproduct = useSelector(state => state.productReducer.allProducts);
 
   // const invoice = useSelector(state => state.invoiceReducer.invoice);
   // {type:'SET_SYSTEM_WAVE'})
@@ -99,6 +102,7 @@ export default function InvoiceAndSteps(props) {
 
 
 
+  
 
   //בלחיצה על back
   const backtoAllInvoices = () => {

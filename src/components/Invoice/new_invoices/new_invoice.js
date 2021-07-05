@@ -1,18 +1,14 @@
+
+
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Button } from 'react-bootstrap'
+import '../example.css';
+
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
-import { Link, useHistory } from "react-router-dom";
-import styled from 'styled-components'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from 'react-select'
-import { FiUpload } from "react-icons/fi";
-import MouseTooltip from 'react-sticky-mouse-tooltip';
-// import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
 import Item from './item'
 import LeaderLouder from '../../Useful/leaderLouder'
 // import {Link} from "react-router-dom";
@@ -20,8 +16,6 @@ import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
 // import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
-import ShowCompany from '../../showCompany'
-import flowerbackground from '../../assets/flo.jpg'
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {
@@ -1273,17 +1267,20 @@ function New_Invoice(props) {
               }}
               style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
               <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
-                {/* <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                onChange={(e) => addImageList(e.target.files[0])} /> */}
-                {console.log('logoooo', detailsInvoice.imgLogo)}
-                <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                  id='userLogo-temp1'
-                  style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
-                  src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : flowersLogo}
-                  alt="Logo"
-                  title="Your Logo Here"
-                />
+                {detailsBusiness && detailsBusiness.imgLogo ?
+                  <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
+                    id='userLogo-temp1'
+                    style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
+                    src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                    alt="Logo"
+                    title="Your Logo Here"
+                  />
+                  :
+                  <div className="mt-5">
+                    <h1>{detailsBusiness.name}</h1>
+                  </div>}
               </div>
+
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
                 <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
@@ -1291,7 +1288,7 @@ function New_Invoice(props) {
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
                       className="design_text design_buisness"
-                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
@@ -1307,7 +1304,7 @@ function New_Invoice(props) {
                       size='15'
                       type="text"
                       className="design_text design_buisness"
-                      placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "city" : "city"}
+                      placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "" : ""}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyAddress'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                       value={detailsBusiness && detailsBusiness.city}
@@ -1316,7 +1313,7 @@ function New_Invoice(props) {
                       style={{ width: "50%" }}
                       size='15'
                       type="text"
-                      placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
+                      placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "" : ""}
                       className="design_text design_buisness"
                       value={detailsBusiness && detailsBusiness.address}
                     />
@@ -1328,7 +1325,7 @@ function New_Invoice(props) {
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     // size='20'
                     className="design_text design_buisness"
-                    placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
+                    placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "" : ""}
                     // onClick={() => setFocus('companyPhone')}
                     onChange={(e) => onFieldChanged('companyPhone')}
                     onBlur={updatedetailsBusiness1('phone')}

@@ -21,12 +21,23 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SEND_LINK_TO_EMAIL') {
     console.log("mail2")
     let userName = getState().publicReducer.userName;
-    let invoiceSave = getState().invoiceReducer.invoiceSave.invoice
+    let invoiceSave = getState().invoiceReducer.invoiceSave.invoice;
+    const linkPayToContact = getState().paymentsReducer.linkPayToContact;
     console.log(userName, invoiceSave)
     var url = `https://finance.leader.codes/${userName}/view/${invoiceSave._id}`;
     console.log("url", url)
     let text = getState().exportInvoiceReducer.emailDetails.html
-    let html = `${text} <br /> ${url}`
+    let textToPaypal = "Click here to pay"
+    // let html
+    // if(linkPayToContact){
+    let html = `${text} <br /> ${url} <br /> <br /> <br />
+       <a href=${linkPayToContact} class="btn btn-primary">${textToPaypal}</a>
+       `
+    //  ${textToPaypal} <br /> ${linkPayToContact}`
+    // }
+    // else{
+    //  html = `${text} <br /> ${url}`
+    // }
     const email = {
       from: `${userName}@mails.codes`,
       to: getState().exportInvoiceReducer.emailDetails.to,

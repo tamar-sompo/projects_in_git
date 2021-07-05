@@ -379,6 +379,8 @@ function AllInvoices(props) {
                       })
                     }
                   </tbody>
+
+
                 </table>
               </div>
             </div>
