@@ -149,11 +149,12 @@ function AllInvoices(props) {
     }
     return isInvoicePayed;
   }
-  const showInvoiceById = (invoice) => {
+ async function showInvoiceById(invoice){
     dispatch(actions.setDisplayBoxShadow(true))
     dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))
+    await dispatch(actions.setInvoiceSave(invoice))
     // dispatch(actions.setInvoiceSave(invoice))
     setDisplayInvoice("false")
     console.log("props.allproduct", props.allproduct)

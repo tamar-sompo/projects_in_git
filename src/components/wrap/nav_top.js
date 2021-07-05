@@ -375,7 +375,38 @@ export default function Nav() {
               <Share fl={2} />
             </div>
           </div>
-          : "" : "" : ""}
+          : "":invoiceSave._id ?
+          <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
+            <div className="copy" style={{ border: "solid 1px #917BDF" }}>
+              <CopyToClipboard
+                text={`https://finance.leader.codes/${userName}/view/${invoiceSave._id}`}
+                onCopy={() => {
+                  setCopy(true)
+                  setTimeout(() => {
+                    setCopy(false)
+                  }, 3000);
+                }}>
+                <div className="linkCopydiv pointer" style={{ display: "inline" }}>
+                  <span className="linkCopyspan px-3">
+                    <span>{`https://finance.leader.codes/${invoiceSave._id.slice(0, 5)}${"..."}`}</span>
+                  </span>
+                  <span className="linkCopyicon px-1"
+                  // onClick={()=>setMail()}
+                  >
+                    {/* <FontAwesomeIcon className="ic" size="2x" icon={['fas', 'link']}
+        ></FontAwesomeIcon> */}
+                    <ImLink className="ic" size="2x" icon={['fas', 'link']}
+                    ></ImLink>
+                  </span>
+                  {copy && <span className="px-3 alert-copy">Test Link Copied!</span>}
+                </div>
+              </CopyToClipboard>
+            </div>
+            <div className="share">
+              <Share fl={2} />
+            </div>
+          </div>
+           : "" : "" }
       </div>
       <div className="col-2 d-flex flex-row">
         {/* <button onClick={()=>setMail()}>email</button> */}

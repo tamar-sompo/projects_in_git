@@ -629,6 +629,7 @@ function New_Invoice(props) {
   }
   const addItem = () => {
     let flagIfSave = false
+    dispatch(actions.setProduct1({}))
 
     dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setProductAmount(0))

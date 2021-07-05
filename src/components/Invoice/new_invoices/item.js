@@ -63,41 +63,6 @@ function Item(props) {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
-  // const [flagValidPrice, setflagValidPrice] = useState(false);
-  // const [flagValidName, setflagValidName] = useState(false);
-  useEffect(() => {
-    // setflagValidPrice(false)
-    // setflagValidName(false)
-  }, [])
-
-  useEffect(() => {
-    if (borderProductInvoice) {
-      if (history.location.pathname === `/${userName}/invoice`) {
-        if (props.index) {
-          if (invoice.products[props.index]) {
-            if (invoice.products[props.index].id === "null" || invoice.products[props.index].id === undefined)
-              setFlagToBroder(true)
-          }
-        }
-        else {
-          if (invoice.products[0]) {
-            if (invoice.products[0].id === "null" || invoice.products[0].id === undefined)
-              setFlagToBroder(true)
-          }
-        }
-      }
-      else {
-        if (props.index) {
-          if (detailsInvoice.products[props.index]) {
-            if (detailsInvoice.products[props.index].id === "null" || detailsInvoice.products[props.index].id === undefined)
-              setFlagToBroder(true)
-          }
-        }
-      }
-    }
-    else
-      setFlagToBroder(false)
-  }, [borderProductInvoice])
 
 
   useEffect(() => {
@@ -207,14 +172,13 @@ function Item(props) {
 
     }
   }, [allproduct])
+
+
   const vv3 = (e) => {
     setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-
-
-
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
     }
@@ -314,26 +278,14 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
-    dispatch(actions.setBorderProductInvoice(false))
-
-
-
     setFlagSaveP(false)
-    debugger
-    console.log("ttt", e)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
-
-    if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
-    console.log("e", e)
-    console.log("e.typeOf", typeof (e))
+    console.log("dtpdtp", dtp)
 
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
-
 
     for (var key in new_product[props.index]) {
       if (new_product[props.index][key] && new_product[props.index][key] != "") {
@@ -348,22 +300,8 @@ function Item(props) {
         new_product[props.index].price && amountProductInvoice &&
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
     }
-    if (title1 === "price") {
-      amount2 ? dtp.discount ?
-        dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
-        new_product[props.index].discount ?
-          dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-          dispatch(actions.setSum({ sum: e.target.value * amount2, index1: props.index })) :
-        dtp && dtp.discount ?
-          dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
-          new_product[props.index].discount ?
-            dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-            dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice, index1: props.index }))
 
-    }
     if (title1 === "amount") {
-
-
       dispatch(actions.setAmountToProduct({ amount: e.target.value, index1: props.index }))
       dispatch(actions.setProductAmount(e.target.value))
       dtp && dtp.price ? dtp && dtp.discount ?
@@ -377,19 +315,15 @@ function Item(props) {
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
 
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price, index1: props.index }))
-
-
-
     }
-    // setamount2(props.pro.amount)
 
     else {
       dispatch(actions.setNewProduct({ index: props.index, key: title1, value: e.target.value }))
     }
 
-    if (title1 == "amount") {
+    if (title1 === "amount") {
 
-      if (e.target.value == "" && product1._id === undefined) {
+      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined) {
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
             if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -399,16 +333,15 @@ function Item(props) {
 
 
     }
-    if (title1 == "name") {
-      if (e.target.value == "" && product1._id === undefined
-      )
+    if (title1 === "name") {
+      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined)
         if (!new_product[props.index].description || new_product[props.index].description == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
             if (!new_product[props.index].discount || new_product[props.index].discount == "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
-    if (title1 == "description") {
-      if (e.target.value == "" && product1._id === undefined
+    if (title1 === "description") {
+      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -416,7 +349,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "price") {
-      if (e.target.value == "" && product1._id === undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id=== undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -424,7 +357,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "discount") {
-      if (e.target.value == "" && product1._id === undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id=== undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -606,7 +539,7 @@ function Item(props) {
       }
 
       if (fieldName == "price") {
-        if (value == "" && product1._id === undefined
+        if (value == "" && product1._id === undefined && dtp._id=== undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -614,7 +547,7 @@ function Item(props) {
                 setFlagShowSaveP({ index: props.index, value: false })
       }
       if (fieldName == "discount") {
-        if (value == "" && product1._id === undefined
+        if (value == "" && product1._id === undefined && dtp._id=== undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -632,7 +565,8 @@ function Item(props) {
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
-          {props.pro.id == "null" || props.pro.id === undefined ?
+          {
+          props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
               <input aria-label="empty textarea"
                 autoComplete="new-password"
@@ -670,7 +604,8 @@ function Item(props) {
                 maxRows={2}
               > </TextareaAutosize>
 
-            </div>}
+            </div>
+            }
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
