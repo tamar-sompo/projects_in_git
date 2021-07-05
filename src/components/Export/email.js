@@ -45,15 +45,19 @@ function MultiSelectInput(props) {
     const emailDetails = useSelector(state => state.exportInvoiceReducer.emailDetails);
     const updateEmailField = (fieldToUpdate) => dispatch(actions.setEmailDetails(fieldToUpdate))
 
-    useEffect(()=>{
-        if (history.location.pathname == `/${userName}/invoice`)
-        updateEmailField({ key: "to", value:  invoice.contactOneTime.email})
-           
-        if(window.location.href.indexOf('invoice/edit'))
-        updateEmailField({ key: "to", value:  detailsInvoice.contactOneTime.email})
-  
-    },[])
-    
+    useEffect(() => {
+
+        if (invoice.contactOneTime && invoice.contactOneTime.flag == "true")
+            updateEmailField({ key: "to", value: invoice.contactOneTime.email })
+        else
+            updateEmailField({ key: "to", value: invoice.contact })
+
+
+        // if (window.location.href.indexOf('invoice/edit'))
+        //     updateEmailField({ key: "to", value: detailsInvoice.contactOneTime.email })
+
+    }, [])
+
 
     const fieldChanged = (e, fieldName) => {
         if (fieldName == 'to') {
@@ -173,25 +177,27 @@ function MultiSelectInput(props) {
                 <div style={{ height: "6vh" }} >
                 </div>
                 {/* <div className="tag-remove"></div> */}
-                <h4 className="d-flex justify-content-center emailFormTitle"> Send an link to your customer </h4>
-                <hr className="d-flex justify-content-center"></hr>
+                <h4 className="d-flex justify-content-center emailFormTitle"> Message Content </h4>
+
 
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'to')}
                     placeholder="To"
+                    value={emailDetails ? emailDetails.to : ''}
                 /><div className="ml-5 errorMassage">{errorMessage}</div>
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'subject')}
                     placeholder="Subject" />
+                <hr className="d-flex justify-content-center" style={{ paddingTop: "4%" }}></hr>
                 <input className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'html')}
                     placeholder={"The Body Of The Message"}
                 />
                 <div style={{ height: "6vh" }}></div>
-                <div className="d-flex justify-content-center" onClick={() => toMailServer()}>
+                <div className="d-flex justify-content-center pointer" onClick={() => toMailServer()}>
                     <FontAwesomeIcon
                         size="2x"
                         icon={['fas', 'paper-plane']}

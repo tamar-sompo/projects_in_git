@@ -6,7 +6,8 @@
   font-family: Arial, sans-serif;
 }
 .subjectAndBodyEmail{
-    background-color: #8E73EC29;
+  background: rgba(245,245,245,0.5);
+    /* background-color: #F5F5F5; */
     height: 4vh;
     width: 80%;
     margin: auto;

@@ -184,7 +184,7 @@ export default function NewSetting(props) {
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'receipt']}></FontAwesomeIcon>
             </div>
-            <div>Documents</div>
+            <div>Invoices</div>
           </li>
           <li className={window.location.href.split('/')[4] == "product" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Products")}>
             <div>

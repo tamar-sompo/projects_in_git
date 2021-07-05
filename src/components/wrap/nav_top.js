@@ -279,19 +279,24 @@ export default function Nav() {
 
   //השמירה של החשבונית
   const save = () => {
+    debugger
     setIslevel(3);
     // alert('route'+history.location.pathname)
     dispatch(actions.setFlagIfEmpty(false))
     if (history.location.pathname === `/${userName}/invoice`) {
-
+      debugger
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
+      debugger
       if (detailsInvoice._id) {
+        debugger
         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
       }
-      else
+      else {
+        debugger
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
+      }
       // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
       // debugger
       updateinvoiceField({ key: "products", value: detailsInvoice.products });

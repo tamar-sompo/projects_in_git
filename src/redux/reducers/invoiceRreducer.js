@@ -5,11 +5,11 @@ const initialState = {
 
     // colors:['black','black','black','black'],
 
-    flagValidPrice:false,
+    flagValidPrice: false,
     flagValidName: false,
-    clickSave:false,
-    invalidProduct:false,
-    validProduct:false,
+    clickSave: false,
+    invalidProduct: false,
+    validProduct: false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -72,25 +72,25 @@ const initialState = {
 
 
 const invoices = {
-    setflagValidName(state, action){
-   state.flagValidName=action.payload
+    setflagValidName(state, action) {
+        state.flagValidName = action.payload
     },
 
-    setflagValidPrice(state, action){
-        state.flagValidPrice=action.payload
+    setflagValidPrice(state, action) {
+        state.flagValidPrice = action.payload
     },
 
-    setInvalidProduct(state, action){
-state.invalidProduct=action.payload
+    setInvalidProduct(state, action) {
+        state.invalidProduct = action.payload
     },
 
-    setValidProduct(state, action){
-        state.validProduct=action.payload
+    setValidProduct(state, action) {
+        state.validProduct = action.payload
     },
 
 
-    setClickSave(state, action){
-        state.clickSave=action.payload
+    setClickSave(state, action) {
+        state.clickSave = action.payload
     },
 
     setFlagIfEmptyProduct(state, action) {
@@ -272,11 +272,12 @@ state.invalidProduct=action.payload
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-
+        debugger
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
     setProduction(state, action) {
+        debugger
         state.invoiceDetailsView.products.push({ id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product })
     },
     setProductionAfterDelete(state, action) {

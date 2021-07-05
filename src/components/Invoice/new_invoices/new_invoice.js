@@ -235,15 +235,16 @@ function New_Invoice(props) {
           dispatch(actions.setResetSaveSum(summ))
         }
         else {
+          alert("LLLL")
           dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
         }
 
-
+        debugger
 
 
 
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-
+          debugger
           console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
@@ -261,7 +262,7 @@ function New_Invoice(props) {
           })
         }
         else {
-
+          debugger
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
@@ -332,7 +333,8 @@ function New_Invoice(props) {
 
     console.log("saveContactOne", saveContactOne)
     console.log("contactedit", contactedit)
-    updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
+    if (saveContactOne.flag)
+      updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
   }, [saveContactOne])
   useEffect(() => {
 
@@ -468,6 +470,10 @@ function New_Invoice(props) {
       })
   }
   const saveContact = () => {
+    // setsaveContactOne({
+
+    //   flag: false
+    // })
     dispatch(actions.setShowInInvoice(true))
 
     setFlag(false)

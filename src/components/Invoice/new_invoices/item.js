@@ -200,6 +200,7 @@ function Item(props) {
       }
       else {
         if (props.pro.id === 'null') {
+          debugger
           dispatch(actions.setProductId2({ id: product1._id, index1: props.index }))
           dispatch(actions.setInvoceShow(detailsInvoice))
         }
@@ -488,6 +489,7 @@ function Item(props) {
       console.log('new_product', new_product)
 
       if (props.pro.id === "null" || props.pro.id === undefined) {
+        debugger
         if (new_product[props.index].name && new_product[props.index].price) {
           dispatch(actions.setNewProductServer(props.index))
           setflagValidPrice(false)
@@ -661,7 +663,7 @@ function Item(props) {
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
-                className={ flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
@@ -703,7 +705,7 @@ function Item(props) {
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price  ? 'cell design_text  validB' : 'cell design_text'}
+              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && (dtp && !dtp.price || !dtp) ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
