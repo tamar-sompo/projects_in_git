@@ -32,19 +32,24 @@ color: rgb(142, 115, 236);
 .dropdown-menu {
   width: 14rem;
 }
-.dropdown-item {
-  padding: .25rem;
+/* .dropdown-item {
+  color:rgb(142, 115, 236);
 }
+.dropdown-item:hover {
+  color:rgb(142, 115, 236);
+} */
 .dropdown-toggle::after {
 display: none;
 }
 #dropdown-basic{
   padding: 0px;
   background: none !important;
+  font-weight: bold;
 }
 #dropdown-basic:hover{
   color:rgb(142, 115, 236);
 }
 .inv{
   vertical-align: top !important;
+  margin-top: -1px;
 }

@@ -20,6 +20,8 @@ import { debounce } from '@material-ui/core';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import './allInvoices.css';
 import Share from '../wrap/share';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -293,10 +295,6 @@ function AllInvoices(props) {
             </div>
           </div>
         </div>
-        {/* <div className="col-8 d-flex justify-content-end ">
-            <SearchInvoices filter={filterby} changeInput={changeInput} handlesearchby={handlesearchby}></SearchInvoices>
-          </div>
-        </div> */}
         <div className="wrap_table">
           <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
             <div className="col">
@@ -346,41 +344,33 @@ function AllInvoices(props) {
                                   {
                                     chooselinei.isShown && chooselinei.index === invoice._id && (
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
-                                        <Share fl={1} />
-                                        <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}></MdEdit>
-                                        {/* <MdDelete id="icon" onClick={() => deleteinvoice(index, searchinvoice)} />
-                                        <MdContentCopy id="icon"></MdContentCopy> */}
-
-                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank">
-                                          <MdRemoveRedEye id="icon"
-                                            data-toggle="collapse"
-                                            data-target={"#collapsePicture" + index}
-                                            aria-expanded="false"
-                                            onClick={() => showInvoiceByIdAcord(invoice, index)}></MdRemoveRedEye>
-                                        </a>
-                                        {/* <Share fl={1}/> */}
-                                        {/* <span id="icon" className="glyphicon glyphicon-eye-open addIcon" aria-hidden="true"
-                                            // onClick={() => showInvoiceById(invoice._id)}></span> */}
+                                        <Share fl={1}
+                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} />
+                                        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                                          <a style={{ height: "14px" }}>
+                                            <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}
+                                              style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px" }}
+                                            ></MdEdit>
+                                          </a>
+                                        </Tooltip>
+                                        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
+                                          <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
+                                            style={{ height: "14px" }}>
+                                            <MdRemoveRedEye id="icon"
+                                              style={{ verticalAlign: "top", marginLeft: "5px" }}
+                                              data-toggle="collapse"
+                                              data-target={"#collapsePicture" + index}
+                                              aria-expanded="false"
+                                              onClick={() => showInvoiceByIdAcord(invoice, index)}>
+                                            </MdRemoveRedEye>
+                                          </a>
+                                        </Tooltip>
                                       </div>
                                     )
                                   }
                                 </div>
                               </td>
                             </tr>
-
-                            {/* <td id={"flagTd" + index} colSpan={7} className="tdToggle" style={{
-                              "border": "none",
-                              "height": "0px",
-                              "padding-top": "0px",
-                              "padding": "0px"
-                            }}>
-                              <div className="d-flex justify-content-around">
-                                <div class="collapse" id={"collapsePicture" + index} data-parent="#accordionExample">
-                                  <div style={{ width: '45vw', height: '5vh', display: "inline-block", boxShadow: "0px 3px 6px #0a26b126" }}>
-                                    {invoiceDetailsView._id === invoice._id && <New_Invoice></New_Invoice>}
-                                  </div>
-                                </div></div>
-                            </td> */}
                           </>
                         )
                       })
@@ -395,25 +385,7 @@ function AllInvoices(props) {
         </div>
 
       </div>
-      {/* <div className="container d-flex justify-content-center mt-5 mb-5">
-        <table className="table table-striped table-hover mt-3 ml-5 mr-5" responsive>‏
-            <thead>
-            <tr>
-              <th clasaName="col">#</th>
-              <th clasaName="col">invoice-number</th>
-              <th clasaName="col">clientName</th>
-              <th clasaName="col">clientPhone</th>
-              <th clasaName="col">Payment status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {getAllInvoices()}
-          </tbody>
-        </table>
-      </div> */}
     </>
-
-
   )
 }
 const mapDispatchToProps = (dispatch) => {

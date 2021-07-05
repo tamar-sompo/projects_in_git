@@ -53,9 +53,44 @@ function Item(props) {
   const { onItemChanged, onItemDeleted, productSelect } = props;
   const totalProductRef = useRef([]);
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
+  const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
+  const [flagToBroder, setFlagToBroder] = useState(false)
   useEffect(() => {
     dispatch(actions.setflagBorderProduct(false))
+    dispatch(actions.setFlagIfEmptyProduct(false))
+
   }, [])
+
+  useEffect(() => {
+    if (borderProductInvoice) {
+      if (history.location.pathname === `/${userName}/invoice`) {
+        if (props.index) {
+          if (invoice.products[props.index]) {
+            if (invoice.products[props.index].id === "null")
+              setFlagToBroder(true)
+          }
+        }
+        else {
+          if (invoice.products[0]) {
+            if (invoice.products[0].id === "null")
+              setFlagToBroder(true)
+          }
+        }
+      }
+      else {
+        if (props.index) {
+          if (detailsInvoice.products[props.index]) {
+            if (detailsInvoice.products[props.index].id === "null")
+              setFlagToBroder(true)
+          }
+        }
+      }
+    }
+    else
+      setFlagToBroder(false)
+  }, [borderProductInvoice])
+
+
 
   useEffect(() => {
     if (colorFlagShowSaveP === "red") {
@@ -157,11 +192,13 @@ function Item(props) {
     }
   }, [allproduct])
   const vv3 = (e) => {
+    dispatch(actions.setBorderProductInvoice(false))
     setflagValidPrice(false)
     setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
+    dispatch(actions.setFlagIfEmptyProduct(true))
 
     if (invoice.products[0].id == "null") {
       dispatch(actions.setflagBorderProduct(false))
@@ -214,14 +251,21 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-    setflagValidPrice(false)
-    setflagValidName(false)
+
+    dispatch(actions.setBorderProductInvoice(false))
+    dispatch(actions.setFlagIfEmptyProduct(true))
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
-    if (detailsInvoice.products[0] && detailsInvoice.products[0].id == "null") {
+    if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
       dispatch(actions.setflagBorderProduct(false))
+    }
+    console.log("e", e)
+    console.log("e.typeOf", typeof (e))
+
+    if (e.target.value && e.target.value != "") {
+      setFlagShowSaveP({ index: props.index, value: true })
     }
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
       let product6 = allproduct.find(x => x.name === e.target.value)
@@ -251,6 +295,8 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
+    dispatch(actions.setBorderProductInvoice(false))
+    dispatch(actions.setFlagIfEmptyProduct(true))
     setflagValidPrice(false)
     setflagValidName(false)
     setFlagSaveP(false)
@@ -530,6 +576,7 @@ function Item(props) {
     }
   }
   const updateCellPrice = (_value, fieldName) => {
+
     if (!fieldName) {
       return;
     }
@@ -625,7 +672,7 @@ function Item(props) {
   return (
     <>
 
-      <div className="row" style={flagBorderProduct ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
+      <div className="row" style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}>
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?

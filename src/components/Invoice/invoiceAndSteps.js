@@ -66,8 +66,10 @@ export default function InvoiceAndSteps(props) {
   const flagPush1 = useSelector(state => state.invoiceReducer.flagPush1);
   const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
+  const flagIfEmptyProduct = useSelector(state => state.invoiceReducer.flagIfEmptyProduct);
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
+  const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
   // const [flagFirstB, setFlagFirstB] = useState(false)
   // const [flagFirst, setFlagFirst] = useState(false)
   // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
@@ -100,11 +102,9 @@ export default function InvoiceAndSteps(props) {
 
 
 
-
+//איך חזר מהמודל
   useEffect(() => {
     console.log("flagModal", flagModal)
-
-    // else {
     if (flagModal === "successContact")
       nameInvoice()
     if (flagModal === "successNameInvoice") {
@@ -113,55 +113,40 @@ export default function InvoiceAndSteps(props) {
     }
   }, [flagModal])
 
+  //אחרי לחיצה על כפתור במודל 
   useEffect(() => {
-
-
-
-    //    alert("uuu")
-    // if (flagFirstB === false) {
-    //   setFlagFirstB(true)
-    // }
-    // else {
     if (buttonClick === "saveInvoiceOtherPage")
       save1()
 
-    if (buttonClick === "continuOtherPage") {
-      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-        if (flag === true) {
-          dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
-          dispatch(actions.setColorFlagShowSaveP("#707071"))
+    // if (buttonClick === "continuOtherPage") {
+    //   flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+    //     if (flag === true) {
+    //       dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
+    //       dispatch(actions.setColorFlagShowSaveP("#707071"))
 
-        }
-      })
-      setShowMessage(false)
-      setButtonClick("")
-      history.push(`/${userName}/allDocuments`)
-    }
+    //     }
+    //   })
+    //   setShowMessage(false)
+    //   setButtonClick("")
+    //   history.push(`/${userName}/allDocuments`)
+    // }
     // }
   }, [buttonClick])
 
+  //אחרי שבודק את המוצרים 
   useEffect(() => {
     if (first === false) {
       setFirst(true)
-      //   setFlagToCheck(false)
-      //   dispatch(actions.setflagBorderProduct(false))
-      //   setFlagSaveP(false)
-      //   dispatch(actions.setColorFlagShowSaveP("black"))
     }
 
     else {
       if (flagOfterValidation === true) {
         dispatch(actions.setFlagOfterValidation(false))
-        if (flagToCheck === true) {
+       if (flagToCheck === true) {
           setFlagToCheck(false)
-          if (flagSaveP === false) {
-            // alert("yy")
-
-            if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
-              dispatch(actions.setflagBorderProduct(true))
-            }
-            else {
-              dispatch(actions.setflagBorderProduct(false))
+          if (flagSaveP === false && borderProductInvoice===false) {
+              dispatch(actions.setBorderProductInvoice(false))
+              // tamar
               if (flagMessageContact) {
                 setShowMessage(true)
                 setFlagModal("contact")
@@ -169,7 +154,6 @@ export default function InvoiceAndSteps(props) {
               }
               else {
                 nameInvoice()
-              }
             }
           }
         }
@@ -177,6 +161,8 @@ export default function InvoiceAndSteps(props) {
     }
   }, [flagToCheck, flagOfterValidation])
 
+
+  //ברגע שמשתנה הצבע של הכפתור לשמירת מוצר בחשבונית כאן הוא משנה את הצבע של הפתור של השמירה של החשבונית
   useEffect(() => {
     if (flagFirstToP === false)
       setFlagFirstToP(true)
@@ -191,11 +177,50 @@ export default function InvoiceAndSteps(props) {
     }
   }, [colorFlagShowSaveP])
 
+
+//בלחיצה על שמירה מתחיל את הבדיקות תקינות 
+  const save1 = () => {
+    debugger
+    //איפוס כל המשתנים
+  
+    dispatch(actions.setFlagPush(false))
+    dispatch(actions.setFlagPush1(false))
+    dispatch(actions.setColorFlagShowSaveP("#707071"))
+    dispatch(actions.setFlagModal(""))
+    dispatch(actions.setShowMessage(false))
+    dispatch(actions.setButtonClick(""))
+    dispatch(actions.setModalBody(""))
+    // tamar
+     dispatch(actions.setFlagValidation(true))
+    debugger
+    //בודק אם יש מוצר ריק בחשבונית
+    if(history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" && flagIfEmptyProduct===false || 
+        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null" && flagIfEmptyProduct===false||
+        history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[invoice.products.length - 1].id === "null" && flagIfEmptyProduct===false||
+        window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" && flagIfEmptyProduct===false)
+    {
+      setFlagSaveP(true)
+      dispatch(actions.setBorderProductInvoice(true))
+    }
+
+    //בדיקה אם יש מוצר לא שמור
+    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      setFlagToCheck(true)
+      if (flag === true) {
+        setFlagSaveP(true)
+        dispatch(actions.setColorFlagShowSaveP("red"))
+      }
+    })
+   
+  }
+
+
+
+  //אחרי השמירה מאפס את כל המשתנים 
   useEffect(() => {
 
     console.log("flagPush", flagPush)
     if (flagPush1 === true) {
-      // alert("tyutyuflagpush")
       if (window.location.href.indexOf("invoice/edit") != -1
         && flagFromTable === false
       ) {
@@ -212,7 +237,7 @@ export default function InvoiceAndSteps(props) {
     }
   }, [flagPush1])
 
-
+  //אחרי השמירה מפעיל את המודל לשם החשבונית
   const nameInvoice = () => {
     // alert("uuu")
     if (history.location.pathname == `/${userName}/invoice` && invoice.type ||
@@ -222,123 +247,6 @@ export default function InvoiceAndSteps(props) {
       dispatch(actions.setShowModalName(true))
     }
   }
-
-  // useEffect(() => {
-  //   
-  //   if (flagOfterValidation === true) {
-  //     dispatch(actions.setFlagOfterValidation(false))
-  //     // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
-  //     //     dispatch(actions.setflagBorderProduct(true))
-
-  //     // }
-  //     // else {
-  //     // dispatch(actions.setflagBorderProduct(false))
-
-
-  //     // if (flagOfterValidation === false) {
-  //     dispatch(actions.setFlagModal(""))
-  //     dispatch(actions.setShowMessage(false))
-  //     dispatch(actions.setButtonClick(""))
-  //     dispatch(actions.setModalBody(""))
-  //     setFlagToCheck(true)
-  //     // if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
-  //     //   (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
-  //     //   ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
-
-  //     //   setFlagSaveP(true)
-  //     // }
-  //     // flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-  //     //   setFlagToCheck(true)
-  //     //   if (flag === true) {
-  //     //     setFlagSaveP(true)
-  //     //     dispatch(actions.setColorFlagShowSaveP("red"))
-  //     //   }
-  //     // })
-  //     // }
-  //     // }
-  //   }
-  // }, [flagOfterValidation])
-
-
-
-
-
-
-  const save1 = () => {
-
-    // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
-    //     dispatch(actions.setflagBorderProduct(true))
-    // }
-    // else {
-    //     dispatch(actions.setflagBorderProduct(false))
-    // }
-    dispatch(actions.setFlagValidation(true))
-    dispatch(actions.setFlagPush(false))
-    dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#707071"))
-    dispatch(actions.setFlagModal(""))
-    dispatch(actions.setShowMessage(false))
-    dispatch(actions.setButtonClick(""))
-    dispatch(actions.setModalBody(""))
-    //     setFlagToCheck(true)
-
-    if (((detailsInvoice && detailsInvoice.products && detailsInvoice.products.length) > 0 &&
-      (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null")) ||
-      ((invoice && invoice.products && invoice.products.length > 0) && (invoice.products[invoice.products.length - 1].id == "null"))) {
-
-      setFlagSaveP(true)
-    }
-    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-      setFlagToCheck(true)
-      if (flag === true) {
-        setFlagSaveP(true)
-        dispatch(actions.setColorFlagShowSaveP("red"))
-      }
-    })
-
-    // checkIfFalse()
-  }
-
-  // async function save1() {
-  //   dispatch(actions.setFlagPush(false))
-  //   dispatch(actions.setFlagPush1(false))
-  //   dispatch(actions.setColorFlagShowSaveP("#DBD0D7"))
-  //   dispatch(actions.setFlagModal(""))
-  //   dispatch(actions.setShowMessage(false))
-  //   dispatch(actions.setButtonClick(""))
-  //   dispatch(actions.setModalBody(""))
-  //   setFlagToCheck(true)
-
-
-
-  // }
-
-
-  useEffect(() => {
-
-    if (flagSaveinvoice1 === false)
-      setFlagSaveinvoice1(true)
-    else
-
-      if (viewConversion === "true") {
-
-        dispatch(actions.setViewConversion('false'))
-        if (history.location.pathname === `/${userName}/invoice`) {
-
-          history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
-        }
-        else
-          if (flagFromTable === false) {
-            // alert('opopo')
-            // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
-
-          }
-
-
-      }
-
-  }, [viewConversion])
-
 
   const products = async () => {
   debugger
@@ -356,12 +264,12 @@ export default function InvoiceAndSteps(props) {
         newItem =  {
         name:p.name,
           sku:"01",
-          price:p.price,
+          price:p.price.toString(),
           currency:"USD",
           quantity:p.amount,} 
         newArray.push(newItem)
       })
-      dispatch(actions.setPaypalInvoiceProductsTable(newArray))
+            dispatch(actions.setPaypalInvoiceProductsTable(newArray))
     }
   }
 
@@ -386,9 +294,10 @@ export default function InvoiceAndSteps(props) {
       dispatch(actions.setUpdateInvoice())
     }
     console.log("save", invoice)
-    // sendWave()
   }
 
+
+  //בלחיצה על back
   const backtoAllInvoices = () => {
     if (flagIfEmpty == false) {
       history.push(`/${userName}/allDocuments`)
@@ -404,67 +313,20 @@ export default function InvoiceAndSteps(props) {
     }
   }
 
-
+  //אחרי השמירה של החשבונית
   useEffect(() => {
-
     if (flagSaveinvoice1 === false)
       setFlagSaveinvoice1(true)
     else
-
       if (viewConversion === "true") {
-
         dispatch(actions.setViewConversion('false'))
         if (history.location.pathname === `/${userName}/invoice`) {
-
           history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
         }
-        else
-          if (flagFromTable === false) {
-            // alert('opopo')
-            // history.push(`/${userName}/invoice/edit/` + invoiceSave.invoice._id)
-
-          }
-
-
       }
-
   }, [viewConversion])
 
 
-  // const save = () => {
-  //   setIslevel(3);
-  //   // setFlagSaveInvoice(true)
-  //   dispatch(actions.setFlagIfEmpty(false))
-  //   if (history.location.pathname === `/${userName}/invoice`) {
-
-  //     dispatch(actions.setSaveInvoice(invoice))
-  //   }
-  //   else {
-
-  //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-  //     console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-  //     
-  //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
-  //     dispatch(actions.setUpdateInvoice())
-  //   }
-  //   console.log("save", invoice)
-  //   // sendWave()
-  // }
-
-  // const backtoAllInvoices = () => {
-  //   if (flagIfEmpty == false) {
-  //     history.push(`/${userName}/allDocuments`)
-  //     dispatch(actions.setFlagModal(""))
-  //     dispatch(actions.setShowMessage(false))
-  //     dispatch(actions.setButtonClick(""))
-  //     dispatch(actions.setModalBody(""))
-  //   }
-  //   else {
-  //     setModalBody("Do you want to save Invoice?")
-  //     setFlagModal("otherPage")
-  //     setShowMessage(true)
-  //   }
-  // }
   return (
     <>
 

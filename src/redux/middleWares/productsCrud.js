@@ -37,7 +37,8 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
       // checkPermission(resJson).then((ifOk) => {
       //    dispatch({ type: 'GET_ALL_CONTACT_BY_USER', payload:resJson  })
       // })
-      dispatch(actions.setAllProducts(resJson));
+      dispatch(actions.setAllProducts(resJson.reverse()));
+      console.log("reverse", resJson.reverse())
 
     }).catch((err) => {
       console.log(err)

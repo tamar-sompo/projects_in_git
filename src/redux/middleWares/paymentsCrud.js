@@ -19,17 +19,23 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
     console.log("paypalcrud")
     let status = action.payload
     let items = getState().paymentsReducer.paypalInvoiceProductsTable
-    console.log("items", items)
-    // let totalToPAy = getState().paymentsReducer.paypalInvoiceProductsTable
+    // let num = items.length.toString()
+    let totalToPAy = getState().invoiceReducer.saveSum
+    console.log("totalToPAy", items, totalToPAy)
     //   let buisnessPaypalDetails = getState().buisnessPaypalDetails;
     let buisnessPaypalDetails = {
       clientId:
         "AWq9mFvKACDopYu_DzcvIQlqrUT3uWfd84-Q2ZtmL-iwuo3ZwruoELFnDD0_PA1joYdfGVi1Pmz3unUy",
-      // clientSecret:
-        // "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
-        // products:products,
-    //     
-     items:items
+      clientSecret:
+      "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
+amount:{
+currency: "USD", 
+total: totalToPAy.toString()
+},
+      description:"Thank you for using the service",
+      // products:products,
+      //     
+      items: items
     }
     let username = getState().publicReducer.userName;
     let urlData = `https://pay.leader.codes/ohevzion/payByPaypal`

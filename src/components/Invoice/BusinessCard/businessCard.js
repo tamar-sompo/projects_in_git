@@ -7,12 +7,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions'
-import './businessCard.css'
+import { useHistory } from 'react-router-dom';
+import './businessCard.css';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export default function BusinessCard(props) {
+  let history = useHistory();
+
   const { buisnessName, buisnessWebsite, buisnessNumber, buisnessId, buisnessImg } = props
   console.log("buisnessImg", buisnessImg)
   const dispatch = useDispatch();
+  const userName = useSelector(state => state.publicReducer.userName);
+  const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const business = useSelector(state => state.buisnessReducer.business);
   const updateBusiness = useSelector(state => state.buisnessReducer.updateBusiness);
   console.log("updateBusiness", updateBusiness)
@@ -37,17 +44,32 @@ export default function BusinessCard(props) {
     updateWebsite({ key: fieldName, value: value })
   }
   const edit = () => {
+    history.push(`/${userName}/setting`)
+
     setEditable(!editable)
-    updatedetailsBusiness({ key: 'id', value: buisnessId })
+    // updatedetailsBusiness({ key: 'id', value: buisnessId })
   }
   const save = () => {
     updateDetailss(buisnessId)
+    // const currentBuisness = allBuisnessToUser.find(x => x._id === buisnessId)
+    // updateDetailss(currentBuisness)
     setEditable(!editable)
   }
   const remove = () => {
-
+    debugger
     updatedetailsBusiness({ key: 'id', value: buisnessId })
     dispatch(actions.setRemoveBuisnessById(buisnessId))
+  }
+
+  const chooseBuisness = (value) => {
+    const buisnessChoose = allBuisnessToUser.find(x => x._id === value)
+    dispatch(actions.getAllProduct(buisnessChoose._id))
+    console.log("buisnessObj", buisnessChoose)
+    console.log("buisnessssssssssss", buisnessChoose)
+    dispatch(actions.setGetBusiness(buisnessChoose._id))
+    console.log("dispatch1")
+    dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
+    console.log("dispatch2")
   }
 
   const load = () => {
@@ -59,7 +81,7 @@ export default function BusinessCard(props) {
       let reader = new FileReader();
       let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-
+        debugger
         imageToStor = { 'image': event, 'to': 'buisnessImg' }
         dispatch(actions.setImage(imageToStor))
         console.log("imageee12kkkkkkkkkkkk", imageToStor)
@@ -79,6 +101,7 @@ export default function BusinessCard(props) {
         // margin: '0px 30px 30px 0px',
         // margin:'auto'
       }}
+      onClick={() => chooseBuisness(buisnessId)}
     >
       <Card.Body >
         <Card.Title className='circle p-auto'>
@@ -90,8 +113,8 @@ export default function BusinessCard(props) {
           />
           <div className='imgLogoBusiness m-auto' style={{
             backgroundImage: `url('${buisnessId === updateBusiness.id ?
-                updateBusiness.imgLogo ?
-                  updateBusiness.imgLogo : image : image
+              updateBusiness.imgLogo ?
+                updateBusiness.imgLogo : image : image
               }')`
           }}
             onClick={load}
@@ -137,33 +160,36 @@ export default function BusinessCard(props) {
           />
         </Card.Text>
         {!editable ?
-          <button
-            className='btn btn-light m-auto'
-            onClick={(e) => edit()}
-          >
-            <FontAwesomeIcon
-              className='m-auto editIcon'
-              size='1x'
-              icon={['fas', 'pen']}
-              style={{ color: 'gray' }}
-            />
-          </button> :
+          <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+            <button
+              className='btn btn-light m-auto'
+              onClick={(e) => edit()}
+            >
+              <FontAwesomeIcon
+                className='m-auto editIcon'
+                size='1x'
+                icon={['fas', 'pen']}
+                style={{ color: 'gray' }}
+              />
+            </button>
+          </Tooltip> :
           <button
             className='m-auto editIcon'
             onClick={(e) => save()}
           >save</button>}
-
-        <button
-          className='btn btn-trash'
-          onClick={(e) => remove()}
-        >
-          <FontAwesomeIcon
-            className='m-auto'
-            size='1x'
-            icon={['fas', 'trash']}
-            style={{ color: 'gray' }}
-          />
-        </button>
+        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+          <button
+            className='btn btn-trash'
+            onClick={(e) => remove()}
+          >
+            <FontAwesomeIcon
+              className='m-auto'
+              size='1x'
+              icon={['fas', 'trash']}
+              style={{ color: 'gray' }}
+            />
+          </button>
+        </Tooltip>
       </Card.Body>
     </Card>
   )

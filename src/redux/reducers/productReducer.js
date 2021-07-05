@@ -72,7 +72,6 @@ const products = {
                 state.product1 = action.payload;
         },
         setAllProducts(state, action) {
-
                 state.allProducts = action.payload;
         },
         // setAddProduct(state, action) {

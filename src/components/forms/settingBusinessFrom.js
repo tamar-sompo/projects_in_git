@@ -95,11 +95,11 @@ function SettingBuisnessList(props) {
     const allCountry = useSelector(state => state.cityByCountryReducer.allCountry);
     const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
     const userName = useSelector(state => state.publicReducer.userName);
-    const userFiled = useSelector(state => state.buisnessReducer.newBuisness);
+    const userFiled = useSelector(state => state.buisnessReducer.settingBuisness);
     const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness)
 
-    const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
-    const updateWebsite = (fieldToUpdate) => dispatch(actions.setbuisnessWebsite(fieldToUpdate))
+    const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setSettingBuisness(fieldToUpdate))
+    const updateWebsite = (fieldToUpdate) => dispatch(actions.setSettingBuisnessWebsite(fieldToUpdate))
     const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
     const setCities = (data) => dispatch(actions.getCityByCountry(data))
     const setCountry = () => dispatch(actions.getCountry())
@@ -126,9 +126,9 @@ function SettingBuisnessList(props) {
             updateWebsite({ key: 'website', value: "" })
             updateBuisnessField({ key: 'vat', value: "" })
             updateBuisnessField({ key: 'numberDeals', value: "" })
-            history.push(`/${userName}/allDocuments`)
+            // history.push(`/${userName}/allDocuments`)
         }
-    }, [allBuisness])
+    }, [currentBuisness])
 
     const validatorPhone = (v) => {
 
@@ -142,43 +142,22 @@ function SettingBuisnessList(props) {
     const [tmpSave, setTmpSave] = useState(JSON.parse(JSON.stringify(currentBuisness)));
 
     const changeCurrentBusiness = (index, value) => {
-
-        if (index !== "socialmedias") {
-            // setTmpSave[index](value);
-            setTmpSave({ ...tmpSave, index: "value" })
-
+        debugger
+        if (index !== "website") {
+            let fff = tmpSave[index] = value
+            // setTmpSave(...tmpSave, tmpSave[index] = value)
+            setTmpSave({ ...tmpSave, index: fff })
         }
         else {
-
+            debugger
+            // let fff = tmpSave.socialmedias.website = value
+            setTmpSave({ ...tmpSave, socialmedias: { website: value } })
             // setTmpSave.socialmedias.website(value);
         }
-        // const tmpSave = { ...currentBuisness };
-        //העתקת אוביקט יותר מדויקת
-        // let tmpSave = JSON.parse(JSON.stringify(currentBuisness));
-        // console.log("tmpSave", tmpSave)
-        // for (var i in userFiled) {
-        //     // console.log(i, userFiled[i]);
-        //     if (i !== "socialmedias") {
-        //         if (userFiled[i]) {
-        //             tmpSave[i] = userFiled[i];
-        //         }
-        //     }
-        //     else {
-        //         
-        //         if (userFiled[i].website) {
-        //             tmpSave.socialmedias.website = userFiled.socialmedias.website;
-        //         }
-        //     }
-        // }
-        // console.log("tmpSave", tmpSave)
-        // delete tmpSave._id;
-        // delete tmpSave.uid;
-        // return tmpSave;
-        // dispatch(actions.setBuisnessToServer(tmpSave))
-        // dispatch(actions.setBuisnessToServer(tmpSave))
     }
 
     const saveNewBuisness = (e) => {
+        debugger
         let tmp1 = true;
         let tmp3 = true;
         // let tmp4= (tmpSave.n)
@@ -187,30 +166,28 @@ function SettingBuisnessList(props) {
         let tmp5 = tmpSave.numberDeals
         let tmp6 = tmpSave.city
         let tmp7 = tmpSave.address
-        if (userFiled.email) {
-            tmp1 = validatorEmail(userFiled.email)
+        if (tmpSave.email) {
+            tmp1 = validatorEmail(tmpSave.email)
         }
-        else {
-            if (currentBuisness.email)
-                tmp1 = validatorEmail(currentBuisness.email)
+        // else {
+        //     if (currentBuisness.email)
+        //         tmp1 = validatorEmail(currentBuisness.email)
+        // }
+        if (tmpSave.phone) {
+            debugger
+            tmp3 = validatorPhone(tmpSave.phone);
         }
-        if (userFiled.phone) {
-
-            tmp3 = validatorPhone(userFiled.phone);
-        }
-        else {
-            if (currentBuisness.phone)
-                tmp3 = validatorPhone(currentBuisness.phone);
-        }
+        // else {
+        //     if (currentBuisness.phone)
+        //         tmp3 = validatorPhone(currentBuisness.phone);
+        // }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-
-            // const tmpSave = changeCurrentBusiness();
-            delete setTmpSave._id;
-            delete setTmpSave.uid;
-
-            console.log("tmpSave", tmpSave)
-            dispatch(actions.setBuisnessToServer(tmpSave))
+            debugger
+            // delete tmpSave._id
+            // delete tmpSave.uid
+            debugger
+            dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
             setErrorMessage('');
             setErrorMessage2('');
             setErrorMessage3('');
@@ -220,40 +197,40 @@ function SettingBuisnessList(props) {
             // continewAfterSave();
         }
         else {
-            if (userFiled.name) {
+            if (tmpSave.name) {
                 setErrorMessage('')
             }
             else {
-                if (!currentBuisness.name)
-                    setErrorMessage('#enter your Buisness name')
-                else
-                    setErrorMessage('');
+                // if (!currentBuisness.name)
+                setErrorMessage('#enter your Buisness name')
+                // else
+                //     setErrorMessage('');
             }
-            if (useField.numberDeals)
+            if (tmpSave.numberDeals)
                 setErrorMessage2('')
             else {
-                if (!currentBuisness.numberDeals)
-                    setErrorMessage2('#enter your Number-Dealds')
-                else
-                    setErrorMessage2('');
+                // if (!currentBuisness.numberDeals)
+                setErrorMessage2('#enter your Number-Dealds')
+                // else
+                //     setErrorMessage2('');
             }
-            if (useField.city)
+            if (tmpSave.city)
                 setErrorMessage5('')
             else {
-                if (!currentBuisness.city)
-                    setErrorMessage5('#enter City')
-                else
-                    setErrorMessage5('');
+                // if (!currentBuisness.city)
+                setErrorMessage5('#enter City')
+                // else
+                //     setErrorMessage5('');
             }
-            if (useField.address)
+            if (tmpSave.address)
                 setErrorMessage6('')
             else {
-                if (!currentBuisness.address)
-                    setErrorMessage6('#enter Address')
-                else
-                    setErrorMessage6('');
+                // if (!currentBuisness.address)
+                setErrorMessage6('#enter Address')
+                // else
+                //     setErrorMessage6('');
             }
-            if (userFiled.email) {
+            if (tmpSave.email) {
                 if (!tmp1) {
                     setErrorMessage3('#Invalid email address')
                 }
@@ -261,17 +238,18 @@ function SettingBuisnessList(props) {
                     setErrorMessage3('');
                 }
             }
-            else {
-                if (currentBuisness.email) {
-                    if (!tmp1) {
-                        setErrorMessage3('#Invalid email address')
-                    }
-                    else {
-                        setErrorMessage3('');
-                    }
-                }
-            }
-            if (userFiled.phone) {
+            else setErrorMessage3('');
+            // else {
+            //     if (currentBuisness.email) {
+            //         if (!tmp1) {
+            //             setErrorMessage3('#Invalid email address')
+            //         }
+            //         else {
+            //             setErrorMessage3('');
+            //         }
+            //     }
+            // }
+            if (tmpSave.phone) {
                 if (!tmp3) {
                     setErrorMessage4('#Invalid phone')
                 }
@@ -280,14 +258,7 @@ function SettingBuisnessList(props) {
                 }
             }
             else {
-                if (currentBuisness.phone) {
-                    if (!tmp3) {
-                        setErrorMessage4('#Invalid phone')
-                    }
-                    else {
-                        setErrorMessage4('');
-                    }
-                }
+                setErrorMessage4('');
             }
         }
     }
@@ -346,8 +317,10 @@ function SettingBuisnessList(props) {
         updateBuisnessField({ key: fieldName, value: value })
     }
     const websiteChanged = (e, fieldName) => {
+        debugger
         const value = e.target.value;
         updateWebsite({ key: fieldName, value: value })
+        changeCurrentBusiness(fieldName, value)
     }
     const onButtonClick = () => {
         inputFile1.current.click();
@@ -398,7 +371,7 @@ function SettingBuisnessList(props) {
                         </div>
                     </div>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div>
                     <div className="colorWhite">
                         Company Information
@@ -444,7 +417,7 @@ function SettingBuisnessList(props) {
                                     <div className="font2">Business Name</div>
 
                                     <input className="inptStyle" name='name' type="text"
-                                        value={userFiled.name ? userFiled.name :
+                                        defaultValue={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
                                         style={{ width: "42rem", fontSize: "small" }}></input>
@@ -559,7 +532,7 @@ function SettingBuisnessList(props) {
                         </div>
                     </div>
                 </div>
-                <hr className="hrStyle"></hr>
+                {/* <hr className="hrStyle"></hr> */}
                 <div>
                     <div className="colorWhite">Social media</div>
                     <div style={{ paddingBottom: "2vh" }}>media</div>

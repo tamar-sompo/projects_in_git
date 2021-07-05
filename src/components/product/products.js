@@ -15,6 +15,9 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { HiUpload } from "react-icons/hi";
 import CurrencyInput from 'react-currency-input-field';
 import { BsSearch } from 'react-icons/bs'
+import Tooltip from '@material-ui/core/Tooltip';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 // import e from 'cors';
 // import MassageFormat from '../Useful/messageFormat'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -286,7 +289,8 @@ function Products(props) {
             {/* {show &&
             <MassageFormat></MassageFormat>
         } */}
-            <div className="container-fluid con" style={{
+
+            {/* <div className="container-fluid con" style={{
                 height: "86vh",
                 width: "98%",
             }}>
@@ -296,13 +300,16 @@ function Products(props) {
                     </div>
                     <div className="col-8 d-flex justify-content-end ">
                         <div className="d-flex flex-row" style={{ display: "inline" }}
-                            onClick={() => clickSearch(true)}>
+                            onClick={() => clickSearch(true)}
+                        >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}>
+                                    onChange={(e) => search(e.target.value)}
+                                    onMouseOut={() => clickSearch(false)}
+                                >
                                 </input>
                             </div>
-                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center" : "SearchIcon d-flex justify-content-center align-items-center"}>
+                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center " : "SearchIcon d-flex justify-content-center align-items-center "}>
                                 <BsSearch
                                     style={{ color: "gray", fontWeight: "bold" }}>
                                 </BsSearch>
@@ -320,7 +327,6 @@ function Products(props) {
                                 <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px" }}>
                                     <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
                                         <tr>
-                                            {/* <th style={{ width: "5%", backgroundColor: "white", border: "none" }}></th> */}
                                             <th></th>
                                             <th>NAME</th>
                                             <th>DESCRIPTION</th>
@@ -331,13 +337,15 @@ function Products(props) {
                                         </tr>
                                     </thead>
                                     {flag1 == true &&
-                                        <td colSpan="7" style={{
-                                            "border": "none",
-                                            "height": "0px",
-                                            /* padding-top: 0px; */
-                                            "padding": "3px",
-                                            marginTop: "12px"
-                                        }}>
+                                        <td
+                                            colSpan="6"
+                                            style={{
+                                                "border": "none",
+                                                "height": "0px",
+                                                "padding": "3px",
+                                                marginTop: "12px"
+                                            }}
+                                        >
                                             <div className="d-flex justify-content-around">
                                                 <ProductForm changeFlag={changeFlag} flag1={flag1}></ProductForm>
                                             </div>
@@ -346,8 +354,6 @@ function Products(props) {
                                     {console.log("producttt", props.allproduct)}
                                     {filtersearchProducts && filtersearchProducts.length > 0 ?
                                         <tbody >
-                                            {/* {(f() || searchby === "") &&
-                                            searchproduct.map((product, index) => { */}
                                             {(searchby === "") &&
                                                 filtersearchProducts.map((product, index) => {
                                                     return (
@@ -375,7 +381,6 @@ function Products(props) {
                                                                     :
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
-                                                                {/* <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />  */}
                                                             </td>
                                                             <td>
                                                                 <input type="text" style={{ background: "transparent" }}
@@ -440,18 +445,22 @@ function Products(props) {
                                                                     {
                                                                         chooselinep.isShow && chooselinep.index === product._id && (
                                                                             <div >
-                                                                                <button className="btnDis"
-                                                                                    onClick={() => setDisable(product)}
-                                                                                >
-                                                                                    <MdEdit id="icon"
-                                                                                    ></MdEdit>
-                                                                                </button>
-                                                                                <button className="btnDis"
-                                                                                    onClick={() => deleteProduct1(product._id, index)}
-                                                                                >
-                                                                                    <MdDelete id="icon"
-                                                                                    />
-                                                                                </button>
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => setDisable(product)}
+                                                                                    >
+                                                                                        <MdEdit id="icon"
+                                                                                        ></MdEdit>
+                                                                                    </button>
+                                                                                </Tooltip>
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => deleteProduct1(product._id, index)}
+                                                                                    >
+                                                                                        <MdDelete id="icon"
+                                                                                        />
+                                                                                    </button>
+                                                                                </Tooltip>
                                                                             </div>
                                                                         )
                                                                     }
@@ -469,6 +478,214 @@ function Products(props) {
                         </div>
                     </div>
                 </div>
+            </div> */}
+
+            <div className="container-fluid con" style={{
+                height: "86vh",
+                width: "98%"
+                // , borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
+            }}>
+                <div className="row ">
+                    <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
+                        <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Product</h1>
+                    </div>
+                    <div className="col-8 d-flex justify-content-end ">
+                        <div className="d-flex flex-row" style={{ display: "inline" }}
+                            onClick={() => clickSearch(true)}
+                        >
+                            <div>
+                                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
+                                    onChange={(e) => search(e.target.value)}
+                                    onMouseOut={() => clickSearch(false)}
+                                >
+                                </input>
+                            </div>
+                            <div className={flagSearch === true ? "SearchIconClick d-flex justify-content-center align-items-center " : "SearchIcon d-flex justify-content-center align-items-center "}>
+                                <BsSearch
+                                    style={{ color: "gray", fontWeight: "bold" }}>
+                                </BsSearch>
+                            </div>
+                        </div>
+                        <div >
+                            <div onClick={() => changeFlag(true)} >
+                                <button className="newProd11">New Product +</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="wrap_table">
+                    <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
+                        <div className="col">
+                            <div className="table-responsive">
+                                <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px", marginBottom: "0rem" }}>
+                                    <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
+                                        <tr>
+                                            <th style={{ width: "9%", backgroundColor: "#F5F5FA" }}></th>
+                                            <th >NAME</th>
+                                            <th >DESCRIPTION</th>
+                                            <th>PRICE</th>
+                                            <th>SKU</th>
+                                            {/* <th>DATE CREATE</th> */}
+                                            <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
+                                        </tr>
+                                    </thead>
+                                    {flag1 == true &&
+                                        <td
+                                            colSpan="6"
+                                            style={{
+                                                "border": "none",
+                                                "height": "0px",
+                                                "padding": "3px",
+                                                marginTop: "12px"
+                                            }}
+                                        >
+                                            <div className="d-flex justify-content-around">
+                                                <ProductForm changeFlag={changeFlag} flag1={flag1}></ProductForm>
+                                            </div>
+                                        </td>
+                                    }
+                                    <tbody >
+                                        {(searchby === "") && filtersearchProducts &&
+                                            filtersearchProducts.length > 0 && filtersearchProducts.map((product, index) => {
+                                                return (
+                                                    <>
+                                                        <tr className="tr"
+                                                            style={{ height: "55px" }}
+                                                            // id={"flag" + index}
+                                                            onMouseEnter={() => fff(product._id)}
+                                                            onMouseLeave={() => ggg(product._id)}
+                                                            key={product._id}>
+                                                            <td style={{ paddingLeft: "3%" }}>
+                                                                {dis.id == product._id ? dis.inpDis == "disable" ?
+                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    :
+                                                                    <>
+                                                                        <div>
+                                                                            <div>
+                                                                                <p style={{ fontSize: "60%" }}>upload image</p>
+                                                                                <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+                                                                                    onChange={(e) => addImage(e.target.files[0])} />
+                                                                                <img
+                                                                                    className={classes.buttonUpload1}
+                                                                                    src={newProductTable.images ? newProductTable.images : product.images ? product.images : Imgp}
+                                                                                    alt="Logo"
+                                                                                    title="Your Logo Here"
+                                                                                    onClick={onButtonClick}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                    :
+                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <TextareaAutosize type="text" style={{ background: "transparent" }}
+                                                                    rowsMax="2"
+                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                        newProductTable.name :
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                            newProductTable.name : product.name}
+                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                    onChange={(e) => onFieldEdit('name', e)}
+                                                                    onFocus={() => resetFeild('name', product)}
+                                                                />
+                                                            </td>
+                                                            <td>
+                                                                {/* {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ? */}
+                                                                <>
+                                                                    <TextareaAutosize type="text"
+                                                                        rowsMax="2"
+                                                                        className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                        value={dis.id === product._id && dis.inpDis == "" ?
+                                                                            newProductTable.description :
+                                                                            dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                                newProductTable.description : product.description}
+                                                                        onChange={(e) => onFieldEdit('description', e)}
+                                                                        onFocus={() => resetFeild('description', product)}
+                                                                        disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                    />
+                                                                </>
+                                                                {/* : <div>
+                                                                    {mmm(product.description)}
+                                                                </div>
+                                                                 } */}
+                                                            </td>
+                                                            <td>
+                                                                <input type="text"
+                                                                    className="allInput"
+                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                        newProductTable.price :
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                            newProductTable.price : product.price}
+                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                    onChange={(e) => onFieldEdit('price', e)}
+                                                                    onFocus={() => resetFeild('price', product)}
+                                                                />
+                                                                {/* {dis.id === product._id && dis.inpDis == "" ?
+                                                                newProductTable.price :
+                                                                dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                    newProductTable.price : product.price} */}
+                                                            </td>
+                                                            <td>
+                                                                <input type="text"
+                                                                    className="allInput"
+                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                        newProductTable.amount :
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                            newProductTable.amount : product.amount}
+                                                                    style={{ display: "inline-block", paddingLeft: "5%" }}
+                                                                    onChange={(e) => onFieldEdit('amount', e)}
+                                                                    onFocus={() => resetFeild('amount', product)}
+                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                />
+                                                                {/* {dis.id === product._id && dis.inpDis == "" ?
+                                                                newProductTable.amount :
+                                                                dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                    newProductTable.amount : product.amount} */}
+                                                            </td>
+                                                            {/* <td>{convertdate(product.date)}</td> */}
+                                                            <td className="td_tt" >
+                                                                <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
+                                                                    {
+                                                                        chooselinep.isShow && chooselinep.index === product._id && (
+                                                                            <div >
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => setDisable(product)}
+                                                                                    >
+                                                                                        <MdEdit id="icon"
+                                                                                        ></MdEdit>
+                                                                                    </button>
+                                                                                </Tooltip>
+                                                                                <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+                                                                                    <button className="btnDis"
+                                                                                        onClick={() => deleteProduct1(product._id, index)}
+                                                                                    >
+                                                                                        <MdDelete id="icon"
+                                                                                        />
+                                                                                    </button>
+                                                                                </Tooltip>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </>
     )

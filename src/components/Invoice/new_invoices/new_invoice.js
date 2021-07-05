@@ -1,5 +1,7 @@
+
+  
 import React, { useEffect, useRef, useState } from 'react';
-// import '../invoice.css';
+import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +22,6 @@ import DigitalSignature from '../digitalSignature';
 import flowersLogo from '../../../Img/flowersLogo.png';
 // import signature from '../../../Img/signature.png'
 import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
-// import flowerbackground from '../../assets/flo.jpg'
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import {
@@ -63,7 +64,6 @@ function New_Invoice(props) {
   const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
   const inputFile = useRef();
   const inputFile1 = useRef();
-  const scrollRef = useRef();
   const [isMouseTooltipVisible, setIsMouseTooltipVisible] = useState(false);
   let productSelect = useSelector(state => state.productReducer.productSelect);
   const newContact = useSelector(state => state.customerReducer.newContact)
@@ -91,7 +91,6 @@ function New_Invoice(props) {
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
   const saveSumView = useSelector(state => state.invoiceReducer.saveSumView)
   const [saveSum2, setsaveSum2] = useState(0)
-  console.log("summ", saveSum2)
   const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
   const [flagcontactFromInvoice1, setflagcontactFromInvoice1] = useState(false)
   const [flagdetailsContact, setflagdetailsContact] = useState(false)
@@ -121,8 +120,7 @@ function New_Invoice(props) {
         summ += x.sum_product
       )
       setsaveSum2(summ)
-      dispatch(actions.setTotalProductsTable(summ))
-      console.log("111s", summ)
+      console.log("111s")
       dispatch(actions.setViewConversion('false'))
       console.log("detailsInvoice111", detailsInvoice, detailscontact)
       setIslevel(1);
@@ -209,12 +207,15 @@ function New_Invoice(props) {
       console.log("props.invoice1", props.invoice1)
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
+
+
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length == 0)
           setDisplayInvoice("false")
         dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPDelete(['']))
+
       }
       else {
 
@@ -396,6 +397,7 @@ function New_Invoice(props) {
         tmp3 = validatorPhone(contactedit.phone);
       }
       if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
+        debugger
         setErrorMessage1(false)
         setErrorMessage2(false)
         dispatch(actions.setFlagValidation(false))
@@ -416,12 +418,12 @@ function New_Invoice(props) {
           else { dispatch(actions.setFlagTmpSave(false)) }
         }
         else {
-          if (!contactedit.email) {
+          if (!contactedit.email && !validName) {
             setErrorMessage1(true)
             dispatch(actions.setFlagValidation(false))
           }
           else {
-            if (!validatorEmail(contactedit.email)) {
+            if (!validatorEmail(contactedit.email) && !validName) {
               dispatch(actions.setFlagValidation(false))
               setErrorMessage1(true)
             }
@@ -437,6 +439,7 @@ function New_Invoice(props) {
         }
       }
     }
+    // }
     else (setfirstTmp(true))
   }, [flagValidation])
 
@@ -530,6 +533,7 @@ function New_Invoice(props) {
       if (allcontact1.find(x => x.name == e.target.value)) {
         let dc = allcontact1.find(x => x.name == e.target.value).email
         if (validatorEmail(dc)) {
+          setErrorMessage1(false);
           setValidName(true)
         }
         else setValidName(false)
@@ -573,7 +577,7 @@ function New_Invoice(props) {
     }
   }
   // const resetfieldcontactname = (field, e) => {
-  //   
+  //    
   //   // e.currentTarget.value = ''  
 
   //   if (detailsInvoice && detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
@@ -694,7 +698,7 @@ function New_Invoice(props) {
     //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
     //     console.log("detailsInvoice", detailsInvoice._id)
     //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
-    //     dispatch(actions.(invoice))
+    //     dispatch(actions.setUpdateInvoice(invoice))
     //   }
 
     //   console.log("saveeee", invoice)
@@ -703,6 +707,7 @@ function New_Invoice(props) {
 
   const deleteItemFromStore = (index) => {
 
+    dispatch(actions.setBorderProductInvoice(false))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -744,7 +749,7 @@ function New_Invoice(props) {
 
       //////////////////////////////////////////////////////////////////////////////להחזיר אם לא
       // if (p.length !== invoice.products.length && productSelect3id != "null") {
-      //   
+      //    
       //   let prr = [...p]
       //   prr.map((pr, ind) => {
       //     if (pr === productSelect3.name) {
@@ -827,14 +832,6 @@ function New_Invoice(props) {
     else
       setIsMouseTooltipVisible(false)
   }
-
-  useEffect(() => {
-    if (flagBorderProduct === false) {
-    }
-    else {
-      scrollRef.current.scrollIntoView()
-    }
-  }, [flagBorderProduct])
   const changeBg1 = () => {
     setIsMouseTooltipVisible(false)
   }
@@ -1276,9 +1273,9 @@ function New_Invoice(props) {
               }}
               style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
               <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
-                {detailsBusiness && detailsBusiness.imgLogo ?
+              {detailsBusiness && detailsBusiness.imgLogo ?
                   <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                    // id='bgImg'
+                    id='userLogo-temp1'
                     style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
                     src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
                     alt="Logo"
@@ -1288,20 +1285,24 @@ function New_Invoice(props) {
                   <div className="mt-5">
                     <h1>{detailsBusiness.name}</h1>
                   </div>}
-              </div>
+                  </div>
+
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
                 <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
-                  <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                    type="text"
-                    className="design_text design_buisness"
-                    placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
-                    // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
-                    onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
-                    value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                  />
+                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                      type="text"
+                      className="design_text design_buisness"
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                      // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                      onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                      value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </a>
                 </div>
-                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder">
+                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
@@ -1309,7 +1310,7 @@ function New_Invoice(props) {
                       size='15'
                       type="text"
                       className="design_text design_buisness"
-                      placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "" : ""}
+                      placeholder={detailsBusiness ? detailsBusiness.city ? detailsBusiness.city : "city" : "city"}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyAddress'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                       value={detailsBusiness && detailsBusiness.city}
@@ -1318,7 +1319,7 @@ function New_Invoice(props) {
                       style={{ width: "50%" }}
                       size='15'
                       type="text"
-                      placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "" : ""}
+                      placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
                       className="design_text design_buisness"
                       value={detailsBusiness && detailsBusiness.address}
                     />
@@ -1328,9 +1329,9 @@ function New_Invoice(props) {
                   <input readOnly
                     type="text"
                     disabled={displayInvoice === "true" ? "disable" : ""}
-                    size='20'
+                    // size='20'
                     className="design_text design_buisness"
-                    placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "" : ""}
+                    placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
                     // onClick={() => setFocus('companyPhone')}
                     onChange={(e) => onFieldChanged('companyPhone')}
                     onBlur={updatedetailsBusiness1('phone')}
@@ -1347,7 +1348,7 @@ function New_Invoice(props) {
                     name="city" list="contactname"
                     id='headers-name'
                     disabled={displayInvoice === "true" ? "disable" : ""}
-
+                    autoComplete="new-password"
                     placeholder="contact name"
                     // className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
                     className="design_text_contact_name"
@@ -1445,24 +1446,24 @@ function New_Invoice(props) {
                 <div className='col-4' onClick={() => focus_steps('Content', 3)} style={{ paddingTop: "4%", paddingLeft: "4%" }}>
                   <div className="row">
                     <div className="col-6 " >
-                      <span className=" design_text_contact design_text_contactname">Invoice</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">Invoice</span></div>
                     <div className="col-6" style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
+                      <span className="cursor_default design_text_contact design_text_contactname">{detailsInvoice ? detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 3000 : allInvoices.length + 3000}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-6" >
-                      <span className="design_text_contact">Date:{() => convertdate(detailsInvoice.date)}</span></div>
+                      <span className="design_text_contact cursor_default">Date:{() => convertdate(detailsInvoice.date)}</span></div>
                     <div className="col-6 " style={{ display: "flex", justifyContent: "center" }}>
-                      <span className="design_text_contact">{shortDate}</span></div>
+                      <span className="design_text_contact cursor_default">{shortDate}</span></div>
                   </div>
                   <div className="row">
                     <div className="col-4">
-                      <span className="design_text_contact">Due Date:</span></div>
+                      <span className="cursor_default design_text_contact">Due Date:</span></div>
                     <div className="col-8" style={{ paddingLeft: "0px" }}>
                       <input
                         style={{ backgroundColor: "transparent" }}
                         disabled={displayInvoice === "true" ? "disable" : ""}
-                        className="design_text_contact"
+                        className=" design_text_contact"
                         // className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
                         type="date"
                         size="1"
@@ -1512,9 +1513,9 @@ function New_Invoice(props) {
                 <div className=" table_title bold col-1" ></div>
                 <div className=" table_title bold col-1 nonborder" ></div> */}
                   <div className=" nonborder col-6 d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "10%" }}></div>
-                    <div className=" table_title bold" style={{ width: "35%" }}>Product Name</div>
-                    <div className=" table_title bold" style={{ width: "55%" }}>Description</div>
+                    <div className="cursor_default table_title bold" style={{ width: "10%" }}></div>
+                    <div className="cursor_default table_title bold" style={{ width: "35%" }}>Product Name</div>
+                    <div className="cursor_default table_title bold" style={{ width: "55%" }}>Description</div>
                   </div>
                   {/* <div className=" table_title bold" style={{ width: "15%" }}>Product Name</div>
                 <div className=" table_title bold" style={{ width: "24%" }}>Description</div>
@@ -1522,10 +1523,10 @@ function New_Invoice(props) {
                 <div className=" table_title bold" style={{ width: "10%" }}>Quantity</div>
                 <div className=" table_title bold" style={{ width: "10%" }}>Discount</div>
                 <div className=" table_title bold" style={{ width: "10%" }}></div> */}
-                  <div className=" table_title bold col-6  d-flex justify-content-center" >
-                    <div className=" table_title bold" style={{ width: "25%" }}>Unit Price</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Quantity</div>
-                    <div className=" table_title bold" style={{ width: "25%" }}>Discount</div>
+                  <div className="cursor_default table_title bold col-6  d-flex justify-content-center" >
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Unit Price</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Quantity</div>
+                    <div className="cursor_default table_title bold" style={{ width: "25%" }}>Discount</div>
                     <div style={{ width: "15%" }}> </div>
                     <div style={{ width: "10%" }}> </div>
                   </div>
@@ -1537,13 +1538,14 @@ function New_Invoice(props) {
 
               </div>
 
-              <div className="container-fluid wrapproduct productsTable_scroll" ref={scrollRef} >
+              <div className="container-fluid wrapproduct" >
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                   (window.location.href.indexOf("view") == -1 &&
                     detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
                   detailsInvoice.products.map((p, index) =>
-                    <Item key={index}
+                    <Item
+                      key={index}
                       pro={p}
                       arrColor={props.colors}
                       index={index}
@@ -1616,9 +1618,9 @@ function New_Invoice(props) {
                 <div className="col-3 ">
                   <div className=" d-flex flex-row" style={{ paddingLeft: "34%" }}>
                     <div className="" style={{ paddingRight: "9%" }} >
-                      <span className="design_text " style={{ fontWeight: "bold" }}>Total</span></div>
+                      <span className="cursor_default design_text " style={{ fontWeight: "bold" }}>Total</span></div>
                     <div className="">
-                      <span className="design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
+                      <span className="cursor_default design_text" style={{ fontWeight: "bold" }}> {saveSum2 > 0 ? "$" + saveSum2.toFixed(2) : saveSum ? "$" + saveSum.toFixed(2) :
                         ''}</span></div>
                   </div>
                 </div>

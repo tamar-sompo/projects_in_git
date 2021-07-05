@@ -7,6 +7,7 @@ import { actions } from './actions/All_actions.js';
 import {
     newBuisnessToUser,
     updateBuisnessById,
+    updateSettingBuisnessById,
     removeBuisnessById,
     getBuisnessById,
     getAllbuisnessToUser,
@@ -125,6 +126,7 @@ const store = createStore(
             getBuisnessById,
             removeBuisnessById,
             updateBuisnessById,
+            updateSettingBuisnessById,
             getBuisnessById,
             newBuisnessToUser,
             getAllbuisnessToUser,
