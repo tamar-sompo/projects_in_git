@@ -21,12 +21,8 @@ function Business(props) {
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const allInvoices = useSelector(state => state.buisnessReducer.allInvoices);
-<<<<<<< HEAD
   useEffect(() => {
   })
-=======
-
->>>>>>> new_main
 
   const changeFlag = (value) => {
 
