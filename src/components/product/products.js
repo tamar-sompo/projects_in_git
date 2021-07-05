@@ -310,6 +310,7 @@ function Products(props) {
 
     return (
         <>
+            {/* <form onSubmit={setDisable}> */}
             {/* {show &&
             <MassageFormat></MassageFormat>
         } */}
@@ -573,6 +574,7 @@ function Products(props) {
                                             filtersearchProducts.length > 0 && filtersearchProducts.map((product, index) => {
                                                 return (
                                                     <>
+                                                        {/* <form> */}
                                                         <tr className="tr"
                                                             style={{ height: "55px" }}
                                                             // id={"flag" + index}
@@ -584,6 +586,7 @@ function Products(props) {
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                     :
                                                                     <>
+
                                                                         <div>
                                                                             <div>
                                                                                 <p style={{ fontSize: "60%" }}>upload image</p>
@@ -598,6 +601,7 @@ function Products(props) {
                                                                                 />
                                                                             </div>
                                                                         </div>
+
                                                                     </>
                                                                     :
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
@@ -605,6 +609,7 @@ function Products(props) {
                                                             </td>
                                                             <td>
                                                                 <TextareaAutosize type="text" style={{ background: "transparent" }}
+                                                                    // required
                                                                     rowsMax="2"
                                                                     className={dis.id === product._id ?
                                                                         dis.inpDis == "disable" ? "inputF" :
@@ -625,6 +630,7 @@ function Products(props) {
                                                                 {/* {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ? */}
                                                                 <>
                                                                     <TextareaAutosize type="text"
+
                                                                         rowsMax="2"
                                                                         className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                         value={dis.id === product._id && dis.inpDis == "" ?
@@ -643,6 +649,7 @@ function Products(props) {
                                                             </td>
                                                             <td>
                                                                 <input type="number"
+                                                                    // required
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
@@ -684,6 +691,7 @@ function Products(props) {
                                                                             <div >
                                                                                 <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
                                                                                     <button className="btnDis"
+                                                                                        // type="submit"
                                                                                         onClick={() => setDisable(product)}
                                                                                     >
                                                                                         <MdEdit id="icon"
@@ -704,6 +712,7 @@ function Products(props) {
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                        {/* </form> */}
                                                     </>
                                                 )
                                             })
@@ -716,6 +725,7 @@ function Products(props) {
                 </div>
 
             </div>
+            {/* </form> */}
         </>
     )
 }

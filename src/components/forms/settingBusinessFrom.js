@@ -456,7 +456,7 @@ function SettingBuisnessList(props) {
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
 
-                                    <input className="inptStyle" name='name' type="text"
+                                    <input className={errorMessage ? "inptStyle  valid" : "inptStyle"} name='name' type="text"
                                         defaultValue={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
@@ -468,7 +468,7 @@ function SettingBuisnessList(props) {
                             <div className="row">
                                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                                     <div className="font2">Company Phone</div>
-                                    <input className="inptStyle" name='phone' type="text"
+                                    <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
                                         defaultValue={userFiled.phone ? userFiled.phone :
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
@@ -479,7 +479,7 @@ function SettingBuisnessList(props) {
                                 <div className="col-5">
                                     <div className="font2">Company Email</div>
                                     <input name='email' type="text"
-                                        className="inptStyle"
+                                        className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                                         defaultValue={userFiled.email ? userFiled.email :
                                             currentBuisness.email ? currentBuisness.email : ""}
                                         onChange={(e) => fieldChanged(e, 'email')}
@@ -495,7 +495,7 @@ function SettingBuisnessList(props) {
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
 
-                                    <input className="inptStyle" name='address' type="text"
+                                    <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
                                         defaultValue={userFiled.address ? userFiled.address :
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
@@ -526,7 +526,9 @@ function SettingBuisnessList(props) {
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
 
-                                    <input className="inptStyle" name='numberDeals' type="number"
+                                    <input
+                                        className={errorMessage2 ? "inptStyle valid" : "inptStyle"}
+                                        name='numberDeals' type="number"
                                         defaultValue={userFiled.numberDeals ? userFiled.numberDeals :
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
@@ -566,7 +568,9 @@ function SettingBuisnessList(props) {
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
 
-                                    <input className="inptStyle" type="text" name="city" list="city"
+                                    <input
+                                        className={errorMessage5 ? "inptStyle valid" : "inptStyle"}
+                                        type="text" name="city" list="city"
                                         defaultValue={userFiled.city ? userFiled.city :
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}
