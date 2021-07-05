@@ -25,7 +25,7 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
     //   let buisnessPaypalDetails = getState().buisnessPaypalDetails;
     let buisnessPaypalDetails = {
       clientId:
-        "AWq9mFvKACDopYu_DzcvIQlqrUT3uWfd84-Q2ZtmL-iwuo3ZwruoELFnDD0_PA1joYdfGVi1Pmz3unUy",
+        "AQsk0Hocr28b3fHgojgASbazi8cS99QTI6iTzU_UZOTxEmSdcOi5bAonEM0cm8re-QjTspk_l1YjzHoE",
       clientSecret:
       "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
 amount:{
