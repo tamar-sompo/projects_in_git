@@ -38,7 +38,7 @@ total: totalToPAy.toString()
       items: items
     }
     let username = getState().publicReducer.userName;
-    let urlData = `https://pay.leader.codes/ohevzion/payByPaypal`
+    let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
     console.log("urlData", urlData)
     $.ajax({
       url: urlData,
