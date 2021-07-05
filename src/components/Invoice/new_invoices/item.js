@@ -624,9 +624,9 @@ function Item(props) {
     }
   }
   return (
-    <>
+    <form onSubmit={savepr}>
       <div
-        className={`row `}
+        className="row "
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
       >
 
@@ -635,6 +635,7 @@ function Item(props) {
           {props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
               <input aria-label="empty textarea"
+                required
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
                 name="product"
@@ -661,7 +662,7 @@ function Item(props) {
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
-                className={ flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
@@ -696,6 +697,7 @@ function Item(props) {
 
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
+              required
               autoComplete="new-password"
               onFocus={() => cleanInput1('price')}
               id="validation-example-3-field2"
@@ -703,7 +705,7 @@ function Item(props) {
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price  ? 'cell design_text  validB' : 'cell design_text'}
+              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
@@ -926,7 +928,7 @@ function Item(props) {
         </Col> */}
       {/* </Row>  */}
 
-    </>
+    </form>
   )
 }
 export default Item

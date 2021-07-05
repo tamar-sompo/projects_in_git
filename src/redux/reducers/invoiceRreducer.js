@@ -5,11 +5,11 @@ const initialState = {
 
     // colors:['black','black','black','black'],
 
-    flagValidPrice:false,
+    flagValidPrice: false,
     flagValidName: false,
-    clickSave:false,
-    invalidProduct:false,
-    validProduct:false,
+    clickSave: false,
+    invalidProduct: false,
+    validProduct: false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -68,29 +68,35 @@ const initialState = {
     flagSaveP: false,
     borderProductInvoice: false,
     displayBoxShadow: false
+
+
 }
 
 
 const invoices = {
-    setflagValidName(state, action){
-   state.flagValidName=action.payload
+    setflagValidName(state, action) {
+        state.flagValidName = action.payload
     },
 
-    setflagValidPrice(state, action){
-        state.flagValidPrice=action.payload
+    callSaveInvoce(state, action) {
+        state.saveInvoice = action.payload
     },
 
-    setInvalidProduct(state, action){
-state.invalidProduct=action.payload
+    setflagValidPrice(state, action) {
+        state.flagValidPrice = action.payload
     },
 
-    setValidProduct(state, action){
-        state.validProduct=action.payload
+    setInvalidProduct(state, action) {
+        state.invalidProduct = action.payload
+    },
+
+    setValidProduct(state, action) {
+        state.validProduct = action.payload
     },
 
 
-    setClickSave(state, action){
-        state.clickSave=action.payload
+    setClickSave(state, action) {
+        state.clickSave = action.payload
     },
 
     setFlagIfEmptyProduct(state, action) {

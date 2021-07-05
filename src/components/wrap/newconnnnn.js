@@ -53,6 +53,12 @@ function NewConfigorator(props) {
     //     console.log("invoiceeeeproducts",invoice)
 
     // },[invoice])
+
+    useEffect(() => {
+        save();
+        alert("in save")
+    }, [props.saveInvoice])
+
     const save = () => {
         //  
         // sendWave()
@@ -94,11 +100,13 @@ function NewConfigorator(props) {
                                 <div style={{ position: "relative" }}>
                                     <Maincomp ></Maincomp> </div>
                                 <div className="try">
-                                    <button
+                                    <input
+                                        type="submit"
+                                        form="invoiceForm"
+                                        value="Save"
                                         onClick={save}
-                                        className="saving1 mt-2 mb-2"
-                                    >
-                                        Save</button>
+                                        className="btn saving1 mt-2 mb-2"
+                                    />
                                 </div>
 
                             </> :
@@ -140,8 +148,7 @@ function NewConfigorator(props) {
 const mapStateToProps = (state) => {
 
     return {
-        // user: state.public_reducer.userName,
-
+        saveInvoice: state.invoiceReducer.saveInvoice,
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -1250,9 +1250,10 @@ function New_Invoice(props) {
   // })
   // export default connect(mapStateToProps, mapDispatchToProps)(New_Invoice)
 
-
+  function onSubmit() { props.callSaveInvoce(true) }
   return (
-    <>
+    <form id="invoiceForm" onSubmit={onSubmit}>
+      {/*  onSubmit={onSubmit} */}
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
         <div className={flagLoud ? 'flagLoudOp' : ''}>
           <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
@@ -1648,7 +1649,7 @@ function New_Invoice(props) {
           {/* </div> */}
         </div>
       </div>
-    </>
+    </form>
   )
 }
 const mapStateToProps = (state) => {
@@ -1664,6 +1665,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   changeimageInvoice: (image) => dispatch(actions.setImageInvoice(image)),
+  callSaveInvoce: (value) => dispatch(actions.callSaveInvoce(value)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(New_Invoice)
