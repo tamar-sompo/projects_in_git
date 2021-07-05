@@ -856,19 +856,14 @@ function Item(props) {
               if (displayInvoice === "false") clearProduct()
             }}
             className={invoice.products.length === 1 ? "button4 cinput" : "button4"}>X</Button>
-
-
           {
             flagShowSaveP[props.index] &&
             <button style={{ width: "25px", height: "20px", backgroundColor: 'transparent', border: "none", color: colorFlagShowSaveP }} onClick={savepr}>save</button>
           }
-
         </Col>
         {props.pro.id == "null" || props.pro.id === undefined ?
           <Col className='py-3' md={2}>
-
             <input
-
               onFocus={() => cleanInput1('name')}
               name="product"
               list="productname"
@@ -880,13 +875,11 @@ function Item(props) {
       {/* <datalist id="productname">
               {productSelect.map(x => {
                 return (<option>{x.name}</option>)
-
               })}
             </datalist> */}
       {/* <datalist id="productname">
               {allproduct.length > 0 && allproduct.map(x => {
                 return (<option>{x.name}</option>)
-
               })}
             </datalist> */}
 
@@ -904,9 +897,7 @@ function Item(props) {
             disabled={displayInvoice === "true" ? "" : "disable"}
             onChange={(e) => updateCell('name', e)}
           > </Cell>}
-
         <Cell
-
           placeholder='descripition'
           onFocus={() => cleanInput1('description')}
           disabled={displayInvoice === "true" ? "" : "disable"}
@@ -986,7 +977,6 @@ function Item(props) {
               className="sum1 cell"
               value={props.pro.sum_product}
             />
-
           </div>
         </Col> */}
       {/* </Row>  */}

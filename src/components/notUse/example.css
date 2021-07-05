@@ -203,7 +203,7 @@ opacity: 1;
     font-size: 1em;
 }
 .col-3,.col-4,.col-6,.col-md-4{
-    padding:3px;
+    padding:3px !important;
 }
 /* .scrollbar::-webkit-scrollbar {
     display: none;

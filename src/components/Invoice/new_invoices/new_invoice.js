@@ -1,20 +1,14 @@
 
-  
+
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Button } from 'react-bootstrap'
+import '../../notUse/example.css';
+
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
-import { Link, useHistory } from "react-router-dom";
-import styled from 'styled-components'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from 'react-select'
-import { FiUpload } from "react-icons/fi";
-import MouseTooltip from 'react-sticky-mouse-tooltip';
-// import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
 import Item from './item'
 import LeaderLouder from '../../Useful/leaderLouder'
 // import {Link} from "react-router-dom";
@@ -1273,7 +1267,7 @@ function New_Invoice(props) {
               }}
               style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
               <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
-              {detailsBusiness && detailsBusiness.imgLogo ?
+                {detailsBusiness && detailsBusiness.imgLogo ?
                   <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
                     id='userLogo-temp1'
                     style={{ border: borderLogo === true ? '1px dashed lightgray' : 'none' }}
@@ -1285,7 +1279,7 @@ function New_Invoice(props) {
                   <div className="mt-5">
                     <h1>{detailsBusiness.name}</h1>
                   </div>}
-                  </div>
+              </div>
 
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}

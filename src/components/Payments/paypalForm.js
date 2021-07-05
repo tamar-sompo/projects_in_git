@@ -5,19 +5,6 @@ import { actions } from '../../redux/actions/All_actions';
 
 export default function Payments() {
 
-    const dispatch = useDispatch();
-
-
-    const updatePaypalAccountField = (value) => {
-        dispatch(actions.updatePaypalAccountField(value))
-    }
-
- const onFieldChanged = (e, fieldName) => {
-    const value = e.target.value;
-      updatePaypalAccountField({ key: fieldName, value: value })
-  }
- 
-
     return (
         <>
             <div className='row container'>

@@ -85,6 +85,9 @@
         background-size: 100% 100%;
         cursor: pointer;
     }
+    /* .col-3,.col-4,.col-6,.col-md-4{
+        padding:3px !important;
+    } */
     
     #userLogo-temp1{
         width: 30vh;

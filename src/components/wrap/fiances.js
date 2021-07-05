@@ -50,7 +50,7 @@ import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
 import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
-import Payments from '../Payments/paypal.js'
+import Payments from '../Payments/payments.js'
 import ModalNameInvoice from '../Invoice/modalNameInvoice'
 
 

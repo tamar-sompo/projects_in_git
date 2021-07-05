@@ -201,6 +201,12 @@ export default function NewSetting(props) {
             </div>
             <div>Setting</div>
           </li>
+          <li className={window.location.href.split('/')[4] == "Payments" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Payments")}>
+            <div>
+              <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
+            </div>
+            <div>Payments</div>
+          </li>
           {/* <li className="list-group-item yy d-flex align-items-center">
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
             </li>
