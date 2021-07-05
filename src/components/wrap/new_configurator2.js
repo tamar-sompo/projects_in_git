@@ -80,7 +80,7 @@
 //     }, [showMessage])
 
 //     const save1 = () => {
-//         
+//          
 
 
 //         if (invoice.products && invoice.products[0].id == "null") {
@@ -121,7 +121,7 @@
 //         else {
 //             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
 //             console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-//             
+//              
 //             updateinvoiceField({ key: "products", value: detailsInvoice.products });
 
 //             dispatch(actions.setUpdateInvoice())

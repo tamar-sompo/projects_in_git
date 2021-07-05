@@ -654,7 +654,7 @@ export const Item = (props) => {
 
   console.log("allproductctctctc", allproduct)
   // const set_product=(e)=>{
-  //    ;
+  //     ;
   //   console.log("productssss",e)
   //   dispatch(actions.setProduction(e.value))
   //  return <Item></Item>
@@ -695,7 +695,7 @@ export const Item = (props) => {
 
   // const searchP=(e)=>
   // {
-  //   ;
+  //    ;
   //   console.log("allpr",allproduct)
   //   let val=e.target.value.toLowerCase();
 

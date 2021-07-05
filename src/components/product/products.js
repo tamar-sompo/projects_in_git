@@ -84,6 +84,7 @@ function Products(props) {
     }
 
     useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
         // alert("allp")
         // dispatch(actions.getAllProduct())
     }, [])
@@ -172,14 +173,29 @@ function Products(props) {
 
 
     const onFieldEdit = (fieldName, e) => {
-
+        debugger
+        // if (fieldName == 'name') {
+        //     if (e.target.value) {
+        //         setflagName(false)
+        //     }
+        //     else setflagName(true)
+        // }
+        // else {
+        //     if (fieldName == 'price') {
+        //         if (e.target.value) {
+        //             setflagPrice(false)
+        //         }
+        //         else setflagPrice(true)
+        //     }
+        // }
         setFlagField(true)
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
-
+    // const [flagName, setflagName] = useState(false)
+    // const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
-
+        debugger
         setDis({ id: product._id })
         if (dis.flag === 0) {
             // alert("inpDis:")
@@ -191,10 +207,19 @@ function Products(props) {
             if (dis.inpDis == "") {
                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
                 // dispatch(actions.setProductId({key: "table", value:product._id}))
+                // if (product.name && product.price) {
                 if (flagField === true) {
                     dispatch(actions.editProduct({ key: "table", value: product._id }))
                     setFlagField(false)
+                    // setflagName(false)
+                    // setflagPrice(false)
                 }
+                // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                // }
+                // else {
+                //     if (!product.name) setflagName(true)
+                //     if (!product.price) setflagPrice(true)
+                // }
 
 
             }
@@ -286,6 +311,7 @@ function Products(props) {
 
     return (
         <>
+            {/* <form onSubmit={setDisable}> */}
             {/* {show &&
             <MassageFormat></MassageFormat>
         } */}
@@ -495,7 +521,7 @@ function Products(props) {
                         >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}
+                                    onChange={(e) => search(e.target.value.toLowerCase())}
                                     onMouseOut={() => clickSearch(false)}
                                 >
                                 </input>
@@ -549,6 +575,7 @@ function Products(props) {
                                             filtersearchProducts.length > 0 && filtersearchProducts.map((product, index) => {
                                                 return (
                                                     <>
+                                                        {/* <form> */}
                                                         <tr className="tr"
                                                             style={{ height: "55px" }}
                                                             // id={"flag" + index}
@@ -560,6 +587,7 @@ function Products(props) {
                                                                     <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                     :
                                                                     <>
+
                                                                         <div>
                                                                             <div>
                                                                                 <p style={{ fontSize: "60%" }}>upload image</p>
@@ -574,15 +602,22 @@ function Products(props) {
                                                                                 />
                                                                             </div>
                                                                         </div>
+
                                                                     </>
                                                                     :
-                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{  height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>
                                                                 <TextareaAutosize type="text" style={{ background: "transparent" }}
+                                                                    // required
                                                                     rowsMax="2"
-                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    className={dis.id === product._id ?
+                                                                        dis.inpDis == "disable" ? "inputF" :
+                                                                            // flagName ?
+                                                                            //     "inputP validB"
+                                                                            //      : 
+                                                                            "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
                                                                         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
@@ -596,6 +631,7 @@ function Products(props) {
                                                                 {/* {chooselinep.index === product._id && chooselinep.flag1 === true || !product.description ? */}
                                                                 <>
                                                                     <TextareaAutosize type="text"
+
                                                                         rowsMax="2"
                                                                         className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                         value={dis.id === product._id && dis.inpDis == "" ?
@@ -613,7 +649,8 @@ function Products(props) {
                                                                  } */}
                                                             </td>
                                                             <td>
-                                                                <input type="text"
+                                                                <input type="number"
+                                                                    // required
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
@@ -655,6 +692,7 @@ function Products(props) {
                                                                             <div >
                                                                                 <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
                                                                                     <button className="btnDis"
+                                                                                        // type="submit"
                                                                                         onClick={() => setDisable(product)}
                                                                                     >
                                                                                         <MdEdit id="icon"
@@ -675,6 +713,7 @@ function Products(props) {
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                        {/* </form> */}
                                                     </>
                                                 )
                                             })
@@ -687,6 +726,7 @@ function Products(props) {
                 </div>
 
             </div>
+            {/* </form> */}
         </>
     )
 }

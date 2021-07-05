@@ -20,6 +20,7 @@
 .inputF{
     border-bottom-style: none !important;
     border: none !important;
+    background: transparent;
     /* font-size: 129% !important; */
 }
 button[disabled], html input[disabled] {
@@ -90,8 +91,8 @@ button[disabled], html input[disabled] {
   .SearchIcon{
     background-color: #F8F8F8;
     margin-right    : 1rem;
-    padding         : .4rem;
-    padding-left    : .7rem;
+    /* padding         : .4rem;
+    padding-left    : .7rem;  */
     height          : 4vh;
     width           : 4vh;
     border-radius   : 50%;
@@ -100,11 +101,14 @@ button[disabled], html input[disabled] {
   
   .SearchIconClick {
     background-color: #F8F8F8;
-    margin-right    : 1rem;
-    padding         : .4rem;
-    padding-left    : .7rem;
+     margin-right    : 1rem;
+    /* padding         : .4rem;
+    padding-left    : .7rem;  */
     height          : 4vh;
     width           : 4vh;
     border-radius   : 5%;
     border          : none
   }
+.validB{
+    border: 1.5px solid red
+}

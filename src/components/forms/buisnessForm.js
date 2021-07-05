@@ -92,7 +92,7 @@ function BuisnessList(props) {
 
   const [urlLogo, setUrlLogo] = useState("")
 
-  const detailsBusiness = useSelector(state => state.buisnessReducer.newBuisness);
+  // const detailsBusiness = useSelector(state => state.buisnessReducer.newBuisness);
   const allCities = useSelector(state => state.cityByCountryReducer.allCities.geonames);
   const allCountry = useSelector(state => state.cityByCountryReducer.allCountry);
   const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
@@ -112,7 +112,9 @@ function BuisnessList(props) {
   //   setUrlLogo(detailsBusiness.imgLogo)
   //  } ,[detailsBusiness.imgLogo])
 
-
+  useEffect(() => {
+    dispatch(actions.setDisplayBoxShadow(false))
+  }, [])
   useEffect(() => {
     if (flag === "false")
       setFlag("true")
@@ -128,7 +130,7 @@ function BuisnessList(props) {
       updateWebsite({ key: 'website', value: "" })
       updateBuisnessField({ key: 'vat', value: "" })
       updateBuisnessField({ key: 'numberDeals', value: "" })
-
+      updateBuisnessField({ key: 'imgLogo', value: "" })
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
@@ -297,7 +299,8 @@ function BuisnessList(props) {
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
         style={{
-          height: "88vh", width: "98%", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126",
+          height: "86vh",
+          width: "98%",
           overflowY: "auto"
         }}>
         {/* {
@@ -358,16 +361,16 @@ function BuisnessList(props) {
                   backgroundColor: "#F6F6FA"
                 }}
                 className={classes.buttonUpload}>
-                {detailsBusiness && detailsBusiness.imgLogo ?
+                {userFiled && userFiled.imgLogo ?
                   <img
                     // id='userLogo-temp1'
                     className={classes.imgUpload}
-                    src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
+                    src={userFiled && userFiled.imgLogo ? userFiled.imgLogo : ""}
                     // src={urlLogo? urlLogo :""}
                     alt="Logo"
                     title="Your Logo Here"
                     style={{}}
-                    onClick={() => onButtonClick("logo")}
+                  // onClick={() => onButtonClick("logo")}
                   /> :
                   <HiUpload id="icon" className={classes.iconUpload} />}
                 <br></br>
@@ -380,11 +383,13 @@ function BuisnessList(props) {
             <div className="col-5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
               <div className="row">
                 <div>
-                  <div className="font2">Business Name</div>
+                  <div class="d-flex justify-content-start">
+                    <div className="font2">Business Name </div>
+                    <div style={{ color: "red", fontSize: "small" }}>*</div>
+                  </div>
 
-                  <input className="inptStyle" name='name' type="text"
+                  <input className={errorMessage ? "inptStyle valid" : "inptStyle"} name='name' type="text"
                     autoComplete="new-password"
-                    ////בגלל ששומרים לודקר עד ששומרים בשביל מעבר בין עמודים
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
@@ -395,7 +400,7 @@ function BuisnessList(props) {
               <div className="row">
                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
-                  <input className="inptStyle" name='phone' type="text"
+                  <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
                     value={userFiled.phone ? userFiled.phone : ""}
                     onChange={(e) => { fieldChanged(e, 'phone') }}
                     style={{ width: "20rem", fontSize: "small" }}></input>
@@ -405,7 +410,7 @@ function BuisnessList(props) {
                 <div className="col-5">
                   <div className="font2">Company Email</div>
                   <input name='email' type="text"
-                    className="inptStyle"
+                    className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                     value={userFiled.email ? userFiled.email : ""}
                     onChange={(e) => fieldChanged(e, 'email')}
                     style={{ width: "20rem", fontSize: "small" }}></input>
@@ -415,8 +420,12 @@ function BuisnessList(props) {
               </div>
               <div className="row" style={{ marginTop: "0.5vh" }}>
                 <div>
-                  <div className="font2">Address</div>
-                  <input className="inptStyle" name='address' type="text"
+
+                  <div class="d-flex justify-content-start">
+                    <div className="font2">Address</div>
+                    <div style={{ color: "red", fontSize: "small" }}>*</div>
+                  </div>
+                  <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
                     value={userFiled.address ? userFiled.address : ""}
                     onChange={(e) => fieldChanged(e, 'address')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
@@ -439,8 +448,12 @@ function BuisnessList(props) {
               </div>
               <div className="row">
                 <div className="col-3.5" style={{ marginRight: "3vh" }}>
-                  <div className="font2">Dealer License</div>
-                  <input className="inptStyle" name='numberDeals' type="number"
+                  <div class="d-flex justify-content-start">
+                    <div className="font2">Dealer License</div>
+                    <div style={{ color: "red", fontSize: "small" }}>*</div>
+                  </div>
+
+                  <input className={errorMessage2 ? "inptStyle valid" : "inptStyle"} name='numberDeals' type="number"
                     value={userFiled.numberDeals ? userFiled.numberDeals : ""}
                     onChange={(e) => fieldChanged(e, 'numberDeals')}
                     style={{ width: "12rem", fontSize: "small" }}></input>
@@ -472,8 +485,12 @@ function BuisnessList(props) {
                   </datalist>
                 </div>
                 <div className="col-5">
-                  <div className="font2">City</div>
-                  <input className="inptStyle" type="text" name="city" list="city"
+                  <div class="d-flex justify-content-start">
+                    <div className="font2">City</div>
+                    <div style={{ color: "red", fontSize: "small" }}>*</div>
+                  </div>
+
+                  <input className={errorMessage5 ? "inptStyle valid" : "inptStyle"} type="text" name="city" list="city"
                     value={userFiled.city ? userFiled.city : ""}
                     onChange={(e) => fieldChanged(e, 'city')}
                     style={{ width: "20rem", fontSize: "small" }}></input>

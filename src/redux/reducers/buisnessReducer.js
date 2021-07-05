@@ -65,6 +65,7 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setPushNewBuisness(state, action) {
+        debugger
         state.allBuisness = action.payload
     },
     setGetCurrenttBuisness(state, action) {

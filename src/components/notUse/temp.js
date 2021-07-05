@@ -138,7 +138,7 @@ function Invoice(props) {
     useEffect(() => {
 
         // if (window.location.href.indexOf("view") != -1) {
-        //   
+        //    
         //   console.log("njnj")
         //   setDisplayInvoice("true")
         //   if (window.location.pathname.split("/").pop() != "") {
@@ -744,7 +744,7 @@ function Invoice(props) {
     }
 
     // useEffect(() => {
-    //   
+    //    
     //   console.log(invoice.imageFrame);
     //   console.log(invoice.imgLogo);
     // }, [invoice])
@@ -1288,7 +1288,7 @@ export const Item = (props) => {
     // const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
     // console.log("flagLoud", flagLoud)
     // useEffect(() => {
-    //   
+    //    
     //   console.log("invoiceSave", invoiceSave)
     //   dispatch(actions.setShowInInvoice(false))
     // }, [invoiceSave])
@@ -1531,11 +1531,11 @@ export const Item = (props) => {
         }
     }
     // useEffect(() => {
-    //   
+    //    
     //   console.log("discountp", discountp)
     // }, [discountp])
     const calcdiscountp = (e) => {
-        // 
+        //  
         // console.log("discountp11", discountp)
 
         setdiscountp(e.target.value)
@@ -1645,7 +1645,7 @@ export const Item = (props) => {
 
     // useEffect(() => {
     //   console.log("dtp", dtp, "calcSumProduct", calcSumProduct)
-    //   
+    //    
     //   if (!flagSumProduct) {
     //     setSum(props.pro.sum_product)
     //     setflagSumProduct(true)
@@ -1667,7 +1667,7 @@ export const Item = (props) => {
 
     // }, [calcSumProduct])
     // useEffect(()=>{
-    //   
+    //    
     //   if(!flagsetSum)
     //   setflagsetSum(true)
     //   else

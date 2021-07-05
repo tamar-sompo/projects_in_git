@@ -27,7 +27,7 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     var url = `https://finance.leader.codes/${userName}/view/${invoiceSave._id}`;
     console.log("url", url)
     let text = getState().exportInvoiceReducer.emailDetails.html
-    let textToPaypal = "To pay on the invoice click here"
+    let textToPaypal = "Click here to pay"
     // let html
     // if(linkPayToContact){
     let html = `${text} <br /> ${url} <br /> <br /> <br />

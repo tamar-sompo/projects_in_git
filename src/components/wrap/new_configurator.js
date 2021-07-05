@@ -145,14 +145,14 @@ function NewConfigorator(props) {
     //             setFlagToCheck(false)
     //             if (flagSaveP === false) {
     //                 // alert("yy")
-    //                 
+    //                  
     //                 if (history.location.pathname == `/${userName}/invoice` && invoice.products && invoice.products[0].id === "null" || window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products && detailsInvoice.products[0].id == "null") {
     //                     dispatch(actions.setflagBorderProduct(true))
     //                 }
     //                 else {
     //                     dispatch(actions.setflagBorderProduct(false))
     //                     if (flagOfterValidation) {
-    //                         
+    //                          
     //                         dispatch(actions.setFlagOfterValidation(false))
     //                         if (flagMessageContact) {
     //                             setShowMessage(true)
@@ -209,7 +209,7 @@ function NewConfigorator(props) {
     //     }
     // }, [flagPush])
     // // const save1 = () => {
-    // //     
+    // //      
     // //     dispatch(actions.setFlagValidation(true))
 
     // //     // if (flagMessage)
@@ -218,7 +218,7 @@ function NewConfigorator(props) {
     // //     //     save()
     // // }
     // useEffect(() => {
-    //     
+    //      
     //     if (flagOfterValidation === true) {
     //         dispatch(actions.setFlagOfterValidation(false))
     //         // if (invoice.products && invoice.products[0] && invoice.products[0].id == "null") {
@@ -307,7 +307,7 @@ function NewConfigorator(props) {
 
     //         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
     //         console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-    //         
+    //          
     //         updateinvoiceField({ key: "products", value: detailsInvoice.products });
     //         dispatch(actions.setUpdateInvoice())
     //     }
@@ -317,50 +317,9 @@ function NewConfigorator(props) {
 
     return (
         <>
-            {console.log("setFlagSaveP", flagSaveP)}
             <div className="left_nav border_configurator">
-                {/* {console.log("new con window.location.href.indexOf",window.location.href.indexOf("invoice") )} */}
-                {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
+                <NewSetting ></NewSetting></div>
 
-                    <>
-                        {/* {alert("nnnnn")} */}
-
-                        <div style={{ position: "relative" }}>
-                            <NewSetting ></NewSetting></div>
-                        <div
-                            className="try"
-                        // className={colorFlagShowSaveP==="red" ? "noClick" : "try"}
-                        >
-
-                            {/* <button
-                                // style={colorFlagShowSaveP==="red" && {border: '1px solid red'}}
-                                // onClick={save1}
-                                className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
-                            >
-                                {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-                            </button> */}
-                        </div>
-
-
-
-                    </>
-                    :
-                    $('.left_nav').addClass('border_configurator') &&
-                    <>
-                        {/* {alert("fffff")} */}
-                        <div style={{ marginTop: '25%' }}>
-                            <NewSetting ></NewSetting>
-                        </div>
-                        {/* <button 
-                    onClick={save}
-                    className="saving1 mt-2 mb-2"
-                >
-                    Save</button> */}
-
-                    </>
-
-                }
-            </div>
 
 
         </>

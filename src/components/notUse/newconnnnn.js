@@ -49,12 +49,12 @@ function NewConfigorator(props) {
         }
     }, [Location])
     // useEffect(()=>{   
-    //     
+    //      
     //     console.log("invoiceeeeproducts",invoice)
 
     // },[invoice])
     const save = () => {
-        // 
+        //  
         // sendWave()
 
         if (history.location.pathname === `/${userName}/invoice`) {

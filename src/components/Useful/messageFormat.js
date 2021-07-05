@@ -33,7 +33,7 @@ function MassageFormat() {
   }, [])
 
   // const deleteAction = (name) => {
-  //   
+  //    
   //   switch (name) {
   //     case "Adding a business successfully":
   //       dispatch(actions.setRemoveBuisnessById(buisnessId));

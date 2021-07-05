@@ -91,7 +91,7 @@
 
 //   if (action.type === 'GET_CONTACT_BY_ID') {
 //     const id = action.payload
-//     // ;
+//     //  ;
 //     return fetch(`https://api.dev.leader.codes/blabla101/getContact/${id}`
 //       , {
 //         method: 'GET',
@@ -101,9 +101,9 @@
 //           'Content-Type': 'application/json'
 //         }
 //       }).then((res) => res.json()).then((resJson) => {
-//         
+//          
 //         console.log("ressss",resJson);
-//         ;
+//          ;
 //         dispatch({ type: "SET_DETAILS_CONTACT", payload: resJson });
 //       }).catch((err) => {
 //         console.log(err)
@@ -149,7 +149,7 @@
 //     return new Promise((resolve, reject) => {
 //       // DYc3VUmEHScqaZBw300lv89fna82
 //       // let userId = "simdsMrrcJdpQgta8kgXyQBdDFy2"
-//       ;
+//        ;
 //       let urlData = "https://finance.leader.codes/getAllInvoicesForBuisness/603f53b49545978cd254f47a" 
 //       $.ajax({
 //         // headers: { Authorization: jwtFromCookie },
@@ -160,7 +160,7 @@
 //         contentType: "application/json; charset=utf-8",
 //         dataType: 'json',
 //         success: function (allInvoices) {
-//           ;
+//            ;
 //           console.log("all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
@@ -178,7 +178,7 @@
 //     return new Promise((resolve, reject) => {
 //       // DYc3VUmEHScqaZBw300lv89fna82
 //       // let userId = "simdsMrrcJdpQgta8kgXyQBdDFy2"
-//       ;
+//        ;
 //       let urlData = "https://finance.leader.codes/gyVR6pQYwfPUDYztGfv3Rmsy3Rv1" 
 //       $.ajax({
 //         // headers: { Authorization: jwtFromCookie },
@@ -189,7 +189,7 @@
 //         contentType: "application/json; charset=utf-8",
 //         dataType: 'json',
 //         success: function (allInvoices) {
-//           ;
+//            ;
 //           console.log("all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
@@ -294,13 +294,13 @@
 //   return next(action);
 // }
 // export const getBuisnessbyId = ({ dispatch, state }) => next => action => {
-//   // ;
+//   //  ;
 //   // userId=action.payload;
 //   // let userId = "DYc3VUmEHScqaZBw300lv89fna82"
 //   //  let userName="chedva2"
 //   // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIzeXhoOTQwNnJ3ZkNYNFBTQnh3NmtoWFNGZ0UyIiwiZW1haWwiOiJjaGVkdmFAbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjEwMDE3MzgyfQ.7UzIXce8QO-Tn6uLWgVOmiyOv0pXWHse8KbZ9INc9mU
 //   let url = `https://finance.leader.codes/getBuinessById/6040b0205a718e4cc48af1b8`
-//   // ;
+//   //  ;
 //   if (action.type === 'GET_BUSINESS_BY_ID') {
 
 //     return fetch(url, {

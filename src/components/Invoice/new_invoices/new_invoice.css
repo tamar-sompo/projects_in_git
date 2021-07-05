@@ -1,3 +1,4 @@
+  
 .table_title{
     
     font-size: 1.1vw;
@@ -81,9 +82,8 @@
         padding: 5%;
         padding-top: 7% !important;
         background-repeat: no-repeat;
-        background-size: cover;
-        cursor: pointer;
         background-size: 100% 100%;
+        cursor: pointer;
     }
     
     #userLogo-temp1{

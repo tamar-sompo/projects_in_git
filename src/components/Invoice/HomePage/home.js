@@ -29,7 +29,7 @@ export default function HomePage(props) {
   //  useEffect(()=>{
   //    console.log("ghgh1")
   //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
-  //    
+  //     
   //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
   //       console.log("ghgh2")
   //       dispatch(actions.getLastBuisness())
@@ -45,7 +45,7 @@ export default function HomePage(props) {
 
   //  const  checkIfBuisness = (value) => {
   //   let specificRoute = value;
-  //   
+  //    
   //   if (allBuisnessToUser === undefined) {
   //     history.push(`/${userName}/add_buisness`)
   //   }     
@@ -67,7 +67,7 @@ export default function HomePage(props) {
 
   //  const  checkIfBuisness = (value) => {
   //   let specificRoute = value;
-  //   
+  //    
   //   if (allBuisnessToUser === undefined) {
   //     history.push(`/${userName}/add_buisness`)
   //   }     
@@ -88,7 +88,7 @@ export default function HomePage(props) {
   //  useEffect(()=>{
   //    console.log("ghgh1")
   //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
-  //    
+  //     
   //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
   //       console.log("ghgh2")
   //       dispatch(actions.getLastBuisness())
@@ -104,7 +104,7 @@ export default function HomePage(props) {
 
   //  const  checkIfBuisness = (value) => {
   //   let specificRoute = value;
-  //   
+  //    
   //   if (allBuisnessToUser === undefined) {
   //     history.push(`/${userName}/add_buisness`)
   //   }     

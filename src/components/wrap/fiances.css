@@ -2,9 +2,9 @@
     width: 130%;   
    }
    .ss{
-   margin-right: -14px;
+       margin-right: -14px;
        background-color:white;
-        box-shadow: -3px 5px 4px #00000029;
+       /* box-shadow: -3px 5px 4px #00000029; */
        width:50%;
        height:100%;
    }

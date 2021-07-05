@@ -88,6 +88,7 @@ function AllInvoices(props) {
     // dispatch(actions.setDetailsContact({}))
     // dispatch(actions.setGetAllbuisness());
     // dispatch(actions.getAllProduct())
+    dispatch(actions.setDisplayBoxShadow(false))
     getAllInvoicesToBuisness()
     dispatch(actions.setViewConversion('false'))
     setFlagSaveInvoice(false)
@@ -149,9 +150,11 @@ function AllInvoices(props) {
     return isInvoicePayed;
   }
   const showInvoiceById = (invoice) => {
+    dispatch(actions.setDisplayBoxShadow(true))
     dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
     dispatch(actions.setFlagMessage(false))
+    // dispatch(actions.setInvoiceSave(invoice))
     setDisplayInvoice("false")
     console.log("props.allproduct", props.allproduct)
     dispatch(actions.setDetailsContact({}))
@@ -276,8 +279,8 @@ function AllInvoices(props) {
               onClick={() => clickSearch(true)}
             >
               <div>
-                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                  onChange={(e) => search(e.target.value)}
+                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}   
+                 onChange={(e) => search(e.target.value.toLowerCase())}
                   onMouseOut={() => clickSearch(false)}
                 >
                 </input>

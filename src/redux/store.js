@@ -196,7 +196,7 @@ else {
         store.dispatch(actions.setTokenFromCookies(jwtGlobal));
 
         // if (window.location.href.indexOf("view") != -1) {
-        //     
+        //      
         //     console.log("njnj")
         //     store.dispatch(actions.setDislayInvoice("true"))
         //     if (window.location.pathname.split("/").pop() != "") {

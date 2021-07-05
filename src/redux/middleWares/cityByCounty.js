@@ -62,9 +62,9 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
   // export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action => {
   //   console.log("allCities")
   //   if (action.type === 'GET_CITY_BY_COUNTRY') {
-  //     
+  //      
   //     let countryName = action.payload;
-  //     
+  //      
   //     // return new Promise((resolve, reject) => {
   //     let urlData = `https://finance.leader.codes/api/${countryName}/getAllCitiesByCountry`
   //     $.ajax({
