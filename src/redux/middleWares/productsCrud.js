@@ -62,7 +62,7 @@ export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
       dispatch(actions.setShow(true))
       dispatch(actions.setNameAction("Delete a product successfully"))
       dispatch(actions.getAllProduct());
-   
+
 
     }).catch((err) => {
       console.log(err)
@@ -77,7 +77,7 @@ export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
 export const newProductToBuisness = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_NEW_PRODUCT_SERVER') {
     // let buisnessId = getState().buisnessReducer.buisness._id;
-    debugger
+
     let newProduct;
     let buisnessId = getState().buisnessReducer.buisness
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newProductForBuisness/${buisnessId}`
@@ -95,7 +95,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
       data: JSON.stringify(newProduct),
 
       success: function (data) {
-        debugger
+
         if (action.payload || action.payload == 0) {
 
           console.log("success add product", data)

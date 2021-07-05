@@ -56,13 +56,13 @@
   //       // dispatch(actions.getAllProduct());
   //   }).catch((err) => {
   //       console.log(err)
-      
+
   //     })
   //   }
   //   return next(action);
   //   }
-  
-  
+
+
     // export const  editProductbyID=({ dispatch, getState }) => next => action => {
     //   console.log(action.payload)
     //   let id_product=action.payload
@@ -82,16 +82,16 @@
     //       // dispatch(actions.getAllProduct());
     //   }).catch((err) => {
     //       console.log(err)
-        
+
     //     })
     //   }
     //   return next(action);
     //   }
 // export const getContactById = ({ dispatch, getState }) => next => action => {
-  
+
 //   if (action.type === 'GET_CONTACT_BY_ID') {
 //     const id = action.payload
-//     // debugger;
+//     //  ;
 //     return fetch(`https://api.dev.leader.codes/blabla101/getContact/${id}`
 //       , {
 //         method: 'GET',
@@ -101,9 +101,9 @@
 //           'Content-Type': 'application/json'
 //         }
 //       }).then((res) => res.json()).then((resJson) => {
-//         debugger
+//          
 //         console.log("ressss",resJson);
-//         debugger;
+//          ;
 //         dispatch({ type: "SET_DETAILS_CONTACT", payload: resJson });
 //       }).catch((err) => {
 //         console.log(err)
@@ -145,11 +145,11 @@
 // }
 // export const getInvoicesbyIdb=({ dispatch, getState }) => next => action => {
 //   if (action.type === 'GET_ALLINVOICES_BY_IDB') {
-    
+
 //     return new Promise((resolve, reject) => {
 //       // DYc3VUmEHScqaZBw300lv89fna82
 //       // let userId = "simdsMrrcJdpQgta8kgXyQBdDFy2"
-//       debugger;
+//        ;
 //       let urlData = "https://finance.leader.codes/getAllInvoicesForBuisness/603f53b49545978cd254f47a" 
 //       $.ajax({
 //         // headers: { Authorization: jwtFromCookie },
@@ -160,7 +160,7 @@
 //         contentType: "application/json; charset=utf-8",
 //         dataType: 'json',
 //         success: function (allInvoices) {
-//           debugger;
+//            ;
 //           console.log("all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
@@ -178,7 +178,7 @@
 //     return new Promise((resolve, reject) => {
 //       // DYc3VUmEHScqaZBw300lv89fna82
 //       // let userId = "simdsMrrcJdpQgta8kgXyQBdDFy2"
-//       debugger;
+//        ;
 //       let urlData = "https://finance.leader.codes/gyVR6pQYwfPUDYztGfv3Rmsy3Rv1" 
 //       $.ajax({
 //         // headers: { Authorization: jwtFromCookie },
@@ -189,7 +189,7 @@
 //         contentType: "application/json; charset=utf-8",
 //         dataType: 'json',
 //         success: function (allInvoices) {
-//           debugger;
+//            ;
 //           console.log("all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
@@ -294,15 +294,15 @@
 //   return next(action);
 // }
 // export const getBuisnessbyId = ({ dispatch, state }) => next => action => {
-//   // debugger;
+//   //  ;
 //   // userId=action.payload;
 //   // let userId = "DYc3VUmEHScqaZBw300lv89fna82"
 //   //  let userName="chedva2"
 //   // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIzeXhoOTQwNnJ3ZkNYNFBTQnh3NmtoWFNGZ0UyIiwiZW1haWwiOiJjaGVkdmFAbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjEwMDE3MzgyfQ.7UzIXce8QO-Tn6uLWgVOmiyOv0pXWHse8KbZ9INc9mU
 //   let url = `https://finance.leader.codes/getBuinessById/6040b0205a718e4cc48af1b8`
-//   // debugger;
+//   //  ;
 //   if (action.type === 'GET_BUSINESS_BY_ID') {
-    
+
 //     return fetch(url, {
 //       method: 'GET',
 //       headers: {
@@ -510,7 +510,7 @@
 //         Accept: 'appylication/json',
 //         'Content-Type': 'application/json'
 //       },
-     
+
 //     })
 //       .then((res) => res.json()).then((resJson) => {
 //          dispatch(actions.setInvoiceShow(resJson))
@@ -608,7 +608,7 @@
 //       processData: false,
 //       contentType: false,
 //       success: function (response) {
-        
+
 //         dispatch(actions.setLogoToInvoice(response.data.url));
 //         console.log("success response logo", response.data.url);
 //       },
@@ -633,7 +633,7 @@
 //     // const reader1 = new FileReader()
 //     // reader1.readAsDataURL(action.payload)
 //     // var fileToUpload = 
-    
+
 //     var myFile = new FormData()
 //     console.log("myFile", myFile)
 //     myFile.append("file", action.payload.image)
@@ -658,7 +658,7 @@
 //           if(action.payload.to==="logo"){
 //             console.log(action.payload.to)
 //             // props.setNewProduct({ ["images"]:  })
-          
+
 //             dispatch(actions.setLogo(response.data.url))}
 //         if(action.payload.to==="design"){
 //             console.log(action.payload.to)
@@ -691,7 +691,7 @@
 //     console.log("myFile", myFile)
 //       console.log('action.payload.image.img',action.payload.image.img)
 //     myFile.append("file", action.payload.image.img)
-  
+
 //     // myFile.append("file", action.payload.image)
 //     console.log("append")
 //     $.ajax({
@@ -707,12 +707,12 @@
         // checkPermission(response).then((ifOk) => {
         // dispatch(actions.setUser(response))
         // })
-        
+
 //         if(action.payload.to=="design"){
 //         console.log(action.payload.to)
 //         console.log("url",response.data.url)
 //         const image1={img:response.data.url, title:action.payload.image.title}
-        
+
 //           dispatch(actions.setItemData(image1));}
 //         console.log("success response", response);
 

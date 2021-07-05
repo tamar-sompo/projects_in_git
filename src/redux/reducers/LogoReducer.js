@@ -13,7 +13,7 @@
 //         switch (action.type) {
 
 //             case 'SET_CURRENT_COMPONENT':
-//                 debugger;
+//                  ;
 //                 state.logoDesign.currentComponent = action.payload;
 //             break;
 //         }

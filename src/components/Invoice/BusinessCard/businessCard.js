@@ -112,6 +112,7 @@ export default function BusinessCard(props) {
           // onChange={(e) =>  setImage(e.target.value)}
           />
           <div className='imgLogoBusiness m-auto' style={{
+            height:"21px",
             backgroundImage: `url('${buisnessId === updateBusiness.id ?
               updateBusiness.imgLogo ?
                 updateBusiness.imgLogo : image : image

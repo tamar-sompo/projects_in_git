@@ -53,7 +53,7 @@ export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
   console.log("arrived to newBuisnessToUser crud")
   // if (action.type === 'SET_SEND_NEW_BUISNESS') 
   if (action.type === 'SET_BUISNESS_TO_SERVER') {
-    debugger
+
     console.log("setBuisness")
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newBuisness`
     // let buisness = getState().buisnessReducer.newBuisness
@@ -68,7 +68,7 @@ export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(buisness),
       success: (result) => {
-        debugger
+
         console.log("dresult", result)
         checkPermission(result).then((ifOk) => {
           console.log("okNewBuisness", result)
@@ -253,7 +253,7 @@ export const getBuisnessById = ({ dispatch, getState }) => next => action => {
       dataType: 'json',
       success: function (buisness) {
         console.log("upDateBuisness", buisness)
-        debugger
+
 
         dispatch(actions.setGetCurrenttBuisness(buisness))
 

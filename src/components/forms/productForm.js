@@ -134,7 +134,7 @@ function ProductForm(props) {
       let reader = new FileReader();
       let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-        debugger
+
         imageToStor = { 'image': event, 'to': 'product' }
         dispatch(actions.setImage(imageToStor))
         console.log("imageee12kkkkkkkkkkkk", imageToStor)

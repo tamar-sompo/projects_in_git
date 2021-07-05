@@ -4,6 +4,12 @@ import createReducer from "./reducerUtils";
 const initialState = {
 
     // colors:['black','black','black','black'],
+
+    flagValidPrice:false,
+    flagValidName: false,
+    clickSave:false,
+    invalidProduct:false,
+    validProduct:false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -60,18 +66,46 @@ const initialState = {
     flagPush1: false,
     filteredInvoices: [],
     flagSaveP: false,
-    borderProductInvoice:false
+    borderProductInvoice: false,
+    displayBoxShadow: false
 }
 
 
 const invoices = {
+    setflagValidName(state, action){
+   state.flagValidName=action.payload
+    },
 
-setFlagIfEmptyProduct(state, action){
-state.flagIfEmptyProduct=action.payload
-},
+    setflagValidPrice(state, action){
+        state.flagValidPrice=action.payload
+    },
 
-    setBorderProductInvoice(state,action){
-        state.borderProductInvoice=action.payload
+    setInvalidProduct(state, action){
+state.invalidProduct=action.payload
+    },
+
+    setValidProduct(state, action){
+        state.validProduct=action.payload
+    },
+
+
+    setClickSave(state, action){
+        state.clickSave=action.payload
+    },
+
+    setFlagIfEmptyProduct(state, action) {
+        state.flagIfEmptyProduct = action.payload
+    },
+
+    setDisplayBoxShadow(state, action) {
+        state.displayBoxShadow = action.payload
+    },
+    setFlagIfEmptyProduct(state, action) {
+        state.flagIfEmptyProduct = action.payload
+    },
+
+    setBorderProductInvoice(state, action) {
+        state.borderProductInvoice = action.payload
     },
 
     setFlagSaveP(state, action) {
@@ -85,7 +119,7 @@ state.flagIfEmptyProduct=action.payload
         state.filteredInvoices = action.payload
     },
     setFilteredInvoices1(state, action) {
-        debugger
+
         state.filteredInvoices.push(action.payload)
     },
     // setSpecificRoute(state, action) {
@@ -107,7 +141,7 @@ state.flagIfEmptyProduct=action.payload
         state.flagIfEmpty = action.payload
     },
     setShowInInvoice(state, action) {
-        debugger
+
         state.showLoud = action.payload
     },
     setFlagValidation(state, action) {
@@ -117,12 +151,12 @@ state.flagIfEmptyProduct=action.payload
         state.flagTmpSave = action.payload
     },
     setFlagOfterValidation(state, action) {
-        debugger
+
         state.flagOfterValidation = action.payload
     },
 
     setSaveSumView(state, action) {
-        debugger
+
         state.saveSumView = state.saveSumView + action.payload
     },
     setflagBorderProduct(state, action) {
@@ -135,7 +169,7 @@ state.flagIfEmptyProduct=action.payload
         state.calcSumProduct = action.payload
     },
     setInvoiceSave(state, action) {
-        debugger
+
         console.log("invoice reducer t unvoice save", action.payload)
         state.invoiceSave = action.payload
     },
@@ -155,7 +189,7 @@ state.flagIfEmptyProduct=action.payload
     },
     r(state, action) {
         console.log("vhuaaaa")
-        debugger
+
         state.invoiceDetailsView[action.payload] = undefined
     },
     setResetContactedit(state, action) {
@@ -238,7 +272,7 @@ state.flagIfEmptyProduct=action.payload
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-        debugger
+
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
@@ -296,7 +330,7 @@ state.flagIfEmptyProduct=action.payload
     // state.prod
     // },
     setAmountToProduct(state, action) {
-        debugger
+
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0)
             state.invoiceDetailsView.products[action.payload.index1].amount = action.payload.amount
 
@@ -318,7 +352,7 @@ state.flagIfEmptyProduct=action.payload
         state.saveSum = action.payload
     },
     setSum(state, action) {
-        debugger
+
         state.saveSum = 0
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
@@ -338,7 +372,7 @@ state.flagIfEmptyProduct=action.payload
     //     state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
     // },
     setDeleteSaveSum(state, action) {
-        debugger
+
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0)
             state.saveSum = (state.saveSum) - state.invoiceDetailsView.products[action.payload].sum_product
 

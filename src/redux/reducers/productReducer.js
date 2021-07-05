@@ -20,22 +20,22 @@ const initialState = {
 }
 const products = {
         setFilteredProducts(state, action) {
-                debugger
+
                 state.filteredProducts = action.payload
         },
         setFilteredProducts1(state, action) {
-                debugger
+
                 state.filteredProducts.push(action.payload)
         },
         setResetAllNewProduct(state, action) {
                 state.newProduct = []
         },
         editProduct11(state, action) {
-                debugger
+
                 state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
-                debugger
+
                 state.allProducts.unshift(action.payload)
                 console.log("state.allProducts", state.allProducts)
                 // state.allProducts.splice(0, 0, action.payload);
@@ -47,12 +47,12 @@ const products = {
                 state.newProductTable = action.payload
         },
         setColorFlagShowSaveP(state, action) {
-                debugger
+
                 state.colorFlagShowSaveP = action.payload
         },
 
         setFlagShowSaveP(state, action) {
-                debugger
+
                 state.flagShowSaveP[action.payload.index] = action.payload.value
         },
 
@@ -86,7 +86,7 @@ const products = {
                 state.newProduct[action.payload.index] = action.payload.value
         },
         setNewProduct(state, action) {
-                debugger
+
                 //  alert('jj')
                 console.log("state.newProduct[action.payload.index][action.payload.key]", state.newProduct[action.payload.index][action.payload.key])
                 state.newProduct[action.payload.index][action.payload.key] = action.payload.value

@@ -84,6 +84,7 @@ function Products(props) {
     }
 
     useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
         // alert("allp")
         // dispatch(actions.getAllProduct())
     }, [])
@@ -142,7 +143,7 @@ function Products(props) {
 
         }
         if (searchby === "userProduct") {
-            debugger;
+            ;
             //  searchcontact.push
             searchproduct = props.allproduct.filter(product =>
                 (product.user != null && product.user.toLowerCase().includes(searchTerm)));
@@ -287,7 +288,7 @@ function Products(props) {
 
     //   const [filteredinvoices, setfilteredinvoices] = useState()
     const searchProducts = (searchproduct) => {
-        debugger
+
         dispatch(actions.setFilteredProducts([]))
         var products = props.allproduct
         products.forEach(prod => {
@@ -520,7 +521,7 @@ function Products(props) {
                         >
                             <div>
                                 <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
-                                    onChange={(e) => search(e.target.value)}
+                                    onChange={(e) => search(e.target.value.toLowerCase())}
                                     onMouseOut={() => clickSearch(false)}
                                 >
                                 </input>
@@ -604,7 +605,7 @@ function Products(props) {
 
                                                                     </>
                                                                     :
-                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{  height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>

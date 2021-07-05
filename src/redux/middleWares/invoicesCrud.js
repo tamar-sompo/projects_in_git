@@ -52,7 +52,7 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
 export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action => {
 
   if (action.type === 'SET_SAVE_INVOICE') {
-    debugger
+
     let buisnessId = getState().buisnessReducer.buisness
     console.log("buisnessId", buisnessId)
     let invoice = action.payload

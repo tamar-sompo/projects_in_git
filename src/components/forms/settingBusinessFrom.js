@@ -110,7 +110,9 @@ function SettingBuisnessList(props) {
     // useEffect(() => {
     //   setUrlLogo(detailsBusiness.imgLogo)
     //  } ,[detailsBusiness.imgLogo])
-
+    useEffect(() => {
+        dispatch(actions.setDisplayBoxShadow(false))
+    }, [])
 
     useEffect(() => {
         if (flag === "false")
@@ -133,7 +135,7 @@ function SettingBuisnessList(props) {
     }, [currentBuisness])
 
     const validatorPhone = (v) => {
-        debugger
+
         const tmp = v.length == 13 && v.includes('+');
         return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
     }
@@ -271,7 +273,7 @@ function SettingBuisnessList(props) {
 
     const onChangeCountry = (data) => {
         console.log("onChangeCounrty")
-        debugger
+
         setCities(data)
     }
     const selectCountry = (e) => {
