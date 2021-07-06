@@ -53,7 +53,7 @@ total: totalToPAy.toString()
         //   checkPermission(link).then((ifOk) => {
         //     console.log("okGetLink", link)
         dispatch(actions.setSaveLinkPayToContact(link.href))
-        dispatch(actions.setUpdateInvoice(link.href, status))
+        dispatch(actions.setUpdateInvoice({"paypalLink": link.href}))
         console.log("oksendlinktostore", link)
       },
       error: (err) => {
