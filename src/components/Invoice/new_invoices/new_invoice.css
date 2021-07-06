@@ -210,6 +210,9 @@ text-align: left !important;
 input[type="date"]::-webkit-calendar-picker-indicator{
     cursor: pointer;
 }
+.rowOneProduct:hover .delete_hover{
+  display:block !important;
+}
 .cursor_pointer{
     cursor:pointer
 }

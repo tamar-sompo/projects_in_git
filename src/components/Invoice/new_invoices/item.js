@@ -103,8 +103,6 @@ function Item(props) {
   useEffect(() => {
     if (clickSave === true) {
       setClickSave(false)
-      // alert("clickkkk")
-      // setClickSave(false)
       if (dtp && dtp._id) {
         if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
           setflagValidPrice(false)
@@ -195,13 +193,15 @@ function Item(props) {
       if (history.location.pathname === `/${userName}/invoice`) {
 
         if (props.pro.id === 'null') {
-          dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
+          if (product1._id)
+            dispatch(actions.setProductId({ id: product1._id, index1: props.index }));
         }
       }
       else {
         if (props.pro.id === 'null') {
           debugger
-          dispatch(actions.setProductId2({ id: product1._id, index1: props.index }))
+          if (product1._id)
+            dispatch(actions.setProductId2({ id: product1._id, index1: props.index }))
           dispatch(actions.setInvoceShow(detailsInvoice))
         }
       }
@@ -628,7 +628,7 @@ function Item(props) {
   return (
     <>
       <div
-        className={`row `}
+        className="row rowOneProduct"
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
       >
 
@@ -778,8 +778,9 @@ function Item(props) {
                 onClick={() => {
                   if (displayInvoice === "false") clearProduct()
                 }}
-                className={invoice.products.length === 1 ? "cinput" : ""} style={{
+                className={invoice.products.length === 1 ? "delete_hover cinput" : "delete_hover"} style={{
                   marginLeft: "33%",
+                  display:"none",
                   width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>

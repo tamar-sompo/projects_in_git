@@ -164,7 +164,7 @@ export default function Nav() {
 
     else {
       // alert("validProduct" + validProduct)
-      if (flagOfterValidation === true && validProduct === true) {
+      if (validProduct === true) {
         // alert("validProduct flagOfterValidation" +flagOfterValidation+ validProduct)
         dispatch(actions.setFlagOfterValidation(false))
         dispatch(actions.setValidProduct(false))
@@ -184,7 +184,7 @@ export default function Nav() {
         }
       }
     }
-  }, [flagToCheck, flagOfterValidation, validProduct])
+  }, [flagToCheck, validProduct])
 
 
 
@@ -217,7 +217,7 @@ export default function Nav() {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     dispatch(actions.setClickSave(true))
-    dispatch(actions.setFlagValidation(true))
+    // dispatch(actions.setFlagValidation(true))
 
     debugger
     //בודק אם יש מוצר ריק בחשבונית

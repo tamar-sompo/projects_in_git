@@ -283,6 +283,9 @@ const invoices = {
     setProductionAfterDelete(state, action) {
         state.invoiceDetailsView.products = action.payload
     },
+    setResetContactFromEdiit(state, action) {
+        state.invoiceDetailsView.contact = undefined
+    },
     setUpdateInvoiceFields(state, action) {
         console.log("setUpdateInvoiceFields", action.payload.key, action.payload.value)
         // if(action.payload.key=='products')
