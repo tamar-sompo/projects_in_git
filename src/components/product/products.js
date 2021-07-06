@@ -60,10 +60,12 @@ function Products(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchby, setSearchby] = useState('');
     const [dis, setDis] = useState({ flag: 0, id: '', inpDis: "" });
+    //////////
     const newProduct = useSelector(state => state.productReducer.newProduct)
     // const show = useSelector(state => state.designReducer.show);
     // console.log("ssssssssssshow",show)
     const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
+    /////////////////////
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const buisness = useSelector(state => state.buisnessReducer.buisness)
     const [flagField, setFlagField] = useState(false)
@@ -174,26 +176,27 @@ function Products(props) {
 
     const onFieldEdit = (fieldName, e) => {
         debugger
-        // if (fieldName == 'name') {
-        //     if (e.target.value) {
-        //         setflagName(false)
-        //     }
-        //     else setflagName(true)
-        // }
-        // else {
-        //     if (fieldName == 'price') {
-        //         if (e.target.value) {
-        //             setflagPrice(false)
-        //         }
-        //         else setflagPrice(true)
-        //     }
-        // }
+        if (fieldName == 'name') {
+            if (e.target.value) {
+                setflagName(false)
+
+            }
+            else setflagName(true)
+        }
+        else {
+            if (fieldName == 'price') {
+                if (e.target.value) {
+                    setflagPrice(false)
+                }
+                else setflagPrice(true)
+            }
+        }
         setFlagField(true)
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
-    // const [flagName, setflagName] = useState(false)
-    // const [flagPrice, setflagPrice] = useState(false)
+    const [flagName, setflagName] = useState(false)
+    const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
         debugger
         setDis({ id: product._id })
@@ -205,28 +208,36 @@ function Products(props) {
         }
         else {
             if (dis.inpDis == "") {
-                setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                // dispatch(actions.setProductId({key: "table", value:product._id}))
-                // if (product.name && product.price) {
-                if (flagField === true) {
-                    dispatch(actions.editProduct({ key: "table", value: product._id }))
-                    setFlagField(false)
-                    // setflagName(false)
-                    // setflagPrice(false)
-                }
                 // setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                // }
-                // else {
-                //     if (!product.name) setflagName(true)
-                //     if (!product.price) setflagPrice(true)
-                // }
+                // dispatch(actions.setProductId({key: "table", value:product._id}))
+                if (flagField === true) {
+                    // if (newProductTable.name && newProductTable.price) {
+                    if (!flagPrice && !flagName) {
+                        dispatch(actions.editProduct({ key: "table", value: product._id }))
+                        setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                        setFlagField(false)
+                        setflagName(false)
+                        setflagPrice(false)
+                    }
+                    else {
+                        // if (!newProductTable.name)
+                        if (flagName) setflagName(true)
+                        if (flagPrice) setflagPrice(true)
+                    }
+                }
+                else {
+                    // dispatch(actions.editProduct({ key: "table", value: product._id }))
+                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                    setDis({ id: product._id, inpDis: "" })
 
-
+                }
             }
-            else
+            else {
                 setDis({ id: product._id, inpDis: "" })
+                // dispatch(actions.editProduct({ key: "table", value: product._id }))
+                // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+            }
         }
-
     }
     const onButtonClick = () => {
         // `current` points to the mounted file input element
@@ -605,7 +616,7 @@ function Products(props) {
 
                                                                     </>
                                                                     :
-                                                                    <img style={{  height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{ height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>
@@ -614,17 +625,22 @@ function Products(props) {
                                                                     rowsMax="2"
                                                                     className={dis.id === product._id ?
                                                                         dis.inpDis == "disable" ? "inputF" :
-                                                                            // flagName ?
-                                                                            //     "inputP validB"
-                                                                            //      : 
-                                                                            "inputP" : "inputF"}
+                                                                            flagName ?
+                                                                                "inputP validB"
+                                                                                :
+                                                                                "inputP" : "inputF"}
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.name :
                                                                         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
-                                                                            newProductTable.name : product.name}
+                                                                            newProductTable.name :
+                                                                            dis.id === product._id && flagName ?
+                                                                                newProductTable.name :
+                                                                                dis.id === product._id && !dis.inpDis ?
+                                                                                    newProductTable.name :
+                                                                                    product.name}
                                                                     disabled={dis.id === product._id ? dis.inpDis : "disable"}
                                                                     onChange={(e) => onFieldEdit('name', e)}
-                                                                    onFocus={() => resetFeild('name', product)}
+                                                                // onFocus={() => resetFeild('name', product)}
                                                                 />
                                                             </td>
                                                             <td>
@@ -652,12 +668,26 @@ function Products(props) {
                                                                 <input type="number"
                                                                     // required
                                                                     className="allInput"
-                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
+                                                                    className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" :
+                                                                        flagPrice ? "inputP validB" :
+                                                                            "inputP" : "inputF"}
+                                                                    // value={dis.id === product._id && dis.inpDis == "" ?
+                                                                    //     newProductTable.price :
+                                                                    //     dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                    //         newProductTable.price :
+                                                                    //         flagPrice ?
+                                                                    //             newProductTable.price : product.price}
+                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
+
                                                                     value={dis.id === product._id && dis.inpDis == "" ?
                                                                         newProductTable.price :
-                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
-                                                                            newProductTable.price : product.price}
-                                                                    disabled={dis.id === product._id ? dis.inpDis : "disable"}
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.price ?
+                                                                            newProductTable.price :
+                                                                            dis.id === product._id && flagName ?
+                                                                                newProductTable.price :
+                                                                                dis.id === product._id && !dis.inpDis ?
+                                                                                    newProductTable.price :
+                                                                                    product.price}
                                                                     onChange={(e) => onFieldEdit('price', e)}
                                                                     onFocus={() => resetFeild('price', product)}
                                                                 />

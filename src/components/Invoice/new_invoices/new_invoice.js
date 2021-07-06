@@ -29,6 +29,7 @@ import {
 } from "react-router-dom";
 import $ from 'jquery'
 import MessageSave from '../messageSave'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import './new_invoice.css'
 function New_Invoice(props) {
   const Location = useLocation()
@@ -1284,9 +1285,9 @@ function New_Invoice(props) {
                   title="Your Logo Here"
                 />
               </div>
-              <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
+              <div className="row d-flex justify-content-center" style={{ paddingLeft: "10%", paddingRight: "10%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
-                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
+                <div className="col-3 d-flex justify-content-center wrapBuisnessBorder">
                   <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
@@ -1299,11 +1300,11 @@ function New_Invoice(props) {
                     />
                   </a>
                 </div>
-                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                <div className="col-6 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
-                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                      style={{ width: "50%" }}
-
+                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                      style={{ width: "50%", verticalAlign: "top" }}
+                      rowsMax="2"
                       size='15'
                       type="text"
                       className="design_text design_buisness"
@@ -1312,9 +1313,10 @@ function New_Invoice(props) {
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                       value={detailsBusiness && detailsBusiness.city}
                     />
-                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
                       size='15'
+                      rowsMax='2'
                       type="text"
                       placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "street" : "street"}
                       className="design_text design_buisness"
@@ -1322,18 +1324,21 @@ function New_Invoice(props) {
                     />
                   </div>
                 </div>
-                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
-                  <input readOnly
-                    type="text"
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    // size='20'
-                    className="design_text design_buisness"
-                    placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
-                    // onClick={() => setFocus('companyPhone')}
-                    onChange={(e) => onFieldChanged('companyPhone')}
-                    onBlur={updatedetailsBusiness1('phone')}
-                    value={detailsBusiness && detailsBusiness.phone}
-                  />
+                <div className="col-3 d-flex justify-content-center wrapBuisnessBorder">
+                  <div>
+                    <input readOnly
+                      type="text"
+                      style={{ verticalAlign: "top" }}
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      // size='20'
+                      className="design_text design_buisness"
+                      placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
+                      // onClick={() => setFocus('companyPhone')}
+                      onChange={(e) => onFieldChanged('companyPhone')}
+                      onBlur={updatedetailsBusiness1('phone')}
+                      value={detailsBusiness && detailsBusiness.phone}
+                    />
+                  </div>
                 </div>
               </div>
               <div className='row' style={{ paddingRight: "2%", paddingLeft: "8%", paddingTop: "5%" }}>
