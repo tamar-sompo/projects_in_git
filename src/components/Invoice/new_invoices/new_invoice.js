@@ -77,7 +77,7 @@ function New_Invoice(props) {
     address: '',
     flag: false
   })
- const [index,setIndex]=useState()
+  const [index, setIndex] = useState()
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
   const [firstFlagSaveContact1, setFirstFlagSaveContact1] = useState(false)
   const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
@@ -519,7 +519,7 @@ function New_Invoice(props) {
     //     }
     //   }
     // }
-    
+
     let id_contact
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
@@ -528,10 +528,11 @@ function New_Invoice(props) {
       dispatch(actions.setContactReset(fieldName))
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       // $("#" + select2 + " option[value*='" + val + "']").prop('disabled', true).addClass('disabled');
-      if (e.target.value )
+
+      if (e.target.value)
         id_contact = $("#contactname").find("option[value=" + e.target.value + "]").data("id")
 
-      if (id_contact) {
+      if (id_contact && e.keyCode === 13 || e.keyCode === 13 || id_contact && !(e.keyCode === 13)) {
         let dc = allcontact1.find(x => x._id == id_contact)
         dispatch(actions.setFlagMessageContact(false))
         if (detailsInvoice.contact) {
@@ -548,14 +549,6 @@ function New_Invoice(props) {
         // }
         // else setValidName(false)
 
-
-
-        if (!detailscontact) {
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-
-        }
         updateinvoiceField({ key: "contact", value: dc.email })
         setcontactedit({ [fieldName]: e.target.value })
       }
@@ -837,7 +830,9 @@ function New_Invoice(props) {
     updateinvoiceField({ key: "type", value: undefined })
 
   }
-
+  const oninput = () => {
+    alert("hh")
+  }
 
 
   return (
@@ -861,7 +856,7 @@ function New_Invoice(props) {
                 if (displayInvoice === "false") func1(event)
               }}
               style={{ border: setBorderBgImage === true ? '50px solid red' : 'none' }}>
-              <div className="row d-flex justify-content-center" style={{ paddingTop: "5%" }}>
+              <div className="row d-flex justify-content-center" style={{ paddingTop: "5%", paddingBottom: "1%" }}>
                 {detailsBusiness && detailsBusiness.imgLogo ?
                   <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
                     id='userLogo-temp1'
@@ -878,20 +873,23 @@ function New_Invoice(props) {
 
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
-                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
+
+                <div className=" d-flex justify-content-center wrapBuisnessBorder" style={{ width: "20%" }}>
                   <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
+
+
                       className="design_text design_buisness"
                       placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: 'pointer', width: "131%" }}
                     />
                   </a>
                 </div>
-                <div className="col-4 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                <div className=" d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ width: "60%", paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
@@ -914,9 +912,10 @@ function New_Invoice(props) {
                     />
                   </div>
                 </div>
-                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
+                <div className="d-flex justify-content-center wrapBuisnessBorder" style={{ width: "20%" }}>
                   <input readOnly
                     type="text"
+                    style={{ width: "90%" }}
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     // size='20'
                     className="design_text design_buisness"
@@ -960,13 +959,14 @@ function New_Invoice(props) {
                               contactedit.name ? contactedit.name : "" : ""
 
                     }
+                    // onInput={oninput}
                     onChange={(e) => onFieldChangeContact('name', e)}
                   />
-                  <datalist style={{ zIndex: "999" }} id="contactname">
+                  <datalist style={{ zIndex: "999" }} id="contactname" >
 
                     {allcontact1.length > 0 ? allcontact1.map(x => {
                       return (
-                        <option value={x.name} data-id={x._id}>{x.name}
+                        <option onInput={() => alert("kk")} value={x.name} data-id={x._id}>{x.name}
                         </option>
                       )
                     }) : ''}
@@ -1040,7 +1040,7 @@ function New_Invoice(props) {
                 </div>
                 <div></div>
                 <div className='col-4' ></div>
-                <div className='col-4' onClick={() => focus_steps('Content', 3)} style={{ paddingTop: "4%", paddingLeft: "4%" }}>
+                <div className='col-4 wrapdate'  >
                   <div className="row">
                     <div className="col-6 " >
                       <span className="cursor_default design_text_contact design_text_contactname">Invoice</span></div>

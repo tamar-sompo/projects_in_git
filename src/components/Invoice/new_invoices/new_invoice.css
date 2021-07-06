@@ -52,7 +52,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     cursor:pointer
 }
 .wrapBuisnessBorder{
-    padding-bottom: 4%;
+    padding-bottom: 2% !important;
     border-bottom: 1px solid #474747;
 }
 .sigPad{
@@ -114,7 +114,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
  
 
 
-  
+  .wrapdate{
+    padding-top: 4% !important;
+    padding-left: 4% !important
+  }
     
     .ffgf{
     text-align: left !important;

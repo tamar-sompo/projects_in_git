@@ -14,7 +14,7 @@ import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
+import $ from 'jquery'
 
 
 function Item(props) {
@@ -214,21 +214,25 @@ function Item(props) {
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
 
-
+    let id_product
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
     }
     else {
 
+      debugger
+
       console.log("trfgyuhytfdrtfgh")
-      if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
+      if (e.target.value)
+        // $("#contactname").find("option[value=" + e.target.value + "]").data("id")
+        id_product = $("#productname").find("option[value=" + e.target.value + "]").data("id")
+
+      if (id_product && e.keyCode === 13 || e.keyCode === 13 || id_product && !(e.keyCode === 13)) {
         setflagValidPrice(false)
-        let product6 = allproduct.find(x => x.name === e.target.value)
-        console.log("product6", product6)
+        let product6 = allproduct.find(x => x._id === id_product)
         dispatch(actions.setProduct1(product6))
         setdtp(product6)
         setamount2(1)
-
         dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
         dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
         // dispatch(actions.setResetNewProduct({}))
@@ -239,7 +243,6 @@ function Item(props) {
         // dispatch(actions.setProducts({ id: product6._id, amount: 1 }));
         dispatch(actions.setP(product6.name))
 
-        // setnameProduct(e.target.value)
       }
       else {
         if (e.target.value && e.target.value != "") {
@@ -253,14 +256,11 @@ function Item(props) {
                   setFlagShowSaveP({ index: props.index, value: false })
         }
       }
-
-
       if (invoice.products.length === 1)
         dispatch(actions.setPushNewProduct({}))
       dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
-      // setproduct10({ ...product10, "name": e.target.value })
+
     }
-    // setnameProduct(e.target.value)
   }
   const vv = (e) => {
 
@@ -699,43 +699,41 @@ function Item(props) {
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
-          {props.pro.id == "null" || props.pro.id === undefined ?
+            {props.pro.id == "null" || props.pro.id === undefined ?
             <div className="inputproduct" style={{ width: "35%" }}>
-              <input aria-label="empty textarea"
+              <input 
+                aria-label="empty textarea"
                 autoComplete="new-password"
                 onFocus={() => cleanInput1('name')}
                 name="product"
                 list="productname"
-                // className='cell'
                 className={flagValidName ? 'cell  validB' : 'cell '}
-                // maxlength="15" 
                 size="7"
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
               ></input>
               <datalist id="productname">
                 {allproduct.length > 0 && allproduct.map(x => {
-                  return (<option>{x.name}</option>)
+                  return (<option value={x.name} data-id={x._id}>{x.name}</option>)
 
                 })}
               </datalist>
-
             </div> :
             <div className="inputproduct" style={{ width: "35%" }}>
-              <TextareaAutosize aria-label="empty textarea"
+              <input aria-label="empty textarea"
                 autoComplete="new-password"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 // className='cell design_text ffgf'
-                className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                // className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
                 maxRows={2}
-              > </TextareaAutosize>
+              > </input>
 
             </div>}
           <div className="inputproduct" style={{ width: "55%" }} >
@@ -845,7 +843,7 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "delete_hover cinput" : "delete_hover"} style={{
                   marginLeft: "33%",
-                  display:"none",
+                  display: "none",
                   width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
