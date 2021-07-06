@@ -67,13 +67,19 @@ const initialState = {
     filteredInvoices: [],
     flagSaveP: false,
     borderProductInvoice: false,
-    displayBoxShadow: false
+    displayBoxShadow: false,
+    submitSaveInvoice:false,
 
 
 }
 
 
 const invoices = {
+
+    setSubmitSaveInvoice(state, action){
+        state.submitSaveInvoice=action.payload
+    },
+
     setflagValidName(state, action) {
         state.flagValidName = action.payload
     },

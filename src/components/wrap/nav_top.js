@@ -80,7 +80,7 @@ export default function Nav() {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const new_product = useSelector(state => state.productReducer.newProduct)
-
+  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
 
 
 
@@ -100,11 +100,6 @@ export default function Nav() {
     console.log("dispatch1")
     dispatch(actions.setGeCurrenttBuisness(objBuisness))
     console.log("dispatch2")
-  }
-
-
-  const setMail = () => {
-    dispatch(actions.setsendMessage("true"))
   }
 
   const send = () => {
@@ -138,9 +133,12 @@ export default function Nav() {
 
   //אחרי לחיצה על כפתור במודל 
   useEffect(() => {
-    if (buttonClick === "saveInvoiceOtherPage")
-      save1()
-
+    // if (buttonClick === "saveInvoiceOtherPage"){
+    //   alert("formmm")
+    //   document.getElementById("form_id").submit();
+    // }
+    
+      // save1()
     if (buttonClick === "saveInvoiceOtherPageBack") {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
@@ -163,12 +161,6 @@ export default function Nav() {
     }
 
     else {
-      // alert("validProduct" + validProduct)
-      if (flagOfterValidation === true && validProduct === true) {
-        // alert("validProduct flagOfterValidation" +flagOfterValidation+ validProduct)
-        dispatch(actions.setFlagOfterValidation(false))
-        dispatch(actions.setValidProduct(false))
-        setClickSave(false)
         if (flagToCheck === true) {
           setFlagToCheck(false)
           if (flagSaveP === false) {
@@ -182,9 +174,8 @@ export default function Nav() {
             }
           }
         }
-      }
     }
-  }, [flagToCheck, flagOfterValidation, validProduct])
+  }, [flagToCheck])
 
 
 
@@ -203,13 +194,9 @@ export default function Nav() {
     }
   }, [colorFlagShowSaveP])
 
-
-  //בלחיצה על שמירה מתחיל את הבדיקות תקינות 
-  const save1 = () => {
-    debugger
-    //איפוס כל המשתנים
-
-    dispatch(actions.setFlagPush(false))
+  useEffect(()=>{
+    if(submitSaveInvoice===true){
+      dispatch(actions.setFlagPush(false))
     dispatch(actions.setFlagPush1(false))
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagModal(""))
@@ -217,19 +204,6 @@ export default function Nav() {
     dispatch(actions.setButtonClick(""))
     dispatch(actions.setModalBody(""))
     dispatch(actions.setClickSave(true))
-    dispatch(actions.setFlagValidation(true))
-
-    debugger
-    //בודק אם יש מוצר ריק בחשבונית
-    // if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
-    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
-    //   ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false )) ||
-    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false ))) {
-
-    //   setFlagSaveP(true)
-    //   dispatch(actions.setBorderProductInvoice(true))
-    // }
-    //בדיקה אם יש מוצר לא שמור
 
 
     flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
@@ -239,11 +213,8 @@ export default function Nav() {
         dispatch(actions.setColorFlagShowSaveP("red"))
       }
     })
-
-  }
-
-
-
+    }
+  },[submitSaveInvoice])
 
   //אחרי השמירה מאפס את כל המשתנים 
   useEffect(() => {
@@ -386,11 +357,22 @@ export default function Nav() {
         <div className="col-6 d-flex align-items-center justify-content-center">
           {
             window.location.href.indexOf("invoice") != -1 &&
-            <button
-              onClick={save1}
-              className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
-              {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-            </button>}
+            <input
+              form="form_id"
+                name='selectBillingAddress'
+                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+                // onClick={savepr}
+                className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
+                value="save"
+                // className="btn"
+                type="submit" 
+                />
+            // <button
+            //   onClick={save1}
+            //   className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
+            //   {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+            // </button>
+            }
         </div>
 
 

@@ -3,7 +3,7 @@ import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Button } from 'react-bootstrap'
+import { Col, Row, Container, Button, Form } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { Link, useHistory } from "react-router-dom";
@@ -14,7 +14,6 @@ import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
 
 
 function Item(props) {
@@ -63,6 +62,7 @@ function Item(props) {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
+  const [validated, setValidated] = useState(false);
   // const [flagValidPrice, setflagValidPrice] = useState(false);
   // const [flagValidName, setflagValidName] = useState(false);
   useEffect(() => {
@@ -106,52 +106,52 @@ function Item(props) {
       // alert("clickkkk")
       // setClickSave(false)
       if (dtp && dtp._id) {
-        if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
-          setflagValidPrice(false)
-          setflagValidName(false)
-          dispatch(actions.setValidProduct(true))
-        }
-        else {
-          if (!new_product[props.index].name) {
-            setflagValidName(true)
-            // dispatch(actions.setInvalidProduct(true))
-            console.log("flagValidName", flagValidName)
-          }
-          if (dtp && !dtp.price) {
-            setflagValidPrice(true)
-            // dispatch(actions.setInvalidProduct(true))
-            console.log("flagValidPhone", flagValidPrice)
-          }
+        // if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+        //   setflagValidPrice(false)
+        //   setflagValidName(false)
+        //   dispatch(actions.setValidProduct(true))
+        // }
+        // else {
+        //   if (!new_product[props.index].name) {
+        //     setflagValidName(true)
+        //     // dispatch(actions.setInvalidProduct(true))
+        //     console.log("flagValidName", flagValidName)
+        //   }
+        //   if (dtp && !dtp.price) {
+        //     setflagValidPrice(true)
+        //     // dispatch(actions.setInvalidProduct(true))
+        //     console.log("flagValidPhone", flagValidPrice)
+        //   }
         }
       }
       else {
         // alert("hhhh", new_product)
         console.log('new_product', new_product)
 
-        if (props.pro.id === "null" || props.pro.id === undefined) {
-          if (new_product[props.index].name && new_product[props.index].price) {
-            setflagValidPrice(false)
-            setflagValidName(false)
-            dispatch(actions.setValidProduct(true))
-          }
-          else {
+        // if (props.pro.id === "null" || props.pro.id === undefined) {
+        //   if (new_product[props.index].name && new_product[props.index].price) {
+        //     setflagValidPrice(false)
+        //     setflagValidName(false)
+        //     dispatch(actions.setValidProduct(true))
+        //   }
+        //   else {
 
-            if (!new_product[props.index].name) {
-              setflagValidName(true)
-              dispatch(actions.setValidProduct(false))
-              // dispatch(actions.setInvalidProduct(true))
-              console.log("flagValidName", flagValidName)
-            }
-            if (!new_product[props.index].price) {
-              //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
-              setflagValidPrice(true)
-              dispatch(actions.setValidProduct(false))
-              // dispatch(actions.setInvalidProduct(true))
-              console.log("flagValidPhone", flagValidPrice)
-            }
-          }
-        }
-      }
+        //     if (!new_product[props.index].name) {
+        //       setflagValidName(true)
+        //       dispatch(actions.setValidProduct(false))
+        //       // dispatch(actions.setInvalidProduct(true))
+        //       console.log("flagValidName", flagValidName)
+        //     }
+        //     if (!new_product[props.index].price) {
+        //       //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
+        //       setflagValidPrice(true)
+        //       dispatch(actions.setValidProduct(false))
+        //       // dispatch(actions.setInvalidProduct(true))
+        //       console.log("flagValidPhone", flagValidPrice)
+            // }
+          // }
+        // }
+      // }
     }
   }, [clickSave])
 
@@ -204,11 +204,10 @@ function Item(props) {
           dispatch(actions.setInvoceShow(detailsInvoice))
         }
       }
-
     }
   }, [allproduct])
   const vv3 = (e) => {
-    setflagValidName(false)
+    // setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
@@ -222,7 +221,7 @@ function Item(props) {
 
       console.log("trfgyuhytfdrtfgh")
       if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
-        setflagValidPrice(false)
+        // setflagValidPrice(false)
         let product6 = allproduct.find(x => x.name === e.target.value)
         console.log("product6", product6)
         dispatch(actions.setProduct1(product6))
@@ -264,7 +263,7 @@ function Item(props) {
   }
   const vv = (e) => {
 
-    setflagValidName(false)
+    // setflagValidName(false)
     // setflagValidName(false)
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -273,7 +272,7 @@ function Item(props) {
     debugger
 
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
-      setflagValidPrice(false)
+      // setflagValidPrice(false)
       let product6 = allproduct.find(x => x.name === e.target.value)
       dispatch(actions.setProduct1(product6))
       // dispatch(actions.setProduct1(product6))
@@ -457,8 +456,10 @@ function Item(props) {
     }
   }
 
-  const savepr = () => {
+  function savepr(){
     debugger
+    // event.preventDefault()
+    alert("jjjj")
     if (amountProductInvoice != 0) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
@@ -467,20 +468,20 @@ function Item(props) {
       if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
         dispatch(actions.setProductId1(dtp._id))
         dispatch(actions.editProduct(props.index))
-        setflagValidPrice(false)
-        setflagValidName(false)
+        // setflagValidPrice(false)
+        // setflagValidName(false)
       }
       else {
-        if (!new_product[props.index].name && !dtp.name) {
-          setflagValidName(true)
-          console.log("flagValidName", flagValidName)
-        }
-        else { setflagValidName(false) }
-        if (!dtp.price && !new_product[props.index].price) {
-          setflagValidPrice(true)
-          console.log("flagValidPhone", flagValidPrice)
-        }
-        else { (setflagValidPrice(false)) }
+        // if (!new_product[props.index].name && !dtp.name) {
+        //   // setflagValidName(true)
+        //   console.log("flagValidName", flagValidName)
+        // }
+        // else { setflagValidName(false) }
+        // if (!dtp.price && !new_product[props.index].price) {
+        //   setflagValidPrice(true)
+        //   console.log("flagValidPhone", flagValidPrice)
+        // }
+        // else { (setflagValidPrice(false)) }
       }
     }
     else {
@@ -490,23 +491,24 @@ function Item(props) {
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
           dispatch(actions.setNewProductServer(props.index))
-          setflagValidPrice(false)
-          setflagValidName(false)
+          // setflagValidPrice(false)
+          // setflagValidName(false)
         }
-        else {
-          if (!new_product[props.index].name) {
-            setflagValidName(true)
-            console.log("flagValidName", flagValidName)
-          }
-          else { setflagValidName(false) }
-          if (!new_product[props.index].price) {
-            setflagValidPrice(true)
-            console.log("flagValidPhone", flagValidPrice)
-          }
-          else { setflagValidPrice(false) }
-        }
+        // else {
+        //   if (!new_product[props.index].name) {
+        //     setflagValidName(true)
+        //     console.log("flagValidName", flagValidName)
+        //   }
+        //   else { setflagValidName(false) }
+        //   if (!new_product[props.index].price) {
+        //     setflagValidPrice(true)
+        //     console.log("flagValidPhone", flagValidPrice)
+        //   }
+        //   else { setflagValidPrice(false) }
+        // }
       }
     }
+    // return false;
   }
   const clearProduct = () => {
     if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
@@ -552,7 +554,7 @@ function Item(props) {
 
     const value = Number(_value);
     if (!Number.isNaN(value)) {
-      setflagValidPrice(false)
+      // setflagValidPrice(false)
       // dispatch({
       //   fieldName,
       //   value: {
@@ -623,46 +625,86 @@ function Item(props) {
       }
     }
   }
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    event.preventDefault();
+    setValidated(true);
+    if(form.checkValidity() === true)
+    savepr()
+  };
+
+
   return (
-    <form onSubmit={savepr}>
+
+
+    <Form id="form_item" noValidate validated={validated} onSubmit={handleSubmit}>
       <div
         className="row "
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
       >
+      
+
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
+          <>
             <div className="inputproduct" style={{ width: "35%" }}>
-              <input aria-label="empty textarea"
+              {/* <input type="text" class="form-item"  name="name"  ></input> */}
+              {/* <Form.Control> */}
+              <input 
+              aria-label="empty textarea"
                 required
+                // data-required="required"
+                // data-field="product"
                 autoComplete="new-password"
+                // id="product"
                 onFocus={() => cleanInput1('name')}
                 name="product"
                 list="productname"
                 // className='cell'
-                className={flagValidName ? 'cell  validB' : 'cell '}
+                className={
+                  // flagValidName ? 'cell  validB' :
+                 'cell '
+                }
                 // maxlength="15" 
                 size="7"
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
               ></input>
+              {/* </Form.Control> */}
               <datalist id="productname">
                 {allproduct.length > 0 && allproduct.map(x => {
                   return (<option>{x.name}</option>)
 
                 })}
               </datalist>
-
-            </div> :
+   <Form.Control.Feedback type="invalid">
+   require
+          </Form.Control.Feedback>
+            </div> 
+         
+          </>
+            :
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
+               required
                 autoComplete="new-password"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
-                // className='cell design_text ffgf'
-                className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                className={
+                  // flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ?
+                  //  'cell  design_text ffgf validB' :
+                    'cell design_text ffgf'
+                  }
                 onFocus={() => cleanInput1('name')}
                 value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
@@ -670,8 +712,11 @@ function Item(props) {
                 type="text"
                 maxRows={2}
               > </TextareaAutosize>
-
-            </div>}
+               <Form.Control.Feedback type="invalid">
+               require
+          </Form.Control.Feedback>
+            </div>
+            }
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
@@ -679,9 +724,7 @@ function Item(props) {
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'
-              // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
-              // disabled={displayInvoice === "true" ? "" : "disable"}
               value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
@@ -689,38 +732,36 @@ function Item(props) {
           </div>
 
         </div>
+ 
+
+
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
-
-
-
-
-
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
               required
+              aria-describedby="inputGroupPrepend"
+              id="validationCustomUsername"
               autoComplete="new-password"
               onFocus={() => cleanInput1('price')}
-              id="validation-example-3-field2"
-              // flagValidPrice={}
+              // id="validation-example-3-field2"
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' : 'cell design_text'}
-              // className='cell design_text'
-              // className={`form-control ${state.field2.validationClass}`}
+              className={
+                // flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' :
+                 'cell design_text'
+                }
               value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
-            {/* <Cell
-              onFocus={() => cleanInput1('price')}
-              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-              disabled={displayInvoice === "true" ? "" : "disable"}
-              onChange={(e) => updateCell('price', e)}
-              onClick={(e) => setFocus('price')}
-              type="number"
-            ></Cell> */}
+             <Form.Control.Feedback type="invalid">
+             require
+          </Form.Control.Feedback>
           </div>
+          <Form.Control.Feedback type="invalid">
+          require
+          </Form.Control.Feedback>
           <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
               autoComplete="new-password"
@@ -732,7 +773,6 @@ function Item(props) {
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
-              //  style={{width:"15%", height:"60%"}}
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
@@ -743,12 +783,6 @@ function Item(props) {
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
-            {/* <Cell
-              onFocus={() => cleanInput1('discount')}
-              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-              onChange={(e) => updateCell('discount', e)}
-              type="number"
-            ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
             <CurrencyInput
@@ -758,20 +792,13 @@ function Item(props) {
               value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
-            {/* <input
-              className="sum1 cell"
-              value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
-            /> */}
-
-
           </div>
-
           <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
             {
               flagShowSaveP[props.index] &&
               <input
                 style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
-                onClick={savepr}
+                // onClick={savepr}
                 value="save"
                 className="btn"
                 type="submit" />
@@ -789,150 +816,7 @@ function Item(props) {
           </div>
         </div>
       </div>
-      {/*       
-        <Col md={1} className='py-3'>
-          <Button id='1'
-            style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
-            onClick={() => {
-              if (displayInvoice === "false") clearProduct()
-            }}
-            className={invoice.products.length === 1 ? "button4 cinput" : "button4"}>X</Button>
-
-
-          {
-            flagShowSaveP[props.index] &&
-            <button style={{ width: "25px", height: "20px", backgroundColor: 'transparent', border: "none", color: colorFlagShowSaveP }} onClick={savepr}>save</button>
-          }
-
-        </Col>
-        {props.pro.id == "null" || props.pro.id === undefined ?
-          <Col className='py-3' md={2}>
-
-            <input
-
-              onFocus={() => cleanInput1('name')}
-              name="product"
-              list="productname"
-              className='cell'
-              maxlength="15" size="7"
-              value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
-              onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-            /> */}
-      {/* <datalist id="productname">
-              {productSelect.map(x => {
-                return (<option>{x.name}</option>)
-
-              })}
-            </datalist> */}
-      {/* <datalist id="productname">
-              {allproduct.length > 0 && allproduct.map(x => {
-                return (<option>{x.name}</option>)
-
-              })}
-            </datalist> */}
-
-      {/* <Select className="select_p" onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv2(e)} options={productSelect.map((x)=>{
-             return ({
-                      "label": x.name,
-                      "value": x
-                    })
-  })} */}
-      {/* </Col>
-          :
-          <Cell
-            onFocus={() => cleanInput1('name')}
-            value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
-            disabled={displayInvoice === "true" ? "" : "disable"}
-            onChange={(e) => updateCell('name', e)}
-          > </Cell>}
-
-        <Cell
-
-          placeholder='descripition'
-          onFocus={() => cleanInput1('description')}
-          disabled={displayInvoice === "true" ? "" : "disable"}
-          value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : ''}
-          onChange={(e) => updateCell('description', e)}
-          type="text"
-        ></Cell>
-        {/* <Cell
-          onFocus={() => cleanInput1('price')}
-          value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-          disabled={displayInvoice === "true" ? "" : "disable"}
-          onChange={(e) => updateCell('price', e)}
-          onClick={(e) => setFocus('price')}
-          type="number"
-        ></Cell> */}
-      {/* <Col className='py-3' md={2}>
-            <CurrencyInput
-                style={{width:"100%", height:"100%"}}
-                onFocus={() => cleanInput1('price')}
-                id="validation-example-3-field2"
-                name="price"
-                disabled={displayInvoice === "true" ? "disable" : ""}
-                className='cell design_text'
-                // className={`form-control ${state.field2.validationClass}`}
-                value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-                onValueChange={updateCellPrice}
-                prefix={'$'}
-              /></Col> */}
-      {/* <CurrencyInput
-           className='cell design_text'
-        disabled={displayInvoice === "true" ? "disable" : ""}
-        id="input-example"
-        name="input-name"
-        onFocus={() => cleanInput1('price')}
-        value={props.pro.amount}
-        onChange={(e) => updateCellprefix('price', e)}
-     
-  placeholder="Please enter a number"
-  // defaultValue={props.pro.amount}
-  decimalsLimit={2}
-  prefix={'$'}
-  onValueChange={(e) => updateCell('price', e)}
-/>; */}
-      {/* <Cell
-          onFocus={() => cleanInput1('amount')}
-          value={props.pro.amount}
-          onChange={(e) => updateCell('amount', e)}
-          type="number"
-        ></Cell> */}
-
-      {/* <Cell
-          onFocus={() => cleanInput1('discount')}
-          value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-          onChange={(e) => updateCell('discount', e)}
-          type="number"
-        ></Cell> */}
-      {/* <Col className='py-3' md={2}>
-         <CurrencyInput
-        //  style={{width:"15%", height:"60%"}}
-        style={{width:"100%", height:"100%"}}
-         onFocus={() => cleanInput1('discount')}
-                id="validation-example-3-field2"
-                name="discount"
-                disabled={displayInvoice === "true" ? "disable" : ""}
-                className='cell design_text'
-                // className={`form-control ${state.field2.validationClass}`}
-                value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-                onValueChange={updateCellPrice}
-                suffix={'%'}
-              /></Col> */}
-      {/* <Col md={1} style={{ backgroundColor: '#DBD0D7', height: "100%" }}> */}
-      {/* <span className="sum1 cell">
-            {props.sum_product}
-          </span> */}
-      {/* <div className='py-3' ref={totalProductRef}>
-            <input
-              className="sum1 cell"
-              value={props.pro.sum_product}
-            />
-
-          </div>
-        </Col> */}
-      {/* </Row>  */}
-
-    </form>
+    </Form>
   )
 }
 export default Item

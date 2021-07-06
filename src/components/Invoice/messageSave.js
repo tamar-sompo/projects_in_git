@@ -48,6 +48,21 @@ function MessageSave(props) {
                             flagModal === "otherPage" ? () => setButtonClick("saveInvoiceOtherPage") :
                             flagModal === "otherPageInvoices" ? () => setButtonClick("saveInvoiceOtherPage"):
                              ""}>
+{
+    flagModal === "otherPage" &&
+    <>
+    <input
+              form="form_id"
+                name='selectBillingAddress'
+                style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
+                // className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
+                value="save"
+                // className="btn"
+                type="submit" 
+                />
+     </>
+}
+
                         {flagModal === "contact" ? "save to crm" : flagModal === "otherPage" || flagModal === "otherPageInvoices"? "yes" : ""}
                     </Button>
                     <Button variant="danger" style={{
