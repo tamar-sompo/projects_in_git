@@ -11,8 +11,8 @@ import { useHistory } from 'react-router-dom';
 // import history from '../../../history'
 import { withRouter, useLocation } from 'react-router-dom';
 import Maincomp from '../Details/productions'
-import NewSetting from './newSetting';
-import Design_Menu from '../design_menu'
+import NewSetting from '../wrap/newSetting';
+import Design_Menu from './design_menu'
 function NewConfigorator(props) {
     const Location = useLocation()
     const dispatch = useDispatch()

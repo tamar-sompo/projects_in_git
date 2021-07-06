@@ -23,7 +23,6 @@ import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 
 import LeaderLouder from '../../components/Useful/leaderLouder'
-import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
 import { BiCalendar, BiPlus } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
@@ -129,6 +128,7 @@ function SettingBuisnessList(props) {
             updateWebsite({ key: 'website', value: "" })
             updateBuisnessField({ key: 'vat', value: "" })
             updateBuisnessField({ key: 'numberDeals', value: "" })
+            updateBuisnessField({ key: 'imgLogo', value: "" })
             // history.push(`/${userName}/allDocuments`)
         }
     }, [currentBuisness])
@@ -191,6 +191,7 @@ function SettingBuisnessList(props) {
             // delete tmpSave.uid
             debugger
             dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
+
             setErrorMessage('');
             setErrorMessage2('');
             setErrorMessage3('');
@@ -330,21 +331,34 @@ function SettingBuisnessList(props) {
         // setUrlLogo(detailsBusiness.imgLogo)
     };
 
+    // const addImage1 = (event) => {
+    //     if (event) {
+    //         let reader = new FileReader();
+    //         console.log("reader", reader.result)
+    //         dispatch(actions.setSettingBuisness({ key: 'imgLogo', value: reader.result }))
+    //         reader.onloadend = () => {
+    //             console.log("event", event)
+    //             const objectImage = { 'image': event, 'to': 'buisness' }
+    //             setImageLogo(objectImage)
+    //         }
+    //         reader.readAsDataURL(event)
+    //     }
+    // }
+
     const addImage1 = (event) => {
         if (event) {
+            debugger
             let reader = new FileReader();
-            console.log("reader", reader.result)
-            dispatch(actions.setBuisness({ key: 'imgLogo', value: reader.result }))
+            let imageToStor = { 'image': '', 'to': "" }
             reader.onloadend = () => {
-                console.log("event", event)
-                const objectImage = { 'image': event, 'to': 'buisness' }
-                setImageLogo(objectImage)
+                debugger
+                imageToStor = { 'image': event, 'to': 'buisnessSetting' }
+                dispatch(actions.setImage(imageToStor))
+                console.log("imageee12kkkkkkkkkkkk", imageToStor)
             }
             reader.readAsDataURL(event)
         }
     }
-
-
 
     return (
         <>
@@ -395,31 +409,55 @@ function SettingBuisnessList(props) {
                                     backgroundColor: "#F6F6FA"
                                 }}
                                 className={classes.buttonUpload}>
-                                {currentBuisness && currentBuisness.imgLogo ?
+                                {userFiled && userFiled.imgLogo ?
                                     <img
                                         // id='userLogo-temp1'
                                         className={classes.imgUpload}
-                                        src={currentBuisness && currentBuisness.imgLogo ? currentBuisness.imgLogo : ""}
+                                        src={userFiled && userFiled.imgLogo ? userFiled.imgLogo : ""}
                                         // src={urlLogo? urlLogo :""}
                                         alt="Logo"
                                         title="Your Logo Here"
                                         style={{}}
-                                        onClick={() => onButtonClick("logo")}
+                                    // onClick={() => onButtonClick("logo")}
                                     /> :
-                                    <HiUpload id="icon" className={classes.iconUpload} />}
+                                    currentBuisness && currentBuisness.imgLogo ?
+                                        <img
+                                            // id='userLogo-temp1'
+                                            className={classes.imgUpload}
+                                            src={currentBuisness && currentBuisness.imgLogo ? currentBuisness.imgLogo : ""}
+                                            // src={urlLogo? urlLogo :""}
+                                            alt="Logo"
+                                            title="Your Logo Here"
+                                            style={{}}
+                                        // onClick={() => onButtonClick("logo")}
+                                        /> :
+                                        <HiUpload id="icon" className={classes.iconUpload} />
+                                }
                                 <br></br>
                                 <div className="uploadImage">Upload</div>
 
                             </button>
+
+                            {/* <div className='imgLogoBusiness m-auto' style={{
+                                backgroundImage: `url('${userFiled.imgLogo ?
+                                    userFiled.imgLogo : currentBuisness.imgLogo ? currentBuisness.imgLogo : ""
+                                    }')`
+                            }}
+                                onClick={load}
+                            >
+                            </div> */}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
                             <div className="row">
                                 <div>
-                                    <div className="font2">Business Name</div>
+                                    <div class="d-flex justify-content-start">
+                                        <div className="font2">Business Name </div>
+                                        <div style={{ color: "red", fontSize: "small" }}>*</div>
+                                    </div>
 
-                                    <input className="inptStyle" name='name' type="text"
+                                    <input className={errorMessage ? "inptStyle  valid" : "inptStyle"} name='name' type="text"
                                         defaultValue={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
@@ -431,7 +469,7 @@ function SettingBuisnessList(props) {
                             <div className="row">
                                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                                     <div className="font2">Company Phone</div>
-                                    <input className="inptStyle" name='phone' type="text"
+                                    <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
                                         defaultValue={userFiled.phone ? userFiled.phone :
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
@@ -442,7 +480,7 @@ function SettingBuisnessList(props) {
                                 <div className="col-5">
                                     <div className="font2">Company Email</div>
                                     <input name='email' type="text"
-                                        className="inptStyle"
+                                        className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                                         defaultValue={userFiled.email ? userFiled.email :
                                             currentBuisness.email ? currentBuisness.email : ""}
                                         onChange={(e) => fieldChanged(e, 'email')}
@@ -453,8 +491,12 @@ function SettingBuisnessList(props) {
                             </div>
                             <div className="row" style={{ marginTop: "0.5vh" }}>
                                 <div>
-                                    <div className="font2">Address</div>
-                                    <input className="inptStyle" name='address' type="text"
+                                    <div class="d-flex justify-content-start">
+                                        <div className="font2">Address</div>
+                                        <div style={{ color: "red", fontSize: "small" }}>*</div>
+                                    </div>
+
+                                    <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
                                         defaultValue={userFiled.address ? userFiled.address :
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
@@ -480,8 +522,14 @@ function SettingBuisnessList(props) {
                             </div>
                             <div className="row">
                                 <div className="col-3.5" style={{ marginRight: "3vh" }}>
-                                    <div className="font2">Dealer License</div>
-                                    <input className="inptStyle" name='numberDeals' type="number"
+                                    <div class="d-flex justify-content-start">
+                                        <div className="font2">Dealer License</div>
+                                        <div style={{ color: "red", fontSize: "small" }}>*</div>
+                                    </div>
+
+                                    <input
+                                        className={errorMessage2 ? "inptStyle valid" : "inptStyle"}
+                                        name='numberDeals' type="number"
                                         defaultValue={userFiled.numberDeals ? userFiled.numberDeals :
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
@@ -516,8 +564,14 @@ function SettingBuisnessList(props) {
                                     </datalist>
                                 </div>
                                 <div className="col-5">
-                                    <div className="font2">City</div>
-                                    <input className="inptStyle" type="text" name="city" list="city"
+                                    <div class="d-flex justify-content-start">
+                                        <div className="font2">City</div>
+                                        <div style={{ color: "red", fontSize: "small" }}>*</div>
+                                    </div>
+
+                                    <input
+                                        className={errorMessage5 ? "inptStyle valid" : "inptStyle"}
+                                        type="text" name="city" list="city"
                                         defaultValue={userFiled.city ? userFiled.city :
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}
@@ -615,7 +669,6 @@ function SettingBuisnessList(props) {
                       <HiUpload id="icon" className={classes.iconUpload} />}
                     <br></br>
                     <div className="uploadImage">Upload</div>
-
                   </button>
                 </div>
               </div>
@@ -626,7 +679,6 @@ function SettingBuisnessList(props) {
               <hr />
             </div>
           </div>
-
           <div className="col-8 font2" style={{ height: "72vh" }}>
             Personal Information
             <hr />

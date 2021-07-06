@@ -80,6 +80,8 @@ export default function Nav() {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const new_product = useSelector(state => state.productReducer.newProduct)
+  const detailsProducts = useSelector(state => state.invoiceReducer.invoice.products);
+  const allproduct = useSelector(state => state.productReducer.allProducts);
 
 
 
@@ -265,6 +267,31 @@ export default function Nav() {
         dispatch(actions.setFlagFromTable(false))
     }
   }, [flagPush1])
+
+  const products = async () => {
+    console.log("innnnn")
+    if (detailsProducts) {
+      let invoiceProduct = []
+      console.log("popo", invoiceProduct)
+      await detailsProducts.map((product) => {
+        invoiceProduct.push(allproduct.filter(pro => pro._id == product.id)[0])
+      })
+      let newItem;
+      let newArray = []
+      console.log("nn", newArray)
+      await invoiceProduct.map((p) => {
+        newItem = {
+          name: p.name,
+          sku: "01",
+          price: p.price.toString(),
+          currency: "USD",
+          quantity: p.amount,
+        }
+        newArray.push(newItem)
+      })
+      dispatch(actions.setPaypalInvoiceProductsTable(newArray))
+    }
+  }
 
   //אחרי השמירה מפעיל את המודל לשם החשבונית
   const nameInvoice = () => {

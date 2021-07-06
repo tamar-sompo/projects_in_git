@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './invoice.css';
+// import './invoice.css';
 import './invoiceTemp3.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row, Container, Button } from 'react-bootstrap'
@@ -15,7 +15,6 @@ import DigitalSignature from '../Invoice/digitalSignature';
 import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM from 'react-dom';
-import ShowCompany from '../showCompany'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 
 const Input = styled.input`
