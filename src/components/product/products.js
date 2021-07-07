@@ -17,7 +17,7 @@ import CurrencyInput from 'react-currency-input-field';
 import { BsSearch } from 'react-icons/bs'
 import Tooltip from '@material-ui/core/Tooltip';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
+// import MessageProduct from './messageProduct'
 // import e from 'cors';
 // import MassageFormat from '../Useful/messageFormat'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -60,12 +60,11 @@ function Products(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchby, setSearchby] = useState('');
     const [dis, setDis] = useState({ flag: 0, id: '', inpDis: "" });
-    //////////
     const newProduct = useSelector(state => state.productReducer.newProduct)
     // const show = useSelector(state => state.designReducer.show);
     // console.log("ssssssssssshow",show)
     const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
-    /////////////////////
+    const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const buisness = useSelector(state => state.buisnessReducer.buisness)
     const [flagField, setFlagField] = useState(false)
@@ -84,7 +83,6 @@ function Products(props) {
             setProductLocal(p)
 
     }
-
     useEffect(() => {
         dispatch(actions.setDisplayBoxShadow(false))
         // alert("allp")
@@ -128,11 +126,31 @@ function Products(props) {
 
     }
 
+    useEffect(() => {
+        if (flagNewP) {
+            dispatch(actions.setNewProductTableFull({}))
+            setFlag1(true)
+        }
+        else {
+            setFlag1(false)
+
+        }
+    }, [flagNewP])
+
     const changeFlag = (value) => {
         // dispatch(actions.setPushNewProduct({}))
-        dispatch(actions.setNewProductTableFull({}))
-        setFlag1(value)
+        filtersearchProducts && filtersearchProducts.map((product, index) => {
+            if (dis.flag === 1) {
+                setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                // break;
+            }
+        })
+        // setFlagNewP(true)
+        dispatch(actions.setFlagNewP(true))
+        // dispatch(actions.setNewProductTableFull({}))
+        // setFlag1(value)
     }
+
 
     const f = () => {
         if (searchby === "productName") {
@@ -199,6 +217,9 @@ function Products(props) {
     const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
         debugger
+        if (flagNewP) {
+            dispatch(actions.setShowMessagePr(true))
+        }
         setDis({ id: product._id })
         if (dis.flag === 0) {
             // alert("inpDis:")
@@ -227,8 +248,8 @@ function Products(props) {
                 }
                 else {
                     // dispatch(actions.editProduct({ key: "table", value: product._id }))
-                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                    setDis({ id: product._id, inpDis: "" })
+                    setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                    // setDis({ id: product._id, inpDis: "" })
 
                 }
             }

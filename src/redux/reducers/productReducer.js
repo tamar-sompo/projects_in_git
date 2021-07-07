@@ -16,12 +16,16 @@ const initialState = {
         flagShowSaveP: [false],
         colorFlagShowSaveP: "#707071",
         filteredProducts: [],
-
+        flagNewP: false
 }
 const products = {
         setFilteredProducts(state, action) {
 
                 state.filteredProducts = action.payload
+        },
+        setFlagNewP(state, action) {
+                debugger
+                state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
 

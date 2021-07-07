@@ -69,6 +69,7 @@ function ProductForm(props) {
   const changeFlag = () => {
     console.log('ffllaagg', props.flag);
     props.changeFlag(false)
+    dispatch(actions.setFlagNewP(false))
   }
   const [flagName2, setflagName2] = useState(false)
   const [flagPrice2, setflagPrice2] = useState(false)
@@ -101,6 +102,7 @@ function ProductForm(props) {
     debugger
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
+      dispatch(actions.setFlagNewP(false))
       props.changeFlag(false)
     }
     else {
