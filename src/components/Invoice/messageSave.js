@@ -42,12 +42,19 @@ function MessageSave(props) {
 
                     <h1 style={{ marginTop: '7%', paddingRight: '1%', marginBottom: '0.1rem', color: '#343a40e0', paddingBottom: '6vh', fontSize: '1.7rem' }}>
                         {modalBody}</h1>
-
-                    <Button variant="secondary" style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
+{
+    flagModal != "otherPage" && flagModal != "otherPageInvoices"  &&
+    <>
+    <Button variant="secondary" style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                         onClick={flagModal === "contact" ? () => setButtonClick("saveContact") :
                             flagModal === "otherPage" ? () => setButtonClick("saveInvoiceOtherPage") :
                             flagModal === "otherPageInvoices" ? () => setButtonClick("saveInvoiceOtherPage"):
                              ""}>
+                                    {flagModal === "contact" ? "save to crm" : flagModal === "otherPage" || flagModal === "otherPageInvoices"? "yes" : ""}
+                    </Button>
+    </>
+}
+                    
 {
     flagModal === "otherPage" &&
     <>
@@ -63,8 +70,7 @@ function MessageSave(props) {
      </>
 }
 
-                        {flagModal === "contact" ? "save to crm" : flagModal === "otherPage" || flagModal === "otherPageInvoices"? "yes" : ""}
-                    </Button>
+                     
                     <Button variant="danger" style={{
                         width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                     }}

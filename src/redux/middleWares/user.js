@@ -15,7 +15,6 @@ function checkPermission(result) {
 
 
 export const getUserByUserName = ({ dispatch, getState }) => next => action => {
-    console.log("UserByUserName")
     if (action.type === 'SET_GET_USER_BY_USERNAME') {
       console.log("UserByUserNameafterAction")
       let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getUserByUserName`

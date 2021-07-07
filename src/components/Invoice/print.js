@@ -3,7 +3,7 @@ import ReactToPrint from "react-to-print";
 import PropTypes from "prop-types";
 import Invoice from '../Invoice/new_invoices/new_invoice'
 // import Invoice from './invoice.js';
-import Steps from "./steps.js";
+import Steps from "../notUse/steps.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class ComponentToPrint extends React.Component {

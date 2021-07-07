@@ -109,3 +109,6 @@ button[disabled], html input[disabled] {
     border-radius   : 5%;
     border          : none
   }
+.validB{
+    border: 1.5px solid red
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../invoice.css';
+// import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -501,9 +501,74 @@ function Item(props) {
       onItemDeleted()
   }
 
+  // const updateCellprefix = (title1, e) => {
 
+  //   console.log("ttt", e)
+  //   if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
+  //     dispatch(actions.setflagBorderProduct(false))
+  //   }
+
+  //   if (e.target.value && e.target.value != "") {
+  //     setFlagShowSaveP({ index: props.index, value: true })
+  //   }
+
+
+  //   for (var key in new_product[props.index]) {
+  //     if (new_product[props.index][key] && new_product[props.index][key] != "") {
+  //       if (flagShowSaveP === false)
+  //         setFlagShowSaveP({ index: props.inedx, value: true })
+  //     }
+  //   }
+  //   debugger
+  //   if (title1 === "discount") {
+  //     dtp.price && props.pro.amount ?
+  //       dispatch(actions.setSum({ sum: (1 - (e / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
+  //       new_product[props.index].price && amountProductInvoice &&
+  //       dispatch(actions.setSum({ sum: (1 - (e / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
+  //   }
+  //   if (title1 === "price") {
+  //     amount2 ? dtp.discount ?
+  //       dispatch(actions.setSum({ sum: e * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
+  //       new_product[props.index].discount ?
+  //         dispatch(actions.setSum({ sum: e * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+  //         dispatch(actions.setSum({ sum: e * amount2, index1: props.index })) :
+  //       dtp.discount ?
+  //         dispatch(actions.setSum({ sum: e * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
+  //         new_product[props.index].discount ?
+  //           dispatch(actions.setSum({ sum: e * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+  //           dispatch(actions.setSum({ sum: e * amountProductInvoice, index1: props.index }))
+
+  //   }
+
+
+  //   else {
+  //     dispatch(actions.setNewProduct({ index: props.index, key: title1, value: e.target.value }))
+  //   }
+
+
+
+
+  //   if (title1 == "price") {
+  //     if (e.target.value == "" && product1._id === undefined
+  //     )
+  //       if (!new_product[props.index].name || new_product[props.index].name == "")
+  //         if (!new_product[props.index].description || new_product[props.index].description == "")
+  //           if (!new_product[props.index].discount || new_product[props.index].discount == "")
+  //             setFlagShowSaveP({ index: props.index, value: false })
+  //   }
+  //   if (title1 == "discount") {
+  //     if (e.target.value == "" && product1._id === undefined
+  //     )
+  //       if (!new_product[props.index].name || new_product[props.index].name == "")
+  //         if (!new_product[props.index].description || new_product[props.index].description == "")
+  //           if (!new_product[props.index].price || new_product[props.index].price == "")
+  //             setFlagShowSaveP({ index: props.index, value: false })
+  //   }
+  // }
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+    setflagValidPrice(false)
+    // setflagValidName(false)
+    setFlagSaveP(false)
     if (!fieldName) {
       return;
     }
@@ -597,6 +662,7 @@ function Item(props) {
 
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -768,7 +834,7 @@ function Item(props) {
                 style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
                 // onClick={savepr}
                 value="save"
-                className="btn"
+                className="btn "
                 type="submit" />
             }
             {displayInvoice === "false" &&

@@ -1,15 +1,15 @@
 import produce from 'immer'
 import createReducer from "./reducerUtils";
-import { actions } from '../actions/All_actions';
+
 const initialState = {
-    contact:{
-        name:null,
-        email:null,
-        address:null,
-        phone:null
+    contact: {
+        name: null,
+        email: null,
+        address: null,
+        phone: null
     },
-    detailscontact:{},
-    allContact:[],  
+    detailscontact: {},
+    allContact: [],
     // contact:[{
     //     email:"",
     //     second_email:"",
@@ -29,11 +29,11 @@ const initialState = {
 
 
     // }]
-    newContact:{},
+
     contactDetails: {
-        quotesId:null,
-        sourceUrl:null,
-        status:null,
+        quotesId: null,
+        sourceUrl: null,
+        status: null,
         image: null,
         conversations: [],
         email: null,
@@ -67,65 +67,65 @@ const initialState = {
         Facebook: null,
         instagram: null,
         youTube: null,
-        googleContact:null,
-        addYourMedia:null,
-        secoundEmail:null,
-        nickName:null,
-        officePhone:null,
-        describe:null,
-        subscribe:null,
-        newContact:{}
+        googleContact: null,
+        addYourMedia: null,
+        secoundEmail: null,
+        nickName: null,
+        officePhone: null,
+        describe: null,
+        subscribe: null,
+        newContact: {}
     }
 }
-const contacts={
-    setNewContact(state,action){
-      state.newContact=action.payload
+const contacts = {
+    setNewContact(state, action) {
+        state.newContact = action.payload
     },
-    setContactReset(state,action){
+    setContactReset(state, action) {
         // console.log("hgghg",state.detailscontact.contact[action.payload])
-        if(state.detailscontact.contact)
-        state.detailscontact.contact[action.payload]=undefined
-    
+        if (state.detailscontact.contact)
+            state.detailscontact.contact[action.payload] = undefined
+
     },
 
-    editContact11(state, action){
-          state.allContact[action.payload.i]=action.payload.objectContact
+    editContact11(state, action) {
+        state.allContact[action.payload.i] = action.payload.objectContact
     },
 
     setAllContacts(state, action) {
         state.allContact = action.payload;
     },
-    setAddContact(state,action){
+    setAddContact(state, action) {
         console.log("reducer", action.payload)
         state.allContact.push(action.payload);
 
     },
-    setNewContact(state,action){
-        state.newContact = {...action.payload, ...state.newContact};
+    setNewContact(state, action) {
+        state.newContact = { ...action.payload, ...state.newContact };
     },
-    setNewContact1(state,action){
+    setNewContact1(state, action) {
         state.newContact = action.payload
     },
     // setUpdateContactFields(state, action) {
     //     state.contact = { ...state.contact, ...action.payload };
     // },
     setContactName(state, action) {
-        state.contact.name = action.payload ;
+        state.contact.name = action.payload;
     },
     setContactEmail(state, action) {
-        state.contact.email = action.payload ;
+        state.contact.email = action.payload;
     },
     setContactAddress(state, action) {
-        state.contact.address = action.payload ;
+        state.contact.address = action.payload;
     },
     setContactPhone(state, action) {
-        state.contact.phone = action.payload ;
+        state.contact.phone = action.payload;
     },
     //tamar
-    setCustomersDetails(state,action){
+    setCustomersDetails(state, action) {
     },
-    setDetailsContact(state, action) { 
-        state.detailscontact=action.payload
+    setDetailsContact(state, action) {
+        state.detailscontact = action.payload
     },
     // setRsetFieldContact(state,action){
     //     state.detailscontact

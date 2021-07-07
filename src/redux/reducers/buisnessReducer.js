@@ -65,6 +65,7 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setPushNewBuisness(state, action) {
+        debugger
         state.allBuisness = action.payload
     },
     setGetCurrenttBuisness(state, action) {
@@ -105,4 +106,3 @@ const buisness = {
     }
 }
 export default produce((state, action) => createReducer(state, action, buisness), initialState);
-

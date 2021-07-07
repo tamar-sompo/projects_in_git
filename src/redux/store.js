@@ -4,22 +4,6 @@ import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './actions/All_actions.js';
 
-// old functions 
-// import {
-//     // getAllReciptes, deleteProductbyID,
-//     sendEmail, getUserName, getLastInvoicePublicNote,
-//     postnewContact, getCompany,
-//     uploadImageLogo, uploadImageSignature, getContactByEmail,
-//     getFromServer,
-//     endLinkToMail, saveInvoice,
-//     //  getAllProducts,
-//     // postNewProduct,
-//     // updateContat,
-//     // createContact,
-//     getInvoicesbyIdb,
-//     createInvoiceOtomat
-// } from './middleWares/oldCrud';
-
 import {
     newBuisnessToUser,
     updateBuisnessById,
@@ -74,33 +58,40 @@ import {
 import {
     sendLinkToMail
 } from './middleWares/exportCrud';
+import {
+    setClientIdToBuisness,
+    getLinkToPayWithPaypal,
+    setPaymentDetailsToPayServer
+} from './middleWares/paymentsCrud';
 
 import publicReducer from './reducers/publicReducer';
 import invoiceReducer from './reducers/invoiceRreducer';
 import userReducer from './reducers/userReducer';
 import customerReducer from './reducers/customerReducer';
 import LogoReducer from './reducers/LogoReducer'
-import listReducer from './reducers/listReducer';
 import productReducer from './reducers/productReducer';
 import exportInvoiceReducer from './reducers/exportInvoiceReducer';
 import designReducer from './reducers/designReducer';
 import displayComponents from './reducers/displayComponents';
 import buisnessReducer from './reducers/buisnessReducer';
-import companyReducer from './reducers/companyReducer';
+import companyReducer from '../components/notUse/companyReducer';
 import cityByCountryReducer from './reducers/cityByCountryReducer'
 import messageReducer from './reducers/messageReducer'
+import paymentsReducer from './reducers/paymentsReducer.js'
 
 //רשימת הרדוסרים
 const reducer = combineReducers({
-    LogoReducer, displayComponents, invoiceReducer, customerReducer, userReducer, publicReducer, cityByCountryReducer,
-    productReducer, exportInvoiceReducer, companyReducer, designReducer, buisnessReducer, form: formReducer, listReducer, messageReducer
+    LogoReducer, displayComponents, invoiceReducer, customerReducer, userReducer, publicReducer, cityByCountryReducer, paymentsReducer,
+    productReducer, exportInvoiceReducer, companyReducer, designReducer, buisnessReducer, form: formReducer, messageReducer
 })
 // רשימת הפונקציות שיש בכל המידלוורס
 const store = createStore(
     reducer,
     composeWithDevTools(
         applyMiddleware(
-
+            setClientIdToBuisness,
+            setPaymentDetailsToPayServer,
+            getLinkToPayWithPaypal,
             getAllCountry,
             getAllCitiesByCountry,
             // deleteProductbyID,
@@ -152,7 +143,7 @@ const store = createStore(
 var url = window.location;
 console.log(url);
 store.dispatch(actions.setUserName(url.pathname.split('/')[1]))
-if (window.location.hostname == "localhost") {
+if (window.location.hostname === "localhost") {
     console.log("localhost");
     let userName = "ruthF"
     let jwtFromCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEdGN4dFJueERlWXhNcjNZUWZxWWtQWDhsUmgyIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIzMzE0NzM5fQ.lvFAravaFf6h_A3BQPMjKu1831pwM3ySvqtkAmNrOJw"
@@ -160,24 +151,24 @@ if (window.location.hostname == "localhost") {
 
     store.dispatch(actions.setTokenFromCookies(jwtFromCookie));
     store.dispatch(actions.setUserName(userName))
-    if (window.location.href.indexOf("view") != -1) {
+    if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
-        if (window.location.pathname.split("/").pop() != "") {
+        if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }
     }
 }
 else {
-    if (window.location.href.indexOf("view") != -1) {
+    if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
         console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
-        if (window.location.pathname.split("/").pop() != "") {
+        if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }
@@ -219,32 +210,14 @@ else {
 
 
 store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
-// if (window.location.href.indexOf("view") == -1) {
-store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
-// store.dispatch({ type: 'EXTRACT_JWT' });
-// store.dispatch({ type: "GET_ALL_PRODUCT" })
-// store.dispatch({ type: 'GET_ALLINVOICES_BY_IDB' })
-// store.dispatch({ type: 'GET_PUBLICNOTE' })
-// store.dispatch({ type: 'SET_GET_ALL_INVOICES_TO_BUISNESS'})
-
-// store.dispatch({ type: 'GET_ALL_PRODUCTS_TO_USER' })
-store.dispatch({ type: 'SET_COMPANY' })
-store.dispatch({ type: 'SEND_MAIL' })
 store.dispatch({ type: 'SET_GET_ALL_BUISNESS' })
 // store.dispatch({ type: 'SET_GET_BUISNESS_BY_ID' })
 // store.dispatch({ type: "SET_GET_ALL_INVOICES_TO_BUISNESS" })
 store.dispatch({ type: "SET_RESET_ALL_NEW_PRODUCT" })
 store.dispatch(actions.setFlagPush(true))
 
-store.dispatch({ type: "GET_CITY_BY_COUNTRY" })
-store.dispatch({ type: "GET_COUNRTY" })
+// store.dispatch({ type: "GET_CITY_BY_COUNTRY" })
+// store.dispatch({ type: "GET_COUNRTY" })
 store.dispatch({ type: 'GET_LAST_BUISNESS' })
-// store.dispatch({ type: 'EXTRACT_JWT' });
-
-// }
-
-
-
-
 
 export default store;
