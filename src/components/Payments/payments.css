@@ -1,20 +1,28 @@
-#payment_card{
-    width: 20rem;
-    height: 25rem;
+.payment_card{
+    width: 23rem;
+    height: 20rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     /* transition: 0.3s; */
 }
-#payment_card:hover{
+.withForm{
+    height: 40rem;
+    width: 23rem;
+    /* height: 20rem; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.withForm:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.payment_card:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .paypalLogo{
-    width: 20rem;
-    height: 15rem;
+    width: 23rem;
+    height: 11rem;
 }
 .paypalCard_addButton{
-    width: 7rem;
-    background-color: #202224 !important;
-    /* border: none; */
+    width: 5rem;
+    background-color: linen;
     color: white;
 }
 .paypalCard_addButton:hover{
@@ -23,12 +31,19 @@
 .payments_hr{
     margin-top: 0rem;
 }
-/* .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 40%;
-  } */
+.payment_card:hover .paypalCard_addButton{
+    background-color: #202224;
+} 
+.paypalCard_textarea_paypal{
+    border: none;
+    height: 15vh;
+    width: 30vh;
+    background-color: rgb(245 244 244);
+    /* background-color: red; */
+    border-radius: 1vh;
+}
+ 
   
-  .card:hover {
+  /* .payment_card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
+  } */

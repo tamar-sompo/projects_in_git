@@ -1,60 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Card from 'react-bootstrap/Card';
+import { actions } from '../../redux/actions/All_actions'
+import { useDispatch } from 'react-redux';
 
-// import paypalLogo from '../assets/paypalLogo';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
+
+
 
 
 
 function PaypalCard(props) {
+  const dispatch = useDispatch()
+  const [isPaypalForm, setIsPaypalForm] = useState(false)
+
+    const onFieldChanged = (e, fieldName) => {  
+      const value = e.target.value;
+      dispatch(actions.updatePaypalAccountField({ [fieldName]: value }))
+  }
+
     return (
         <>
-{/* <Card id="payment_card" border="light" 
-className="shadow-sm bg-body rounded black mt-3">
-                <div variant="" id='iconPosition'
-                // onClick={() => checkIfBuisness("Buisness")}
-                >
-             
-                </div>
-                <Card.Body>
-                  <Card.Title>
-                  <img src="https://files.codes/uploads/ruthF/img/1625567418051__paypalimg.png"></img>
-
-                  </Card.Title>
-                  <button
-            className='paypalCard_addButton'
-            // onClick={(e) => save()}
-          >Add</button>
-                </Card.Body>
-               
-              </Card> */}
-              {/* <div className="card"
-              id="payment_card">
-  <img src="https://files.codes/uploads/ruthF/img/1625567418051__paypalimg.png" alt="PaypalLogo" style="width:100%"/>
-  <div class="container">
+        {isPaypalForm === false ?
+<div
+className = 'payment_card mt-3 ml-3'
+>
+  <img src="https://files.codes/uploads/ruthF/img/1625567418051__paypalimg.png"
+  className="mt-5 paypalLogo "
+   alt="paypal_logo"
+   />
+  <div className="d-flex">
   <button
-            className='paypalCard_addButton'
-            // onClick={(e) => save()}
+            className='paypalCard_addButton
+            mt-4 mx-auto'
+            onClick={() => setIsPaypalForm(true)}
           >Add</button>
   </div>
-</div> */}
-
+</div>:
 <div
-className="payment_card shadow-sm bg-body rounded black mt-3">
+className = 'withForm ml-3'>
   <img src="https://files.codes/uploads/ruthF/img/1625567418051__paypalimg.png"
-  className="mt-5 paypalLogo"
-   alt="Avatar"
-  //  style={{"width":"100%"}}
-   />
-  <div class="container">
+  className="mt-5 paypalLogo "
+   alt="paypal_logo"/>
+  <div className="d-flex flex-column">
+  <div className="row mx-auto mt-4 ml-3">
+          <div className="ml-5">
+            {/* <label>Client-Id:</label> */}
+            <textarea
+            placeholder="Client Id"
+              className="paypalCard_textarea_paypal"
+              // value={newProductTable ? newProductTable.name : ''}
+              onChange={(e) => onFieldChanged(e, 'client_id')}
+              ></textarea>
+          </div>
+          {/* </div> */}
+          {/* <div className="row"> */}
+          <div className="ml-5 mt-3">
+            {/* <label>Secret-Id:</label> */}
+            <textarea
+            placeholder="Client Id"
+              className="paypalCard_textarea_paypal"
+              // value={newProductTable ? newProductTable.name : ''}
+              onChange={(e) => onFieldChanged(e, 'secret_id')}
+            ></textarea>
+          </div>
+          {/* </div> */}
   <button
-            className='paypalCard_addButton mt-5'
-            // onClick={(e) => save()}
-          >Add</button>
+            className='paypalCard_addButton
+            mt-4 mx-auto'
+            onClick = {() => {dispatch(actions.setClientIdToBuisness())}}
+            // onClick={() => setIsPaypalForm(false)}
+          >Save</button>
   </div>
 </div>
-
-
+</div>
+}
     </>
     )}
 export default PaypalCard;

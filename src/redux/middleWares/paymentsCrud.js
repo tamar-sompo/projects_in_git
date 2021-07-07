@@ -26,8 +26,8 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
     let buisnessPaypalDetails = {
       clientId:
         "AQsk0Hocr28b3fHgojgASbazi8cS99QTI6iTzU_UZOTxEmSdcOi5bAonEM0cm8re-QjTspk_l1YjzHoE",
-      clientSecret:
-      "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
+      // clientSecret:
+      // "EPuSHNlWC_J-mhED_1g66tdpJEMSD8mCZ0DKV_szBGpD5HHEqbmJQn1WQ0CSvdyd74SD4SUYhkRkWYEk",
 amount:{
 currency: "USD", 
 total: totalToPAy.toString()
@@ -37,6 +37,7 @@ total: totalToPAy.toString()
       //     
       items: items
     }
+    console.log("chch", buisnessPaypalDetails)
     let username = getState().publicReducer.userName;
     let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
     console.log("urlData", urlData)
