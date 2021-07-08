@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../example.css';
-
+import Select from 'react-select'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { useHistory } from "react-router-dom";
@@ -24,6 +24,7 @@ import {
 import $ from 'jquery'
 import MessageSave from '../messageSave'
 import './new_invoice.css'
+// import './config.css'
 function New_Invoice(props) {
   const Location = useLocation()
   const dispatch = useDispatch();
@@ -189,7 +190,7 @@ function New_Invoice(props) {
 
 
   useEffect(() => {
-    alert("flagpush")
+
     debugger
     dispatch(actions.setFlagTmpSave(true))
     dispatch(actions.setFlagOfterValidation(false))
@@ -229,7 +230,6 @@ function New_Invoice(props) {
           dispatch(actions.setResetSaveSum(summ))
         }
         else {
-          alert("LLLL")
           dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
         }
         debugger
@@ -529,10 +529,13 @@ function New_Invoice(props) {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       // $("#" + select2 + " option[value*='" + val + "']").prop('disabled', true).addClass('disabled');
 
-      if (e.target.value)
-        id_contact = $("#contactname").find("option[value=" + e.target.value + "]").data("id")
+      if (e.target.value) {
+        debugger
+        id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
+      }
 
-      if (id_contact && e.keyCode === 13 || e.keyCode === 13 || id_contact && !(e.keyCode === 13)) {
+
+      if (e.keyCode == 13 && id_contact || e.keyCode == 13 || id_contact && !e.keyCode) {
         let dc = allcontact1.find(x => x._id == id_contact)
         dispatch(actions.setFlagMessageContact(false))
         if (detailsInvoice.contact) {
@@ -575,14 +578,16 @@ function New_Invoice(props) {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       setContactFromInvoice({ ...contactFromInvoice, [fieldName]: undefined })
     }
-    if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
-      setcontactedit({ ...contactedit, [fieldName]: e.target.value })
-      setsaveContactOne({ ...saveContactOne, [fieldName]: undefined })
-    }
     else {
+      if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
+        setcontactedit({ ...contactedit, [fieldName]: e.target.value })
+        setsaveContactOne({ ...saveContactOne, [fieldName]: undefined })
+      }
+      else {
 
-      setcontactedit({ ...contactedit, [fieldName]: e.target.value })
-      dispatch(actions.setContactReset(fieldName))
+        setcontactedit({ ...contactedit, [fieldName]: e.target.value })
+        dispatch(actions.setContactReset(fieldName))
+      }
     }
   }
   // const resetfieldcontactname = (field, e) => {
@@ -962,12 +967,17 @@ function New_Invoice(props) {
                     // onInput={oninput}
                     onChange={(e) => onFieldChangeContact('name', e)}
                   />
-                  <datalist style={{ zIndex: "999" }} id="contactname" >
 
+                  <datalist style={{ zIndex: "999" }} id="contactname"
+                  >
                     {allcontact1.length > 0 ? allcontact1.map(x => {
                       return (
-                        <option onInput={() => alert("kk")} value={x.name} data-id={x._id}>{x.name}
-                        </option>
+                        <option
+                          data-id={x._id}
+                          data-value={`option${x.name}`}
+                        // value={`"${x.name}"`}
+                        // value="hh"
+                        >{x.name}</option>
                       )
                     }) : ''}
                   </datalist>
@@ -1134,7 +1144,6 @@ function New_Invoice(props) {
                 </div> */}
 
               </div>
-
               <div className="container-fluid wrapproduct" >
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
