@@ -31,10 +31,11 @@ import BuisnessForm from '../forms/buisnessForm.js';
 import Buisness from '../Invoice/Business/business.js';
 import Contactsiframe from '../customers/contactiframe.js';
 import MassageFormat from '../Useful/messageFormat'
-
+import MessageProduct from '../product/messageProduct'
+import { actions } from '../../redux/actions/All_actions';
 import './fiances.css'
 
-import { actions } from '../../redux/actions/All_actions';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -101,7 +102,7 @@ export default function Fiances() {
 
     return (
         <>
-
+            <MessageProduct></MessageProduct>
             <ModalNameInvoice></ModalNameInvoice>
             <MessageSave></MessageSave>
             <Router>
