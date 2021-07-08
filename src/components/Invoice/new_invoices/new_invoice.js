@@ -385,7 +385,7 @@ function New_Invoice(props) {
         tmp3 = validatorPhone(contactedit.phone);
       }
       if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
-        debugger
+
         setErrorMessage1(false)
         setErrorMessage2(false)
         dispatch(actions.setFlagValidation(false))

@@ -44,14 +44,14 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
           dispatch(actions.setUpdateInvoiceFields({ key: 'imageFrame', value: response.data.url }))
         }
         if (action.payload.to === "buisness") {
-          debugger
+
           dispatch(actions.setBuisness({ key: 'imgLogo', value: response.data.url }))
         }
         if (action.payload.to === "buisnessImg") {
           dispatch(actions.setUpdateBusiness({ key: 'imgLogo', value: response.data.url }))
         }
         if (action.payload.to === "buisnessSetting") {
-          debugger
+
           dispatch(actions.setSettingBuisness({ key: 'imgLogo', value: response.data.url }))
         }
         if (action.payload.to === "design") {

@@ -208,7 +208,7 @@ export default function Nav() {
 
   //בלחיצה על שמירה מתחיל את הבדיקות תקינות 
   const save1 = () => {
-    debugger
+
     //איפוס כל המשתנים
 
     dispatch(actions.setFlagPush(false))
@@ -221,7 +221,7 @@ export default function Nav() {
     dispatch(actions.setClickSave(true))
     dispatch(actions.setFlagValidation(true))
 
-    debugger
+
     //בודק אם יש מוצר ריק בחשבונית
     // if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
     //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
@@ -320,7 +320,7 @@ export default function Nav() {
       else
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
       // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      // debugger
+      // 
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }

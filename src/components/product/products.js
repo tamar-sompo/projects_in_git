@@ -173,7 +173,7 @@ function Products(props) {
 
 
     const onFieldEdit = (fieldName, e) => {
-        debugger
+
         // if (fieldName == 'name') {
         //     if (e.target.value) {
         //         setflagName(false)
@@ -195,7 +195,7 @@ function Products(props) {
     // const [flagName, setflagName] = useState(false)
     // const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
-        debugger
+
         setDis({ id: product._id })
         if (dis.flag === 0) {
             // alert("inpDis:")
@@ -605,7 +605,7 @@ function Products(props) {
 
                                                                     </>
                                                                     :
-                                                                    <img style={{  height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{ height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>

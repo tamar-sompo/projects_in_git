@@ -5,9 +5,8 @@
     /* transition: 0.3s; */
 }
 .withForm{
-    height: 40rem;
+    height: 42rem;
     width: 23rem;
-    /* height: 20rem; */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .withForm:hover{
@@ -25,7 +24,15 @@
     background-color: linen;
     color: white;
 }
+.paypalCard_saveButton{
+    width: 5rem;
+    background-color: #202224;
+    color: white;   
+}
 .paypalCard_addButton:hover{
+    background-color: #3A405E !important; 
+}
+.paypalCard_saveButton:hover{
     background-color: #3A405E !important; 
 }
 .payments_hr{
@@ -36,8 +43,8 @@
 } 
 .paypalCard_textarea_paypal{
     border: none;
-    height: 15vh;
-    width: 30vh;
+    /* height: 15vh; */
+    /* width: 28vh; */
     background-color: rgb(245 244 244);
     /* background-color: red; */
     border-radius: 1vh;
