@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-// import './body.css'
+import './messageFormat.css'
 // import AllWorkspaces from '../workspace/allWorkspaces/allWorkspaces';
 // import TeamExample from '../team/teamExample'
 // import { Button, Modal, Form } from 'react-bootstrap';

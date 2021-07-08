@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 // import { connect } from 'react-redux';
 // import SearchProduct from './searchproduct'
@@ -65,6 +66,8 @@ function Products(props) {
     // console.log("ssssssssssshow",show)
     const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
+    const isEdit = useSelector(state => state.productReducer.isEdit)
+    const tmpPr = useSelector(state => state.productReducer.tmpPr)
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const buisness = useSelector(state => state.buisnessReducer.buisness)
     const [flagField, setFlagField] = useState(false)
@@ -88,6 +91,50 @@ function Products(props) {
         // alert("allp")
         // dispatch(actions.getAllProduct())
     }, [])
+    useEffect(() => {
+        if (isEdit) {
+            dispatch(actions.setIsEdit(false))
+            setDis({ id: tmpPr._id })
+            if (dis.flag === 0) {
+                // alert("inpDis:")
+                setFlagField(false)
+                setDis({ flag: 1, id: tmpPr._id, inpDis: "" })
+                // dispatch(actions.setNewProductObject(product))
+            }
+            else {
+                if (dis.inpDis == "") {
+                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                    // dispatch(actions.setProductId({key: "table", value:product._id}))
+                    if (flagField === true) {
+                        // if (newProductTable.name && newProductTable.price) {
+                        if (!flagPrice && !flagName) {
+                            dispatch(actions.editProduct({ key: "table", value: tmpPr._id }))
+                            setDis({ flag: 0, id: tmpPr._id, inpDis: "disable" })
+                            setFlagField(false)
+                            setflagName(false)
+                            setflagPrice(false)
+                        }
+                        else {
+                            // if (!newProductTable.name)
+                            if (flagName) setflagName(true)
+                            if (flagPrice) setflagPrice(true)
+                        }
+                    }
+                    else {
+                        // dispatch(actions.editProduct({ key: "table", value: product._id }))
+                        setDis({ flag: 0, id: tmpPr._id, inpDis: "disable" })
+                        // setDis({ id: product._id, inpDis: "" })
+
+                    }
+                }
+                else {
+                    setDis({ id: tmpPr._id, inpDis: "" })
+                    // dispatch(actions.editProduct({ key: "table", value: product._id }))
+                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                }
+            }
+        }
+    }, [isEdit])
 
     useEffect(() => {
         // dispatch(actions.getAllProduct())
@@ -139,6 +186,8 @@ function Products(props) {
 
     const changeFlag = (value) => {
         // dispatch(actions.setPushNewProduct({}))
+
+        //כדי לסגור עריכה בעת יצירת חדש
         filtersearchProducts && filtersearchProducts.map((product, index) => {
             if (dis.flag === 1) {
                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
@@ -193,7 +242,6 @@ function Products(props) {
 
 
     const onFieldEdit = (fieldName, e) => {
-        debugger
         if (fieldName == 'name') {
             if (e.target.value) {
                 setflagName(false)
@@ -216,47 +264,51 @@ function Products(props) {
     const [flagName, setflagName] = useState(false)
     const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
-        debugger
         if (flagNewP) {
             dispatch(actions.setShowMessagePr(true))
-        }
-        setDis({ id: product._id })
-        if (dis.flag === 0) {
-            // alert("inpDis:")
-            setFlagField(false)
-            setDis({ flag: 1, id: product._id, inpDis: "" })
-            // dispatch(actions.setNewProductObject(product))
+            dispatch(actions.saveTmpPr(product))
         }
         else {
-            if (dis.inpDis == "") {
-                // setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                // dispatch(actions.setProductId({key: "table", value:product._id}))
-                if (flagField === true) {
-                    // if (newProductTable.name && newProductTable.price) {
-                    if (!flagPrice && !flagName) {
-                        dispatch(actions.editProduct({ key: "table", value: product._id }))
-                        setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                        setFlagField(false)
-                        setflagName(false)
-                        setflagPrice(false)
+            // dispatch(action.saveTmpPr(product))
+
+            setDis({ id: product._id })
+            if (dis.flag === 0) {
+                // alert("inpDis:")
+                setFlagField(false)
+                setDis({ flag: 1, id: product._id, inpDis: "" })
+                // dispatch(actions.setNewProductObject(product))
+            }
+            else {
+                if (dis.inpDis == "") {
+                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                    // dispatch(actions.setProductId({key: "table", value:product._id}))
+                    if (flagField === true) {
+                        // if (newProductTable.name && newProductTable.price) {
+                        if (!flagPrice && !flagName) {
+                            dispatch(actions.editProduct({ key: "table", value: product._id }))
+                            setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                            setFlagField(false)
+                            setflagName(false)
+                            setflagPrice(false)
+                        }
+                        else {
+                            // if (!newProductTable.name)
+                            if (flagName) setflagName(true)
+                            if (flagPrice) setflagPrice(true)
+                        }
                     }
                     else {
-                        // if (!newProductTable.name)
-                        if (flagName) setflagName(true)
-                        if (flagPrice) setflagPrice(true)
+                        // dispatch(actions.editProduct({ key: "table", value: product._id }))
+                        setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                        // setDis({ id: product._id, inpDis: "" })
+
                     }
                 }
                 else {
+                    setDis({ id: product._id, inpDis: "" })
                     // dispatch(actions.editProduct({ key: "table", value: product._id }))
-                    setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                    // setDis({ id: product._id, inpDis: "" })
-
+                    // setDis({ flag: 0, id: product._id, inpDis: "disable" })
                 }
-            }
-            else {
-                setDis({ id: product._id, inpDis: "" })
-                // dispatch(actions.editProduct({ key: "table", value: product._id }))
-                // setDis({ flag: 0, id: product._id, inpDis: "disable" })
             }
         }
     }
@@ -797,7 +849,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
 {/* <td>
-
 <CurrencyInputProps
     style={{ width: "100%", height: "100%" }}
     id="validation-example-3-field2"
@@ -809,7 +860,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Products);
         newProductTable.price :
         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
             newProductTable.price : product.price}
-
     onValueChange={updateCellPrice}
     prefix={'$'}
 />

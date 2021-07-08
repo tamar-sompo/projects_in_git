@@ -10,14 +10,14 @@ import {
   Link
 } from "react-router-dom";
 // import Logo from '../Invoice/editLogo'
-import  './production.css'
+import './production.css'
 import ButtonsUpdate from '../buttons';
 import { actions } from '../../redux/actions/All_actions';
 import { Route } from "react-router-dom";
-import Production  from '../SideConfig/configurator/level1';
-import  Design  from '../SideConfig/configurator/design.js';
-import { Content } from '../SideConfig/configurator/content';
-import { Conversion } from '../SideConfig/configurator/level4';
+import Production from '../notUse/configurator/level1';
+import Design from '../notUse/configurator/design.js';
+import { Content } from '../notUse/configurator/content';
+import { Conversion } from '../notUse/configurator/level4';
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -29,7 +29,7 @@ import { Conversion } from '../SideConfig/configurator/level4';
 function Maincomp(props) {
 
   const dispatch = useDispatch();
-  const isLevel=useSelector(state=>state.designReducer.isLevel)
+  const isLevel = useSelector(state => state.designReducer.isLevel)
   // const isLevel = 
 
   const { step } = props
@@ -39,24 +39,24 @@ function Maincomp(props) {
 
   // const currentComponentStep = useSelector(state => state.displayComponentSteps.isComponentStep);
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  {console.log("props.hidden_design",props.hidden)}
-// {props.hidden && $(".lll").fadeOut()}
-  return (<div className={`lll ${props.hidden?'ggg':'trtrtr'}`}>
+  { console.log("props.hidden_design", props.hidden) }
+  // {props.hidden && $(".lll").fadeOut()}
+  return (<div className={`lll ${props.hidden ? 'ggg' : 'trtrtr'}`}>
 
-    {isLevel===1 &&
-    <>
- <Production/> 
+    {isLevel === 1 &&
+      <>
+        <Production />
 
-</>}
+      </>}
 
-{isLevel===2 && 
-<Design></Design>
-}
+    {isLevel === 2 &&
+      <Design></Design>
+    }
     {/* <Route path="/:userName/Invoice/Production" component={Production} />
     <Route path="/:userName/Invoice/Design" component={Design} />
     <Route path="/:userName/Invoice/Content" component={Content} /> */}
     {/* <Route path="/:userName/Invoice/Conversion" component={Conversion} /> */}
-</div>
+  </div>
   )
 }
 const mapStateToProps = (state) => {

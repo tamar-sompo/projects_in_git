@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './newSetting.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
-import $ from 'jquery'
-import Design_Menu from '../design_menu'
 
-import { RiSettings2Fill } from 'react-icons/ri';
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -34,7 +29,6 @@ export default function NewSetting(props) {
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
   const invoice = useSelector(state => state.invoiceReducer.invoice);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
-  const [flagFirstB, setFlagFirstB] = useState(false)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
   const [flagIfSave, setFlagIfSave] = useState(false)
@@ -121,7 +115,10 @@ export default function NewSetting(props) {
       dispatch(actions.getAllProduct())
       dispatch(actions.setInvoiceSave(null))
     }
+    if (specificRoute === "Payments") {
+      history.push(`/${userName}/payments`)}
     if (specificRoute === "Setting") {
+      console.log("setting")
       history.push(`/${userName}/setting`)
       dispatch(actions.setInvoiceSave(null))
     }
@@ -145,7 +142,7 @@ export default function NewSetting(props) {
       {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
       <div className={`container-fluid 
-      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >    {/* <Design_Menu /> */}
+      ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >
 
         <ul class="list-group list-group-flush d-flex flex-column " style={{ marginTop: "30%" }}>
 
@@ -204,6 +201,12 @@ export default function NewSetting(props) {
             </div>
             <div>Setting</div>
           </li>
+          <li className={window.location.href.split('/')[4] == "Payments" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Payments")}>
+            <div>
+              <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
+            </div>
+            <div>Payments</div>
+          </li>
           {/* <li className="list-group-item yy d-flex align-items-center">
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
             </li>
@@ -256,14 +259,5 @@ export default function NewSetting(props) {
       {/* <div className="trtr" style={{width:"50px",height:"50px",backgroundColor:"red"}}>fgyueryfggfgfgfggfgfg</div> */}
     </>
   )
-}
-    // const mapStateToProps=(state)=>{
-
-    // }
-    // const mapDispatchToProps=(dispatch)=>{
-    //   return{ 
-    //      getproduct:()=>dispatch({type:"GET_ALL_PRODUCT"}),
-    //      setDetailsView:(e)=>dispatch(actions.setInvoiceShow(e))
-    //     }
-
-    // }
+      }
+   

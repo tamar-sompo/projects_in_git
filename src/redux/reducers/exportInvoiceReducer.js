@@ -9,9 +9,6 @@ const initialState = {
     successSendEmail:"false"
 }
 const conversion = {
-    setSendLinkToEmail(state, action) {
-        state.linkToMail = action.payload;
-    },
     setEmailDetails(state, action) {
         state.emailDetails[action.payload.key] = action.payload.value
     },

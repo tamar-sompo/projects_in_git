@@ -1,7 +1,6 @@
 import produce from 'immer'
 import createReducer from "./reducerUtils";
 import Untitled from '../../Img/Untitled-1.jpg'
-import { actions } from '../actions/All_actions';
 const initialState = {
         allProducts: [],
         newProduct: [{}],
@@ -16,12 +15,23 @@ const initialState = {
         flagShowSaveP: [false],
         colorFlagShowSaveP: "#707071",
         filteredProducts: [],
-        flagNewP: false
+        flagNewP: false,
+        isSave: false,
+        tmpPr: {},
+        isEdit: false
 }
 const products = {
         setFilteredProducts(state, action) {
-
                 state.filteredProducts = action.payload
+        },
+        setIsEdit(state, action) {
+                state.isEdit = action.payload
+        },
+        setIsSave(state, action) {
+                state.isSave = action.payload
+        },
+        saveTmpPr(state, action) {
+                state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
                 debugger
@@ -77,7 +87,6 @@ const products = {
                 state.product1 = action.payload;
         },
         setAllProducts(state, action) {
-
                 state.allProducts = action.payload;
         },
         // setAddProduct(state, action) {

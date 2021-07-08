@@ -6,7 +6,6 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageProduct(props) {
-    debugger
     // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
@@ -16,12 +15,16 @@ export default function MessageProduct(props) {
     console.log("showMessagePr", showMessagePr)
 
     const handleClose = () => setShowMessagePr(false);
+    //no
     const openEdit = () => {
         dispatch(actions.setFlagNewP(false))
+        dispatch(actions.setIsEdit(true))
+        // dispatch(actions.setIsOpen(false))
         handleClose()
     }
+    //yes
     const save = () => {
-        debugger
+        dispatch(actions.setIsSave(true))
         handleClose()
     }
     return (

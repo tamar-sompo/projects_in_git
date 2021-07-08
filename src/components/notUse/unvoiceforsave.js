@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useRef, useState } from 'react';
-import './invoice.css';
+// import './invoice.css';
 // import './invoiceTemp1.css';
 import '../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,12 +14,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from 'react-select'
 import $ from 'jquery'
 // import {Link} from "react-router-dom";
-import DigitalSignature from './digitalSignature';
+import DigitalSignature from '../Invoice/digitalSignature';
 import flowersLogo from '../../Img/flowersLogo.png';
 import signature from '../../Img/signature.png'
 import ReactDOM from 'react-dom';
-import ShowCompany from '../showCompany'
-import flowerbackground from '../assets/flo.jpg'
+// import flowerbackground from '../assets/flo.jpg'
 import Untitled from '../../../src/Img/Untitled-1.jpg'
 import { ListItemIcon } from '@material-ui/core';
 

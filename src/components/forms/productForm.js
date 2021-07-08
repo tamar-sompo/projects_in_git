@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
@@ -98,12 +99,19 @@ function ProductForm(props) {
     dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     // props.setNewProduct({ index: 0, key: fieldName, value: value })
   }
+  const isSave = useSelector(state => state.productReducer.isSave)
+  useEffect(() => {
+    if (isSave) {
+      addNewProduct()
+      dispatch(actions.setIsSave(false))
+    }
+  }, [isSave])
   const addNewProduct = () => {
-    debugger
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
-      props.changeFlag(false)
+      // debugger
+      // props.changeFlag(false)
     }
     else {
       if (flagName) setflagName2(true)

@@ -22,7 +22,7 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
     var link =
       `https://finance.leader.codes/${userName}/view/${id}`
     console.log('link', link)
-    let urlData = `https://api.dev.accounts.leader.codes/createSystemWave`
+    let urlData = `https://api.dev.leader.codes/createSystemWave`
     let body = {
       subject: "Invoice created",
       body: 'New Invoice created successfuly, you can see it in:' + link,
@@ -54,6 +54,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
   if (action.type === 'SET_SAVE_INVOICE') {
 
     let buisnessId = getState().buisnessReducer.buisness
+    let currentBuisness = getState().buisnessReducer.currentBuisness
     console.log("buisnessId", buisnessId)
     let invoice = action.payload
     console.log("iiinvoice", invoice)
@@ -85,6 +86,11 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        // if(currentBuisness.clientId){
+        //   console.log("if")
+        dispatch(actions.setSendLinkPaypal())
+        //   console.log("ifff")
+        // }
         // dispatch(actions.getFcmtoken());
       },
       error: function (err) {
@@ -125,10 +131,17 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 
 export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_INVOICE') {
-    // return new Promise((resolve, reject) => {
+    console.log("setUpdateInvoice")
+    let invoice
+    if (action.payload) {
+      invoice = action.payload
+    }
+    else {
+      invoice = getState().invoiceReducer.invoice;
+    }
     console.log("action.payload", action.payload)
     let invoiceId = getState().invoiceReducer.invoiceId;
-    let invoice = getState().invoiceReducer.invoice;
+    console.log("invoice", invoiceId)
     let vv = getState().invoiceReducer.viewConversion
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateInvoiceForBuisness/${invoiceId}`
     $.ajax({
@@ -144,6 +157,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
       dataType: 'json',
       success: async function (invoice1) {
         console.log("updateInvoice", invoice1, vv)
+        dispatch(actions.setSendLinkPaypal("edit"))
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update an invoice successfully"))
         await dispatch(actions.setInvoiceShow(invoice1.invoice))

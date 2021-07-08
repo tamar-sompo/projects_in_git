@@ -106,4 +106,3 @@ const buisness = {
     }
 }
 export default produce((state, action) => createReducer(state, action, buisness), initialState);
-

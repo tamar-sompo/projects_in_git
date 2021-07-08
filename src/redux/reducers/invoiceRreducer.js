@@ -39,7 +39,6 @@ const initialState = {
     signatureFromServer: "",
     companyChangesDetails: {},
     urlImgLogo: "",
-    signatureFromServer: '',
     invoiceName: '',
     dueDate: '',
     comment: '',
@@ -208,7 +207,7 @@ state.invalidProduct=action.payload
 
     deleteLastProduct(state, action) {
         state.invoiceDetailsView.products = state.invoiceDetailsView.products.filter((_, i) =>
-            i != (state.invoiceDetailsView.products.length - 1)
+            i !== (state.invoiceDetailsView.products.length - 1)
         )
     },
     setDislayInvoice(state, action) {
@@ -294,11 +293,11 @@ state.invalidProduct=action.payload
     },
     deleteLastProductInvoice(state, action) {
         state.invoice.products = state.invoice.products.filter((_, i) =>
-            i != ((state.invoice.products.length) - 1)
+            i !== ((state.invoice.products.length) - 1)
         )
     },
     setSumProductToPInvoice(state, action) {
-        let index = state.invoice.products.findIndex(x => x.id == action.payload.id)
+        let index = state.invoice.products.findIndex(x => x.id === action.payload.id)
         state.invoice.products[index] = { id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product }
     },
     setProductId(state, action) {
@@ -416,9 +415,9 @@ state.invalidProduct=action.payload
     // setSaveInvoice(state, action) {
     //     state.invoice = { ...state.invoice };
     // },
-    setUpdateInvoice(state, action) {
-        state.invoiceId = action.payload;
-    },
+    // setUpdateInvoice(state, action) {
+    //     state.invoiceId = action.payload;
+    // },
     setRemoveInvoice(state, action) {
         state.invoiceId = action.payload;
     }

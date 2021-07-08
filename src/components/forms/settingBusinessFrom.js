@@ -23,7 +23,6 @@ import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 
 import LeaderLouder from '../../components/Useful/leaderLouder'
-import uploadAnimation from '../assets/animation_500_kkl8emcp.gif'
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
 import { BiCalendar, BiPlus } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
@@ -670,7 +669,6 @@ function SettingBuisnessList(props) {
                       <HiUpload id="icon" className={classes.iconUpload} />}
                     <br></br>
                     <div className="uploadImage">Upload</div>
-
                   </button>
                 </div>
               </div>
@@ -681,7 +679,6 @@ function SettingBuisnessList(props) {
               <hr />
             </div>
           </div>
-
           <div className="col-8 font2" style={{ height: "72vh" }}>
             Personal Information
             <hr />
