@@ -7,7 +7,7 @@ const initialState = {
   paypalSubscription:false,
   paypalInvoiceProductsTable:[],
   totalProductsTable:"",
-  closePaypalForm:false
+  isPaypalForm:false
  }
 
 const payments = {
@@ -18,8 +18,8 @@ const payments = {
     setSaveLinkPayToContact(state, action) {
         state.linkPayToContact = action.payload
     },
-    setClosePaypalForm(state, action) {
-        state.closePaypalForm = action.payload
+    setIsPaypalForm(state, action) {
+        state.isPaypalForm = action.payload
     },
     setBuisnessPaypalSubscription(state, action) {
         state.paypalSubscription = action.payload

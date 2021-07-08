@@ -13,7 +13,7 @@ function PaypalCard(props) {
   const dispatch = useDispatch()
   // const [isPaypalForm, setIsPaypalForm] = useState(false)
 
-  const isPaypalForm = useSelector(state => state.paymentsReducer.closePaypalForm);
+  const isPaypalForm = useSelector(state => state.paymentsReducer.isPaypalForm);
 
   const updatePaypalAccountField = (fieldToUpdate) => {
     dispatch(actions.updatePaypalAccountField(fieldToUpdate))
@@ -38,7 +38,7 @@ function PaypalCard(props) {
             <button
               className='paypalCard_addButton
             mt-4 mx-auto'
-              // onClick={() => setIsPaypalForm(true)}
+              onClick={() => dispatch(actions.setIsPaypalForm(true))}
             >Add</button>
           </div>
         </div> :
@@ -53,7 +53,7 @@ function PaypalCard(props) {
                 <textarea className=""
                 type="string"
                   placeholder="Client Id"
-                  className="paypalCard_textarea_paypal w-120 h-200 p-3"
+                  className="paypalCard_textarea_paypal h-200 p-3"
                   onChange={(e) => onFieldChanged(e, 'client_id')}
                 ></textarea>
               </div>
@@ -65,11 +65,13 @@ function PaypalCard(props) {
                   onChange={(e) => onFieldChanged(e, 'secret_id')}
                 ></textarea>
               </div>
-              {/* <button
-                className='paypalCard_saveButton
-            mt-3 mx-auto'
+              <div className="ml-5 mt-5">
+              <button className="row mt-3" 
+              // mx-auto"
+                className='paypal_saveButton w-120 h-40'
                 onClick={() => {dispatch(actions.setClientIdToBuisness()) }}
-              >Save</button> */}
+              >Save</button>
+              </div>
             </div>
           </div>
         </div>
