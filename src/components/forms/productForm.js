@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
   //   borderRadius: 50 + '%',
   //   padding: 0
   // },
-  // imgUpload: {
-  //   display: 'inline-block',
-  //   width: 7 + 'vh',
-  //   height: 7 + 'vh',
-  //   backgroundColor: 'transparent',
-  //   // border: '1px solid black',
-  //   borderRadius: 50 + '%',
-  //   padding: 0
-  // }
+  imgUpload: {
+    display: 'inline-block',
+    width: 7 + 'vh',
+    height: 7 + 'vh',
+    backgroundColor: 'transparent',
+    // border: '1px solid black',
+    borderRadius: 50 + '%',
+    padding: 0
+  }
 }))
 
 

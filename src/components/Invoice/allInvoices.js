@@ -279,8 +279,8 @@ function AllInvoices(props) {
               onClick={() => clickSearch(true)}
             >
               <div>
-                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}   
-                 onChange={(e) => search(e.target.value.toLowerCase())}
+                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
+                  onChange={(e) => search(e.target.value.toLowerCase())}
                   onMouseOut={() => clickSearch(false)}
                 >
                 </input>
@@ -301,7 +301,7 @@ function AllInvoices(props) {
         <div className="wrap_table">
           <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
             <div className="col">
-              <div className="table-responsive">
+              <div className="table-responsive" style={{ margin: '0% !important' }}>
                 {flagLoud &&
                   <div class="d-flex justify-content-center"
                     className={flagLoud ? "d-flex justify-content-center oposity" : "d-flex justify-content-center"}>
