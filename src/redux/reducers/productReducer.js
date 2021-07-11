@@ -18,11 +18,15 @@ const initialState = {
         flagNewP: false,
         isSave: false,
         tmpPr: {},
-        isEdit: false
+        isEdit: false,
+        ifSave: false
 }
 const products = {
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
+        },
+        setIfSave(state, action) {
+                state.ifSave = action.payload
         },
         setIsEdit(state, action) {
                 state.isEdit = action.payload

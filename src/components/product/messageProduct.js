@@ -13,17 +13,23 @@ export default function MessageProduct(props) {
     const modalBody = useSelector(state => state.messageReducer.modalBody);
     const showMessagePr = useSelector(state => state.messageReducer.showMessagePr);
     console.log("showMessagePr", showMessagePr)
-
+    const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const handleClose = () => setShowMessagePr(false);
     //no
     const openEdit = () => {
+        debugger
+        // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIsEdit(true))
+        dispatch(actions.setIfSave(false))
+        dispatch(actions.setNewProductTableFull({}))
         // dispatch(actions.setIsOpen(false))
         handleClose()
     }
     //yes
     const save = () => {
+        debugger
+        // dispatch(actions.setIfSave(false))
         dispatch(actions.setIsSave(true))
         handleClose()
     }
@@ -33,7 +39,7 @@ export default function MessageProduct(props) {
                 backdrop="static"
                 keyboard={false}
                 // onHide={() => setShowMessage(false)}
-                style={{ opacity: "1" }}
+                style={{ opacity: "1", background: "transparent" }}
                 style={{ height: "100%", left: "50%" }}>
                 <Modal.Header style={{ opacity: "1", cursor: "pointer" }} closeButton>
                 </Modal.Header>

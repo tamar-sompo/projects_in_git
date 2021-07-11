@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
-
+import MessageProduct from '../product/messageProduct'
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -27,7 +27,9 @@ export default function NewSetting(props) {
   const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
+  const showMessagePr = useSelector(state => state.messageReducer.showMessagePr)
   const invoice = useSelector(state => state.invoiceReducer.invoice);
+  const savePr = useSelector(state => state.productReducer.ifSave);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
@@ -84,8 +86,20 @@ export default function NewSetting(props) {
         }
       }
       else {
-        routePage()
-        setShowMessage(false)
+        if (savePr) {
+          if (window.location.href.split('/')[4] == "product") {
+            dispatch(actions.setShowMessagePr(true))
+          }
+          else {
+            routePage()
+            setShowMessage(false)
+          }
+        }
+        else {
+          routePage()
+          setShowMessage(false)
+        }
+
       }
 
     }
@@ -116,7 +130,8 @@ export default function NewSetting(props) {
       dispatch(actions.setInvoiceSave(null))
     }
     if (specificRoute === "Payments") {
-      history.push(`/${userName}/payments`)}
+      history.push(`/${userName}/payments`)
+    }
     if (specificRoute === "Setting") {
       console.log("setting")
       history.push(`/${userName}/setting`)
@@ -127,6 +142,11 @@ export default function NewSetting(props) {
 
 
   const checkIfBuisness = (value) => {
+    // if (savePr) {
+    //   if (value != 'Products') {
+    //     dispatch(actions.setShowMessagePr(true))
+    //   }
+    // }
     dispatch(actions.setDisplayBoxShadow(false))
     setIndex(index + 1)
     setspecificRoute(value)
@@ -138,6 +158,7 @@ export default function NewSetting(props) {
 
   return (
     <>
+      {showMessagePr && <MessageProduct flag={1}></MessageProduct>}
       {/* <button></button> */}
       {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
@@ -259,5 +280,4 @@ export default function NewSetting(props) {
       {/* <div className="trtr" style={{width:"50px",height:"50px",backgroundColor:"red"}}>fgyueryfggfgfgfggfgfg</div> */}
     </>
   )
-      }
-   
+}

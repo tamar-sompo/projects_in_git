@@ -60,7 +60,9 @@ function ProductForm(props) {
   const dispatch = useDispatch();
   // const changeComponent = (component1) => dispatch(actions.setComponentConfigurator(component1))
   // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
-  const newProductTable = useSelector(state => state.productReducer.newProductTable)
+  const newProductTable = useSelector(state => state.productReducer.newProductTable);
+  // const isSave = useSelector(state => state.productReducer.isSave);
+  // const isSave = useSelector(state => state.productReducer.isSave)
   console.log("newProductTable.images", newProductTable.images);
 
   useEffect(() => {
@@ -89,12 +91,7 @@ function ProductForm(props) {
         setflagName2(true)
       }
     }
-    // else {
-    //   if (fieldName == 'price') {
-    //     setflagPrice(false)
-    //     setflagPrice2(false)
-    //   }
-    // }
+    dispatch(actions.setIfSave(true))
     const value = e.target.value;
     dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     // props.setNewProduct({ index: 0, key: fieldName, value: value })
@@ -102,14 +99,21 @@ function ProductForm(props) {
   const isSave = useSelector(state => state.productReducer.isSave)
   useEffect(() => {
     if (isSave) {
+      debugger
       addNewProduct()
-      dispatch(actions.setIsSave(false))
+      // dispatch(actions.setIsSave(false))
     }
   }, [isSave])
   const addNewProduct = () => {
+    debugger
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
+      dispatch(actions.setIfSave(false))
+      if (isSave) {
+        dispatch(actions.setIsEdit(true))
+      }
+      dispatch(actions.setIsSave(false))
       // debugger
       // props.changeFlag(false)
     }
@@ -118,6 +122,7 @@ function ProductForm(props) {
       else setflagName2(false)
       if (flagPrice) setflagPrice2(true)
       else setflagPrice2(false)
+      dispatch(actions.setIsSave(false))
     }
     // props.setNewProduct1({})
     // dispatch(actions.setResetNewProduct(0))
@@ -155,6 +160,7 @@ function ProductForm(props) {
 
   const updateCellPrice = (_value, fieldName) => {
     debugger
+    dispatch(actions.setIfSave(true))
     if (fieldName == 'price') {
       if (_value) {
         setflagPrice(false)
