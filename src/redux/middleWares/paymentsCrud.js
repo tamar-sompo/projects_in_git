@@ -83,15 +83,15 @@ export const setClientIdToBuisness = ({ dispatch, getState }) => next => action 
       },
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify({ "clientId": clientId }),
-      success: (buisness) => {
+      success: async (buisness) => {
         //   checkPermission(link).then((ifOk) => {
         //     console.log("okGetLink", link)
         // dispatch(actions.setSaveLinkPayToContact(link.href))
         console.log("oksave", buisness.buisness)
         dispatch(actions.setGeCurrenttBuisness(buisness.buisness))
         dispatch(actions.setShow(true))
-        dispatch(actions.setNameAction("We have attached you to the service"))
-        dispatch(actions.setClosePaypalForm(true))
+      await  dispatch(actions.setNameAction("We have attached you to the service"))
+        dispatch(actions.setClosePaypalForm(false))
         // dispatch(actions.setPaymentDetailsToPayServer(buisness.buisness))
         // להעביר בהמשך למידלוואר של pay
         //   })

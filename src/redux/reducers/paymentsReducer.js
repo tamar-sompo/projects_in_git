@@ -18,7 +18,7 @@ const payments = {
     setSaveLinkPayToContact(state, action) {
         state.linkPayToContact = action.payload
     },
-    setIsPaypalForm(state, action) {
+    setClosePaypalForm(state, action) {
         state.isPaypalForm = action.payload
     },
     setBuisnessPaypalSubscription(state, action) {

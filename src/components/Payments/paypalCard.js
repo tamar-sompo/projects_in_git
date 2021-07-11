@@ -38,7 +38,7 @@ function PaypalCard(props) {
             <button
               className='paypalCard_addButton
             mt-4 mx-auto'
-              onClick={() => dispatch(actions.setIsPaypalForm(true))}
+              onClick={() => dispatch(actions.setClosePaypalForm(true))}
             >Add</button>
           </div>
         </div> :
@@ -53,7 +53,7 @@ function PaypalCard(props) {
                 <textarea className=""
                 type="string"
                   placeholder="Client Id"
-                  className="paypalCard_textarea_paypal h-200 p-3"
+                  className="paypalCard_textarea_paypal  p-3"
                   onChange={(e) => onFieldChanged(e, 'client_id')}
                 ></textarea>
               </div>
@@ -61,17 +61,17 @@ function PaypalCard(props) {
                 <textarea
                 type="string"
                   placeholder="Secret Id"
-                  className="paypalCard_textarea_paypal w-120 h-200 p-3"
+                  className="paypalCard_textarea_paypal  p-3"
                   onChange={(e) => onFieldChanged(e, 'secret_id')}
                 ></textarea>
               </div>
-              <div className="ml-5 mt-5">
-              <button className="row mt-3" 
-              // mx-auto"
-                className='paypal_saveButton w-120 h-40'
+              </div>
+              <div className="d-flex mt-3">
+              <button 
+                className='paypal_saveButton h-40 row mt-5 justify-content-center
+                mx-auto'
                 onClick={() => {dispatch(actions.setClientIdToBuisness()) }}
               >Save</button>
-              </div>
             </div>
           </div>
         </div>

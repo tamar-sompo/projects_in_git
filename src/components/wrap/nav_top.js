@@ -272,7 +272,6 @@ export default function Nav() {
     console.log("innnnn")
     if (detailsProducts) {
       let invoiceProduct = []
-      console.log("popo", invoiceProduct)
       await detailsProducts.map((product) => {
         invoiceProduct.push(allproduct.filter(pro => pro._id == product.id)[0])
       })
