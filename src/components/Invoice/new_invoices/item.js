@@ -701,6 +701,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <input aria-label="empty textarea"
                 autoComplete="new-password"
+                rowsMax="2"
                 onFocus={() => cleanInput1('name')}
                 name="product"
                 list="productname"
@@ -722,6 +723,7 @@ function Item(props) {
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
                 autoComplete="new-password"
+                rowsMax="2"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
@@ -732,14 +734,14 @@ function Item(props) {
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
-                maxRows={2}
+              // maxRows={2}
               > </TextareaAutosize>
 
             </div>}
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
-              maxRows={2}
+              rowsMax="2"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'

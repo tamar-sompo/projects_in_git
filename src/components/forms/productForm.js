@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
@@ -69,6 +70,7 @@ function ProductForm(props) {
   const changeFlag = () => {
     console.log('ffllaagg', props.flag);
     props.changeFlag(false)
+    dispatch(actions.setFlagNewP(false))
   }
   const [flagName2, setflagName2] = useState(false)
   const [flagPrice2, setflagPrice2] = useState(false)
@@ -97,11 +99,19 @@ function ProductForm(props) {
     dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     // props.setNewProduct({ index: 0, key: fieldName, value: value })
   }
+  const isSave = useSelector(state => state.productReducer.isSave)
+  useEffect(() => {
+    if (isSave) {
+      addNewProduct()
+      dispatch(actions.setIsSave(false))
+    }
+  }, [isSave])
   const addNewProduct = () => {
-
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
-      props.changeFlag(false)
+      dispatch(actions.setFlagNewP(false))
+      // debugger
+      // props.changeFlag(false)
     }
     else {
       if (flagName) setflagName2(true)
@@ -168,9 +178,6 @@ function ProductForm(props) {
       dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
   }
-
-
-
 
   return (
     <>
