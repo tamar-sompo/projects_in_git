@@ -27,7 +27,7 @@ const buisness = {
     },
 
     setGeCurrenttBuisness(state, action) {
-        debugger
+
         state.currentBuisness = action.payload
     },
     setUpDateBuisness(state, action) {
@@ -65,7 +65,7 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setPushNewBuisness(state, action) {
-        debugger
+
         state.allBuisness = action.payload
     },
     setGetCurrenttBuisness(state, action) {
@@ -81,7 +81,7 @@ const buisness = {
 
 
     setSettingBuisness(state, action) {
-        debugger
+
         state.settingBuisness[action.payload.key] = action.payload.value
     },
     setSettingBuisnessWebsite(state, action) {

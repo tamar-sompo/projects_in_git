@@ -251,7 +251,6 @@ export default function Nav() {
     console.log("innnnn")
     if (detailsProducts) {
       let invoiceProduct = []
-      console.log("popo", invoiceProduct)
       await detailsProducts.map((product) => {
         invoiceProduct.push(allproduct.filter(pro => pro._id == product.id)[0])
       })
@@ -299,7 +298,7 @@ export default function Nav() {
       else
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
       // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
-      // debugger
+      // 
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }

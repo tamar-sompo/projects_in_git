@@ -1,3 +1,55 @@
-/* #payment_card{
-
+.payment_card{
+    width: 23rem;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.withForm{
+    height: 38rem;
+    width: 23rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.withForm:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.payment_card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.paypalLogo{
+    width: 23rem;
+    height: 11rem;
+}
+.paypalCard_addButton{
+    width: 5rem;
+    background-color: linen;
+    color: white;
+}
+.paypal_saveButton{
+    background-color: #3A405E !important;
+    color: white; 
+    width: 30%;  
+}
+.paypalCard_addButton:hover{
+    background-color: #3A405E !important; 
+}
+/* .paypal_saveButton:hover{
+    background-color: #3A405E !important; 
 } */
+.payments_hr{
+    margin-top: 0rem;
+}
+.payment_card:hover .paypalCard_addButton{
+    background-color: #202224;
+} 
+.paypalCard_textarea_paypal{
+    border: none;
+    height: 140%;
+    width: 120%;
+    background-color: rgb(245 244 244);
+    /* background-color: red; */
+    border-radius: 1vh;
+}
+ 
+  
+  /* .payment_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  } */

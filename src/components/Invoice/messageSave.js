@@ -55,7 +55,7 @@ function MessageSave(props) {
                     }
 
                     {
-                        flagModal === "otherPage" || flagModal === "otherPageInvoices" &&
+                        (flagModal === "otherPage" || flagModal === "otherPageInvoices") &&
                         <>
                             <Button
                                 variant="secondary"

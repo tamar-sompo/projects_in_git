@@ -6,15 +6,20 @@ const initialState = {
   linkPayToContact:"",
   paypalSubscription:false,
   paypalInvoiceProductsTable:[],
-  totalProductsTable:""
+  totalProductsTable:"",
+  isPaypalForm:false
  }
 
 const payments = {
     updatePaypalAccountField(state, action) {
+        console.log("upup")
         state.buisnessPaypalDetails[action.payload.key] = action.payload.value
     },
     setSaveLinkPayToContact(state, action) {
         state.linkPayToContact = action.payload
+    },
+    setClosePaypalForm(state, action) {
+        state.isPaypalForm = action.payload
     },
     setBuisnessPaypalSubscription(state, action) {
         state.paypalSubscription = action.payload

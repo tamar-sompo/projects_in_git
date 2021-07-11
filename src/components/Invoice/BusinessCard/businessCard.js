@@ -56,7 +56,7 @@ export default function BusinessCard(props) {
     setEditable(!editable)
   }
   const remove = () => {
-    debugger
+
     updatedetailsBusiness({ key: 'id', value: buisnessId })
     dispatch(actions.setRemoveBuisnessById(buisnessId))
   }
@@ -81,7 +81,7 @@ export default function BusinessCard(props) {
       let reader = new FileReader();
       let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-        debugger
+
         imageToStor = { 'image': event, 'to': 'buisnessImg' }
         dispatch(actions.setImage(imageToStor))
         console.log("imageee12kkkkkkkkkkkk", imageToStor)
@@ -112,7 +112,7 @@ export default function BusinessCard(props) {
           // onChange={(e) =>  setImage(e.target.value)}
           />
           <div className='imgLogoBusiness m-auto' style={{
-            height:"21px",
+            height: "21px",
             backgroundImage: `url('${buisnessId === updateBusiness.id ?
               updateBusiness.imgLogo ?
                 updateBusiness.imgLogo : image : image

@@ -268,7 +268,7 @@ function Item(props) {
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
 
-    debugger
+
 
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
       // setflagValidPrice(false)
@@ -491,7 +491,7 @@ function Item(props) {
   //         setFlagShowSaveP({ index: props.inedx, value: true })
   //     }
   //   }
-  //   debugger
+  //   
   //   if (title1 === "discount") {
   //     dtp.price && props.pro.amount ?
   //       dispatch(actions.setSum({ sum: (1 - (e / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
@@ -741,7 +741,7 @@ function Item(props) {
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
-                maxRows={2}
+              // maxRows={2}
               > </TextareaAutosize>
               <Form.Control.Feedback type="invalid">
                 require
@@ -751,7 +751,7 @@ function Item(props) {
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
-              maxRows={2}
+              rowsMax="2"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'

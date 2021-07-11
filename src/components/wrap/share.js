@@ -18,32 +18,35 @@ export default function Share(props) {
     const dispatch = useDispatch();
     const sendEmail = () => dispatch(actions.setSendLinkToEmail())
     const [pdfDisplay, setPdfDisplay] = useState(false);
-    const [watsappText, setWatsappText] = useState(false);
-
     console.log("pdfDisplay", pdfDisplay)
-
-    const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
+    // const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
     const userName = useSelector(state => state.publicReducer.userName)
-    const linkPayToContact = useSelector(state => state.paymentsReducer.linkPayToContact)
+    const [watsappText, setWatsappText] = useState("")
+    console.log(watsappText, "watsappText")
 
-    const invoiceId = useSelector(state => state.invoiceReducer.invoiceId)
+    const invoiceSaveId = useSelector(state => state.invoiceReducer.invoiceId)
+    // console.log("invoiceIdwwwwww", invoiceId)
 
     const flagSave = useSelector(state => state.invoiceReducer.invoice.contactOneTime);
     const flagSave1 = flagSave ? flagSave.flag : "";
     const emailcontact = useSelector(state => state.invoiceReducer.invoice.contact);
     const allContact = useSelector(state => state.customerReducer.allContact);
     const invoice = useSelector(state => state.invoiceReducer.invoice);
+    const linkPayFromStore = useSelector(state => state.invoiceReducer.invoiceSave)
+    console.log(linkPayFromStore, "lklk")
 
     const contactPhone = '';
     const businessPhoneWatsapp1 = '';
-
+    // const invoiceId="";
+    let invoiceId = props.invoiceId ? props.invoiceId : invoiceSaveId ? invoiceSaveId : "";
+  
 
     const sendWhatsApp = () => {
         let businessPhone;
         let businessPhoneWatsapp;
         let businessPhoneWatsapp1;
         let contactPhone
-        debugger
+
         if (flagSave1 === true) {
             businessPhone = invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                 invoice.contactOneTime.phone : "";
@@ -52,29 +55,36 @@ export default function Share(props) {
             const contact1 = allContact.find(contact => contact.email === emailcontact)
             contactPhone = contact1 ? contact1.phone : "";
         }
+        // let invoiceId = props.invoiceId ? props.invoiceId : invoiceSaveId ? invoiceSaveId : "";
+        console.log("invoiceIdwwwwww", invoiceId)
         businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : props.invoiceFhone ? props.invoiceFhone.substring(1) : "";
         businessPhoneWatsapp1 = businessPhoneWatsapp ? 972 + businessPhoneWatsapp : "";
         console.log("businessPhone", businessPhoneWatsapp1)
+        checkIsInvoicePaypalLink()
     }
+
+    // let watsappText;
+    console.log(watsappText, "watsapp")
+    // useEffect(() => {
+        const checkIsInvoicePaypalLink = () => {
+            let invoicePaypalLink = props.paypalLink ? props.paypalLink : linkPayFromStore ? linkPayFromStore.invoice ?
+            linkPayFromStore.invoice.paypalLink ?
+                linkPayFromStore.invoice.paypalLink : "null" : "null" : "null";
+    console.log("lllinkk", invoicePaypalLink)
+        if (invoicePaypalLink) {
+            console.log("first1")
+            setWatsappText(`Link to view invoice:   https://finance.leader.codes/${userName}/view/${invoiceId}   
+            Link to pay:   ${invoicePaypalLink}`)
+        }
+        else {
+            console.log("first2")
+            setWatsappText(`Link to view invoice:   https://finance.leader.codes/${userName}/view/${invoiceId}`)
+        }}
+    // }, [])
 
     const setMail = () => {
         dispatch(actions.setsendMessage("true"))
     }
-
-    useEffect(() => {
-        console.log("inuse")
-        if (invoiceSave && invoiceSave.invoice && invoiceSave.invoice.contactOneTime && invoiceSave.invoice.contactOneTime.phone) {
-            console.log("invoicesave")
-            // setWatsappText = "ppp"
-            setWatsappText(`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`)
-            if (linkPayToContact) {
-                console.log("linkkk")
-                setWatsappText(`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id} 
-                <br /> Attached is a link to pay <br /> ${linkPayToContact}`)
-            }
-        }
-    }, [invoiceSave, linkPayToContact])
-
     return (
         <>
             {pdfDisplay === true && <PdfModal setPdfDisplay={setPdfDisplay} />}
@@ -82,11 +92,11 @@ export default function Share(props) {
                 <DropdownButton id={props && props.fl == 1 ? "dropdown-basic" : "dropdown-basic-button"}
                     title={<MdShare className={props && props.fl == 1 ? "inv" : "navt"} id={props && props.fl == 1 ?
                         "icons" : "ico"}> </MdShare>}>
-                    {/* //   title={<FontAwesomeIcon className={props && props.fl == 1?  */}
-                    {/* //    "icons":"ico"} icon={['fas', 'share-alt']}></FontAwesomeIcon>}>  */}
+                    {/* // title={<FontAwesomeIcon className={props && props.fl == 1? */}
+                    {/* // "icons":"ico"} icon={['fas', 'share-alt']}></FontAwesomeIcon>}> */}
                     <Dropdown.Item onClick={() => setMail()}>
-                        <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} />  Email</Dropdown.Item>
-                    {props.invoiceFhone || allContact && allContact.find(x => x.email === emailcontact) && allContact.find(x => x.email === emailcontact).phone || invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
+                        <FontAwesomeIcon className='insertIcon font-weight-bold' size='2x' icon={['fas', 'envelope']} /> Email</Dropdown.Item>
+	                    {props.invoiceFhone || allContact && allContact.find(x => x.email === emailcontact) && allContact.find(x => x.email === emailcontact).phone || invoice && invoice.contactOneTime && invoice.contactOneTime.phone ?
                         <Dropdown.Item onClick={() => sendWhatsApp()}
                             href={`https://wa.me/${businessPhoneWatsapp1}?text=${watsappText}`} target="_blank" >
                             <FontAwesomeIcon size='1.5x' className='insertIcon font-weight-bold'
@@ -94,9 +104,6 @@ export default function Share(props) {
                             Whatsapp
                         </Dropdown.Item> : ""
                     }
-                    {/* <Dropdown.Item href="#/action-3">
-         <FontAwesomeIcon    className='insertIcon' size='1x' icon={['fas', 'file-pdf']}/> Print</Dropdown.Item> */}
-
                 </DropdownButton>
             </Tooltip>
         </>

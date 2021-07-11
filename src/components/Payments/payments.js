@@ -16,25 +16,25 @@ function Payments(props) {
         width: "98%"
       }}>
         <div className="row ">
-          <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
-            <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Payments</h1>
+          <div className="col d-flex row" 
+          // style={{ height: 10 + 'vh' }}
+          >
+            <h1 className="ml-4"
+            style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>
+              Payments</h1>
           </div>
         </div>
+      <hr className="payments_hr"/>
       <Row className="d-flex justify-content-around">
         <CardDeck
-          style={{ width: "93%" }}
-        // className="d-flex justify-content-center align-items-center"
+          style={{ width: "100%" }}
         >
-          <div className='displayCards'>
-            {/* {allBuisnessToUser ? allBuisnessToUser.map((buisness) => */}
               <div className=''>
                 <PaypalCard
                   paymentType="paypal"
                 />
               </div>
-            {/* ) : <div>You have no Business</div> */}
-            {/* } */}
-          </div>
+           
         </CardDeck>
       </Row>
       </div>
