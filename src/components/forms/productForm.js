@@ -160,6 +160,8 @@ function ProductForm(props) {
 
   const updateCellPrice = (_value, fieldName) => {
     debugger
+    //הוא דואג לבדוק אם הכנים נצונים ביצירה של חדש
+    // (בשביל מעבר בין עמ ולחיצה על מוצר)
     dispatch(actions.setIfSave(true))
     if (fieldName == 'price') {
       if (_value) {
