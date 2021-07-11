@@ -91,7 +91,7 @@ export const getAllbuisnessToUser = ({ dispatch, getState }) => next => action =
 
 export const updateBuisnessById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_BUSINESS_CARD') {
-    debugger
+
     let update = getState().buisnessReducer.updateBusiness.id;
     let current = getState().buisnessReducer.currentBuisness._id;
     // console.log("update", update)
@@ -134,7 +134,7 @@ export const updateBuisnessById = ({ dispatch, getState }) => next => action => 
 ///////////////////////////////////////////////////////////////////////////////////
 export const updateSettingBuisnessById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_SETTING_BUSINESS_CARD') {
-    debugger
+
     // let update = getState().buisnessReducer.updateBusiness.id;
     let current = getState().buisnessReducer.currentBuisness._id;
     // const body = getState().buisnessReducer.settingBuisness;
@@ -153,7 +153,7 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
       // dataType: 'json',
       data: JSON.stringify(body),
       success: (data) => {
-        debugger
+
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update a business successfully"))
         dispatch(actions.setGeCurrenttBuisness(data.buisness))

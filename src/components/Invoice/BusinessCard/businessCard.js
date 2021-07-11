@@ -63,7 +63,7 @@ export default function Cards(props) {
       let reader = new FileReader();
       let imageToStor = { 'image': '', 'to': "" }
       reader.onloadend = () => {
-        debugger
+
         imageToStor = { 'image': event, 'to': 'buisnessImg' }
         dispatch(actions.setImage(imageToStor))
         console.log("imageee12kkkkkkkkkkkk", imageToStor)

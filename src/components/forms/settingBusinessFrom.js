@@ -145,14 +145,14 @@ function SettingBuisnessList(props) {
     const [tmpSave, setTmpSave] = useState(JSON.parse(JSON.stringify(currentBuisness)));
 
     const changeCurrentBusiness = (index, value) => {
-        debugger
+
         if (index !== "website") {
             let fff = tmpSave[index] = value
             // setTmpSave(...tmpSave, tmpSave[index] = value)
             setTmpSave({ ...tmpSave, index: fff })
         }
         else {
-            debugger
+
             // let fff = tmpSave.socialmedias.website = value
             setTmpSave({ ...tmpSave, socialmedias: { website: value } })
             // setTmpSave.socialmedias.website(value);
@@ -160,7 +160,7 @@ function SettingBuisnessList(props) {
     }
 
     const saveNewBuisness = (e) => {
-        debugger
+
         let tmp1 = true;
         let tmp3 = true;
         // let tmp4= (tmpSave.n)
@@ -177,7 +177,7 @@ function SettingBuisnessList(props) {
         //         tmp1 = validatorEmail(currentBuisness.email)
         // }
         if (tmpSave.phone) {
-            debugger
+
             tmp3 = validatorPhone(tmpSave.phone);
         }
         // else {
@@ -186,10 +186,10 @@ function SettingBuisnessList(props) {
         // }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-            debugger
+
             // delete tmpSave._id
             // delete tmpSave.uid
-            debugger
+
             dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
 
             setErrorMessage('');
@@ -321,7 +321,7 @@ function SettingBuisnessList(props) {
         updateBuisnessField({ key: fieldName, value: value })
     }
     const websiteChanged = (e, fieldName) => {
-        debugger
+
         const value = e.target.value;
         updateWebsite({ key: fieldName, value: value })
         changeCurrentBusiness(fieldName, value)
@@ -347,11 +347,11 @@ function SettingBuisnessList(props) {
 
     const addImage1 = (event) => {
         if (event) {
-            debugger
+
             let reader = new FileReader();
             let imageToStor = { 'image': '', 'to': "" }
             reader.onloadend = () => {
-                debugger
+
                 imageToStor = { 'image': event, 'to': 'buisnessSetting' }
                 dispatch(actions.setImage(imageToStor))
                 console.log("imageee12kkkkkkkkkkkk", imageToStor)

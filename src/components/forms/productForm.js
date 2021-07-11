@@ -78,7 +78,7 @@ function ProductForm(props) {
   const [flagPrice, setflagPrice] = useState(true)
 
   const onFieldEdit = (fieldName, e) => {
-    debugger
+
     if (fieldName == 'name') {
       if (e.target.value) {
         setflagName(false)
@@ -154,7 +154,7 @@ function ProductForm(props) {
   }
 
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+
     if (fieldName == 'price') {
       if (_value) {
         setflagPrice(false)
