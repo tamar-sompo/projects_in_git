@@ -27,6 +27,7 @@ import './new_invoice.css'
 // import './config.css'
 function New_Invoice(props) {
   const Location = useLocation()
+  const ReactDatalist = require('react-datalist')
   const dispatch = useDispatch();
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
   const dispatchgetbusiness = () => dispatch({ type: "GET_BUSINESS_BY_ID" })
@@ -42,6 +43,7 @@ function New_Invoice(props) {
   const publicNoteInvoice = useSelector(state => state.invoiceReducer.publicNote);
   const contactDetails = useSelector(state => state.customerReducer.contact);
   const allproduct = useSelector(state => state.productReducer.allProducts);
+  const allproductToinvoice = useSelector(state => state.productReducer.allProductToInvoice)
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   const detailscontact = useSelector(state => state.customerReducer.detailscontact);
   const detailsBusiness = useSelector(state => state.buisnessReducer.currentBuisness);
@@ -328,13 +330,10 @@ function New_Invoice(props) {
   }, [saveContactOne])
   useEffect(() => {
     debugger
-
     if (flagcontactFromInvoice1 == false)
       setflagcontactFromInvoice1(true)
     else {
       debugger
-      // alert("ppp " + contactFromInvoice.name + " " + contactFromInvoice.phone)
-      // alert("pppdfgj " + contactedit.name + "" + contactedit.email + "" + contactedit.phone + "" + contactedit.address)
       setcontactedit({
         name: contactFromInvoice && contactFromInvoice.name ? contactedit.name : contactedit.name,
         email: contactFromInvoice && contactFromInvoice.email ? contactedit.email : contactedit.email,
@@ -360,15 +359,8 @@ function New_Invoice(props) {
       })
     }
   }, [detailscontact])
-  const focus_steps = (url_string, num) => {
-    // console.log("url_string", url_string)
-    // window.location.href.indexOf('Invoice') != -1 &&
-    //   history.push("/ruthChoen/Invoice/" + url_string)
-    // $(".step" + num).click()
-  }
 
 
-  ///////////////////////////////////////////////////////////////////
   const [validName, setValidName] = useState(false);
   const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
   const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
@@ -529,46 +521,46 @@ function New_Invoice(props) {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       // $("#" + select2 + " option[value*='" + val + "']").prop('disabled', true).addClass('disabled');
 
-      if (e.target.value) {
-        debugger
-        id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
-      }
+      // if (e.target.value) {
+      //   debugger
+      //   id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
+      // }
 
 
-      if (e.keyCode == 13 && id_contact || e.keyCode == 13 || id_contact && !e.keyCode) {
-        let dc = allcontact1.find(x => x._id == id_contact)
-        dispatch(actions.setFlagMessageContact(false))
-        if (detailsInvoice.contact) {
-          dispatch(actions.setResetContactFromEdiit())
-        }
+      // if (e.keyCode == 13 && id_contact || e.keyCode == 13 || id_contact && !e.keyCode) {
+      //   let dc = allcontact1.find(x => x._id == id_contact)
+      //   dispatch(actions.setFlagMessageContact(false))
+      //   if (detailsInvoice.contact) {
+      //     dispatch(actions.setResetContactFromEdiit())
+      //   }
 
-        dispatch(actions.getContactById(dc.email))
+      //   dispatch(actions.getContactById(dc.email))
 
 
-        // 
-        // if (validatorEmail(dc)) {
-        //   setErrorMessage1(false);
-        //   setValidName(true)
-        // }
-        // else setValidName(false)
+      // 
+      // if (validatorEmail(dc)) {
+      //   setErrorMessage1(false);
+      //   setValidName(true)
+      // }
+      // else setValidName(false)
 
-        updateinvoiceField({ key: "contact", value: dc.email })
-        setcontactedit({ [fieldName]: e.target.value })
-      }
-      else {
-        setcontactedit({ ...contactedit, [fieldName]: e.target.value })
-        dispatch(actions.setFlagMessageContact(true))
-      }
+      // updateinvoiceField({ key: "contact", value: dc.email })
+      // setcontactedit({ [fieldName]: e.target.value })
     }
-
-
-
-
     else {
-      dispatch(actions.setFlagMessageContact(true))
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
+      dispatch(actions.setFlagMessageContact(true))
     }
   }
+
+
+
+
+  // else {
+  //   dispatch(actions.setFlagMessageContact(true))
+  //   setcontactedit({ ...contactedit, [fieldName]: e.target.value })
+  // }
+  // }
 
 
   const resetfieldcontact = (fieldName, e) => {
@@ -829,8 +821,6 @@ function New_Invoice(props) {
 
 
   const resetType = (e) => {
-    e.target.value = ""
-    // alert("oo")
 
     updateinvoiceField({ key: "type", value: undefined })
 
@@ -839,7 +829,45 @@ function New_Invoice(props) {
     alert("hh")
   }
 
+  const inputSelect = () => {
+    var input_select = $("#input").val();
+    var option_length = $("option").length;
+    var option_id = '';
+    for (var i = 0; i < option_length; i++) {
+      var option_value = $("option").eq(i).attr('data-value');
+      if (input_select == option_value) {
+        option_id = $("option").eq(i).attr('data-id');
+        break;
+      }
+    }
+    console.log(input_select, option_length, option_id);
+  }
 
+  // document.querySelector('input').addEventListener('input', event => {
+  //   const value = event.target.value;
+  //   const opt = [].find.call(event.target.list.options, o => o.value === value);
+
+  //   if (opt) {
+  //     alert('kk')
+  //     event.target.value = opt.textContent;
+  //   }
+  // });
+
+
+  const onFieldChangeContact2 = (event) => {
+    debugger
+    // alert('jjj')
+    const value = event.value
+    let email = allcontact1.find(x => x._id == value).email
+    dispatch(actions.getContactById(email))
+  }
+  const noContact = (e) => {
+    debugger
+
+    setcontactedit({ ...contactedit, "name": e.inputValue })
+
+
+  }
   return (
     <>
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
@@ -937,6 +965,63 @@ function New_Invoice(props) {
                   <span className="design_text_contact">
                     To:
                   </span>
+                  {/* 
+                  <input id="dd" list="options" oninput="console.log(this.value);" />
+                  <datalist id="options">
+                    <option value="1">Foo</option>
+                    <option value="2">Bar</option>
+                    <option value="3">Foo</option>
+                  </datalist> */}
+                  {/* <input list="cars" id="input" onChange={inputSelect}/>
+                  <datalist id="cars">
+                    <option value="111" data-value="111" data-id="1" />
+                    <option value="122" data-value="122" data-id="2" />
+                    <option value="1222" data-value="1222" data-id="4" />
+                  </datalist>
+  */}
+                  {/* <Select */}
+                  {/* //                     // onInputChange={(e) => alert(e.inputValue)}
+
+//                     // onFocus={e) => resetfieldcontact('name', e)}
+//                     options={allcontact1.length > 0 && allcontact1.map(contact => { */}
+                  {/* //                       return ({ */}
+                  {/* //                         label: <div>{contact.name}</div>,
+//                         value: contact._id,
+//                       })
+//                     })}
+//                     value={{ */}
+                  {/* //                       label:
+//                         detailsInvoice ?
+//                           detailsInvoice.contactOneTime &&
+//                             detailsInvoice.contactOneTime.flag == true ?
+//                             saveContactOne.name ?
+//                               saveContactOne.name : contactedit.name ? contactedit.name : '' :
+//                             detailsInvoice.contact ?
+//                               contactFromInvoice ?
+//                                 contactFromInvoice.name : contactedit.name ? contactedit.name : ''
+//                               :
+//                               detailscontact && detailscontact.contact ?
+//                                 detailscontact.contact.name :
+//                                 contactedit.name ? contactedit.name : "" : "",
+//                       value:
+//                         detailsInvoice ?
+//                           detailsInvoice.contactOneTime &&
+//                             detailsInvoice.contactOneTime.flag == true ?
+//                             saveContactOne.name ?
+//                               saveContactOne.name : contactedit.name ? contactedit.name : '' :
+//                             detailsInvoice.contact ?
+//                               contactFromInvoice ?
+//                                 contactFromInvoice.name : contactedit.name ? contactedit.name : ''
+//                               :
+//                               detailscontact && detailscontact.contact ?
+//                                 detailscontact.contact.name :
+//                                 contactedit.name ? contactedit.name : "" : ""
+//                     }}
+//                     // noOptionsMessage={noContact}
+//                     onChange={onFieldChangeContact2}
+
+//                   /> */}
+
                   <input
                     name="city" list="contactname"
                     id='headers-name uuu'
@@ -944,12 +1029,12 @@ function New_Invoice(props) {
                     autoComplete="new-password"
                     placeholder="contact name"
                     // className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
-                    className="design_text_contact_name"
+                    className="design_text_contact_name react-datalist-input"
                     // onClick={() => setFocus('customerName')}
                     onFocus={(e) => resetfieldcontact('name', e)}
+                    // onSelect={() => alert("Csdf")}
 
                     value={
-
                       detailsInvoice ?
                         detailsInvoice.contactOneTime &&
                           detailsInvoice.contactOneTime.flag == true ?
@@ -962,13 +1047,18 @@ function New_Invoice(props) {
                             detailscontact && detailscontact.contact ?
                               detailscontact.contact.name :
                               contactedit.name ? contactedit.name : "" : ""
-
                     }
                     // onInput={oninput}
                     onChange={(e) => onFieldChangeContact('name', e)}
+                  //  /
                   />
 
-                  <datalist style={{ zIndex: "999" }} id="contactname"
+                  <datalist className="react-datalist"
+                    onOptionSelected={() => alert('jj')}
+
+                  // onSelect={() => alert("Csdf")}
+                  // options={}
+                  // onChange={() => alert("ghjgh")} style={{ zIndex: "999" }} id="contactname"
                   >
                     {allcontact1.length > 0 ? allcontact1.map(x => {
                       return (
@@ -993,7 +1083,7 @@ function New_Invoice(props) {
                     className={
                       // errorMessage1 ?
                       // 'design_text_contact validB' : 
-                      'design_text_contact'}
+                      'design_text_contact '}
                     value={
 
                       detailsInvoice ?

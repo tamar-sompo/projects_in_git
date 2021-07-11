@@ -703,7 +703,7 @@ function Item(props) {
                 className={flagValidName ? 'cell  validB' : 'cell '}
                 // maxlength="15" 
                 size="7"
-                value={ new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name :dtp && dtp.name ? dtp.name : '' : ''}
+                value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
                 onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
               ></input>
               <datalist id="productname">
@@ -724,7 +724,7 @@ function Item(props) {
                 // className='cell design_text ffgf'
                 className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
                 onFocus={() => cleanInput1('name')}
-                value={ new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name :dtp && dtp.name ? dtp.name : '' : ''}
+                value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
@@ -742,7 +742,7 @@ function Item(props) {
               // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
               // disabled={displayInvoice === "true" ? "" : "disable"}
-              value={new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description :dtp && dtp.description ? dtp.description : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : dtp && dtp.description ? dtp.description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
             ></TextareaAutosize>
@@ -762,7 +762,7 @@ function Item(props) {
               className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' : 'cell design_text'}
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price :dtp && dtp.price ? dtp.price : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : dtp && dtp.price ? dtp.price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
@@ -784,7 +784,7 @@ function Item(props) {
               name="discount"
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
-              value={dtp && dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : dtp && dtp.discount ? dtp.discount : '' : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
@@ -803,19 +803,11 @@ function Item(props) {
               value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
-            {/* <input
-              className="sum1 cell"
-              value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
-            /> */}
-
-
           </div>
-
           <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
             {
               flagShowSaveP[props.index] &&
               <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
-
             }
             {displayInvoice === "false" &&
               <button id='1'

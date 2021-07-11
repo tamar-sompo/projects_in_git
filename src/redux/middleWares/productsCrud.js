@@ -13,13 +13,36 @@ function checkPermission(result) {
   })
 
 }
+export const getAllProductsToInvoice = ({ dispatch, getState }) => next => action => {
+  if (action.type === "GET_ALL_PRODUCT_To_Invoice") {
+    let buisnessId = getState().buisnessReducer.buisness
+    if (action.payload)
+      buisnessId = action.payload
+    let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllProductToInvoice/${buisnessId}`;
+    console.log("url", url)
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: getState().publicReducer.tokenFromCookies,
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then((res) => res.json()).then((resJson) => {
+      // checkPermission(resJson).then((ifOk) => {
+      //    dispatch({ type: 'GET_ALL_CONTACT_BY_USER', payload:resJson  })
+      // })
+      dispatch(actions.getAllProductToInvoice(resJson.reverse()))
+      // dispatch(actions.setAllProducts(resJson.reverse()));
+      // console.log("reverse", resJson.reverse())
+
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  return next(action);
+}
 
 export const getAllProductsToBuisness = ({ dispatch, getState }) => next => action => {
-  // let buisnessId = getState().buisnessReducer.Buisness._id;
-  // זה הביזנס עם הנתוניםםםםםםם
-  // let buisnessId ="6081530bdec1f741b4fca0e1"
-
-
   if (action.type === "GET_ALL_PRODUCT") {
     let buisnessId = getState().buisnessReducer.buisness
     if (action.payload)
