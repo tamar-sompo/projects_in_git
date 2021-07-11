@@ -348,7 +348,11 @@ function AllInvoices(props) {
                                     chooselinei.isShown && chooselinei.index === invoice._id && (
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
                                         <Share fl={1}
-                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} />
+                                        paypalLink={invoice && invoice.paypalLink ? invoice.paypalLink:"null"}
+                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} 
+                                          // invoiceId={invoice && invoiceDetailsView._id ? invoice.invoice._id:"null"} 
+                                          invoiceId={invoice && invoice._id ? invoice._id:""} 
+                                          />
                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
                                           <a style={{ height: "14px" }}>
                                             <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}

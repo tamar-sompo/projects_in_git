@@ -30,9 +30,10 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     let textToPaypal = "Click here to pay"
     // let html
     // if(linkPayToContact){
-    let html = `${text} <br /> ${url} <br /> <br /> <br />
+   let html = `${text} <br /> ${url} <br /> <br /> <br />
        <a href=${linkPayToContact} class="btn btn-primary">${textToPaypal}</a>
        `
+      // }
     //  ${textToPaypal} <br /> ${linkPayToContact}`
     // }
     // else{
