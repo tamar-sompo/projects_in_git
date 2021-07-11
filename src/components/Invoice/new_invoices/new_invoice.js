@@ -106,6 +106,21 @@ function New_Invoice(props) {
   const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
   const [validated, setValidated] = useState(false);
+  const [clickSubmitItem, setClickSubmitItem] = useState(false)
+  const [validatedItem, setValidateItem] = useState(false);
+  const [firstForm, setFirstForm]=useState(false)
+
+//   useEffect(()=>{
+// if(firstForm===false)
+// setFirstForm(true)
+// else
+// {
+
+// }
+//   },[invoice.products])
+
+
+
   useEffect(() => {
 
     let summ = 0
@@ -820,6 +835,10 @@ function New_Invoice(props) {
     setIsMouseTooltipVisible(true)
     event.stopPropagation();
   }
+
+  const setValidateItemFunction = (value) => {
+    setValidateItem(value)
+  }
   const changeBg = (event) => {
     if (event.target === event.currentTarget) {
       ;
@@ -853,28 +872,54 @@ function New_Invoice(props) {
   //   event.preventDefault();
   //   setValidated(true);
   // });
+  const submitItem = useSelector(state => state.invoiceReducer.submitItem);
 
-  const handleSubmit=(event)=>{
-    // alert("submitt")
+  const handleSubmit = (event, title) => {  
     event.preventDefault();
+    event.stopPropagation();
+    // if($('#form_item').checkValidity()===true){
+    //   alert("bbb")
+    // }
+   const yourForm = document.querySelector('#form_item');
+  //  alert("")
+   if(yourForm.checkValidity()===true){
+    yourForm.checkValidity(false)
+    alert("ddd")
+   }
+   if(yourForm.checkValidity()===false){
+            alert("vv")
+   }
+  
+    
     const form = event.currentTarget;
+    //   debugger
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    event.preventDefault();
+    //   event.preventDefault();
     setValidated(true);
-    if (form.checkValidity() === true)
-       dispatch(actions.setSubmitSaveInvoice(true)) 
+     if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+
+      }
+      else{
+         if (form.checkValidity() === true && yourForm.checkValidity()===true){
+      alert("pp")
+       dispatch(actions.setSubmitSaveInvoice(true))
+      //  form.
+       console.log("yourForm.checkValidity()", yourForm.checkValidity())
+      //  .checkValidity=false
+    }
+      }
+
   };
 
 
-  // function onSubmit() {
-
-  // }
   return (
-    <Form id="form_id" noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form id="form_id1" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "bigForm")}>
       {/*  onSubmit={onSubmit} */}
+
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
         <div className={flagLoud ? 'flagLoudOp' : ''}>
           <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
@@ -1001,34 +1046,34 @@ function New_Invoice(props) {
                         <option>{x.name}</option>)
                     }) : ''}
                   </datalist>
-<div>
-                  <input
-                  required
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    placeholder="contact email"
-                    autoComplete="new-password"
-                    type='email'
-                    onFocus={(e) => resetfieldcontact('email', e)}
-                    // className='editable-temp1 design_text'
-                    // className="design_text_contact"
-                    className={errorMessage1 ?
-                      'design_text_contact validB' : 'design_text_contact'}
-                    value={detailsInvoice ?
-                      detailsInvoice.contactOneTime &&
-                        detailsInvoice.contactOneTime.flag == true ?
-                        saveContactOne.email ?
-                          saveContactOne.email : contactedit.email ? contactedit.email : '' :
-                        detailsInvoice.contact ? contactFromInvoice ?
-                          contactFromInvoice.email : contactedit.email ? contactedit.email : '' :
-                          detailscontact && detailscontact.contact ? detailscontact.contact.email :
-                            contactedit.email ? contactedit.email : '' : ''}
-                    onChange={(e) => onFieldChangeContact('email', e)}
-                  >
-                  </input>
-                  <Form.Control.Feedback type="invalid">
-   require
-          </Form.Control.Feedback>
-          </div>
+                  <div>
+                    <input
+                      required
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      placeholder="contact email"
+                      autoComplete="new-password"
+                      type='email'
+                      onFocus={(e) => resetfieldcontact('email', e)}
+                      // className='editable-temp1 design_text'
+                      // className="design_text_contact"
+                      className={errorMessage1 ?
+                        'design_text_contact validB' : 'design_text_contact'}
+                      value={detailsInvoice ?
+                        detailsInvoice.contactOneTime &&
+                          detailsInvoice.contactOneTime.flag == true ?
+                          saveContactOne.email ?
+                            saveContactOne.email : contactedit.email ? contactedit.email : '' :
+                          detailsInvoice.contact ? contactFromInvoice ?
+                            contactFromInvoice.email : contactedit.email ? contactedit.email : '' :
+                            detailscontact && detailscontact.contact ? detailscontact.contact.email :
+                              contactedit.email ? contactedit.email : '' : ''}
+                      onChange={(e) => onFieldChangeContact('email', e)}
+                    >
+                    </input>
+                    <Form.Control.Feedback type="invalid">
+                      require
+                    </Form.Control.Feedback>
+                  </div>
 
                   <input
 
@@ -1166,13 +1211,17 @@ function New_Invoice(props) {
               </div>
 
               <div className="container-fluid wrapproduct" >
+                <Form></Form>
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                   (window.location.href.indexOf("view") == -1 &&
                     detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
                   detailsInvoice.products.map((p, index) =>
                     <Item
+                      validatedItem={validatedItem}
+                      setValidateItemF={setValidateItemFunction}
                       key={index}
+                      submitItem={setClickSubmitItem}
                       pro={p}
                       arrColor={props.colors}
                       index={index}
@@ -1183,6 +1232,7 @@ function New_Invoice(props) {
                   invoice.products.map((p, index) =>
                     <Item key={index}
                       productSelect={productSelect}
+                      submitItem={setClickSubmitItem}
                       pro={p}
                       index={index}
                       arrColor={props.colors}
@@ -1222,10 +1272,10 @@ function New_Invoice(props) {
                 paddingLeft: "6.5%",
                 paddingRight: "7%"
               }}>
-               
+
                 <div className="col-3">
                   {displayInvoice === "false" &&
-                  
+
 
                     <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "38%", height: "100%", backgroundColor: "#707071", color: "white", fontSize: "0.7vw" }}>Add New
                     </button>
@@ -1260,7 +1310,7 @@ function New_Invoice(props) {
                 className="btn"
                 type="submit" 
                 /> */}
-            
+
 
 
               <div className="row d-flex justify-content-center">

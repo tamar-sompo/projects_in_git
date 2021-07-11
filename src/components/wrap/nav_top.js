@@ -82,6 +82,7 @@ export default function Nav() {
   const new_product = useSelector(state => state.productReducer.newProduct)
   const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
   const detailsProducts = useSelector(state => state.invoiceReducer.invoice.products);
+  const submitProduct = useSelector(state => state.invoiceReducer.submitProduct);
   const allproduct = useSelector(state => state.productReducer.allProducts);
 
 
@@ -140,8 +141,8 @@ export default function Nav() {
     //   alert("formmm")
     //   document.getElementById("form_id").submit();
     // }
-    
-      // save1()
+
+    // save1()
     if (buttonClick === "saveInvoiceOtherPageBack") {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
@@ -164,19 +165,19 @@ export default function Nav() {
     }
 
     else {
-        if (flagToCheck === true) {
-          setFlagToCheck(false)
-          if (flagSaveP === false) {
-            if (flagMessageContact) {
-              setShowMessage(true)
-              setFlagModal("contact")
-              setModalBody("how do you want to save contact changes?")
-            }
-            else {
-              nameInvoice()
-            }
+      if (flagToCheck === true) {
+        setFlagToCheck(false)
+        if (flagSaveP === false) {
+          if (flagMessageContact) {
+            setShowMessage(true)
+            setFlagModal("contact")
+            setModalBody("how do you want to save contact changes?")
+          }
+          else {
+            nameInvoice()
           }
         }
+      }
     }
   }, [flagToCheck])
 
@@ -197,27 +198,33 @@ export default function Nav() {
     }
   }, [colorFlagShowSaveP])
 
-  useEffect(()=>{
-    if(submitSaveInvoice===true){
+  useEffect(() => {
+    if (submitSaveInvoice === true) {
+      alert("submitSaveInvoice")
+
       dispatch(actions.setFlagPush(false))
-    dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#707071"))
-    dispatch(actions.setFlagModal(""))
-    dispatch(actions.setShowMessage(false))
-    dispatch(actions.setButtonClick(""))
-    dispatch(actions.setModalBody(""))
-    dispatch(actions.setClickSave(true))
+      dispatch(actions.setFlagPush1(false))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
+      dispatch(actions.setFlagModal(""))
+      dispatch(actions.setShowMessage(false))
+      dispatch(actions.setButtonClick(""))
+      dispatch(actions.setModalBody(""))
+      dispatch(actions.setClickSave(true))
 
 
-    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-      setFlagToCheck(true)
-      if (flag === true) {
-        setFlagSaveP(true)
-        dispatch(actions.setColorFlagShowSaveP("red"))
-      }
-    })
+      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+        setFlagToCheck(true)
+        if (flag === true) {
+          setFlagSaveP(true)
+          dispatch(actions.setColorFlagShowSaveP("red"))
+        }
+      })
     }
-  },[submitSaveInvoice])
+  }, [submitSaveInvoice])
+
+  useEffect(() => {
+
+  }, [submitProduct])
 
   //אחרי השמירה מאפס את כל המשתנים 
   useEffect(() => {
@@ -319,6 +326,11 @@ export default function Nav() {
   //   dispatch(actions.setDisplayBoxShadow(true))
   // })
 
+  const clickBigInput = () => {
+    alert("button")
+    dispatch(actions.setClickBigInputForm(true))
+  }
+
 
 
   return (
@@ -374,7 +386,7 @@ export default function Nav() {
               <Share fl={2} />
             </div>
           </div>
-          : "":invoiceSave._id ?
+          : "" : invoiceSave._id ?
           <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
             <div className="copy" style={{ border: "solid 1px #917BDF" }}>
               <CopyToClipboard
@@ -405,7 +417,7 @@ export default function Nav() {
               <Share fl={2} />
             </div>
           </div>
-           : "" : "" }
+          : "" : ""}
       </div>
       <div className="col-2 d-flex flex-row">
         {/* <button onClick={()=>setMail()}>email</button> */}
@@ -415,23 +427,29 @@ export default function Nav() {
 
         <div className="col-6 d-flex align-items-center justify-content-center">
           {
+
+            // {/* // onClick={save1}
+            // // className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
+            // // {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'} */}
+            // {/* > */}
+
             window.location.href.indexOf("invoice") != -1 &&
-            <input
-              form="form_id"
-                name='selectBillingAddress'
-                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
-                // onClick={savepr}
-                className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
-                value="save"
-                // className="btn"
-                type="submit" 
-                />
             // <button
-            //   onClick={save1}
-            //   className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
-            //   {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
+            //   onClick={clickBigInput}
+            // >
+            <input
+              form="form_id1"
+              immediate="true"
+              name='selectBillingAddress'
+              style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+              // onClick={savepr}
+              className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
+              value="save"
+              // className="btn"
+              type="submit"
+            />
             // </button>
-            }
+          }
         </div>
 
 

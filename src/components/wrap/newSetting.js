@@ -50,13 +50,17 @@ export default function NewSetting(props) {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
           dispatch(actions.setColorFlagShowSaveP("#707071"))
-
         }
       })
       setShowMessage(false)
       setButtonClick("")
       routePage()
       console.log("specific route", specificRoute)
+    }
+    if(buttonClick ==='saveInvoiceOtherPage'){
+      // alert("lll")
+      setButtonClick("")
+      setShowMessage(false)
     }
   }, [buttonClick])
 

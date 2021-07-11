@@ -68,12 +68,33 @@ const initialState = {
     borderProductInvoice: false,
     displayBoxShadow: false,
     submitSaveInvoice:false,
+    submitItem:false,
+    submitInvoice:false,
+    submitProduct:false,
+    clickBigInputForm:false
 
 
 }
 
 
 const invoices = {
+
+    setClickBigInputForm(state, action){
+        state.clickBigInputForm=action.payload
+    },
+
+
+    setSubmitProduct(state, action){
+        state.submitProduct=action.payload
+    },
+
+    setSubmitInvoice(state, action){
+        state.submitInvoice=action.payload
+    },
+
+    setSubmitItem(state, action){
+        state.submitItem=action.payload
+    },
 
     setSubmitSaveInvoice(state, action){
         state.submitSaveInvoice=action.payload

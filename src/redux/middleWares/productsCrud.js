@@ -143,6 +143,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
 
 export const updateProductById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'EDIT_PRODUCT') {
+    // alert("editProduct")
     let allP = getState().productReducer.allProducts
     // return new Promise((resolve, reject) => {
     let productId

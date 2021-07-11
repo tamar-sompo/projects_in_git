@@ -66,8 +66,8 @@ function Item(props) {
   // const [flagValidPrice, setflagValidPrice] = useState(false);
   // const [flagValidName, setflagValidName] = useState(false);
   useEffect(() => {
-    // setflagValidPrice(false)
-    // setflagValidName(false)
+    // let form = document.querySelector('#form_item').checkValidity(true);
+    // form.checkValidity()=true
   }, [])
 
   useEffect(() => {
@@ -122,35 +122,35 @@ function Item(props) {
         //     // dispatch(actions.setInvalidProduct(true))
         //     console.log("flagValidPhone", flagValidPrice)
         //   }
-        }
       }
-      else {
-        // alert("hhhh", new_product)
-        console.log('new_product', new_product)
+    }
+    else {
+      // alert("hhhh", new_product)
+      console.log('new_product', new_product)
 
-        // if (props.pro.id === "null" || props.pro.id === undefined) {
-        //   if (new_product[props.index].name && new_product[props.index].price) {
-        //     setflagValidPrice(false)
-        //     setflagValidName(false)
-        //     dispatch(actions.setValidProduct(true))
-        //   }
-        //   else {
+      // if (props.pro.id === "null" || props.pro.id === undefined) {
+      //   if (new_product[props.index].name && new_product[props.index].price) {
+      //     setflagValidPrice(false)
+      //     setflagValidName(false)
+      //     dispatch(actions.setValidProduct(true))
+      //   }
+      //   else {
 
-        //     if (!new_product[props.index].name) {
-        //       setflagValidName(true)
-        //       dispatch(actions.setValidProduct(false))
-        //       // dispatch(actions.setInvalidProduct(true))
-        //       console.log("flagValidName", flagValidName)
-        //     }
-        //     if (!new_product[props.index].price) {
-        //       //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
-        //       setflagValidPrice(true)
-        //       dispatch(actions.setValidProduct(false))
-        //       // dispatch(actions.setInvalidProduct(true))
-        //       console.log("flagValidPhone", flagValidPrice)
-            // }
-          // }
-        // }
+      //     if (!new_product[props.index].name) {
+      //       setflagValidName(true)
+      //       dispatch(actions.setValidProduct(false))
+      //       // dispatch(actions.setInvalidProduct(true))
+      //       console.log("flagValidName", flagValidName)
+      //     }
+      //     if (!new_product[props.index].price) {
+      //       //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
+      //       setflagValidPrice(true)
+      //       dispatch(actions.setValidProduct(false))
+      //       // dispatch(actions.setInvalidProduct(true))
+      //       console.log("flagValidPhone", flagValidPrice)
+      // }
+      // }
+      // }
       // }
     }
   }, [clickSave])
@@ -357,7 +357,7 @@ function Item(props) {
 
     if (title1 === "amount") {
 
-      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined) {
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined) {
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
             if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -368,14 +368,14 @@ function Item(props) {
 
     }
     if (title1 === "name") {
-      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined)
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].description || new_product[props.index].description == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
             if (!new_product[props.index].discount || new_product[props.index].discount == "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 === "description") {
-      if (e.target.value === "" && product1._id === undefined && dtp._id=== undefined
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -383,7 +383,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "price") {
-      if (e.target.value == "" && product1._id === undefined && dtp._id=== undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -391,7 +391,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "discount") {
-      if (e.target.value == "" && product1._id === undefined && dtp._id=== undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -424,59 +424,31 @@ function Item(props) {
     }
   }
 
-  function savepr(){
+  function savepr() {
     debugger
     // event.preventDefault()
-    alert("jjjj")
+    // alert("jjjj")
     if (amountProductInvoice != 0) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
     if (dtp && dtp._id) {
-      if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+      {
+        alert("bbb")
         dispatch(actions.setProductId1(dtp._id))
         dispatch(actions.editProduct(props.index))
-        // setflagValidPrice(false)
-        // setflagValidName(false)
-      }
-      else {
-        // if (!new_product[props.index].name && !dtp.name) {
-        //   // setflagValidName(true)
-        //   console.log("flagValidName", flagValidName)
-        // }
-        // else { setflagValidName(false) }
-        // if (!dtp.price && !new_product[props.index].price) {
-        //   setflagValidPrice(true)
-        //   console.log("flagValidPhone", flagValidPrice)
-        // }
-        // else { (setflagValidPrice(false)) }
       }
     }
     else {
-      // alert("hhhh", new_product)
       console.log('new_product', new_product)
 
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
+          alert("nnn")
           dispatch(actions.setNewProductServer(props.index))
-          // setflagValidPrice(false)
-          // setflagValidName(false)
         }
-        // else {
-        //   if (!new_product[props.index].name) {
-        //     setflagValidName(true)
-        //     console.log("flagValidName", flagValidName)
-        //   }
-        //   else { setflagValidName(false) }
-        //   if (!new_product[props.index].price) {
-        //     setflagValidPrice(true)
-        //     console.log("flagValidPhone", flagValidPrice)
-        //   }
-        //   else { setflagValidPrice(false) }
-        // }
       }
     }
-    // return false;
   }
   const clearProduct = () => {
     if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
@@ -641,7 +613,7 @@ function Item(props) {
       }
 
       if (fieldName == "price") {
-        if (value == "" && product1._id === undefined && dtp._id=== undefined
+        if (value == "" && product1._id === undefined && dtp._id === undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -649,7 +621,7 @@ function Item(props) {
                 setFlagShowSaveP({ index: props.index, value: false })
       }
       if (fieldName == "discount") {
-        if (value == "" && product1._id === undefined && dtp._id=== undefined
+        if (value == "" && product1._id === undefined && dtp._id === undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -659,98 +631,123 @@ function Item(props) {
     }
   }
 
+  const submitInvoice = useSelector(state => state.invoiceReducer.submitInvoice);
+  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
+  dispatch(actions.setSubmitSaveInvoice(false))
 
+  const handleSubmit = (event, title) => {
+    // alert("submitInvoice"+ submitInvoice)
+    // if (submitInvoice === false) {
+    event.stopPropagation();
 
-  const handleSubmit = (event) => {
-    
+    // dispatch(actions.setSubmitItem(true))
+    alert("item")
+    // props.submitItem(true)
     event.preventDefault();
+    // alert("submit")
+    debugger
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.flagModal != "otherPageInvoices" === false) {
+      alert("item1")
       event.preventDefault();
       event.stopPropagation();
     }
     event.preventDefault();
     setValidated(true);
-    if(form.checkValidity() === true)
-    savepr()
+    if (form.checkValidity() === true) {
+      alert("item2")
+      savepr()
+    }
   };
 
+
+  //listener the changes of validated variable
+  // useEffect(() => {
+  //   if (props.setValidateItemF) {
+  //     alert("fsdfds")
+  //     props.setValidateItemF(validated);
+  //   }
+  // }, [validated])
 
   return (
 
 
-    <Form id="form_item" noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form id="form_item" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "itemForm")}>
       <div
         className="row "
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
       >
-      
+
 
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
           {props.pro.id == "null" || props.pro.id === undefined ?
-          <>
-            <div className="inputproduct" style={{ width: "35%" }}>
-              {/* <input type="text" class="form-item"  name="name"  ></input> */}
-              {/* <Form.Control> */}
-              <input 
-              aria-label="empty textarea"
-                required
-                // data-required="required"
-                // data-field="product"
-                autoComplete="new-password"
-                // id="product"
-                onFocus={() => cleanInput1('name')}
-                name="product"
-                list="productname"
-                // className='cell'
-                className={
-                  // flagValidName ? 'cell  validB' :
-                 'cell '
-                }
-                // maxlength="15" 
-                size="7"
-                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
-                onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              ></input>
-              {/* </Form.Control> */}
-              <datalist id="productname">
-                {allproduct.length > 0 && allproduct.map(x => {
-                  return (<option>{x.name}</option>)
+            <>
+              <div className="inputproduct" style={{ width: "35%" }}>
+                {/* <input type="text" class="form-item"  name="name"  ></input> */}
+                {/* <Form.Control> */}
+                <input
+                  aria-label="empty textarea"
+                  required
+                  // data-required="required"
+                  // data-field="product"
+                  autoComplete="new-password"
+                  // id="product"
+                  onFocus={() => cleanInput1('name')}
+                  name="product"
+                  list="productname"
+                  // className='cell'
+                  className={
+                    // flagValidName ? 'cell  validB' :
+                    'cell '
+                  }
+                  // maxlength="15" 
+                  size="7"
+                  value={
+                    new_product[props.index] && new_product[props.index].name ? new_product[props.index].name :
+                      dtp && dtp.name ? dtp.name : ''}
+                  onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
+                ></input>
+                {/* </Form.Control> */}
+                <datalist id="productname">
+                  {allproduct.length > 0 && allproduct.map(x => {
+                    return (<option>{x.name}</option>)
 
-                })}
-              </datalist>
-   <Form.Control.Feedback type="invalid">
-   require
-          </Form.Control.Feedback>
-            </div> 
-         
-          </>
+                  })}
+                </datalist>
+                <Form.Control.Feedback type="invalid">
+                  require
+                </Form.Control.Feedback>
+              </div>
+
+            </>
             :
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
-               required
+                required
                 autoComplete="new-password"
-                style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
+                // style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 className={
                   // flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ?
                   //  'cell  design_text ffgf validB' :
-                    'cell design_text ffgf'
-                  }
+                  'cell design_text ffgf'
+                }
                 onFocus={() => cleanInput1('name')}
-                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
+                value={
+                  new_product[props.index] && new_product[props.index].name ? new_product[props.index].name :
+                    dtp && dtp.name ? dtp.name : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
                 maxRows={2}
               > </TextareaAutosize>
-               <Form.Control.Feedback type="invalid">
-               require
-          </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                require
+              </Form.Control.Feedback>
             </div>
-            }
+          }
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
@@ -759,14 +756,16 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'
               onFocus={() => cleanInput1('description')}
-              value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
+              value={
+                new_product[props.index] && new_product[props.index].description ? new_product[props.index].description :
+                  dtp && dtp.description ? dtp.description : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
             ></TextareaAutosize>
           </div>
 
         </div>
- 
+
 
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
@@ -783,19 +782,23 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className={
                 // flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' :
-                 'cell design_text'
-                }
-              value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
+                'cell design_text'
+              }
+              value={
+                new_product[props.index] && new_product[props.index].price ? new_product[props.index].price :
+                  dtp && dtp.price ? dtp.price : ''}
+
+              //  : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
-             <Form.Control.Feedback type="invalid">
-             require
-          </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              aaa{validated}
+            </Form.Control.Feedback>
           </div>
-          <Form.Control.Feedback type="invalid">
-          require
-          </Form.Control.Feedback>
+          {/* <Form.Control.Feedback type="invalid">
+          {validated}
+          </Form.Control.Feedback> */}
           <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
               autoComplete="new-password"
@@ -813,7 +816,9 @@ function Item(props) {
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp && dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : ''}
+              value={
+                new_product[props.index] && new_product[props.index].discount ? new_product[props.index].discount :
+                  dtp && dtp.discount ? dtp.discount : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
