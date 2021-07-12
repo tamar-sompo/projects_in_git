@@ -5,16 +5,17 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import { actions } from '../../redux/actions/All_actions'
 
 
-export default function MessageProduct(props) {
+export default function MessageProductP(props) {
     // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
-    const setShowMessagePr = (status) => dispatch(actions.setShowMessagePr(status))
+    const setPage = (status) => dispatch(actions.setPage(status))
     const modalBody = useSelector(state => state.messageReducer.modalBody);
-    const showMessagePr = useSelector(state => state.messageReducer.showMessagePr);
-    console.log("showMessagePr", showMessagePr)
+    const page = useSelector(state => state.productReducer.page);
+
+    console.log("page", page)
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
-    const handleClose = () => setShowMessagePr(false);
+    const handleClose = () => setPage(false);
     //no
     const openEdit = () => {
         debugger
@@ -30,6 +31,9 @@ export default function MessageProduct(props) {
         dispatch(actions.setIsEdit(true))
         handleClose()
     }
+    useEffect(() => {
+        debugger
+    })
     //yes
     const save = () => {
         debugger
@@ -57,12 +61,14 @@ export default function MessageProduct(props) {
     //במעבר בין עמודים
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const savePage = () => {
-        console.log('ppppppppppppppppp', props.flag)
+        debugger
         if (flagNewP) {
             dispatch(actions.setdegel1(1))
         }
         else {
-            dispatch(actions.setdegel2(true))
+            debugger
+            dispatch(actions.setdegel1(10))
+            // dispatch(actions.setdegel2(true))
         }
 
         handleClose()
@@ -70,7 +76,7 @@ export default function MessageProduct(props) {
     return (
         <>
             <Modal className="popUpAnswerTest" id='popUpAlertId'
-                show={showMessagePr}
+                show={page}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}

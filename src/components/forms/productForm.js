@@ -104,12 +104,23 @@ function ProductForm(props) {
       // dispatch(actions.setIsSave(false))
     }
   }, [isSave])
+
+  const degel = useSelector(state => state.productReducer.degel1)
+  useEffect(() => {
+    if (degel == '1') {
+      addNewProduct()
+    }
+  }, [degel])
+
   const addNewProduct = () => {
     debugger
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
       dispatch(actions.setIfSave(false))
+      if (degel == '1') {
+        dispatch(actions.setdegel1(2))
+      }
       if (isSave) {
         dispatch(actions.setIsEdit(true))
       }
@@ -118,6 +129,7 @@ function ProductForm(props) {
       // props.changeFlag(false)
     }
     else {
+      dispatch(actions.setdegel1(0))
       if (flagName) setflagName2(true)
       else setflagName2(false)
       if (flagPrice) setflagPrice2(true)

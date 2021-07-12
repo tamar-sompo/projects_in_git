@@ -97,6 +97,9 @@ function Products(props) {
     useEffect(() => {
         debugger
         if (isEdit) {
+            // if (degel == '10') {
+            //     dispatch(actions.setdegel1(2))
+            // }
             dispatch(actions.setIsEdit(false))
             setDis({ id: tmpPr._id })
             if (dis.flag === 0) {
@@ -112,6 +115,9 @@ function Products(props) {
                     if (flagField === true) {
                         // if (newProductTable.name && newProductTable.price) {
                         if (!flagPrice && !flagName) {
+                            // if (degel == '10') {
+                            //     dispatch(actions.setdegel1(2))
+                            // }
                             dispatch(actions.editProduct({ key: "table", value: tmpPr._id }))
                             setDis({ flag: 0, id: tmpPr._id, inpDis: "disable" })
                             setFlagField(false)
@@ -176,6 +182,12 @@ function Products(props) {
 
 
     }
+    // const degel = useSelector(state => state.productReducer.degel1)
+    // useEffect(() => {
+    //     if (degel == '10') {
+    //         dispatch(actions.setIsEdit(true))
+    //     }
+    // }, [degel])
 
     useEffect(() => {
         if (flagNewP) {
@@ -262,6 +274,7 @@ function Products(props) {
                 else setflagPrice(true)
             }
         }
+        dispatch(actions.setIfSave(true))
         setFlagField(true)
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
@@ -312,6 +325,7 @@ function Products(props) {
             else {
                 setflagNumClick(false)
                 if (dis.inpDis == "") {
+
                     // setDis({ flag: 0, id: product._id, inpDis: "disable" })
                     // dispatch(actions.setProductId({key: "table", value:product._id}))
                     if (flagField === true) {
@@ -319,7 +333,9 @@ function Products(props) {
                         if (!flagPrice && !flagName) {
                             // אם לחץ על מוצר אחר לפני שמירה
                             if (tmpId != product._id) {
+                                debugger
                                 dispatch(actions.editProduct({ key: "table", value: tmpId }))
+                                dispatch(actions.setIfSave(false))
                                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
                                 setFlagField(false)
                                 setflagName(false)
@@ -332,12 +348,14 @@ function Products(props) {
                             else {
                                 dispatch(actions.editProduct({ key: "table", value: product._id }))
                                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                                dispatch(actions.setIfSave(false))
                                 setFlagField(false)
                                 setflagName(false)
                                 setflagPrice(false)
                             }
                         }
                         else {
+                            debugger
                             // if (!newProductTable.name)
                             if (flagName) setflagName(true)
                             if (flagPrice) setflagPrice(true)
@@ -374,7 +392,6 @@ function Products(props) {
     };
 
     const deleteProduct1 = (id, i) => {
-
         props.deleteProduct(chooselinep.index)
         let arr1 = [...props.allproduct]
         arr1.splice(i, 1)
@@ -428,7 +445,6 @@ function Products(props) {
 
     //   const [filteredinvoices, setfilteredinvoices] = useState()
     const searchProducts = (searchproduct) => {
-
         dispatch(actions.setFilteredProducts([]))
         var products = props.allproduct
         products.forEach(prod => {
@@ -762,7 +778,7 @@ function Products(props) {
                                                                         newProductTable.name :
                                                                         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name && !flagNewP ?
                                                                             newProductTable.name :
-                                                                            dis.id === product._id && flagName && newProductTable && newProductTable.name && !flagNewP ?
+                                                                            dis.id === product._id && flagName ?
                                                                                 newProductTable.name :
                                                                                 dis.id === product._id && !dis.inpDis && newProductTable && newProductTable.name && !flagNewP ?
                                                                                     newProductTable.name :
@@ -812,7 +828,7 @@ function Products(props) {
                                                                         newProductTable.price :
                                                                         dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.price && !flagNewP ?
                                                                             newProductTable.price :
-                                                                            dis.id === product._id && flagName && newProductTable && newProductTable.price && !flagNewP ?
+                                                                            dis.id === product._id && flagPrice ?
                                                                                 newProductTable.price :
                                                                                 dis.id === product._id && !dis.inpDis && newProductTable && newProductTable.price && !flagNewP ?
                                                                                     newProductTable.price :

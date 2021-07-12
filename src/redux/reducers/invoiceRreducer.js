@@ -5,11 +5,11 @@ const initialState = {
 
     // colors:['black','black','black','black'],
 
-    flagValidPrice:false,
+    flagValidPrice: false,
     flagValidName: false,
-    clickSave:false,
-    invalidProduct:false,
-    validProduct:false,
+    clickSave: false,
+    invalidProduct: false,
+    validProduct: false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -71,25 +71,25 @@ const initialState = {
 
 
 const invoices = {
-    setflagValidName(state, action){
-   state.flagValidName=action.payload
+    setflagValidName(state, action) {
+        state.flagValidName = action.payload
     },
 
-    setflagValidPrice(state, action){
-        state.flagValidPrice=action.payload
+    setflagValidPrice(state, action) {
+        state.flagValidPrice = action.payload
     },
 
-    setInvalidProduct(state, action){
-state.invalidProduct=action.payload
+    setInvalidProduct(state, action) {
+        state.invalidProduct = action.payload
     },
 
-    setValidProduct(state, action){
-        state.validProduct=action.payload
+    setValidProduct(state, action) {
+        state.validProduct = action.payload
     },
 
 
-    setClickSave(state, action){
-        state.clickSave=action.payload
+    setClickSave(state, action) {
+        state.clickSave = action.payload
     },
 
     setFlagIfEmptyProduct(state, action) {
@@ -351,7 +351,7 @@ state.invalidProduct=action.payload
         state.saveSum = action.payload
     },
     setSum(state, action) {
-
+        debugger
         state.saveSum = 0
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
