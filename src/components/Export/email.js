@@ -14,6 +14,8 @@ import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from 'react-router-dom';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 
 
@@ -45,15 +47,15 @@ function MultiSelectInput(props) {
     const emailDetails = useSelector(state => state.exportInvoiceReducer.emailDetails);
     const updateEmailField = (fieldToUpdate) => dispatch(actions.setEmailDetails(fieldToUpdate))
 
-    useEffect(()=>{
+    useEffect(() => {
         if (history.location.pathname == `/${userName}/invoice`)
-        updateEmailField({ key: "to", value:  invoice.contactOneTime.email})
-           
-        if(window.location.href.indexOf('invoice/edit'))
-        updateEmailField({ key: "to", value:  detailsInvoice.contactOneTime.email})
-  
-    },[])
-    
+            updateEmailField({ key: "to", value: invoice.contactOneTime.email })
+
+        if (window.location.href.indexOf('invoice/edit'))
+            updateEmailField({ key: "to", value: detailsInvoice.contactOneTime.email })
+
+    }, [])
+
 
     const fieldChanged = (e, fieldName) => {
         if (fieldName == 'to') {
@@ -173,7 +175,8 @@ function MultiSelectInput(props) {
                 <div style={{ height: "6vh" }} >
                 </div>
                 {/* <div className="tag-remove"></div> */}
-                <h4 className="d-flex justify-content-center emailFormTitle"> Send an link to your customer </h4>
+                <h4 className="d-flex justify-content-center emailFormTitle" style={{ textAlign: "center" }}
+                > Send an link to your customer </h4>
                 <hr className="d-flex justify-content-center"></hr>
 
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
@@ -185,11 +188,14 @@ function MultiSelectInput(props) {
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'subject')}
                     placeholder="Subject" />
-                <input className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
+                {/* <input  */}
+                <TextareaAutosize
+                    className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'html')}
                     placeholder={"The Body Of The Message"}
-                />
+                ></TextareaAutosize>
+                {/* /> */}
                 <div style={{ height: "6vh" }}></div>
                 <div className="d-flex justify-content-center" onClick={() => toMailServer()}>
                     <FontAwesomeIcon

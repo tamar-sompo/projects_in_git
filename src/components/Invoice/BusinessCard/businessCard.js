@@ -103,12 +103,12 @@ export default function Cards(props) {
             width: '93%',
             height: '93%',
             cursor: "pointer",
-            zIndex: "1",
-            marginLeft: '2%'
+            marginLeft: '2%',
+            paddingBottom: '4rem !important'
           }}
           onClick={() => chooseBuisness(buisnessId)}
         >
-          <div className="body" style={{ marginTop: '2rem' }}>
+          <div className="body" style={{ marginTop: '3rem' }}>
             <div className='my-4 rounded p-auto'
               style={{ border: editable === true ? '1px dashed lightgray' : 'none' }}>
               <input

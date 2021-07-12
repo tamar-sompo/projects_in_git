@@ -164,6 +164,9 @@ function BuisnessList(props) {
       tmp3 = validatorPhone(userFiled.phone);
     }
     if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
+      updateBuisnessField({
+        key: 'productionDate', value: new Date()
+      })
       setFlagLoud(true)
       dispatch(actions.setBuisnessToServer(userFiled))
       setErrorMessage('');

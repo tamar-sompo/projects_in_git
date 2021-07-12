@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Col, Row, Container, Button, Modal } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { actions } from '../../../redux/actions/All_actions'
-
+import { actions } from '../../../redux/actions/All_actions';
+import buisnessList from './buisnessList.css';
+import './buisnessList.css'
 
 export default function ModeldeleteBuisness(props) {
     debugger
@@ -28,8 +29,8 @@ export default function ModeldeleteBuisness(props) {
             <Modal className="popUpAnswerTest" id='popUpAlertId' show={showModalDelete} onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                // onHide={() => setShowMessage(false)}
-                style={{ height: "100%", left: "50%", top: "90%", opacity: "1" }}>
+                // onHide={() => setShowMessage(false)}, top: "90%"
+                style={{ height: "100%", left: "50%", opacity: "1" }}>
                 <Modal.Header style={{ opacity: "1", cursor: "pointer" }} closeButton>
                 </Modal.Header>
 
