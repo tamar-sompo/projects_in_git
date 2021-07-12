@@ -667,6 +667,7 @@ function Item(props) {
   }
   return (
     <>
+    
       <div
         className="row rowOneProduct"
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
