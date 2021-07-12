@@ -72,7 +72,8 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setBuisness(state, action) {
-
+        if (action.payload.key == "productionDate")
+            alert(`key: ${action.payload.key} value: ${action.payload.value} `)
         state.newBuisness[action.payload.key] = action.payload.value
     },
     setbuisnessWebsite(state, action) {

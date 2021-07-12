@@ -44,9 +44,9 @@ function BuisnessList(props) {
         let date = new Date(date1)
         return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     }
-    const date1 = new Date()
-    const date2 = convertdate(date1);
-    console.log("date2", date2)
+    // const date1 = new Date()
+    // const date2 = convertdate(date1);
+    // console.log("date2", date2)
 
     const edit = (buisnessChoose) => {
         dispatch(actions.getAllProduct(buisnessChoose._id))
