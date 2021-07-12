@@ -98,10 +98,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     letter-spacing: 0.36px;
     color: #2D2B2E;
 }
-.wrapproduct .row:last-child .inputproduct{
+.wrapproduct Form .row:last-child .inputproduct{
    border-bottom: 1px solid black;
 }
-.wrapproduct .row:first-child .inputproduct{
+.wrapproduct Form .row:first-child .inputproduct{
     border-top: 1px solid black;
  }
  .buttonaddItem:focus{

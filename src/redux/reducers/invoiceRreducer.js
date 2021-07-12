@@ -66,7 +66,14 @@ const initialState = {
     filteredInvoices: [],
     flagSaveP: false,
     borderProductInvoice: false,
-    displayBoxShadow: false
+    displayBoxShadow: false,
+    submitSaveInvoice:false,
+    submitItem:false,
+    submitInvoice:false,
+    submitProduct:false,
+    clickBigInputForm:false
+
+
 }
 
 
@@ -84,9 +91,32 @@ const invoices = {
     },
 
     setValidProduct(state, action) {
-        state.validProduct = action.payload
+        state.validProduct = action.payload},
+
+    setClickBigInputForm(state, action){
+        state.clickBigInputForm=action.payload
     },
 
+
+    setSubmitProduct(state, action){
+        state.submitProduct=action.payload
+    },
+
+    setSubmitInvoice(state, action){
+        state.submitInvoice=action.payload
+    },
+
+    setSubmitItem(state, action){
+        state.submitItem=action.payload
+    },
+
+    setSubmitSaveInvoice(state, action){
+        state.submitSaveInvoice=action.payload
+    },
+
+    callSaveInvoce(state, action) {
+        state.saveInvoice = action.payload
+    },
 
     setClickSave(state, action) {
         state.clickSave = action.payload

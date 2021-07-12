@@ -6,23 +6,19 @@ import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../example.css';
 import Select from 'react-select'
+import { Col, Row, Container, Button, Form } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { useHistory } from "react-router-dom";
 import Item from './item'
-import LeaderLouder from '../../Useful/leaderLouder'
-// import {Link} from "react-router-dom";
-import DigitalSignature from '../digitalSignature';
-import flowersLogo from '../../../Img/flowersLogo.png';
-// import signature from '../../../Img/signature.png'
-import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
+
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
-import { debounce, ListItemIcon } from '@material-ui/core';
 import {
   useLocation
 } from "react-router-dom";
 import $ from 'jquery'
 import MessageSave from '../messageSave'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import './new_invoice.css'
 // import './config.css'
 function New_Invoice(props) {
@@ -100,6 +96,7 @@ function New_Invoice(props) {
   const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
   const flagPush = useSelector(state => state.invoiceReducer.flagPush)
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
+  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
   const [contactedit, setcontactedit] = useState({
     name: "",
     email: "",
@@ -109,6 +106,22 @@ function New_Invoice(props) {
   const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
   const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
+  const [validated, setValidated] = useState(false);
+  const [clickSubmitItem, setClickSubmitItem] = useState(false)
+  const [validatedItem, setValidateItem] = useState(false);
+  const [firstForm, setFirstForm] = useState(false)
+
+  //   useEffect(()=>{
+  // if(firstForm===false)
+  // setFirstForm(true)
+  // else
+  // {
+
+  // }
+  //   },[invoice.products])
+
+
+
   useEffect(() => {
 
     let summ = 0
@@ -378,45 +391,54 @@ function New_Invoice(props) {
   }
   useEffect(() => {
 
-    // if (firstTmp) {
-    //   let tmp3 = true;
-    //   if (contactedit.phone) {
-    //     tmp3 = validatorPhone(contactedit.phone);
-    //   }
-    //   if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
-    //     debugger
-    //     setErrorMessage1(false)
-    //     setErrorMessage2(false)
-    //     dispatch(actions.setFlagValidation(false))
-    //     if (!flagTmpSave) {
-    //       dispatch(actions.setFlagOfterValidation(true))
-    //     }
-    //     else { dispatch(actions.setFlagTmpSave(false)) }
-    //   }
-    //   else {
-    //     if ((validatorEmail(contactedit.email) || validName) && tmp3) {
+    if (firstTmp) {
+      let tmp3 = true;
+      if (contactedit.phone) {
+        tmp3 = validatorPhone(contactedit.phone);
+      }
+      if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
 
-    //       setErrorMessage1(false)
-    //       setErrorMessage2(false)
-    //       dispatch(actions.setFlagValidation(false))
-    //       if (!flagTmpSave) {
-    //         dispatch(actions.setFlagOfterValidation(true))
-    //       }
-    //       else { dispatch(actions.setFlagTmpSave(false)) }
-    //     }
-    //     else {
-    // if (!contactedit.email && !validName) {
-    //   setErrorMessage1(true)
-    //   dispatch(actions.setFlagValidation(false))
-    // }
-    // else {
-    //   if (!validatorEmail(contactedit.email) && !validName) {
-    //     dispatch(actions.setFlagValidation(false))
-    //     setErrorMessage1(true)
-    //   }
-    //   else {
-    //     setErrorMessage1(false)
-    //   }
+        setErrorMessage1(false)
+        setErrorMessage2(false)
+        dispatch(actions.setFlagValidation(false))
+        if (!flagTmpSave) {
+          dispatch(actions.setFlagOfterValidation(true))
+        }
+        else { dispatch(actions.setFlagTmpSave(false)) }
+      }
+      else {
+        if ((validatorEmail(contactedit.email) || validName) && tmp3) {
+
+          setErrorMessage1(false)
+          setErrorMessage2(false)
+          dispatch(actions.setFlagValidation(false))
+          if (!flagTmpSave) {
+            dispatch(actions.setFlagOfterValidation(true))
+          }
+          else { dispatch(actions.setFlagTmpSave(false)) }
+        }
+        else {
+          if (!contactedit.email && !validName) {
+            setErrorMessage1(true)
+            dispatch(actions.setFlagValidation(false))
+          }
+          else {
+            if (!validatorEmail(contactedit.email) && !validName) {
+              dispatch(actions.setFlagValidation(false))
+              setErrorMessage1(true)
+            }
+            else {
+              setErrorMessage1(false)
+            }
+          }
+          if (!tmp3) {
+            setErrorMessage2(true)
+            dispatch(actions.setFlagValidation(false))
+          }
+          else { setErrorMessage2(false) }
+        }
+      }
+    }
     // }
     // if (!tmp3) {
     //   setErrorMessage2(true)
@@ -627,8 +649,10 @@ function New_Invoice(props) {
     else
       return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
   }
-  const addItem = () => {
+  const addItem = (event) => {
+    event.preventDefault()
     let flagIfSave = false
+    dispatch(actions.setProduct1({}))
 
     dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setProductAmount(0))
@@ -825,47 +849,83 @@ function New_Invoice(props) {
     alert("hh")
   }
 
-  const inputSelect = () => {
-    var input_select = $("#input").val();
-    var option_length = $("option").length;
-    var option_id = '';
-    for (var i = 0; i < option_length; i++) {
-      var option_value = $("option").eq(i).attr('data-value');
-      if (input_select == option_value) {
-        option_id = $("option").eq(i).attr('data-id');
-        break;
-      }
-    }
-    console.log(input_select, option_length, option_id);
+  const setValidateItemFunction = (value) => {
+    setValidateItem(value)
   }
+  // const changeBg = (event) => {
+  //   if (event.target === event.currentTarget) {
+  //     ;
+  //     setBorderBgImage("true")
+  //     setIsMouseTooltipVisible(true)
+  //   }
+  //   console.log(input_select, option_length, option_id);
+  // }
 
   // document.querySelector('input').addEventListener('input', event => {
   //   const value = event.target.value;
   //   const opt = [].find.call(event.target.list.options, o => o.value === value);
 
-  //   if (opt) {
-  //     alert('kk')
-  //     event.target.value = opt.textContent;
+
+  // $('#form_id').on('submit', function(event){
+  //   // alert("submitt")
+  //   event.preventDefault();
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
   //   }
+  //   event.preventDefault();
+  //   setValidated(true);
   // });
+  const submitItem = useSelector(state => state.invoiceReducer.submitItem);
+
+  const handleSubmit = (event, title) => {
+    event.preventDefault();
+    event.stopPropagation();
+    // if($('#form_item').checkValidity()===true){
+    //   alert("bbb")
+    // }
+    const yourForm = document.querySelector('#form_item');
+    //  alert("")
+    if (yourForm.checkValidity() === true) {
+      yourForm.checkValidity(false)
+      // alert("ddd")
+    }
+    if (yourForm.checkValidity() === false) {
+      // alert("vv")
+    }
 
 
-  const onFieldChangeContact2 = (event) => {
-    debugger
-    // alert('jjj')
-    const value = event.value
-    let email = allcontact1.find(x => x._id == value).email
-    dispatch(actions.getContactById(email))
-  }
-  const noContact = (e) => {
-    debugger
+    const form = event.currentTarget;
+    //   debugger
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    //   event.preventDefault();
+    setValidated(true);
+    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
+      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" || detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
 
-    setcontactedit({ ...contactedit, "name": e.inputValue })
+    }
+    else {
+      if (form.checkValidity() === true && yourForm.checkValidity() === true) {
+        // alert("pp")
+        dispatch(actions.setSubmitSaveInvoice(true))
+        //  form.
+        console.log("yourForm.checkValidity()", yourForm.checkValidity())
+        //  .checkValidity=false
+      }
+    }
+
+  };
 
 
-  }
+
   return (
-    <>
+    <Form id="form_id1" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "bigForm")}>
+      {/*  onSubmit={onSubmit} */}
+
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
         <div className={flagLoud ? 'flagLoudOp' : ''}>
           <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
@@ -899,12 +959,21 @@ function New_Invoice(props) {
                     <h1>{detailsBusiness.name}</h1>
                   </div>}
               </div>
-
-              <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "2%" }}>
+              <div className="row d-flex justify-content-center" style={{ paddingLeft: "10%", paddingRight: "10%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
-
-                <div className=" d-flex justify-content-center wrapBuisnessBorder" style={{ width: "20%" }}>
-                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
+                  {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website ?
+                    < a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                        type="text"
+                        className="design_text design_buisness"
+                        placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                        // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                        value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    </a> :
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
 
@@ -916,13 +985,13 @@ function New_Invoice(props) {
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
                       style={{ cursor: 'pointer', width: "131%" }}
                     />
-                  </a>
+                  }
                 </div>
                 <div className=" d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ width: "60%", paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
-                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                      style={{ width: "50%" }}
-
+                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                      style={{ width: "50%", verticalAlign: "top" }}
+                      rowsMax="2"
                       size='15'
                       type="text"
                       className="design_text design_buisness"
@@ -931,9 +1000,10 @@ function New_Invoice(props) {
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                       value={detailsBusiness && detailsBusiness.city}
                     />
-                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
                       size='15'
+                      rowsMax='2'
                       type="text"
                       placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "" : ""}
                       className="design_text design_buisness"
@@ -1006,22 +1076,18 @@ function New_Invoice(props) {
                       )
                     }) : ''}
                   </datalist>
-
-                  <input
-                    disabled={displayInvoice === "true" ? "disable" : ""}
-                    placeholder="contact email"
-                    autoComplete="new-password"
-                    type='email'
-                    onFocus={(e) => resetfieldcontact('email', e)}
-                    // className='editable-temp1 design_text'
-                    // className="design_text_contact"
-                    className={
-                      // errorMessage1 ?
-                      // 'design_text_contact validB' : 
-                      'design_text_contact '}
-                    value={
-
-                      detailsInvoice ?
+                  <div>
+                    <input
+                      required
+                      disabled={displayInvoice === "true" ? "disable" : ""}
+                      placeholder="contact email"
+                      autoComplete="new-password"
+                      type='email'
+                      onFocus={(e) => resetfieldcontact('email', e)}
+                      // className='editable-temp1 design_text'
+                      // className="design_text_contact"
+                      className={'design_text_contact'}
+                      value={detailsInvoice ?
                         detailsInvoice.contactOneTime &&
                           detailsInvoice.contactOneTime.flag == true ?
                           saveContactOne.email ?
@@ -1029,11 +1095,14 @@ function New_Invoice(props) {
                           detailsInvoice.contact ? contactFromInvoice ?
                             contactFromInvoice.email : contactedit.email ? contactedit.email : '' :
                             detailscontact && detailscontact.contact ? detailscontact.contact.email :
-                              contactedit.email ? contactedit.email : '' : ''
-                    }
-                    onChange={(e) => onFieldChangeContact('email', e)}
-                  >
-                  </input>
+                              contactedit.email ? contactedit.email : '' : ''}
+                      onChange={(e) => onFieldChangeContact('email', e)}
+                    >
+                    </input>
+                    <Form.Control.Feedback type="invalid">
+                      require
+                    </Form.Control.Feedback>
+                  </div>
 
                   <input
 
@@ -1042,8 +1111,7 @@ function New_Invoice(props) {
                     onFocus={(e) => resetfieldcontact('phone', e)}
                     // className='editable-temp1 design_text'
                     // className="design_text_contact"
-                    className={errorMessage2 ?
-                      'design_text_contact validB' : 'design_text_contact'}
+                    className={'design_text_contact'}
                     value={detailsInvoice ?
                       detailsInvoice.contactOneTime &&
                         detailsInvoice.contactOneTime.flag == true ?
@@ -1170,13 +1238,17 @@ function New_Invoice(props) {
 
               </div>
               <div className="container-fluid wrapproduct" >
+                <Form></Form>
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                   (window.location.href.indexOf("view") == -1 &&
                     detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
                   detailsInvoice.products.map((p, index) =>
                     <Item
+                      validatedItem={validatedItem}
+                      setValidateItemF={setValidateItemFunction}
                       key={index}
+                      submitItem={setClickSubmitItem}
                       pro={p}
                       arrColor={props.colors}
                       index={index}
@@ -1187,6 +1259,7 @@ function New_Invoice(props) {
                   invoice.products.map((p, index) =>
                     <Item key={index}
                       productSelect={productSelect}
+                      submitItem={setClickSubmitItem}
                       pro={p}
                       index={index}
                       arrColor={props.colors}
@@ -1226,13 +1299,10 @@ function New_Invoice(props) {
                 paddingLeft: "6.5%",
                 paddingRight: "7%"
               }}>
-                {
-                  flagBorderProduct ?
-                    <span style={{ color: 'red' }}>product is require</span> :
-                    <span></span>
-                }
+
                 <div className="col-3">
                   {displayInvoice === "false" &&
+
 
                     <button onClick={addItem} className="design_text buttonaddItem" style={{ width: "38%", height: "100%", backgroundColor: "#707071", color: "white", fontSize: "0.7vw" }}>Add New
                     </button>
@@ -1256,6 +1326,18 @@ function New_Invoice(props) {
                   </div>
                 </div>
               </div>
+
+              {/* <input
+              form=""
+                hidden
+                name='selectBillingAddress'
+                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+                // onClick={savepr}
+                value="save"
+                className="btn"
+                type="submit" 
+                /> */}
+
 
 
               <div className="row d-flex justify-content-center">
@@ -1282,7 +1364,7 @@ function New_Invoice(props) {
           {/* </div> */}
         </div>
       </div>
-    </>
+    </Form>
   )
 }
 const mapStateToProps = (state) => {
@@ -1298,6 +1380,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   changeimageInvoice: (image) => dispatch(actions.setImageInvoice(image)),
+  callSaveInvoce: (value) => dispatch(actions.callSaveInvoce(value)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(New_Invoice)

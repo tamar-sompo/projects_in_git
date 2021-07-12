@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
@@ -40,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
   //   borderRadius: 50 + '%',
   //   padding: 0
   // },
-  // imgUpload: {
-  //   display: 'inline-block',
-  //   width: 7 + 'vh',
-  //   height: 7 + 'vh',
-  //   backgroundColor: 'transparent',
-  //   // border: '1px solid black',
-  //   borderRadius: 50 + '%',
-  //   padding: 0
-  // }
+  imgUpload: {
+    display: 'inline-block',
+    width: 7 + 'vh',
+    height: 7 + 'vh',
+    backgroundColor: 'transparent',
+    // border: '1px solid black',
+    borderRadius: 50 + '%',
+    padding: 0
+  }
 }))
 
 
@@ -69,6 +70,7 @@ function ProductForm(props) {
   const changeFlag = () => {
     console.log('ffllaagg', props.flag);
     props.changeFlag(false)
+    dispatch(actions.setFlagNewP(false))
   }
   const [flagName2, setflagName2] = useState(false)
   const [flagPrice2, setflagPrice2] = useState(false)
@@ -76,7 +78,7 @@ function ProductForm(props) {
   const [flagPrice, setflagPrice] = useState(true)
 
   const onFieldEdit = (fieldName, e) => {
-    debugger
+
     if (fieldName == 'name') {
       if (e.target.value) {
         setflagName(false)
@@ -97,11 +99,19 @@ function ProductForm(props) {
     dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     // props.setNewProduct({ index: 0, key: fieldName, value: value })
   }
+  const isSave = useSelector(state => state.productReducer.isSave)
+  useEffect(() => {
+    if (isSave) {
+      addNewProduct()
+      dispatch(actions.setIsSave(false))
+    }
+  }, [isSave])
   const addNewProduct = () => {
-    debugger
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
-      props.changeFlag(false)
+      dispatch(actions.setFlagNewP(false))
+      // debugger
+      // props.changeFlag(false)
     }
     else {
       if (flagName) setflagName2(true)
@@ -144,7 +154,7 @@ function ProductForm(props) {
   }
 
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+
     if (fieldName == 'price') {
       if (_value) {
         setflagPrice(false)
@@ -168,9 +178,6 @@ function ProductForm(props) {
       dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
   }
-
-
-
 
   return (
     <>

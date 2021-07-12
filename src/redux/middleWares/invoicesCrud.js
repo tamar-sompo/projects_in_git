@@ -86,6 +86,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        dispatch(actions.setSubmitSaveInvoice(false))
         // if(currentBuisness.clientId){
         //   console.log("if")
         dispatch(actions.setSendLinkPaypal())
@@ -135,9 +136,11 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
     let invoice
     if (action.payload) {
       invoice = action.payload
+      console.log("ap", invoice)
     }
     else {
       invoice = getState().invoiceReducer.invoice;
+      console.log("ap2", invoice)
     }
     console.log("action.payload", action.payload)
     let invoiceId = getState().invoiceReducer.invoiceId;
@@ -157,7 +160,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
       dataType: 'json',
       success: async function (invoice1) {
         console.log("updateInvoice", invoice1, vv)
-        dispatch(actions.setSendLinkPaypal("edit"))
+        // dispatch(actions.setSendLinkPaypal("edit"))
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update an invoice successfully"))
         await dispatch(actions.setInvoiceShow(invoice1.invoice))
@@ -173,6 +176,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        dispatch(actions.setSubmitSaveInvoice(false))
       },
     });
   }

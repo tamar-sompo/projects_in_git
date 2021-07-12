@@ -389,6 +389,7 @@ function BuisnessList(props) {
                   </div>
 
                   <input className={errorMessage ? "inptStyle valid" : "inptStyle"} name='name' type="text"
+                    placeholder="Business Name"
                     autoComplete="new-password"
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
@@ -401,6 +402,7 @@ function BuisnessList(props) {
                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
                   <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
+                    placeholder="Company Phone"
                     value={userFiled.phone ? userFiled.phone : ""}
                     onChange={(e) => { fieldChanged(e, 'phone') }}
                     style={{ width: "20rem", fontSize: "small" }}></input>
@@ -410,6 +412,7 @@ function BuisnessList(props) {
                 <div className="col-5">
                   <div className="font2">Company Email</div>
                   <input name='email' type="text"
+                    placeholder="Company Email"
                     className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                     value={userFiled.email ? userFiled.email : ""}
                     onChange={(e) => fieldChanged(e, 'email')}
@@ -426,6 +429,7 @@ function BuisnessList(props) {
                     <div style={{ color: "red", fontSize: "small" }}>*</div>
                   </div>
                   <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
+                    placeholder="Address"
                     value={userFiled.address ? userFiled.address : ""}
                     onChange={(e) => fieldChanged(e, 'address')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
@@ -439,6 +443,7 @@ function BuisnessList(props) {
                 <div>
                   <div className="font2">Website</div>
                   <input className="inptStyle" name='website' type="text"
+                    placeholder="Website"
                     value={userFiled.socialmedias ?
                       userFiled.socialmedias.website ? userFiled.socialmedias.website :
                         "" : ""}
@@ -454,6 +459,7 @@ function BuisnessList(props) {
                   </div>
 
                   <input className={errorMessage2 ? "inptStyle valid" : "inptStyle"} name='numberDeals' type="number"
+                    placeholder="Dealer License"
                     value={userFiled.numberDeals ? userFiled.numberDeals : ""}
                     onChange={(e) => fieldChanged(e, 'numberDeals')}
                     style={{ width: "12rem", fontSize: "small" }}></input>
@@ -463,6 +469,7 @@ function BuisnessList(props) {
                 <div className="col-3.5">
                   <div className="font2">Vat</div>
                   <input className="inptStyle" name='vat' type="text"
+                    placeholder="Vat"
                     value={userFiled.vat ? userFiled.vat : ""}
                     onChange={(e) => fieldChanged(e, 'vat')}
                     style={{ width: "12rem", fontSize: "small" }}></input>
@@ -472,6 +479,7 @@ function BuisnessList(props) {
                 <div className="col-5" style={{ paddingLeft: "0vh" }}>
                   <div className="font2">Country</div>
                   <input className="inptStyle" type="text" name="country" list="country"
+                    placeholder="Country"
                     value={userFiled.country ? userFiled.country : ""}
                     onFocus={(e) => selectCountry(e)}
                     onBlur={(e) => { onChangeCountry(e.target.value) }}
@@ -491,6 +499,7 @@ function BuisnessList(props) {
                   </div>
 
                   <input className={errorMessage5 ? "inptStyle valid" : "inptStyle"} type="text" name="city" list="city"
+                    placeholder="City"
                     value={userFiled.city ? userFiled.city : ""}
                     onChange={(e) => fieldChanged(e, 'city')}
                     style={{ width: "20rem", fontSize: "small" }}></input>

@@ -13,15 +13,17 @@ import './new_invoice.css'
 
 function Cell(props) {
     const { value, onChange, onFocus, onBlur, type } = props;
+    // debugger
     const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
     return (
         <>
             <input
                 // id={id}
+                
                 type={type}
                 onFocus={onFocus}
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                className={props.flagValidName ? 'cell design_text ffgf validB' : 'cell design_text ffgf'}
+                className={'cell design_text ffgf'}
                 // className='cell design_text'
                 // maxlength="15"
                 size="7"
