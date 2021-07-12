@@ -312,10 +312,13 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
-    setFlagSaveP(false)
+
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
+    setFlagSaveP(false)
     console.log("dtpdtp", dtp)
+
+    debugger
 
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP({ index: props.index, value: true })
@@ -346,9 +349,12 @@ function Item(props) {
         dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
+            //  alert("yy") : alert("xx")
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-
+            // alert("xx")
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price, index1: props.index }))
+
+      debugger
     }
 
     else {
@@ -425,7 +431,7 @@ function Item(props) {
   }
 
   function savepr() {
-    debugger
+    // debugger
     // event.preventDefault()
     // alert("jjjj")
     if (amountProductInvoice != 0) {
@@ -645,7 +651,7 @@ function Item(props) {
     // props.submitItem(true)
     event.preventDefault();
     // alert("submit")
-    debugger
+    // debugger
     const form = event.currentTarget;
     if (form.flagModal != "otherPageInvoices" === false) {
       alert("item1")
@@ -793,7 +799,7 @@ function Item(props) {
               prefix={'$'}
             />
             <Form.Control.Feedback type="invalid">
-              aaa{validated}
+              req
             </Form.Control.Feedback>
           </div>
           {/* <Form.Control.Feedback type="invalid">

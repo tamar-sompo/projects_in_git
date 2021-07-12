@@ -34,7 +34,7 @@ const products = {
                 state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
-                debugger
+                // debugger
                 state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
