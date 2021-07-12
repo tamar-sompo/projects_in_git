@@ -7,25 +7,28 @@ import { CardDeck } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import logo1 from '../../assets/newLogo.png'
 import { Row } from 'react-bootstrap'
+import { FiList } from 'react-icons/fi'
+import { RiLayoutGridFill } from 'react-icons/ri'
+
 
 import './business.css'
 
 import BusinessCard from '../BusinessCard/businessCard';
+import BuisnessList from '../BuisnessList/buisnessList';
+
 
 function Business(props) {
   let history = useHistory();
   const dispatch = useDispatch();
 
   const [flag, setFlag] = useState()
+  const [flagView, setFlagView] = useState(false)
 
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const allInvoices = useSelector(state => state.buisnessReducer.allInvoices);
-  useEffect(() => {
-  })
 
   const changeFlag = (value) => {
-
     setFlag(value)
   }
   console.log("changeFlag", changeFlag)
@@ -35,13 +38,61 @@ function Business(props) {
 
   return (
     <div className="container-fluid con" style={{
-      height: "95%",
-      width: "95%",
-      // borderRadius: "9px",
-      // boxShadow: "0px 3px 6px #0A26B126",
-      // backgroundColor: 'white'
+      height: "86vh",
+      width: "98%"
     }}>
-      <div class="d-flex justify-content-between   my-3"
+      <div className="row" style={{ height: '6%', marginTop: '-1%' }}>
+        <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
+          <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Your Buisness</h1>
+        </div>
+        <div className="col-8 d-flex justify-content-end ">
+          <div className="iconsBuisness">
+            < RiLayoutGridFill onClick={() => setFlagView(true)}
+              style={{ width: '2rem', height: '4vh', color: "gray", fontWeight: "bold", cursor: "pointer", verticalAlign: "middle" }}>
+            </RiLayoutGridFill>
+          </div>
+          <div className="iconsBuisness">
+            < FiList onClick={() => setFlagView(false)}
+              style={{ width: '2rem', height: '4vh', color: "gray", fontWeight: "bold", cursor: "pointer", verticalAlign: "middle" }}>
+            </FiList>
+          </div>
+          <div
+            onClick={() => changeFlag(true)} >
+            <button className="newProd11">New buisness +</button>
+            {flag == true &&
+              history.push(`/${userName}/add_buisness`)
+            }
+          </div>
+        </div>
+      </div>
+      <hr className='my-4' />
+      {
+        flagView === false ? <BuisnessList allBuisness={allBuisnessToUser} /> :
+          <CardDeck
+            style={{ width: "93%" }}
+          >
+            <div className='displayCards'>
+              {console.log('allbusiness lea', allBuisnessToUser)}
+              {allBuisnessToUser ? allBuisnessToUser.map((buisness) =>
+                <>
+                  <BusinessCard
+                    buisnessId={buisness._id}
+                    buisnessName={buisness.name}
+                    buisnessWebsite={buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website : '' : ''}
+                    buisnessEmail={buisness.email}
+                    buisnessImg={buisness.imgLogo ? buisness.imgLogo : logo1}
+                    imageFlag={buisness.imgLogo ? 1 : 2}
+                  />
+                </>
+              ) : <div>You have no Business</div>
+              }
+            </div>
+          </CardDeck>
+      }
+
+
+
+      {/* <div class="d-flex justify-content-between   my-3"
         style={{
           marginBottom: '40%'
         }}
@@ -57,13 +108,11 @@ function Business(props) {
         {flag == true &&
           history.push(`/${userName}/add_buisness`)
         }
-      </div>
-      <hr className='my-4' />
-      {/* className="justify-content-center m-3"> */}
-      <Row className="d-flex justify-content-around">
+      </div> 
+       <hr className='my-4' />*/}
+      {/* <Row className="d-flex justify-content-around">
         <CardDeck
           style={{ width: "93%" }}
-        // className="d-flex justify-content-center align-items-center"
         >
           <div className='displayCards'>
             {console.log('allbusiness lea', allBuisnessToUser)}
@@ -81,7 +130,7 @@ function Business(props) {
             }
           </div>
         </CardDeck>
-      </Row>
+      </Row> */}
     </div>
   )
 }

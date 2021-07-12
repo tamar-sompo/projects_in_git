@@ -14,11 +14,14 @@ const initialState = {
     modalBody: "",
     showViewInvoiceInModal: false,
     showModalName: false,
-    showMessagePr: false
+    showMessagePr: false,
+    showModalDelete: false,
+
 }
-
 const message = {
-
+    setShowModalDelete(state, action) {
+        state.showModalDelete = action.payload
+    },
     setShowModalName(state, action) {
         state.showModalName = action.payload
     },
