@@ -440,7 +440,7 @@ function Item(props) {
     }
     if (dtp && dtp._id) {
       {
-        alert("bbb")
+        // alert("bbb")
         dispatch(actions.setProductId1(dtp._id))
         dispatch(actions.editProduct(props.index))
       }
@@ -450,7 +450,7 @@ function Item(props) {
 
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
-          alert("nnn")
+          // alert("nnn")
           dispatch(actions.setNewProductServer(props.index))
         }
       }
@@ -639,7 +639,7 @@ function Item(props) {
 
   const submitInvoice = useSelector(state => state.invoiceReducer.submitInvoice);
   const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
-  dispatch(actions.setSubmitSaveInvoice(false))
+  // dispatch(actions.setSubmitSaveInvoice(false))
 
   const handleSubmit = (event, title) => {
     // alert("submitInvoice"+ submitInvoice)
@@ -647,21 +647,21 @@ function Item(props) {
     event.stopPropagation();
 
     // dispatch(actions.setSubmitItem(true))
-    alert("item")
+    // alert("item")
     // props.submitItem(true)
     event.preventDefault();
     // alert("submit")
     // debugger
     const form = event.currentTarget;
     if (form.flagModal != "otherPageInvoices" === false) {
-      alert("item1")
+      // alert("item1")
       event.preventDefault();
       event.stopPropagation();
     }
     event.preventDefault();
     setValidated(true);
     if (form.checkValidity() === true) {
-      alert("item2")
+      // alert("item2")
       savepr()
     }
   };

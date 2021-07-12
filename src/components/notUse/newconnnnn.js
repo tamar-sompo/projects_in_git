@@ -56,7 +56,7 @@ function NewConfigorator(props) {
 
     useEffect(() => {
         save();
-        alert("in save")
+        // alert("in save")
     }, [props.saveInvoice])
 
     const save = () => {

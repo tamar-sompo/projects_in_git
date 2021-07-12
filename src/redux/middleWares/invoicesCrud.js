@@ -86,6 +86,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        dispatch(actions.setSubmitSaveInvoice(false))
         // if(currentBuisness.clientId){
         //   console.log("if")
         dispatch(actions.setSendLinkPaypal())
@@ -175,6 +176,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
         dispatch(actions.setShowMessage(false))
         dispatch(actions.setButtonClick(""))
         dispatch(actions.setModalBody(""))
+        dispatch(actions.setSubmitSaveInvoice(false))
       },
     });
   }

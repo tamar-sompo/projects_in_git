@@ -200,7 +200,7 @@ export default function Nav() {
 
   useEffect(() => {
     if (submitSaveInvoice === true) {
-      alert("submitSaveInvoice")
+      // alert("submitSaveInvoice")
 
       dispatch(actions.setFlagPush(false))
       dispatch(actions.setFlagPush1(false))
@@ -326,7 +326,7 @@ export default function Nav() {
   // })
 
   const clickBigInput = () => {
-    alert("button")
+    // alert("button")
     dispatch(actions.setClickBigInputForm(true))
   }
 

@@ -879,10 +879,10 @@ function New_Invoice(props) {
   //  alert("")
    if(yourForm.checkValidity()===true){
     yourForm.checkValidity(false)
-    alert("ddd")
+    // alert("ddd")
    }
    if(yourForm.checkValidity()===false){
-            alert("vv")
+            // alert("vv")
    }
   
     
@@ -900,7 +900,7 @@ function New_Invoice(props) {
       }
       else{
          if (form.checkValidity() === true && yourForm.checkValidity()===true){
-      alert("pp")
+      // alert("pp")
        dispatch(actions.setSubmitSaveInvoice(true))
       //  form.
        console.log("yourForm.checkValidity()", yourForm.checkValidity())
