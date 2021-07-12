@@ -512,56 +512,51 @@ function New_Invoice(props) {
     //   }
     // }
 
+
     let id_contact
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
-
+      // alert("gg")
       debugger
       dispatch(actions.setContactReset(fieldName))
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       // $("#" + select2 + " option[value*='" + val + "']").prop('disabled', true).addClass('disabled');
 
-      // if (e.target.value) {
-      //   debugger
-      //   id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
-      // }
+      if (e.target.value) {
+        debugger
 
+        id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
 
-      // if (e.keyCode == 13 && id_contact || e.keyCode == 13 || id_contact && !e.keyCode) {
-      //   let dc = allcontact1.find(x => x._id == id_contact)
-      //   dispatch(actions.setFlagMessageContact(false))
-      //   if (detailsInvoice.contact) {
-      //     dispatch(actions.setResetContactFromEdiit())
-      //   }
+        if (id_contact) {
+          let dc = allcontact1.find(x => x._id == id_contact)
+          dispatch(actions.setFlagMessageContact(false))
+          if (detailsInvoice.contact) {
+            dispatch(actions.setResetContactFromEdiit())
+          }
 
-      //   dispatch(actions.getContactById(dc.email))
+          dispatch(actions.getContactById(dc.email))
+          // if (validatorEmail(dc)) {
+          //   setErrorMessage1(false);
+          //   setValidName(true)
+          // }
+          // else setValidName(false)
 
+          updateinvoiceField({ key: "contact", value: dc.email })
+          setcontactedit({ [fieldName]: e.target.value })
+        }
+        else {
+          dispatch(actions.setRsetDetailsContact())
+          setcontactedit({ ...contactedit, "name": e.target.value })
+          dispatch(actions.setFlagMessageContact(true))
+        }
+      }
 
-      // 
-      // if (validatorEmail(dc)) {
-      //   setErrorMessage1(false);
-      //   setValidName(true)
-      // }
-      // else setValidName(false)
-
-      // updateinvoiceField({ key: "contact", value: dc.email })
-      // setcontactedit({ [fieldName]: e.target.value })
     }
     else {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       dispatch(actions.setFlagMessageContact(true))
     }
   }
-
-
-
-
-  // else {
-  //   dispatch(actions.setFlagMessageContact(true))
-  //   setcontactedit({ ...contactedit, [fieldName]: e.target.value })
-  // }
-  // }
-
 
   const resetfieldcontact = (fieldName, e) => {
     debugger
@@ -582,6 +577,7 @@ function New_Invoice(props) {
       }
     }
   }
+
   // const resetfieldcontactname = (field, e) => {
   //    
   //   // e.currentTarget.value = ''  
@@ -965,71 +961,15 @@ function New_Invoice(props) {
                   <span className="design_text_contact">
                     To:
                   </span>
-                  {/* 
-                  <input id="dd" list="options" oninput="console.log(this.value);" />
-                  <datalist id="options">
-                    <option value="1">Foo</option>
-                    <option value="2">Bar</option>
-                    <option value="3">Foo</option>
-                  </datalist> */}
-                  {/* <input list="cars" id="input" onChange={inputSelect}/>
-                  <datalist id="cars">
-                    <option value="111" data-value="111" data-id="1" />
-                    <option value="122" data-value="122" data-id="2" />
-                    <option value="1222" data-value="1222" data-id="4" />
-                  </datalist>
-  */}
-                  {/* <Select */}
-                  {/* //                     // onInputChange={(e) => alert(e.inputValue)}
-
-//                     // onFocus={e) => resetfieldcontact('name', e)}
-//                     options={allcontact1.length > 0 && allcontact1.map(contact => { */}
-                  {/* //                       return ({ */}
-                  {/* //                         label: <div>{contact.name}</div>,
-//                         value: contact._id,
-//                       })
-//                     })}
-//                     value={{ */}
-                  {/* //                       label:
-//                         detailsInvoice ?
-//                           detailsInvoice.contactOneTime &&
-//                             detailsInvoice.contactOneTime.flag == true ?
-//                             saveContactOne.name ?
-//                               saveContactOne.name : contactedit.name ? contactedit.name : '' :
-//                             detailsInvoice.contact ?
-//                               contactFromInvoice ?
-//                                 contactFromInvoice.name : contactedit.name ? contactedit.name : ''
-//                               :
-//                               detailscontact && detailscontact.contact ?
-//                                 detailscontact.contact.name :
-//                                 contactedit.name ? contactedit.name : "" : "",
-//                       value:
-//                         detailsInvoice ?
-//                           detailsInvoice.contactOneTime &&
-//                             detailsInvoice.contactOneTime.flag == true ?
-//                             saveContactOne.name ?
-//                               saveContactOne.name : contactedit.name ? contactedit.name : '' :
-//                             detailsInvoice.contact ?
-//                               contactFromInvoice ?
-//                                 contactFromInvoice.name : contactedit.name ? contactedit.name : ''
-//                               :
-//                               detailscontact && detailscontact.contact ?
-//                                 detailscontact.contact.name :
-//                                 contactedit.name ? contactedit.name : "" : ""
-//                     }}
-//                     // noOptionsMessage={noContact}
-//                     onChange={onFieldChangeContact2}
-
-//                   /> */}
 
                   <input
-                    name="city" list="contactname"
+                    list="contactname"
                     id='headers-name uuu'
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     autoComplete="new-password"
                     placeholder="contact name"
                     // className={focus === 'customerName' ? 'focus-temp1 design_text' : 'editable-temp1 design_text'}
-                    className="design_text_contact_name react-datalist-input"
+                    className="design_text_contact_name"
                     // onClick={() => setFocus('customerName')}
                     onFocus={(e) => resetfieldcontact('name', e)}
                     // onSelect={() => alert("Csdf")}
@@ -1053,12 +993,7 @@ function New_Invoice(props) {
                   //  /
                   />
 
-                  <datalist className="react-datalist"
-                    onOptionSelected={() => alert('jj')}
-
-                  // onSelect={() => alert("Csdf")}
-                  // options={}
-                  // onChange={() => alert("ghjgh")} style={{ zIndex: "999" }} id="contactname"
+                  <datalist id="contactname"
                   >
                     {allcontact1.length > 0 ? allcontact1.map(x => {
                       return (

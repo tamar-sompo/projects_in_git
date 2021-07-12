@@ -113,11 +113,11 @@ export default function Fiances() {
                     <div className="row " style={{ height: "93vh", width: "100vw" }}>
                         {/* className="col-2 px-0 mt-0 flex_configurator" */}
                         <div
-                            style={{ width: "4%" }} >
+                            style={{ width: "4.5%" }} >
                             <Configurator />
                         </div>
                         {/* {isSendMessage == "true"} */}
-                        <div className="d-flex justify-content-center" style={{ width: "96%", height: "100%" }}>
+                        <div className="d-flex justify-content-center" style={{ width: "95.5%", height: "100%" }}>
                             <div
                                 className="width_wrap d-flex justify-content-center align-items-center"
                                 // className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}

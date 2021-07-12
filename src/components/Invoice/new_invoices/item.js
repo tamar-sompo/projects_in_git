@@ -14,7 +14,7 @@ import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
+import $ from 'jquery'
 
 
 function Item(props) {
@@ -212,49 +212,40 @@ function Item(props) {
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-
-
-
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
     }
     else {
-
-      console.log("trfgyuhytfdrtfgh")
-      if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
-        setflagValidPrice(false)
-        let product6 = allproduct.find(x => x.name === e.target.value)
-        console.log("product6", product6)
-        dispatch(actions.setProduct1(product6))
-        setdtp(product6)
-        setamount2(1)
-
-        dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
-        dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
-        // dispatch(actions.setResetNewProduct({}))
-        // dispatch(actions.deleteLastProductInvoice());
-        // if(calcSumProduct)
-
-        dispatch(actions.setProductId({ id: product6._id, index1: props.index }));
-        // dispatch(actions.setProducts({ id: product6._id, amount: 1 }));
-        dispatch(actions.setP(product6.name))
-
-        // setnameProduct(e.target.value)
-      }
-      else {
-        if (e.target.value && e.target.value != "") {
-          setFlagShowSaveP({ index: props.index, value: true })
+      if (e.target.value) {
+        debugger
+        let id_product = $("#productname").find("option[data-value=" + e.target.value + "]").data("id")
+        if (id_product) {
+          let product6 = allproduct.find(x => x._id === id_product)
+          dispatch(actions.setProduct1(product6))
+          // dispatch(actions.setFlagMessageContact(false))
+          setdtp(product6)
+          setamount2(1)
+          dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+          dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
+          dispatch(actions.setProductId({ id: product6._id, index1: props.index }));
+          dispatch(actions.setP(product6.name))
         }
+
         else {
-          if (e.target.value == "")
-            if (!new_product[props.index].description || new_product[props.index].description == "")
-              if (!new_product[props.index].price || new_product[props.index].price == "")
-                if (!new_product[props.index].discount || new_product[props.index].discount == "")
-                  setFlagShowSaveP({ index: props.index, value: false })
+          setdtp({})
+          dispatch(actions.setAmountToProduct({ amount: '', index1: props.index }))
+          if (e.target.value && e.target.value != "") {
+            setFlagShowSaveP({ index: props.index, value: true })
+          }
+          else {
+            if (e.target.value == "")
+              if (!new_product[props.index].description || new_product[props.index].description == "")
+                if (!new_product[props.index].price || new_product[props.index].price == "")
+                  if (!new_product[props.index].discount || new_product[props.index].discount == "")
+                    setFlagShowSaveP({ index: props.index, value: false })
+          }
         }
       }
-
-
       if (invoice.products.length === 1)
         dispatch(actions.setPushNewProduct({}))
       dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
@@ -263,15 +254,11 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-
     setflagValidName(false)
-    // setflagValidName(false)
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
-
     debugger
-
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
       setflagValidPrice(false)
       let product6 = allproduct.find(x => x.name === e.target.value)
@@ -300,12 +287,9 @@ function Item(props) {
                 setFlagShowSaveP({ index: props.index, value: false })
       }
     }
-
-
     if (detailsInvoice.products.length === 1)
       dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
-
   }
 
 
@@ -376,8 +360,7 @@ function Item(props) {
 
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price, index1: props.index }))
 
-
-
+      debugger
     }
     // setamount2(props.pro.amount)
 
@@ -691,29 +674,32 @@ function Item(props) {
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
-          {props.pro.id == "null" || props.pro.id === undefined ?
-            <div className="inputproduct" style={{ width: "35%" }}>
-              <input aria-label="empty textarea"
-                autoComplete="new-password"
-                rowsMax="2"
-                onFocus={() => cleanInput1('name')}
-                name="product"
-                list="productname"
-                // className='cell'
-                className={flagValidName ? 'cell  validB' : 'cell '}
-                // maxlength="15" 
-                size="7"
-                value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
-                onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              ></input>
-              <datalist id="productname">
-                {allproduct.length > 0 && allproduct.map(x => {
-                  return (<option>{x.name}</option>)
+          {/* {props.pro.id == "null" || props.pro.id === undefined ? */}
+          <div className="inputproduct" style={{ width: "35%" }}>
+            <input aria-label="empty textarea"
+              autoComplete="new-password"
+              rowsMax="2"
+              onFocus={() => cleanInput1('name')}
+              name="product"
+              list="productname"
+              // className='cell'
+              className={flagValidName ? 'cell  validB' : 'cell '}
+              // maxlength="15" 
+              size="7"
+              value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
+              onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
+            ></input>
+            <datalist id="productname">
+              {allproduct.length > 0 && allproduct.map(pro => {
+                return (<option data-id={pro._id} data-value={pro.name}>
+                  {pro.name}
+                </option>)
 
-                })}
-              </datalist>
+              })}
+            </datalist>
 
-            </div> :
+          </div>
+          {/* :
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
                 autoComplete="new-password"
@@ -731,7 +717,7 @@ function Item(props) {
               // maxRows={2}
               > </TextareaAutosize>
 
-            </div>}
+            </div>} */}
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
