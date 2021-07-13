@@ -425,6 +425,7 @@ function BuisnessList(props) {
                 </div>
               </div>
               <div className="row">
+                {/* <div class="d-flex flex-row bd-highlight mb-2"> */}
                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
                   <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
@@ -674,56 +675,6 @@ function BuisnessList(props) {
           </div>
         </div> */}
       </div>
-      {/* <div className="row"
-        // style={{height:"90vh"}}
-        >
-          <div className="col-3 align-items-center">
-            <div className="font2" style={{ height: "30vh", marginBottom: "2vh" }}>
-              Profil Image
-              <hr />
-              <div class="col-12 d-flex justify-content-start flex-column align-items-center poo">
-                <div  >
-                  <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                    onChange={(e) => addImage1(e.target.files[0])} />
-                  <button onClick={onButtonClick} className="rounded"
-                    style={{
-                      backgroundColor: "grey",
-                      color: "white",
-                      width: "10vh",
-                      height: "10vh"
-                    }}
-                    className={classes.buttonUpload}>
-                    {detailsBusiness && detailsBusiness.imgLogo ?
-                      <img
-                        // id='userLogo-temp1'
-                        className={classes.imgUpload}
-                        src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
-                        // src={urlLogo? urlLogo :""}
-                        alt="Logo"
-                        title="Your Logo Here"
-                        style={{}}
-                        onClick={() => onButtonClick("logo")}
-                      /> :
-                      <HiUpload id="icon" className={classes.iconUpload} />}
-                    <br></br>
-                    <div className="uploadImage">Upload</div>
-
-                  </button>
-                </div>
-              </div>
-            </div> */}
-
-      {/* <div className="font2" style={{ height: "40vh" }}>
-              Social Networks
-              <hr />
-            </div>
-          </div>
-
-          <div className="col-8 font2" style={{ height: "72vh" }}>
-            Personal Information
-            <hr />
-          </div>
-        </div> */}
     </>
   )
 };
