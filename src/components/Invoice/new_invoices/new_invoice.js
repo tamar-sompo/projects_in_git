@@ -964,17 +964,27 @@ function New_Invoice(props) {
                 {/* <div className="col-2"></div> */}
                 {/* {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website? } */}
                 <div className=" d-flex justify-content-center wrapBuisnessBorder" style={{ width: "20%" }}>
-                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                  {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website ?
+                    <a href={`${detailsBusiness.socialmedias.website}`} target="_blank">
+                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                        type="text"
+                        className="design_text design_buisness"
+                        placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "website" : "website"}
+                        // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                        value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "website"}
+                        style={{ cursor: 'pointer', width: "131%" }}
+                      />
+                    </a> :
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
                       className="design_text design_buisness"
-                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "website" : "website"}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                      style={{ cursor: 'pointer', width: "131%" }}
-                    />
-                  </a>
+                      style={{ width: "131%" }}
+                    />}
                 </div>
                 <div className=" d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ width: "60%", paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
