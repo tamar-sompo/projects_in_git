@@ -313,7 +313,8 @@ function Item(props) {
     console.log("dtpdtp", dtp)
 
     debugger
-
+    // if (title1 == "name")
+    //   dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
@@ -367,6 +368,8 @@ function Item(props) {
 
     }
     if (title1 === "name") {
+
+
       if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].description || new_product[props.index].description == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -543,7 +546,6 @@ function Item(props) {
     debugger
     setflagValidPrice(false)
     let value
-    // setflagValidName(false)
     setFlagSaveP(false)
     if (!fieldName) {
       return;
@@ -595,6 +597,7 @@ function Item(props) {
       }
       if (fieldName === "price") {
         dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+        //  updateCell("amount")
         amount2 ? dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
@@ -823,8 +826,10 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "cinput delete_hover" : "delete_hover"} style={{
                   marginLeft: "33%",
-                  // display: "none",
-                  width: "100%", height: "39%", backgroundColor: 'white', color: "white", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  display: "none",
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071",
+                  color: "#707071",
+                  padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>

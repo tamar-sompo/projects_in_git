@@ -923,7 +923,7 @@ function New_Invoice(props) {
 
 
   return (
-    <Form id="form_id1" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "bigForm")}>
+    <Form id="form_id1" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "bigForm")} style={{ width: "100%" }}>
       {/*  onSubmit={onSubmit} */}
 
       <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
