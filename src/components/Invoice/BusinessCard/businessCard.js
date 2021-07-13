@@ -74,89 +74,91 @@ export default function Cards(props) {
   return (
     <>
       {showModalDelete && <ModeldeleteBuisness />}
-      <div className="buisnessBackground d-flex justify-content-center "
-        style={{ marginTop: '19%', height: "fit-content" }}>
-        <div className="circleTop">
-          <div className="after">
-            <div className='circle'>
-              <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                disabled={!editable}
-                onChange={(e) => addImageList(e.target.files[0])}
-              />
-              <div className="imgLogoBusiness m-auto"
-                className={imageFlag == 2 ?
-                  'imgLogoBusiness m-auto' : 'defaultImgLogoBusiness m-auto'}
-                style={imageFlag == 2 ? { height: "4vh", width: "10vh", backgroundImage: `url('${buisnessImg}')` } :
-                  { height: "10vh", width: "10vh", borderRadius: '50% ', backgroundImage: `url('${buisnessImg}')` }}
-                onClick={load}
-              >
+      <div className="wrapping">
+        <div className="buisnessBackground d-flex justify-content-center "
+          style={{ marginTop: '21%', marginBottom: "5%", height: "fit-content" }}>
+          <div className="circleTop">
+            <div className="after">
+              <div className='circle'>
+                <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
+                  disabled={!editable}
+                  onChange={(e) => addImageList(e.target.files[0])}
+                />
+                <div className="imgLogoBusiness m-auto"
+                  className={imageFlag == 2 ?
+                    'imgLogoBusiness m-auto' : 'defaultImgLogoBusiness m-auto'}
+                  style={imageFlag == 2 ? { height: "4vh", width: "10vh", backgroundImage: `url('${buisnessImg}')` } :
+                    { height: "10vh", width: "10vh", borderRadius: '50% ', backgroundImage: `url('${buisnessImg}')` }}
+                  onClick={load}
+                >
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="businessCard text-center p-5"
-          style={{
-            borderBottom: '4px solid #8E73EC',
-            boxShadow: '0px 3px 6px #00000029',
-            borderRadius: '10px',
-            width: '93%',
-            height: '93%',
-            cursor: "pointer",
-            zIndex: "1",
-            marginLeft: '2%'
-          }}
-          onClick={() => chooseBuisness(buisnessId)}
-        >
-          <div className="body" style={{ marginTop: '2rem' }}>
-            <div className='my-4 rounded p-auto'
-              style={{ border: editable === true ? '1px dashed lightgray' : 'none' }}>
-              <input
-                disabled={!editable}
-                className=' p-2 font-weight-bold editable-business busnessh3'
-                placeholder='Name of Business'
-                value={buisnessName}
-                style={{ color: "#917BDF !important" }}
-              />
-              {/* <input
+          <div
+            className="businessCard text-center p-5"
+            style={{
+              borderBottom: '4px solid #8E73EC',
+              boxShadow: '0px 3px 6px #00000029',
+              borderRadius: '10px',
+              width: '93%',
+              height: '93%',
+              cursor: "pointer",
+              marginLeft: '2%',
+              paddingBottom: '4rem !important'
+            }}
+            onClick={() => chooseBuisness(buisnessId)}
+          >
+            <div className="body" style={{ marginTop: '3rem' }}>
+              <div className='my-4 rounded p-auto'
+                style={{ border: editable === true ? '1px dashed lightgray' : 'none' }}>
+                <input
+                  disabled={!editable}
+                  className=' p-2 font-weight-bold editable-business busnessh3'
+                  placeholder='Name of Business'
+                  value={buisnessName}
+                  style={{ color: "#917BDF !important" }}
+                />
+                {/* <input
                             disabled={!editable}
                             className='p-1 editable-business busnessh5'
                             placeholder='Website'
                             value={buisnessWebsite ? buisnessWebsite.split('/')[2] : ""}
                         /> */}
-              <input
-                disabled={!editable}
-                className='p-1  editable-business busnessh5'
-                placeholder='Email Business'
-                value={buisnessEmail}
-              />
+                <input
+                  disabled={!editable}
+                  className='p-1  editable-business busnessh5'
+                  placeholder='Email Business'
+                  value={buisnessEmail}
+                />
+              </div>
+              <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                <button
+                  className='btn btn-light m-auto'
+                  onClick={(e) => edit()}
+                >
+                  <FontAwesomeIcon
+                    className='m-auto editIcon'
+                    size='1x'
+                    icon={['fas', 'pen']}
+                    style={{ color: 'gray' }}
+                  />
+                </button>
+              </Tooltip>
+              <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
+                <button
+                  className='btn btn-trash'
+                  onClick={(e) => remove()}
+                >
+                  <FontAwesomeIcon
+                    className='m-auto'
+                    size='1x'
+                    icon={['fas', 'trash']}
+                    style={{ color: 'gray' }}
+                  />
+                </button>
+              </Tooltip>
             </div>
-            <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
-              <button
-                className='btn btn-light m-auto'
-                onClick={(e) => edit()}
-              >
-                <FontAwesomeIcon
-                  className='m-auto editIcon'
-                  size='1x'
-                  icon={['fas', 'pen']}
-                  style={{ color: 'gray' }}
-                />
-              </button>
-            </Tooltip>
-            <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
-              <button
-                className='btn btn-trash'
-                onClick={(e) => remove()}
-              >
-                <FontAwesomeIcon
-                  className='m-auto'
-                  size='1x'
-                  icon={['fas', 'trash']}
-                  style={{ color: 'gray' }}
-                />
-              </button>
-            </Tooltip>
           </div>
         </div>
       </div>

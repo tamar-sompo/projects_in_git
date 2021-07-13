@@ -21,17 +21,17 @@
     background-color: #fff;
     border-radius: 50% ;
     position: absolute;
-    top: calc(30% - 6vh);
+    /* top: calc(30% - 4vh); */
+    margin-top: -9vh;
     box-shadow: inset 0 0 7px rgb(0 0 41 / 16%);
     margin-left: .6%;
-    z-index: 1;
+    /* z-index: 1; */
 }
 .after {
-    content: "";
     position: absolute;
     height: 9vh;
     width: 18vh;
-    top: calc(37% - 6.7vh);
+    /* top: calc(37% - 6.7vh); */
     /* margin-left: 1.6%; */
     /* z-index: 2; */
     background-color: white;
@@ -109,4 +109,7 @@ button:not(:disabled) {
 .btn-trash:hover{
     color: #212529;
     background-color: #e2e6ea;
+}
+.wrapping{
+    position: relative;
 }

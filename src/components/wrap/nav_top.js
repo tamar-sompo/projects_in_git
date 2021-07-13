@@ -85,11 +85,6 @@ export default function Nav() {
   const submitProduct = useSelector(state => state.invoiceReducer.submitProduct);
   const allproduct = useSelector(state => state.productReducer.allProducts);
 
-
-
-
-
-
   useEffect(() => {
     console.log("navTop")
   }, [invoiceSave])
@@ -97,11 +92,12 @@ export default function Nav() {
   const chooseCurrentBuisness = (event) => {
     const buisnessChoose = event.value;
     const objBuisness = JSON.parse(buisnessChoose)
+    if (currentBuisness._id != objBuisness._id) {
+      dispatch(actions.setShow(true))
+      dispatch(actions.setNameAction("You moved to another business"))
+    }
     dispatch(actions.getAllProduct(objBuisness._id))
-    console.log("buisnessObj", objBuisness)
-    console.log("buisnessssssssssss", buisnessChoose)
     dispatch(actions.setGetBusiness(objBuisness._id))
-    console.log("dispatch1")
     dispatch(actions.setGeCurrenttBuisness(objBuisness))
     console.log("dispatch2")
   }

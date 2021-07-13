@@ -18,6 +18,8 @@ function BuisnessList(props) {
     const userName = useSelector(state => state.publicReducer.userName);
     const setModalBody = (message) => dispatch(actions.setModalBody(message))
     const showModalDelete = useSelector(state => state.messageReducer.showModalDelete);
+    const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness);
+
 
     const [chooselinei, setchooselinei] = useState({
         flag: "false",
@@ -42,9 +44,9 @@ function BuisnessList(props) {
         let date = new Date(date1)
         return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     }
-    const date1 = new Date()
-    const date2 = convertdate(date1);
-    console.log("date2", date2)
+    // const date1 = new Date()
+    // const date2 = convertdate(date1);
+    // console.log("date2", date2)
 
     const edit = (buisnessChoose) => {
         dispatch(actions.getAllProduct(buisnessChoose._id))
@@ -60,12 +62,22 @@ function BuisnessList(props) {
         dispatch(actions.setGetBusiness(buisnessChoose._id))
         dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         dispatch(actions.setShowModalDelete(true));
-
+    }
+    const chooseBuisness = (value) => {
+        if (currentBuisness != value) {
+            dispatch(actions.setShow(true))
+            dispatch(actions.setNameAction("You moved to another business"))
+        }
+        // const buisnessChoose = allBuisnessToUser.find(x => x._id === value)
+        dispatch(actions.getAllProduct(value._id))
+        console.log("buisnessObj", value)
+        dispatch(actions.setGetBusiness(value._id))
+        dispatch(actions.setGeCurrenttBuisness(value))
     }
     return (
         <>
             {showModalDelete && <ModeldeleteBuisness />}
-            <div className="wrap_table">
+            <div className="wrap_table" style={{ marginTop: "2%" }}>
                 <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
                     <div className="col">
                         <div className="table-responsive" style={{ margin: '0% !important' }}>
@@ -82,17 +94,18 @@ function BuisnessList(props) {
                                         <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
                                     </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
                                     {/* {(searchby === "" || de === true) && filtersearchInvoices &&
                                         filtersearchInvoices.length > 0 && filtersearchInvoices.map((invoice, index) => { */}
                                     {props.allBuisness && props.allBuisness.length > 0 && props.allBuisness.map((buisness, index) => {
                                         return (
                                             <>
                                                 <tr className="tr"
-                                                    style={{ height: "55px" }}
+                                                    style={{ height: "55px", cursor: "pointer" }}
                                                     id={"flag" + index}
                                                     onMouseEnter={() => mouseEnter(buisness._id)}
                                                     onMouseLeave={() => mouseLeave(buisness._id)}
+                                                    onClick={() => chooseBuisness(buisness)}
                                                     key={buisness._id}>
                                                     {/* <td style={{ width: "5%" }}></td> */}
                                                     <td style={{ paddingLeft: "3%" }}>

@@ -18,6 +18,7 @@ import CurrencyInput from 'react-currency-input-field';
 import { BsSearch } from 'react-icons/bs'
 import Tooltip from '@material-ui/core/Tooltip';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import MessageProduct from './messageProduct'
 // import MessageProduct from './messageProduct'
 // import e from 'cors';
 // import MassageFormat from '../Useful/messageFormat'
@@ -70,6 +71,8 @@ function Products(props) {
     const tmpPr = useSelector(state => state.productReducer.tmpPr)
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const buisness = useSelector(state => state.buisnessReducer.buisness)
+    const showMessagePr = useSelector(state => state.messageReducer.showMessagePr)
+    const savePr = useSelector(state => state.productReducer.ifSave);
     const [flagField, setFlagField] = useState(false)
     let contacts = [];
     const [chooselinep, setChooselinep] = useState({
@@ -92,7 +95,11 @@ function Products(props) {
         // dispatch(actions.getAllProduct())
     }, [])
     useEffect(() => {
+        debugger
         if (isEdit) {
+            // if (degel == '10') {
+            //     dispatch(actions.setdegel1(2))
+            // }
             dispatch(actions.setIsEdit(false))
             setDis({ id: tmpPr._id })
             if (dis.flag === 0) {
@@ -108,6 +115,9 @@ function Products(props) {
                     if (flagField === true) {
                         // if (newProductTable.name && newProductTable.price) {
                         if (!flagPrice && !flagName) {
+                            // if (degel == '10') {
+                            //     dispatch(actions.setdegel1(2))
+                            // }
                             dispatch(actions.editProduct({ key: "table", value: tmpPr._id }))
                             setDis({ flag: 0, id: tmpPr._id, inpDis: "disable" })
                             setFlagField(false)
@@ -172,6 +182,12 @@ function Products(props) {
 
 
     }
+    const degel = useSelector(state => state.productReducer.degel1)
+    useEffect(() => {
+        if (degel == '10') {
+            setDisable(tmpPr)
+        }
+    }, [degel])
 
     useEffect(() => {
         if (flagNewP) {
@@ -186,7 +202,8 @@ function Products(props) {
 
     const changeFlag = (value) => {
         // dispatch(actions.setPushNewProduct({}))
-
+        // כדי להתחל מס לחצה על הedit
+        setflagNumClick(false)
         //כדי לסגור עריכה בעת יצירת חדש
         filtersearchProducts && filtersearchProducts.map((product, index) => {
             if (dis.flag === 1) {
@@ -254,21 +271,41 @@ function Products(props) {
                 else setflagPrice(true)
             }
         }
+        dispatch(actions.setIfSave(true))
         setFlagField(true)
         const value = e.target.value;
         dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
     }
+    const [tmpId, setTmpId] = useState()
+    const [flagNumClick, setflagNumClick] = useState(false)
     const [flagName, setflagName] = useState(false)
     const [flagPrice, setflagPrice] = useState(false)
-    const setDisable = (product) => {
-        if (flagNewP) {
-            dispatch(actions.setShowMessagePr(true))
+    const setDisable = (product) => {// after clicking the edit icon - open / close + save the product
+        debugger
+        if (flagNewP) { //flag if new product is open
+            if (savePr) { //flag that checks if product valus changed
+                dispatch(actions.setShowMessagePr(true))
+            }
+            else {
+                dispatch(actions.setFlagNewP(false))
+                dispatch(actions.setIsEdit(true))
+                dispatch(actions.setIfSave(false))
+            }
+            //  שמירה למשתנה זמני ברידאקס את המוצר עליו אני עובדת
             dispatch(actions.saveTmpPr(product))
+            // dispatch(actions.saveTmpPr(product))
         }
         else {
-            // dispatch(action.saveTmpPr(product))
-
+            if (degel == '10') {
+                dispatch(actions.setdegel1(4))//route user selection page
+            }
             setDis({ id: product._id })
+            if (!flagNumClick) {
+                //לחיצה ראשונה
+                setTmpId(product._id)
+                setflagNumClick(true)
+            }
+
             if (dis.flag === 0) {
                 // alert("inpDis:")
                 setFlagField(false)
@@ -276,19 +313,39 @@ function Products(props) {
                 // dispatch(actions.setNewProductObject(product))
             }
             else {
+                setflagNumClick(false)
                 if (dis.inpDis == "") {
+
                     // setDis({ flag: 0, id: product._id, inpDis: "disable" })
                     // dispatch(actions.setProductId({key: "table", value:product._id}))
                     if (flagField === true) {
                         // if (newProductTable.name && newProductTable.price) {
                         if (!flagPrice && !flagName) {
-                            dispatch(actions.editProduct({ key: "table", value: product._id }))
-                            setDis({ flag: 0, id: product._id, inpDis: "disable" })
-                            setFlagField(false)
-                            setflagName(false)
-                            setflagPrice(false)
+                            // אם לחץ על מוצר אחר לפני שמירה
+                            if (tmpId != product._id) {
+                                debugger
+                                dispatch(actions.editProduct({ key: "table", value: tmpId }))
+                                dispatch(actions.setIfSave(false))
+                                setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                                setFlagField(false)
+                                setflagName(false)
+                                setflagPrice(false)
+                                setflagNumClick(false)
+                                setTmpId(product._id)
+                                setFlagField(false)
+                                setDis({ flag: 1, id: product._id, inpDis: "" })
+                            }
+                            else {
+                                dispatch(actions.editProduct({ key: "table", value: product._id }))
+                                setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                                dispatch(actions.setIfSave(false))
+                                setFlagField(false)
+                                setflagName(false)
+                                setflagPrice(false)
+                            }
                         }
                         else {
+                            debugger
                             // if (!newProductTable.name)
                             if (flagName) setflagName(true)
                             if (flagPrice) setflagPrice(true)
@@ -296,7 +353,17 @@ function Products(props) {
                     }
                     else {
                         // dispatch(actions.editProduct({ key: "table", value: product._id }))
-                        setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                        // setDis({ flag: 0, id: product._id, inpDis: "disable" })
+                        if (tmpId != product._id) {
+                            setflagNumClick(false)
+                            setTmpId(product._id)
+                            setFlagField(false)
+                            setDis({ flag: 1, id: product._id, inpDis: "" })
+                        }
+                        else {
+                            setDis({ flag: 0, id: product._id, inpDis: "disable" })
+
+                        }
                         // setDis({ id: product._id, inpDis: "" })
 
                     }
@@ -315,7 +382,6 @@ function Products(props) {
     };
 
     const deleteProduct1 = (id, i) => {
-
         props.deleteProduct(chooselinep.index)
         let arr1 = [...props.allproduct]
         arr1.splice(i, 1)
@@ -369,7 +435,6 @@ function Products(props) {
 
     //   const [filteredinvoices, setfilteredinvoices] = useState()
     const searchProducts = (searchproduct) => {
-
         dispatch(actions.setFilteredProducts([]))
         var products = props.allproduct
         products.forEach(prod => {
@@ -592,13 +657,13 @@ function Products(props) {
                     </div>
                 </div>
             </div> */}
-
+            {showMessagePr && <MessageProduct flag={0}></MessageProduct>}
             <div className="container-fluid con" style={{
                 height: "86vh",
                 width: "98%"
                 // , borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
             }}>
-                <div className="row ">
+                <div className="row" style={{ height: '6%', marginTop: '-1%' }}>
                     <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Product</h1>
                     </div>
@@ -627,7 +692,7 @@ function Products(props) {
                         </div>
                     </div>
                 </div>
-                <div className="wrap_table">
+                <div className="wrap_table" style={{ marginTop: "2%" }}>
                     <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
                         <div className="col">
                             <div className="table-responsive">
@@ -680,7 +745,9 @@ function Products(props) {
                                                                             <div>
                                                                                 <p style={{ fontSize: "60%" }}>upload image</p>
                                                                                 <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-                                                                                    onChange={(e) => addImage(e.target.files[0])} />
+                                                                                    onChange={(e) => addImage(e.target.files[0])}
+                                                                                    accept="image/*"
+                                                                                />
                                                                                 <img
                                                                                     className={classes.buttonUpload1}
                                                                                     src={newProductTable.images ? newProductTable.images : product.images ? product.images : Imgp}
@@ -705,13 +772,13 @@ function Products(props) {
                                                                                 "inputP validB"
                                                                                 :
                                                                                 "inputP" : "inputF"}
-                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                    value={dis.id === product._id && dis.inpDis == "" && newProductTable && newProductTable.name && !flagNewP ?
                                                                         newProductTable.name :
-                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name && !flagNewP ?
                                                                             newProductTable.name :
                                                                             dis.id === product._id && flagName ?
                                                                                 newProductTable.name :
-                                                                                dis.id === product._id && !dis.inpDis ?
+                                                                                dis.id === product._id && !dis.inpDis && newProductTable && newProductTable.name && !flagNewP ?
                                                                                     newProductTable.name :
                                                                                     product.name}
                                                                     disabled={dis.id === product._id ? dis.inpDis : "disable"}
@@ -726,9 +793,9 @@ function Products(props) {
 
                                                                         rowsMax="2"
                                                                         className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
-                                                                        value={dis.id === product._id && dis.inpDis == "" ?
+                                                                        value={dis.id === product._id && dis.inpDis == "" && newProductTable && !flagNewP ?
                                                                             newProductTable.description :
-                                                                            dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                            dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name && !flagNewP ?
                                                                                 newProductTable.description : product.description}
                                                                         onChange={(e) => onFieldEdit('description', e)}
                                                                         onFocus={() => resetFeild('description', product)}
@@ -755,13 +822,13 @@ function Products(props) {
                                                                     //             newProductTable.price : product.price}
                                                                     disabled={dis.id === product._id ? dis.inpDis : "disable"}
 
-                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                    value={dis.id === product._id && dis.inpDis == "" && newProductTable && newProductTable.price && !flagNewP ?
                                                                         newProductTable.price :
-                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.price ?
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.price && !flagNewP ?
                                                                             newProductTable.price :
-                                                                            dis.id === product._id && flagName ?
+                                                                            dis.id === product._id && flagPrice ?
                                                                                 newProductTable.price :
-                                                                                dis.id === product._id && !dis.inpDis ?
+                                                                                dis.id === product._id && !dis.inpDis && newProductTable && newProductTable.price && !flagNewP ?
                                                                                     newProductTable.price :
                                                                                     product.price}
                                                                     onChange={(e) => onFieldEdit('price', e)}
@@ -776,9 +843,9 @@ function Products(props) {
                                                                 <input type="text"
                                                                     className="allInput"
                                                                     className={dis.id === product._id ? dis.inpDis == "disable" ? "inputF" : "inputP" : "inputF"}
-                                                                    value={dis.id === product._id && dis.inpDis == "" ?
+                                                                    value={dis.id === product._id && dis.inpDis == "" && newProductTable && !flagNewP ?
                                                                         newProductTable.amount :
-                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name ?
+                                                                        dis.id === product._id && dis.inpDis == "disable" && newProductTable && newProductTable.name && !flagNewP ?
                                                                             newProductTable.amount : product.amount}
                                                                     style={{ display: "inline-block", paddingLeft: "5%" }}
                                                                     onChange={(e) => onFieldEdit('amount', e)}

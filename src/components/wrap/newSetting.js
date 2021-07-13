@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
-
+import MessageProductP from '../product/messageProductPage'
+import MessageBusiness from '../forms/messageBusineess'
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -27,14 +28,17 @@ export default function NewSetting(props) {
   const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
+  const showMessagePr = useSelector(state => state.messageReducer.showMessagePr)
   const invoice = useSelector(state => state.invoiceReducer.invoice);
+  const savePr = useSelector(state => state.productReducer.ifSave);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
   const [flagIfSave, setFlagIfSave] = useState(false)
   const [index, setIndex] = useState(0)
+  const page = useSelector(state => state.messageReducer.page);
   console.log("allBuisnessToUser", allBuisnessToUser)
-
+  const flagSave = useSelector(state => state.buisnessReducer.flagSave);
   const setdispatch = () => {
     dispatch(actions.setInvoiceShow({}));
     dispatch(actions.setDetailsContact({}));
@@ -64,6 +68,7 @@ export default function NewSetting(props) {
     }
   }, [buttonClick])
 
+  // const [page, setPage] = useState(false)
   //אחרי לחיצה על קישור בקונפיגורטור
   useEffect(() => {
     if (flagFirst === false)
@@ -88,12 +93,66 @@ export default function NewSetting(props) {
         }
       }
       else {
-        routePage()
-        setShowMessage(false)
+        if (savePr) {
+          debugger
+          if (window.location.href.split('/')[4] == "product") {
+            dispatch(actions.setPage(true))
+            // setPage(true)
+          }
+          else {
+            dispatch(actions.setPage(true))
+            routePage()
+            setShowMessage(false)
+          }
+        }
+        else {
+          debugger
+          if (flagSave == 'true1' || flagSave == 'true2') {
+            dispatch(actions.setFlagOverPage(true))
+            // dispatch(actions.setflagSave(''))
+          }
+          else {
+            routePage()
+            setShowMessage(false)
+          }
+        }
+
       }
 
     }
   }, [index])
+
+  const degel = useSelector(state => state.productReducer.degel1)
+  useEffect(() => {
+    if (degel == '2') {
+      routePage()
+      setShowMessage(false)
+      dispatch(actions.setdegel1(0))
+    }
+    else {
+      if (degel == '4') {
+        routePage()
+        setShowMessage(false)
+        dispatch(actions.setdegel1(0))
+      }
+    }
+  }, [degel])
+
+
+  useEffect(() => {
+    if (flagSave == 'overPage1') {
+      routePage()
+      setShowMessage(false)
+      dispatch(actions.setflagSave('false'))
+    }
+    else {
+      if (flagSave == 'overPage2') {
+        routePage()
+        setShowMessage(false)
+        dispatch(actions.setflagSave('false'))
+      }
+    }
+  }, [flagSave])
 
   const routePage = () => {
     console.log("specific route function", specificRoute)
@@ -132,6 +191,11 @@ export default function NewSetting(props) {
 
 
   const checkIfBuisness = (value) => {
+    // if (savePr) {
+    //   if (value != 'Products') {
+    //     dispatch(actions.setShowMessagePr(true))
+    //   }
+    // }
     dispatch(actions.setDisplayBoxShadow(false))
     setIndex(index + 1)
     setspecificRoute(value)
@@ -143,6 +207,8 @@ export default function NewSetting(props) {
 
   return (
     <>
+      <MessageBusiness></MessageBusiness>
+      <MessageProductP flag={1}></MessageProductP>
       {/* <button></button> */}
       {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}

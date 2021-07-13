@@ -14,6 +14,8 @@ import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from 'react-router-dom';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 
 
@@ -190,12 +192,14 @@ function MultiSelectInput(props) {
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'subject')}
                     placeholder="Subject" />
-                <hr className="d-flex justify-content-center" style={{ paddingTop: "4%" }}></hr>
-                <input className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
+                {/* <input  */}
+                <TextareaAutosize
+                    className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'html')}
                     placeholder={"The Body Of The Message"}
-                />
+                ></TextareaAutosize>
+                {/* /> */}
                 <div style={{ height: "6vh" }}></div>
                 <div className="d-flex justify-content-center pointer" onClick={() => toMailServer()}>
                     <FontAwesomeIcon

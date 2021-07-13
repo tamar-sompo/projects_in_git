@@ -20,7 +20,11 @@ const initialState = {
         flagNewP: false,
         isSave: false,
         tmpPr: {},
-        isEdit: false
+        isEdit: false,
+        ifSave: false,
+        degel1: 0,
+        degel2: false,
+        page: false
 }
 const products = {
         getAllProductToInvoice(state, action) {
@@ -28,6 +32,19 @@ const products = {
         },
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
+        },
+        setPage(state, action) {
+                debugger
+                state.page = action.payload
+        },
+        setdegel1(state, action) {
+                state.degel1 = action.payload
+        },
+        setdegel2(state, action) {
+                state.degel2 = action.payload
+        },
+        setIfSave(state, action) {
+                state.ifSave = action.payload
         },
         setIsEdit(state, action) {
                 state.isEdit = action.payload
