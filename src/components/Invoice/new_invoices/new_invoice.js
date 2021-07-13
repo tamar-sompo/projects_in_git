@@ -1291,7 +1291,7 @@ function New_Invoice(props) {
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
                       className="design_text design_buisness"
-                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
+                      placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}

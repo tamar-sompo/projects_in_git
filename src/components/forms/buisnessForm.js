@@ -168,7 +168,7 @@ function BuisnessList(props) {
   //     history.push(`/${userName}/allDocuments`)
   // },[allBuisness])
 
-  const saveNewBuisness = (e) => {
+  const saveNewBuisness = async (e) => {
     let tmp1 = true;
     let tmp3 = true;
     // let tmp4 = userFiled.name || currentBuisness.name;
@@ -181,6 +181,9 @@ function BuisnessList(props) {
       tmp3 = validatorPhone(userFiled.phone);
     }
     if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
+      await updateBuisnessField({
+        key: 'productionDate', value: new Date()
+      })
       setFlagLoud(true)
       debugger
       if (flagSave == 'saveNewBusiness') {
