@@ -628,19 +628,19 @@ function Products(props) {
                     </div>
                 </div>
                 <div className="wrap_table" style={{ marginTop: "2%" }}>
-                    <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
+                    <div className="row" >
                         <div className="col">
                             <div className="table-responsive">
                                 <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px", marginBottom: "0rem" }}>
-                                    <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
+                                    <thead style={{ backgroundColor: "rgb(250, 250, 250)", opacity: "100%" }}>
                                         <tr ref={myRef}>
-                                            <th style={{ width: "9%", backgroundColor: "#F5F5FA" }}></th>
-                                            <th >NAME</th>
-                                            <th >DESCRIPTION</th>
-                                            <th>PRICE</th>
-                                            <th>SKU</th>
+                                            <th style={{ width: "9%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
+                                            <th style={{ borderBottom: "0px" }}>NAME</th>
+                                            <th style={{ borderBottom: "0px" }}>DESCRIPTION</th>
+                                            <th style={{ borderBottom: "0px" }}>PRICE</th>
+                                            <th style={{ borderBottom: "0px" }}>SKU</th>
                                             {/* <th>DATE CREATE</th> */}
-                                            <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
+                                            <th style={{ width: "3%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
                                         </tr>
                                     </thead>
                                     {flag1 == true &&
