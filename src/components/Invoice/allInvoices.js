@@ -333,47 +333,47 @@ function AllInvoices(props) {
                               onMouseEnter={() => fff(invoice._id)}
                               onMouseLeave={() => ppp(invoice._id)}
                               key={invoice._id}>
-                              <td style={{ width: "5%" }}></td>
+                              <td style={{ width: "1%" }}></td>
                               <td>{invoice.contactOneTime.flag == true && invoice.contactOneTime.name ? invoice.contactOneTime.name : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).name : '' : ''}</td>
                               <td>{invoice.invoiceNumber}</td>
                               <td>{invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''}</td>
-                              <td className={invoice.paymentStatus === false ? "noP" : "PaU"}>
+                              <td className={invoice.paymentStatus === false ? "noP" : "PaU"} style={{ width: "1rem" }}>
                                 <div className={invoice.paymentStatus === false ? "mechilN" : "mechilY"} >
                                   {invoice.paymentStatus === false ? 'Not Paid' : 'Paid Up'}</div>
                               </td>
                               <td>{convertdate(invoice.date)}</td>
-                              <td className="td_tt" >
+                              <td className="td_tt" style={{ width: "7%" }} >
                                 <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
                                   {
-                                    // chooselinei.isShown && chooselinei.index === invoice._id && (
-                                    <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
-                                      <Share fl={1}
-                                        paypalLink={invoice && invoice.paypalLink ? invoice.paypalLink : "null"}
-                                        invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''}
-                                        // invoiceId={invoice && invoiceDetailsView._id ? invoice.invoice._id:"null"} 
-                                        invoiceId={invoice && invoice._id ? invoice._id : ""}
-                                      />
-                                      <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
-                                        <a style={{ height: "14px" }}>
-                                          <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}
-                                            style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px", width: "15px", height: "15px" }}
-                                          ></MdEdit>
-                                        </a>
-                                      </Tooltip>
-                                      <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
-                                        <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
-                                          style={{ height: "14px" }}>
-                                          <MdRemoveRedEye id="icon"
-                                            style={{ verticalAlign: "top", marginLeft: "5px", width: "15px", height: "15px" }}
-                                            data-toggle="collapse"
-                                            data-target={"#collapsePicture" + index}
-                                            aria-expanded="false"
-                                            onClick={() => showInvoiceByIdAcord(invoice, index)}>
-                                          </MdRemoveRedEye>
-                                        </a>
-                                      </Tooltip>
-                                    </div>
-                                    // )
+                                    chooselinei.isShown && chooselinei.index === invoice._id && (
+                                      <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
+                                        <Share fl={1}
+                                          paypalLink={invoice && invoice.paypalLink ? invoice.paypalLink : "null"}
+                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''}
+                                          // invoiceId={invoice && invoiceDetailsView._id ? invoice.invoice._id:"null"} 
+                                          invoiceId={invoice && invoice._id ? invoice._id : ""}
+                                        />
+                                        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
+                                          <a style={{ height: "14px" }}>
+                                            <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}
+                                              style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px", width: "15px", height: "15px" }}
+                                            ></MdEdit>
+                                          </a>
+                                        </Tooltip>
+                                        <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
+                                          <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
+                                            style={{ height: "14px" }}>
+                                            <MdRemoveRedEye id="icon"
+                                              style={{ verticalAlign: "top", marginLeft: "5px", width: "16px", height: "16px" }}
+                                              data-toggle="collapse"
+                                              data-target={"#collapsePicture" + index}
+                                              aria-expanded="false"
+                                              onClick={() => showInvoiceByIdAcord(invoice, index)}>
+                                            </MdRemoveRedEye>
+                                          </a>
+                                        </Tooltip>
+                                      </div>
+                                    )
                                   }
                                 </div>
                               </td>

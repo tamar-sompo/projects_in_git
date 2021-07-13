@@ -69,7 +69,7 @@ function Business(props) {
       {
         flagView === false ? <BuisnessList allBuisness={allBuisnessToUser} /> :
           <CardDeck
-            style={{ width: "93%" }}
+            style={{ width: "95%" }}
           >
             <div className='displayCards'>
               {console.log('allbusiness lea', allBuisnessToUser)}
