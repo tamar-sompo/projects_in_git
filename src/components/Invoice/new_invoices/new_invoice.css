@@ -52,8 +52,8 @@ input[type="date"]::-webkit-calendar-picker-indicator{
    width: 100% !important;
    height: 39% !important;
    padding: 0px;
-    font-size: 0.8vw;
-     text-align: center
+   font-size: 0.8vw;
+    text-align: center
 }
 .cursor_pointer{
     cursor:pointer
