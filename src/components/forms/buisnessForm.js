@@ -22,7 +22,7 @@ import * as Yup from "yup"
 import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
-import { BiCalendar, BiPlus } from 'react-icons/bi';
+import { BiCalendar, BiPlus, BiRestaurant } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import uploadAnimation from '../assets/louder.gif'
@@ -98,8 +98,7 @@ function BuisnessList(props) {
   const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
   const userName = useSelector(state => state.publicReducer.userName);
   const userFiled = useSelector(state => state.buisnessReducer.newBuisness);
-
-
+  console.log("userFileduserFiled", userFiled)
   const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
   const updateWebsite = (fieldToUpdate) => dispatch(actions.setbuisnessWebsite(fieldToUpdate))
   const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
@@ -107,15 +106,19 @@ function BuisnessList(props) {
   const setCountry = () => dispatch(actions.getCountry())
   const [flag, setFlag] = useState("false")
   const [flagLoud, setFlagLoud] = useState(false)
+  const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
-  // useEffect(() => {
-  //   setUrlLogo(detailsBusiness.imgLogo)
-  //  } ,[detailsBusiness.imgLogo])
+  useEffect(() => {
+    if (flagSave == 'saveNewBusiness') {
+      saveNewBuisness()
+    }
+  }, [flagSave])
 
   useEffect(() => {
     dispatch(actions.setDisplayBoxShadow(false))
   }, [])
   useEffect(() => {
+    debugger
     if (flag === "false")
       setFlag("true")
     else {
@@ -134,6 +137,20 @@ function BuisnessList(props) {
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
+  const restart = () => {
+    setFlagLoud(false)
+    updateBuisnessField({ key: 'name', value: "" })
+    updateBuisnessField({ key: 'imgLogo', value: "" })
+    updateBuisnessField({ key: 'email', value: "" })
+    updateBuisnessField({ key: 'phone', value: "" })
+    updateBuisnessField({ key: 'country', value: "" })
+    updateBuisnessField({ key: 'city', value: "" })
+    updateBuisnessField({ key: 'address', value: "" })
+    updateWebsite({ key: 'website', value: "" })
+    updateBuisnessField({ key: 'vat', value: "" })
+    updateBuisnessField({ key: 'numberDeals', value: "" })
+    updateBuisnessField({ key: 'imgLogo', value: "" })
+  }
 
   const validatorPhone = (v) => {
 
@@ -168,6 +185,11 @@ function BuisnessList(props) {
         key: 'productionDate', value: new Date()
       })
       setFlagLoud(true)
+      debugger
+      if (flagSave == 'saveNewBusiness') {
+        dispatch(actions.setflagSave('overPage1'))
+        restart()
+      }
       dispatch(actions.setBuisnessToServer(userFiled))
       setErrorMessage('');
       setErrorMessage2('');
@@ -242,6 +264,7 @@ function BuisnessList(props) {
   //   return false;
   // }
   const fieldChanged = (e, fieldName) => {
+    dispatch(actions.setflagSave('true1'))
     if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
     else {
       if (fieldName == 'name') setErrorMessage('')
@@ -281,6 +304,7 @@ function BuisnessList(props) {
   };
 
   const addImage1 = (event) => {
+    dispatch(actions.setflagSave('true1'))
     if (event) {
       let reader = new FileReader();
       console.log("reader", reader.result)
@@ -354,7 +378,9 @@ function BuisnessList(props) {
             <div>Logo</div>
             <div  >
               <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                onChange={(e) => addImage1(e.target.files[0])} />
+                onChange={(e) => addImage1(e.target.files[0])}
+                accept="image/*"
+              />
               <button onClick={onButtonClick} className="rounded"
                 style={{
                   width: "13vh",
@@ -402,6 +428,7 @@ function BuisnessList(props) {
                 </div>
               </div>
               <div className="row">
+                {/* <div class="d-flex flex-row bd-highlight mb-2"> */}
                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
                   <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
@@ -651,56 +678,6 @@ function BuisnessList(props) {
           </div>
         </div> */}
       </div>
-      {/* <div className="row"
-        // style={{height:"90vh"}}
-        >
-          <div className="col-3 align-items-center">
-            <div className="font2" style={{ height: "30vh", marginBottom: "2vh" }}>
-              Profil Image
-              <hr />
-              <div class="col-12 d-flex justify-content-start flex-column align-items-center poo">
-                <div  >
-                  <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                    onChange={(e) => addImage1(e.target.files[0])} />
-                  <button onClick={onButtonClick} className="rounded"
-                    style={{
-                      backgroundColor: "grey",
-                      color: "white",
-                      width: "10vh",
-                      height: "10vh"
-                    }}
-                    className={classes.buttonUpload}>
-                    {detailsBusiness && detailsBusiness.imgLogo ?
-                      <img
-                        // id='userLogo-temp1'
-                        className={classes.imgUpload}
-                        src={detailsBusiness && detailsBusiness.imgLogo ? detailsBusiness.imgLogo : ""}
-                        // src={urlLogo? urlLogo :""}
-                        alt="Logo"
-                        title="Your Logo Here"
-                        style={{}}
-                        onClick={() => onButtonClick("logo")}
-                      /> :
-                      <HiUpload id="icon" className={classes.iconUpload} />}
-                    <br></br>
-                    <div className="uploadImage">Upload</div>
-
-                  </button>
-                </div>
-              </div>
-            </div> */}
-
-      {/* <div className="font2" style={{ height: "40vh" }}>
-              Social Networks
-              <hr />
-            </div>
-          </div>
-
-          <div className="col-8 font2" style={{ height: "72vh" }}>
-            Personal Information
-            <hr />
-          </div>
-        </div> */}
     </>
   )
 };
