@@ -409,7 +409,7 @@ function BuisnessList(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-5" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
+            <div className="col-md-5 sm-10" style={{ paddingLeft: "5vh", paddingRight: "7vh" }}>
               <div className="row">
                 <div>
                   <div class="d-flex justify-content-start">
@@ -429,7 +429,7 @@ function BuisnessList(props) {
               </div>
               <div className="row">
                 {/* <div class="d-flex flex-row bd-highlight mb-2"> */}
-                <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
+                <div className="col-md-5 sd-10" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                   <div className="font2">Company Phone</div>
                   <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
                     placeholder="Company Phone"
@@ -439,7 +439,7 @@ function BuisnessList(props) {
                   {errorMessage4 == '#Invalid phone' &&
                     <div className="required">{errorMessage4}</div>}
                 </div>
-                <div className="col-5">
+                <div className="col-md-5 sd-10">
                   <div className="font2">Company Email</div>
                   <input name='email' type="text"
                     placeholder="Company Email"
@@ -468,7 +468,7 @@ function BuisnessList(props) {
                 </div>
               </div>
             </div>
-            <div className="col-5">
+            <div className="col-md-5 sm-10">
               <div className="row">
                 <div>
                   <div className="font2">Website</div>
@@ -507,7 +507,7 @@ function BuisnessList(props) {
               </div>
               <div className="row" >
                 <div className="col-5" style={{ paddingLeft: "0vh" }}>
-                  <div className="font2">Country</div>
+                  <div className="font2" style={{ paddingBottom: "1.5vh" }}>Country</div>
                   <input className="inptStyle" type="text" name="country" list="country"
                     placeholder="Country"
                     value={userFiled.country ? userFiled.country : ""}
@@ -524,7 +524,7 @@ function BuisnessList(props) {
                 </div>
                 <div className="col-5">
                   <div class="d-flex justify-content-start">
-                    <div className="font2">City</div>
+                    <div className="font2" style={{ paddingBottom: "1.5vh" }}>City</div>
                     <div style={{ color: "red", fontSize: "small" }}>*</div>
                   </div>
 
