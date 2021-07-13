@@ -302,7 +302,44 @@ function Item(props) {
 
 
 
+  const updateCellAmount = (title) => {
 
+    if (title === "amount") {
+      dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+      dispatch(actions.setProductAmount(1))
+      dtp && dtp.price ? dtp && dtp.discount ?
+        dispatch(actions.setSum({ sum: 1 * dtp.price * (1 - (dtp.discount / 100)), index1: props.index })) :
+        new_product[props.index].discount ?
+          dispatch(actions.setSum({ sum: 1 * dtp.price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+          dispatch(actions.setSum({ sum: 1 * dtp.price, index1: props.index })) :
+        dtp && dtp.discount ?
+          dispatch(actions.setSum({ sum: 1 * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
+          new_product[props.index].discount ?
+            //  alert("yy") : alert("xx")
+            dispatch(actions.setSum({ sum: 1 * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+            // alert("xx")
+            dispatch(actions.setSum({ sum: 1 * new_product[props.index].price, index1: props.index }))
+
+      debugger
+    }
+
+    // else {
+    //   dispatch(actions.setNewProduct({ index: props.index, key: title, value: e.target.value }))
+    // }
+
+    // if (title === "amount") {
+
+    //   if (e.target.value === "" && product1._id === undefined && dtp._id === undefined) {
+    //     if (!new_product[props.index].name || new_product[props.index].name == "")
+    //       if (!new_product[props.index].description || new_product[props.index].description == "")
+    //         if (!new_product[props.index].price || new_product[props.index].price == "")
+    //           if (!new_product[props.index].discount || new_product[props.index].discount == "")
+    //             setFlagShowSaveP({ index: props.index, value: false })
+    //   }
+
+
+    // }
+  }
 
 
   const updateCell = (title1, e) => {
@@ -313,8 +350,6 @@ function Item(props) {
     console.log("dtpdtp", dtp)
 
     debugger
-    // if (title1 == "name")
-    //   dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
@@ -596,8 +631,12 @@ function Item(props) {
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
       }
       if (fieldName === "price") {
-        dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
-        //  updateCell("amount")
+        if (!amountProductInvoice) {
+          dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+          //  ()=>updateCell("amount",1)
+          updateCellAmount("amount")
+        }
+
         amount2 ? dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
