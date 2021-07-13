@@ -71,6 +71,7 @@ function Item(props) {
   }, [])
 
   useEffect(() => {
+    debugger
     if (borderProductInvoice) {
       if (history.location.pathname === `/${userName}/invoice`) {
         if (props.index) {
@@ -101,6 +102,7 @@ function Item(props) {
 
 
   useEffect(() => {
+    debugger
     if (clickSave === true) {
       setClickSave(false)
       // alert("clickkkk")
@@ -157,7 +159,7 @@ function Item(props) {
 
 
   useEffect(() => {
-
+    debugger
     console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
     }
@@ -176,7 +178,7 @@ function Item(props) {
 
 
   useEffect(() => {
-
+    debugger
     console.log("pppp")
     dispatch(actions.setFlagSavePr(false))
     if (flagPro === false) {
@@ -209,6 +211,7 @@ function Item(props) {
 
 
   const vv3 = (e) => {
+    debugger
     // setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
@@ -255,7 +258,7 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-
+    debugger
     // setflagValidName(false)
     // setflagValidName(false)
     setFlagSaveP(false)
@@ -303,7 +306,7 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
-
+    debugger
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
     setFlagSaveP(false)
@@ -397,6 +400,7 @@ function Item(props) {
 
   }
   const cleanInput1 = (field1) => {
+    debugger
     // setindexof(props.index)
     if (field1 === "amount") {
 
@@ -421,6 +425,7 @@ function Item(props) {
   }
 
   function savepr() {
+    debugger
     // debugger
     // event.preventDefault()
     // alert("jjjj")
@@ -447,6 +452,7 @@ function Item(props) {
     }
   }
   const clearProduct = () => {
+    debugger
     if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
 
       // document.querySelectorAll("input").forEach(
@@ -534,6 +540,7 @@ function Item(props) {
   //   }
   // }
   const updateCellPrice = (_value, fieldName) => {
+    debugger
     setflagValidPrice(false)
     let value
     // setflagValidName(false)
@@ -628,6 +635,7 @@ function Item(props) {
   // dispatch(actions.setSubmitSaveInvoice(false))
 
   const handleSubmit = (event, title) => {
+    debugger
     // alert("submitInvoice"+ submitInvoice)
     // if (submitInvoice === false) {
     event.stopPropagation();
@@ -752,7 +760,7 @@ function Item(props) {
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className='cell design_text ' 
+              className='cell design_text '
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
               value={new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : dtp && dtp.price ? dtp.price : '' : ''}
@@ -815,8 +823,8 @@ function Item(props) {
                 }}
                 className={invoice.products.length === 1 ? "cinput delete_hover" : "delete_hover"} style={{
                   marginLeft: "33%",
-                  display: "none",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  // display: "none",
+                  width: "100%", height: "39%", backgroundColor: 'white', color: "white", padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>

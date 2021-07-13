@@ -959,25 +959,14 @@ function New_Invoice(props) {
                     <h1>{detailsBusiness.name}</h1>
                   </div>}
               </div>
-              <div className="row d-flex justify-content-center" style={{ paddingLeft: "10%", paddingRight: "10%", paddingTop: "2%" }}>
+
+              <div className="row d-flex justify-content-center" style={{ paddingLeft: "20%", paddingRight: "20%", paddingTop: "3%" }}>
                 {/* <div className="col-2"></div> */}
-                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
-                  {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website ?
-                    < a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
-                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                        type="text"
-                        className="design_text design_buisness"
-                        placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
-                        // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
-                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
-                        value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                        style={{ cursor: 'pointer' }}
-                      />
-                    </a> :
+                {/* {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website? } */}
+                <div className=" d-flex justify-content-center wrapBuisnessBorder" style={{ width: "20%" }}>
+                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
-
-
                       className="design_text design_buisness"
                       placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "" : ""}
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
@@ -985,13 +974,13 @@ function New_Invoice(props) {
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
                       style={{ cursor: 'pointer', width: "131%" }}
                     />
-                  }
+                  </a>
                 </div>
                 <div className=" d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ width: "60%", paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >
-                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
-                      style={{ width: "50%", verticalAlign: "top" }}
-                      rowsMax="2"
+                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                      style={{ width: "50%" }}
+
                       size='15'
                       type="text"
                       className="design_text design_buisness"
@@ -1000,10 +989,9 @@ function New_Invoice(props) {
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('address')}
                       value={detailsBusiness && detailsBusiness.city}
                     />
-                    <TextareaAutosize disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                    <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       style={{ width: "50%" }}
                       size='15'
-                      rowsMax='2'
                       type="text"
                       placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "" : ""}
                       className="design_text design_buisness"
@@ -1238,7 +1226,7 @@ function New_Invoice(props) {
 
               </div>
               <div className="container-fluid wrapproduct" >
-                {/* <Form></Form> */}
+
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                   (window.location.href.indexOf("view") == -1 &&
