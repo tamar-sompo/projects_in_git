@@ -1,4 +1,5 @@
 import produce from 'immer'
+import { string } from 'yup/lib/locale';
 import createReducer from "./reducerUtils";
 
 const initialState = {
@@ -16,11 +17,18 @@ const initialState = {
     allBuisness: [],
     currentBuisness: {},
     allInvoices: [],
-
+    flagSave: string,
+    flagOverPage: false
 }
 const buisness = {
     setOldBuisness(state, action) {
         state.oldbuisness = action.payload
+    },
+    setFlagOverPage(state, action) {
+        state.flagOverPage = action.payload
+    },
+    setflagSave(state, action) {
+        state.flagSave = action.payload
     },
     setGetBusiness(state, action) {
         state.buisness = action.payload
@@ -72,7 +80,6 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setBuisness(state, action) {
-        debugger
         state.newBuisness[action.payload.key] = action.payload.value
     },
     setbuisnessWebsite(state, action) {

@@ -22,7 +22,7 @@ import * as Yup from "yup"
 import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
-import { BiCalendar, BiPlus } from 'react-icons/bi';
+import { BiCalendar, BiPlus, BiRestaurant } from 'react-icons/bi';
 import { GiWireframeGlobe } from 'react-icons/gi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import uploadAnimation from '../assets/louder.gif'
@@ -98,8 +98,7 @@ function BuisnessList(props) {
   const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
   const userName = useSelector(state => state.publicReducer.userName);
   const userFiled = useSelector(state => state.buisnessReducer.newBuisness);
-
-
+  console.log("userFileduserFiled", userFiled)
   const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
   const updateWebsite = (fieldToUpdate) => dispatch(actions.setbuisnessWebsite(fieldToUpdate))
   const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
@@ -107,15 +106,19 @@ function BuisnessList(props) {
   const setCountry = () => dispatch(actions.getCountry())
   const [flag, setFlag] = useState("false")
   const [flagLoud, setFlagLoud] = useState(false)
+  const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
-  // useEffect(() => {
-  //   setUrlLogo(detailsBusiness.imgLogo)
-  //  } ,[detailsBusiness.imgLogo])
+  useEffect(() => {
+    if (flagSave == 'saveNewBusiness') {
+      saveNewBuisness()
+    }
+  }, [flagSave])
 
   useEffect(() => {
     dispatch(actions.setDisplayBoxShadow(false))
   }, [])
   useEffect(() => {
+    debugger
     if (flag === "false")
       setFlag("true")
     else {
@@ -134,6 +137,20 @@ function BuisnessList(props) {
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
+  const restart = () => {
+    setFlagLoud(false)
+    updateBuisnessField({ key: 'name', value: "" })
+    updateBuisnessField({ key: 'imgLogo', value: "" })
+    updateBuisnessField({ key: 'email', value: "" })
+    updateBuisnessField({ key: 'phone', value: "" })
+    updateBuisnessField({ key: 'country', value: "" })
+    updateBuisnessField({ key: 'city', value: "" })
+    updateBuisnessField({ key: 'address', value: "" })
+    updateWebsite({ key: 'website', value: "" })
+    updateBuisnessField({ key: 'vat', value: "" })
+    updateBuisnessField({ key: 'numberDeals', value: "" })
+    updateBuisnessField({ key: 'imgLogo', value: "" })
+  }
 
   const validatorPhone = (v) => {
 
@@ -165,6 +182,11 @@ function BuisnessList(props) {
     }
     if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
       setFlagLoud(true)
+      debugger
+      if (flagSave == 'saveNewBusiness') {
+        dispatch(actions.setflagSave('overPage1'))
+        restart()
+      }
       dispatch(actions.setBuisnessToServer(userFiled))
       setErrorMessage('');
       setErrorMessage2('');
@@ -239,6 +261,7 @@ function BuisnessList(props) {
   //   return false;
   // }
   const fieldChanged = (e, fieldName) => {
+    dispatch(actions.setflagSave('true1'))
     if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
     else {
       if (fieldName == 'name') setErrorMessage('')
@@ -278,6 +301,7 @@ function BuisnessList(props) {
   };
 
   const addImage1 = (event) => {
+    dispatch(actions.setflagSave('true1'))
     if (event) {
       let reader = new FileReader();
       console.log("reader", reader.result)

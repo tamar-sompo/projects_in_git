@@ -105,7 +105,13 @@ function SettingBuisnessList(props) {
     const setCountry = () => dispatch(actions.getCountry())
     const [flag, setFlag] = useState("false")
     const [flagLoud, setFlagLoud] = useState(false)
+    const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
+    useEffect(() => {
+        if (flagSave == 'updateBusiness') {
+            saveNewBuisness()
+        }
+    }, [flagSave])
     // useEffect(() => {
     //   setUrlLogo(detailsBusiness.imgLogo)
     //  } ,[detailsBusiness.imgLogo])
@@ -189,7 +195,9 @@ function SettingBuisnessList(props) {
             changeCurrentBusiness('imgLogo', userFiled.imgLogo)
             // delete tmpSave._id
             // delete tmpSave.uid
-
+            if (flagSave == 'updateBusiness') {
+                dispatch(actions.setflagSave('false'))
+            }
             dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
 
             setErrorMessage('');
@@ -290,6 +298,7 @@ function SettingBuisnessList(props) {
     //   return false;
     // }
     const fieldChanged = (e, fieldName) => {
+        dispatch(actions.setflagSave('true2'))
         if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
         else {
             if (fieldName == 'name') setErrorMessage('')
@@ -359,13 +368,12 @@ function SettingBuisnessList(props) {
     //     }
     // }
     const addImage1 = (event) => {
+        dispatch(actions.setflagSave('true2'))
         if (event) {
-            debugger
             let reader = new FileReader();
             let imageToStor = { 'image': '', 'to': "" }
             dispatch(actions.setBuisness({ key: 'imgLogo', value: event }))
             reader.onloadend = () => {
-                debugger
                 imageToStor = { 'image': event, 'to': 'buisnessSetting' }
                 dispatch(actions.setImage(imageToStor))
             }

@@ -8,6 +8,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
 import MessageProductP from '../product/messageProductPage'
+import MessageBusiness from '../forms/messageBusineess'
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function NewSetting(props) {
   const [index, setIndex] = useState(0)
   const page = useSelector(state => state.messageReducer.page);
   console.log("allBuisnessToUser", allBuisnessToUser)
-
+  const flagSave = useSelector(state => state.buisnessReducer.flagSave);
   const setdispatch = () => {
     dispatch(actions.setInvoiceShow({}));
     dispatch(actions.setDetailsContact({}));
@@ -101,8 +102,15 @@ export default function NewSetting(props) {
           }
         }
         else {
-          routePage()
-          setShowMessage(false)
+          debugger
+          if (flagSave == 'true1' || flagSave == 'true2') {
+            dispatch(actions.setFlagOverPage(true))
+            // dispatch(actions.setflagSave(''))
+          }
+          else {
+            routePage()
+            setShowMessage(false)
+          }
         }
 
       }
@@ -125,6 +133,22 @@ export default function NewSetting(props) {
       }
     }
   }, [degel])
+
+
+  useEffect(() => {
+    if (flagSave == 'overPage1') {
+      routePage()
+      setShowMessage(false)
+      dispatch(actions.setflagSave('false'))
+    }
+    else {
+      if (flagSave == 'overPage2') {
+        routePage()
+        setShowMessage(false)
+        dispatch(actions.setflagSave('false'))
+      }
+    }
+  }, [flagSave])
 
   const routePage = () => {
     console.log("specific route function", specificRoute)
@@ -179,7 +203,7 @@ export default function NewSetting(props) {
 
   return (
     <>
-
+      <MessageBusiness></MessageBusiness>
       <MessageProductP flag={1}></MessageProductP>
       {/* <button></button> */}
       {console.log("open_setting", open_setting)}
