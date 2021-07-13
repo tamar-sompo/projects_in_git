@@ -185,7 +185,7 @@ function Products(props) {
     const degel = useSelector(state => state.productReducer.degel1)
     useEffect(() => {
         if (degel == '10') {
-
+            setDisable(tmpPr)
         }
     }, [degel])
 
@@ -280,10 +280,10 @@ function Products(props) {
     const [flagNumClick, setflagNumClick] = useState(false)
     const [flagName, setflagName] = useState(false)
     const [flagPrice, setflagPrice] = useState(false)
-    const setDisable = (product) => {
+    const setDisable = (product) => {// after clicking the edit icon - open / close + save the product
         debugger
-        if (flagNewP) {
-            if (savePr) {
+        if (flagNewP) { //flag if new product is open
+            if (savePr) { //flag that checks if product valus changed
                 dispatch(actions.setShowMessagePr(true))
             }
             else {
@@ -291,11 +291,14 @@ function Products(props) {
                 dispatch(actions.setIsEdit(true))
                 dispatch(actions.setIfSave(false))
             }
-            // שמירה למשתנה זמני ברידאקס
+            //  שמירה למשתנה זמני ברידאקס את המוצר עליו אני עובדת
             dispatch(actions.saveTmpPr(product))
             // dispatch(actions.saveTmpPr(product))
         }
         else {
+            if (degel == '10') {
+                dispatch(actions.setdegel1(4))//route user selection page
+            }
             setDis({ id: product._id })
             if (!flagNumClick) {
                 //לחיצה ראשונה
