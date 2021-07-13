@@ -77,7 +77,7 @@ function BuisnessList(props) {
     return (
         <>
             {showModalDelete && <ModeldeleteBuisness />}
-            <div className="wrap_table">
+            <div className="wrap_table" style={{ marginTop: "2%" }}>
                 <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
                     <div className="col">
                         <div className="table-responsive" style={{ margin: '0% !important' }}>
