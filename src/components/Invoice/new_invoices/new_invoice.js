@@ -1238,7 +1238,7 @@ function New_Invoice(props) {
 
               </div>
               <div className="container-fluid wrapproduct" >
-                <Form></Form>
+                {/* <Form></Form> */}
                 {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                   (window.location.href.indexOf("view") == -1 &&

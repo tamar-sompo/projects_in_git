@@ -98,10 +98,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     letter-spacing: 0.36px;
     color: #2D2B2E;
 }
-.wrapproduct Form .row:last-child .inputproduct{
+.wrapproduct > #form_item > .row:last-child .inputproduct{
    border-bottom: 1px solid black;
 }
-.wrapproduct Form .row:first-child .inputproduct{
+.wrapproduct > #form_item > .row:first-child .inputproduct{
     border-top: 1px solid black;
  }
  .buttonaddItem:focus{
@@ -110,10 +110,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
  input::-webkit-inner-spin-button{
     opacity:1; 
   } 
-
- 
-
-
   .wrapdate{
     padding-top: 4% !important;
     padding-left: 4% !important
@@ -353,12 +349,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
         letter-spacing: 0.36px;
         color: #2D2B2E;
     }
-    .wrapproduct .row:last-child .inputproduct{
-       border-bottom: 1px solid black;
-    }
-    .wrapproduct .row:first-child .inputproduct{
-        border-top: 1px solid black;
-     }
+
      .buttonaddItem:focus{
          border:none !important
      }
