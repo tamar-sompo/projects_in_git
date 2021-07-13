@@ -45,11 +45,15 @@ display: none;
   padding: 0px;
   background: none !important;
   font-weight: bold;
+  width: 13px;
+  height: 13px;
 }
 #dropdown-basic:hover{
   color:rgb(142, 115, 236);
 }
 .inv{
   vertical-align: top !important;
-  margin-top: -1px;
+  margin-top: -3px;
+  width: 13px;
+  height: 13px;
 }

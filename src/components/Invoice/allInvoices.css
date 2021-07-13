@@ -4,6 +4,7 @@
   width     : 100%;
   display   : inline-block;
   height    : 80%;
+  /* margin-top: "2%" */
 }
 .table-responsive{
   overflow-x: visible;

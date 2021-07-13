@@ -72,7 +72,6 @@ const buisness = {
         state.currentBuisness = action.payload
     },
     setBuisness(state, action) {
-
         state.newBuisness[action.payload.key] = action.payload.value
     },
     setbuisnessWebsite(state, action) {

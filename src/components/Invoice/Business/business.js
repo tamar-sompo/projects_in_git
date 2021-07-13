@@ -65,11 +65,11 @@ function Business(props) {
           </div>
         </div>
       </div>
-      <hr className='my-4' />
+      {/* <hr className='my-4' /> */}
       {
         flagView === false ? <BuisnessList allBuisness={allBuisnessToUser} /> :
           <CardDeck
-            style={{ width: "93%" }}
+            style={{ width: "95%" }}
           >
             <div className='displayCards'>
               {console.log('allbusiness lea', allBuisnessToUser)}

@@ -598,7 +598,7 @@ function Products(props) {
                 width: "98%"
                 // , borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126"
             }}>
-                <div className="row ">
+                <div className="row" style={{ height: '6%', marginTop: '-1%' }}>
                     <div className="col d-flex row" style={{ height: 10 + 'vh' }}>
                         <h1 style={{ font: "var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-22) Lato;" }}>Product</h1>
                     </div>
@@ -627,7 +627,7 @@ function Products(props) {
                         </div>
                     </div>
                 </div>
-                <div className="wrap_table">
+                <div className="wrap_table" style={{ marginTop: "2%" }}>
                     <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
                         <div className="col">
                             <div className="table-responsive">
