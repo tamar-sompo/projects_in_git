@@ -208,7 +208,6 @@ function MultiSelectInput(props) {
                     placeholder={"The Body Of The Message"}
                 ></TextareaAutosize>
                 {/* /> */}
-<<<<<<< HEAD
                 <div style={{ height: "20vh" }}></div>
                 <div className="d-flex justify-content-center" >
                     <button onClick={() => toMailServer()}
@@ -222,11 +221,6 @@ function MultiSelectInput(props) {
                         }}>send
                     </button>
                     {/* <FontAwesomeIcon
-=======
-                <div style={{ height: "6vh" }}></div>
-                <div className="d-flex justify-content-center pointer" onClick={() => toMailServer()}>
-                    <FontAwesomeIcon
->>>>>>> new_main
                         size="2x"
                         icon={['fas', 'paper-plane']}
                         style={{ color: "#917BDF" }}
