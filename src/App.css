@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+button, input, optgroup, select, textarea{
+  font:menu;
+}
 body{
   background:#F7F7F7;
   /* #EBEAEA 0% 0% no-repeat padding-box; */

@@ -26,7 +26,7 @@ const message = {
         state.showModalName = action.payload
     },
     setShowMessagePr(state, action) {
-        debugger
+        // debugger
         state.showMessagePr = action.payload
     },
     setShowViewInvoiceInModal(state, action) {

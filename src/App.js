@@ -16,12 +16,12 @@ import MessageFormat from './components/Useful/messageFormat'
 
 
 function App() {
-  useEffect(() => {
-    window.onbeforeunload = confirmExit;
-    function confirmExit() {
-      return "show warning";
-    }
-  }, [])
+  // useEffect(() => {
+  //   window.onbeforeunload = confirmExit;
+  //   function confirmExit() {
+  //     return "show warning";
+  //   }
+  // }, [])
   return (<>
     {/* <Provider store={store}> */}
     {/* <ProtectedRoute> */}
