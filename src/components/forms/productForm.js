@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
   //   borderRadius: 50 + '%',
   //   padding: 0
   // },
-  // imgUpload: {
-  //   display: 'inline-block',
-  //   width: 7 + 'vh',
-  //   height: 7 + 'vh',
-  //   backgroundColor: 'transparent',
-  //   // border: '1px solid black',
-  //   borderRadius: 50 + '%',
-  //   padding: 0
-  // }
+  imgUpload: {
+    display: 'inline-block',
+    width: 7 + 'vh',
+    height: 7 + 'vh',
+    backgroundColor: 'transparent',
+    // border: '1px solid black',
+    borderRadius: 50 + '%',
+    padding: 0
+  }
 }))
 
 
@@ -80,7 +80,7 @@ function ProductForm(props) {
   const [flagPrice, setflagPrice] = useState(true)
 
   const onFieldEdit = (fieldName, e) => {
-    debugger
+
     if (fieldName == 'name') {
       if (e.target.value) {
         setflagName(false)
@@ -119,7 +119,7 @@ function ProductForm(props) {
       dispatch(actions.setFlagNewP(false))
       dispatch(actions.setIfSave(false))
       if (degel == '1') {
-        dispatch(actions.setdegel1(2))
+        dispatch(actions.setdegel1(2))//route user selection page
       }
       if (isSave) {
         dispatch(actions.setIsEdit(true))

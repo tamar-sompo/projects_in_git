@@ -10,12 +10,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { useHistory } from "react-router-dom";
 import Item from './item'
-import LeaderLouder from '../../Useful/leaderLouder'
-// import {Link} from "react-router-dom";
-import DigitalSignature from '../digitalSignature';
-import flowersLogo from '../../../Img/flowersLogo.png';
-// import signature from '../../../Img/signature.png'
-import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
+
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
 import { debounce, ListItemIcon } from '@material-ui/core';
 import { useLocation } from "react-router-dom";
@@ -389,7 +384,7 @@ function New_Invoice(props) {
         tmp3 = validatorPhone(contactedit.phone);
       }
       if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
-        debugger
+
         setErrorMessage1(false)
         setErrorMessage2(false)
         dispatch(actions.setFlagValidation(false))
@@ -1280,8 +1275,19 @@ function New_Invoice(props) {
               </div>
               <div className="row d-flex justify-content-center" style={{ paddingLeft: "10%", paddingRight: "10%", paddingTop: "2%" }}>
                 {/* <div className="col-2"></div> */}
-                <div className="col-3 d-flex justify-content-center wrapBuisnessBorder">
-                  <a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                <div className="col-4 d-flex justify-content-center wrapBuisnessBorder">
+                  {detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website ?
+                    < a href={`${detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}`} target="_blank">
+                      <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
+                        type="text"
+                        className="design_text design_buisness"
+                        placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
+                        // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
+                        onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
+                        value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    </a> :
                     <input disabled={displayInvoice === "true" ? "disable" : ""} readOnly
                       type="text"
                       className="design_text design_buisness"
@@ -1289,9 +1295,8 @@ function New_Invoice(props) {
                       // onClick={displayInvoice === "false" && (() => setFocus('companyWebsite'))}
                       onBlur={displayInvoice === "false" && updatedetailsBusiness1('website')}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
-                      style={{ cursor: 'pointer' }}
                     />
-                  </a>
+                  }
                 </div>
                 <div className="col-6 d-flex flex-row justify-content-center wrapBuisnessBorder" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                   <div >

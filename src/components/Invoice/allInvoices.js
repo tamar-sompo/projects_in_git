@@ -279,8 +279,8 @@ function AllInvoices(props) {
               onClick={() => clickSearch(true)}
             >
               <div>
-                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}   
-                 onChange={(e) => search(e.target.value.toLowerCase())}
+                <input className={flagSearch === true ? "backgroundSearchClick" : "backgroundSearch"}
+                  onChange={(e) => search(e.target.value.toLowerCase())}
                   onMouseOut={() => clickSearch(false)}
                 >
                 </input>
@@ -301,7 +301,7 @@ function AllInvoices(props) {
         <div className="wrap_table">
           <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
             <div className="col">
-              <div className="table-responsive">
+              <div className="table-responsive" style={{ margin: '0% !important' }}>
                 {flagLoud &&
                   <div class="d-flex justify-content-center"
                     className={flagLoud ? "d-flex justify-content-center oposity" : "d-flex justify-content-center"}>
@@ -348,7 +348,11 @@ function AllInvoices(props) {
                                     chooselinei.isShown && chooselinei.index === invoice._id && (
                                       <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
                                         <Share fl={1}
-                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} />
+                                        paypalLink={invoice && invoice.paypalLink ? invoice.paypalLink:"null"}
+                                          invoiceFhone={invoice.contactOneTime.flag == true && invoice.contactOneTime.phone ? invoice.contactOneTime.phone : props.allContact.length > 0 ? props.allContact.find(x => x.email === invoice.contact) ? props.allContact.find(x => x.email === invoice.contact).phone : '' : ''} 
+                                          // invoiceId={invoice && invoiceDetailsView._id ? invoice.invoice._id:"null"} 
+                                          invoiceId={invoice && invoice._id ? invoice._id:""} 
+                                          />
                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Edit</p>} placement="bottom">
                                           <a style={{ height: "14px" }}>
                                             <MdEdit id="icon" onClick={() => showInvoiceById(invoice)}

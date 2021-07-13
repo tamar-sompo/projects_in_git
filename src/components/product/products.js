@@ -158,14 +158,14 @@ function Products(props) {
     const changeInput = (val) => {
         setSearchTerm(val)
     }
-    const fff = (key) => {
+    const mouseEnter = (key) => {
         setChooselinep({
             flag1: true,
             index: key,
             isShow: true
         })
     }
-    const ggg = (key) => {
+    const mouseLeave = (key) => {
         setChooselinep({
             flag1: true,
             index: key,
@@ -182,12 +182,12 @@ function Products(props) {
 
 
     }
-    // const degel = useSelector(state => state.productReducer.degel1)
-    // useEffect(() => {
-    //     if (degel == '10') {
-    //         dispatch(actions.setIsEdit(true))
-    //     }
-    // }, [degel])
+    const degel = useSelector(state => state.productReducer.degel1)
+    useEffect(() => {
+        if (degel == '10') {
+
+        }
+    }, [degel])
 
     useEffect(() => {
         if (flagNewP) {
@@ -220,9 +220,6 @@ function Products(props) {
 
     const f = () => {
         if (searchby === "productName") {
-
-
-
             searchproduct = props.allproduct.filter(product =>
                 (product.name != null && product.name.toLowerCase().includes(searchTerm)));
             return true
@@ -285,14 +282,6 @@ function Products(props) {
     const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {
         debugger
-        // if (flagNumClick == 0) {
-        //     setflagNumClick(1)
-        // }
-        // else {
-        //     setflagNumClick(0)
-        // }
-
-        // dispatch(actions.setNewProductTableFull({}))
         if (flagNewP) {
             if (savePr) {
                 dispatch(actions.setShowMessagePr(true))
@@ -307,8 +296,6 @@ function Products(props) {
             // dispatch(actions.saveTmpPr(product))
         }
         else {
-            // dispatch(action.saveTmpPr(product))
-
             setDis({ id: product._id })
             if (!flagNumClick) {
                 //לחיצה ראשונה
@@ -464,6 +451,12 @@ function Products(props) {
             dispatch(actions.setFilteredProducts(props.allproduct))
         }
     }
+
+    const myRef = useRef(null)
+    const scrollToTop = () => {
+        myRef.current.scrollIntoView({ behavior: "smooth" })
+        console.log("myRef", myRef)
+    };
 
     return (
         <>
@@ -690,7 +683,8 @@ function Products(props) {
                         </div>
                         <div >
                             <div onClick={() => changeFlag(true)} >
-                                <button className="newProd11">New Product +</button>
+                                <button onClick={scrollToTop}
+                                    className="newProd11">New Product +</button>
                             </div>
                         </div>
                     </div>
@@ -701,7 +695,7 @@ function Products(props) {
                             <div className="table-responsive">
                                 <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px", marginBottom: "0rem" }}>
                                     <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
-                                        <tr>
+                                        <tr ref={myRef}>
                                             <th style={{ width: "9%", backgroundColor: "#F5F5FA" }}></th>
                                             <th >NAME</th>
                                             <th >DESCRIPTION</th>
@@ -735,8 +729,8 @@ function Products(props) {
                                                         <tr className="tr"
                                                             style={{ height: "55px" }}
                                                             // id={"flag" + index}
-                                                            onMouseEnter={() => fff(product._id)}
-                                                            onMouseLeave={() => ggg(product._id)}
+                                                            onMouseEnter={() => mouseEnter(product._id)}
+                                                            onMouseLeave={() => mouseLeave(product._id)}
                                                             key={product._id}>
                                                             <td style={{ paddingLeft: "3%" }}>
                                                                 {dis.id == product._id ? dis.inpDis == "disable" ?
@@ -758,10 +752,9 @@ function Products(props) {
                                                                                 />
                                                                             </div>
                                                                         </div>
-
                                                                     </>
                                                                     :
-                                                                    <img style={{ height: "24px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
+                                                                    <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={product.images ? product.images : Imgp} />
                                                                 }
                                                             </td>
                                                             <td>

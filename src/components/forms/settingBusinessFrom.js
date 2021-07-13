@@ -145,14 +145,14 @@ function SettingBuisnessList(props) {
     const [tmpSave, setTmpSave] = useState(JSON.parse(JSON.stringify(currentBuisness)));
 
     const changeCurrentBusiness = (index, value) => {
-        debugger
+
         if (index !== "website") {
             let fff = tmpSave[index] = value
             // setTmpSave(...tmpSave, tmpSave[index] = value)
             setTmpSave({ ...tmpSave, index: fff })
         }
         else {
-            debugger
+
             // let fff = tmpSave.socialmedias.website = value
             setTmpSave({ ...tmpSave, socialmedias: { website: value } })
             // setTmpSave.socialmedias.website(value);
@@ -160,7 +160,7 @@ function SettingBuisnessList(props) {
     }
 
     const saveNewBuisness = (e) => {
-        debugger
+
         let tmp1 = true;
         let tmp3 = true;
         // let tmp4= (tmpSave.n)
@@ -177,7 +177,7 @@ function SettingBuisnessList(props) {
         //         tmp1 = validatorEmail(currentBuisness.email)
         // }
         if (tmpSave.phone) {
-            debugger
+
             tmp3 = validatorPhone(tmpSave.phone);
         }
         // else {
@@ -186,10 +186,10 @@ function SettingBuisnessList(props) {
         // }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-            debugger
+
             // delete tmpSave._id
             // delete tmpSave.uid
-            debugger
+
             dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
 
             setErrorMessage('');
@@ -321,7 +321,7 @@ function SettingBuisnessList(props) {
         updateBuisnessField({ key: fieldName, value: value })
     }
     const websiteChanged = (e, fieldName) => {
-        debugger
+
         const value = e.target.value;
         updateWebsite({ key: fieldName, value: value })
         changeCurrentBusiness(fieldName, value)
@@ -347,11 +347,11 @@ function SettingBuisnessList(props) {
 
     const addImage1 = (event) => {
         if (event) {
-            debugger
+
             let reader = new FileReader();
             let imageToStor = { 'image': '', 'to': "" }
             reader.onloadend = () => {
-                debugger
+
                 imageToStor = { 'image': event, 'to': 'buisnessSetting' }
                 dispatch(actions.setImage(imageToStor))
                 console.log("imageee12kkkkkkkkkkkk", imageToStor)
@@ -458,6 +458,8 @@ function SettingBuisnessList(props) {
                                     </div>
 
                                     <input className={errorMessage ? "inptStyle  valid" : "inptStyle"} name='name' type="text"
+                                        placeholder={userFiled.name ? userFiled.name :
+                                            currentBuisness.name ? currentBuisness.name : "Business Name"}
                                         defaultValue={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
@@ -470,6 +472,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-5" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                                     <div className="font2">Company Phone</div>
                                     <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
+                                        placeholder={userFiled.phone ? userFiled.phone :
+                                            currentBuisness.phone ? currentBuisness.phone : "Company Phone"}
                                         defaultValue={userFiled.phone ? userFiled.phone :
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
@@ -480,6 +484,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-5">
                                     <div className="font2">Company Email</div>
                                     <input name='email' type="text"
+                                        placeholder={userFiled.email ? userFiled.email :
+                                            currentBuisness.email ? currentBuisness.email : "Company Email"}
                                         className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                                         defaultValue={userFiled.email ? userFiled.email :
                                             currentBuisness.email ? currentBuisness.email : ""}
@@ -495,8 +501,9 @@ function SettingBuisnessList(props) {
                                         <div className="font2">Address</div>
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
-
                                     <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
+                                        placeholder={userFiled.address ? userFiled.address :
+                                            currentBuisness.address ? currentBuisness.address : "Address"}
                                         defaultValue={userFiled.address ? userFiled.address :
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
@@ -511,6 +518,10 @@ function SettingBuisnessList(props) {
                                 <div>
                                     <div className="font2">Website</div>
                                     <input className="inptStyle" name='website' type="text"
+                                        placeholder={userFiled.socialmedias &&
+                                            userFiled.socialmedias.website ? userFiled.socialmedias.website :
+                                            currentBuisness.socialmedias &&
+                                                currentBuisness.socialmedias.website ? currentBuisness.socialmedias.website : "Website"}
                                         defaultValue={userFiled.socialmedias ?
                                             userFiled.socialmedias.website ? userFiled.socialmedias.website :
                                                 currentBuisness.socialmedias ?
@@ -526,10 +537,11 @@ function SettingBuisnessList(props) {
                                         <div className="font2">Dealer License</div>
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
-
                                     <input
                                         className={errorMessage2 ? "inptStyle valid" : "inptStyle"}
                                         name='numberDeals' type="number"
+                                        placeholder={userFiled.numberDeals ? userFiled.numberDeals :
+                                            currentBuisness.numberDeals ? currentBuisness.numberDeals : "Dealer License"}
                                         defaultValue={userFiled.numberDeals ? userFiled.numberDeals :
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
@@ -540,6 +552,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-3.5">
                                     <div className="font2">Vat</div>
                                     <input className="inptStyle" name='vat' type="text"
+                                        placeholder={userFiled.vat ? userFiled.vat :
+                                            currentBuisness.vat ? currentBuisness.vat : "Vat"}
                                         defaultValue={userFiled.vat ? userFiled.vat :
                                             currentBuisness.vat ? currentBuisness.vat : ""}
                                         onChange={(e) => fieldChanged(e, 'vat')}
@@ -550,6 +564,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-5" style={{ paddingLeft: "0vh" }} >
                                     <div className="font2">Country</div>
                                     <input className="inptStyle" type="text" name="country" list="country"
+                                        placeholder={userFiled.country ? userFiled.country :
+                                            currentBuisness.country ? currentBuisness.country : "Country"}
                                         defaultValue={userFiled.country ? userFiled.country :
                                             currentBuisness.country ? currentBuisness.country : ""}
                                         onFocus={(e) => selectCountry(e)}
@@ -568,10 +584,11 @@ function SettingBuisnessList(props) {
                                         <div className="font2">City</div>
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
-
                                     <input
                                         className={errorMessage5 ? "inptStyle valid" : "inptStyle"}
                                         type="text" name="city" list="city"
+                                        placeholder={userFiled.city ? userFiled.city :
+                                            currentBuisness.city ? currentBuisness.city : "City"}
                                         defaultValue={userFiled.city ? userFiled.city :
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}

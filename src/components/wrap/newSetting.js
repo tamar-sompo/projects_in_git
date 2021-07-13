@@ -234,7 +234,7 @@ export default function NewSetting(props) {
           </li>
           <li className={window.location.href.split('/')[4] == "customers" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Contacts")}>
             <div>
-              <FontAwesomeIcon size="lg" icon={['fas', 'atom']}></FontAwesomeIcon>
+              <FontAwesomeIcon size="lg" icon={['fas', 'user-circle']}></FontAwesomeIcon>
             </div>
             <div>Contacts</div>
           </li>
