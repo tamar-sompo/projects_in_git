@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import '../invoice.css';
+import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Button } from 'react-bootstrap'
+import { Col, Row, Container, Button, Form } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { Link, useHistory } from "react-router-dom";
@@ -14,8 +14,7 @@ import { string } from 'yup/lib/locale';
 import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
-
+import $ from 'jquery'
 
 function Item(props) {
   const setClickSave = (status) => dispatch(actions.setClickSave(status))
@@ -63,14 +62,16 @@ function Item(props) {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
+  const [validated, setValidated] = useState(false);
   // const [flagValidPrice, setflagValidPrice] = useState(false);
   // const [flagValidName, setflagValidName] = useState(false);
   useEffect(() => {
-    // setflagValidPrice(false)
-    // setflagValidName(false)
+    // let form = document.querySelector('#form_item').checkValidity(true);
+    // form.checkValidity()=true
   }, [])
 
   useEffect(() => {
+    debugger
     if (borderProductInvoice) {
       if (history.location.pathname === `/${userName}/invoice`) {
         if (props.index) {
@@ -101,63 +102,64 @@ function Item(props) {
 
 
   useEffect(() => {
+    debugger
     if (clickSave === true) {
       setClickSave(false)
       // alert("clickkkk")
       // setClickSave(false)
       if (dtp && dtp._id) {
-        if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
-          setflagValidPrice(false)
-          setflagValidName(false)
-          dispatch(actions.setValidProduct(true))
-        }
-        else {
-          if (!new_product[props.index].name) {
-            setflagValidName(true)
-            // dispatch(actions.setInvalidProduct(true))
-            console.log("flagValidName", flagValidName)
-          }
-          if (dtp && !dtp.price) {
-            setflagValidPrice(true)
-            // dispatch(actions.setInvalidProduct(true))
-            console.log("flagValidPhone", flagValidPrice)
-          }
-        }
+        // if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+        //   setflagValidPrice(false)
+        //   setflagValidName(false)
+        //   dispatch(actions.setValidProduct(true))
+        // }
+        // else {
+        //   if (!new_product[props.index].name) {
+        //     setflagValidName(true)
+        //     // dispatch(actions.setInvalidProduct(true))
+        //     console.log("flagValidName", flagValidName)
+        //   }
+        //   if (dtp && !dtp.price) {
+        //     setflagValidPrice(true)
+        //     // dispatch(actions.setInvalidProduct(true))
+        //     console.log("flagValidPhone", flagValidPrice)
+        //   }
       }
-      else {
-        // alert("hhhh", new_product)
-        console.log('new_product', new_product)
+    }
+    else {
+      // alert("hhhh", new_product)
+      console.log('new_product', new_product)
 
-        if (props.pro.id === "null" || props.pro.id === undefined) {
-          if (new_product[props.index].name && new_product[props.index].price) {
-            setflagValidPrice(false)
-            setflagValidName(false)
-            dispatch(actions.setValidProduct(true))
-          }
-          else {
+      // if (props.pro.id === "null" || props.pro.id === undefined) {
+      //   if (new_product[props.index].name && new_product[props.index].price) {
+      //     setflagValidPrice(false)
+      //     setflagValidName(false)
+      //     dispatch(actions.setValidProduct(true))
+      //   }
+      //   else {
 
-            if (!new_product[props.index].name) {
-              setflagValidName(true)
-              dispatch(actions.setValidProduct(false))
-              // dispatch(actions.setInvalidProduct(true))
-              console.log("flagValidName", flagValidName)
-            }
-            if (!new_product[props.index].price) {
-              //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
-              setflagValidPrice(true)
-              dispatch(actions.setValidProduct(false))
-              // dispatch(actions.setInvalidProduct(true))
-              console.log("flagValidPhone", flagValidPrice)
-            }
-          }
-        }
-      }
+      //     if (!new_product[props.index].name) {
+      //       setflagValidName(true)
+      //       dispatch(actions.setValidProduct(false))
+      //       // dispatch(actions.setInvalidProduct(true))
+      //       console.log("flagValidName", flagValidName)
+      //     }
+      //     if (!new_product[props.index].price) {
+      //       //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
+      //       setflagValidPrice(true)
+      //       dispatch(actions.setValidProduct(false))
+      //       // dispatch(actions.setInvalidProduct(true))
+      //       console.log("flagValidPhone", flagValidPrice)
+      // }
+      // }
+      // }
+      // }
     }
   }, [clickSave])
 
 
   useEffect(() => {
-
+    debugger
     console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
     }
@@ -176,7 +178,7 @@ function Item(props) {
 
 
   useEffect(() => {
-
+    debugger
     console.log("pppp")
     dispatch(actions.setFlagSavePr(false))
     if (flagPro === false) {
@@ -204,56 +206,50 @@ function Item(props) {
           dispatch(actions.setInvoceShow(detailsInvoice))
         }
       }
-
     }
   }, [allproduct])
+
+
   const vv3 = (e) => {
-    setflagValidName(false)
+    debugger
+    // setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
-
-
     if (history.location.pathname !== `/${userName}/invoice`) {
       vv(e)
     }
     else {
-
-      console.log("trfgyuhytfdrtfgh")
-      if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
-        setflagValidPrice(false)
-        let product6 = allproduct.find(x => x.name === e.target.value)
-        console.log("product6", product6)
-        dispatch(actions.setProduct1(product6))
-        setdtp(product6)
-        setamount2(1)
-
-        dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
-        dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
-        // dispatch(actions.setResetNewProduct({}))
-        // dispatch(actions.deleteLastProductInvoice());
-        // if(calcSumProduct)
-
-        dispatch(actions.setProductId({ id: product6._id, index1: props.index }));
-        // dispatch(actions.setProducts({ id: product6._id, amount: 1 }));
-        dispatch(actions.setP(product6.name))
-
-        // setnameProduct(e.target.value)
-      }
-      else {
-        if (e.target.value && e.target.value != "") {
-          setFlagShowSaveP({ index: props.index, value: true })
+      if (e.target.value) {
+        debugger
+        let id_product = $("#productname").find("option[data-value=" + e.target.value + "]").data("id")
+        if (id_product) {
+          let product6 = allproduct.find(x => x._id === id_product)
+          dispatch(actions.setProduct1(product6))
+          // dispatch(actions.setFlagMessageContact(false))
+          setdtp(product6)
+          setamount2(1)
+          dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+          dispatch(actions.setSum({ sum: product6.discount ? product6.price * 1 * (1 - (product6.discount / 100)) : product6.price * 1, index1: props.index }))
+          dispatch(actions.setProductId({ id: product6._id, index1: props.index }));
+          dispatch(actions.setP(product6.name))
         }
+
         else {
-          if (e.target.value == "")
-            if (!new_product[props.index].description || new_product[props.index].description == "")
-              if (!new_product[props.index].price || new_product[props.index].price == "")
-                if (!new_product[props.index].discount || new_product[props.index].discount == "")
-                  setFlagShowSaveP({ index: props.index, value: false })
+          setdtp({})
+          dispatch(actions.setAmountToProduct({ amount: '', index1: props.index }))
+          if (e.target.value && e.target.value != "") {
+            setFlagShowSaveP({ index: props.index, value: true })
+          }
+          else {
+            if (e.target.value == "")
+              if (!new_product[props.index].description || new_product[props.index].description == "")
+                if (!new_product[props.index].price || new_product[props.index].price == "")
+                  if (!new_product[props.index].discount || new_product[props.index].discount == "")
+                    setFlagShowSaveP({ index: props.index, value: false })
+          }
         }
       }
-
-
       if (invoice.products.length === 1)
         dispatch(actions.setPushNewProduct({}))
       dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
@@ -262,8 +258,8 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-
-    setflagValidName(false)
+    debugger
+    // setflagValidName(false)
     // setflagValidName(false)
     setFlagSaveP(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -272,7 +268,7 @@ function Item(props) {
 
 
     if (allproduct.length > 0 && allproduct.find(x => x.name === e.target.value)) {
-      setflagValidPrice(false)
+      // setflagValidPrice(false)
       let product6 = allproduct.find(x => x.name === e.target.value)
       dispatch(actions.setProduct1(product6))
       // dispatch(actions.setProduct1(product6))
@@ -299,41 +295,64 @@ function Item(props) {
                 setFlagShowSaveP({ index: props.index, value: false })
       }
     }
-
-
     if (detailsInvoice.products.length === 1)
       dispatch(actions.setPushNewProduct({}))
     dispatch(actions.setNewProduct({ index: props.index, key: "name", value: e.target.value }))
-
   }
 
 
 
+  const updateCellAmount = (title) => {
 
+    if (title === "amount") {
+      dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+      dispatch(actions.setProductAmount(1))
+      dtp && dtp.price ? dtp && dtp.discount ?
+        dispatch(actions.setSum({ sum: 1 * dtp.price * (1 - (dtp.discount / 100)), index1: props.index })) :
+        new_product[props.index].discount ?
+          dispatch(actions.setSum({ sum: 1 * dtp.price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+          dispatch(actions.setSum({ sum: 1 * dtp.price, index1: props.index })) :
+        dtp && dtp.discount ?
+          dispatch(actions.setSum({ sum: 1 * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
+          new_product[props.index].discount ?
+            //  alert("yy") : alert("xx")
+            dispatch(actions.setSum({ sum: 1 * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
+            // alert("xx")
+            dispatch(actions.setSum({ sum: 1 * new_product[props.index].price, index1: props.index }))
+
+      debugger
+    }
+
+    // else {
+    //   dispatch(actions.setNewProduct({ index: props.index, key: title, value: e.target.value }))
+    // }
+
+    // if (title === "amount") {
+
+    //   if (e.target.value === "" && product1._id === undefined && dtp._id === undefined) {
+    //     if (!new_product[props.index].name || new_product[props.index].name == "")
+    //       if (!new_product[props.index].description || new_product[props.index].description == "")
+    //         if (!new_product[props.index].price || new_product[props.index].price == "")
+    //           if (!new_product[props.index].discount || new_product[props.index].discount == "")
+    //             setFlagShowSaveP({ index: props.index, value: false })
+    //   }
+
+
+    // }
+  }
 
 
   const updateCell = (title1, e) => {
-
-    dispatch(actions.setBorderProductInvoice(false))
-    // dispatch(actions.setFlagIfEmptyProduct(true))
-    // setflagValidPrice(false)
-    setflagValidName(false)
-    setFlagSaveP(false)
-
-    console.log("ttt", e)
+    debugger
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
+    setFlagSaveP(false)
+    console.log("dtpdtp", dtp)
 
-    if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
-      dispatch(actions.setflagBorderProduct(false))
-    }
-    console.log("e", e)
-    console.log("e.typeOf", typeof (e))
-
+    debugger
     if (e.target.value && e.target.value != "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
-
 
     for (var key in new_product[props.index]) {
       if (new_product[props.index][key] && new_product[props.index][key] != "") {
@@ -341,29 +360,14 @@ function Item(props) {
           setFlagShowSaveP({ index: props.inedx, value: true })
       }
     }
-
     if (title1 === "discount") {
       dtp && dtp.price && props.pro.amount ?
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * dtp.price * props.pro.amount, index1: props.index })) :
         new_product[props.index].price && amountProductInvoice &&
         dispatch(actions.setSum({ sum: (1 - (e.target.value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
     }
-    if (title1 === "price") {
-      amount2 ? dtp.discount ?
-        dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
-        new_product[props.index].discount ?
-          dispatch(actions.setSum({ sum: e.target.value * amount2 * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-          dispatch(actions.setSum({ sum: e.target.value * amount2, index1: props.index })) :
-        dtp && dtp.discount ?
-          dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (dtp.discount / 100)), index1: props.index })) :
-          new_product[props.index].discount ?
-            dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-            dispatch(actions.setSum({ sum: e.target.value * amountProductInvoice, index1: props.index }))
 
-    }
     if (title1 === "amount") {
-
-
       dispatch(actions.setAmountToProduct({ amount: e.target.value, index1: props.index }))
       dispatch(actions.setProductAmount(e.target.value))
       dtp && dtp.price ? dtp && dtp.discount ?
@@ -374,22 +378,21 @@ function Item(props) {
         dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
+            //  alert("yy") : alert("xx")
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price * (1 - (new_product[props.index].discount / 100)), index1: props.index })) :
-
+            // alert("xx")
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price, index1: props.index }))
 
-
-
+      debugger
     }
-    // setamount2(props.pro.amount)
 
     else {
       dispatch(actions.setNewProduct({ index: props.index, key: title1, value: e.target.value }))
     }
 
-    if (title1 == "amount") {
+    if (title1 === "amount") {
 
-      if (e.target.value == "" && product1._id === undefined) {
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined) {
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
             if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -399,16 +402,17 @@ function Item(props) {
 
 
     }
-    if (title1 == "name") {
-      if (e.target.value == "" && product1._id === undefined
-      )
+    if (title1 === "name") {
+
+
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].description || new_product[props.index].description == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
             if (!new_product[props.index].discount || new_product[props.index].discount == "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
-    if (title1 == "description") {
-      if (e.target.value == "" && product1._id === undefined
+    if (title1 === "description") {
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].price || new_product[props.index].price == "")
@@ -416,7 +420,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "price") {
-      if (e.target.value == "" && product1._id === undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -424,7 +428,7 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 == "discount") {
-      if (e.target.value == "" && product1._id === undefined
+      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
       )
         if (!new_product[props.index].name || new_product[props.index].name == "")
           if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -434,6 +438,7 @@ function Item(props) {
 
   }
   const cleanInput1 = (field1) => {
+    debugger
     // setindexof(props.index)
     if (field1 === "amount") {
 
@@ -457,58 +462,35 @@ function Item(props) {
     }
   }
 
-  const savepr = () => {
-
+  function savepr() {
+    debugger
+    // debugger
+    // event.preventDefault()
+    // alert("jjjj")
     if (amountProductInvoice != 0) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
     if (dtp && dtp._id) {
-      if ((dtp.name || new_product[props.index].name) && (dtp.price || new_product[props.index].price)) {
+      {
+        // alert("bbb")
         dispatch(actions.setProductId1(dtp._id))
         dispatch(actions.editProduct(props.index))
-        setflagValidPrice(false)
-        setflagValidName(false)
-      }
-      else {
-        if (!new_product[props.index].name && !dtp.name) {
-          setflagValidName(true)
-          console.log("flagValidName", flagValidName)
-        }
-        else { setflagValidName(false) }
-        if (!dtp.price && !new_product[props.index].price) {
-          setflagValidPrice(true)
-          console.log("flagValidPhone", flagValidPrice)
-        }
-        else { (setflagValidPrice(false)) }
       }
     }
     else {
-      // alert("hhhh", new_product)
       console.log('new_product', new_product)
 
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
+          // alert("nnn")
           dispatch(actions.setNewProductServer(props.index))
-          setflagValidPrice(false)
-          setflagValidName(false)
-        }
-        else {
-          if (!new_product[props.index].name) {
-            setflagValidName(true)
-            console.log("flagValidName", flagValidName)
-          }
-          else { setflagValidName(false) }
-          if (!new_product[props.index].price) {
-            setflagValidPrice(true)
-            console.log("flagValidPhone", flagValidPrice)
-          }
-          else { setflagValidPrice(false) }
         }
       }
     }
   }
   const clearProduct = () => {
+    debugger
     if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
 
       // document.querySelectorAll("input").forEach(
@@ -596,15 +578,17 @@ function Item(props) {
   //   }
   // }
   const updateCellPrice = (_value, fieldName) => {
+    debugger
     setflagValidPrice(false)
-    // setflagValidName(false)
+    let value
     setFlagSaveP(false)
     if (!fieldName) {
       return;
     }
     if (!_value) {
-      dispatch(actions.setNewProduct({ index: props.index, key: fieldName, value: '' }))
-      return
+      value = Number('0');
+      // dispatch(actions.setNewProduct({ index: props.index, key: fieldName, value: '' }))
+      // return
       //  dispatch({
       //   fieldName,
       //   value: {
@@ -614,10 +598,10 @@ function Item(props) {
       //   },
       // });
     }
-
-    const value = Number(_value);
+    else
+      value = Number(_value);
     if (!Number.isNaN(value)) {
-      setflagValidPrice(false)
+      // setflagValidPrice(false)
       // dispatch({
       //   fieldName,
       //   value: {
@@ -627,13 +611,6 @@ function Item(props) {
       //   },
       // });
       dispatch(actions.setNewProduct({ index: props.index, key: fieldName, value: value }))
-
-      console.log("ttt", value)
-      if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
-        dispatch(actions.setflagBorderProduct(false))
-      }
-      console.log("e", value)
-      // console.log("e.typeOf",typeof(e))
 
       if (value && value != "") {
         setFlagShowSaveP({ index: props.index, value: true })
@@ -654,6 +631,12 @@ function Item(props) {
           dispatch(actions.setSum({ sum: (1 - (value / 100)) * new_product[props.index].price * amountProductInvoice, index1: props.index }))
       }
       if (fieldName === "price") {
+        if (!amountProductInvoice) {
+          dispatch(actions.setAmountToProduct({ amount: 1, index1: props.index }))
+          //  ()=>updateCell("amount",1)
+          updateCellAmount("amount")
+        }
+
         amount2 ? dtp && dtp.discount ?
           dispatch(actions.setSum({ sum: value * amount2 * (1 - (dtp.discount / 100)), index1: props.index })) :
           new_product[props.index].discount ?
@@ -671,7 +654,7 @@ function Item(props) {
       }
 
       if (fieldName == "price") {
-        if (value == "" && product1._id === undefined
+        if (value == "" && product1._id === undefined && dtp._id === undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -679,7 +662,7 @@ function Item(props) {
                 setFlagShowSaveP({ index: props.index, value: false })
       }
       if (fieldName == "discount") {
-        if (value == "" && product1._id === undefined
+        if (value == "" && product1._id === undefined && dtp._id === undefined
         )
           if (!new_product[props.index].name || new_product[props.index].name == "")
             if (!new_product[props.index].description || new_product[props.index].description == "")
@@ -688,56 +671,109 @@ function Item(props) {
       }
     }
   }
+
+  const submitInvoice = useSelector(state => state.invoiceReducer.submitInvoice);
+  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
+  // dispatch(actions.setSubmitSaveInvoice(false))
+
+  const handleSubmit = (event, title) => {
+    debugger
+    // alert("submitInvoice"+ submitInvoice)
+    // if (submitInvoice === false) {
+    event.stopPropagation();
+
+    // dispatch(actions.setSubmitItem(true))
+    // alert("item")
+    // props.submitItem(true)
+    event.preventDefault();
+    // alert("submit")
+    // debugger
+    const form = event.currentTarget;
+    if (form.flagModal != "otherPageInvoices" === false) {
+      // alert("item1")
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    event.preventDefault();
+    setValidated(true);
+    if (form.checkValidity() === true) {
+      // alert("item2")
+      savepr()
+    }
+  };
+
+
+  //listener the changes of validated variable
+  // useEffect(() => {
+  //   if (props.setValidateItemF) {
+  //     alert("fsdfds")
+  //     props.setValidateItemF(validated);
+  //   }
+  // }, [validated])
+
   return (
-    <>
+
+
+    <Form id="form_item" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "itemForm")}>
       <div
-        className={`row `}
+        className="row rowOneProduct"
         style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
       >
 
+
+
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
           <div style={{ width: "10%" }}></div>
-          {props.pro.id == "null" || props.pro.id === undefined ?
-            <div className="inputproduct" style={{ width: "35%" }}>
-              <input aria-label="empty textarea"
-                autoComplete="new-password"
-                rowsMax="2"
-                onFocus={() => cleanInput1('name')}
-                name="product"
-                list="productname"
-                // className='cell'
-                className={flagValidName ? 'cell  validB' : 'cell '}
-                // maxlength="15" 
-                size="7"
-                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
-                onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-              ></input>
-              <datalist id="productname">
-                {allproduct.length > 0 && allproduct.map(x => {
-                  return (<option>{x.name}</option>)
+          {/* {props.pro.id == "null" || props.pro.id === undefined ? */}
+          <div className="inputproduct" style={{ width: "35%" }}>
+            <input aria-label="empty textarea"
+              autoComplete="new-password"
+              rowsMax="2"
+              required
+              onFocus={() => cleanInput1('name')}
+              name="product"
+              list="productname"
+              // className='cell'
+              className='cell'
+              // maxlength="15" 
+              size="7"
+              value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
+              onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
+            ></input>
+            <datalist id="productname">
+              {allproduct.length > 0 && allproduct.map(pro => {
+                return (<option data-id={pro._id} data-value={pro.name}>
+                  {pro.name}
+                </option>)
 
-                })}
-              </datalist>
-
-            </div> :
+              })}
+            </datalist>
+            <Form.Control.Feedback type="invalid">
+              require
+            </Form.Control.Feedback>
+          </div>
+          {/* :
             <div className="inputproduct" style={{ width: "35%" }}>
               <TextareaAutosize aria-label="empty textarea"
+                required
                 autoComplete="new-password"
                 rowsMax="2"
                 style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
                 disabled={displayInvoice === "true" ? "disable" : ""}
-                // className={!new_product[props.index].name && dtp && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
-                // className='cell design_text ffgf'
-                className={flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ? 'cell  design_text ffgf validB' : 'cell design_text ffgf'}
+                className={
+                  // flagValidName && new_product[props.index] && !new_product[props.index].name && !dtp.name ?
+                  //  'cell  design_text ffgf validB' :
+                  'cell design_text ffgf'
+                }
                 onFocus={() => cleanInput1('name')}
-                value={dtp && dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : ''}
+                value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
                 // disabled={displayInvoice === "true" ? "" : "disable"}
                 onChange={(e) => updateCell('name', e)}
                 type="text"
               // maxRows={2}
               > </TextareaAutosize>
 
-            </div>}
+            </div>} */}
           <div className="inputproduct" style={{ width: "55%" }} >
             <TextareaAutosize aria-label="empty textarea"
               autoComplete="new-password"
@@ -745,10 +781,9 @@ function Item(props) {
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text ffgf'
-              // placeholder='descripition'
               onFocus={() => cleanInput1('description')}
               // disabled={displayInvoice === "true" ? "" : "disable"}
-              value={dtp && dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : dtp && dtp.description ? dtp.description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
             ></TextareaAutosize>
@@ -756,36 +791,32 @@ function Item(props) {
 
         </div>
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
-
-
-
-
-
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
+              required
+              aria-describedby="inputGroupPrepend"
+              id="validationCustomUsername"
               autoComplete="new-password"
               onFocus={() => cleanInput1('price')}
-              id="validation-example-3-field2"
-              // flagValidPrice={}
+              // id="validation-example-3-field2"
               name="price"
               style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
-              className={flagValidPrice && new_product[props.index] && !new_product[props.index].price && !dtp.price ? 'cell design_text  validB' : 'cell design_text'}
+              className='cell design_text '
               // className='cell design_text'
               // className={`form-control ${state.field2.validationClass}`}
-              value={dtp && dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : dtp && dtp.price ? dtp.price : '' : ''}
               onValueChange={updateCellPrice}
               prefix={'$'}
             />
-            {/* <Cell
-              onFocus={() => cleanInput1('price')}
-              value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-              disabled={displayInvoice === "true" ? "" : "disable"}
-              onChange={(e) => updateCell('price', e)}
-              onClick={(e) => setFocus('price')}
-              type="number"
-            ></Cell> */}
+
+            <Form.Control.Feedback type="invalid">
+              req
+            </Form.Control.Feedback>
           </div>
+          {/* <Form.Control.Feedback type="invalid">
+          {validated}
+          </Form.Control.Feedback> */}
           <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
               autoComplete="new-password"
@@ -797,23 +828,15 @@ function Item(props) {
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>
             <CurrencyInput
-              //  style={{width:"15%", height:"60%"}}
               onFocus={() => cleanInput1('discount')}
               id="validation-example-3-field2"
               name="discount"
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text'
-              // className={`form-control ${state.field2.validationClass}`}
-              value={dtp && dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : ''}
+              value={new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : dtp && dtp.discount ? dtp.discount : '' : ''}
               onValueChange={updateCellPrice}
               suffix={'%'}
             />
-            {/* <Cell
-              onFocus={() => cleanInput1('discount')}
-              value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-              onChange={(e) => updateCell('discount', e)}
-              type="number"
-            ></Cell> */}
           </div>
           <div className="calcProducts inputproduct" style={{ width: "15%", backgroundColor: '#DBD0D7' }}>
             <CurrencyInput
@@ -823,19 +846,16 @@ function Item(props) {
               value={props.pro.sum_product ? (props.pro.sum_product).toFixed(2) : ''}
               prefix={'$'}
             />
-            {/* <input
-              className="sum1 cell"
-              value={props.pro.sum_product && (props.pro.sum_product).toFixed(2)}
-            /> */}
-
-
           </div>
-
           <div className="d-flex flex-column align-items-center justify-content-center" style={{ width: "10%", display: "inline-block" }}>
             {
               flagShowSaveP[props.index] &&
-              <button style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }} onClick={savepr}>save</button>
-
+              <input
+                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+                // onClick={savepr}
+                value="save"
+                className="btn "
+                type="submit" />
             }
             {displayInvoice === "false" &&
               <button id='1'
@@ -843,147 +863,17 @@ function Item(props) {
                 onClick={() => {
                   if (displayInvoice === "false") clearProduct()
                 }}
-                className={invoice.products.length === 1 ? "cinput" : ""} style={{
+                className={invoice.products.length === 1 ? "cinput delete_hover" : "delete_hover"} style={{
                   marginLeft: "33%",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center"
+                  display: "none",
+                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071",
+                  color: "#707071",
+                  padding: "0px", fonStize: "0.8vw", textAlign: "center"
                 }}>delete</button>}
           </div>
         </div>
       </div>
-      {/*       
-        <Col md={1} className='py-3'>
-          <Button id='1'
-            style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
-            onClick={() => {
-              if (displayInvoice === "false") clearProduct()
-            }}
-            className={invoice.products.length === 1 ? "button4 cinput" : "button4"}>X</Button>
-          {
-            flagShowSaveP[props.index] &&
-            <button style={{ width: "25px", height: "20px", backgroundColor: 'transparent', border: "none", color: colorFlagShowSaveP }} onClick={savepr}>save</button>
-          }
-        </Col>
-        {props.pro.id == "null" || props.pro.id === undefined ?
-          <Col className='py-3' md={2}>
-            <input
-              onFocus={() => cleanInput1('name')}
-              name="product"
-              list="productname"
-              className='cell'
-              maxlength="15" size="7"
-              value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
-              onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-            /> */}
-      {/* <datalist id="productname">
-              {productSelect.map(x => {
-                return (<option>{x.name}</option>)
-              })}
-            </datalist> */}
-      {/* <datalist id="productname">
-              {allproduct.length > 0 && allproduct.map(x => {
-                return (<option>{x.name}</option>)
-              })}
-            </datalist> */}
-
-      {/* <Select className="select_p" onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv2(e)} options={productSelect.map((x)=>{
-             return ({
-                      "label": x.name,
-                      "value": x
-                    })
-  })} */}
-      {/* </Col>
-          :
-          <Cell
-            onFocus={() => cleanInput1('name')}
-            value={dtp ? dtp.name ? dtp.name : new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : '' : '' : ''}
-            disabled={displayInvoice === "true" ? "" : "disable"}
-            onChange={(e) => updateCell('name', e)}
-          > </Cell>}
-        <Cell
-          placeholder='descripition'
-          onFocus={() => cleanInput1('description')}
-          disabled={displayInvoice === "true" ? "" : "disable"}
-          value={dtp ? dtp.description ? dtp.description : new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : '' : '' : ''}
-          onChange={(e) => updateCell('description', e)}
-          type="text"
-        ></Cell>
-        {/* <Cell
-          onFocus={() => cleanInput1('price')}
-          value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-          disabled={displayInvoice === "true" ? "" : "disable"}
-          onChange={(e) => updateCell('price', e)}
-          onClick={(e) => setFocus('price')}
-          type="number"
-        ></Cell> */}
-      {/* <Col className='py-3' md={2}>
-            <CurrencyInput
-                style={{width:"100%", height:"100%"}}
-                onFocus={() => cleanInput1('price')}
-                id="validation-example-3-field2"
-                name="price"
-                disabled={displayInvoice === "true" ? "disable" : ""}
-                className='cell design_text'
-                // className={`form-control ${state.field2.validationClass}`}
-                value={dtp ? dtp.price ? dtp.price : new_product[props.index] ? new_product[props.index].price ? new_product[props.index].price : '' : '' : ''}
-                onValueChange={updateCellPrice}
-                prefix={'$'}
-              /></Col> */}
-      {/* <CurrencyInput
-           className='cell design_text'
-        disabled={displayInvoice === "true" ? "disable" : ""}
-        id="input-example"
-        name="input-name"
-        onFocus={() => cleanInput1('price')}
-        value={props.pro.amount}
-        onChange={(e) => updateCellprefix('price', e)}
-     
-  placeholder="Please enter a number"
-  // defaultValue={props.pro.amount}
-  decimalsLimit={2}
-  prefix={'$'}
-  onValueChange={(e) => updateCell('price', e)}
-/>; */}
-      {/* <Cell
-          onFocus={() => cleanInput1('amount')}
-          value={props.pro.amount}
-          onChange={(e) => updateCell('amount', e)}
-          type="number"
-        ></Cell> */}
-
-      {/* <Cell
-          onFocus={() => cleanInput1('discount')}
-          value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-          onChange={(e) => updateCell('discount', e)}
-          type="number"
-        ></Cell> */}
-      {/* <Col className='py-3' md={2}>
-         <CurrencyInput
-        //  style={{width:"15%", height:"60%"}}
-        style={{width:"100%", height:"100%"}}
-         onFocus={() => cleanInput1('discount')}
-                id="validation-example-3-field2"
-                name="discount"
-                disabled={displayInvoice === "true" ? "disable" : ""}
-                className='cell design_text'
-                // className={`form-control ${state.field2.validationClass}`}
-                value={dtp ? dtp.discount ? dtp.discount : new_product[props.index] ? new_product[props.index].discount ? new_product[props.index].discount : '' : '' : ''}
-                onValueChange={updateCellPrice}
-                suffix={'%'}
-              /></Col> */}
-      {/* <Col md={1} style={{ backgroundColor: '#DBD0D7', height: "100%" }}> */}
-      {/* <span className="sum1 cell">
-            {props.sum_product}
-          </span> */}
-      {/* <div className='py-3' ref={totalProductRef}>
-            <input
-              className="sum1 cell"
-              value={props.pro.sum_product}
-            />
-          </div>
-        </Col> */}
-      {/* </Row>  */}
-
-    </>
+    </Form>
   )
 }
 export default Item

@@ -15,14 +15,36 @@ const initialState = {
         flagShowSaveP: [false],
         colorFlagShowSaveP: "#707071",
         filteredProducts: [],
+        allProductToInvoice: [],
+
         flagNewP: false,
         isSave: false,
         tmpPr: {},
-        isEdit: false
+        isEdit: false,
+        ifSave: false,
+        degel1: 0,
+        degel2: false,
+        page: false
 }
 const products = {
+        getAllProductToInvoice(state, action) {
+           state.allProductToInvoice = action.payload
+        },
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
+        },
+        setPage(state, action) {
+                debugger
+                state.page = action.payload
+        },
+        setdegel1(state, action) {
+                state.degel1 = action.payload
+        },
+        setdegel2(state, action) {
+                state.degel2 = action.payload
+        },
+        setIfSave(state, action) {
+                state.ifSave = action.payload
         },
         setIsEdit(state, action) {
                 state.isEdit = action.payload
@@ -34,19 +56,17 @@ const products = {
                 state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
-                debugger
+                // debugger
                 state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
-
-                state.filteredProducts.push(action.payload)
+            state.filteredProducts.push(action.payload)
         },
         setResetAllNewProduct(state, action) {
-                state.newProduct = []
+            state.newProduct = []
         },
         editProduct11(state, action) {
-
-                state.allProducts[action.payload.i] = action.payload.objectProduct.product
+            state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
 

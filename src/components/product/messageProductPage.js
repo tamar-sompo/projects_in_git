@@ -5,19 +5,19 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import { actions } from '../../redux/actions/All_actions'
 
 
-export default function MessageProduct(props) {
+export default function MessageProductP(props) {
     // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
-    const setShowMessagePr = (status) => dispatch(actions.setShowMessagePr(status))
+    const setPage = (status) => dispatch(actions.setPage(status))
     const modalBody = useSelector(state => state.messageReducer.modalBody);
-    const showMessagePr = useSelector(state => state.messageReducer.showMessagePr);
-    console.log("showMessagePr", showMessagePr)
+    const page = useSelector(state => state.productReducer.page);
+
+    console.log("page", page)
     const newProductTable = useSelector(state => state.productReducer.newProductTable)
-    const handleClose = () => setShowMessagePr(false);
+    const handleClose = () => setPage(false);
     //no
     const openEdit = () => {
-        debugger
         // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIsEdit(true))
@@ -32,20 +32,15 @@ export default function MessageProduct(props) {
     }
     //yes
     const save = () => {
-        debugger
-        console.log('ppppppppppppppppp', props.flag)
         // dispatch(actions.setIfSave(false))
         dispatch(actions.setIsSave(true))
         handleClose()
     }
     const saveEdit = () => {
-        debugger
-        console.log('ppppppppppppppppp', props.flag)
         dispatch(actions.setdegel(true))
         handleClose()
     }
     const overPage = () => {
-        debugger
         // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIfSave(false))
@@ -57,12 +52,14 @@ export default function MessageProduct(props) {
     //במעבר בין עמודים
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const savePage = () => {
-        console.log('ppppppppppppppppp', props.flag)
+        debugger
         if (flagNewP) {
-            dispatch(actions.setdegel1(1))
+            dispatch(actions.setdegel1(1)) //go to save new product
         }
         else {
-            dispatch(actions.setdegel2(true))
+            debugger
+            dispatch(actions.setdegel1(10))// after editing a product
+            // dispatch(actions.setdegel2(true))
         }
 
         handleClose()
@@ -70,7 +67,7 @@ export default function MessageProduct(props) {
     return (
         <>
             <Modal className="popUpAnswerTest" id='popUpAlertId'
-                show={showMessagePr}
+                show={page}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}

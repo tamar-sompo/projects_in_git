@@ -71,14 +71,14 @@ export default function InvoiceAndSteps(props) {
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const flagOfterValidation = useSelector(state => state.invoiceReducer.flagOfterValidation);
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice);
-  const setClickSave=(status) => dispatch(actions.setClickSave(status))
+  const setClickSave = (status) => dispatch(actions.setClickSave(status))
   const clickSave = useSelector(state => state.invoiceReducer.clickSave);
-  const validProduct=useSelector(state => state.invoiceReducer.validProduct);
+  const validProduct = useSelector(state => state.invoiceReducer.validProduct);
   const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
   const flagValidPrice = useSelector(state => state.invoiceReducer.invalidProduct)
-  const setflagValidPrice =(status)=>dispatch(actions.setflagValidPrice(status))
-  const flagValidName=useSelector(state => state.invoiceReducer.flagValidName)
-  const setflagValidName =(status)=>dispatch(actions.setflagValidName(status))
+  const setflagValidPrice = (status) => dispatch(actions.setflagValidPrice(status))
+  const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
+  const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const new_product = useSelector(state => state.productReducer.newProduct)
   const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
 
@@ -106,7 +106,7 @@ export default function InvoiceAndSteps(props) {
 
   //בלחיצה על back
   const backtoAllInvoices = () => {
-    
+
     dispatch(actions.setDisplayBoxShadow(false))
     if (flagIfEmpty == false) {
       history.push(`/${userName}/allDocuments`)
@@ -120,8 +120,8 @@ export default function InvoiceAndSteps(props) {
       setFlagModal("otherPageInvoices")
       setShowMessage(true)
     }
-  
-}
+
+  }
 
 
   useEffect(() => {
@@ -173,8 +173,10 @@ export default function InvoiceAndSteps(props) {
               <div className=" d-flex justify-content-center align-items-center " style={{ height: "100%" }}>
                 <div className=" sendEmailFromList" style={{
                   backgroundColor: "white",
-                  width: "100%",
-                  height: "100% ",
+                  width: "119%",
+                  height: "107% ",
+                  marginRight: "-14%",
+                  boxShadow: "0px 3px 6px #0000001A",
                   // border: "1px solid #917BDF",
                   // boxShadow:"1px -3px 1px 3px",
                   display: "none"

@@ -13,6 +13,12 @@
     color: white;
     background-color:#917BDF ;
 }
+.fa-lg {
+    font-size: 1.7em;
+}
+.textinconfigurator{
+    margin-top: -10%;
+}
 /* .list-group-item{
     background: #0A102E 0% 0% no-repeat padding-box; 
     border:none;

@@ -48,11 +48,15 @@ function MultiSelectInput(props) {
     const updateEmailField = (fieldToUpdate) => dispatch(actions.setEmailDetails(fieldToUpdate))
 
     useEffect(() => {
-        if (history.location.pathname == `/${userName}/invoice`)
-            updateEmailField({ key: "to", value: invoice.contactOneTime.email })
 
-        if (window.location.href.indexOf('invoice/edit'))
-            updateEmailField({ key: "to", value: detailsInvoice.contactOneTime.email })
+        if (invoice.contactOneTime && invoice.contactOneTime.flag == "true")
+            updateEmailField({ key: "to", value: invoice.contactOneTime.email })
+        else
+            updateEmailField({ key: "to", value: invoice.contact })
+
+
+        // if (window.location.href.indexOf('invoice/edit'))
+        //     updateEmailField({ key: "to", value: detailsInvoice.contactOneTime.email })
 
     }, [])
 
@@ -183,14 +187,14 @@ function MultiSelectInput(props) {
                 <div style={{ height: "6vh" }} >
                 </div>
                 {/* <div className="tag-remove"></div> */}
-                <h4 className="d-flex justify-content-center emailFormTitle" style={{ textAlign: "center" }}
-                > Send an link to your customer </h4>
-                <hr className="d-flex justify-content-center"></hr>
+                <h4 className="d-flex justify-content-center emailFormTitle"> Message Content </h4>
+
 
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'to')}
                     placeholder="To"
+                    value={emailDetails ? emailDetails.to : ''}
                 /><div className="ml-5 errorMassage">{errorMessage}</div>
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
                     onFocus={(e) => e.currentTarget.placeholder = ''}
@@ -204,6 +208,7 @@ function MultiSelectInput(props) {
                     placeholder={"The Body Of The Message"}
                 ></TextareaAutosize>
                 {/* /> */}
+<<<<<<< HEAD
                 <div style={{ height: "20vh" }}></div>
                 <div className="d-flex justify-content-center" >
                     <button onClick={() => toMailServer()}
@@ -217,6 +222,11 @@ function MultiSelectInput(props) {
                         }}>send
                     </button>
                     {/* <FontAwesomeIcon
+=======
+                <div style={{ height: "6vh" }}></div>
+                <div className="d-flex justify-content-center pointer" onClick={() => toMailServer()}>
+                    <FontAwesomeIcon
+>>>>>>> new_main
                         size="2x"
                         icon={['fas', 'paper-plane']}
                         style={{ color: "#917BDF" }}

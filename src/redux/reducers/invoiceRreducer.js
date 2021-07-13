@@ -5,11 +5,11 @@ const initialState = {
 
     // colors:['black','black','black','black'],
 
-    flagValidPrice:false,
+    flagValidPrice: false,
     flagValidName: false,
-    clickSave:false,
-    invalidProduct:false,
-    validProduct:false,
+    clickSave: false,
+    invalidProduct: false,
+    validProduct: false,
     valuesCalculate: [],
     total: [],
     totalPrice: [],
@@ -66,30 +66,60 @@ const initialState = {
     filteredInvoices: [],
     flagSaveP: false,
     borderProductInvoice: false,
-    displayBoxShadow: false
+    displayBoxShadow: false,
+    submitSaveInvoice:false,
+    submitItem:false,
+    submitInvoice:false,
+    submitProduct:false,
+    clickBigInputForm:false
+
+
 }
 
 
 const invoices = {
-    setflagValidName(state, action){
-   state.flagValidName=action.payload
+    setflagValidName(state, action) {
+        state.flagValidName = action.payload
     },
 
-    setflagValidPrice(state, action){
-        state.flagValidPrice=action.payload
+    setflagValidPrice(state, action) {
+        state.flagValidPrice = action.payload
     },
 
-    setInvalidProduct(state, action){
-state.invalidProduct=action.payload
+    setInvalidProduct(state, action) {
+        state.invalidProduct = action.payload
     },
 
-    setValidProduct(state, action){
-        state.validProduct=action.payload
+    setValidProduct(state, action) {
+        state.validProduct = action.payload},
+
+    setClickBigInputForm(state, action){
+        state.clickBigInputForm=action.payload
     },
 
 
-    setClickSave(state, action){
-        state.clickSave=action.payload
+    setSubmitProduct(state, action){
+        state.submitProduct=action.payload
+    },
+
+    setSubmitInvoice(state, action){
+        state.submitInvoice=action.payload
+    },
+
+    setSubmitItem(state, action){
+        state.submitItem=action.payload
+    },
+
+    setSubmitSaveInvoice(state, action){
+        state.submitSaveInvoice=action.payload
+    },
+
+    callSaveInvoce(state, action) {
+        state.saveInvoice = action.payload
+    },
+
+    setClickSave(state, action) {
+        state.clickSave = action.payload
     },
 
     setFlagIfEmptyProduct(state, action) {
@@ -271,15 +301,19 @@ state.invalidProduct=action.payload
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-
+        debugger
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
     setProduction(state, action) {
+        debugger
         state.invoiceDetailsView.products.push({ id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product })
     },
     setProductionAfterDelete(state, action) {
         state.invoiceDetailsView.products = action.payload
+    },
+    setResetContactFromEdiit(state, action) {
+        state.invoiceDetailsView.contact = undefined
     },
     setUpdateInvoiceFields(state, action) {
         console.log("setUpdateInvoiceFields", action.payload.key, action.payload.value)
@@ -351,7 +385,7 @@ state.invalidProduct=action.payload
         state.saveSum = action.payload
     },
     setSum(state, action) {
-
+        debugger
         state.saveSum = 0
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum
