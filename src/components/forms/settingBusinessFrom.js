@@ -186,7 +186,7 @@ function SettingBuisnessList(props) {
         // }
         if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
             setFlagLoud(true);
-
+            changeCurrentBusiness('imgLogo', userFiled.imgLogo)
             // delete tmpSave._id
             // delete tmpSave.uid
 
@@ -345,16 +345,29 @@ function SettingBuisnessList(props) {
     //     }
     // }
 
+    // const addImage1 = (event) => {
+    //     if (event) {
+    //         let reader = new FileReader();
+    //         console.log("reader", reader.result)
+    //         dispatch(actions.setBuisness({ key: 'imgLogo', value: reader.result }))
+    //         reader.onloadend = () => {
+    //             console.log("event", event)
+    //             const objectImage = { 'image': event, 'to': 'buisness' }
+    //             setImageLogo(objectImage)
+    //         }
+    //         reader.readAsDataURL(event)
+    //     }
+    // }
     const addImage1 = (event) => {
         if (event) {
-
+            debugger
             let reader = new FileReader();
             let imageToStor = { 'image': '', 'to': "" }
+            dispatch(actions.setBuisness({ key: 'imgLogo', value: event }))
             reader.onloadend = () => {
-
+                debugger
                 imageToStor = { 'image': event, 'to': 'buisnessSetting' }
                 dispatch(actions.setImage(imageToStor))
-                console.log("imageee12kkkkkkkkkkkk", imageToStor)
             }
             reader.readAsDataURL(event)
         }
