@@ -745,7 +745,9 @@ function Products(props) {
                                                                             <div>
                                                                                 <p style={{ fontSize: "60%" }}>upload image</p>
                                                                                 <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
-                                                                                    onChange={(e) => addImage(e.target.files[0])} />
+                                                                                    onChange={(e) => addImage(e.target.files[0])}
+                                                                                    accept="image/*"
+                                                                                />
                                                                                 <img
                                                                                     className={classes.buttonUpload1}
                                                                                     src={newProductTable.images ? newProductTable.images : product.images ? product.images : Imgp}

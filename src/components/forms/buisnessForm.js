@@ -351,7 +351,9 @@ function BuisnessList(props) {
             <div>Logo</div>
             <div  >
               <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
-                onChange={(e) => addImage1(e.target.files[0])} />
+                onChange={(e) => addImage1(e.target.files[0])}
+                accept="image/*"
+              />
               <button onClick={onButtonClick} className="rounded"
                 style={{
                   width: "13vh",
