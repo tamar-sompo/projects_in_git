@@ -868,7 +868,7 @@ function Products(props) {
                                                                                         // type="submit"
                                                                                         onClick={() => setDisable(product)}
                                                                                     >
-                                                                                        <MdEdit id="icon"
+                                                                                        <MdEdit id="icon" style={{ width: "16px", height: "16px" }}
                                                                                         ></MdEdit>
                                                                                     </button>
                                                                                 </Tooltip>
@@ -876,7 +876,7 @@ function Products(props) {
                                                                                     <button className="btnDis"
                                                                                         onClick={() => deleteProduct1(product._id, index)}
                                                                                     >
-                                                                                        <MdDelete id="icon"
+                                                                                        <MdDelete id="icon" style={{ width: "16px", height: "16px" }}
                                                                                         />
                                                                                     </button>
                                                                                 </Tooltip>

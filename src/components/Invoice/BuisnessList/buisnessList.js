@@ -131,7 +131,7 @@ function BuisnessList(props) {
                                                                         </Tooltip>
                                                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
                                                                             <RiDeleteBin6Line id="icon"
-                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px" }}
+                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", zIndex: "1" }}
                                                                                 onClick={(e) => remove(buisness)}>
                                                                             </RiDeleteBin6Line>
                                                                         </Tooltip>
