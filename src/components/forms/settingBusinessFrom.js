@@ -216,6 +216,9 @@ function SettingBuisnessList(props) {
             if (flagSave == 'updateBusiness') {
                 dispatch(actions.setflagSave('false'))
             }
+            else {
+                dispatch(actions.setflagSave('false'))
+            }
             dispatch(actions.setUpdateSettingBusinessCard(tmpSave))
 
             setErrorMessage('');
@@ -417,8 +420,13 @@ function SettingBuisnessList(props) {
                             <Button
                                 onClick={(e) => saveNewBuisness()}
                                 style={{
-                                    backgroundColor: "#917BDF", borderColor: "#917BDF", width: "13vh",
-                                    marginBottom: "2vh"
+                                    backgroundColor: "#917BDF", borderColor: "#917BDF",
+                                    marginBottom: "2vh",
+                                    position: "fixed",
+                                    top: "0px",
+                                    zIndex: "100",
+                                    marginTop: "100px",
+                                    width: "7%"
                                 }}
                             // class="saveBuisness"
                             >

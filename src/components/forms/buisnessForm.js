@@ -193,6 +193,9 @@ function BuisnessList(props) {
         dispatch(actions.setflagSave('overPage1'))
         restart()
       }
+      else {
+        dispatch(actions.setflagSave('false'))
+      }
       dispatch(actions.setBuisnessToServer(userFiled))
       setErrorMessage('');
       setErrorMessage2('');
@@ -362,8 +365,13 @@ function BuisnessList(props) {
               <Button
                 onClick={(e) => saveNewBuisness()}
                 style={{
-                  backgroundColor: "#917BDF", borderColor: "#917BDF", width: "13vh",
-                  marginBottom: "2vh"
+                  backgroundColor: "#917BDF", borderColor: "#917BDF",
+                  marginBottom: "2vh",
+                  position: "fixed",
+                  top: "0px",
+                  zIndex: "100",
+                  marginTop: "100px",
+                  width: "7%"
                 }}
               // class="saveBuisness"
               >
