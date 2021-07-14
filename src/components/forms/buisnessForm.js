@@ -1,36 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './form.css';
-import Alert from 'react-bootstrap/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { FiUpload } from 'react-icons/fi';
-import { Col, Row, Container, Button } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconContext } from "react-icons";
-import { Divider, TextField } from '@material-ui/core';
-import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap'
+// import { connect } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-//  import { useForm } from "react-hook-form";
-import { useForm } from "react-hook-form";
-// import FixLogoBuisness from './fixLogoBuisness.js'
-import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
-import * as Yup from "yup"
-import Select from 'react-select';
+// import { useForm } from "react-hook-form";
 import { HiUpload } from "react-icons/hi";
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
-import { BiCalendar, BiPlus, BiRestaurant } from 'react-icons/bi';
-import { GiWireframeGlobe } from 'react-icons/gi';
+import { BiPlus } from 'react-icons/bi';
 import LeaderLouder from '../../components/Useful/leaderLouder'
-import uploadAnimation from '../assets/louder.gif'
-// import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
-// import { BiCalendar, BiPlus } from 'react-icons/bi';
-// import { GiWireframeGlobe } from 'react-icons/gi';
-// 
-// import {CgCalendarDates} from 'react-icons/cg';
+// import uploadAnimation from '../assets/louder.gif'
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // const phoneRegExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -83,14 +65,11 @@ function BuisnessList(props) {
   const [errorMessage4, setErrorMessage4] = useState();
   const [errorMessage5, setErrorMessage5] = useState();
   const [errorMessage6, setErrorMessage6] = useState();
-  const [buttonText, setButtonText] = useState("SAVE");
   const inputFile1 = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
-  const { handle, register, handleSubmit, watch, formState: { errors } } = useForm();
-
-  const [urlLogo, setUrlLogo] = useState("")
+  // const { formState: { errors } } = useForm();
 
   // const detailsBusiness = useSelector(state => state.buisnessReducer.newBuisness);
   const allCities = useSelector(state => state.cityByCountryReducer.allCities.geonames);
@@ -109,7 +88,7 @@ function BuisnessList(props) {
   const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
   useEffect(() => {
-    if (flagSave == 'saveNewBusiness') {
+    if (flagSave === 'saveNewBusiness') {
       saveNewBuisness()
     }
   }, [flagSave])
@@ -154,7 +133,7 @@ function BuisnessList(props) {
 
   const validatorPhone = (v) => {
 
-    const tmp = v.length == 13 && v.includes('+');
+    const tmp = v.length === 13 && v.includes('+');
     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
   }
   const validatorEmail = (v) => {
@@ -180,13 +159,13 @@ function BuisnessList(props) {
 
       tmp3 = validatorPhone(userFiled.phone);
     }
-    if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
+    if (userFiled.name && userFiled.numberDeals && tmp1 === true && tmp3 === true && userFiled.city && userFiled.address) {
       await updateBuisnessField({
         key: 'productionDate', value: new Date()
       })
       setFlagLoud(true)
       debugger
-      if (flagSave == 'saveNewBusiness') {
+      if (flagSave === 'saveNewBusiness') {
         dispatch(actions.setflagSave('overPage1'))
         restart()
       }
@@ -265,21 +244,21 @@ function BuisnessList(props) {
   // }
   const fieldChanged = (e, fieldName) => {
     dispatch(actions.setflagSave('true1'))
-    if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
+    if (fieldName === 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
     else {
-      if (fieldName == 'name') setErrorMessage('')
+      if (fieldName === 'name') setErrorMessage('')
       else {
-        if (fieldName == 'phone') {
+        if (fieldName === 'phone') {
           if (validatorPhone(e.target.value)) setErrorMessage4('')
           // if (!isDigit(e.target.value)) {
           //   e.target.value = "false"
           // }
         }
         else {
-          if (fieldName == 'address') setErrorMessage6('')
+          if (fieldName === 'address') setErrorMessage6('')
           else {
-            if (fieldName == 'city') setErrorMessage5('')
-            else { if (fieldName == 'numberDeals') setErrorMessage2('') }
+            if (fieldName === 'city') setErrorMessage5('')
+            else { if (fieldName === 'numberDeals') setErrorMessage2('') }
           }
         }
       }
@@ -290,10 +269,10 @@ function BuisnessList(props) {
     updateBuisnessField({ key: fieldName, value: value })
     // }
   }
-  const onload = (e, fieldName) => {
-    const value = e;
-    updateBuisnessField({ key: fieldName, value: value })
-  }
+  // const onload = (e, fieldName) => {
+  //   const value = e;
+  //   updateBuisnessField({ key: fieldName, value: value })
+  // }
   const websiteChanged = (e, fieldName) => {
     const value = e.target.value;
     updateWebsite({ key: fieldName, value: value })
@@ -423,7 +402,7 @@ function BuisnessList(props) {
                     value={userFiled.name ? userFiled.name : ""}
                     onChange={(e) => fieldChanged(e, 'name')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
-                  {errorMessage == '#enter your Buisness name' &&
+                  {errorMessage === '#enter your Buisness name' &&
                     <div className="required">{errorMessage}</div>}
                 </div>
               </div>
@@ -436,7 +415,7 @@ function BuisnessList(props) {
                     value={userFiled.phone ? userFiled.phone : ""}
                     onChange={(e) => { fieldChanged(e, 'phone') }}
                     style={{ width: "20rem", fontSize: "small" }}></input>
-                  {errorMessage4 == '#Invalid phone' &&
+                  {errorMessage4 === '#Invalid phone' &&
                     <div className="required">{errorMessage4}</div>}
                 </div>
                 <div className="col-5">
@@ -447,7 +426,7 @@ function BuisnessList(props) {
                     value={userFiled.email ? userFiled.email : ""}
                     onChange={(e) => fieldChanged(e, 'email')}
                     style={{ width: "20rem", fontSize: "small" }}></input>
-                  {errorMessage3 == '#Invalid email address' &&
+                  {errorMessage3 === '#Invalid email address' &&
                     <div className="required">{errorMessage3}</div>}
                 </div>
               </div>
@@ -463,7 +442,7 @@ function BuisnessList(props) {
                     value={userFiled.address ? userFiled.address : ""}
                     onChange={(e) => fieldChanged(e, 'address')}
                     style={{ width: "42rem", fontSize: "small" }}></input>
-                  {errorMessage6 == '#enter Address' &&
+                  {errorMessage6 === '#enter Address' &&
                     <div className="required">{errorMessage6}</div>}
                 </div>
               </div>
@@ -493,7 +472,7 @@ function BuisnessList(props) {
                     value={userFiled.numberDeals ? userFiled.numberDeals : ""}
                     onChange={(e) => fieldChanged(e, 'numberDeals')}
                     style={{ width: "12rem", fontSize: "small" }}></input>
-                  {errorMessage2 == '#enter your Number-Dealds' &&
+                  {errorMessage2 === '#enter your Number-Dealds' &&
                     <div className="required">{errorMessage2}</div>}
                 </div>
                 <div className="col-3.5">
@@ -533,7 +512,7 @@ function BuisnessList(props) {
                     value={userFiled.city ? userFiled.city : ""}
                     onChange={(e) => fieldChanged(e, 'city')}
                     style={{ width: "20rem", fontSize: "small" }}></input>
-                  {errorMessage5 == '#enter City' &&
+                  {errorMessage5 === '#enter City' &&
                     <div className="required">{errorMessage5}</div>}
                   <datalist id="city">
                     {allCities ? allCities.map(x => {

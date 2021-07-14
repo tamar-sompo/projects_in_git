@@ -1,9 +1,9 @@
 
 
-import React, { useState, useEffect, useCallback } from 'react'
-import { Route, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Route } from 'react-router-dom';
 // import configData from '../config.json'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 function redirectToLogin(routes) {
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     console.log("uuuuuuuuuuuuusername", userName)
     useEffect(() => {
         console.log("useEffectProtected")
-        const isLocal = window.location.hostname == "localhost"
+        const isLocal = window.location.hostname === "localhost"
         const url = `https://finance.leader.codes/${userName}/isPermission?isLocal=${isLocal}`;
         const isPermission = async () => {
             let response = await fetch(url, {
@@ -32,7 +32,7 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
                     'Content-Type': 'application/json'
                 },
             })
-            if (response.status == 401) {
+            if (response.status === 401) {
                 console.log("useEffectProtected2")
                 setIsLoading(false)
                 setIsLoggedIn(true)

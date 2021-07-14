@@ -1,20 +1,17 @@
-import React, { useState } from 'react'
-import Moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../../redux/actions/All_actions';
-import { Col, Row, Container, Toast } from 'react-bootstrap'
 // import loudIcon from '../../assets/loude.gif'
 import uploadAnimation from '../assets/louder.gif'
 import './messageFormat.css';
 function LeaderLouder() {
     return (
-        <>       
+        <>
             {/* <div style={{background:"red", width:"100%", height:"30px"}}> */}
-                <img 
-                src={uploadAnimation} 
-                className="uploadAnimation"></img>
+            <img
+                src={uploadAnimation}
+                className="uploadAnimation"
+                alt="">
+            </img>
             {/* </div> */}
- {/* <img src={loudIcon}></img> */}
+            {/* <img src={loudIcon}></img> */}
         </>
     )
 
