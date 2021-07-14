@@ -125,11 +125,13 @@ const contacts = {
     setCustomersDetails(state, action) {
     },
     setDetailsContact(state, action) {
+        debugger
         state.detailscontact = action.payload
     },
-    // setRsetFieldContact(state,action){
-    //     state.detailscontact
-    // }
+
+    setRsetDetailsContact(state,action){
+        state.detailscontact.contact=undefined
+    }
 
 }
 

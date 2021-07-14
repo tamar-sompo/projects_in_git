@@ -54,13 +54,17 @@ export default function NewSetting(props) {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
           dispatch(actions.setColorFlagShowSaveP("#707071"))
-
         }
       })
       setShowMessage(false)
       setButtonClick("")
       routePage()
       console.log("specific route", specificRoute)
+    }
+    if(buttonClick ==='saveInvoiceOtherPage'){
+      // alert("lll")
+      setButtonClick("")
+      setShowMessage(false)
     }
   }, [buttonClick])
 
@@ -218,7 +222,7 @@ export default function NewSetting(props) {
       <div className={`container-fluid 
       ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >
 
-        <ul class="list-group list-group-flush d-flex flex-column " style={{ marginTop: "30%" }}>
+        <ul class="list-group list-group-flush d-flex flex-column " style={{ marginTop: "40%" }}>
 
           {/* <li className="kkk" onClick={() => checkIfBuisness("Business")}>
               <li className={window.location.href.split('/')[4] == "buisness" ?
@@ -248,38 +252,40 @@ export default function NewSetting(props) {
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'archive']}></FontAwesomeIcon>
             </div>
-            <div>Buisness</div>
+            <div className="textinconfigurator">Buisness</div>
           </li>
           <li className={window.location.href.split('/')[4] == "allDocuments" ||
             window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Documents")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'receipt']}></FontAwesomeIcon>
             </div>
-            <div>Documents</div>
+            <div className="textinconfigurator">Invoices</div>
           </li>
           <li className={window.location.href.split('/')[4] == "product" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Products")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
             </div>
-            <div>Products</div>
+            <div className="textinconfigurator">Products</div>
           </li>
           <li className={window.location.href.split('/')[4] == "customers" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Contacts")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'user-circle']}></FontAwesomeIcon>
             </div>
-            <div>Contacts</div>
+            <div className="textinconfigurator">Contacts</div>
           </li>
           <li className={window.location.href.split('/')[4] == "setting" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Setting")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'cog']}></FontAwesomeIcon>
             </div>
-            <div>Setting</div>
+            <span className="textinconfigurator">
+              Setting
+            </span>
           </li>
           <li className={window.location.href.split('/')[4] == "Payments" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Payments")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
             </div>
-            <div>Payments</div>
+            <div className="textinconfigurator">Payments</div>
           </li>
           {/* <li className="list-group-item yy d-flex align-items-center">
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>

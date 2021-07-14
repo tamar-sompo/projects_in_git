@@ -15,6 +15,8 @@ const initialState = {
         flagShowSaveP: [false],
         colorFlagShowSaveP: "#707071",
         filteredProducts: [],
+        allProductToInvoice: [],
+
         flagNewP: false,
         isSave: false,
         tmpPr: {},
@@ -25,6 +27,9 @@ const initialState = {
         page: false
 }
 const products = {
+        getAllProductToInvoice(state, action) {
+           state.allProductToInvoice = action.payload
+        },
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
         },
@@ -51,19 +56,17 @@ const products = {
                 state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
-                debugger
+                // debugger
                 state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
-
-                state.filteredProducts.push(action.payload)
+            state.filteredProducts.push(action.payload)
         },
         setResetAllNewProduct(state, action) {
-                state.newProduct = []
+            state.newProduct = []
         },
         editProduct11(state, action) {
-
-                state.allProducts[action.payload.i] = action.payload.objectProduct.product
+            state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
 

@@ -66,7 +66,14 @@ const initialState = {
     filteredInvoices: [],
     flagSaveP: false,
     borderProductInvoice: false,
-    displayBoxShadow: false
+    displayBoxShadow: false,
+    submitSaveInvoice:false,
+    submitItem:false,
+    submitInvoice:false,
+    submitProduct:false,
+    clickBigInputForm:false
+
+
 }
 
 
@@ -84,9 +91,32 @@ const invoices = {
     },
 
     setValidProduct(state, action) {
-        state.validProduct = action.payload
+        state.validProduct = action.payload},
+
+    setClickBigInputForm(state, action){
+        state.clickBigInputForm=action.payload
     },
 
+
+    setSubmitProduct(state, action){
+        state.submitProduct=action.payload
+    },
+
+    setSubmitInvoice(state, action){
+        state.submitInvoice=action.payload
+    },
+
+    setSubmitItem(state, action){
+        state.submitItem=action.payload
+    },
+
+    setSubmitSaveInvoice(state, action){
+        state.submitSaveInvoice=action.payload
+    },
+
+    callSaveInvoce(state, action) {
+        state.saveInvoice = action.payload
+    },
 
     setClickSave(state, action) {
         state.clickSave = action.payload
@@ -271,15 +301,19 @@ const invoices = {
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-
+        debugger
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
     setProduction(state, action) {
+        debugger
         state.invoiceDetailsView.products.push({ id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product })
     },
     setProductionAfterDelete(state, action) {
         state.invoiceDetailsView.products = action.payload
+    },
+    setResetContactFromEdiit(state, action) {
+        state.invoiceDetailsView.contact = undefined
     },
     setUpdateInvoiceFields(state, action) {
         console.log("setUpdateInvoiceFields", action.payload.key, action.payload.value)

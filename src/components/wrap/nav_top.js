@@ -80,7 +80,9 @@ export default function Nav() {
   const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
   const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const new_product = useSelector(state => state.productReducer.newProduct)
+  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
   const detailsProducts = useSelector(state => state.invoiceReducer.invoice.products);
+  const submitProduct = useSelector(state => state.invoiceReducer.submitProduct);
   const allproduct = useSelector(state => state.productReducer.allProducts);
 
   useEffect(() => {
@@ -98,11 +100,6 @@ export default function Nav() {
     dispatch(actions.setGetBusiness(objBuisness._id))
     dispatch(actions.setGeCurrenttBuisness(objBuisness))
     console.log("dispatch2")
-  }
-
-
-  const setMail = () => {
-    dispatch(actions.setsendMessage("true"))
   }
 
   const send = () => {
@@ -136,9 +133,12 @@ export default function Nav() {
 
   //אחרי לחיצה על כפתור במודל 
   useEffect(() => {
-    if (buttonClick === "saveInvoiceOtherPage")
-      save1()
+    // if (buttonClick === "saveInvoiceOtherPage"){
+    //   alert("formmm")
+    //   document.getElementById("form_id").submit();
+    // }
 
+    // save1()
     if (buttonClick === "saveInvoiceOtherPageBack") {
       flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
         if (flag === true) {
@@ -161,28 +161,21 @@ export default function Nav() {
     }
 
     else {
-      // alert("validProduct" + validProduct)
-      if (flagOfterValidation === true && validProduct === true) {
-        // alert("validProduct flagOfterValidation" +flagOfterValidation+ validProduct)
-        dispatch(actions.setFlagOfterValidation(false))
-        dispatch(actions.setValidProduct(false))
-        setClickSave(false)
-        if (flagToCheck === true) {
-          setFlagToCheck(false)
-          if (flagSaveP === false) {
-            if (flagMessageContact) {
-              setShowMessage(true)
-              setFlagModal("contact")
-              setModalBody("how do you want to save contact changes?")
-            }
-            else {
-              nameInvoice()
-            }
+      if (flagToCheck === true) {
+        setFlagToCheck(false)
+        if (flagSaveP === false) {
+          if (flagMessageContact) {
+            setShowMessage(true)
+            setFlagModal("contact")
+            setModalBody("how do you want to save contact changes?")
+          }
+          else {
+            nameInvoice()
           }
         }
       }
     }
-  }, [flagToCheck, flagOfterValidation, validProduct])
+  }, [flagToCheck])
 
 
 
@@ -201,47 +194,33 @@ export default function Nav() {
     }
   }, [colorFlagShowSaveP])
 
+  useEffect(() => {
+    if (submitSaveInvoice === true) {
+      // alert("submitSaveInvoice")
 
-  //בלחיצה על שמירה מתחיל את הבדיקות תקינות 
-  const save1 = () => {
-
-    //איפוס כל המשתנים
-
-    dispatch(actions.setFlagPush(false))
-    dispatch(actions.setFlagPush1(false))
-    dispatch(actions.setColorFlagShowSaveP("#707071"))
-    dispatch(actions.setFlagModal(""))
-    dispatch(actions.setShowMessage(false))
-    dispatch(actions.setButtonClick(""))
-    dispatch(actions.setModalBody(""))
-    dispatch(actions.setClickSave(true))
-    dispatch(actions.setFlagValidation(true))
+      dispatch(actions.setFlagPush(false))
+      dispatch(actions.setFlagPush1(false))
+      dispatch(actions.setColorFlagShowSaveP("#707071"))
+      dispatch(actions.setFlagModal(""))
+      dispatch(actions.setShowMessage(false))
+      dispatch(actions.setButtonClick(""))
+      dispatch(actions.setModalBody(""))
+      dispatch(actions.setClickSave(true))
 
 
-    //בודק אם יש מוצר ריק בחשבונית
-    // if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[0].id === "null" || invoice.products[0].id == undefined) && flagIfEmptyProduct === false ) ||
-    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[0].id == 'null' || detailsInvoice.products[0].id === undefined) && flagIfEmptyProduct === false) ||
-    //   ((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false )) ||
-    //   ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" ||detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined  && flagIfEmptyProduct === false ))) {
+      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+        setFlagToCheck(true)
+        if (flag === true) {
+          setFlagSaveP(true)
+          dispatch(actions.setColorFlagShowSaveP("red"))
+        }
+      })
+    }
+  }, [submitSaveInvoice])
 
-    //   setFlagSaveP(true)
-    //   dispatch(actions.setBorderProductInvoice(true))
-    // }
-    //בדיקה אם יש מוצר לא שמור
+  useEffect(() => {
 
-
-    flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
-      setFlagToCheck(true)
-      if (flag === true) {
-        setFlagSaveP(true)
-        dispatch(actions.setColorFlagShowSaveP("red"))
-      }
-    })
-
-  }
-
-
-
+  }, [submitProduct])
 
   //אחרי השמירה מאפס את כל המשתנים 
   useEffect(() => {
@@ -300,20 +279,25 @@ export default function Nav() {
   }
 
   //השמירה של החשבונית
-  const save = async () => {
+  const save = () => {
+    debugger
     setIslevel(3);
     // alert('route'+history.location.pathname)
     dispatch(actions.setFlagIfEmpty(false))
     if (history.location.pathname === `/${userName}/invoice`) {
-      await products()
+      debugger
       dispatch(actions.setSaveInvoice(invoice))
     }
     else {
+      debugger
       if (detailsInvoice._id) {
+        debugger
         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
       }
-      else
+      else {
+        debugger
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
+      }
       // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
       // 
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
@@ -341,6 +325,11 @@ export default function Nav() {
   // useEffect(()=>{
   //   dispatch(actions.setDisplayBoxShadow(true))
   // })
+
+  const clickBigInput = () => {
+    // alert("button")
+    dispatch(actions.setClickBigInputForm(true))
+  }
 
 
 
@@ -397,7 +386,38 @@ export default function Nav() {
               <Share fl={2} />
             </div>
           </div>
-          : "" : "" : ""}
+          : "" : invoiceSave._id ?
+          <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
+            <div className="copy" style={{ border: "solid 1px #917BDF" }}>
+              <CopyToClipboard
+                text={`https://finance.leader.codes/${userName}/view/${invoiceSave._id}`}
+                onCopy={() => {
+                  setCopy(true)
+                  setTimeout(() => {
+                    setCopy(false)
+                  }, 3000);
+                }}>
+                <div className="linkCopydiv pointer" style={{ display: "inline" }}>
+                  <span className="linkCopyspan px-3">
+                    <span>{`https://finance.leader.codes/${invoiceSave._id.slice(0, 5)}${"..."}`}</span>
+                  </span>
+                  <span className="linkCopyicon px-1"
+                  // onClick={()=>setMail()}
+                  >
+                    {/* <FontAwesomeIcon className="ic" size="2x" icon={['fas', 'link']}
+        ></FontAwesomeIcon> */}
+                    <ImLink className="ic" size="2x" icon={['fas', 'link']}
+                    ></ImLink>
+                  </span>
+                  {copy && <span className="px-3 alert-copy">Test Link Copied!</span>}
+                </div>
+              </CopyToClipboard>
+            </div>
+            <div className="share">
+              <Share fl={2} />
+            </div>
+          </div>
+          : "" : ""}
       </div>
       <div className="col-2 d-flex flex-row">
         {/* <button onClick={()=>setMail()}>email</button> */}
@@ -407,12 +427,29 @@ export default function Nav() {
 
         <div className="col-6 d-flex align-items-center justify-content-center">
           {
+
+            // {/* // onClick={save1}
+            // // className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
+            // // {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'} */}
+            // {/* > */}
+
             window.location.href.indexOf("invoice") != -1 &&
-            <button
-              onClick={save1}
-              className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}>
-              {window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
-            </button>}
+            // <button
+            //   onClick={clickBigInput}
+            // >
+            <input
+              form="form_id1"
+              immediate="true"
+              name='selectBillingAddress'
+              style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+              // onClick={savepr}
+              className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
+              value="save"
+              // className="btn"
+              type="submit"
+            />
+            // </button>
+          }
         </div>
 
 

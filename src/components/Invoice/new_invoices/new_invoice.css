@@ -1,278 +1,525 @@
   
 .table_title{
     
-    font-size: 1.1vw;
-    text-align: left;
-    font-family: 'Saira Condensed', sans-serif;
-    letter-spacing: 0.36px;
-    color: #2D2B2E;
-    text-transform: capitalize;
-    }
-    .descripitioninput{
-        width: 95%;
-    }
-    .wrapinputprod{
-     padding:0px !important
+  font-size: 1.1vw;
+  text-align: left;
+  font-family: 'Saira Condensed', sans-serif;
+  letter-spacing: 0.36px;
+  color: #2D2B2E;
+  text-transform: capitalize;
+  }
+  .descripitioninput{
+      width: 95%;
+  }
+  .wrapinputprod{
+   padding:0px !important
+     
+  }
+  .calcProducts{
+      padding-top: 0px;
+      padding-bottom: 0px;
+  }
+  .inputproduct{
+      padding-top: 1.2%;
+      padding-bottom:1.2%;
+  
+  }
+  .nonborder{
+      border:none
+  }
+  .wrapproduct::after{
+  border: none !important;
+}
+
+.design_buisness:focus{
+  border:none;
+  cursor:default
+}
+.design_buisness{
+  cursor: default;
+
+}.cursor_default{
+  cursor: default;
+
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+  cursor: pointer;
+}
+.rowOneProduct:hover .delete_hover{
+display: block !important;
+}
+.cursor_pointer{
+  cursor:pointer
+}
+.wrapBuisnessBorder{
+  padding-bottom: 2% !important;
+  border-bottom: 1px solid #474747;
+}
+.sigPad{
+  display: none
+}
+.design_invoicename{
+  text-align: center;
+
+}
+.design_invoicename::placeholder{
+  text-align: center;
+  border:none;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size:1.5vw !important;
+  letter-spacing: 0.36px;
+  color: #2D2B2E;
+  font-weight: bold;
+}
+.design_invoicename{
+  text-align: center;
+  border:none;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size:1.5vw !important;
+  letter-spacing: 0.36px;
+  color: #2D2B2E;
+  font-weight: bold;
+}
+.design_text_contact_name::placeholder{
+  border:none;
+  text-align: left;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size:1.5vw !important;
+  letter-spacing: 0.36px;
+  font-weight: bold;
+  color: #2D2B2E;
+}
+.design_text_contact_name{
+  border:none;
+  font-weight: bold;
+  text-align: left;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size:1.5vw !important;
+  letter-spacing: 0.36px;
+  color: #2D2B2E;
+}
+.wrapproduct > #form_item > .row:last-child .inputproduct{
+ border-bottom: 1px solid black;
+}
+.wrapproduct > #form_item > .row:first-child .inputproduct{
+  border-top: 1px solid black;
+}
+.buttonaddItem:focus{
+   border:none !important
+}
+input::-webkit-inner-spin-button{
+  opacity:1; 
+} 
+.wrapdate{
+  padding-top: 4% !important;
+  padding-left: 4% !important
+}
+  
+  .ffgf{
+  text-align: left !important;
+  }
+  .cell{
        
+      font-size: 1.1vw;
+      width: 80%;
+      border: 0 ;
+      outline: 0;
+       text-align: left;
+      background-color:rgba(244,244,244,0.66);
+      border-bottom: unset;
+      color: black;
+      font-family: 'Saira Condensed', sans-serif;
+      letter-spacing: 0.36px;
+  }
+  .sum1{
+      background-color: transparent;
+  }
+  .design_text::placeholder{
+      text-align: left;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size: 1.1vw;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+  }
+  .inputproduct{
+      /* border-top: 1px solid #474747;
+      border-bottom:1px solid #474747 ; */
+      padding-top: 1.5vh; 
+       padding-bottom: 1.5vh;
+  }
+  
+  
+  .wrapproduct tr:last-child{
+      border-top: 1px solid #474747;
+  }
+  
+  .borderToProduct tr:last-child{
+      border: 1px solid red;
+  }
+  
+  .bordertableproduct{
+      border-top:1px solid #474747 ;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  #bgImg{
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 5%;
+      padding-top: 7% !important;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+  }
+  /* .col-3,.col-4,.col-6,.col-md-4{
+      padding:3px !important;
+  } */
+  
+  #userLogo-temp1{
+      width: 30vh;
+      height: 20vh;
+  }
+  .main-temp1{
+      /* padding: 7% !important;  */
+      background-color: white !important;
+  }
+  .sum-temp1{
+      text-align: center;
+      margin: 0;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  .pb-3, .py-3 {
+      padding-bottom: 0rem!important;
+  }
+  .pt-3, .py-3 {
+      padding-top: 0rem!important;
+  }
+  
+  .design_text{
+      border:none;
+      text-align: center;
+      /* font:  normal medium 3rem/3rem Saira Condensed; */
+      font-family: 'Saira Condensed', sans-serif;
+      font-size: 1.1vw;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+  }
+  .design_text_contact{
+      border:none;
+      text-align: left;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.2vw !important;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+  }
+  
+  .design_text_contactname::placeholder{
+      font-size:1.5vw !important;
+      font-weight: bold
+  }
+  .design_text_contactname{
+      font-size:1.5vw !important;
+      font-weight: bold
+  }
+  
+  .design_text_contact::placeholder{
+      border:none;
+      text-align: left;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.2vw !important;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+  }
+  .gggff{
+      height: 100% !important;
+  }
+  .con2{
+      padding-top: 2% !important;
+      padding-bottom: 2% !important;
+  }
+  .wrap_invoice{
+      overflow-y: auto;
+      overflow-x: hidden;
+      width: 100%;
+      /* height: 95% !important; */
+      display: inline-block;
+      /* height: 80vh; */
+  }
+  
+  .main-temp1{
+      opacity: 0.8 !important;
+      box-shadow: 5px 5px 8px 0 rgba(0,0,0,0.2);
+      cursor: auto;
+  }
+  .row5{
+      height: 7vh;
+  }
+  .sum1{
+      width: 100%;
+      border:none;
+      display: inline;
+      background: transparent;
+  }
+  .validB{
+      border: 1.5px solid red !important;
+      /* border-color: !important; */
     }
-    .calcProducts{
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
-    .inputproduct{
-        padding-top: 1.2%;
-        padding-bottom:1.2%;
-    
-    }
-    .nonborder{
-        border:none
-    }
-    .wrapproduct::after{
-    border: none !important;
-    }
-    .ffgf{
-    text-align: left !important;
-    }
-    .cell{
-         
-        font-size: 1.1vw;
-        width: 80%;
-        border: 0 ;
-        outline: 0;
-         text-align: left;
-        background-color:rgba(244,244,244,0.66);
-        border-bottom: unset;
-        color: black;
-        font-family: 'Saira Condensed', sans-serif;
-        letter-spacing: 0.36px;
-    }
-    .sum1{
-        background-color: transparent;
-    }
-    .design_text::placeholder{
-        text-align: left;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size: 1.1vw;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
-    }
-    .inputproduct{
-        /* border-top: 1px solid #474747;
-        border-bottom:1px solid #474747 ; */
-        padding-top: 1.5vh; 
-         padding-bottom: 1.5vh;
-    }
-    
-    
-    .wrapproduct tr:last-child{
-        border-top: 1px solid #474747;
-    }
-    
-    .borderToProduct tr:last-child{
-        border: 1px solid red;
-    }
-    
-    .bordertableproduct{
-        border-top:1px solid #474747 ;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    #bgImg{
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 5%;
-        padding-top: 7% !important;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        cursor: pointer;
-    }
-    /* .col-3,.col-4,.col-6,.col-md-4{
-        padding:3px !important;
+  .flagLoudOp{
+      opacity: 0.5;
+  }
+  
+  ::-webkit-calendar-picker-indicator{
+     padding-right: 0px !important;
+  }
+  #bgImg{
+      cursor: pointer;
+      border: 2px dashed #70707047;
+  }
+  .icon_chevron{
+      color: "#8D8DAE"
+  }
+  .backTo:hover {
+      color: black !important;
+  }
+  .backTo:focus{
+      border: none !important;
+  }
+  
+  .design_buisness:focus{
+      border:none;
+      cursor:default
+  }
+  .design_buisness{
+      cursor: default;
+  
+  }.cursor_default{
+      cursor: default;
+  
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator{
+      cursor: pointer;
+  }
+  .cursor_pointer{
+      cursor:pointer
+  }
+  .wrapBuisnessBorder{
+      padding-bottom: 4%;
+      border-bottom: 1px solid #474747;
+  }
+  .sigPad{
+      display: none
+  }
+  .design_invoicename{
+      text-align: center;
+  
+  }
+  .design_invoicename::placeholder{
+      text-align: center;
+      border:none;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.5vw !important;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+      font-weight: bold;
+  }
+  .design_invoicename{
+      text-align: center;
+      border:none;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.5vw !important;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+      font-weight: bold;
+  }
+  .design_text_contact_name::placeholder{
+      border:none;
+      text-align: left;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.5vw !important;
+      letter-spacing: 0.36px;
+      font-weight: bold;
+      color: #2D2B2E;
+  }
+  .design_text_contact_name{
+      border:none;
+      font-weight: bold;
+      text-align: left;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size:1.5vw !important;
+      letter-spacing: 0.36px;
+      color: #2D2B2E;
+  }
+
+   .buttonaddItem:focus{
+       border:none !important
+   }
+   /* input::-webkit-inner-spin-button{
+      opacity:1; 
     } */
-    
-    #userLogo-temp1{
-        width: 30vh;
-        height: 20vh;
-    }
-    .main-temp1{
-        /* padding: 7% !important;  */
-        background-color: white !important;
-    }
-    .sum-temp1{
-        text-align: center;
-        margin: 0;
+    .bgcBtnConfig {
+      border     : none;
+      border-left: 3px solid#3a405e;
     }
     
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    .pb-3, .py-3 {
-        padding-bottom: 0rem!important;
-    }
-    .pt-3, .py-3 {
-        padding-top: 0rem!important;
+    .bgcBtnConfig:hover {
+      background-image: linear-gradient(to right, rgba(101, 232, 255, 0.1), #3a405e);
+      border          : none;
+      border-left     : 3px solid#917BDF;
     }
     
-    .design_text{
-        border:none;
-        text-align: center;
-        /* font:  normal medium 3rem/3rem Saira Condensed; */
-        font-family: 'Saira Condensed', sans-serif;
-        font-size: 1.1vw;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
-    }
-    .design_text_contact{
-        border:none;
-        text-align: left;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.2vw !important;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
+    .bgcBtnConfig:focus {
+      background-image: linear-gradient(to right, rgba(101, 232, 255, 0.1), #3a405e);
+      border          : none;
+      border-left     : 3px solid#917BDF;
     }
     
-    .design_text_contactname::placeholder{
-        font-size:1.5vw !important;
-        font-weight: bold
-    }
-    .design_text_contactname{
-        font-size:1.5vw !important;
-        font-weight: bold
-    }
-    
-    .design_text_contact::placeholder{
-        border:none;
-        text-align: left;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.2vw !important;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
-    }
-    .gggff{
-        height: 100% !important;
-    }
-    .con2{
-        padding-top: 2% !important;
-        padding-bottom: 2% !important;
-    }
-    .wrap_invoice{
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 100%;
-        /* height: 95% !important; */
-        display: inline-block;
-        /* height: 80vh; */
+    .btnConfig {
+      border    : none;
+      opacity   : 1;
+      height    : 30px;
+      text-align: left;
+      font      : normal normal normal Roboto;
+      font-size : 12px;
+      color     : #B1B2BC;
     }
     
-    .main-temp1{
-        opacity: 0.8 !important;
-        box-shadow: 5px 5px 8px 0 rgba(0,0,0,0.2);
-        cursor: auto;
-    }
-    .row5{
-        height: 7vh;
-    }
-    .sum1{
-        width: 100%;
-        border:none;
-        display: inline;
-        background: transparent;
-    }
-    .validB{
-        border: 1.5px solid red !important;
-        /* border-color: !important; */
-      }
-    .flagLoudOp{
-        opacity: 0.5;
+    /* .fontConfig{ */
+    /* font-size: 70% !important; */
+    /* color:rgb(0, 0, 0) !important */
+    /* } */
+    .iconBtnConfig {
+      padding: auto;
+      color  : #B1B2BC;
     }
     
-    ::-webkit-calendar-picker-indicator{
-       padding-right: 0px !important;
-    }
-    #bgImg{
-        cursor: pointer;
-        border: 2px dashed #70707047;
-    }
-    .icon_chevron{
-        color: "#8D8DAE"
-    }
-    .backTo:hover {
-        color: black !important;
-    }
-    .backTo:focus{
-        border: none !important;
+    .inpConfig {
+      outline         : none;
+      border          : none;
+      border-bottom   : 1px solid #B1B2BC;
+      color           : #B1B2BC;
+      background-color: unset;
+      width           : 100%;
     }
     
-    .design_buisness:focus{
-        border:none;
-        cursor:default
+    .inpConfig:focus {
+      outline         : none;
+      border-bottom   : 1px solid#B1B2BC !important;
+      color           : #B1B2BC;
+      background-color: #3A405E;
+      width           : 100%;
     }
-    .design_buisness{
-        cursor: default;
     
-    }.cursor_default{
-        cursor: default;
+    .inpConfig::placeholder {
+      color         : #B1B2BC;
+      padding-bottom: 0;
+      font-size     : 1em;
+    }
     
+    input[type="number"] {
+      width: 3em;
     }
-    input[type="date"]::-webkit-calendar-picker-indicator{
-        cursor: pointer;
-    }
-    .cursor_pointer{
-        cursor:pointer
-    }
-    .wrapBuisnessBorder{
-        padding-bottom: 4%;
-        border-bottom: 1px solid #474747;
-    }
-    .sigPad{
-        display: none
-    }
-    .design_invoicename{
-        text-align: center;
     
+    .lblConfig {
+      outline         : none;
+      border          : none;
+      color           : #B1B2BC;
+      background-color: unset;
     }
-    .design_invoicename::placeholder{
-        text-align: center;
-        border:none;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.5vw !important;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
-        font-weight: bold;
+    
+    .btnSave {
+      color           : #B1B2BC;
+      border-radius   : 7px;
+      background-color: unset;
+      border          : 1px solid #B1B2BC !important;
     }
-    .design_invoicename{
-        text-align: center;
-        border:none;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.5vw !important;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
-        font-weight: bold;
+    
+    .btnSave:focus {
+      border: 1px solid #B1B2BC !important;
     }
-    .design_text_contact_name::placeholder{
-        border:none;
-        text-align: left;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.5vw !important;
-        letter-spacing: 0.36px;
-        font-weight: bold;
-        color: #2D2B2E;
+    
+    .xxx {
+      border               : white
+        /* background-color: yellow; */
     }
-    .design_text_contact_name{
-        border:none;
-        font-weight: bold;
-        text-align: left;
-        font-family: 'Saira Condensed', sans-serif;
-        font-size:1.5vw !important;
-        letter-spacing: 0.36px;
-        color: #2D2B2E;
+    
+    .scrollbar {
+      margin-left  : 30px;
+      float        : left;
+      height       : 300px;
+      width        : 65px;
+      background   : #F5F5F5;
+      overflow-y   : scroll;
+      margin-bottom: 25px;
     }
-    .wrapproduct .row:last-child .inputproduct{
-       border-bottom: 1px solid black;
+    
+    .force-overflow {
+      min-height: 450px;
     }
-    .wrapproduct .row:first-child .inputproduct{
-        border-top: 1px solid black;
-     }
-     .buttonaddItem:focus{
-         border:none !important
-     }
-     input::-webkit-inner-spin-button{
-        opacity:1; 
-      }
+    
+    #style-3::-webkit-scrollbar {
+      width           : 6px;
+      background-color: #F5F5F5;
+    }
+    
+    #style-3::-webkit-scrollbar-thumb {
+      background-color: #000000;
+    }
+    
+    .twitter-picker {
+      width: 200px !important;
+    }
+    
+    .MuiGridListTile-imgFullWidth {
+      top              : 50%;
+      width            : 101px;
+      height           : 72px;
+      position         : relative;
+      padding          : 1px;
+      /* padding-bottom: 11px; */
+      transform        : translateY(-50%);
+    }
+    
+    .MuiBox-root-64 {
+      display        : flex;
+      width          : 30vh;
+      height         : -34vh;
+      flex-direction : row;
+      justify-content: space-between;
+    }
+    
+    .MuiGridList-root.makeStyles-gridList-67 {
+      height: 25vh;
+    }
+    
+    .circle-picker {
+      width: 170px !important
+    }
+    
+    .styleTd {
+      border      : 1px solid #ddd !important;
+      border-top  : none !important;
+      border-left : none !important;
+      border-right: none !important;
+      padding     : none !important;
+    }
+    
+    .iconBtnConfig {
+      padding: auto;
+      color  : #B1B2BC;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      border-radius   : 10px;
+      background-color: white;
+      border          : 1px solid white;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background   : #0A1028;
+      border-radius: 10px;
+    }
+    
