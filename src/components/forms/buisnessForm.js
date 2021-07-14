@@ -112,6 +112,9 @@ function BuisnessList(props) {
     if (flagSave == 'saveNewBusiness') {
       saveNewBuisness()
     }
+    else if (flagSave == 'noSave') {
+      restart()
+    }
   }, [flagSave])
 
   useEffect(() => {

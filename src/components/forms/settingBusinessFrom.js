@@ -111,7 +111,25 @@ function SettingBuisnessList(props) {
         if (flagSave == 'updateBusiness') {
             saveNewBuisness()
         }
+        else if (flagSave == 'noSave') {
+            restart()
+        }
     }, [flagSave])
+
+    const restart = () => {
+        setFlagLoud(false)
+        updateBuisnessField({ key: 'name', value: "" })
+        updateBuisnessField({ key: 'imgLogo', value: "" })
+        updateBuisnessField({ key: 'email', value: "" })
+        updateBuisnessField({ key: 'phone', value: "" })
+        updateBuisnessField({ key: 'country', value: "" })
+        updateBuisnessField({ key: 'city', value: "" })
+        updateBuisnessField({ key: 'address', value: "" })
+        updateWebsite({ key: 'website', value: "" })
+        updateBuisnessField({ key: 'vat', value: "" })
+        updateBuisnessField({ key: 'numberDeals', value: "" })
+        updateBuisnessField({ key: 'imgLogo', value: "" })
+    }
     // useEffect(() => {
     //   setUrlLogo(detailsBusiness.imgLogo)
     //  } ,[detailsBusiness.imgLogo])
