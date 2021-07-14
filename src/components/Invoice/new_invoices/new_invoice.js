@@ -21,7 +21,7 @@ import './new_invoice.css'
 // import './config.css'
 function New_Invoice(props) {
   const Location = useLocation()
-  const ReactDatalist = require('react-datalist')
+  // const ReactDatalist = require('react-datalist')
   const dispatch = useDispatch();
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
   const dispatchgetbusiness = () => dispatch({ type: "GET_BUSINESS_BY_ID" })
@@ -887,16 +887,20 @@ function New_Invoice(props) {
     //  alert("")
     if (yourForm.checkValidity() === true) {
       yourForm.checkValidity(false)
-      // alert("ddd")
+      alert("ddd")
     }
     if (yourForm.checkValidity() === false) {
-      // alert("vv")
+      alert("vv")
+      if (validatorEmail()) {
+
+      }
     }
 
 
     const form = event.currentTarget;
     //   debugger
     if (form.checkValidity() === false) {
+
       event.preventDefault();
       event.stopPropagation();
     }
@@ -915,7 +919,6 @@ function New_Invoice(props) {
         //  .checkValidity=false
       }
     }
-
   };
 
 
