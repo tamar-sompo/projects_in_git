@@ -67,11 +67,11 @@ const initialState = {
     flagSaveP: false,
     borderProductInvoice: false,
     displayBoxShadow: false,
-    submitSaveInvoice:false,
-    submitItem:false,
-    submitInvoice:false,
-    submitProduct:false,
-    clickBigInputForm:false
+    submitSaveInvoice: false,
+    submitItem: false,
+    submitInvoice: false,
+    submitProduct: false,
+    clickBigInputForm: false
 
 
 }
@@ -91,27 +91,28 @@ const invoices = {
     },
 
     setValidProduct(state, action) {
-        state.validProduct = action.payload},
+        state.validProduct = action.payload
+    },
 
-    setClickBigInputForm(state, action){
-        state.clickBigInputForm=action.payload
+    setClickBigInputForm(state, action) {
+        state.clickBigInputForm = action.payload
     },
 
 
-    setSubmitProduct(state, action){
-        state.submitProduct=action.payload
+    setSubmitProduct(state, action) {
+        state.submitProduct = action.payload
     },
 
-    setSubmitInvoice(state, action){
-        state.submitInvoice=action.payload
+    setSubmitInvoice(state, action) {
+        state.submitInvoice = action.payload
     },
 
-    setSubmitItem(state, action){
-        state.submitItem=action.payload
+    setSubmitItem(state, action) {
+        state.submitItem = action.payload
     },
 
-    setSubmitSaveInvoice(state, action){
-        state.submitSaveInvoice=action.payload
+    setSubmitSaveInvoice(state, action) {
+        state.submitSaveInvoice = action.payload
     },
 
     callSaveInvoce(state, action) {
@@ -120,10 +121,6 @@ const invoices = {
 
     setClickSave(state, action) {
         state.clickSave = action.payload
-    },
-
-    setFlagIfEmptyProduct(state, action) {
-        state.flagIfEmptyProduct = action.payload
     },
 
     setDisplayBoxShadow(state, action) {
@@ -396,9 +393,9 @@ const invoices = {
         }
         else {
             state.invoice.products[action.payload.index1].sum_product = action.payload.sum
-            state.invoice.products.map((p, index) => {
+            state.invoice.products.forEach((p => {
                 state.saveSum += p.sum_product
-            })
+            }))
         }
     },
     // setSumUpdate(state, action){

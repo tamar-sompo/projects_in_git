@@ -1,11 +1,8 @@
-import { faGlassMartiniAlt } from '@fortawesome/free-solid-svg-icons'
-import $ from 'jquery'
-import { ModalBody } from 'react-bootstrap'
 import { actions } from '../../redux/actions/All_actions'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -30,10 +27,10 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     let textToPaypal = "Click here to pay"
     // let html
     // if(linkPayToContact){
-   let html = `${text} <br /> ${url} <br /> <br /> <br />
+    let html = `${text} <br /> ${url} <br /> <br /> <br />
        <a href=${linkPayToContact} class="btn btn-primary">${textToPaypal}</a>
        `
-      // }
+    // }
     //  ${textToPaypal} <br /> ${linkPayToContact}`
     // }
     // else{

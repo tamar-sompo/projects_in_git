@@ -1,6 +1,5 @@
 
 import $ from 'jquery'
-import { ModalBody } from 'react-bootstrap'
 // import invoice from '../../components/Invoice/invoice';
 import { actions } from '../../redux/actions/All_actions'
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 export default function Contactsiframe(props) {
@@ -7,9 +7,9 @@ export default function Contactsiframe(props) {
 
     return (
         <>
-            <iframe style=
-                {{ width: "100%", height: "100%" }} src={`https://contacts.dev.leader.codes/${userName}?iframe=true`}></iframe>
-‏
+            <iframe title="myFrame" style=
+                {{ width: "100%", height: "100%" }} src={`https://contacts.dev.leader.codes/${userName}?iframe=true`}>
+            </iframe>‏
         </>
     )
 }

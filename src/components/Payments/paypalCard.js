@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { actions } from '../../redux/actions/All_actions'
 import { useDispatch, useSelector } from 'react-redux';
@@ -50,8 +50,8 @@ function PaypalCard(props) {
           <div className="d-flex flex-column">
             <div className="row mx-auto mt-4 ml-3">
               <div className="ml-5">
-                <textarea className=""
-                type="string"
+                <textarea
+                  type="string"
                   placeholder="Client Id"
                   className="paypalCard_textarea_paypal  p-3"
                   onChange={(e) => onFieldChanged(e, 'client_id')}
@@ -59,18 +59,18 @@ function PaypalCard(props) {
               </div>
               <div className="ml-5 mt-5">
                 <textarea
-                type="string"
+                  type="string"
                   placeholder="Secret Id"
                   className="paypalCard_textarea_paypal  p-3"
                   onChange={(e) => onFieldChanged(e, 'secret_id')}
                 ></textarea>
               </div>
-              </div>
-              <div className="d-flex mt-3">
-              <button 
+            </div>
+            <div className="d-flex mt-3">
+              <button
                 className='paypal_saveButton h-40 row mt-5 justify-content-center
                 mx-auto'
-                onClick={() => {dispatch(actions.setClientIdToBuisness()) }}
+                onClick={() => { dispatch(actions.setClientIdToBuisness()) }}
               >Save</button>
             </div>
           </div>

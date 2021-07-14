@@ -72,10 +72,6 @@ const buisness = {
     setChooseNewBuisness(state, action) {
         state.currentBuisness = action.payload
     },
-    setPushNewBuisness(state, action) {
-
-        state.allBuisness = action.payload
-    },
     setGetCurrenttBuisness(state, action) {
         state.currentBuisness = action.payload
     },
@@ -101,9 +97,6 @@ const buisness = {
     },
     setGetUserByUserName(state, action) {
         state.newBuisness = action.payload
-    },
-    setAllBuisness(state, action) {
-        state.allBuisness = action.payload
     },
     // setBuisness(state, action) {
     //     state.newBuisness[action.payload.key] = action.payload.value
