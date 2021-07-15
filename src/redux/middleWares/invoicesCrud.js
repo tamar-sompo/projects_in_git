@@ -55,9 +55,8 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 
     let buisnessId = getState().buisnessReducer.buisness
     let currentBuisness = getState().buisnessReducer.currentBuisness
-    console.log("buisnessId", buisnessId)
     let invoice = action.payload
-    console.log("iiinvoice", invoice)
+    console.log("invoice data send to the server", invoice)
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/${buisnessId}`
     $.ajax({
       url: urlData,

@@ -220,4 +220,5 @@ store.dispatch(actions.setFlagPush(true))
 // store.dispatch({ type: "GET_COUNRTY" })
 store.dispatch({ type: 'GET_LAST_BUISNESS' })
 
+window.store = store;
 export default store;
