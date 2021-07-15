@@ -1108,7 +1108,7 @@ function New_Invoice(props) {
                     // className="design_text_contact"
                     type='string'
                     pattern="[0-9]{10}"
-                    // "['+']{1}[0-9]{12}"
+                    // "['+']{1}[0-9]{12}"  
                     className={'design_text_contact'}
                     value={detailsInvoice ?
                       detailsInvoice.contactOneTime &&

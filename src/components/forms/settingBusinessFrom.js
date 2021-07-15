@@ -214,7 +214,8 @@ function SettingBuisnessList(props) {
             // delete tmpSave._id
             // delete tmpSave.uid
             if (flagSave == 'updateBusiness') {
-                dispatch(actions.setflagSave('false'))
+                dispatch(actions.setflagSave('noSave'))
+                // dispatch(actions.setflagSave('false'))
             }
             else {
                 dispatch(actions.setflagSave('false'))
@@ -507,8 +508,7 @@ function SettingBuisnessList(props) {
                                     </div>
 
                                     <input className={errorMessage ? "inptStyle  valid" : "inptStyle"} name='name' type="text"
-                                        placeholder={userFiled.name ? userFiled.name :
-                                            currentBuisness.name ? currentBuisness.name : "Business Name"}
+                                        placeholder={currentBuisness.name ? "" : "Business Name"}
                                         defaultValue={userFiled.name ? userFiled.name :
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
