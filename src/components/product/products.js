@@ -13,8 +13,6 @@ import ProductForm from '../forms/productForm'
 import './product.css'
 import { makeStyles } from '@material-ui/core/styles';
 import { connect, useDispatch, useSelector } from 'react-redux';
-
-
 import { BsSearch } from 'react-icons/bs'
 import Tooltip from '@material-ui/core/Tooltip';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -59,12 +57,12 @@ function Products(props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [flag1, setFlag1] = useState();
-    const searchby = useState();
+    const [searchby, setSearchby] = useState('');
     const [dis, setDis] = useState({ flag: 0, id: '', inpDis: "" });
     const newProduct = useSelector(state => state.productReducer.newProduct)
+    const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
     // const show = useSelector(state => state.designReducer.show);
     // console.log("ssssssssssshow",show)
-
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const isEdit = useSelector(state => state.productReducer.isEdit)
     const tmpPr = useSelector(state => state.productReducer.tmpPr)
@@ -80,11 +78,8 @@ function Products(props) {
         isShow: false
     })
 
-
     useEffect(() => {
         dispatch(actions.setDisplayBoxShadow(false))
-
-
     }, [])
     useEffect(() => {
         debugger
@@ -170,7 +165,6 @@ function Products(props) {
         }
         else {
             setFlag1(false)
-
         }
     }, [flagNewP])
 
@@ -190,7 +184,6 @@ function Products(props) {
         // dispatch(actions.setNewProductTableFull({}))
         // setFlag1(value)
     }
-
     const resetFeild = (fieldName, product) => {
         if (newProduct && newProduct[fieldName]) {
 
@@ -199,7 +192,6 @@ function Products(props) {
             // dispatch(actions.setNewProductTable(product))
         }
     }
-
 
     const onFieldEdit = (fieldName, e) => {
         if (fieldName === 'name') {
@@ -227,7 +219,6 @@ function Products(props) {
     const [flagName, setflagName] = useState(false)
     const [flagPrice, setflagPrice] = useState(false)
     const setDisable = (product) => {// after clicking the edit icon - open / close + save the product
-        debugger
         if (flagNewP) { //flag if new product is open
             if (savePr) { //flag that checks if product valus changed
                 dispatch(actions.setShowMessagePr(true))
@@ -350,7 +341,20 @@ function Products(props) {
             console.log('imagep', props.imgProduct)
         }
     }
+    const updateCellPrice = (_value, fieldName) => {
+        if (!fieldName) {
+            return;
+        }
+        if (!_value) {
+            dispatch(actions.setNewProductTable({ key: fieldName, value: '' }))
+            return
+        }
 
+        const value = Number(_value);
+        if (!Number.isNaN(value)) {
+            dispatch(actions.setNewProductTable({ key: fieldName, value: value }))
+        }
+    }
     const [flagSearch, setFlagSearch] = useState("false")
     const clickSearch = (value) => {
         setFlagSearch(value)
@@ -848,3 +852,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
+
+
+
+
