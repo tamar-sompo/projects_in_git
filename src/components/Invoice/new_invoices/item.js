@@ -727,7 +727,7 @@ function Item(props) {
           {/* {props.pro.id == "null" || props.pro.id === undefined ? */}
           <div className="inputproduct" style={{ width: "35%" }}>
             <input aria-label="empty textarea"
-              autoComplete={false}
+              autoComplete="off"
               rowsMax="2"
               required
               onFocus={() => cleanInput1('name')}
