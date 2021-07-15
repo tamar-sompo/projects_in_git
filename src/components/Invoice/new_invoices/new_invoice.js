@@ -380,7 +380,6 @@ function New_Invoice(props) {
   const [firstTmp, setfirstTmp] = useState(false);
 
   const validatorPhone = (v) => {
-
     const tmp = v.length == 13 && v.includes('+');
     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
   }
@@ -887,22 +886,19 @@ function New_Invoice(props) {
     //  alert("")
     if (yourForm.checkValidity() === true) {
       yourForm.checkValidity(false)
-      alert("ddd")
+      // alert("ddd")
     }
     if (yourForm.checkValidity() === false) {
-      alert("vv")
-      if (validatorEmail()) {
-
-      }
+      // alert("vv")
     }
 
 
     const form = event.currentTarget;
     //   debugger
     if (form.checkValidity() === false) {
-
       event.preventDefault();
       event.stopPropagation();
+      alert('bbbbbbbbbb')
     }
     //   event.preventDefault();
     setValidated(true);
@@ -919,6 +915,7 @@ function New_Invoice(props) {
         //  .checkValidity=false
       }
     }
+
   };
 
 
@@ -1104,12 +1101,14 @@ function New_Invoice(props) {
                   </div>
 
                   <input
-
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     placeholder="contact phone"
                     onFocus={(e) => resetfieldcontact('phone', e)}
                     // className='editable-temp1 design_text'
                     // className="design_text_contact"
+                    type='string'
+                    pattern="[0-9]{10}"
+                    // "['+']{1}[0-9]{12}"
                     className={'design_text_contact'}
                     value={detailsInvoice ?
                       detailsInvoice.contactOneTime &&
@@ -1121,7 +1120,9 @@ function New_Invoice(props) {
                             contactedit.phone ? contactedit.phone : '' : ''}
                     onChange={(e) => onFieldChangeContact('phone', e)}>
                   </input>
-
+                  <Form.Control.Feedback type="invalid">
+                    #Invalid phone
+                  </Form.Control.Feedback>
                   <input
 
                     disabled={displayInvoice === "true" ? "disable" : ""}
