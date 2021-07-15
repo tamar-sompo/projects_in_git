@@ -55,12 +55,9 @@ function BuisnessList(props) {
         dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         history.push(`/${userName}/setting`)
     }
-    const remove = (buisnessChoose) => {
+    const remove = () => {
         debugger
         // setModalBody("Do You Want To delete The Buisness Forever?")
-        dispatch(actions.getAllProduct(buisnessChoose._id))
-        dispatch(actions.setGetBusiness(buisnessChoose._id))
-        dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         dispatch(actions.setShowModalDelete(true));
     }
     const chooseBuisness = (value) => {
@@ -131,7 +128,7 @@ function BuisnessList(props) {
                                                                         </Tooltip>
                                                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
                                                                             <RiDeleteBin6Line id="icon"
-                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", zIndex: "1" }}
+                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", zIndex: "2" }}
                                                                                 onClick={(e) => remove(buisness)}>
                                                                             </RiDeleteBin6Line>
                                                                         </Tooltip>
