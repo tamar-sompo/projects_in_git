@@ -1,32 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './form.css';
-import Alert from 'react-bootstrap/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { FiUpload } from 'react-icons/fi';
-import { Col, Row, Container, Button } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconContext } from "react-icons";
-import { Divider, TextField } from '@material-ui/core';
-import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap'
 import { actions } from '../../redux/actions/All_actions';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-//  import { useForm } from "react-hook-form";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 // import FixLogoBuisness from './fixLogoBuisness.js'
-import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
-import * as Yup from "yup"
-import Select from 'react-select';
 import { HiUpload } from "react-icons/hi";
 
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import { SiYoutube, SiInstagram, SiWhatsapp, SiFacebook } from 'react-icons/si';
-import { BiCalendar, BiPlus } from 'react-icons/bi';
-import { GiWireframeGlobe } from 'react-icons/gi';
-import { change } from 'redux-form';
+import { BiPlus } from 'react-icons/bi';
 
 // import {CgCalendarDates} from 'react-icons/cg';
 
@@ -81,26 +66,17 @@ function SettingBuisnessList(props) {
     const [errorMessage4, setErrorMessage4] = useState();
     const [errorMessage5, setErrorMessage5] = useState();
     const [errorMessage6, setErrorMessage6] = useState();
-    const [buttonText, setButtonText] = useState("SAVE");
     const inputFile1 = useRef(null);
     const dispatch = useDispatch();
-    const history = useHistory();
     const classes = useStyles();
-    const { handle, register, handleSubmit, watch, formState: { errors } } = useForm();
-
-    const [urlLogo, setUrlLogo] = useState("")
-
-    const detailsBusiness = useSelector(state => state.buisnessReducer.newBuisness);
+    // const { formState: { errors } } = useForm();
     const allCities = useSelector(state => state.cityByCountryReducer.allCities.geonames);
     const allCountry = useSelector(state => state.cityByCountryReducer.allCountry);
-    const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
-    const userName = useSelector(state => state.publicReducer.userName);
     const userFiled = useSelector(state => state.buisnessReducer.settingBuisness);
     const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness)
 
     const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setSettingBuisness(fieldToUpdate))
     const updateWebsite = (fieldToUpdate) => dispatch(actions.setSettingBuisnessWebsite(fieldToUpdate))
-    const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
     const setCities = (data) => dispatch(actions.getCityByCountry(data))
     const setCountry = () => dispatch(actions.getCountry())
     const [flag, setFlag] = useState("false")
@@ -108,7 +84,7 @@ function SettingBuisnessList(props) {
     const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
     useEffect(() => {
-        if (flagSave == 'updateBusiness') {
+        if (flagSave === 'updateBusiness') {
             saveNewBuisness()
         }
         else if (flagSave == 'noSave') {
@@ -159,7 +135,7 @@ function SettingBuisnessList(props) {
 
     const validatorPhone = (v) => {
 
-        const tmp = v.length == 13 && v.includes('+');
+        const tmp = v.length === 13 && v.includes('+');
         return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
     }
     const validatorEmail = (v) => {
@@ -208,12 +184,12 @@ function SettingBuisnessList(props) {
         //     if (currentBuisness.phone)
         //         tmp3 = validatorPhone(currentBuisness.phone);
         // }
-        if (tmp4 && tmp5 && tmp1 == true && tmp3 == true && tmp6 && tmp7) {
+        if (tmp4 && tmp5 && tmp1 === true && tmp3 === true && tmp6 && tmp7) {
             setFlagLoud(true);
             changeCurrentBusiness('imgLogo', userFiled.imgLogo)
             // delete tmpSave._id
             // delete tmpSave.uid
-            if (flagSave == 'updateBusiness') {
+            if (flagSave === 'updateBusiness') {
                 dispatch(actions.setflagSave('false'))
             }
             else {
@@ -320,21 +296,21 @@ function SettingBuisnessList(props) {
     // }
     const fieldChanged = (e, fieldName) => {
         dispatch(actions.setflagSave('true2'))
-        if (fieldName == 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
+        if (fieldName === 'email') { if (validatorEmail(e.target.value)) setErrorMessage3('') }
         else {
-            if (fieldName == 'name') setErrorMessage('')
+            if (fieldName === 'name') setErrorMessage('')
             else {
-                if (fieldName == 'phone') {
+                if (fieldName === 'phone') {
                     if (validatorPhone(e.target.value)) setErrorMessage4('')
                     // if (!isDigit(e.target.value)) {
                     //   e.target.value = "false"
                     // }
                 }
                 else {
-                    if (fieldName == 'address') setErrorMessage6('')
+                    if (fieldName === 'address') setErrorMessage6('')
                     else {
-                        if (fieldName == 'city') setErrorMessage5('')
-                        else { if (fieldName == 'numberDeals') setErrorMessage2('') }
+                        if (fieldName === 'city') setErrorMessage5('')
+                        else { if (fieldName === 'numberDeals') setErrorMessage2('') }
                     }
                 }
             }
@@ -346,10 +322,7 @@ function SettingBuisnessList(props) {
         changeCurrentBusiness(fieldName, value)
         // }
     }
-    const onload = (e, fieldName) => {
-        const value = e;
-        updateBuisnessField({ key: fieldName, value: value })
-    }
+
     const websiteChanged = (e, fieldName) => {
 
         const value = e.target.value;
@@ -513,7 +486,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.name ? currentBuisness.name : ""}
                                         onChange={(e) => fieldChanged(e, 'name')}
                                         style={{ width: "42rem", fontSize: "small" }}></input>
-                                    {errorMessage == '#enter your Buisness name' &&
+                                    {errorMessage === '#enter your Buisness name' &&
                                         <div className="required">{errorMessage}</div>}
                                 </div>
                             </div>
@@ -527,7 +500,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
                                         style={{ width: "20rem", fontSize: "small" }}></input>
-                                    {errorMessage4 == '#Invalid phone' &&
+                                    {errorMessage4 === '#Invalid phone' &&
                                         <div className="required">{errorMessage4}</div>}
                                 </div>
                                 <div className="col-md-5 sd-10">
@@ -540,7 +513,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.email ? currentBuisness.email : ""}
                                         onChange={(e) => fieldChanged(e, 'email')}
                                         style={{ width: "20rem", fontSize: "small" }}></input>
-                                    {errorMessage3 == '#Invalid email address' &&
+                                    {errorMessage3 === '#Invalid email address' &&
                                         <div className="required">{errorMessage3}</div>}
                                 </div>
                             </div>
@@ -557,7 +530,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
                                         style={{ width: "42rem", fontSize: "small" }}></input>
-                                    {errorMessage6 == '#enter Address' &&
+                                    {errorMessage6 === '#enter Address' &&
                                         <div className="required">{errorMessage6}</div>}
                                 </div>
                             </div>
@@ -595,7 +568,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
                                         style={{ width: "12rem", fontSize: "small" }}></input>
-                                    {errorMessage2 == '#enter your Number-Dealds' &&
+                                    {errorMessage2 === '#enter your Number-Dealds' &&
                                         <div className="required">{errorMessage2}</div>}
                                 </div>
                                 <div className="col-3.5">
@@ -644,7 +617,7 @@ function SettingBuisnessList(props) {
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}
                                         style={{ width: "20rem", fontSize: "small" }}></input>
-                                    {errorMessage5 == '#enter City' &&
+                                    {errorMessage5 === '#enter City' &&
                                         <div className="required">{errorMessage5}</div>}
                                     <datalist id="city">
                                         {allCities ? allCities.map(x => {

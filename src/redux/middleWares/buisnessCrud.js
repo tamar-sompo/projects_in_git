@@ -3,7 +3,7 @@ import { actions } from '../actions/All_actions';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -92,8 +92,6 @@ export const getAllbuisnessToUser = ({ dispatch, getState }) => next => action =
 export const updateBuisnessById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_BUSINESS_CARD') {
 
-    let update = getState().buisnessReducer.updateBusiness.id;
-    let current = getState().buisnessReducer.currentBuisness._id;
     // console.log("update", update)
     // console.log("current", current)
     const body = getState().buisnessReducer.updateBusiness;
@@ -136,7 +134,6 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
   if (action.type === 'SET_UPDATE_SETTING_BUSINESS_CARD') {
 
     // let update = getState().buisnessReducer.updateBusiness.id;
-    let current = getState().buisnessReducer.currentBuisness._id;
     // const body = getState().buisnessReducer.settingBuisness;
     const body = action.payload;
     const buisnessId = action.payload._id;
@@ -169,8 +166,6 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
 
 export const removeBuisnessById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_REMOVE_BUISNESS_BY_ID') {
-    let update = getState().buisnessReducer.updateBusiness.id;
-    let current = getState().buisnessReducer.currentBuisness._id;
     const buisnessId = action.payload;
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeBuinessById/${buisnessId}`
     $.ajax({

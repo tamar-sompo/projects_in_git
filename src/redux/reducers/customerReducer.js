@@ -100,9 +100,6 @@ const contacts = {
         state.allContact.push(action.payload);
 
     },
-    setNewContact(state, action) {
-        state.newContact = { ...action.payload, ...state.newContact };
-    },
     setNewContact1(state, action) {
         state.newContact = action.payload
     },
@@ -129,8 +126,8 @@ const contacts = {
         state.detailscontact = action.payload
     },
 
-    setRsetDetailsContact(state,action){
-        state.detailscontact.contact=undefined
+    setRsetDetailsContact(state, action) {
+        state.detailscontact.contact = undefined
     }
 
 }

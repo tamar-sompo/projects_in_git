@@ -55,13 +55,11 @@ function BuisnessList(props) {
         dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         history.push(`/${userName}/setting`)
     }
-    const remove = (buisnessChoose) => {
-        debugger
+    const remove = (e) => {
+        e.stopPropagation()
         // setModalBody("Do You Want To delete The Buisness Forever?")
-        dispatch(actions.getAllProduct(buisnessChoose._id))
-        dispatch(actions.setGetBusiness(buisnessChoose._id))
-        dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         dispatch(actions.setShowModalDelete(true));
+
     }
     const chooseBuisness = (value) => {
         if (currentBuisness != value) {
@@ -78,20 +76,20 @@ function BuisnessList(props) {
         <>
             {showModalDelete && <ModeldeleteBuisness />}
             <div className="wrap_table" style={{ marginTop: "2%" }}>
-                <div className="row" style={{ backgroundColor: "#F5F5FA" }}>
+                <div className="row" >
                     <div className="col">
                         <div className="table-responsive" style={{ margin: '0% !important' }}>
                             <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px", marginBottom: "0rem" }}>
-                                <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
-                                    <tr>
+                                <thead style={{ backgroundColor: "rgb(250, 250, 250)", opacity: "100%", borderBottom: "0px" }}>
+                                    <tr style={{ borderBottom: "0px" }}>
                                         {/* <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th> */}
-                                        <th style={{ width: "9%", backgroundColor: "#F5F5FA" }}></th>
-                                        <th>NAME</th>
-                                        <th>EMAIL</th>
-                                        <th>WEBSITE</th>
-                                        <th>ADDRESS</th>
-                                        <th>PRODUCTION DATE</th>
-                                        <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
+                                        <th style={{ width: "9%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
+                                        <th style={{ borderBottom: "0px" }}>NAME</th>
+                                        <th style={{ borderBottom: "0px" }}>EMAIL</th>
+                                        <th style={{ borderBottom: "0px" }}>WEBSITE</th>
+                                        <th style={{ borderBottom: "0px" }}>ADDRESS</th>
+                                        <th style={{ borderBottom: "0px" }}>PRODUCTION DATE</th>
+                                        <th style={{ width: "3%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,7 +99,7 @@ function BuisnessList(props) {
                                         return (
                                             <>
                                                 <tr className="tr"
-                                                    style={{ height: "55px", cursor: "pointer" }}
+                                                    style={{ height: "55px", cursor: "pointer", borderTop: "0px" }}
                                                     id={"flag" + index}
                                                     onMouseEnter={() => mouseEnter(buisness._id)}
                                                     onMouseLeave={() => mouseLeave(buisness._id)}
@@ -111,12 +109,12 @@ function BuisnessList(props) {
                                                     <td style={{ paddingLeft: "3%" }}>
                                                         <img style={{ width: "34px", height: "34px" }} className="rounded-circle" alt="" src={buisness.imgLogo ? buisness.imgLogo : logo1} />
                                                     </td>
-                                                    <td>{buisness.name ? buisness.name : ''}</td>
+                                                    <td> {buisness.name ? buisness.name : ''}</td>
                                                     <td>{buisness.email ? buisness.email : ''}</td>
                                                     <td>{buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website.split('/')[2] : '' : ''}</td>
                                                     <td>{buisness.address && buisness.city ? buisness.address + " " + buisness.city : ''}</td>
                                                     <td>{convertdate(buisness.productionDate)}</td>
-                                                    <td className="td_tt" >
+                                                    <td className="td_tt" style={{ width: "7%" }}>
                                                         <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
                                                             {
                                                                 chooselinei.isShown && chooselinei.index === buisness._id && (
@@ -125,14 +123,14 @@ function BuisnessList(props) {
                                                                             <a style={{ height: "14px" }}>
                                                                                 <MdEdit id="icon"
                                                                                     onClick={() => edit(buisness)}
-                                                                                    style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px" }}
+                                                                                    style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px", width: "16px", height: "16px" }}
                                                                                 ></MdEdit>
                                                                             </a>
                                                                         </Tooltip>
                                                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
                                                                             <RiDeleteBin6Line id="icon"
-                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px" }}
-                                                                                onClick={(e) => remove(buisness)}>
+                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", width: "16px", height: "16px", zIndex: "2" }}
+                                                                                onClick={(e) => remove(e)}>
                                                                             </RiDeleteBin6Line>
                                                                         </Tooltip>
                                                                     </div>

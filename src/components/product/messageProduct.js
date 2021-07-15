@@ -1,7 +1,7 @@
-import { isThisISOWeek } from 'date-fns';
-import React, { useEffect, useRef, useState } from 'react';
-import { Col, Row, Container, Button, Modal } from 'react-bootstrap'
-import { connect, useDispatch, useSelector } from 'react-redux'
+
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '../../redux/actions/All_actions'
 
 
@@ -10,10 +10,8 @@ export default function MessageProduct(props) {
 
     const dispatch = useDispatch();
     const setShowMessagePr = (status) => dispatch(actions.setShowMessagePr(status))
-    const modalBody = useSelector(state => state.messageReducer.modalBody);
     const showMessagePr = useSelector(state => state.messageReducer.showMessagePr);
     console.log("showMessagePr", showMessagePr)
-    const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const handleClose = () => setShowMessagePr(false);
     //no
     const openEdit = () => {
@@ -75,8 +73,7 @@ export default function MessageProduct(props) {
                 backdrop="static"
                 keyboard={false}
                 // onHide={() => setShowMessage(false)}
-                style={{ opacity: "1", background: "transparent" }}
-                style={{ height: "100%", left: "50%" }}>
+                style={{ opacity: "1", background: "transparent", height: "100%", left: "50%" }}>
                 <Modal.Header style={{ opacity: "1", cursor: "pointer" }} closeButton>
                 </Modal.Header>
 
@@ -85,12 +82,12 @@ export default function MessageProduct(props) {
                     <h1 style={{ marginTop: '7%', paddingRight: '1%', marginBottom: '0.1rem', color: '#343a40e0', paddingBottom: '6vh', fontSize: '1.7rem' }}>
                         Do you want to save the product?
                     </h1>
-                    {props.flag == 5 ?
+                    {props.flag === 5 ?
                         //הודעה בין עריכה לעריכה
                         <Button style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                             onClick={() => saveEdit()}>Yes
                         </Button>
-                        : props.flag == 1 ?
+                        : props.flag === 1 ?
                             // הודעה במעבר בין עמודים
                             <Button style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                                 onClick={() => savePage()}>Yes
@@ -100,12 +97,12 @@ export default function MessageProduct(props) {
                                 onClick={() => save()}>Yes
                             </Button>
                     }
-                    {props.flag == 5 ?
+                    {props.flag === 5 ?
                         <Button style={{
                             width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                         }}
                             onClick={() => closeEdit()}>No</Button>
-                        : props.flag == 1 ?
+                        : props.flag === 1 ?
                             <Button style={{
                                 width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                             }}

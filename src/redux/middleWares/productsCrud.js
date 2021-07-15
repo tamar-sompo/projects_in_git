@@ -3,7 +3,7 @@ import { actions } from '../actions/All_actions'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -72,7 +72,7 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
 
 export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
   let id_product = action.payload
-  let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeProductFromBuisnessById/${action.payload}`
+  let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeProductFromBuisnessById/${id_product}`
   if (action.type === "DELETE_PRODUCT") {
     return fetch(url, {
       method: 'POST',
@@ -104,7 +104,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
     let newProduct;
     let buisnessId = getState().buisnessReducer.buisness
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newProductForBuisness/${buisnessId}`
-    if (action.payload || action.payload == 0)
+    if (action.payload || action.payload === 0)
       newProduct = getState().productReducer.newProduct[action.payload]
     else
       newProduct = getState().productReducer.newProductTable
@@ -119,7 +119,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
 
       success: function (data) {
 
-        if (action.payload || action.payload == 0) {
+        if (action.payload || action.payload === 0) {
 
           console.log("success add product", data)
           dispatch(actions.setShow(true))
@@ -201,7 +201,7 @@ export const updateProductById = ({ dispatch, getState }) => next => action => {
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update a product successfully"))
         dispatch(actions.setProduct1(product1))
-        let pIndex = allP.findIndex(x => x._id == productId)
+        let pIndex = allP.findIndex(x => x._id === productId)
         dispatch(actions.editProduct11({ i: pIndex, objectProduct: product1 }))
         // dispatch(actions.getAllProduct())
         if (!action.payload.key) {

@@ -170,7 +170,7 @@ td {
 
 .td_tt {
   width        : 5%;
-  /* border    :none; */
+  border    :none;
   /* border-top: 0px !important; */
 }
 
