@@ -55,10 +55,11 @@ function BuisnessList(props) {
         dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         history.push(`/${userName}/setting`)
     }
-    const remove = () => {
-        debugger
+    const remove = (e) => {
+        e.stopPropagation()
         // setModalBody("Do You Want To delete The Buisness Forever?")
         dispatch(actions.setShowModalDelete(true));
+
     }
     const chooseBuisness = (value) => {
         if (currentBuisness != value) {
@@ -113,7 +114,7 @@ function BuisnessList(props) {
                                                     <td>{buisness.socialmedias ? buisness.socialmedias.website ? buisness.socialmedias.website.split('/')[2] : '' : ''}</td>
                                                     <td>{buisness.address && buisness.city ? buisness.address + " " + buisness.city : ''}</td>
                                                     <td>{convertdate(buisness.productionDate)}</td>
-                                                    <td className="td_tt" >
+                                                    <td className="td_tt" style={{ width: "7%" }}>
                                                         <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
                                                             {
                                                                 chooselinei.isShown && chooselinei.index === buisness._id && (
@@ -122,14 +123,14 @@ function BuisnessList(props) {
                                                                             <a style={{ height: "14px" }}>
                                                                                 <MdEdit id="icon"
                                                                                     onClick={() => edit(buisness)}
-                                                                                    style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px" }}
+                                                                                    style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "6px", width: "16px", height: "16px" }}
                                                                                 ></MdEdit>
                                                                             </a>
                                                                         </Tooltip>
                                                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
                                                                             <RiDeleteBin6Line id="icon"
-                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", zIndex: "2" }}
-                                                                                onClick={(e) => remove(buisness)}>
+                                                                                style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", width: "16px", height: "16px", zIndex: "2" }}
+                                                                                onClick={(e) => remove(e)}>
                                                                             </RiDeleteBin6Line>
                                                                         </Tooltip>
                                                                     </div>
