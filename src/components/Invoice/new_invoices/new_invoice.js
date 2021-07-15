@@ -371,8 +371,8 @@ function New_Invoice(props) {
     }
   }, [detailscontact])
 
-
   const [validName, setValidName] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
   const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
   const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
   const [errorMessage1, setErrorMessage1] = useState(false);
@@ -507,30 +507,14 @@ function New_Invoice(props) {
   }
 
   const onFieldChangeContact = (fieldName, e) => {
-    // if (fieldName == 'email') {
-    //   if (e.target.value) {
-    //     setValidName(false)
-    //     if (validatorEmail(e.target.value)) {
-    //       setErrorMessage1(false)
-    //     }
-    //     else { setErrorMessage1(true) }
-    //   }
-    //   else { setErrorMessage1(true) }
-    // }
-    // else {
-    //   if (fieldName == 'phone') {
-    //     if (e.target.value) {
-    //       if (validatorPhone(e.target.value)) {
-    //         setErrorMessage2(false)
-    //       }
-    //       else { setErrorMessage2(true) }
-    //     }
-    //     else {
-    //       setErrorMessage2(false)
-    //     }
-    //   }
-    // }
-
+    if (fieldName == 'email') {
+      if (e.target.value) {
+        debugger
+        setValidEmail(true)
+      }
+      else { setValidEmail(false) }
+    }
+    // else { setErrorMessage1(true) }
 
     let id_contact
     dispatch(actions.setFlagIfEmpty(true))
@@ -1095,9 +1079,16 @@ function New_Invoice(props) {
                       onChange={(e) => onFieldChangeContact('email', e)}
                     >
                     </input>
-                    <Form.Control.Feedback type="invalid">
-                      require
-                    </Form.Control.Feedback>
+                    {validEmail ?
+                      <Form.Control.Feedback type="invalid">
+                        {/* #invalid email */}
+                        #Email address should contain '@'
+                      </Form.Control.Feedback> :
+                      <Form.Control.Feedback type="invalid"
+                        value={validEmail ? "#invalid email" : "require"}>
+                        #require
+                      </Form.Control.Feedback>
+                    }
                   </div>
 
                   <input

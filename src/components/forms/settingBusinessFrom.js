@@ -521,8 +521,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-md-5 sd-10" style={{ paddingLeft: "0vh", marginRight: "3vh" }}>
                                     <div className="font2">Company Phone</div>
                                     <input className={errorMessage4 ? "inptStyle valid" : "inptStyle"} name='phone' type="text"
-                                        placeholder={userFiled.phone ? userFiled.phone :
-                                            currentBuisness.phone ? currentBuisness.phone : "Company Phone"}
+                                        placeholder={
+                                            currentBuisness.phone ? "" : "Company Phone"}
                                         defaultValue={userFiled.phone ? userFiled.phone :
                                             currentBuisness.phone ? currentBuisness.phone : ""}
                                         onChange={(e) => { fieldChanged(e, 'phone') }}
@@ -533,8 +533,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-md-5 sd-10">
                                     <div className="font2">Company Email</div>
                                     <input name='email' type="text"
-                                        placeholder={userFiled.email ? userFiled.email :
-                                            currentBuisness.email ? currentBuisness.email : "Company Email"}
+                                        placeholder={
+                                            currentBuisness.email ? "" : "Company Email"}
                                         className={errorMessage3 ? "inptStyle valid" : "inptStyle"}
                                         defaultValue={userFiled.email ? userFiled.email :
                                             currentBuisness.email ? currentBuisness.email : ""}
@@ -551,8 +551,8 @@ function SettingBuisnessList(props) {
                                         <div style={{ color: "red", fontSize: "small" }}>*</div>
                                     </div>
                                     <input className={errorMessage6 ? "inptStyle valid" : "inptStyle"} name='address' type="text"
-                                        placeholder={userFiled.address ? userFiled.address :
-                                            currentBuisness.address ? currentBuisness.address : "Address"}
+                                        placeholder={
+                                            currentBuisness.address ? "" : "Address"}
                                         defaultValue={userFiled.address ? userFiled.address :
                                             currentBuisness.address ? currentBuisness.address : ""}
                                         onChange={(e) => fieldChanged(e, 'address')}
@@ -567,10 +567,9 @@ function SettingBuisnessList(props) {
                                 <div>
                                     <div className="font2">Website</div>
                                     <input className="inptStyle" name='website' type="text"
-                                        placeholder={userFiled.socialmedias &&
-                                            userFiled.socialmedias.website ? userFiled.socialmedias.website :
+                                        placeholder={
                                             currentBuisness.socialmedias &&
-                                                currentBuisness.socialmedias.website ? currentBuisness.socialmedias.website : "Website"}
+                                                currentBuisness.socialmedias.website ? "" : "Website"}
                                         defaultValue={userFiled.socialmedias ?
                                             userFiled.socialmedias.website ? userFiled.socialmedias.website :
                                                 currentBuisness.socialmedias ?
@@ -589,8 +588,8 @@ function SettingBuisnessList(props) {
                                     <input
                                         className={errorMessage2 ? "inptStyle valid" : "inptStyle"}
                                         name='numberDeals' type="number"
-                                        placeholder={userFiled.numberDeals ? userFiled.numberDeals :
-                                            currentBuisness.numberDeals ? currentBuisness.numberDeals : "Dealer License"}
+                                        placeholder={
+                                            currentBuisness.numberDeals ? "" : "Dealer License"}
                                         defaultValue={userFiled.numberDeals ? userFiled.numberDeals :
                                             currentBuisness.numberDeals ? currentBuisness.numberDeals : ""}
                                         onChange={(e) => fieldChanged(e, 'numberDeals')}
@@ -601,8 +600,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-3.5">
                                     <div className="font2">Vat</div>
                                     <input className="inptStyle" name='vat' type="text"
-                                        placeholder={userFiled.vat ? userFiled.vat :
-                                            currentBuisness.vat ? currentBuisness.vat : "Vat"}
+                                        placeholder={
+                                            currentBuisness.vat ? "" : "Vat"}
                                         defaultValue={userFiled.vat ? userFiled.vat :
                                             currentBuisness.vat ? currentBuisness.vat : ""}
                                         onChange={(e) => fieldChanged(e, 'vat')}
@@ -613,8 +612,8 @@ function SettingBuisnessList(props) {
                                 <div className="col-5" style={{ paddingLeft: "0vh" }} >
                                     <div className="font2" style={{ paddingBottom: "1.5vh" }} >Country</div>
                                     <input className="inptStyle" type="text" name="country" list="country"
-                                        placeholder={userFiled.country ? userFiled.country :
-                                            currentBuisness.country ? currentBuisness.country : "Country"}
+                                        placeholder={
+                                            currentBuisness.country ? "" : "Country"}
                                         defaultValue={userFiled.country ? userFiled.country :
                                             currentBuisness.country ? currentBuisness.country : ""}
                                         onFocus={(e) => selectCountry(e)}
@@ -638,8 +637,8 @@ function SettingBuisnessList(props) {
                                     <input
                                         className={errorMessage5 ? "inptStyle valid" : "inptStyle"}
                                         type="text" name="city" list="city"
-                                        placeholder={userFiled.city ? userFiled.city :
-                                            currentBuisness.city ? currentBuisness.city : "City"}
+                                        placeholder={
+                                            currentBuisness.city ? "" : "City"}
                                         defaultValue={userFiled.city ? userFiled.city :
                                             currentBuisness.city ? currentBuisness.city : ""}
                                         onChange={(e) => fieldChanged(e, 'city')}
