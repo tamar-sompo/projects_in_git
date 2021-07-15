@@ -94,7 +94,7 @@ export default function NewSetting(props) {
         }
         else {
           debugger
-          if (flagSave === 'true1' || flagSave === 'true2') {
+          if (flagSave == 'true1' || flagSave == 'true2' || flagSave == 'saveNewBusiness') {
             dispatch(actions.setFlagOverPage(true))
             // dispatch(actions.setflagSave(''))
           }
@@ -137,6 +137,13 @@ export default function NewSetting(props) {
         routePage()
         setShowMessage(false)
         dispatch(actions.setflagSave('false'))
+      }
+      else {
+        if (flagSave == 'noSave') {
+          routePage()
+          setShowMessage(false)
+          dispatch(actions.setflagSave('false'))
+        }
       }
     }
   }, [flagSave])

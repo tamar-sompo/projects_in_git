@@ -44,10 +44,10 @@ export default function MessageBusiness(props) {
     const overPage = () => {
         debugger
         // אם עריכת מוצר תיהיה פתוחה או לא
-        dispatch(actions.setFlagNewP(false))
-        dispatch(actions.setIfSave(false))
-        dispatch(actions.setNewProductTableFull({}))
-        dispatch(actions.setdegel1(4))
+        // dispatch(actions.setFlagNewP(false))
+        // dispatch(actions.setIfSave(false))
+        // dispatch(actions.setNewProductTableFull({}))
+        dispatch(actions.setflagSave('noSave'))
         // dispatch(actions.setIsOpen(false))
         handleClose()
     }
@@ -55,11 +55,11 @@ export default function MessageBusiness(props) {
     const flagSave = useSelector(state => state.buisnessReducer.flagSave);
     const savePage = () => {
         debugger
-        if (flagSave === 'true1') {
+        if (flagSave == 'true1' || flagSave == 'saveNewBusiness') {
             dispatch(actions.setflagSave('saveNewBusiness'))
         }
         else {
-            if (flagSave === 'true2') {
+            if (flagSave == 'true2' || flagSave == 'updateBusiness') {
                 dispatch(actions.setflagSave('updateBusiness'))
             }
         }
