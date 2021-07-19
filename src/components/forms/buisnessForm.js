@@ -31,7 +31,7 @@ import uploadAnimation from '../assets/louder.gif'
 // import { GiWireframeGlobe } from 'react-icons/gi';
 // 
 // import {CgCalendarDates} from 'react-icons/cg';
-
+import Print from '../Invoice/print'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // const phoneRegExp = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 // const userSchema = Yup.object().shape({
@@ -328,6 +328,8 @@ function BuisnessList(props) {
 
   return (
     <>
+
+
       {flagLoud &&
         <LeaderLouder></LeaderLouder>}
       <div className={flagLoud ? "container-fluid con posity" : "container-fluid con"}
@@ -387,6 +389,9 @@ function BuisnessList(props) {
           </div>
           <div>
             <div>Logo</div>
+            <button onClick={<Print></Print>}
+              ppppppp
+            ></button>
             <div  >
               <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
                 onChange={(e) => addImage1(e.target.files[0])}

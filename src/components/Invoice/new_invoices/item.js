@@ -824,6 +824,9 @@ function Item(props) {
               value={props.pro.amount}
               onChange={(e) => updateCell('amount', e)}
               type="number"
+              maxLength={6}
+              min="1"
+              max="999999"
             ></Cell>
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>

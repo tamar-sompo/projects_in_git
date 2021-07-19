@@ -19,13 +19,14 @@ function Cell(props) {
         <>
             <input
                 // id={id}
-                
+
                 type={type}
                 onFocus={onFocus}
                 disabled={displayInvoice === "true" ? "disable" : ""}
                 className={'cell design_text ffgf'}
                 // className='cell design_text'
                 // maxlength="15"
+                maxLength={6}
                 size="7"
                 value={value}
                 onBlur={onBlur}
