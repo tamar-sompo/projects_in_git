@@ -3,15 +3,15 @@ import '../invoice.css';
 // import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Button, Form } from 'react-bootstrap'
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { Form } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import CurrencyInput from 'react-currency-input-field';
 import Cell from './cell'
-import { number, object } from 'yup';
-import { string } from 'yup/lib/locale';
-import { BorderTop } from '@material-ui/icons';
+// import { number, object } from 'yup';
+// import { string } from 'yup/lib/locale';
+// import { BorderTop } from '@material-ui/icons';
 import './new_invoice.css'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import $ from 'jquery'
@@ -20,47 +20,47 @@ function Item(props) {
   const setClickSave = (status) => dispatch(actions.setClickSave(status))
   const clickSave = useSelector(state => state.invoiceReducer.clickSave);
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
-  const p = useSelector(state => state.displayComponents.p);
+  // const p = useSelector(state => state.displayComponents.p);
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-  const focus = useSelector(state => state.invoiceReducer.focus);
+  // const focus = useSelector(state => state.invoiceReducer.focus);
   const setFocus = (focus) => dispatch(actions.setFocus(focus))
   const invoice = useSelector(state => state.invoiceReducer.invoice)
   const allproduct = useSelector(state => state.productReducer.allProducts);
   const product1 = useSelector(state => state.productReducer.product1)
   const new_product = useSelector(state => state.productReducer.newProduct)
   const [dtp, setdtp] = useState({})
-  const [flag, setFlag] = useState(false);
-  const [flagDtp, setFlagDtp] = useState(false);
+  // const [flag, setFlag] = useState(false);
+  // const [flagDtp, setFlagDtp] = useState(false);
   const [flagPro, setFlagPro] = useState(false)
   const userName = useSelector(state => state.publicReducer.userName);
   const amountProductInvoice = useSelector(state => state.invoiceReducer.amountProductInvoice)
   const [amount2, setamount2] = useState()
-  const setCalcSumProduct = (sum1) => dispatch(actions.setCalcSumProduct(sum1))
-  const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
+  // const setCalcSumProduct = (sum1) => dispatch(actions.setCalcSumProduct(sum1))
+  // const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
   const [sum, setSum] = useState(null);
-  const [flagSumProduct, setflagSumProduct] = useState(false)
-  const [discountp, setdiscountp] = useState(100)
+  // const [flagSumProduct, setflagSumProduct] = useState(false)
+  // const [discountp, setdiscountp] = useState(100)
   let history = useHistory()
-  const [flagcalc, setflagcalc] = useState(false)
-  const [flagsetSum, setflagsetSum] = useState(false)
+  // const [flagcalc, setflagcalc] = useState(false)
+  // const [flagsetSum, setflagsetSum] = useState(false)
   const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const setFlagShowSaveP = (status) => dispatch(actions.setFlagShowSaveP(status))
-  const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
+  // const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
-  const validProduct = useSelector(state => state.invoiceReducer.validProduct);
-  const [indexfocus, setindexof] = useState(null)
-  const { vvv } = props
+  // const validProduct = useSelector(state => state.invoiceReducer.validProduct);
+  // const [indexfocus, setindexof] = useState(null)
+  // const { vvv } = props
   const dispatch = useDispatch();
-  const { onItemChanged, onItemDeleted, productSelect } = props;
-  const totalProductRef = useRef([]);
+  const { onItemDeleted } = props;
+  // const totalProductRef = useRef([]);
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
   const borderProductInvoice = useSelector(state => state.invoiceReducer.borderProductInvoice)
-  const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
-  const flagValidPrice = useSelector(state => state.invoiceReducer.flagValidPrice)
+  // const invalidProduct = useSelector(state => state.invoiceReducer.invalidProduct)
+  // const flagValidPrice = useSelector(state => state.invoiceReducer.flagValidPrice)
   const setflagValidPrice = (status) => dispatch(actions.setflagValidPrice(status))
-  const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
-  const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
+  // const flagValidName = useSelector(state => state.invoiceReducer.flagValidName)
+  // const setflagValidName = (status) => dispatch(actions.setflagValidName(status))
   const [flagToBroder, setFlagToBroder] = useState(false)
   const [validated, setValidated] = useState(false);
   // const [flagValidPrice, setflagValidPrice] = useState(false);
@@ -238,14 +238,14 @@ function Item(props) {
         else {
           setdtp({})
           dispatch(actions.setAmountToProduct({ amount: '', index1: props.index }))
-          if (e.target.value && e.target.value != "") {
+          if (e.target.value && e.target.value !== "") {
             setFlagShowSaveP({ index: props.index, value: true })
           }
           else {
-            if (e.target.value == "")
-              if (!new_product[props.index].description || new_product[props.index].description == "")
-                if (!new_product[props.index].price || new_product[props.index].price == "")
-                  if (!new_product[props.index].discount || new_product[props.index].discount == "")
+            if (e.target.value === "")
+              if (!new_product[props.index].description || new_product[props.index].description === "")
+                if (!new_product[props.index].price || new_product[props.index].price === "")
+                  if (!new_product[props.index].discount || new_product[props.index].discount === "")
                     setFlagShowSaveP({ index: props.index, value: false })
           }
         }
@@ -284,14 +284,14 @@ function Item(props) {
       // setnameProduct(e.target.value)
     }
     else {
-      if (e.target.value && e.target.value != "") {
+      if (e.target.value && e.target.value !== "") {
         setFlagShowSaveP({ index: props.index, value: true })
       }
       else {
-        if (e.target.value == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].price || new_product[props.index].price == "")
-              if (!new_product[props.index].discount || new_product[props.index].discount == "")
+        if (e.target.value === "")
+          if (!new_product[props.index].description || new_product[props.index].description === "")
+            if (!new_product[props.index].price || new_product[props.index].price === "")
+              if (!new_product[props.index].discount || new_product[props.index].discount === "")
                 setFlagShowSaveP({ index: props.index, value: false })
       }
     }
@@ -350,12 +350,12 @@ function Item(props) {
     console.log("dtpdtp", dtp)
 
     debugger
-    if (e.target.value && e.target.value != "") {
+    if (e.target.value && e.target.value !== "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
 
     for (var key in new_product[props.index]) {
-      if (new_product[props.index][key] && new_product[props.index][key] != "") {
+      if (new_product[props.index][key] && new_product[props.index][key] !== "") {
         if (flagShowSaveP === false)
           setFlagShowSaveP({ index: props.inedx, value: true })
       }
@@ -393,10 +393,10 @@ function Item(props) {
     if (title1 === "amount") {
 
       if (e.target.value === "" && product1._id === undefined && dtp._id === undefined) {
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].price || new_product[props.index].price == "")
-              if (!new_product[props.index].discount || new_product[props.index].discount == "")
+        if (!new_product[props.index].name || new_product[props.index].name === "")
+          if (!new_product[props.index].description || new_product[props.index].description === "")
+            if (!new_product[props.index].price || new_product[props.index].price === "")
+              if (!new_product[props.index].discount || new_product[props.index].discount === "")
                 setFlagShowSaveP({ index: props.index, value: false })
       }
 
@@ -406,33 +406,33 @@ function Item(props) {
 
 
       if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
-        if (!new_product[props.index].description || new_product[props.index].description == "")
-          if (!new_product[props.index].price || new_product[props.index].price == "")
-            if (!new_product[props.index].discount || new_product[props.index].discount == "")
+        if (!new_product[props.index].description || new_product[props.index].description === "")
+          if (!new_product[props.index].price || new_product[props.index].price === "")
+            if (!new_product[props.index].discount || new_product[props.index].discount === "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 === "description") {
       if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
       )
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].price || new_product[props.index].price == "")
-            if (!new_product[props.index].discount || new_product[props.index].discount == "")
+        if (!new_product[props.index].name || new_product[props.index].name === "")
+          if (!new_product[props.index].price || new_product[props.index].price === "")
+            if (!new_product[props.index].discount || new_product[props.index].discount === "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
-    if (title1 == "price") {
-      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
+    if (title1 === "price") {
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
       )
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].discount || new_product[props.index].discount == "")
+        if (!new_product[props.index].name || new_product[props.index].name === "")
+          if (!new_product[props.index].description || new_product[props.index].description === "")
+            if (!new_product[props.index].discount || new_product[props.index].discount === "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
-    if (title1 == "discount") {
-      if (e.target.value == "" && product1._id === undefined && dtp._id === undefined
+    if (title1 === "discount") {
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
       )
-        if (!new_product[props.index].name || new_product[props.index].name == "")
-          if (!new_product[props.index].description || new_product[props.index].description == "")
-            if (!new_product[props.index].price || new_product[props.index].price == "")
+        if (!new_product[props.index].name || new_product[props.index].name === "")
+          if (!new_product[props.index].description || new_product[props.index].description === "")
+            if (!new_product[props.index].price || new_product[props.index].price === "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
 
@@ -442,14 +442,14 @@ function Item(props) {
     // setindexof(props.index)
     if (field1 === "amount") {
 
-      if (amount2 != undefined) {
+      if (amount2 !== undefined) {
         dispatch(actions.setProductAmount(amount2))
         setamount2(undefined)
       }
     }
     else {
       if (dtp && dtp._id) {
-        if (dtp[field1] != undefined) {
+        if (dtp[field1] !== undefined) {
           // alert("jjjjj")
           // console.log("dtp[field1]", dtp[field1], field1, dtp)
           dispatch(actions.setNewProduct({ index: props.index, key: field1, value: dtp[field1] }))
@@ -467,16 +467,13 @@ function Item(props) {
     // debugger
     // event.preventDefault()
     // alert("jjjj")
-    if (amountProductInvoice != 0) {
+    if (amountProductInvoice !== 0) {
       setamount2(amountProductInvoice)
       // dispatch(actions.setAmountToProduct({ id: dtp._id, amount: amountProductInvoice }))
     }
     if (dtp && dtp._id) {
-      {
-        // alert("bbb")
-        dispatch(actions.setProductId1(dtp._id))
-        dispatch(actions.editProduct(props.index))
-      }
+      dispatch(actions.setProductId1(dtp._id))
+      dispatch(actions.editProduct(props.index))
     }
     else {
       console.log('new_product', new_product)
@@ -491,7 +488,7 @@ function Item(props) {
   }
   const clearProduct = () => {
     debugger
-    if (invoice.products.length == 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length == 1) {
+    if (invoice.products.length === 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length === 1) {
 
       // document.querySelectorAll("input").forEach(
       //   input => (input.value = "")   
@@ -612,13 +609,13 @@ function Item(props) {
       // });
       dispatch(actions.setNewProduct({ index: props.index, key: fieldName, value: value }))
 
-      if (value && value != "") {
+      if (value && value !== "") {
         setFlagShowSaveP({ index: props.index, value: true })
       }
 
 
       for (var key in new_product[props.index]) {
-        if (new_product[props.index][key] && new_product[props.index][key] != "") {
+        if (new_product[props.index][key] && new_product[props.index][key] !== "") {
           if (flagShowSaveP === false)
             setFlagShowSaveP({ index: props.inedx, value: true })
         }
@@ -653,20 +650,20 @@ function Item(props) {
 
       }
 
-      if (fieldName == "price") {
-        if (value == "" && product1._id === undefined && dtp._id === undefined
+      if (fieldName === "price") {
+        if (value === "" && product1._id === undefined && dtp._id === undefined
         )
-          if (!new_product[props.index].name || new_product[props.index].name == "")
-            if (!new_product[props.index].description || new_product[props.index].description == "")
-              if (!new_product[props.index].discount || new_product[props.index].discount == "")
+          if (!new_product[props.index].name || new_product[props.index].name === "")
+            if (!new_product[props.index].description || new_product[props.index].description === "")
+              if (!new_product[props.index].discount || new_product[props.index].discount === "")
                 setFlagShowSaveP({ index: props.index, value: false })
       }
-      if (fieldName == "discount") {
-        if (value == "" && product1._id === undefined && dtp._id === undefined
+      if (fieldName === "discount") {
+        if (value === "" && product1._id === undefined && dtp._id === undefined
         )
-          if (!new_product[props.index].name || new_product[props.index].name == "")
-            if (!new_product[props.index].description || new_product[props.index].description == "")
-              if (!new_product[props.index].price || new_product[props.index].price == "")
+          if (!new_product[props.index].name || new_product[props.index].name === "")
+            if (!new_product[props.index].description || new_product[props.index].description === "")
+              if (!new_product[props.index].price || new_product[props.index].price === "")
                 setFlagShowSaveP({ index: props.index, value: false })
       }
     }
@@ -689,7 +686,7 @@ function Item(props) {
     // alert("submit")
     // debugger
     const form = event.currentTarget;
-    if (form.flagModal != "otherPageInvoices" === false) {
+    if (form.flagModal !== "otherPageInvoices" === false) {
       // alert("item1")
       event.preventDefault();
       event.stopPropagation();
@@ -727,7 +724,7 @@ function Item(props) {
           {/* {props.pro.id == "null" || props.pro.id === undefined ? */}
           <div className="inputproduct" style={{ width: "35%" }}>
             <input aria-label="empty textarea"
-              autoComplete="new-password"
+              autoComplete="off"
               rowsMax="2"
               required
               onFocus={() => cleanInput1('name')}
@@ -800,7 +797,7 @@ function Item(props) {
               onFocus={() => cleanInput1('price')}
               // id="validation-example-3-field2"
               name="price"
-              style={displayInvoice == "true" ? { backgroundColor: "transparent" } : {}}
+              style={displayInvoice === "true" ? { backgroundColor: "transparent" } : {}}
               disabled={displayInvoice === "true" ? "disable" : ""}
               className='cell design_text '
               // className='cell design_text'
@@ -824,6 +821,9 @@ function Item(props) {
               value={props.pro.amount}
               onChange={(e) => updateCell('amount', e)}
               type="number"
+              maxLength={6}
+              min="1"
+              max="999999"
             ></Cell>
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>
@@ -851,8 +851,8 @@ function Item(props) {
             {
               flagShowSaveP[props.index] &&
               <input
-                style={{ marginLeft: "33%", width: "100%", height: "39%", backgroundColor: 'transparent', border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
-                // onClick={savepr}
+                style={{ marginLeft: "33%", width: "100%", height: "39%", border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
+                // onClick={savepr}backgroundColor: 'transparent',
                 value="save"
                 className="btn "
                 type="submit" />

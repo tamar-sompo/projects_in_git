@@ -170,6 +170,14 @@ function MultiSelectInput(props) {
         else {
             setErrorMessage('#no email address');
         }
+        dispatch(actions.setShow(true))
+        dispatch(actions.setNameAction("The Email Send Success!"))
+        setTimeout(() => {
+            dispatch(actions.setsendMessage("false"))
+            dispatch(actions.setSuccessSendEmail("false"))
+            dispatch(actions.setInvoiceSave(null))
+            console.log("successSendEmail", successSendEmail)
+        }, 3000)
     }
     return (
         <>
@@ -200,23 +208,33 @@ function MultiSelectInput(props) {
                     placeholder={"The Body Of The Message"}
                 ></TextareaAutosize>
                 {/* /> */}
-                <div style={{ height: "6vh" }}></div>
-                <div className="d-flex justify-content-center pointer" onClick={() => toMailServer()}>
-                    <FontAwesomeIcon
+                <div style={{ height: "20vh" }}></div>
+                <div className="d-flex justify-content-center" >
+                    <button onClick={() => toMailServer()}
+                        style={{
+                            backgroundColor: "#8E73EC",
+                            borderRadius: "2px",
+                            width: "7rem",
+                            height: "4vh",
+                            color: "white",
+                            fontSize: "11px"
+                        }}>send
+                    </button>
+                    {/* <FontAwesomeIcon
                         size="2x"
                         icon={['fas', 'paper-plane']}
                         style={{ color: "#917BDF" }}
-                    />
+                    /> */}
                 </div>
-                {successSendEmail == "true" &&
-                    <h2 className="d-flex justify-content-center">Send!</h2>}
-                {successSendEmail == "true" &&
+                {/* {successSendEmail == "true" &&
+                    <h2 className="d-flex justify-content-center">Send!</h2>} */}
+                {/* {successSendEmail == "true" &&
                     setTimeout(() => {
                         dispatch(actions.setsendMessage("false"))
                         dispatch(actions.setSuccessSendEmail("false"))
                         dispatch(actions.setInvoiceSave(null))
                     }, 3000)
-                }
+                } */}
             </div>
         </>
     );

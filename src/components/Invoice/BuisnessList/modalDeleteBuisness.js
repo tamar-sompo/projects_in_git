@@ -42,13 +42,12 @@ export default function ModeldeleteBuisness(props) {
 
                     <Button style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                         // onClick={dispatch(actions.setRemoveBuisnessById(currentBuisness._id))}
-                        onClick={handleDelete}
-                    >Delete
+                        onClick={handleClose}>Cancel
                     </Button>
                     <Button style={{
                         width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                     }}
-                        onClick={handleClose}>Cancel
+                        onClick={handleDelete}>Delete
                     </Button>
                 </Modal.Body >
             </Modal>

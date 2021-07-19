@@ -5,19 +5,13 @@ import { actions } from '../../redux/actions/All_actions'
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Col, Row, Container, Button } from 'react-bootstrap';
 import './form.css';
-import { event } from 'jquery';
-import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import tempLogo from '../assets/newLogo.png';
 import { HiUpload } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyInput from 'react-currency-input-field';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { useState } from 'react';
-// import '../Invoice/invoice.css'
-// import { borderRadius } from 'react-select/src/theme';
-
 
 const useStyles = makeStyles((theme) => ({
   // inputStyle: {
@@ -56,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 function ProductForm(props) {
   const classes = useStyles();
   const inputFile = useRef(null);
-  const inputText = useRef(null);
   const dispatch = useDispatch();
   // const changeComponent = (component1) => dispatch(actions.setComponentConfigurator(component1))
   // const componentConfigurator = useSelector(state => state.companyReducer.componentConfigurator)
@@ -81,7 +74,7 @@ function ProductForm(props) {
 
   const onFieldEdit = (fieldName, e) => {
 
-    if (fieldName == 'name') {
+    if (fieldName === 'name') {
       if (e.target.value) {
         setflagName(false)
         setflagName2(false)
@@ -107,7 +100,7 @@ function ProductForm(props) {
 
   const degel = useSelector(state => state.productReducer.degel1)
   useEffect(() => {
-    if (degel == '1') {
+    if (degel === '1') {
       addNewProduct()
     }
   }, [degel])
@@ -118,7 +111,7 @@ function ProductForm(props) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
       dispatch(actions.setIfSave(false))
-      if (degel == '1') {
+      if (degel === '1') {
         dispatch(actions.setdegel1(2))//route user selection page
       }
       if (isSave) {
@@ -148,13 +141,6 @@ function ProductForm(props) {
   const onButtonClick = () => {
     inputFile.current.click();
   };
-  const clearObject = () => {
-    props.setNewProduct1({})
-    // inputText.current.value="";
-    document.querySelectorAll("input").forEach(
-      input => (input.value = "")
-    );
-  }
 
   const addImage = (event) => {
     if (event) {
@@ -175,7 +161,7 @@ function ProductForm(props) {
     //הוא דואג לבדוק אם הכנים נצונים ביצירה של חדש
     // (בשביל מעבר בין עמ ולחיצה על מוצר)
     dispatch(actions.setIfSave(true))
-    if (fieldName == 'price') {
+    if (fieldName === 'price') {
       if (_value) {
         setflagPrice(false)
         setflagPrice2(false)

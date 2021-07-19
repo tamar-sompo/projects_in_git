@@ -1,7 +1,7 @@
-import { isThisISOWeek } from 'date-fns';
-import React, { useEffect, useRef, useState } from 'react';
-import { Col, Row, Container, Button, Modal } from 'react-bootstrap'
-import { connect, useDispatch, useSelector } from 'react-redux'
+
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '../../redux/actions/All_actions'
 
 
@@ -10,46 +10,44 @@ export default function MessageBusiness(props) {
 
     const dispatch = useDispatch();
     const setFlagOverPage = (status) => dispatch(actions.setFlagOverPage(status))
-    const modalBody = useSelector(state => state.messageReducer.modalBody);
     const flagOverPage = useSelector(state => state.buisnessReducer.flagOverPage);
-    const newProductTable = useSelector(state => state.productReducer.newProductTable)
     const handleClose = () => setFlagOverPage(false);
     //no
-    const openEdit = () => {
-        debugger
-        // אם עריכת מוצר תיהיה פתוחה או לא
-        dispatch(actions.setFlagNewP(false))
-        dispatch(actions.setIsEdit(true))
-        dispatch(actions.setIfSave(false))
-        dispatch(actions.setNewProductTableFull({}))
-        // dispatch(actions.setIsOpen(false))
-        handleClose()
-    }
-    const closeEdit = () => {
-        dispatch(actions.setIsEdit(true))
-        handleClose()
-    }
+    // const openEdit = () => {
+    //     debugger
+    //     // אם עריכת מוצר תיהיה פתוחה או לא
+    //     dispatch(actions.setFlagNewP(false))
+    //     dispatch(actions.setIsEdit(true))
+    //     dispatch(actions.setIfSave(false))
+    //     dispatch(actions.setNewProductTableFull({}))
+    //     // dispatch(actions.setIsOpen(false))
+    //     handleClose()
+    // }
+    // const closeEdit = () => {
+    //     dispatch(actions.setIsEdit(true))
+    //     handleClose()
+    // }
     //yes
-    const save = () => {
-        debugger
-        console.log('ppppppppppppppppp', props.flag)
-        // dispatch(actions.setIfSave(false))
-        dispatch(actions.setIsSave(true))
-        handleClose()
-    }
-    const saveEdit = () => {
-        debugger
-        console.log('ppppppppppppppppp', props.flag)
-        dispatch(actions.setdegel(true))
-        handleClose()
-    }
+    // const save = () => {
+    //     debugger
+    //     console.log('ppppppppppppppppp', props.flag)
+    //     // dispatch(actions.setIfSave(false))
+    //     dispatch(actions.setIsSave(true))
+    //     handleClose()
+    // }
+    // const saveEdit = () => {
+    //     debugger
+    //     console.log('ppppppppppppppppp', props.flag)
+    //     dispatch(actions.setdegel(true))
+    //     handleClose()
+    // }
     const overPage = () => {
         debugger
         // אם עריכת מוצר תיהיה פתוחה או לא
-        dispatch(actions.setFlagNewP(false))
-        dispatch(actions.setIfSave(false))
-        dispatch(actions.setNewProductTableFull({}))
-        dispatch(actions.setdegel1(4))
+        // dispatch(actions.setFlagNewP(false))
+        // dispatch(actions.setIfSave(false))
+        // dispatch(actions.setNewProductTableFull({}))
+        dispatch(actions.setflagSave('noSave'))
         // dispatch(actions.setIsOpen(false))
         handleClose()
     }
@@ -57,11 +55,11 @@ export default function MessageBusiness(props) {
     const flagSave = useSelector(state => state.buisnessReducer.flagSave);
     const savePage = () => {
         debugger
-        if (flagSave == 'true1') {
+        if (flagSave == 'true1' || flagSave == 'saveNewBusiness') {
             dispatch(actions.setflagSave('saveNewBusiness'))
         }
         else {
-            if (flagSave == 'true2') {
+            if (flagSave == 'true2' || flagSave == 'updateBusiness') {
                 dispatch(actions.setflagSave('updateBusiness'))
             }
         }
@@ -76,8 +74,7 @@ export default function MessageBusiness(props) {
                 backdrop="static"
                 keyboard={false}
                 // onHide={() => setShowMessage(false)}
-                style={{ opacity: "1", background: "transparent" }}
-                style={{ height: "100%", left: "50%" }}>
+                style={{ opacity: "1", background: "transparent", height: "100%", left: "50%" }}>
                 <Modal.Header style={{ opacity: "1", cursor: "pointer" }} closeButton>
                 </Modal.Header>
 

@@ -1,65 +1,58 @@
 
-import React, { useEffect, useState } from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { actions } from '../../redux/actions/All_actions';
+import React from 'react'
+import { connect } from 'react-redux';
+// import { actions } from '../../redux/actions/All_actions';
 import './new_configurator.css'
 // import { actions } from '../../../../redux/actions/action'
 // import DropDownList from '../dropDownList/dropDownList'
 // import ConfiguratorTop from '../configuratorTop/configuratorTop'
-import $ from 'jquery'
-import { useHistory } from 'react-router-dom';
+
+
 // import history from '../../../history'
-import { withRouter, useLocation } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 // import Maincomp from '../Details/productions'
 import NewSetting from './newSetting';
 // import Design_Menu from '../design_menu';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-    Link
-} from "react-router-dom";
-import { TrainOutlined } from '@material-ui/icons';
-import { wait } from '@testing-library/react';
+
+
 
 function NewConfigorator(props) {
-    const Location = useLocation()
-    const dispatch = useDispatch()
-    const setIslevel = (level) => dispatch(actions.setIsLevel(level))
-    const invoice = useSelector(state => state.invoiceReducer.invoice);
-    const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
-    const userName = useSelector(state => state.publicReducer.userName);
-    const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-    const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
-    const setViewConversion = () => dispatch(actions.setViewConversion())
-    const prevPath = useSelector(state => state.displayComponents.prevPath)
-    const sendWave = () => dispatch(actions.setSystemWave())
-    const [flagM, setFlagM] = useState(false)
-    const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
-    const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
-    const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
-    const showMessage = useSelector(state => state.messageReducer.showMessage);
-    const flagMessage = useSelector(state => state.messageReducer.flagMessage)
-    const flagMessageContact = useSelector(state => state.messageReducer.flagMessageContact)
-    const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
-    const setModalBody = (status) => dispatch(actions.setModalBody(status))
-    const [flagSaveinvoice1, setFlagSaveinvoice1] = useState(false)
-    const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
-    const flagSaveInvoice = useSelector(state => state.messageReducer.flagSaveInvoice)
-    const buttonClick = useSelector(state => state.messageReducer.buttonClick)
-    const flagModal = useSelector(state => state.messageReducer.flagModal)
-    const [flagFirst, setFlagFirst] = useState(false)
-    const [flagFirstB, setFlagFirstB] = useState(false)
-    const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
-    const [flagSaveP, setFlagSaveP] = useState(false)
-    const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
-    const invoiceId = useSelector(state => state.invoiceReducer.invoiceId)
-    const [flagFirstToP, setFlagFirstToP] = useState(false)
-    const [flagToCheck, setFlagToCheck] = useState(false)
-    const [first, setFirst] = useState(false)
-    // dispatch(actions.setFlagFromTable(true))
-    const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
-    const flagPush = useSelector(state => state.invoiceReducer.flagPush);
-    const showModalName = useSelector(state => state.messageReducer.showModalName);
+
+    // const dispatch = useDispatch()
+
+    // const userName = useSelector(state => state.publicReducer.userName);
+    // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
+    // const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
+    // const setViewConversion = () => dispatch(actions.setViewConversion())
+    // const prevPath = useSelector(state => state.displayComponents.prevPath)
+    // const sendWave = () => dispatch(actions.setSystemWave())
+    // const [flagM, setFlagM] = useState(false)
+    // const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
+    // const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
+    // const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
+    // const showMessage = useSelector(state => state.messageReducer.showMessage);
+    // const flagMessage = useSelector(state => state.messageReducer.flagMessage)
+    // const flagMessageContact = useSelector(state => state.messageReducer.flagMessageContact)
+    // const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
+    // const setModalBody = (status) => dispatch(actions.setModalBody(status))
+    // const [flagSaveinvoice1, setFlagSaveinvoice1] = useState(false)
+    // const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
+    // const flagSaveInvoice = useSelector(state => state.messageReducer.flagSaveInvoice)
+    // const buttonClick = useSelector(state => state.messageReducer.buttonClick)
+    // const flagModal = useSelector(state => state.messageReducer.flagModal)
+    // const [flagFirst, setFlagFirst] = useState(false)
+    // const [flagFirstB, setFlagFirstB] = useState(false)
+    // const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
+    // const [flagSaveP, setFlagSaveP] = useState(false)
+    // const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
+    // const invoiceId = useSelector(state => state.invoiceReducer.invoiceId)
+    // const [flagFirstToP, setFlagFirstToP] = useState(false)
+    // const [flagToCheck, setFlagToCheck] = useState(false)
+    // const [first, setFirst] = useState(false)
+    // const flagFromTable = useSelector(state => state.invoiceReducer.flagFromTable);
+    // const flagPush = useSelector(state => state.invoiceReducer.flagPush);
+    // const showModalName = useSelector(state => state.messageReducer.showModalName);
 
 
     // const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);

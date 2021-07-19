@@ -1,9 +1,9 @@
-import $ from 'jquery';
+
 import { actions } from '../actions/All_actions';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)

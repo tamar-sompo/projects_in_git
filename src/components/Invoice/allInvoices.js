@@ -310,15 +310,15 @@ function AllInvoices(props) {
                   </div>
                 }
                 <table className="table table-hover" style={{ backgroundColor: "white", fontSize: "14px", marginBottom: "0rem" }}>
-                  <thead style={{ backgroundColor: "#F5F5FA", opacity: "100%" }}>
+                  <thead style={{ opacity: "100%", backgroundColor: "rgb(250, 250, 250)" }}>
                     <tr>
-                      <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
-                      <th>CUSTOMER NAME</th>
-                      <th>INVOICE NUMBER</th>
-                      <th>CUSTOMER PHONE</th>
-                      <th>PAYMENT STATUS</th>
-                      <th>DATE</th>
-                      <th style={{ width: "3%", backgroundColor: "#F5F5FA" }}></th>
+                      <th style={{ width: "3%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
+                      <th style={{ borderBottom: "0px" }}>CUSTOMER NAME</th>
+                      <th style={{ borderBottom: "0px" }}>INVOICE NUMBER</th>
+                      <th style={{ borderBottom: "0px" }}>CUSTOMER PHONE</th>
+                      <th style={{ borderBottom: "0px" }}>PAYMENT STATUS</th>
+                      <th style={{ borderBottom: "0px" }}>DATE</th>
+                      <th style={{ width: "3%", backgroundColor: "rgb(250, 250, 250)", borderBottom: "0px" }}></th>
                     </tr>
                   </thead>
                   <tbody >
