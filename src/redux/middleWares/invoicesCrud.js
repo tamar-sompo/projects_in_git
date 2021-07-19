@@ -3,7 +3,7 @@ import { actions } from '../actions/All_actions';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -55,9 +55,8 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 
     let buisnessId = getState().buisnessReducer.buisness
     let currentBuisness = getState().buisnessReducer.currentBuisness
-    console.log("buisnessId", buisnessId)
     let invoice = action.payload
-    console.log("iiinvoice", invoice)
+    console.log("invoice data send to the server", invoice)
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/${buisnessId}`
     $.ajax({
       url: urlData,

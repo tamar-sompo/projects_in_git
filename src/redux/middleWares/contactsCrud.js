@@ -1,10 +1,10 @@
 
-import $ from 'jquery';
+
 import { actions } from '../actions/All_actions';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.acoounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -153,8 +153,7 @@ export const updateContat = ({ dispatch, getState }) => next => action => {
   //     "contact":action.payload
   //   }
 
-  if (action.type == 'UPDATE_CONTACT') {
-    let contact = Object.assign({}, action.payload);
+  if (action.type === 'UPDATE_CONTACT') {
     // if (result)  
     const contact1 = {
       "contact": action.payload
@@ -171,37 +170,36 @@ export const updateContat = ({ dispatch, getState }) => next => action => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(contact1)
-    }).
-      then((response) => {
-        if (response.status != 200) {
-          response.json().then(function (object) {
-            console.log(object.type, object.message)
-          })
-        }
-        else {
-          response.json().then(function (resJson) {
-            checkPermission(resJson).then((ifOk) => {
-              console.log("successsss", resJson)
-              let cIndex = allC.findIndex(x => x._id == contactId)
-              dispatch(actions.editContact11({ i: cIndex, objectContact: resJson.result }))
-              dispatch(actions.setUpdateInvoiceFields({ key: 'contact', value: resJson.result.email }))
+    }).then((response) => {
+      if (response.status !== 200) {
+        response.json().then(function (object) {
+          console.log(object.type, object.message)
+        })
+      }
+      else {
+        response.json().then(function (resJson) {
+          checkPermission(resJson).then((ifOk) => {
+            console.log("successsss", resJson)
+            let cIndex = allC.findIndex(x => x._id === contactId)
+            dispatch(actions.editContact11({ i: cIndex, objectContact: resJson.result }))
+            dispatch(actions.setUpdateInvoiceFields({ key: 'contact', value: resJson.result.email }))
 
-              // dispatch(actions.getAllContactByUser())
-              dispatch(actions.setAlert({
-                alertType: 'success',
-                message: resJson.message,
-                openAlert: true,
-              }))
-              dispatch(actions.setFlagMessageContact(false))
-              dispatch(actions.setFlagModal("successContact"))
-              dispatch(actions.setShowMessage(false))
-              dispatch(actions.setButtonClick(""))
-              dispatch(actions.setModalBody(""))
-            })
+            // dispatch(actions.getAllContactByUser())
+            dispatch(actions.setAlert({
+              alertType: 'success',
+              message: resJson.message,
+              openAlert: true,
+            }))
+            dispatch(actions.setFlagMessageContact(false))
+            dispatch(actions.setFlagModal("successContact"))
+            dispatch(actions.setShowMessage(false))
+            dispatch(actions.setButtonClick(""))
+            dispatch(actions.setModalBody(""))
           })
-        }
+        })
+      }
 
-      })
+    })
   }
   return next(action);
 }
@@ -210,9 +208,9 @@ export const updateContat = ({ dispatch, getState }) => next => action => {
 export const createContact = ({ dispatch, getState }) => next => action => {
   const userName = getState().publicReducer.userName
   const TokenToString = getState().publicReducer.tokenFromCookies;
-  const contactId = ""
+
   // console.log(id)
-  if (action.type == "CREATE_CONTACT") {
+  if (action.type === "CREATE_CONTACT") {
     const contactDetails = action.payload
     console.log("userName", userName, "TokenToString", TokenToString)
     // const contactDetails = getState().contactDetails;
@@ -224,7 +222,7 @@ export const createContact = ({ dispatch, getState }) => next => action => {
     let message = `<h5>The details of your new contact:</h5>
         <table border="1" ><tr> <td><b>email:</b></td><td><a href='https://contacts.dev.leader.codes/${userName}?c=${newContact["email"]}'>${newContact['email']}</a></td></tr>`;
     keys.forEach((key) => {
-      if (newContact[key] && !nessary.some(nessary => nessary == key))
+      if (newContact[key] && !nessary.some(nessary => nessary === key))
         message += `<tr> <td><b>${key}:<b/></td><td>${newContact[key]}</td></tr>`;
     })
     message += `</table>`;
@@ -254,7 +252,7 @@ export const createContact = ({ dispatch, getState }) => next => action => {
         "source": { "type": "Manual" }
       })
     }).then((response) => {
-      if (response.status != 201) {
+      if (response.status !== 201) {
         response.json().then(function (object) {
           console.log("objecttttt", object.type, object.message)
           // dispatch(actions.setAlert({

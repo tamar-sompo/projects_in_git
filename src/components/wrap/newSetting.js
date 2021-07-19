@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './newSetting.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { propTypes } from 'react-bootstrap/esm/Image';
 import { actions } from '../../redux/actions/All_actions';
 import { useHistory } from 'react-router-dom';
 import MessageProductP from '../product/messageProductPage'
@@ -12,45 +9,35 @@ import MessageBusiness from '../forms/messageBusineess'
 export default function NewSetting(props) {
   let history = useHistory();
   const dispatch = useDispatch();
-
   const open_setting = useSelector(state => state.displayComponents.openSetting);
   const displaySetting = useSelector(state => state.displayComponents.displaySetting);
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const [specificRoute, setspecificRoute] = useState('')
-  const buisness = useSelector(state => state.buisnessReducer.buisness)
-  const flagSaveInvoice = useSelector(state => state.messageReducer.flagSaveInvoice)
-  const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
+  // const buisness = useSelector(state => state.buisnessReducer.buisness)
+  // const flagSaveInvoice = useSelector(state => state.messageReducer.flagSaveInvoice)
+  // const setFlagSaveInvoice = (status) => dispatch(actions.setFlagSaveInvoice(status))
   const setModalBody = (contact) => dispatch(actions.setModalBody(contact))
   const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
-  const showMessage = useSelector(state => state.messageReducer.showMessage);
-  const flagModal = useSelector(state => state.messageReducer.flagModal)
   const setFlagModal = (status) => dispatch(actions.setFlagModal(status))
   const setButtonClick = (btn) => dispatch(actions.setButtonClick(btn))
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
-  const showMessagePr = useSelector(state => state.messageReducer.showMessagePr)
-  const invoice = useSelector(state => state.invoiceReducer.invoice);
+  // const showMessagePr = useSelector(state => state.messageReducer.showMessagePr)
+  // const invoice = useSelector(state => state.invoiceReducer.invoice);
   const savePr = useSelector(state => state.productReducer.ifSave);
   const flagIfEmpty = useSelector(state => state.invoiceReducer.flagIfEmpty);
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
-  const [flagIfSave, setFlagIfSave] = useState(false)
   const [index, setIndex] = useState(0)
-  const page = useSelector(state => state.messageReducer.page);
   console.log("allBuisnessToUser", allBuisnessToUser)
   const flagSave = useSelector(state => state.buisnessReducer.flagSave);
-  const setdispatch = () => {
-    dispatch(actions.setInvoiceShow({}));
-    dispatch(actions.setDetailsContact({}));
-  }
 
-  const [open, setOpen] = useState(true)
 
 
   //מה יעשה אחרי שלוחץ על כפתור במודל
   useEffect(() => {
     if (buttonClick === "continuOtherPage") {
-      flagShowSaveP.length > 0 && flagShowSaveP.map((flag, index) => {
+      flagShowSaveP.length > 0 && flagShowSaveP.forEach((flag, index) => {
         if (flag === true) {
           dispatch(actions.setFlagShowSaveP({ index: index, value: false }))
           dispatch(actions.setColorFlagShowSaveP("#707071"))
@@ -61,7 +48,7 @@ export default function NewSetting(props) {
       routePage()
       console.log("specific route", specificRoute)
     }
-    if(buttonClick ==='saveInvoiceOtherPage'){
+    if (buttonClick === 'saveInvoiceOtherPage') {
       // alert("lll")
       setButtonClick("")
       setShowMessage(false)
@@ -75,8 +62,8 @@ export default function NewSetting(props) {
       setFlagFirst(true)
     else {
       console.log("rrrrrrrr", specificRoute)
-      if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") != -1) {
-        if (flagIfEmpty == false) {
+      if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") !== -1) {
+        if (flagIfEmpty === false) {
           routePage()
           dispatch(actions.setFlagModal(""))
           dispatch(actions.setShowMessage(false))
@@ -95,7 +82,7 @@ export default function NewSetting(props) {
       else {
         if (savePr) {
           debugger
-          if (window.location.href.split('/')[4] == "product") {
+          if (window.location.href.split('/')[4] === "product") {
             dispatch(actions.setPage(true))
             // setPage(true)
           }
@@ -124,13 +111,13 @@ export default function NewSetting(props) {
 
   const degel = useSelector(state => state.productReducer.degel1)
   useEffect(() => {
-    if (degel == '2') {
+    if (degel === '2') {
       routePage()
       setShowMessage(false)
       dispatch(actions.setdegel1(0))
     }
     else {
-      if (degel == '4') {
+      if (degel === '4') {
         routePage()
         setShowMessage(false)
         dispatch(actions.setdegel1(0))
@@ -140,13 +127,13 @@ export default function NewSetting(props) {
 
 
   useEffect(() => {
-    if (flagSave == 'overPage1') {
+    if (flagSave === 'overPage1') {
       routePage()
       setShowMessage(false)
       dispatch(actions.setflagSave('false'))
     }
     else {
-      if (flagSave == 'overPage2') {
+      if (flagSave === 'overPage2') {
         routePage()
         setShowMessage(false)
         dispatch(actions.setflagSave('false'))
@@ -248,32 +235,32 @@ export default function NewSetting(props) {
                 "dd" : "d"}>Documents</div></li>
             </li>
            */}
-          <li className={window.location.href.split('/')[4] == "buisness" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Business")}>
+          <li className={window.location.href.split('/')[4] === "buisness" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Business")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'archive']}></FontAwesomeIcon>
             </div>
             <div className="textinconfigurator">Buisness</div>
           </li>
-          <li className={window.location.href.split('/')[4] == "allDocuments" ||
-            window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Documents")}>
+          <li className={window.location.href.split('/')[4] === "allDocuments" ||
+            window.location.href.indexOf("invoice") !== -1 || window.location.href.indexOf("/Invoice") > -1 ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Documents")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'receipt']}></FontAwesomeIcon>
             </div>
             <div className="textinconfigurator">Invoices</div>
           </li>
-          <li className={window.location.href.split('/')[4] == "product" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Products")}>
+          <li className={window.location.href.split('/')[4] === "product" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Products")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'user']}></FontAwesomeIcon>
             </div>
             <div className="textinconfigurator">Products</div>
           </li>
-          <li className={window.location.href.split('/')[4] == "customers" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Contacts")}>
+          <li className={window.location.href.split('/')[4] === "customers" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Contacts")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'user-circle']}></FontAwesomeIcon>
             </div>
             <div className="textinconfigurator">Contacts</div>
           </li>
-          <li className={window.location.href.split('/')[4] == "setting" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Setting")}>
+          <li className={window.location.href.split('/')[4] === "setting" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Setting")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'cog']}></FontAwesomeIcon>
             </div>
@@ -281,7 +268,7 @@ export default function NewSetting(props) {
               Setting
             </span>
           </li>
-          <li className={window.location.href.split('/')[4] == "Payments" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Payments")}>
+          <li className={window.location.href.split('/')[4] === "Payments" ? 'li_wrapi_focus d-flex flex-column justify-content-center align-items-center' : 'li_wrapi d-flex flex-column justify-content-center align-items-center'} onClick={() => checkIfBuisness("Payments")}>
             <div>
               <FontAwesomeIcon size="lg" icon={['fas', 'credit-card']}></FontAwesomeIcon>
             </div>

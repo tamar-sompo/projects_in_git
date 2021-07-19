@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './messageFormat.css'
 // import AllWorkspaces from '../workspace/allWorkspaces/allWorkspaces';
 // import TeamExample from '../team/teamExample'
@@ -15,13 +15,11 @@ import { actions } from '../../redux/actions/All_actions';
 function MassageFormat() {
   // let history = useHistory();
   const dispatch = useDispatch();
-  const open_setting = useSelector(state => state.displayComponents.openSetting);
   const show = useSelector(state => state.designReducer.show);
   console.log("ssssssssssssssooooooooooooooooooooo", show)
   const setShow = (status) => dispatch(actions.setShow(status))
   const nameAction = useSelector(state => state.designReducer.nameAction);
   console.log("nameAction", nameAction)
-  const buisnessId = useSelector(state => state.buisnessReducer.buisness);
   const productId = useSelector(state => state.productReducer.product1._id);
   // const invoiceId = useSelector(state => state.invoiceReducer.invoiceSave._id);
   console.log("productvvvvvvvvvvvvvId", productId)//אין לו  ברדוסר כזה משתנה בעת יצירה

@@ -5,39 +5,38 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../example.css';
-import Select from 'react-select'
-import { Col, Row, Container, Button, Form } from 'react-bootstrap'
+// import Select from 'react-select'
+import { Form } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { useHistory } from "react-router-dom";
 import Item from './item'
 
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
-import { debounce, ListItemIcon } from '@material-ui/core';
+// import { debounce, ListItemIcon } from '@material-ui/core';
 import { useLocation } from "react-router-dom";
 import $ from 'jquery'
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+// import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import './new_invoice.css'
 // import './config.css'
 function New_Invoice(props) {
-  const Location = useLocation()
   // const ReactDatalist = require('react-datalist')
   const dispatch = useDispatch();
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
-  const dispatchgetbusiness = () => dispatch({ type: "GET_BUSINESS_BY_ID" })
-  const invoiceNumber = useSelector(state => state.invoiceReducer.lastInvoice.invoiceNumber);
-  const invoiceDetails = useSelector(state => state.invoiceReducer.invoice);
-  const focus = useSelector(state => state.invoiceReducer.focus);
+  // const dispatchgetbusiness = () => dispatch({ type: "GET_BUSINESS_BY_ID" })
+  // const invoiceNumber = useSelector(state => state.invoiceReducer.lastInvoice.invoiceNumber);
+  // const invoiceDetails = useSelector(state => state.invoiceReducer.invoice);
+  // const focus = useSelector(state => state.invoiceReducer.focus);
   const setFocus = (focus) => dispatch(actions.setFocus(focus));
   const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
   const setDisplayInvoice = (status) => dispatch(actions.setDislayInvoice(status));
   const allcontact1 = useSelector(state => state.customerReducer.allContact);
-  const contactedit1 = useSelector(state => state.invoiceReducer.updateContact)
-  const setupdateContact = (fieldToUpdate) => dispatch(actions.setUpdateContact(fieldToUpdate))
-  const publicNoteInvoice = useSelector(state => state.invoiceReducer.publicNote);
-  const contactDetails = useSelector(state => state.customerReducer.contact);
+  // const contactedit1 = useSelector(state => state.invoiceReducer.updateContact)
+  // const setupdateContact = (fieldToUpdate) => dispatch(actions.setUpdateContact(fieldToUpdate))
+  // const publicNoteInvoice = useSelector(state => state.invoiceReducer.publicNote);
+  // const contactDetails = useSelector(state => state.customerReducer.contact);
   const allproduct = useSelector(state => state.productReducer.allProducts);
-  const allproductToinvoice = useSelector(state => state.productReducer.allProductToInvoice)
+  // const allproductToinvoice = useSelector(state => state.productReducer.allProductToInvoice)
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   const detailscontact = useSelector(state => state.customerReducer.detailscontact);
   const detailsBusiness = useSelector(state => state.buisnessReducer.currentBuisness);
@@ -45,27 +44,27 @@ function New_Invoice(props) {
   const userName = useSelector(state => state.publicReducer.userName);
   const updatedetailsBusiness = (fieldToUpdate) => dispatch(actions.setUpdateBusiness(fieldToUpdate))
   const invoice = useSelector(state => state.invoiceReducer.invoice);
-  const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
+  // const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
   const setImage = (objectImage) => dispatch(actions.setImage(objectImage))
-  const logoDesign = useSelector(state => state.LogoReducer.logoDesign)
-  const setinvoiceDetailsViewContact = (invoiceEdit) => dispatch(actions.setinvoiceDetailsViewContact(invoiceEdit))
+  // const logoDesign = useSelector(state => state.LogoReducer.logoDesign)
+  // const setinvoiceDetailsViewContact = (invoiceEdit) => dispatch(actions.setinvoiceDetailsViewContact(invoiceEdit))
   const prodactions = [...invoice.products];
   const [str, setStr] = useState()
-  const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
+  // const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
   const inputFile = useRef();
   const inputFile1 = useRef();
   const [isMouseTooltipVisible, setIsMouseTooltipVisible] = useState(false);
   let productSelect = useSelector(state => state.productReducer.productSelect);
   const newContact = useSelector(state => state.customerReducer.newContact)
-  const product1 = useSelector(state => state.productReducer.product1)
-  const new_product = useSelector(state => state.productReducer.newProduct)
+  // const product1 = useSelector(state => state.productReducer.product1)
+  // const new_product = useSelector(state => state.productReducer.newProduct)
 
-  const invoiceeye = useSelector(state => state.invoiceReducer.invoiceeye)
-  let date1 = new Date();
-  const [isLoading, setIsLoading] = useState(false);
+  // const invoiceeye = useSelector(state => state.invoiceReducer.invoiceeye)
+  // let date1 = new Date();
+  // const [isLoading, setIsLoading] = useState(false);
   const [borderLogo, setBorderLogo] = useState(false);
   const [borderBgImage, setBorderBgImage] = useState("true");
-  const [contactName, setcontactName] = useState()
+  // const [contactName, setcontactName] = useState()
   const [contactFromInvoice, setContactFromInvoice] = useState({})
   const [saveContactOne, setsaveContactOne] = useState({
     name: '',
@@ -74,40 +73,40 @@ function New_Invoice(props) {
     address: '',
     flag: false
   })
-  const [index, setIndex] = useState()
+  // const [index, setIndex] = useState()
   const buttonClick = useSelector(state => state.messageReducer.buttonClick)
   const [firstFlagSaveContact1, setFirstFlagSaveContact1] = useState(false)
-  const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
+  // const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const setFlagShowSaveP = (status) => dispatch(actions.setFlagShowSaveP(status))
   const saveSum = useSelector(state => state.invoiceReducer.saveSum)
-  const saveSumView = useSelector(state => state.invoiceReducer.saveSumView)
+  // const saveSumView = useSelector(state => state.invoiceReducer.saveSumView)
   const [saveSum2, setsaveSum2] = useState(0)
-  const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
+  // const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
   const [flagcontactFromInvoice1, setflagcontactFromInvoice1] = useState(false)
   const [flagdetailsContact, setflagdetailsContact] = useState(false)
   const setIslevel = (level) => dispatch(actions.setIsLevel(level))
   const [flag, setFlag] = useState(false)
   let history = useHistory()
-  const p = useSelector(state => state.displayComponents.p);
-  const showMessage = useSelector(state => state.messageReducer.showMessage);
-  const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
+  // const p = useSelector(state => state.displayComponents.p);
+  // const showMessage = useSelector(state => state.messageReducer.showMessage);
+  // const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
   const flagPush = useSelector(state => state.invoiceReducer.flagPush)
   const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
-  const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
+  // const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
   const [contactedit, setcontactedit] = useState({
     name: "",
     email: "",
     phone: "",
     address: ""
   })
-  const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
-  const [falgView, setFlagView] = useState(false)
+  // const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
+  // const [falgView, setFlagView] = useState(false)
   const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
   const [validated, setValidated] = useState(false);
   const [clickSubmitItem, setClickSubmitItem] = useState(false)
   const [validatedItem, setValidateItem] = useState(false);
-  const [firstForm, setFirstForm] = useState(false)
+  // const [firstForm, setFirstForm] = useState(false)
 
   //   useEffect(()=>{
   // if(firstForm===false)
@@ -123,7 +122,7 @@ function New_Invoice(props) {
   useEffect(() => {
 
     let summ = 0
-    if (window.location.href.indexOf("view") != -1) {
+    if (window.location.href.indexOf("view") !== -1) {
       dispatch(actions.setsendMessage("false"))
       detailsInvoice.products.filter(x =>
         summ += x.sum_product
@@ -137,7 +136,7 @@ function New_Invoice(props) {
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
-        if (invoice.products.length == 0)
+        if (invoice.products.length === 0)
           dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPushNewProduct({}))
         dispatch(actions.setPDelete(['']))
@@ -165,7 +164,7 @@ function New_Invoice(props) {
         }
         else {
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
-          let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
+          let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
           console.log("ojectContact", ojectContact)
           if (contactFromInvoice) {
@@ -180,7 +179,7 @@ function New_Invoice(props) {
         }
         if (history.location.pathname !== `/${userName}/allDocuments` && history.location.pathname !== `/${userName}/Invoice/Conversion` && history.location.pathname !== `/${userName}/Invoice/Content` && history.location.pathname !== `/${userName}/Invoice/Design` && history.location.pathname !== `/${userName}/Invoice/Production`) {
           console.log("dp", invoice.products)
-          if (window.location.href.indexOf("view") != -1) {
+          if (window.location.href.indexOf("view") !== -1) {
             // if (allproduct.length > 0) {
             //   detailsInvoice.products.map(p =>
             //     dispatch(actions.setP(allproduct.find(x => x._id == p.id).name)))
@@ -219,7 +218,7 @@ function New_Invoice(props) {
 
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
-        if (invoice.products.length == 0)
+        if (invoice.products.length === 0)
           setDisplayInvoice("false")
         dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPDelete(['']))
@@ -227,7 +226,7 @@ function New_Invoice(props) {
       }
       else {
 
-        if (window.location.href.indexOf('invoice/edit') != -1) {
+        if (window.location.href.indexOf('invoice/edit') !== -1) {
           dispatch(actions.setPushNewProduct({}))
           setDisplayInvoice("false")
         }
@@ -267,7 +266,7 @@ function New_Invoice(props) {
         else {
           debugger
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
-          let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
+          let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
           debugger
           console.log("ojectContact", ojectContact)
@@ -285,11 +284,11 @@ function New_Invoice(props) {
         // }
         if (history.location.pathname !== `/${userName}/allDocuments` && history.location.pathname !== `/${userName}/Invoice/Conversion` && history.location.pathname !== `/${userName}/Invoice/Content` && history.location.pathname !== `/${userName}/Invoice/Design` && history.location.pathname !== `/${userName}/Invoice/Production`) {
           console.log("dp", invoice.products)
-          if (window.location.href.indexOf("view") != -1) {
+          if (window.location.href.indexOf("view") !== -1) {
             setValidName(false)
             if (allproduct.length > 0) {
               detailsInvoice.products.map(p =>
-                dispatch(actions.setP(allproduct.find(x => x._id == p.id).name)))
+                dispatch(actions.setP(allproduct.find(x => x._id === p.id).name)))
               // detailsInvoice.products.map((x) => {
               //   dispatch(actions.setSaveSumView(x.sum_product))
               // })
@@ -341,7 +340,7 @@ function New_Invoice(props) {
   }, [saveContactOne])
   useEffect(() => {
     debugger
-    if (flagcontactFromInvoice1 == false)
+    if (flagcontactFromInvoice1 === false)
       setflagcontactFromInvoice1(true)
     else {
       debugger
@@ -393,7 +392,7 @@ function New_Invoice(props) {
       if (contactedit.phone) {
         tmp3 = validatorPhone(contactedit.phone);
       }
-      if (window.location.href.indexOf('edit') != -1 && !contactedit.email) {
+      if (window.location.href.indexOf('edit') !== -1 && !contactedit.email) {
 
         setErrorMessage1(false)
         setErrorMessage2(false)
@@ -478,8 +477,8 @@ function New_Invoice(props) {
     debugger
     dispatch(actions.setShowInInvoice(true))
     setFlag(false)
-    if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
-      let ojectContact = allcontact1.find(x => x.email == detailsInvoice.contact)
+    if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag === true) {
+      let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
       if (!ojectContact) {
         dispatch(actions.createContact(contactedit))
       }
@@ -500,7 +499,7 @@ function New_Invoice(props) {
       else {
         console.log("contacteditttt", contactedit)
         dispatch(actions.createContact(contactedit))
-        console.log("newContact.emai", newContact.email)
+        console.log("newContact.emai", newContact && newContact.email)
       }
     }
 
@@ -531,7 +530,7 @@ function New_Invoice(props) {
         id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
 
         if (id_contact) {
-          let dc = allcontact1.find(x => x._id == id_contact)
+          let dc = allcontact1.find(x => x._id === id_contact)
           dispatch(actions.setFlagMessageContact(false))
           if (detailsInvoice.contact) {
             dispatch(actions.setResetContactFromEdiit())
@@ -569,7 +568,7 @@ function New_Invoice(props) {
       setContactFromInvoice({ ...contactFromInvoice, [fieldName]: undefined })
     }
     else {
-      if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag == true) {
+      if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag === true) {
         setcontactedit({ ...contactedit, [fieldName]: e.target.value })
         setsaveContactOne({ ...saveContactOne, [fieldName]: undefined })
       }
@@ -684,7 +683,7 @@ function New_Invoice(props) {
       //  }
       else {
 
-        if (invoice.products[invoice.products.length - 1].id != "null") {
+        if (invoice.products[invoice.products.length - 1].id !== "null") {
           console.log("ghg")
           // dispatch(actions.setProducts('null'));
           dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
@@ -785,13 +784,13 @@ function New_Invoice(props) {
     setIslevel(2);
   };
 
-  const onButtonClick1 = (str1) => {
-    setStr(str1)
-    console.log("flag1", str)
-    // history.push(`/${userName}/Invoice/Design`)
-    inputFile1.current.click();
-    setIslevel(2);
-  }
+  // const onButtonClick1 = (str1) => {
+  //   setStr(str1)
+  //   console.log("flag1", str)
+  //   // history.push(`/${userName}/Invoice/Design`)
+  //   inputFile1.current.click();
+  //   setIslevel(2);
+  // }
   const addImageList = (event) => {
 
     if (event) {
@@ -813,7 +812,7 @@ function New_Invoice(props) {
   }
   const shortDate = new Date().toLocaleDateString()
   const refLevel3 = useRef(null)
-  const setRefLevel3 = () => refLevel3.current.scrollIntoView()
+  // const setRefLevel3 = () => refLevel3.current.scrollIntoView()
   const func1 = (event) => {
     setIsMouseTooltipVisible(false)
     console.log("func11111")
@@ -826,9 +825,7 @@ function New_Invoice(props) {
     updateinvoiceField({ key: "type", value: undefined })
 
   }
-  const oninput = () => {
-    alert("hh")
-  }
+
 
   const setValidateItemFunction = (value) => {
     setValidateItem(value)
@@ -858,7 +855,7 @@ function New_Invoice(props) {
   //   event.preventDefault();
   //   setValidated(true);
   // });
-  const submitItem = useSelector(state => state.invoiceReducer.submitItem);
+  // const submitItem = useSelector(state => state.invoiceReducer.submitItem);
 
   const handleSubmit = (event, title) => {
     event.preventDefault();
@@ -886,8 +883,8 @@ function New_Invoice(props) {
     }
     //   event.preventDefault();
     setValidated(true);
-    if (((history.location.pathname == `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id == undefined)) ||
-      ((window.location.href.indexOf('invoice/edit') != -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id == "null" || detailsInvoice.products[detailsInvoice.products.length - 1].id == undefined))) {
+    if (((history.location.pathname === `/${userName}/invoice` && invoice.products) && (invoice.products[invoice.products.length - 1].id === 'null' || invoice.products[invoice.products.length - 1].id === undefined)) ||
+      ((window.location.href.indexOf('invoice/edit') !== -1 && detailsInvoice.products) && (detailsInvoice.products[detailsInvoice.products.length - 1].id === "null" || detailsInvoice.products[detailsInvoice.products.length - 1].id === undefined))) {
 
     }
     else {
@@ -908,7 +905,7 @@ function New_Invoice(props) {
     <Form id="form_id1" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "bigForm")} style={{ width: "100%" }}>
       {/*  onSubmit={onSubmit} */}
 
-      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") != -1 ? '99vh' : '100%' }}>
+      <div className="wrap_invoice" style={{ height: window.location.href.indexOf("view") !== -1 ? '99vh' : '100%' }}>
         <div className={flagLoud ? 'flagLoudOp' : ''}>
           <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
             onChange={(e) => addImageList(e.target.files[0])} />
@@ -1027,7 +1024,7 @@ function New_Invoice(props) {
                     value={
                       detailsInvoice ?
                         detailsInvoice.contactOneTime &&
-                          detailsInvoice.contactOneTime.flag == true ?
+                          detailsInvoice.contactOneTime.flag === true ?
                           saveContactOne.name ?
                             saveContactOne.name : contactedit.name ? contactedit.name : '' :
                           detailsInvoice.contact ?
@@ -1069,7 +1066,7 @@ function New_Invoice(props) {
                       className={'design_text_contact'}
                       value={detailsInvoice ?
                         detailsInvoice.contactOneTime &&
-                          detailsInvoice.contactOneTime.flag == true ?
+                          detailsInvoice.contactOneTime.flag === true ?
                           saveContactOne.email ?
                             saveContactOne.email : contactedit.email ? contactedit.email : '' :
                           detailsInvoice.contact ? contactFromInvoice ?
@@ -1123,7 +1120,7 @@ function New_Invoice(props) {
                     className="design_text_contact"
                     value={detailsInvoice ?
                       detailsInvoice.contactOneTime &&
-                        detailsInvoice.contactOneTime.flag == true ?
+                        detailsInvoice.contactOneTime.flag === true ?
                         saveContactOne.address ?
                           saveContactOne.address : contactedit.address ? contactedit.address : '' :
                         detailsInvoice.contact ? contactFromInvoice ? contactFromInvoice.address : contactedit.address ? contactedit.address : '' :
@@ -1230,9 +1227,9 @@ function New_Invoice(props) {
               </div>
               <div className="container-fluid wrapproduct" >
 
-                {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
+                {(allproduct.length > 0 && window.location.href.indexOf("view") !== -1 &&
                   detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
-                  (window.location.href.indexOf("view") == -1 &&
+                  (window.location.href.indexOf("view") === -1 &&
                     detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ?
                   detailsInvoice.products.map((p, index) =>
                     <Item

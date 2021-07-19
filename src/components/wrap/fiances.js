@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // import Header from './header/header';
 // import Body from './body';
 import Nav from './nav_top';
@@ -25,10 +25,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Invoice from '../Invoice/invoice';
 import Invoice from '../Invoice/new_invoices/new_invoice'
 import InvoiceAndSteps from '../Invoice/invoiceAndSteps';
-import ProductForm from '../forms/productForm.js';
 import HomePage from '../Invoice/HomePage/home.js';
 import BuisnessForm from '../forms/buisnessForm.js';
-import Buisness from '../Invoice/Business/business.js';
 import Contactsiframe from '../customers/contactiframe.js';
 import MassageFormat from '../Useful/messageFormat'
 import MessageProduct from '../product/messageProduct'
@@ -40,16 +38,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    Redirect,
-    useLocation
 } from 'react-router-dom';
 
 // import ContactForm from '../forms/cotactForm';
 import Business from '../Invoice/Business/business';
 import ProtectedRoute from '../Useful/protected';
 import $ from 'jquery';
-import Massage from '../Export/email.js'
 import MessageSave from '../Invoice/messageSave'
 import Payments from '../Payments/payments.js'
 import ModalNameInvoice from '../Invoice/modalNameInvoice'
@@ -59,19 +53,12 @@ export default function Fiances() {
     // const Location = useLocation()
     const dispatch = useDispatch();
 
-    const userName = useSelector(state => state.publicReducer.userName);
-
     let TokenToString = document.cookie && document.cookie.includes("devJwt") ? document.cookie.split(";")
         .filter(s => s.includes('devJwt'))[0].split("=").pop() : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoY2h5U0VBZ1hFTmdvTnJTZ1ZMMWE4RTBrY3UxIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIxMzI3MDg3fQ.MzgoqDOF_jMhJxa8BY5z7zFhMlka4fPzGYEL8opO_U4";
     console.log("TTT", TokenToString)
     dispatch(actions.setTokenFromCookies(TokenToString))
 
-    const handleshowSetting = () => {
-        setshowSetting(!showSetting);
-    }
 
-    const drawerWidth = '15%';
-    const [showSetting, setshowSetting] = useState(false);
     const show = useSelector(state => state.designReducer.show);
     const displayBoxShadow = useSelector(state => state.invoiceReducer.displayBoxShadow);
     const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
@@ -88,10 +75,10 @@ export default function Fiances() {
     }
 
     useEffect(() => {
-        if (isSendMessage == "true") {
+        if (isSendMessage === "true") {
             openDiv()
         }
-        if (isSendMessage == "false") {
+        if (isSendMessage === "false") {
             closeDiv()
         }
     }

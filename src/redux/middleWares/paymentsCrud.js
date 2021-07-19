@@ -3,7 +3,7 @@ import { actions } from '../actions/All_actions';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
-    if (result.status == "401") {
+    if (result.status === "401") {
       result.routes ?
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
         window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
@@ -17,7 +17,7 @@ function checkPermission(result) {
 export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SEND_LINK_PAYPAL') {
     console.log("paypalcrud")
-    let status = action.payload
+    // let status = action.payload
     let items = getState().paymentsReducer.paypalInvoiceProductsTable
     // let num = items.length.toString()
     let totalToPAy = getState().invoiceReducer.saveSum
@@ -38,7 +38,7 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
       items: items
     }
     console.log("chch", buisnessPaypalDetails)
-    let username = getState().publicReducer.userName;
+    // let username = getState().publicReducer.userName;
     let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
     console.log("urlData", urlData)
     $.ajax({
@@ -90,7 +90,7 @@ export const setClientIdToBuisness = ({ dispatch, getState }) => next => action 
         console.log("oksave", buisness.buisness)
         dispatch(actions.setGeCurrenttBuisness(buisness.buisness))
         dispatch(actions.setShow(true))
-      await  dispatch(actions.setNameAction("We have attached you to the service"))
+        await dispatch(actions.setNameAction("We have attached you to the service"))
         dispatch(actions.setClosePaypalForm(false))
         // dispatch(actions.setPaymentDetailsToPayServer(buisness.buisness))
         // להעביר בהמשך למידלוואר של pay
@@ -111,7 +111,7 @@ export const setPaymentDetailsToPayServer = ({ dispatch, getState }) => next => 
     let currentBuisness = getState().buisnessReducer.buisness;
     // let currentBuisness = getState().buisnessReducer.currentBuisness._id;
     console.log("currentBuisness", currentBuisness)
-    let username = getState().publicReducer.userName;
+    // let username = getState().publicReducer.userName;
     let paymentDetails = getState().paymentsReducer.buisnessPaypalDetails;
     console.log("paymentDetails", paymentDetails)
     let urlData = `https://pay.leader.codes/api/YaelBrenig‏/craetePaypalSecret`

@@ -296,10 +296,10 @@ function BuisnessList(props) {
     updateBuisnessField({ key: fieldName, value: value })
     // }
   }
-  const onload = (e, fieldName) => {
-    const value = e;
-    updateBuisnessField({ key: fieldName, value: value })
-  }
+  // const onload = (e, fieldName) => {
+  //   const value = e;
+  //   updateBuisnessField({ key: fieldName, value: value })
+  // }
   const websiteChanged = (e, fieldName) => {
     const value = e.target.value;
     updateWebsite({ key: fieldName, value: value })
@@ -389,9 +389,9 @@ function BuisnessList(props) {
           </div>
           <div>
             <div>Logo</div>
-            <button onClick={<Print></Print>}
-              ppppppp
-            ></button>
+            {/* <button onClick={<Print></Print>}
+              ppppppp 
+            ></button> */}
             <div  >
               <input type='file' id='file' ref={inputFile1} style={{ display: 'none' }}
                 onChange={(e) => addImage1(e.target.files[0])}
