@@ -370,8 +370,8 @@ function New_Invoice(props) {
     }
   }, [detailscontact])
 
-
   const [validName, setValidName] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
   const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
   const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
   const [errorMessage1, setErrorMessage1] = useState(false);
@@ -379,8 +379,7 @@ function New_Invoice(props) {
   const [firstTmp, setfirstTmp] = useState(false);
 
   const validatorPhone = (v) => {
-
-    const tmp = v.length === 13 && v.includes('+');
+    const tmp = v.length == 13 && v.includes('+');
     return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
   }
   const validatorEmail = (v) => {
@@ -500,37 +499,21 @@ function New_Invoice(props) {
       else {
         console.log("contacteditttt", contactedit)
         dispatch(actions.createContact(contactedit))
-        console.log("newContact.emai", newContact.email)
+        console.log("newContact.emai", newContact && newContact.email)
       }
     }
 
   }
 
   const onFieldChangeContact = (fieldName, e) => {
-    // if (fieldName == 'email') {
-    //   if (e.target.value) {
-    //     setValidName(false)
-    //     if (validatorEmail(e.target.value)) {
-    //       setErrorMessage1(false)
-    //     }
-    //     else { setErrorMessage1(true) }
-    //   }
-    //   else { setErrorMessage1(true) }
-    // }
-    // else {
-    //   if (fieldName == 'phone') {
-    //     if (e.target.value) {
-    //       if (validatorPhone(e.target.value)) {
-    //         setErrorMessage2(false)
-    //       }
-    //       else { setErrorMessage2(true) }
-    //     }
-    //     else {
-    //       setErrorMessage2(false)
-    //     }
-    //   }
-    // }
-
+    if (fieldName == 'email') {
+      if (e.target.value) {
+        debugger
+        setValidEmail(true)
+      }
+      else { setValidEmail(false) }
+    }
+    // else { setErrorMessage1(true) }
 
     let id_contact
     dispatch(actions.setFlagIfEmpty(true))
@@ -896,6 +879,7 @@ function New_Invoice(props) {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      alert('bbbbbbbbbb')
     }
     //   event.preventDefault();
     setValidated(true);
@@ -1092,18 +1076,27 @@ function New_Invoice(props) {
                       onChange={(e) => onFieldChangeContact('email', e)}
                     >
                     </input>
-                    <Form.Control.Feedback type="invalid">
-                      require
-                    </Form.Control.Feedback>
+                    {validEmail ?
+                      <Form.Control.Feedback type="invalid">
+                        {/* #invalid email */}
+                        #Email address should contain '@'
+                      </Form.Control.Feedback> :
+                      <Form.Control.Feedback type="invalid"
+                        value={validEmail ? "#invalid email" : "require"}>
+                        #require
+                      </Form.Control.Feedback>
+                    }
                   </div>
 
                   <input
-
                     disabled={displayInvoice === "true" ? "disable" : ""}
                     placeholder="contact phone"
                     onFocus={(e) => resetfieldcontact('phone', e)}
                     // className='editable-temp1 design_text'
                     // className="design_text_contact"
+                    type='string'
+                    pattern="[0-9]{10}"
+                    // "['+']{1}[0-9]{12}"  
                     className={'design_text_contact'}
                     value={detailsInvoice ?
                       detailsInvoice.contactOneTime &&
@@ -1115,7 +1108,9 @@ function New_Invoice(props) {
                             contactedit.phone ? contactedit.phone : '' : ''}
                     onChange={(e) => onFieldChangeContact('phone', e)}>
                   </input>
-
+                  <Form.Control.Feedback type="invalid">
+                    #Invalid phone
+                  </Form.Control.Feedback>
                   <input
 
                     disabled={displayInvoice === "true" ? "disable" : ""}

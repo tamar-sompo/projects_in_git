@@ -86,7 +86,7 @@ function MessageSave(props) {
                     }
 
 
-                    <Button variant="secondary" style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
+                    <Button variant="secondary" style={{ marginRight: "10%", width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                         onClick={flagModal === "contact" ? () => setButtonClick("saveContact1") :
                             flagModal === "otherPage" ? () => setButtonClick("continuOtherPage") :
                                 flagModal === "otherPageInvoices" ? () => setButtonClick("saveInvoiceOtherPageBack") :
@@ -94,7 +94,7 @@ function MessageSave(props) {
                         {flagModal === "contact" ? "save contact" : flagModal === "otherPage" || flagModal === "otherPageInvoices" ? "no" : ""}
 
                     </Button>
-                    <Button variant="danger" style={{
+                    {/* <Button variant="danger" style={{
                         width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                     }}
                         onClick={flagModal === "contact" ? () => setButtonClick("saveContact") :
@@ -103,7 +103,7 @@ function MessageSave(props) {
                                     ""}>
                         {flagModal === "contact" ? "save to crm" : flagModal === "otherPage" || flagModal === "otherPageInvoices" ? "yes" : ""}
 
-                    </Button>
+                    </Button> */}
                 </Modal.Body >
             </Modal>
 

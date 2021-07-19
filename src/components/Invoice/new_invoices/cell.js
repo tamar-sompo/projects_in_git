@@ -26,6 +26,7 @@ function Cell(props) {
                 className={'cell design_text ffgf'}
                 // className='cell design_text'
                 // maxlength="15"
+                maxLength={6}
                 size="7"
                 value={value}
                 onBlur={onBlur}
