@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
-
 import './nav_top.css';
 import logo from '../assets/newLogo.png';
-
-// import Form from "react-bootstrap/Form";
-// import InputLabel from '@material-ui/core/InputLabel';
-// import FormControl from '@material-ui/core/FormControl';
 import { useLocation } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import Select from 'react-select';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Share from './share';
 import { ImLink } from 'react-icons/im'
-// import $ from 'jquery';
-
-// import BuisnessList from '../forms/buisnessForm';
-
+import HeaderLeader from '@leadercodes/header'
 import { useHistory } from 'react-router-dom';
+
+
 
 export default function Nav() {
   let history = useHistory();
@@ -328,8 +321,7 @@ export default function Nav() {
           />
         </div></div>
 
-      <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
-
+      <div className="col-7 d-flex justify-content-center" style={{ border: "3px black" }}>
 
         {invoiceSave ? invoiceSave.invoice ? invoiceSave.invoice._id ?
           <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
@@ -395,7 +387,7 @@ export default function Nav() {
           </div>
           : "" : ""}
       </div>
-      <div className="col-2 d-flex flex-row">
+      <div className="col-3 d-flex flex-row">
         {/* <button onClick={()=>setMail()}>email</button> */}
         {/* <div className="col-5 d-flex justify-content-end" > */}
 
@@ -429,32 +421,40 @@ export default function Nav() {
         </div>
 
 
-        <div className="col-6">  <Select
+        <div className="col-6 d-flex-row row">
+          <Select
+            components={{ IndicatorSeparator: () => null }}
+            style={{
+              border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
+              // backgroundImage: ('../assets/newLogo.png'),
+              webkitAppearance: "none",
+              mozAppearance: "none",
+              appearance: "none"
+            }}
+            class="form-select-lg mr-2" className="css-yk16xz-control1"
+            value={{
+              label: currentBuisness ? currentBuisness._id ? currentBuisness.name : userName : userName,
+              value: currentBuisness ? currentBuisness._id ? currentBuisness : "" : ""
+            }}
+            onChange={chooseCurrentBuisness}
+            options={allBuisnessToUser ? allBuisnessToUser ? allBuisnessToUser.map((buisness) => {
+              return ({
+                label: <div><img src={buisness.imgLogo ? buisness.imgLogo : logo} alt="" height="25px" width="25px" /> {buisness.name}</div>,
+                value: JSON.stringify(buisness),
+              })
+            }) : "" : ""}>
+          </Select>
 
-          components={{ IndicatorSeparator: () => null }}
-          style={{
-            border: "0", boxShadow: "none", fontSize: "160%", maxWidth: "90%",
-            // backgroundImage: ('../assets/newLogo.png'),
-            webkitAppearance: "none",
-            mozAppearance: "none",
-            appearance: "none"
-          }}
-          class="form-select-lg mr-2" className="css-yk16xz-control1"
-          value={{
-            label: currentBuisness ? currentBuisness._id ? currentBuisness.name : userName : userName,
-            value: currentBuisness ? currentBuisness._id ? currentBuisness : "" : ""
-          }}
-          onChange={chooseCurrentBuisness}
-          options={allBuisnessToUser ? allBuisnessToUser ? allBuisnessToUser.map((buisness) => {
-            return ({
-              label: <div><img src={buisness.imgLogo ? buisness.imgLogo : logo} alt="" height="25px" width="25px" /> {buisness.name}</div>,
-              value: JSON.stringify(buisness),
-            })
-          }) : "" : ""}>
-        </Select>
+          <div className="ml-3 mt-1">
+            <HeaderLeader appName={"finance"} userName={userName} />
+          </div>
 
         </div>
       </div>
+      {/* <div className="col-1 d-flex-row p-0" align="right">
+        <HeaderLeader appName={"finance"} userName={userName} />
+      </div> */}
+
     </div>
 
 
