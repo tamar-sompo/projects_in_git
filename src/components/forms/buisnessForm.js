@@ -562,84 +562,54 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        {/* <hr className="hrStyle"></hr> */}
-        {/* <div>
-          <div className="colorWhite">
-            Personal Information
-          </div>
-          <div className="row">
-            <div className="col-3">
-              <div className="font2">Username</div>
-              <input className="inptStyle"
-                style={{ width: "27rem", marginTop: "0.5vh" }}></input>
-            </div>
-            <div className="col-3">
-              <div className="font2">Birthday</div>
-              <div className="row">
-                <div className="col-3">
-                  <input className="inptStyle"
-                    style={{ width: "10rem", marginLeft: "2vh" }}>
-                  </input>
-                </div>
-                <div >
-                  <BiCalendar className="styleicon uniq"  ></BiCalendar>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* <hr className="hrStyle"></hr> */}
         <div>
           <div className="colorWhite">Social media</div>
           <div style={{ paddingBottom: "2vh" }}>media</div>
-          {/* <div className="row">
-            <div className="inptStyle widthIcon">
-              <GiWireframeGlobe className="styleicon"></GiWireframeGlobe>
-            </div>
-            <input className="inptStyle iconInput"
-              defaultValue="Add Your Website"
-            ></input>
-          </div> */}
           <div style={{ marginLeft: "2vh" }}>
             <div className="row">
               <div className="inptStyle widthIcon" >
                 <SiFacebook className="styleicon"></SiFacebook>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Facebook"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add your Facebook"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiWhatsapp className="styleicon"></SiWhatsapp>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Whatsapp"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Whatsapp"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiInstagram className="styleicon"></SiInstagram>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Instagram"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Instagram"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiYoutube className="styleicon"></SiYoutube>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Youtube"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Youtube"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <BiPlus className="styleicon"></BiPlus>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Media"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Media"
+              />
             </div>
           </div>
         </div>

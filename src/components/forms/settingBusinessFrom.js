@@ -638,41 +638,46 @@ function SettingBuisnessList(props) {
                             <div className="inptStyle widthIcon" >
                                 <SiFacebook className="styleicon"></SiFacebook>
                             </div>
-                            <input className="inptStyle iconInput"
-                                defaultValue="Add Your Facebook"
-                            ></input>
+                            <input
+                                className="inptStyle iconInput"
+                                placeholder="Add your Facebook"
+                            />
                         </div>
                         <div className="row">
                             <div className="inptStyle widthIcon">
                                 <SiWhatsapp className="styleicon"></SiWhatsapp>
                             </div>
-                            <input className="inptStyle iconInput"
-                                defaultValue="Add Your Whatsapp"
-                            ></input>
+                            <input
+                                className="inptStyle iconInput"
+                                placeholder="Add your Whatsapp"
+                            />
                         </div>
                         <div className="row">
                             <div className="inptStyle widthIcon">
                                 <SiInstagram className="styleicon"></SiInstagram>
                             </div>
-                            <input className="inptStyle iconInput"
-                                defaultValue="Add Your Instagram"
-                            ></input>
+                            <input
+                                className="inptStyle iconInput"
+                                placeholder="Add your Instagram"
+                            />
                         </div>
                         <div className="row">
                             <div className="inptStyle widthIcon">
                                 <SiYoutube className="styleicon"></SiYoutube>
                             </div>
-                            <input className="inptStyle iconInput"
-                                defaultValue="Add Your Youtube"
-                            ></input>
+                            <input
+                                className="inptStyle iconInput"
+                                placeholder="Add your Youtube"
+                            />
                         </div>
                         <div className="row">
                             <div className="inptStyle widthIcon">
                                 <BiPlus className="styleicon"></BiPlus>
                             </div>
-                            <input className="inptStyle iconInput"
-                                defaultValue="Add Your Media"
-                            ></input>
+                            <input
+                                className="inptStyle iconInput"
+                                placeholder="Add your Media"
+                            />
                         </div>
                     </div>
                 </div>
