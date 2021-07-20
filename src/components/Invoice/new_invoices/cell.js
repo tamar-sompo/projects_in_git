@@ -13,7 +13,7 @@ import './new_invoice.css'
 
 function Cell(props) {
     const { value, onChange, onFocus, onBlur, type } = props;
-    // debugger
+    //  
     const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
     return (
         <>

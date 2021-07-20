@@ -298,12 +298,12 @@ const invoices = {
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-        debugger
+
         console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
     setProduction(state, action) {
-        debugger
+
         state.invoiceDetailsView.products.push({ id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product })
     },
     setProductionAfterDelete(state, action) {
@@ -382,7 +382,7 @@ const invoices = {
         state.saveSum = action.payload
     },
     setSum(state, action) {
-        debugger
+
         state.saveSum = 0
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index1].sum_product = action.payload.sum

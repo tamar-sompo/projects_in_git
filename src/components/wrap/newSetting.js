@@ -81,7 +81,7 @@ export default function NewSetting(props) {
       }
       else {
         if (savePr) {
-          debugger
+
           if (window.location.href.split('/')[4] === "product") {
             dispatch(actions.setPage(true))
             // setPage(true)
@@ -93,7 +93,7 @@ export default function NewSetting(props) {
           }
         }
         else {
-          debugger
+
           if (flagSave == 'true1' || flagSave == 'true2' || flagSave == 'saveNewBusiness') {
             dispatch(actions.setFlagOverPage(true))
             // dispatch(actions.setflagSave(''))

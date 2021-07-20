@@ -50,12 +50,12 @@ export default function MessageProductP(props) {
     //במעבר בין עמודים
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const savePage = () => {
-        debugger
+
         if (flagNewP) {
             dispatch(actions.setdegel1(1)) //go to save new product
         }
         else {
-            debugger
+
             dispatch(actions.setdegel1(10))// after editing a product
             // dispatch(actions.setdegel2(true))
         }

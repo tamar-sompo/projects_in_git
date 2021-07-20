@@ -120,8 +120,8 @@ function BuisnessList(props) {
   useEffect(() => {
     dispatch(actions.setDisplayBoxShadow(false))
   }, [])
+
   useEffect(() => {
-    debugger
     if (flag === "false")
       setFlag("true")
     else {
@@ -140,6 +140,7 @@ function BuisnessList(props) {
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
+
   const restart = () => {
     setFlagLoud(false)
     updateBuisnessField({ key: 'name', value: "" })
@@ -171,24 +172,20 @@ function BuisnessList(props) {
   //     history.push(`/${userName}/allDocuments`)
   // },[allBuisness])
 
-  const saveNewBuisness = async (e) => {
-    let tmp1 = true;
-    let tmp3 = true;
-    // let tmp4 = userFiled.name || currentBuisness.name;
-    // let tmp5 = userFiled.numberDeals || currentBuisness.numberDeals;
-    if (userFiled.email) {
-      tmp1 = validatorEmail(userFiled.email)
-    }
-    if (userFiled.phone) {
+  const saveNewBuisness = (e) => {
+    let valid_email = true;
+    let valid_phone = true;
 
-      tmp3 = validatorPhone(userFiled.phone);
+    if (userFiled.email) {
+      valid_email = validatorEmail(userFiled.email)
     }
-    if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
-      await updateBuisnessField({
-        key: 'productionDate', value: new Date()
-      })
+
+    if (userFiled.phone) {
+      valid_phone = validatorPhone(userFiled.phone);
+    }
+
+    if (userFiled.name && userFiled.numberDeals && valid_email && valid_phone && userFiled.city && userFiled.address) {
       setFlagLoud(true)
-      debugger
       if (flagSave == 'saveNewBusiness') {
         dispatch(actions.setflagSave('overPage1'))
         restart()
@@ -204,7 +201,6 @@ function BuisnessList(props) {
       setErrorMessage5('');
       setErrorMessage6('');
       // continewAfterSave();
-
     }
     else {
       if (!userFiled.name) {
@@ -229,7 +225,7 @@ function BuisnessList(props) {
         setErrorMessage6('');
       }
       if (userFiled.email) {
-        if (!tmp1) {
+        if (!valid_email) {
           setErrorMessage3('#Invalid email address')
         }
         else {
@@ -237,7 +233,7 @@ function BuisnessList(props) {
         }
       }
       if (userFiled.phone) {
-        if (!tmp3) {
+        if (!valid_phone) {
           setErrorMessage4('#Invalid phone')
         }
         else {

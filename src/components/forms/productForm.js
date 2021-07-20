@@ -92,7 +92,7 @@ function ProductForm(props) {
   const isSave = useSelector(state => state.productReducer.isSave)
   useEffect(() => {
     if (isSave) {
-      debugger
+
       addNewProduct()
       // dispatch(actions.setIsSave(false))
     }
@@ -106,7 +106,7 @@ function ProductForm(props) {
   }, [degel])
 
   const addNewProduct = () => {
-    debugger
+
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
@@ -118,7 +118,7 @@ function ProductForm(props) {
         dispatch(actions.setIsEdit(true))
       }
       dispatch(actions.setIsSave(false))
-      // debugger
+      //  
       // props.changeFlag(false)
     }
     else {
@@ -157,7 +157,7 @@ function ProductForm(props) {
   }
 
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+
     //הוא דואג לבדוק אם הכנים נצונים ביצירה של חדש
     // (בשביל מעבר בין עמ ולחיצה על מוצר)
     dispatch(actions.setIfSave(true))

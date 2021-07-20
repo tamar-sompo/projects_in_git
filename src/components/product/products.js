@@ -82,7 +82,7 @@ function Products(props) {
         dispatch(actions.setDisplayBoxShadow(false))
     }, [])
     useEffect(() => {
-        debugger
+
         if (isEdit) {
             // if (degel == '10') {
             //     dispatch(actions.setdegel1(2))
@@ -260,7 +260,7 @@ function Products(props) {
                         if (!flagPrice && !flagName) {
                             // אם לחץ על מוצר אחר לפני שמירה
                             if (tmpId !== product._id) {
-                                debugger
+
                                 dispatch(actions.editProduct({ key: "table", value: tmpId }))
                                 dispatch(actions.setIfSave(false))
                                 setDis({ flag: 0, id: product._id, inpDis: "disable" })
@@ -282,7 +282,7 @@ function Products(props) {
                             }
                         }
                         else {
-                            debugger
+
                             // if (!newProductTable.name)
                             if (flagName) setflagName(true)
                             if (flagPrice) setflagPrice(true)

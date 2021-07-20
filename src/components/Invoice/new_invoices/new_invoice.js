@@ -204,7 +204,7 @@ function New_Invoice(props) {
 
   useEffect(() => {
 
-    debugger
+
     dispatch(actions.setFlagTmpSave(true))
     dispatch(actions.setFlagOfterValidation(false))
     if (flagPush === true) {
@@ -245,9 +245,9 @@ function New_Invoice(props) {
         else {
           dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
         }
-        debugger
+
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
-          debugger
+
           console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
@@ -265,11 +265,11 @@ function New_Invoice(props) {
           })
         }
         else {
-          debugger
+
           console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
-          debugger
+
           console.log("ojectContact", ojectContact)
           if (contactFromInvoice) {
             setcontactedit({
@@ -322,7 +322,7 @@ function New_Invoice(props) {
   }, [buttonClick])
   useEffect(() => {
 
-    debugger
+
     if (firstFlagSaveContact1 === false)
       setFirstFlagSaveContact1(true)
     else {
@@ -336,15 +336,15 @@ function New_Invoice(props) {
     }
     console.log("saveContactOne", saveContactOne)
     console.log("contactedit", contactedit)
-    debugger
+
     updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
   }, [saveContactOne])
   useEffect(() => {
-    debugger
+
     if (flagcontactFromInvoice1 === false)
       setflagcontactFromInvoice1(true)
     else {
-      debugger
+
       setcontactedit({
         name: contactFromInvoice && contactFromInvoice.name ? contactedit.name : contactedit.name,
         email: contactFromInvoice && contactFromInvoice.email ? contactedit.email : contactedit.email,
@@ -354,14 +354,14 @@ function New_Invoice(props) {
     }
   }, [contactFromInvoice])
   useEffect(() => {
-    debugger
+
     console.log("detailscontact", detailscontact)
     if (flagdetailsContact == false)
       setflagdetailsContact(true)
     else {
       console.log("contactedit444", contactedit)
       console.log("contactedit444", contactFromInvoice)
-      debugger
+
       setsaveContactOne({
         name: detailscontact.contact && detailscontact.contact.name ? detailscontact.contact.name : contactedit.name,
         email: detailscontact.contact && detailscontact.contact.email ? detailscontact.contact.email : contactedit.email,
@@ -451,7 +451,7 @@ function New_Invoice(props) {
 
   /////////////////////////////////////////////////////////
   const saveContact1 = () => {
-    debugger
+
     dispatch(actions.setShowInInvoice(true))
 
     if (!detailscontact.contact) {
@@ -475,7 +475,7 @@ function New_Invoice(props) {
       })
   }
   const saveContact = () => {
-    debugger
+
     dispatch(actions.setShowInInvoice(true))
     setFlag(false)
     if (contactFromInvoice && contactFromInvoice._id || detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag && detailsInvoice.contactOneTime.flag === true) {
@@ -509,7 +509,7 @@ function New_Invoice(props) {
   const onFieldChangeContact = (fieldName, e) => {
     if (fieldName == 'email') {
       if (e.target.value) {
-        debugger
+
         setValidEmail(true)
       }
       else { setValidEmail(false) }
@@ -520,13 +520,13 @@ function New_Invoice(props) {
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
       // alert("gg")
-      debugger
+
       dispatch(actions.setContactReset(fieldName))
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       // $("#" + select2 + " option[value*='" + val + "']").prop('disabled', true).addClass('disabled');
 
       if (e.target.value) {
-        debugger
+
 
         id_contact = $("#contactname").find("option[data-value=" + "option" + e.target.value + "]").data("id")
 
@@ -562,7 +562,7 @@ function New_Invoice(props) {
   }
 
   const resetfieldcontact = (fieldName, e) => {
-    debugger
+
     console.log("re")
     if (detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
@@ -876,7 +876,7 @@ function New_Invoice(props) {
 
 
     const form = event.currentTarget;
-    //   debugger
+    //    
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

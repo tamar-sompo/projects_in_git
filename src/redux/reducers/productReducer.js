@@ -28,13 +28,13 @@ const initialState = {
 }
 const products = {
         getAllProductToInvoice(state, action) {
-           state.allProductToInvoice = action.payload
+                state.allProductToInvoice = action.payload
         },
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
         },
         setPage(state, action) {
-                debugger
+
                 state.page = action.payload
         },
         setdegel1(state, action) {
@@ -56,17 +56,17 @@ const products = {
                 state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
-                // debugger
+                //  
                 state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
-            state.filteredProducts.push(action.payload)
+                state.filteredProducts.push(action.payload)
         },
         setResetAllNewProduct(state, action) {
-            state.newProduct = []
+                state.newProduct = []
         },
         editProduct11(state, action) {
-            state.allProducts[action.payload.i] = action.payload.objectProduct.product
+                state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
 

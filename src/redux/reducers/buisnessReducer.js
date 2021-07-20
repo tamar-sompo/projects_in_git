@@ -5,6 +5,7 @@ import createReducer from "./reducerUtils";
 const initialState = {
     newBuisness: {
         socialmedias: {},
+        "productionDate": new Date(),
     },
     settingBuisness: {
         socialmedias: {},
@@ -81,8 +82,6 @@ const buisness = {
     setbuisnessWebsite(state, action) {
         state.newBuisness.socialmedias[action.payload.key] = action.payload.value
     },
-
-
     setSettingBuisness(state, action) {
 
         state.settingBuisness[action.payload.key] = action.payload.value
@@ -98,9 +97,7 @@ const buisness = {
     setGetUserByUserName(state, action) {
         state.newBuisness = action.payload
     },
-    // setBuisness(state, action) {
-    //     state.newBuisness[action.payload.key] = action.payload.value
-    // },
+
     setCurrentBuisness(state, action) {
         state.currentBuisness = action.payload
     }

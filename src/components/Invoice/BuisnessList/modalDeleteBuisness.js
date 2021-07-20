@@ -6,7 +6,7 @@ import buisnessList from './buisnessList.css';
 import './buisnessList.css'
 
 export default function ModeldeleteBuisness(props) {
-    debugger
+
     console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();

@@ -71,7 +71,7 @@ function Item(props) {
   }, [])
 
   useEffect(() => {
-    debugger
+
     if (borderProductInvoice) {
       if (history.location.pathname === `/${userName}/invoice`) {
         if (props.index) {
@@ -102,7 +102,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    debugger
+
     if (clickSave === true) {
       setClickSave(false)
       // alert("clickkkk")
@@ -159,7 +159,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    debugger
+
     console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
     }
@@ -178,7 +178,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    debugger
+
     console.log("pppp")
     dispatch(actions.setFlagSavePr(false))
     if (flagPro === false) {
@@ -211,7 +211,7 @@ function Item(props) {
 
 
   const vv3 = (e) => {
-    debugger
+
     // setflagValidName(false)
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     setFlagSaveP(false)
@@ -221,7 +221,7 @@ function Item(props) {
     }
     else {
       if (e.target.value) {
-        debugger
+
         let id_product = $("#productname").find("option[data-value=" + e.target.value + "]").data("id")
         if (id_product) {
           let product6 = allproduct.find(x => x._id === id_product)
@@ -258,7 +258,7 @@ function Item(props) {
     // setnameProduct(e.target.value)
   }
   const vv = (e) => {
-    debugger
+
     // setflagValidName(false)
     // setflagValidName(false)
     setFlagSaveP(false)
@@ -320,7 +320,7 @@ function Item(props) {
             // alert("xx")
             dispatch(actions.setSum({ sum: 1 * new_product[props.index].price, index1: props.index }))
 
-      debugger
+
     }
 
     // else {
@@ -343,13 +343,13 @@ function Item(props) {
 
 
   const updateCell = (title1, e) => {
-    debugger
+
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
     setFlagSaveP(false)
     console.log("dtpdtp", dtp)
 
-    debugger
+
     if (e.target.value && e.target.value !== "") {
       setFlagShowSaveP({ index: props.index, value: true })
     }
@@ -383,7 +383,7 @@ function Item(props) {
             // alert("xx")
             dispatch(actions.setSum({ sum: e.target.value * new_product[props.index].price, index1: props.index }))
 
-      debugger
+
     }
 
     else {
@@ -438,7 +438,7 @@ function Item(props) {
 
   }
   const cleanInput1 = (field1) => {
-    debugger
+
     // setindexof(props.index)
     if (field1 === "amount") {
 
@@ -463,8 +463,8 @@ function Item(props) {
   }
 
   function savepr() {
-    debugger
-    // debugger
+
+    //  
     // event.preventDefault()
     // alert("jjjj")
     if (amountProductInvoice !== 0) {
@@ -487,7 +487,7 @@ function Item(props) {
     }
   }
   const clearProduct = () => {
-    debugger
+
     if (invoice.products.length === 1 && history.location.pathname === `/${userName}/invoice` || detailsInvoice.products && detailsInvoice.products.length === 1) {
 
       // document.querySelectorAll("input").forEach(
@@ -575,7 +575,7 @@ function Item(props) {
   //   }
   // }
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+
     setflagValidPrice(false)
     let value
     setFlagSaveP(false)
@@ -674,7 +674,7 @@ function Item(props) {
   // dispatch(actions.setSubmitSaveInvoice(false))
 
   const handleSubmit = (event, title) => {
-    debugger
+
     // alert("submitInvoice"+ submitInvoice)
     // if (submitInvoice === false) {
     event.stopPropagation();
@@ -684,7 +684,7 @@ function Item(props) {
     // props.submitItem(true)
     event.preventDefault();
     // alert("submit")
-    // debugger
+    //  
     const form = event.currentTarget;
     if (form.flagModal !== "otherPageInvoices" === false) {
       // alert("item1")

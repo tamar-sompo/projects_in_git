@@ -122,7 +122,7 @@ const contacts = {
     setCustomersDetails(state, action) {
     },
     setDetailsContact(state, action) {
-        debugger
+
         state.detailscontact = action.payload
     },
 

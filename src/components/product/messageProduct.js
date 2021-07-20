@@ -15,7 +15,7 @@ export default function MessageProduct(props) {
     const handleClose = () => setShowMessagePr(false);
     //no
     const openEdit = () => {
-        debugger
+
         // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIsEdit(true))
@@ -30,20 +30,20 @@ export default function MessageProduct(props) {
     }
     //yes
     const save = () => {
-        debugger
+
         console.log('ppppppppppppppppp', props.flag)
         // dispatch(actions.setIfSave(false))
         dispatch(actions.setIsSave(true))
         handleClose()
     }
     const saveEdit = () => {
-        debugger
+
         console.log('ppppppppppppppppp', props.flag)
         dispatch(actions.setdegel(true))
         handleClose()
     }
     const overPage = () => {
-        debugger
+
         // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIfSave(false))
