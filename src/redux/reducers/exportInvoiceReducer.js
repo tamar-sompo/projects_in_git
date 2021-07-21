@@ -4,9 +4,9 @@ import createReducer from "./reducerUtils";
 
 const initialState = {
     linkToMail: "",
-    emailDetails:{},
-    isSendMessage:"false",
-    successSendEmail:"false"
+    emailDetails: {},
+    isSendMessage: "false",
+    successSendEmail: "false"
 }
 const conversion = {
     setEmailDetails(state, action) {

@@ -20,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon, fas } from "@fortawesome/react-fontawesome"
 import { AirlineSeatReclineExtra } from '@material-ui/icons';
 import { Button } from 'react-bootstrap';
-import Massage from '../Export/email.js'
+import EmailMassage from '../Export/email.js'
 export default function InvoiceAndSteps(props) {
   // let history = useHistory();
   const Location = useLocation()
@@ -102,7 +102,7 @@ export default function InvoiceAndSteps(props) {
 
 
 
-  
+
 
   //בלחיצה על back
   const backtoAllInvoices = () => {
@@ -171,17 +171,16 @@ export default function InvoiceAndSteps(props) {
           <div className="col-2">
             {isSendMessage == "true" &&
               <div className=" d-flex justify-content-center align-items-center " style={{ height: "100%" }}>
-                <div className=" sendEmailFromList" style={{
-                  backgroundColor: "white",
-                  width: "119%",
-                  height: "107% ",
-                  marginRight: "-14%",
-                  boxShadow: "0px 3px 6px #0000001A",
-                  // border: "1px solid #917BDF",
-                  // boxShadow:"1px -3px 1px 3px",
-                  display: "none"
-                }}>
-                  <Massage></Massage>
+                <div className=" sendEmailFromList"
+                  style={{
+                    backgroundColor: "white",
+                    width: "119%",
+                    height: "107% ",
+                    marginRight: "-14%",
+                    boxShadow: "0px 3px 6px #0000001A",
+                    display: "none"
+                  }}>
+                  <EmailMassage />
                 </div>
               </div>}
             {/* <div className="d-flex justify-content-center align-items-center" style={{ paddingTop: "10%", height: "fit-content" }}>

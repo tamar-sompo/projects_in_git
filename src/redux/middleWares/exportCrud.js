@@ -14,9 +14,8 @@ function checkPermission(result) {
 
 
 export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
-  console.log("mail")
+
   if (action.type === 'SET_SEND_LINK_TO_EMAIL') {
-    console.log("mail2")
     let userName = getState().publicReducer.userName;
     let invoiceSave = getState().invoiceReducer.invoiceSave.invoice;
     const linkPayToContact = getState().paymentsReducer.linkPayToContact;
@@ -55,6 +54,7 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
       .then((res) => res.json()).then((res) => {
         console.log("resJsonFromSendEmail", res.statusCode)
         dispatch(actions.setSuccessSendEmail("true"))
+        dispatch(actions.setNameAction("The Email Send Success!"))
       })
       .catch((err) => {
         console.log("errorFromMail", err)

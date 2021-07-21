@@ -62,7 +62,7 @@ export default function Fiances() {
     const show = useSelector(state => state.designReducer.show);
     const displayBoxShadow = useSelector(state => state.invoiceReducer.displayBoxShadow);
     const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
-    console.log("isSendMessage", isSendMessage)
+
 
     const openDiv = () => {
         console.log("openEmailForm")
@@ -70,7 +70,7 @@ export default function Fiances() {
     }
 
     const closeDiv = () => {
-        console.log("ccclose")
+        console.log("close email form")
         $(".sendEmailFromList").css("block", "none")
     }
 

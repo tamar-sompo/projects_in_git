@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
 import { MdShare } from 'react-icons/md'
 import Tooltip from '@material-ui/core/Tooltip';
-
-
 import PdfModal from '../Pdf/pdfModal';
 import './share.css';
 
@@ -15,24 +13,18 @@ export default function Share(props) {
 
     console.log("props.invoiceFhone", props.invoiceFhone)
     const dispatch = useDispatch();
-    // const sendEmail = () => dispatch(actions.setSendLinkToEmail())
     const [pdfDisplay, setPdfDisplay] = useState(false);
     console.log("pdfDisplay", pdfDisplay)
     // const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
     const userName = useSelector(state => state.publicReducer.userName)
     const [watsappText, setWatsappText] = useState("")
-    console.log(watsappText, "watsappText")
-
     const invoiceSaveId = useSelector(state => state.invoiceReducer.invoiceId)
-    // console.log("invoiceIdwwwwww", invoiceId)
-
     const flagSave = useSelector(state => state.invoiceReducer.invoice.contactOneTime);
     const flagSave1 = flagSave ? flagSave.flag : "";
     const emailcontact = useSelector(state => state.invoiceReducer.invoice.contact);
     const allContact = useSelector(state => state.customerReducer.allContact);
     const invoice = useSelector(state => state.invoiceReducer.invoice);
     const linkPayFromStore = useSelector(state => state.invoiceReducer.invoiceSave)
-    console.log(linkPayFromStore, "lklk")
 
     // const contactPhone = '';
     const businessPhoneWatsapp1 = '';
@@ -55,10 +47,10 @@ export default function Share(props) {
             contactPhone = contact1 ? contact1.phone : "";
         }
         // let invoiceId = props.invoiceId ? props.invoiceId : invoiceSaveId ? invoiceSaveId : "";
-        console.log("invoiceIdwwwwww", invoiceId)
+        // console.log("invoiceIdwwwwww", invoiceId)
         businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : props.invoiceFhone ? props.invoiceFhone.substring(1) : "";
         businessPhoneWatsapp1 = businessPhoneWatsapp ? 972 + businessPhoneWatsapp : "";
-        console.log("businessPhone", businessPhoneWatsapp1)
+        // console.log("businessPhone", businessPhoneWatsapp1)
         checkIsInvoicePaypalLink()
     }
 

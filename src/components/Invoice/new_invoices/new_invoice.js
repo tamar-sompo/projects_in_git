@@ -519,7 +519,6 @@ function New_Invoice(props) {
     let id_contact
     dispatch(actions.setFlagIfEmpty(true))
     if (fieldName === "name") {
-      // alert("gg")
 
       dispatch(actions.setContactReset(fieldName))
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
@@ -862,7 +861,6 @@ function New_Invoice(props) {
     event.preventDefault();
     event.stopPropagation();
     // if($('#form_item').checkValidity()===true){
-    //   alert("bbb")
     // }
     const yourForm = document.querySelector('#form_item');
     //  alert("")
