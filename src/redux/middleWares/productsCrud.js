@@ -19,7 +19,6 @@ export const getAllProductsToInvoice = ({ dispatch, getState }) => next => actio
     if (action.payload)
       buisnessId = action.payload
     let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllProductToInvoice/${buisnessId}`;
-    console.log("url", url)
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -33,7 +32,7 @@ export const getAllProductsToInvoice = ({ dispatch, getState }) => next => actio
       // })
       dispatch(actions.getAllProductToInvoice(resJson.reverse()))
       // dispatch(actions.setAllProducts(resJson.reverse()));
-      // console.log("reverse", resJson.reverse())
+      //   "reverse", resJson.reverse())
 
     }).catch((err) => {
       console.log(err)
@@ -48,7 +47,6 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
     if (action.payload)
       buisnessId = action.payload
     let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllProductsToBuisness/${buisnessId}`;
-    console.log("url", url)
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -61,7 +59,6 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
       //    dispatch({ type: 'GET_ALL_CONTACT_BY_USER', payload:resJson  })
       // })
       dispatch(actions.setAllProducts(resJson.reverse()));
-      console.log("reverse", resJson.reverse())
 
     }).catch((err) => {
       console.log(err)
@@ -121,7 +118,6 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
 
         if (action.payload || action.payload === 0) {
 
-          console.log("success add product", data)
           dispatch(actions.setShow(true))
           dispatch(actions.setNameAction("Adding a product successfully"))
           dispatch(actions.setProduct1(data))
@@ -130,7 +126,6 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
           dispatch(actions.setColorFlagShowSaveP("#707071"))
         }
         else {
-          console.log("success add product", data)
           dispatch(actions.setNewProductTableFull({}))
           dispatch(actions.setShow(true))
           dispatch(actions.setNameAction("Adding a product successfully"))
@@ -154,7 +149,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
       },
       error: function (err) {
         //בדיקה אם חוזר 401 זאת אומרת שצריך לזרוק אותו ללוגין
-        console.log("error", err)
+        console.log(err)
       }
     });
   }
@@ -195,7 +190,6 @@ export const updateProductById = ({ dispatch, getState }) => next => action => {
 
       // dataType: 'json',
       success: function (product1) {
-        console.log("updateProduct", product1)
         if (action.payload.key === "table")
           dispatch(actions.setNewProductTableFull({}))
         dispatch(actions.setShow(true))
@@ -233,7 +227,7 @@ export const getProductById = ({ dispatch, getState }) => next => action => {
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       success: function (product) {
-        // console.log("updateProduct",product)
+        //   "updateProduct",product)
         dispatch(actions.setProduct1(product))
       },
     });
@@ -258,7 +252,7 @@ export const getProductById = ({ dispatch, getState }) => next => action => {
 //       contentType: "application/json; charset=utf-8",
 //       dataType: 'json',
 //       success: function (product) {
-//         console.log("updateProduct", product)
+//           "updateProduct", product)
 //         // dispatch(actions.setGetAllBuisness(product))
 //       },
 //     });

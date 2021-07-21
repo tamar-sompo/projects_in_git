@@ -7,18 +7,16 @@ const initialState = {
     //    updateBusiness:{},
     //    currentbuisness:"",
     allCities: [],
-    allCountry:[],
+    allCountry: [],
     country: ""
 }
 // מעלה את הפעולות
 const cities = {
     setAllCities(state, action) {
         state.allCities = action.payload;
-        console.log("aaaaaaaaaaaa", state.allCities);
     },
     setCountry(state, action) {
         state.allCountry = action.payload;
-        console.log("nnnnnnnnnnnnnn", state.allCountry);
-    } 
+    }
 }
 export default produce((state, action) => createReducer(state, action, cities), initialState);

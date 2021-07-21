@@ -56,14 +56,11 @@ function ProductForm(props) {
   const newProductTable = useSelector(state => state.productReducer.newProductTable);
   // const isSave = useSelector(state => state.productReducer.isSave);
   // const isSave = useSelector(state => state.productReducer.isSave)
-  console.log("newProductTable.images", newProductTable.images);
 
   useEffect(() => {
-    // props.addProduct("sssss")
   }, [])
 
   const changeFlag = () => {
-    console.log('ffllaagg', props.flag);
     props.changeFlag(false)
     dispatch(actions.setFlagNewP(false))
   }
@@ -150,7 +147,6 @@ function ProductForm(props) {
 
         imageToStor = { 'image': event, 'to': 'product' }
         dispatch(actions.setImage(imageToStor))
-        console.log("imageee12kkkkkkkkkkkk", imageToStor)
       }
       reader.readAsDataURL(event)
     }

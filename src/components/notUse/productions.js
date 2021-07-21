@@ -39,7 +39,7 @@ function Maincomp(props) {
 
   // const currentComponentStep = useSelector(state => state.displayComponentSteps.isComponentStep);
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  { console.log("props.hidden_design", props.hidden) }
+  { "props.hidden_design", props.hidden) }
   // {props.hidden && $(".lll").fadeOut()}
   return (<div className={`lll ${props.hidden ? 'ggg' : 'trtrtr'}`}>
 

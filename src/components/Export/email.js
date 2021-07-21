@@ -56,9 +56,7 @@ function EmailMassage(props) {
                 setErrorMessage('');
             }
         }
-        console.log("fieldMail")
         const value = e.target.value;
-        console.log("valueMail", value)
         updateEmailField({ key: fieldName, value: value })
     }
 
@@ -132,7 +130,6 @@ function EmailMassage(props) {
         props.changeExportYN("papers")
     }
     const { options } = props;
-    console.log("777777valus" + valus);
 
     const validatorEmail = (v) => {
         return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
@@ -156,7 +153,6 @@ function EmailMassage(props) {
             dispatch(actions.setsendMessage("false"))
             dispatch(actions.setSuccessSendEmail("false"))
             dispatch(actions.setInvoiceSave(null))
-            console.log("successSendEmail", successSendEmail)
         }, 3000)
     }
     return (

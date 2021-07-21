@@ -82,7 +82,7 @@ const contacts = {
         state.newContact = action.payload
     },
     setContactReset(state, action) {
-        // console.log("hgghg",state.detailscontact.contact[action.payload])
+        //   "hgghg",state.detailscontact.contact[action.payload])
         if (state.detailscontact.contact)
             state.detailscontact.contact[action.payload] = undefined
 
@@ -96,7 +96,6 @@ const contacts = {
         state.allContact = action.payload;
     },
     setAddContact(state, action) {
-        console.log("reducer", action.payload)
         state.allContact.push(action.payload);
 
     },

@@ -51,7 +51,7 @@ export default function BuisnessList(props) {
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
   const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness);
-  console.log("currentBuisnessHome", currentBuisness, currentBuisness.name)
+  "currentBuisnessHome", currentBuisness, currentBuisness.name)
   const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
   const saveNewBuisness = () => {
 
@@ -83,9 +83,9 @@ export default function BuisnessList(props) {
   }
 
   // const addImage = (event) => {
-  //   console.log('vdhggggg');
+  //     'vdhggggg');
   //   if (event) {
-  //     console.log('event', event)
+  //       'event', event)
   //     let reader = new FileReader();
   //     const image = reader.result;
   //     reader.onloadend = () => {
@@ -93,7 +93,7 @@ export default function BuisnessList(props) {
   //       setImageLogo(objectImage)
   //     }
   //     reader.readAsDataURL(event)
-  //     console.log('imagep', props.imgProduct)
+  //       'imagep', props.imgProduct)
   //   }
   // }
 

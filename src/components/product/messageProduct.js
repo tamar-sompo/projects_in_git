@@ -6,12 +6,10 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageProduct(props) {
-    // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
     const setShowMessagePr = (status) => dispatch(actions.setShowMessagePr(status))
     const showMessagePr = useSelector(state => state.messageReducer.showMessagePr);
-    console.log("showMessagePr", showMessagePr)
     const handleClose = () => setShowMessagePr(false);
     //no
     const openEdit = () => {
@@ -30,20 +28,15 @@ export default function MessageProduct(props) {
     }
     //yes
     const save = () => {
-
-        console.log('ppppppppppppppppp', props.flag)
         // dispatch(actions.setIfSave(false))
         dispatch(actions.setIsSave(true))
         handleClose()
     }
     const saveEdit = () => {
-
-        console.log('ppppppppppppppppp', props.flag)
         dispatch(actions.setdegel(true))
         handleClose()
     }
     const overPage = () => {
-
         // אם עריכת מוצר תיהיה פתוחה או לא
         dispatch(actions.setFlagNewP(false))
         dispatch(actions.setIfSave(false))
@@ -55,7 +48,6 @@ export default function MessageProduct(props) {
     //במעבר בין עמודים
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const savePage = () => {
-        console.log('ppppppppppppppppp', props.flag)
         if (flagNewP) {
             dispatch(actions.setdegel1(1))
         }

@@ -71,7 +71,6 @@ const products = {
         setAddProduct(state, action) {
 
                 state.allProducts.unshift(action.payload)
-                console.log("state.allProducts", state.allProducts)
                 // state.allProducts.splice(0, 0, action.payload);
         },
         setNewProductTable(state, action) {
@@ -121,7 +120,6 @@ const products = {
         setNewProduct(state, action) {
 
                 //  alert('jj')
-                console.log("state.newProduct[action.payload.index][action.payload.key]", state.newProduct[action.payload.index][action.payload.key])
                 state.newProduct[action.payload.index][action.payload.key] = action.payload.value
         },
         setProductName(state, action) {

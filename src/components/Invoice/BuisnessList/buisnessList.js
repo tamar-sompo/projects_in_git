@@ -56,6 +56,7 @@ function BuisnessList(props) {
         history.push(`/${userName}/setting`)
     }
     const remove = (e) => {
+        console.log(e, "e to delete buisness")
         e.stopPropagation()
         // setModalBody("Do You Want To delete The Buisness Forever?")
         dispatch(actions.setShowModalDelete(true));
@@ -115,7 +116,8 @@ function BuisnessList(props) {
                                                     <td>{buisness.address && buisness.city ? buisness.address + " " + buisness.city : ''}</td>
                                                     <td>{convertdate(buisness.productionDate)}</td>
                                                     <td className="td_tt" style={{ width: "7%" }}>
-                                                        <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
+                                                        <div className="td_side_edit_delete_copy d-flex-justify-content-center"
+                                                            style={{ display: "inline-block" }}>
                                                             {
                                                                 chooselinei.isShown && chooselinei.index === buisness._id && (
                                                                     <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>

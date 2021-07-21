@@ -16,13 +16,10 @@ function MassageFormat() {
   // let history = useHistory();
   const dispatch = useDispatch();
   const show = useSelector(state => state.designReducer.show);
-  console.log("ssssssssssssssooooooooooooooooooooo", show)
   const setShow = (status) => dispatch(actions.setShow(status))
   const nameAction = useSelector(state => state.designReducer.nameAction);
-  console.log("nameAction", nameAction)
   const productId = useSelector(state => state.productReducer.product1._id);
   // const invoiceId = useSelector(state => state.invoiceReducer.invoiceSave._id);
-  console.log("productvvvvvvvvvvvvvId", productId)//אין לו  ברדוסר כזה משתנה בעת יצירה
 
   useEffect(() => {
     if (show) setTimeout(() => {
@@ -44,7 +41,7 @@ function MassageFormat() {
   //       //לא קיימת עדין פונקציית מחיקה כזאת
   //       setShow(false);
   //     default:
-  //       console.log("clum!!!!!!!!!1")
+  //         "clum!!!!!!!!!1")
   //       setShow(false);;
   //   }
   // }

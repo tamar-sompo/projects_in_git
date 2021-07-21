@@ -11,10 +11,8 @@ import './share.css';
 
 export default function Share(props) {
 
-    console.log("props.invoiceFhone", props.invoiceFhone)
     const dispatch = useDispatch();
     const [pdfDisplay, setPdfDisplay] = useState(false);
-    console.log("pdfDisplay", pdfDisplay)
     // const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
     const userName = useSelector(state => state.publicReducer.userName)
     const [watsappText, setWatsappText] = useState("")
@@ -47,28 +45,24 @@ export default function Share(props) {
             contactPhone = contact1 ? contact1.phone : "";
         }
         // let invoiceId = props.invoiceId ? props.invoiceId : invoiceSaveId ? invoiceSaveId : "";
-        // console.log("invoiceIdwwwwww", invoiceId)
+        //   "invoiceIdwwwwww", invoiceId)
         businessPhoneWatsapp = businessPhone ? businessPhone.substring(1) : contactPhone ? contactPhone.substring(1) : props.invoiceFhone ? props.invoiceFhone.substring(1) : "";
         businessPhoneWatsapp1 = businessPhoneWatsapp ? 972 + businessPhoneWatsapp : "";
-        // console.log("businessPhone", businessPhoneWatsapp1)
+        //   "businessPhone", businessPhoneWatsapp1)
         checkIsInvoicePaypalLink()
     }
 
     // let watsappText;
-    console.log(watsappText, "watsapp")
     // useEffect(() => {
     const checkIsInvoicePaypalLink = () => {
         let invoicePaypalLink = props.paypalLink ? props.paypalLink : linkPayFromStore ? linkPayFromStore.invoice ?
             linkPayFromStore.invoice.paypalLink ?
                 linkPayFromStore.invoice.paypalLink : "null" : "null" : "null";
-        console.log("lllinkk", invoicePaypalLink)
         if (invoicePaypalLink) {
-            console.log("first1")
             setWatsappText(`Link to view invoice:   https://finance.leader.codes/${userName}/view/${invoiceId}   
             Link to pay:   ${invoicePaypalLink}`)
         }
         else {
-            console.log("first2")
             setWatsappText(`Link to view invoice:   https://finance.leader.codes/${userName}/view/${invoiceId}`)
         }
     }

@@ -29,7 +29,6 @@ export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action 
           'Content-Type': 'application/json'
         }
       }).then((res) => res.json()).then((resJson) => {
-        console.log("cities", resJson);
         dispatch(actions.setAllCities(resJson))
       }).catch((err) => {
         console.log(err)
@@ -50,7 +49,6 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
           'Content-Type': 'application/json'
         }
       }).then((res) => res.json()).then((resJson) => {
-        console.log("countries", resJson);
         dispatch(actions.setCountry(resJson))
       }).catch((err) => {
         console.log(err)
@@ -60,7 +58,7 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
 }
 
   // export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action => {
-  //   console.log("allCities")
+  //     "allCities")
   //   if (action.type === 'GET_CITY_BY_COUNTRY') {
   //      
   //     let countryName = action.payload;
@@ -78,13 +76,13 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
   //       contentType: "application/json; charset=utf-8",
   //       dataType: 'json',
   //       success: (data) => {
-  //         console.log("data", data)
+  //           "data", data)
   //         checkPermission(data).then((ifOk) => {
   //           dispatch(actions.setGetAllBuisness(data))
   //         })
   //       },
   //       error: (err) => {
-  //         console.log("error", err)
+  //           "error", err)
   //       },
   //     });
   //   }

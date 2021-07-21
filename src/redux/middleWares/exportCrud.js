@@ -19,9 +19,7 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     let userName = getState().publicReducer.userName;
     let invoiceSave = getState().invoiceReducer.invoiceSave.invoice;
     const linkPayToContact = getState().paymentsReducer.linkPayToContact;
-    console.log(userName, invoiceSave)
     var url = `https://finance.leader.codes/${userName}/view/${invoiceSave._id}`;
-    console.log("url", url)
     let text = getState().exportInvoiceReducer.emailDetails.html
     let textToPaypal = "Click here to pay"
     // let html
@@ -41,7 +39,6 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
       subject: getState().exportInvoiceReducer.emailDetails.subject,
       html: html
     }
-    console.log("eemail", email)
     fetch(`https://mails.codes/mail/sendEmail`, {
       method: 'POST',
       headers: {
@@ -52,12 +49,10 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
       body: JSON.stringify(email),
     })
       .then((res) => res.json()).then((res) => {
-        console.log("resJsonFromSendEmail", res.statusCode)
         dispatch(actions.setSuccessSendEmail("true"))
         dispatch(actions.setNameAction("The Email Send Success!"))
       })
       .catch((err) => {
-        console.log("errorFromMail", err)
       })
   }
   return next(action);

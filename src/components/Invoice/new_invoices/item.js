@@ -117,18 +117,17 @@ function Item(props) {
         //   if (!new_product[props.index].name) {
         //     setflagValidName(true)
         //     // dispatch(actions.setInvalidProduct(true))
-        //     console.log("flagValidName", flagValidName)
+        //       "flagValidName", flagValidName)
         //   }
         //   if (dtp && !dtp.price) {
         //     setflagValidPrice(true)
         //     // dispatch(actions.setInvalidProduct(true))
-        //     console.log("flagValidPhone", flagValidPrice)
+        //       "flagValidPhone", flagValidPrice)
         //   }
       }
     }
     else {
       // alert("hhhh", new_product)
-      console.log('new_product', new_product)
 
       // if (props.pro.id === "null" || props.pro.id === undefined) {
       //   if (new_product[props.index].name && new_product[props.index].price) {
@@ -142,14 +141,14 @@ function Item(props) {
       //       setflagValidName(true)
       //       dispatch(actions.setValidProduct(false))
       //       // dispatch(actions.setInvalidProduct(true))
-      //       console.log("flagValidName", flagValidName)
+      //         "flagValidName", flagValidName)
       //     }
       //     if (!new_product[props.index].price) {
       //       //  alert("nm,n,mhjhjjjjjj" +new_product[props.index].price )
       //       setflagValidPrice(true)
       //       dispatch(actions.setValidProduct(false))
       //       // dispatch(actions.setInvalidProduct(true))
-      //       console.log("flagValidPhone", flagValidPrice)
+      //         "flagValidPhone", flagValidPrice)
       // }
       // }
       // }
@@ -160,11 +159,9 @@ function Item(props) {
 
   useEffect(() => {
 
-    console.log("הגעתתתתת", props.pro)
     if (props.pro.id == "null") {
     }
     else {
-      console.log('kkk', props.pro)
       setdtp(allproduct.find(x => x._id === props.pro.id))
       setSum(props.pro.sum_product)
       // setCalcSumProduct(0)
@@ -172,14 +169,12 @@ function Item(props) {
       // setdiscountp(props.pro.discount)
 
     }
-    console.log("totalProductRef")
   }, [allproduct])
 
 
 
   useEffect(() => {
 
-    console.log("pppp")
     dispatch(actions.setFlagSavePr(false))
     if (flagPro === false) {
 
@@ -191,7 +186,6 @@ function Item(props) {
         setdtp(allproduct.length > 0 && allproduct.find(x => x._id === product1._id))
       }
       else {
-        console.log("jkj")
         setdtp(allproduct.length > 0 && allproduct.find(x => x._id === props.pro.id))
       }
       if (history.location.pathname === `/${userName}/invoice`) {
@@ -347,8 +341,6 @@ function Item(props) {
     dispatch(actions.setColorFlagShowSaveP("#707071"))
     dispatch(actions.setFlagIfEmpty(true))
     setFlagSaveP(false)
-    console.log("dtpdtp", dtp)
-
 
     if (e.target.value && e.target.value !== "") {
       setFlagShowSaveP({ index: props.index, value: true })
@@ -451,7 +443,7 @@ function Item(props) {
       if (dtp && dtp._id) {
         if (dtp[field1] !== undefined) {
           // alert("jjjjj")
-          // console.log("dtp[field1]", dtp[field1], field1, dtp)
+          //   "dtp[field1]", dtp[field1], field1, dtp)
           dispatch(actions.setNewProduct({ index: props.index, key: field1, value: dtp[field1] }))
           setdtp({ ...dtp, [field1]: undefined })
         }
@@ -476,8 +468,6 @@ function Item(props) {
       dispatch(actions.editProduct(props.index))
     }
     else {
-      console.log('new_product', new_product)
-
       if (props.pro.id === "null" || props.pro.id === undefined) {
         if (new_product[props.index].name && new_product[props.index].price) {
           // alert("nnn")
@@ -512,7 +502,7 @@ function Item(props) {
 
   // const updateCellprefix = (title1, e) => {
 
-  //   console.log("ttt", e)
+  //     "ttt", e)
   //   if (invoice.products.length > 0 && invoice.products[0].id == "null" || detailsInvoice.products > 0 && detailsInvoice.products[0] == "null") {
   //     dispatch(actions.setflagBorderProduct(false))
   //   }

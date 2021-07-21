@@ -62,7 +62,6 @@ function Products(props) {
     const newProduct = useSelector(state => state.productReducer.newProduct)
     const setNewProduct = (fieldProduct) => dispatch(actions.setNewProduct(fieldProduct))
     // const show = useSelector(state => state.designReducer.show);
-    // console.log("ssssssssssshow",show)
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const isEdit = useSelector(state => state.productReducer.isEdit)
     const tmpPr = useSelector(state => state.productReducer.tmpPr)
@@ -326,19 +325,16 @@ function Products(props) {
         dispatch(actions.deleteProduct(id))
     }
     const addImage = (event) => {
-        console.log('vdhggggg');
         if (event) {
-            console.log('event', event)
             setFlagField(true)
             let reader = new FileReader();
 
             reader.onloadend = () => {
-                // console.log('reader.result',reader.result[0])
+                //   'reader.result',reader.result[0])
                 const objectImage = { 'image': event, 'to': 'product' }
                 props.setImage(objectImage)
             }
             reader.readAsDataURL(event)
-            console.log('imagep', props.imgProduct)
         }
     }
     const updateCellPrice = (_value, fieldName) => {
@@ -365,7 +361,6 @@ function Products(props) {
     }, [AllProduct])
 
     const filtersearchProducts = useSelector(state => state.productReducer.filteredProducts);
-    console.log("filtersearchProducts", filtersearchProducts)
 
     //   const [filteredinvoices, setfilteredinvoices] = useState()
     const searchProducts = (searchproduct) => {
@@ -373,7 +368,6 @@ function Products(props) {
         var products = props.allproduct
         products.forEach(prod => {
             if (prod.name !== undefined && prod.name.toLowerCase().indexOf(searchproduct) > -1) {
-                console.log("filteredinvoices", prod.name);
                 dispatch(actions.setFilteredProducts1(prod))
             }
         });
@@ -381,7 +375,6 @@ function Products(props) {
 
     const search = (result) => {
         if (result !== "") {
-            console.log(result);
             searchProducts(result)
         }
         else {
@@ -392,7 +385,6 @@ function Products(props) {
     const myRef = useRef(null)
     const scrollToTop = () => {
         myRef.current.scrollIntoView({ behavior: "smooth" })
-        console.log("myRef", myRef)
     };
 
     return (
@@ -463,7 +455,7 @@ function Products(props) {
                                             </div>
                                         </td>
                                     }
-                                    {console.log("producttt", props.allproduct)}
+                                    {  "producttt", props.allproduct)}
                                     {filtersearchProducts && filtersearchProducts.length > 0 ?
                                         <tbody >
                                             {(searchby === "") &&

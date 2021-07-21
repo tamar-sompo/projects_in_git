@@ -7,19 +7,15 @@ import './buisnessList.css'
 
 export default function ModeldeleteBuisness(props) {
 
-    console.log("functionshowModalDelete")
-
     const dispatch = useDispatch();
     const setShowModalDelete = (status) => dispatch(actions.setShowModalDelete(status))
     const modalBody = useSelector(state => state.messageReducer.modalBody);
     const showModalDelete = useSelector(state => state.messageReducer.showModalDelete);
     const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness);
-    console.log("showModalDelete", showModalDelete)
 
     const handleClose = () => setShowModalDelete(false);
     const handleDelete = () => {
         dispatch(actions.setRemoveBuisnessById(currentBuisness._id))
-        console.log("currentBuisness._id", currentBuisness._id)
         setShowModalDelete(false)
     }
 

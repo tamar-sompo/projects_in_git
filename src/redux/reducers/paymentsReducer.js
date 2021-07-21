@@ -2,17 +2,16 @@ import produce from 'immer'
 import createReducer from "./reducerUtils";
 
 const initialState = {
-  buisnessPaypalDetails:{},
-  linkPayToContact:"",
-  paypalSubscription:false,
-  paypalInvoiceProductsTable:[],
-  totalProductsTable:"",
-  isPaypalForm:false
- }
+    buisnessPaypalDetails: {},
+    linkPayToContact: "",
+    paypalSubscription: false,
+    paypalInvoiceProductsTable: [],
+    totalProductsTable: "",
+    isPaypalForm: false
+}
 
 const payments = {
     updatePaypalAccountField(state, action) {
-        console.log("upup")
         state.buisnessPaypalDetails[action.payload.key] = action.payload.value
     },
     setSaveLinkPayToContact(state, action) {

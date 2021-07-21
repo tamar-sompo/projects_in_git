@@ -55,7 +55,6 @@ export default function Fiances() {
 
     let TokenToString = document.cookie && document.cookie.includes("devJwt") ? document.cookie.split(";")
         .filter(s => s.includes('devJwt'))[0].split("=").pop() : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoY2h5U0VBZ1hFTmdvTnJTZ1ZMMWE4RTBrY3UxIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIxMzI3MDg3fQ.MzgoqDOF_jMhJxa8BY5z7zFhMlka4fPzGYEL8opO_U4";
-    console.log("TTT", TokenToString)
     dispatch(actions.setTokenFromCookies(TokenToString))
 
 
@@ -65,12 +64,10 @@ export default function Fiances() {
 
 
     const openDiv = () => {
-        console.log("openEmailForm")
         $(".sendEmailFromList").css("display", "block")
     }
 
     const closeDiv = () => {
-        console.log("close email form")
         $(".sendEmailFromList").css("block", "none")
     }
 
@@ -89,9 +86,9 @@ export default function Fiances() {
 
     return (
         <>
-            <MessageProduct></MessageProduct>
-            <ModalNameInvoice></ModalNameInvoice>
-            <MessageSave></MessageSave>
+            <MessageProduct />
+            <ModalNameInvoice />
+            <MessageSave />
             <Router>
 
                 <div className="container-fluid">

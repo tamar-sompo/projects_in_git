@@ -98,7 +98,6 @@ function BuisnessList(props) {
   const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
   const userName = useSelector(state => state.publicReducer.userName);
   const userFiled = useSelector(state => state.buisnessReducer.newBuisness);
-  console.log("userFileduserFiled", userFiled)
   const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
   const updateWebsite = (fieldToUpdate) => dispatch(actions.setbuisnessWebsite(fieldToUpdate))
   const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
@@ -247,7 +246,6 @@ function BuisnessList(props) {
   // }
 
   const onChangeCountry = (data) => {
-    console.log("onChangeCounrty")
 
     setCities(data)
   }
@@ -288,7 +286,6 @@ function BuisnessList(props) {
     }
     const value = e.target.value;
     // if (value !== "false") {
-    console.log("value", value)
     updateBuisnessField({ key: fieldName, value: value })
     // }
   }
@@ -309,10 +306,8 @@ function BuisnessList(props) {
     dispatch(actions.setflagSave('true1'))
     if (event) {
       let reader = new FileReader();
-      console.log("reader", reader.result)
       dispatch(actions.setBuisness({ key: 'imgLogo', value: reader.result }))
       reader.onloadend = () => {
-        console.log("event", event)
         const objectImage = { 'image': event, 'to': 'buisness' }
         setImageLogo(objectImage)
       }

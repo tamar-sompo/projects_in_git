@@ -45,122 +45,123 @@ export function Content(props) {
           setAllProducts(result)
         },
         (error) => {
-          console.log(error)
-        }
+          error)
+  }
       )
-  }
+}
 
 
-  const convertdate = (date1) => {
-    console.log("date", date1)
+const convertdate = (date1) => {
+  "date", date1)
 
-    let date = new Date(date1)
-    console.log("date11111", date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1))
-    if (date.getDate() < 10 && date.getMonth() > 9)
-      return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + '0' + (date.getDate())
-    if (date.getDate() < 10 && date.getMonth() < 10)
-      return date.getFullYear() + "-" + '0' + (date.getMonth() + 1) + "-" + '0' + (date.getDate())
-    if (date.getDate() > 9 && date.getMonth() < 10)
-      return date.getFullYear() + "-" + '0' + (date.getMonth() + 1) + "-" + (date.getDate())
-    else
-      return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-  }
-
-  const onFieldChanged = (fieldName) => (e) => {
-    const value = e.target.value;
-    if (fieldName = "dueDate")
-      updateinvoiceField({ [fieldName]: convertdate(value) })
-    else
-      updateinvoiceField({ [fieldName]: value })
-  }
-
-  // const changeInvoice = () => {
-  //   setClickInvoice(!clickInvoice)
-  //   setClickProducts(false)
-  //   setClickComments(false)
-  // }
-  // const changeProducts = () => {
-  //   setClickProducts(!clickProducts)
-  //   setDiscount(false)
-  //   setClickInvoice(false)
-  //   setClickComments(false)
-  // }
-  // const changeComments = () => {
-  //   setClickComments(!clickComments)
-  //   setClickInvoice(false)
-  //   setClickProducts(false)
-  // }
-  useEffect(() => {
-    getAllProducts()
-
-    const selectedItem = productsList.find(item => item.name === inputValue)
-    if (selectedItem != undefined) {
-      clearProductInp()
-      setProductName(selectedItem.name)
-      setProductPrice(selectedItem.price)
-    }
-  }, [inputValue]);
-
-  const clearProductInp = () => {
-    setInputValue('')
-    setProductName('')
-    setProductPrice('')
-  }
-
-  const addClassToIl = (e) => {
-    if($(`#${e}`).hasClass('liEnter'))
-        $(`#${e}`).removeClass('liEnter');
+  let date = new Date(date1)
+  "date11111", date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1))
+  if (date.getDate() < 10 && date.getMonth() > 9)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + '0' + (date.getDate())
+  if (date.getDate() < 10 && date.getMonth() < 10)
+    return date.getFullYear() + "-" + '0' + (date.getMonth() + 1) + "-" + '0' + (date.getDate())
+  if (date.getDate() > 9 && date.getMonth() < 10)
+    return date.getFullYear() + "-" + '0' + (date.getMonth() + 1) + "-" + (date.getDate())
   else
-      $(`#${e}`).addClass('liEnter');
-      if (idBefor === '')
-         setIdBefor(e)
-      else{
-        if(idBefor !== e)
-       { $(`#${idBefor}`).removeClass('liEnter');
-        setIdBefor(e)}
-      }
-  
-      // console.log("ffffffff",e.target.class)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+}
+
+const onFieldChanged = (fieldName) => (e) => {
+  const value = e.target.value;
+  if (fieldName = "dueDate")
+    updateinvoiceField({ [fieldName]: convertdate(value) })
+  else
+    updateinvoiceField({ [fieldName]: value })
+}
+
+// const changeInvoice = () => {
+//   setClickInvoice(!clickInvoice)
+//   setClickProducts(false)
+//   setClickComments(false)
+// }
+// const changeProducts = () => {
+//   setClickProducts(!clickProducts)
+//   setDiscount(false)
+//   setClickInvoice(false)
+//   setClickComments(false)
+// }
+// const changeComments = () => {
+//   setClickComments(!clickComments)
+//   setClickInvoice(false)
+//   setClickProducts(false)
+// }
+useEffect(() => {
+  getAllProducts()
+
+  const selectedItem = productsList.find(item => item.name === inputValue)
+  if (selectedItem != undefined) {
+    clearProductInp()
+    setProductName(selectedItem.name)
+    setProductPrice(selectedItem.price)
+  }
+}, [inputValue]);
+
+const clearProductInp = () => {
+  setInputValue('')
+  setProductName('')
+  setProductPrice('')
+}
+
+const addClassToIl = (e) => {
+  if ($(`#${e}`).hasClass('liEnter'))
+    $(`#${e}`).removeClass('liEnter');
+  else
+    $(`#${e}`).addClass('liEnter');
+  if (idBefor === '')
+    setIdBefor(e)
+  else {
+    if (idBefor !== e) {
+      $(`#${idBefor}`).removeClass('liEnter');
+      setIdBefor(e)
     }
-  return (
-    <>
+  }
+
+  //   "ffffffff",e.target.class)
+}
+return (
+  <>
 
 
 
-<ul class="list-group list-group-flush">
-        <ul class="list-group d-flex flex-column accordion" id="accordionExample">
-{/* <div class="accordion" id="accordionExample"> */}
+    <ul class="list-group list-group-flush">
+      <ul class="list-group d-flex flex-column accordion" id="accordionExample">
+        {/* <div class="accordion" id="accordionExample"> */}
 
 
- 
 
-{/* <div className='bgcBtnConfig m-0 mt-2 p-0 mb-2' data-toggle="collapse" data-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture collapseColor"> */}
-      <li
-      onClick={() => addClassToIl('1')}
-      className="list-group-item d-flex align-items-center yy  justify-content-start listConfig"  id="1"
-      data-toggle="collapse" data-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture collapseColor">
+
+        {/* <div className='bgcBtnConfig m-0 mt-2 p-0 mb-2' data-toggle="collapse" data-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture collapseColor"> */}
+        <li
+          onClick={() => addClassToIl('1')}
+          className="list-group-item d-flex align-items-center yy  justify-content-start listConfig" id="1"
+          data-toggle="collapse" data-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture collapseColor">
           <FontAwesomeIcon
             size='lg'
             icon={['fas', 'receipt']}
-            style={{width:'1.25em'}}
+            style={{ width: '1.25em' }}
           />
-        <h5 className="l fontConfig">Invoice</h5>
-      </li>
-      
-      <div  className="d-flex justify-content-around">
-<div class="collapse" id="collapsePicture" data-parent="#accordionExample">
-<div>
-        <div className="justify-content-center pl-4 ml-5 mr-5 mb-5">
+          <h5 className="l fontConfig">Invoice</h5>
+        </li>
+
+        <div className="d-flex justify-content-around">
+          <div class="collapse" id="collapsePicture" data-parent="#accordionExample">
+            <div>
+              <div className="justify-content-center pl-4 ml-5 mr-5 mb-5">
 
 
-        <Row>
+                <Row>
                   <Col md={6} className='static-temp1 text-left'>Due Date:{() => convertdate(detailsInvoice.dueDate)}
                   </Col>
                   <Col md={6} className='text-right p-0'>
                     {/* <Link to="Invoice/Content" 
                       style={{ color: "black", border: "none" }}
                     >*/}
-                    {console.log("detailsInvoice.dueDate", detailsInvoice && detailsInvoice.dueDate && detailsInvoice.dueDate)}
+                    {"detailsInvoice.dueDate", detailsInvoice && detailsInvoice.dueDate && detailsInvoice.dueDate)}
                     <input
                       // disabled={displayInvoice === "true" ? "disable" : ""}
                       className={focus === 'dueDate' ? 'focus-temp1' : 'editable-temp1'}
@@ -183,143 +184,143 @@ export function Content(props) {
 
 
 
-          <input
-            className='inpConfig row mt-4'
-            placeholder='Invoice Name'
-            value={invoiceName}
-            onChange={(e) => setInvoiceName(e.target.value)}
-            onClick={(e) => setFocus('invoiceName')}>
-          </input>
+                <input
+                  className='inpConfig row mt-4'
+                  placeholder='Invoice Name'
+                  value={invoiceName}
+                  onChange={(e) => setInvoiceName(e.target.value)}
+                  onClick={(e) => setFocus('invoiceName')}>
+                </input>
 
-          <input
-            className='inpConfig row mt-4'
-            placeholder='due date'
-            value={dueDate}
-            onClick={(e) => setDueDate(e.target.value)}
-            onClick={(e) => setFocus('dueDate')}
-            />
-        </div>
-      </div>
-      </div>
-      </div>
-
-
-      <li className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="2"
-      onClick={() => addClassToIl('2')}
-      data-toggle="collapse" data-target="#collapseColor" aria-expanded="false" aria-controls="collapseColor">
-           <FontAwesomeIcon
-            size='lg'
-            icon={['fas', 'box-open']}
-            style={{width:'1.25em'}}
-          />
-        
-        <h5 className="l">Products</h5>
-      </li>
-{/* </div>  */}
-<div className="d-flex justify-content-around">
-<div class="collapse" id="collapseColor" data-parent="#accordionExample" style={{width:'100%'}}>
-<div>
-        <div className=" pl-3 ml-5 mr-5">
-          <div
-            className='mt-4'
-            style={{ width: '100%' }}
-          >
-            <SelectItem
-              placeholder="Look for a product"
-              itemsList={productsList}
-              setValue={setInputValue}
-              value={inputValue}
-            />
-          </div>
-        </div>
-        <div className=" pl-4 ml-5 mr-5">
-          <input
-            className='inpConfig row mt-4'
-            placeholder="product name"
-            value={product.name}
-            onChange={(e) => setProductName(e.target.value)}
-            onClick={(e) => setFocus('productName')}
-          />
-          <input
-            className='inpConfig row mt-4'
-            placeholder="Price per unit"
-            value={product.price}
-            onChange={(e) => setProductPrice(e.target.value)}
-            onClick={(e) => setFocus('productPrice')}
-          />
-          <div className='row mt-4'>
-            <div className='btnConfig mr-3' >
-              Discount
-    </div>
-            {
-              <div className='xxx'>
-                <Switch
-                  onChange={() => setDiscount(!discout)}
-                  checked={discout}
-                  // offColor='white'
-                  // onColor='white'
-                  // uncheckedIcon='false'
-                  // checkedIcon='false'
-                  height='30'
-                  width='70'
-                  id='aa'
+                <input
+                  className='inpConfig row mt-4'
+                  placeholder='due date'
+                  value={dueDate}
+                  onClick={(e) => setDueDate(e.target.value)}
+                  onClick={(e) => setFocus('dueDate')}
                 />
               </div>
-}
+            </div>
           </div>
-          {discout &&
-           
-            <input type="number"></input>
-          }
         </div>
-        <div className='pl-4 ml-3 mb-5'>
-          <button
-            className='d-inline btnSave mt-4 py-2 mx-2'
-            onClick={() => clearProductInp()}
-          >Add a Product
- </button>
-          <button
-            className='d-inline btnSave mt-4 py-2 mx-2'
-            onClick={() => setAddProduct({
-              name: product.name,
-              price: product.price
-            })}
-          >
-            Save product
- </button>
-        </div>
-      </div>
-</div>
-</div>
 
 
-<li className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="3" 
-onClick={() => addClassToIl('3')}
-      data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseColor">
-           <FontAwesomeIcon
+        <li className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="2"
+          onClick={() => addClassToIl('2')}
+          data-toggle="collapse" data-target="#collapseColor" aria-expanded="false" aria-controls="collapseColor">
+          <FontAwesomeIcon
+            size='lg'
+            icon={['fas', 'box-open']}
+            style={{ width: '1.25em' }}
+          />
+
+          <h5 className="l">Products</h5>
+        </li>
+        {/* </div>  */}
+        <div className="d-flex justify-content-around">
+          <div class="collapse" id="collapseColor" data-parent="#accordionExample" style={{ width: '100%' }}>
+            <div>
+              <div className=" pl-3 ml-5 mr-5">
+                <div
+                  className='mt-4'
+                  style={{ width: '100%' }}
+                >
+                  <SelectItem
+                    placeholder="Look for a product"
+                    itemsList={productsList}
+                    setValue={setInputValue}
+                    value={inputValue}
+                  />
+                </div>
+              </div>
+              <div className=" pl-4 ml-5 mr-5">
+                <input
+                  className='inpConfig row mt-4'
+                  placeholder="product name"
+                  value={product.name}
+                  onChange={(e) => setProductName(e.target.value)}
+                  onClick={(e) => setFocus('productName')}
+                />
+                <input
+                  className='inpConfig row mt-4'
+                  placeholder="Price per unit"
+                  value={product.price}
+                  onChange={(e) => setProductPrice(e.target.value)}
+                  onClick={(e) => setFocus('productPrice')}
+                />
+                <div className='row mt-4'>
+                  <div className='btnConfig mr-3' >
+                    Discount
+                  </div>
+                  {
+                    <div className='xxx'>
+                      <Switch
+                        onChange={() => setDiscount(!discout)}
+                        checked={discout}
+                        // offColor='white'
+                        // onColor='white'
+                        // uncheckedIcon='false'
+                        // checkedIcon='false'
+                        height='30'
+                        width='70'
+                        id='aa'
+                      />
+                    </div>
+                  }
+                </div>
+                {discout &&
+
+                  <input type="number"></input>
+                }
+              </div>
+              <div className='pl-4 ml-3 mb-5'>
+                <button
+                  className='d-inline btnSave mt-4 py-2 mx-2'
+                  onClick={() => clearProductInp()}
+                >Add a Product
+                </button>
+                <button
+                  className='d-inline btnSave mt-4 py-2 mx-2'
+                  onClick={() => setAddProduct({
+                    name: product.name,
+                    price: product.price
+                  })}
+                >
+                  Save product
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <li className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="3"
+          onClick={() => addClassToIl('3')}
+          data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseColor">
+          <FontAwesomeIcon
             size='lg'
             icon={['fas', 'comments']}
-            style={{width:'1.25em'}}
+            style={{ width: '1.25em' }}
           />
-        
-        <h5 className="l">Comments</h5>
-      </li>
-<div className="d-flex justify-content-around">
-<div class="collapse" id="collapseComments" data-parent="#accordionExample" style={{width:'100%'}}>
-<div className="justify-content-center pl-4 ml-5 mr-5 mb-5">
-          <input
-            className='inpConfig row mt-4'
-            placeholder='Your comment'
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            onClick={(e) => setFocus('comment')}>
-          </input>
-        </div>
-</div>
-</div>
-</ul>
-</ul>
 
-    
-    </>);
+          <h5 className="l">Comments</h5>
+        </li>
+        <div className="d-flex justify-content-around">
+          <div class="collapse" id="collapseComments" data-parent="#accordionExample" style={{ width: '100%' }}>
+            <div className="justify-content-center pl-4 ml-5 mr-5 mb-5">
+              <input
+                className='inpConfig row mt-4'
+                placeholder='Your comment'
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                onClick={(e) => setFocus('comment')}>
+              </input>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </ul>
+
+
+  </>);
 }

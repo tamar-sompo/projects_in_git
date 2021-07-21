@@ -30,7 +30,6 @@ export default function InvoiceAndSteps(props) {
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
   const userName = useSelector(state => state.publicReducer.userName);
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
-  console.log("pr", detailsInvoice)
   // const viewConversion = useSelector(state => state.invoiceReducer.viewConversion)
   const setViewConversion = () => dispatch(actions.setViewConversion())
   const prevPath = useSelector(state => state.displayComponents.prevPath)

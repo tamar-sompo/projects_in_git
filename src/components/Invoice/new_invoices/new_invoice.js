@@ -129,11 +129,8 @@ function New_Invoice(props) {
         summ += x.sum_product
       )
       setsaveSum2(summ)
-      console.log("111s")
       dispatch(actions.setViewConversion('false'))
-      console.log("detailsInvoice111", detailsInvoice, detailscontact)
       setIslevel(1);
-      console.log("props.invoice1", props.invoice1)
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
@@ -147,7 +144,6 @@ function New_Invoice(props) {
         // dispatch(actions.setPushNewProduct({}))
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
 
-          console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
             name: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.name : '',
@@ -164,10 +160,8 @@ function New_Invoice(props) {
           })
         }
         else {
-          console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
-          console.log("ojectContact", ojectContact)
           if (contactFromInvoice) {
             setcontactedit({
               name: contactFromInvoice.name,
@@ -179,7 +173,6 @@ function New_Invoice(props) {
 
         }
         if (history.location.pathname !== `/${userName}/allDocuments` && history.location.pathname !== `/${userName}/Invoice/Conversion` && history.location.pathname !== `/${userName}/Invoice/Content` && history.location.pathname !== `/${userName}/Invoice/Design` && history.location.pathname !== `/${userName}/Invoice/Production`) {
-          console.log("dp", invoice.products)
           if (window.location.href.indexOf("view") !== -1) {
             // if (allproduct.length > 0) {
             //   detailsInvoice.products.map(p =>
@@ -195,7 +188,6 @@ function New_Invoice(props) {
             //   dispatch(actions.setP(allproduct.find(x => x._id == p.id).name)))
           }
           // }
-          console.log("vvvv", history.location.pathname)
         }
       }
     }
@@ -208,11 +200,8 @@ function New_Invoice(props) {
     dispatch(actions.setFlagTmpSave(true))
     dispatch(actions.setFlagOfterValidation(false))
     if (flagPush === true) {
-      console.log("111s")
       dispatch(actions.setViewConversion('false'))
-      console.log("detailsInvoice111", detailsInvoice, detailscontact)
       setIslevel(1);
-      console.log("props.invoice1", props.invoice1)
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
 
@@ -248,7 +237,6 @@ function New_Invoice(props) {
 
         if (detailsInvoice.contactOneTime && detailsInvoice.contactOneTime.flag === true) {
 
-          console.log("heree111", detailsInvoice.contactOneTime.name, detailsInvoice.contactOneTime.email, detailsInvoice.contactOneTime.phone)
           setsaveContactOne({
             flag: true,
             name: detailsInvoice.contactOneTime ? detailsInvoice.contactOneTime.name : '',
@@ -266,11 +254,9 @@ function New_Invoice(props) {
         }
         else {
 
-          console.log("hiiiiiiiiiiiiiiiiii", detailsInvoice)
           let ojectContact = allcontact1.find(x => x.email === detailsInvoice.contact)
           setContactFromInvoice(ojectContact)
 
-          console.log("ojectContact", ojectContact)
           if (contactFromInvoice) {
             setcontactedit({
               name: contactFromInvoice.name,
@@ -284,7 +270,6 @@ function New_Invoice(props) {
 
         // }
         if (history.location.pathname !== `/${userName}/allDocuments` && history.location.pathname !== `/${userName}/Invoice/Conversion` && history.location.pathname !== `/${userName}/Invoice/Content` && history.location.pathname !== `/${userName}/Invoice/Design` && history.location.pathname !== `/${userName}/Invoice/Production`) {
-          console.log("dp", invoice.products)
           if (window.location.href.indexOf("view") !== -1) {
             setValidName(false)
             if (allproduct.length > 0) {
@@ -300,7 +285,6 @@ function New_Invoice(props) {
             setValidName(false)
           }
           // }
-          console.log("vvvv", history.location.pathname)
         }
       }
     }
@@ -308,14 +292,11 @@ function New_Invoice(props) {
 
 
   useEffect(() => {
-    console.log("buttonClick", buttonClick)
     if (buttonClick === "saveContact1") {
-      console.log("buttonClick", buttonClick)
       saveContact1()
     }
 
     if (buttonClick === "saveContact") {
-      console.log("buttonClick", buttonClick)
       saveContact()
     }
 
@@ -334,8 +315,6 @@ function New_Invoice(props) {
         dispatch(actions.setModalBody(""))
       }
     }
-    console.log("saveContactOne", saveContactOne)
-    console.log("contactedit", contactedit)
 
     updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
   }, [saveContactOne])
@@ -355,7 +334,6 @@ function New_Invoice(props) {
   }, [contactFromInvoice])
   useEffect(() => {
 
-    console.log("detailscontact", detailscontact)
     if (flagdetailsContact == false)
       setflagdetailsContact(true)
     else {
@@ -456,7 +434,6 @@ function New_Invoice(props) {
 
     if (!detailscontact.contact) {
 
-      console.log(contactFromInvoice, contactedit)
       setsaveContactOne({
         flag: true,
         name: contactedit.name ? contactedit.name : contactFromInvoice ? contactFromInvoice.name : '',
@@ -484,23 +461,18 @@ function New_Invoice(props) {
         dispatch(actions.createContact(contactedit))
       }
       else {
-        console.log("contacteditttt", contactedit)
-
         dispatch(actions.setContactId(contactFromInvoice._id ? contactFromInvoice._id : ojectContact._id))
         dispatch(actions.updateContact(contactedit))
       }
     }
     else {
       if (detailscontact && detailscontact.contact && detailscontact.contact._id) {
-        console.log("contacteditttt", contactedit)
         dispatch(actions.setContactId(detailscontact.contact._id))
 
         dispatch(actions.updateContact(contactedit))
       }
       else {
-        console.log("contacteditttt", contactedit)
         dispatch(actions.createContact(contactedit))
-        console.log("newContact.emai", newContact && newContact.email)
       }
     }
 
@@ -562,7 +534,6 @@ function New_Invoice(props) {
 
   const resetfieldcontact = (fieldName, e) => {
 
-    console.log("re")
     if (detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
       setcontactedit({ ...contactedit, [fieldName]: e.target.value })
       setContactFromInvoice({ ...contactFromInvoice, [fieldName]: undefined })
@@ -613,13 +584,11 @@ function New_Invoice(props) {
     updateinvoiceField({ key: "productions", value: prodactions });
   }
   // const createInvoicenumber1 = () => {
-  //   console.log("allInvoices.length+1", allInvoices.length + 1)
+  //     "allInvoices.length+1", allInvoices.length + 1)
   //   return allInvoices.length + 1
   // }
   const convertdate = (date1) => {
-    console.log("date", date1)
     let date = new Date(date1)
-    console.log("date11111", date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1))
     if (date.getDate() < 10 && date.getMonth() > 9)
       return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + '0' + (date.getDate())
     if (date.getDate() < 10 && date.getMonth() < 10)
@@ -655,25 +624,21 @@ function New_Invoice(props) {
       ////////////////////////////////////////////////////////להחזיר בינתיים הורדתי אתזה
       // allproduct.length > 0 && allproduct.map(
       //   function (x) {
-      //     console.log("p", p)
+      //       "p", p)
       //     let oo = p.find(y => y === x.name);
       //     if (oo == undefined) {
-      //       console.log("hi")
+      //         "hi")
       //       dispatch(actions.setProductSelect(x))
-      //       console.log("productSelect", productSelect)
+      //         "productSelect", productSelect)
       //     }
       //   })
-      console.log("productSelect5", productSelect)
       if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
-
         if (detailsInvoice.products[detailsInvoice.products.length - 1].id != "null") {
-          console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-            ;
+          ;
           const newProdactions = [...detailsInvoice.products];
-          // console.log("newProdactions",newProdactions)
+          //   "newProdactions",newProdactions)
           // newProdactions.push({ id: 'null', amount: 0 });
           dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
-          console.log("dp", invoice.products)
         }
 
 
@@ -684,10 +649,9 @@ function New_Invoice(props) {
       else {
 
         if (invoice.products[invoice.products.length - 1].id !== "null") {
-          console.log("ghg")
           // dispatch(actions.setProducts('null'));
           dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
-          // console.log("invoiceee", invoice)
+          //   "invoiceee", invoice)
           // focus_steps('Content', 3)
         }
 
@@ -700,12 +664,12 @@ function New_Invoice(props) {
     //   }
     //   else {
     //     dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-    //     console.log("detailsInvoice", detailsInvoice._id)
+    //       "detailsInvoice", detailsInvoice._id)
     //     updateinvoiceField({ key: "products", value: detailsInvoice.products });
     //     dispatch(actions.setUpdateInvoice(invoice))
     //   }
 
-    //   console.log("saveeee", invoice)
+    //     "saveeee", invoice)
     // }
   }
 
@@ -725,21 +689,18 @@ function New_Invoice(props) {
     // productss.splice(index, 1)
     if (detailsInvoice.products && detailsInvoice.products.length > 0) {
       let productSelect3id = detailsInvoice.products[index].id;
-      console.log("productSelect3id", productSelect3id)
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
-      console.log("productSelect3id", productSelect3)
       ///////////////////////////////////////////////////////////////////להחזירררררר
       // if (p.length !== detailsInvoice.products.length && productSelect3id != "null") {
       //   let prr = [...p]
       //   prr.map((pr, ind) => {
       //     if (pr === productSelect3.name) {
-      //       console.log("ind", ind, pr)
+      //         "ind", ind, pr)
       //       prr.splice(ind, 1)
       //       dispatch(actions.setPDelete(prr));
       //     }
       //   })
       // }
-      console.log("productss", detailsInvoice.products)
       let productss = [...detailsInvoice.products]
       productss.splice(index, 1);
       dispatch(actions.setProductionAfterDelete(productss))
@@ -747,9 +708,7 @@ function New_Invoice(props) {
     else {
 
       let productSelect3id = invoice.products[index].id;
-      console.log("productSelect3", productSelect3id)
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
-      console.log("productSelect3", productSelect3)
 
       //////////////////////////////////////////////////////////////////////////////להחזיר אם לא
       // if (p.length !== invoice.products.length && productSelect3id != "null") {
@@ -757,18 +716,15 @@ function New_Invoice(props) {
       //   let prr = [...p]
       //   prr.map((pr, ind) => {
       //     if (pr === productSelect3.name) {
-      //       console.log("ind", ind, pr)
+      //         "ind", ind, pr)
       //       prr.splice(ind, 1)
       //       dispatch(actions.setPDelete(prr));
       //     }
       //   })
       // }
       //  dispatch(actions.setProductSelect(productSelect3))
-      console.log("productSelect2", productSelect)
       let productss = [...invoice.products]
-      console.log("productss1111", productss)
       productss.splice(index, 1)
-      console.log("productss", productss)
       dispatch(actions.setProductAfterDelete(productss))
 
     }
@@ -778,7 +734,6 @@ function New_Invoice(props) {
   }
   const onButtonClick = (str1) => {
     setStr(str1)
-    console.log("flag1", str)
     // history.push(`/${userName}/Invoice/Design`)
     inputFile.current.click();
     setIslevel(2);
@@ -786,7 +741,7 @@ function New_Invoice(props) {
 
   // const onButtonClick1 = (str1) => {
   //   setStr(str1)
-  //   console.log("flag1", str)
+  //     "flag1", str)
   //   // history.push(`/${userName}/Invoice/Design`)
   //   inputFile1.current.click();
   //   setIslevel(2);
@@ -805,7 +760,6 @@ function New_Invoice(props) {
           imageToStor = { 'image': event, 'to': 'logo' }
         }
         setImage(imageToStor)
-        console.log("imageee", reader.result)
       }
       reader.readAsDataURL(event)
     }
@@ -815,7 +769,6 @@ function New_Invoice(props) {
   // const setRefLevel3 = () => refLevel3.current.scrollIntoView()
   const func1 = (event) => {
     setIsMouseTooltipVisible(false)
-    console.log("func11111")
     event.stopPropagation();
   }
 
@@ -836,7 +789,7 @@ function New_Invoice(props) {
   //     setBorderBgImage("true")
   //     setIsMouseTooltipVisible(true)
   //   }
-  //   console.log(input_select, option_length, option_id);
+  //     input_select, option_length, option_id);
   // }
 
   // document.querySelector('input').addEventListener('input', event => {
@@ -891,7 +844,6 @@ function New_Invoice(props) {
         // alert("pp")
         dispatch(actions.setSubmitSaveInvoice(true))
         //  form.
-        console.log("yourForm.checkValidity()", yourForm.checkValidity())
         //  .checkValidity=false
       }
     }
@@ -1256,7 +1208,7 @@ function New_Invoice(props) {
               </div>
               {/* </div> */}
               {/* <div id='table-temp1' className=''>
-              {console.log("window.location.href.indexOf", window.location.href.indexOf("view"))}
+              {  "window.location.href.indexOf", window.location.href.indexOf("view"))}
               {(allproduct.length > 0 && window.location.href.indexOf("view") != -1 &&
                 detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) ||
                 (window.location.href.indexOf("view") == -1 &&

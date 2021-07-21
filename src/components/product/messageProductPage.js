@@ -6,13 +6,10 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageProductP(props) {
-    // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
     const setPage = (status) => dispatch(actions.setPage(status))
     const page = useSelector(state => state.productReducer.page);
-
-    console.log("page", page)
     const handleClose = () => setPage(false);
     //no
     const openEdit = () => {

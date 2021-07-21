@@ -195,8 +195,6 @@ const invoices = {
         state.calcSumProduct = action.payload
     },
     setInvoiceSave(state, action) {
-
-        console.log("invoice reducer t unvoice save", action.payload)
         state.invoiceSave = action.payload
     },
 
@@ -214,8 +212,6 @@ const invoices = {
         state.contactId = action.payload
     },
     r(state, action) {
-        console.log("vhuaaaa")
-
         state.invoiceDetailsView[action.payload] = undefined
     },
     setResetContactedit(state, action) {
@@ -298,8 +294,6 @@ const invoices = {
         state.invoice = action.payload;
     },
     setProductId2(state, action) {
-
-        console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoiceDetailsView.products[action.payload.index1].id = action.payload.id
     },
     setProduction(state, action) {
@@ -313,7 +307,6 @@ const invoices = {
         state.invoiceDetailsView.contact = undefined
     },
     setUpdateInvoiceFields(state, action) {
-        console.log("setUpdateInvoiceFields", action.payload.key, action.payload.value)
         // if(action.payload.key=='products')
         // state.invoice.products=
         //  if(action.payload.key=="products")
@@ -332,15 +325,11 @@ const invoices = {
         state.invoice.products[index] = { id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product }
     },
     setProductId(state, action) {
-        console.log("state.invoiceDetailsView.products", state.invoiceDetailsView.products)
         state.invoice.products[action.payload.index1].id = action.payload.id
     },
     setProductFirst(state, action) {
         if (state.invoiceDetailsView.products && state.invoiceDetailsView.products.length > 0) {
             state.invoiceDetailsView.products[action.payload.index] = { id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product }
-
-
-
         }
         else {
             state.invoice.products[action.payload.index] = { id: action.payload.id, amount: action.payload.amount, sum_product: action.payload.sum_product }
@@ -366,9 +355,9 @@ const invoices = {
 
         else
             state.invoice.products[action.payload.index1].amount = action.payload.amount
-        // console.log("setAmountToProduct")
+        //   "setAmountToProduct")
         // let index=state.invoice.products.findIndex(x => x.id == action.payload.id)
-        // console.log("setAmountToProduct", index)
+        //   "setAmountToProduct", index)
         // state.invoice.products[index] = { id: action.payload.id, amount: action.payload.amount }
         // state.invoice.products.map((p,i)=>
         // p.id==action.payload.id &&  state.invoice.products[i]==action.payload.amount

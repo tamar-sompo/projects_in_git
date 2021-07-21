@@ -58,7 +58,7 @@ export default function Production(props) {
   //         setAllContacts(result)
   //       },
   //       (error) => {
-  //         console.log(error)
+  //           error)
   //       }
   //     )
   // }
@@ -131,24 +131,24 @@ export default function Production(props) {
 
 
                 <input
-                disabled
-                style={{color:"white"}}
+                  disabled
+                  style={{ color: "white" }}
                   size='15'
                   className={focus === 'companyWebsite' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
                   placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
                   value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
                 />
-                 <input
-                 style={{color:"white"}}
-                 disabled
-                      size='15'
-                      className={focus === 'companyAddress' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
-                      placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "business Address" : "business Address"}
-                      value={detailsBusiness && detailsBusiness.address}
-                    />
                 <input
-                style={{color:"white"}}
-                disabled
+                  style={{ color: "white" }}
+                  disabled
+                  size='15'
+                  className={focus === 'companyAddress' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
+                  placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "business Address" : "business Address"}
+                  value={detailsBusiness && detailsBusiness.address}
+                />
+                <input
+                  style={{ color: "white" }}
+                  disabled
                   size='15'
                   className={focus === 'companyPhone' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
                   placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
@@ -163,9 +163,9 @@ export default function Production(props) {
            onChange={(e)=>onFieldChanged('companyWebsite')}
            onClick={(e)=>setFocus('companyWebsite')}
           >
-            {console.log('invoice.companyWebsite',invoice.companyWebsite)}
+            {  'invoice.companyWebsite',invoice.companyWebsite)}
         </input> */}
-                
+
               </div>
               </div>
             </div></div>
@@ -190,12 +190,12 @@ export default function Production(props) {
                     className='mt-4'
                     style={{ width: '100%' }}
                   >
-                    <Select onChange={set_customer} options={contactsList? contactsList.length>0 ?contactsList.map((contact) => {
+                    <Select onChange={set_customer} options={contactsList ? contactsList.length > 0 ? contactsList.map((contact) => {
                       return ({
                         "label": contact.name,
                         "value": contact
                       })
-                    }):"":""} />
+                    }) : "" : ""} />
                     {/* <Select options={contactsList.map((contact)=>{return({
                             "label":contact.name,
                             "value":contact
@@ -280,7 +280,7 @@ export default function Production(props) {
                       phone: contact.phone
                     })}
                   >Save customer
- </button>
+                  </button>
                 </div>
               </div>
             </div>

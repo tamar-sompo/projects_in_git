@@ -92,7 +92,6 @@ export default function Nav() {
     dispatch(actions.getAllProduct(objBuisness._id))
     dispatch(actions.setGetBusiness(objBuisness._id))
     dispatch(actions.setGeCurrenttBuisness(objBuisness))
-    console.log("dispatch2")
   }
 
   const send = () => {
@@ -218,8 +217,6 @@ export default function Nav() {
 
   //אחרי השמירה מאפס את כל המשתנים 
   useEffect(() => {
-
-    console.log("flagPush", flagPush)
     if (flagPush1 === true) {
       if (window.location.href.indexOf("invoice/edit") !== -1
         && flagFromTable === false
@@ -268,12 +265,11 @@ export default function Nav() {
 
         dispatch(actions.setGetInvoiceById(window.location.pathname.split("/").pop()))
       }
-      // console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+      //   "detailsInvoice", detailsInvoice._id, detailsInvoice.products)
       // 
       updateinvoiceField({ key: "products", value: detailsInvoice.products });
       dispatch(actions.setUpdateInvoice())
     }
-    console.log("save", invoice)
   }
 
 

@@ -91,7 +91,7 @@ export default function Design_Menu() {
     // else
     // $("#b_design").addClass('stay_color_design');
 
-    // console.log("ffffffff",e.target.class)
+    //   "ffffffff",e.target.class)
 
 
   })

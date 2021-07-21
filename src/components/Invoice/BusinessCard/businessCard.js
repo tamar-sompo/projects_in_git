@@ -15,11 +15,10 @@ import ModeldeleteBuisness from '../BuisnessList/modalDeleteBuisness.js'
 
 export default function Cards(props) {
   const { buisnessName, buisnessWebsite, buisnessEmail, buisnessId, buisnessImg, imageFlag } = props
-  // console.log("imageFlag", imageFlag)
+  //   "imageFlag", imageFlag)
 
   let history = useHistory();
 
-  console.log("buisnessImg", buisnessImg)
   const dispatch = useDispatch();
   const userName = useSelector(state => state.publicReducer.userName);
   const allBuisnessToUser = useSelector(state => state.buisnessReducer.allBuisness);
@@ -50,7 +49,6 @@ export default function Cards(props) {
     }
     const buisnessChoose = allBuisnessToUser.find(x => x._id === value)
     dispatch(actions.getAllProduct(buisnessChoose._id))
-    console.log("buisnessObj", buisnessChoose)
     dispatch(actions.setGetBusiness(buisnessChoose._id))
     dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
   }
@@ -66,7 +64,6 @@ export default function Cards(props) {
 
         imageToStor = { 'image': event, 'to': 'buisnessImg' }
         dispatch(actions.setImage(imageToStor))
-        console.log("imageee12kkkkkkkkkkkk", imageToStor)
       }
       reader.readAsDataURL(event)
     }

@@ -55,41 +55,41 @@ export default function PdfModal(props) {
 
     useEffect(() => {
         dispatch(actions.setInvoiceShow(invoice))
-        console.log('invoice lea', invoice)
-        handleOpen()
-    }, [])
+        'invoice lea', invoice)
+    handleOpen()
+}, [])
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
+const handleOpen = () => {
+    setOpen(true);
+};
 
-    const handleClose = () => {
-        setOpen(false);
-        setPdfDisplay(false)
-    };
+const handleClose = () => {
+    setOpen(false);
+    setPdfDisplay(false)
+};
 
-    return (
-        <div>
-            <Modal 
+return (
+    <div>
+        <Modal
             // className="d-flex justify-content-center"
-            style={{paddingLeft:"30%"}}
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                <div style={modalStyle} className={classes.paper}>
-                    <div ref={ref}>
-                        <Invoice />
-                    </div>
-                    <Pdf targetRef={ref} filename={filename}>
-                        {({ toPdf }) =>
-                            <button className="d-flex justify-content-center pdfButton btn-lg" type="button" onClick={toPdf}>
-                                download PDF
-                </button>
-                        }</Pdf>
+            style={{ paddingLeft: "30%" }}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+        >
+            <div style={modalStyle} className={classes.paper}>
+                <div ref={ref}>
+                    <Invoice />
                 </div>
-            </Modal>
-        </div>
-    );
+                <Pdf targetRef={ref} filename={filename}>
+                    {({ toPdf }) =>
+                        <button className="d-flex justify-content-center pdfButton btn-lg" type="button" onClick={toPdf}>
+                            download PDF
+                        </button>
+                    }</Pdf>
+            </div>
+        </Modal>
+    </div>
+);
 }

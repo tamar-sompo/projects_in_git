@@ -141,20 +141,17 @@ const store = createStore(
 )
 
 var url = window.location;
-console.log(url);
+
 store.dispatch(actions.setUserName(url.pathname.split('/')[1]))
 if (window.location.hostname === "localhost") {
-    console.log("localhost");
     let userName = "ruthF"
     let jwtFromCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEdGN4dFJueERlWXhNcjNZUWZxWWtQWDhsUmgyIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIzMzE0NzM5fQ.lvFAravaFf6h_A3BQPMjKu1831pwM3ySvqtkAmNrOJw"
-    console.log("jwtFromCookie", jwtFromCookie)
 
     store.dispatch(actions.setTokenFromCookies(jwtFromCookie));
     store.dispatch(actions.setUserName(userName))
     if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
-        console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() !== "") {
 
@@ -166,18 +163,14 @@ else {
     if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
-        console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }
     }
-    console.log("sharat")
     let params = (new URL(document.location)).searchParams;
-    console.log("params", params)
     let jwtGlobal = params.get('jwt');
-    console.log("jwtGlobal", jwtGlobal)
 
     if (jwtGlobal) {
 
@@ -197,7 +190,7 @@ else {
 
         // if (window.location.href.indexOf("view") != -1) {
         //      
-        //     console.log("njnj")
+        //       "njnj")
         //     store.dispatch(actions.setDislayInvoice("true"))
         //     if (window.location.pathname.split("/").pop() != "") {
         //       store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))

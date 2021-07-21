@@ -377,8 +377,8 @@ class DesignPicture extends Component {
                 const imageToStor = { 'image': image, 'to': 'design' }
                 this.props.setImage(imageToStor)
                 // this.props.addImage(image)
-                console.log("imageee", reader.result)
-                console.log("imageee111111", this.props.list)
+                "imageee", reader.result)
+                "imageee111111", this.props.list)
                 // this.props.saveLogoToFiles(event)
             }
             reader.readAsDataURL(event)
@@ -412,7 +412,7 @@ class DesignPicture extends Component {
                         < div className="container imgs-div">
                             <div className="con-img mr-2">
                                 <div className="row">
-                                    {console.log(props.itemData)}
+                                    {props.itemData)}
                                     {props.itemData.map(p =>
                                         <div className=" col-md-5 col-sm-10 mr-2 mb-2"
                                             style={{
@@ -485,7 +485,7 @@ class DesignPicture extends Component {
                             </div>
                         </FormGroup>
                     </FormControl>
-                            {console.log("listtt",this.props.list)} */}
+                            {  "listtt",this.props.list)} */}
                 {/* </div> */}
             </>
         )

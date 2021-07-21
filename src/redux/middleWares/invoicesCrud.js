@@ -15,13 +15,10 @@ function checkPermission(result) {
 
 export const newSystemWave = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SYSTEM_WAVE') {
-    console.log("wave")
     const id = getState().invoiceReducer.invoiceSave.invoice._id
-    console.log("id", id)
     let userName = getState().publicReducer.userName
     var link =
       `https://finance.leader.codes/${userName}/view/${id}`
-    console.log('link', link)
     let urlData = `https://api.dev.leader.codes/createSystemWave`
     let body = {
       subject: "Invoice created",
@@ -56,7 +53,6 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
     let buisnessId = getState().buisnessReducer.buisness
     let currentBuisness = getState().buisnessReducer.currentBuisness
     let invoice = action.payload
-    console.log("invoice data send to the server", invoice)
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/${buisnessId}`
     $.ajax({
       url: urlData,
@@ -67,7 +63,6 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(invoice),
       success: async function (data) {
-        console.log("success add invoice", data)
 
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Adding an invoice successfully"))
@@ -87,9 +82,9 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
         dispatch(actions.setModalBody(""))
         dispatch(actions.setSubmitSaveInvoice(false))
         // if(currentBuisness.clientId){
-        //   console.log("if")
+        //     "if")
         dispatch(actions.setSendLinkPaypal())
-        //   console.log("ifff")
+        //     "ifff")
         // }
         // dispatch(actions.getFcmtoken());
       },
@@ -105,7 +100,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 //   if (action.type === 'SET_SAVE_INVOICE') {
 //     // let buisnessId = getState().buisnessReducer.buisness._id;
 //     let invoice=action.payload
-//     console.log("iiinvoice",invoice)
+//       "iiinvoice",invoice)
 //         let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/6087a5d6fef08c840a4558f6`
 //         $.ajax({
 //             url: urlData,
@@ -116,13 +111,13 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 //             contentType: "application/json; charset=utf-8",
 //           data:JSON.stringify(invoice),
 //             success: function (data) {
-//                 console.log("success add invoice", data)
+//                   "success add invoice", data)
 //                 // dispatch(actions.setPushInvoices2(data))
 //                 dispatch(actions.setGetAllInvoicesToBuisness())
 //             },
 //             error: function (err) {
 //                 //בדיקה אם חוזר 401 זאת אומרת שצריך לזרוק אותו ללוגין
-//                 console.log("error", err)
+//                   "error", err)
 //             }
 //         });
 //     }
@@ -131,19 +126,14 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 
 export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_INVOICE') {
-    console.log("setUpdateInvoice")
     let invoice
     if (action.payload) {
       invoice = action.payload
-      console.log("ap", invoice)
     }
     else {
       invoice = getState().invoiceReducer.invoice;
-      console.log("ap2", invoice)
     }
-    console.log("action.payload", action.payload)
     let invoiceId = getState().invoiceReducer.invoiceId;
-    console.log("invoice", invoiceId)
     let vv = getState().invoiceReducer.viewConversion
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateInvoiceForBuisness/${invoiceId}`
     $.ajax({
@@ -158,13 +148,12 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       success: async function (invoice1) {
-        console.log("updateInvoice", invoice1, vv)
         // dispatch(actions.setSendLinkPaypal("edit"))
         dispatch(actions.setShow(true))
         dispatch(actions.setNameAction("Update an invoice successfully"))
         await dispatch(actions.setInvoiceShow(invoice1.invoice))
         await dispatch(actions.setInvoiceSave(invoice1))
-        // console.log()
+        //   )
 
         await dispatch(actions.setViewConversion("true"))
         await dispatch(actions.setFlagPush1(true))
@@ -199,7 +188,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
 //       contentType: "application/json; charset=utf-8",
 //       dataType: 'json',
 //       success: function (buisness) {
-//         console.log("upDateBuisness", buisness)
+//           "upDateBuisness", buisness)
 //         dispatch(actions.setGetAllBuisness(buisness))
 //       },
 //     });
@@ -225,7 +214,6 @@ export const getInvoiceById = ({ dispatch, getState }) => next => action => {
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       success: function (invoice) {
-        console.log("getInvoice", invoice)
 
         dispatch(actions.setInvoiceShow(invoice))
         dispatch(actions.getAllProduct(invoice.buisness))
@@ -241,14 +229,11 @@ export const getInvoiceById = ({ dispatch, getState }) => next => action => {
 
 export const getAllInvoicesToBuisness = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_ALL_INVOICES_TO_BUISNESS') {
-    console.log("yyeshhhhhhhhhhhhhhhhhhhhhh")
     let buisnessId = getState().buisnessReducer.currentBuisness._id
     // let buisnessId = getState().publicReducer.buisness
-    console.log("buisnessIIIIIIIIIIIIIIIddddddd", buisnessId)
     //זה הביזנס עם הנתוניםםםםםםםםםםםםםם
     // 6081530bdec1f741b4fca0e1
     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllInvoicesForBuisness/${getState().buisnessReducer.buisness}`
-    console.log("urlData", urlData)
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies,
@@ -262,7 +247,6 @@ export const getAllInvoicesToBuisness = ({ dispatch, getState }) => next => acti
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       success: function (allInvoices) {
-        console.log("allInvoices1111", allInvoices)
         dispatch(actions.setPushInvoices(allInvoices))
       },
       error: function (err) {

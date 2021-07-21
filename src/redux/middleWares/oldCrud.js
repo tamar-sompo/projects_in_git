@@ -15,11 +15,11 @@
 // }
 
 // export const getAllProducts = ({ dispatch, getState }) => next => action => {
-//   console.log("p")
+//     "p")
 //   let url = 'https://finance.leader.codes/allProducts/DYc3VUmEHScqaZBw300lv89fna82'
 //   if(action.type === "GET_ALL_PRODUCT")
 //   {
-//     console.log("productsssssssssss")
+//       "productsssssssssss")
 //     return fetch(url, {
 //       method: 'GET',
 //       headers: {
@@ -34,7 +34,7 @@
 //       // })
 //       dispatch(actions.setAllProducts(resJson));
 //   }).catch((err) => {
-//       console.log(err)
+//         err)
 //     })
 //   }
 //   return next(action);
@@ -55,7 +55,7 @@
   //     }).then((res) => res.json()).then((resJson) => {
   //       // dispatch(actions.getAllProduct());
   //   }).catch((err) => {
-  //       console.log(err)
+  //         err)
 
   //     })
   //   }
@@ -64,7 +64,7 @@
 
 
     // export const  editProductbyID=({ dispatch, getState }) => next => action => {
-    //   console.log(action.payload)
+    //     action.payload)
     //   let id_product=action.payload
     //   let url = `https://finance.leader.codes/editProduct/${id_product}`
     //   if(action.type === "EDIT_PRODUCT")
@@ -81,7 +81,7 @@
     //     }).then((res) => res.json()).then((resJson) => {
     //       // dispatch(actions.getAllProduct());
     //   }).catch((err) => {
-    //       console.log(err)
+    //         err)
 
     //     })
     //   }
@@ -102,11 +102,11 @@
 //         }
 //       }).then((res) => res.json()).then((resJson) => {
 //          
-//         console.log("ressss",resJson);
+//           "ressss",resJson);
 //          ;
 //         dispatch({ type: "SET_DETAILS_CONTACT", payload: resJson });
 //       }).catch((err) => {
-//         console.log(err)
+//           err)
 //       })
 
 //   }
@@ -115,11 +115,11 @@
 // export const postnewContact = ({ dispatch, getState }) => next => action => {
 
 //   if (action.type === 'SET_NEW_CONTACT') {
-//     console.log("rrrrrrrrrrr")
+//       "rrrrrrrrrrr")
 //     const newcontact = getState().form.values
 //     const newContact1 = action.payload.values;
 //     const userName = 'chedva'
-//     console.log(newContact1)
+//       newContact1)
 
 //     return fetch("http://api.dev.leader.codes/chedva/saveGoogleContacts"
 //       , {
@@ -132,11 +132,11 @@
 //         body: JSON.stringify(newContact1)
 
 //       }).then((res) => res.json()).then((resJson) => {
-//         console.log(resJson);
+//           resJson);
 //         dispatch(actions.setNewContact(resJson));
 
 //       }).catch((err) => {
-//         console.log(err)
+//           err)
 //       })
 
 //   }
@@ -161,7 +161,7 @@
 //         dataType: 'json',
 //         success: function (allInvoices) {
 //            ;
-//           console.log("all",allInvoices)
+//             "all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
 
@@ -172,9 +172,9 @@
 // }
 
 // export const getFromServer = ({ dispatch, getState }) => next => action => {
-//   console.log("invoices")
+//     "invoices")
 //   if (action.type === 'GET_ALLINVOICES') {
-//     console.log("invoicessss")
+//       "invoicessss")
 //     return new Promise((resolve, reject) => {
 //       // DYc3VUmEHScqaZBw300lv89fna82
 //       // let userId = "simdsMrrcJdpQgta8kgXyQBdDFy2"
@@ -190,7 +190,7 @@
 //         dataType: 'json',
 //         success: function (allInvoices) {
 //            ;
-//           console.log("all",allInvoices)
+//             "all",allInvoices)
 //           dispatch(actions.setAllInvoices(allInvoices))
 //         },
 
@@ -262,7 +262,7 @@
 //         contentType: "application/json; charset=utf-8",
 //         dataType: 'json',
 //         success: function (allAccep) {
-//           console.log("success")
+//             "success")
 //           dispatch(actions.setAllAccep(allAccep))
 //         },
 //       });
@@ -317,7 +317,7 @@
 //       // })
 //       dispatch(actions.setBusiness(resJson))
 //     }).catch((err) => {
-//       console.log(err)
+//         err)
 //     })
 //   }
 //   return next(action);
@@ -330,7 +330,7 @@
 //   // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIzeXhoOTQwNnJ3ZkNYNFBTQnh3NmtoWFNGZ0UyIiwiZW1haWwiOiJjaGVkdmFAbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjEwMDE3MzgyfQ.7UzIXce8QO-Tn6uLWgVOmiyOv0pXWHse8KbZ9INc9mU
 //   let url = "https://api.dev.leader.codes/blabla101/getContacts/?includesConversations=false"
 //   if (action.type === 'GET_ALL_CONTACT_BY_USER') {
-//     console.log("all_contact")
+//       "all_contact")
 
 //     return fetch(url, {
 //       method: 'GET',
@@ -344,10 +344,10 @@
 //       // checkPermission(resJson).then((ifOk) => {
 //       //    dispatch({ type: 'GET_ALL_CONTACT_BY_USER', payload:resJson  })
 //       // })
-//       console.log("all_contact", resJson);
+//         "all_contact", resJson);
 //       dispatch(actions.setAllContacts(resJson))
 //     }).catch((err) => {
-//       console.log(err)
+//         err)
 //     })
 //   }
 //   return next(action);
@@ -357,14 +357,14 @@
 //   let userName = "ruthCohen"
 //   let url = "https://finance.leader.codes/getUserByUserName/" + userName
 //   if (action.type === 'SET_USER') {
-//     console.log("crudddhhh")
+//       "crudddhhh")
 //     // const data= getState().CRMReducer;
 //     // const company=action.payload.values
 //     // let userId = "DYc3VUmEHScqaZBw300lv89fna82"
 //     return fetch(url).then((res) => res.json()).then((resJson) => {
 //       dispatch({ type: "SET_USER_EDIT", payload: resJson })
 //     }).catch((err) => {
-//       console.log(err)
+//         err)
 //     })
 //   }
 //   return next(action);
@@ -375,11 +375,11 @@
 //   let userName = "ruthCohen"
 //   let id = "KLZnS9AS0tg4OP4rlkwNOQOv5e72"
 //   let url = "https://finance.leader.codes/patchUser/" + id
-//   console.log("editedit")
+//     "editedit")
 //   if (action.type === 'SET_COMPANY_EDIT') {
 //     const data = getState().CRMReducer;
 //     const company = action.payload.values;
-//     console.log("gggggg", JSON.stringify(company))
+//       "gggggg", JSON.stringify(company))
 //     // let userId = "DYc3VUmEHScqaZBw300lv89fna82"
 //     return fetch(url, {
 //       method: 'POST',
@@ -390,10 +390,10 @@
 //       },
 //       body: JSON.stringify(company)
 //     }).then((res) => res.json()).then((resJson) => {
-//       console.log("editCompany", resJson);
+//         "editCompany", resJson);
 //       dispatch(action.setCompany(resJson))
 //     }).catch((err) => {
-//       console.log("errorReact", err)
+//         "errorReact", err)
 //     })
 //   }
 //   return next(action);
@@ -402,10 +402,10 @@
 // export const uploadImageLogo = ({ dispatch, getState }) => next => action => {
 //   if (action.type === 'SET_LOGO') {
 //     var myFile = new FormData()
-//     console.log(action.payload)
-//     console.log("myFile", myFile)
+//       action.payload)
+//       "myFile", myFile)
 //     myFile.append("file", action.payload)
-//     console.log("append", myFile)
+//       "append", myFile)
 //     $.ajax({
 //       type: "POST",
 //       url: "https://files.leader.codes/api/KLZnS9AS0tg4OP4rlkwNOQOv5e72/upload",
@@ -419,7 +419,7 @@
 //         // })
 //         // dispatch(SET_LOGO_TO_INVOICE(response.data.url));
 //         dispatch(actions.setLogoToInvoice(response.data.url));
-//         console.log("success response logo", response.data.url);
+//           "success response logo", response.data.url);
 //       },
 //       error: function (err) {
 //         alert('please try again later upload logo');
@@ -431,10 +431,10 @@
 
 
 // export const uploadImageSignature = ({ dispatch, getState }) => next => action => {
-//   console.log("img")
+//     "img")
 //   if (action.type === 'SET_SIGNATURE_TO_SERVER') {
 //     // if (action.type === 'setSignatureToServer') {
-//     console.log("img2")
+//       "img2")
 //     // let e = action.payload
 //     // const reader1 = new FileReader()
 //     // reader1.readAsDataURL(action.payload)
@@ -454,7 +454,7 @@
 //         // dispatch(actions.setUser(response))
 //         // })
 //         dispatch(actions.setSignatureToInvoice(response.data.url));
-//         console.log("responeToDispatch", response.data.url);
+//           "responeToDispatch", response.data.url);
 //       },
 //       error: function (err) {
 //         alert('please try again');
@@ -465,17 +465,17 @@
 // }
 
 // export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
-//   console.log("mail")
+//     "mail")
 //   if (action.type === 'SET_SEND_LINK_TO_EMAIL') {
-//     console.log("mail-action")
+//       "mail-action")
 //     var url = (action.payload)
-//     console.log("url", url)
+//       "url", url)
 //     // var userName = (url.pathname.split('/')[1]);
 //     var userName = "ruthCohen"
-//     console.log("userName", userName)
+//       "userName", userName)
 //     var mailTo = "r0527645207@gmail.com";
 //     // var mailTo = props.contact.email;
-//     // console.log("mailTo", mailTo)
+//     //   "mailTo", mailTo)
 //     fetch('https://finance.leader.codes/' + userName + '/sendEmail', {
 //       method: 'POST',
 //       headers: {
@@ -489,11 +489,11 @@
 //       }),
 //     })
 //       .then((res) => res.json()).then((resJson) => {
-//         console.log("resJsonFromSendEmail", resJson)
+//           "resJsonFromSendEmail", resJson)
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log("errorFromMail", err)
+//           "errorFromMail", err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -517,7 +517,7 @@
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log(err)
+//           err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -526,8 +526,8 @@
 // export const saveInvoice = ({ dispatch, getState }) => next => action => {
 //   if (action.type === 'SET_SAVE_INVOICE') {
 //     let invoice = action.payload;
-//     console.log("invoice", invoice)
-//     console.log("SAVE-action")
+//       "invoice", invoice)
+//       "SAVE-action")
 //     fetch('https://finance.leader.codes/KLZnS9AS0tg4OP4rlkwNOQOv5e72', {
 //       method: 'POST',
 //       headers: {
@@ -538,11 +538,11 @@
 //       body: JSON.stringify({ invoice }),
 //     })
 //       .then((res) => res.json()).then((resJson) => {
-//         console.log("resJsonFromSendEmail", resJson)
+//           "resJsonFromSendEmail", resJson)
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log(err)
+//           err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -552,11 +552,11 @@
 // export const postNewProduct = ({ dispatch, getState }) => next => action => {
 
 //   if (action.type === 'SET_NEW_PRODUCT_SERVER') {
-//     console.log("new product server", action.payload)
+//       "new product server", action.payload)
 //     const newProduct = action.payload;
 //     const uid = "KLZnS9AS0tg4OP4rlkwNOQOv5e72"
 //     const buisnessId="603f53b49545978cd254f47a"
-//     console.log("newproductcrud", newProduct)
+//       "newproductcrud", newProduct)
 
 
 
@@ -574,17 +574,17 @@
 //         })
 
 //       }).then((res) => {
-//         console.log("res",res)
+//           "res",res)
 //         res.json()
 //       })
 //       .then(
 //         (resJson) => {
-//           console.log("newproductcrudcrudcrud", resJson);
+//             "newproductcrudcrudcrud", resJson);
 //           dispatch(actions.setAddProduct(resJson));
 
 //         }).catch((err) => {
-//           console.log("errorrrrrrproduct");
-//           console.log(err)
+//             "errorrrrrrproduct");
+//             err)
 //         })
 //   }
 //   return next(action);
@@ -596,10 +596,10 @@
 // export const uploadImageLogo = ({ dispatch, getState }) => next => action => {
 //   if (action.type === 'SET_LOGO') {
 //     var myFile = new FormData()
-//     console.log(action.payload)
-//     console.log("myFile", myFile)
+//       action.payload)
+//       "myFile", myFile)
 //     myFile.append("file", action.payload)
-//     console.log("append", myFile)
+//       "append", myFile)
 //     $.ajax({
 //       type: "POST",
 //       url: "https://files.leader.codes/api/KLZnS9AS0tg4OP4rlkwNOQOv5e72/upload",
@@ -610,7 +610,7 @@
 //       success: function (response) {
 
 //         dispatch(actions.setLogoToInvoice(response.data.url));
-//         console.log("success response logo", response.data.url);
+//           "success response logo", response.data.url);
 //       },
 //       error: function (err) {
 //         alert('please try again later upload logo');
@@ -624,20 +624,20 @@
 
 
 // export const uploadImage = ({ dispatch, getState }) => next => action => {
-//   console.log("uploadImg")
+//     "uploadImg")
 //   // if (action.type === 'SET_LOGO_TO_FILES_SERVER') {
 //   if (action.type === 'SET_IMAGE') {
-//     console.log("uploadImgAfterAction")
-//     console.log("action image", action.payload.image,action.payload.to )
+//       "uploadImgAfterAction")
+//       "action image", action.payload.image,action.payload.to )
 //     // let e = action.payload
 //     // const reader1 = new FileReader()
 //     // reader1.readAsDataURL(action.payload)
 //     // var fileToUpload = 
 
 //     var myFile = new FormData()
-//     console.log("myFile", myFile)
+//       "myFile", myFile)
 //     myFile.append("file", action.payload.image)
-//     console.log("append")
+//       "append")
 //     $.ajax({
 //       type: "POST",
 //       // url: "https://files.leader.codes/api/" + getState().managerComponent.managerComponent.userId + "/upload",
@@ -647,25 +647,25 @@
 //       processData: false,
 //       contentType: false,
 //       success: function (response) {
-//         console.log('res',response)
+//           'res',response)
 //         // checkPermission(response).then((ifOk) => {
 //         // dispatch(actions.setUser(response))
 //         // })
 //         if(action.payload.to==="product"){
-//           console.log(action.payload.to)
+//             action.payload.to)
 //           dispatch(actions.setNewProduct({ ["images"]: response.data.url }))}
 //           // dispatch(actions.setImgProduct(response.data.url))}
 //           if(action.payload.to==="logo"){
-//             console.log(action.payload.to)
+//               action.payload.to)
 //             // props.setNewProduct({ ["images"]:  })
 
 //             dispatch(actions.setLogo(response.data.url))}
 //         if(action.payload.to==="design"){
-//             console.log(action.payload.to)
+//               action.payload.to)
 //           dispatch(actions.setItemData(response.data.url));}
-//         console.log("success response", response);
+//           "success response", response);
 
-//         // console.log(response.data.url + "okImage");
+//         //   response.data.url + "okImage");
 //       },
 //       error: function (err) {
 //         alert('please try again later');
@@ -678,22 +678,22 @@
 
 
 // export const uploadImageD = ({ dispatch, getState }) => next => action => {
-//   console.log("uploadImg")
+//     "uploadImg")
 //   // if (action.type === 'SET_LOGO_TO_FILES_SERVER') {
 //   if (action.type === 'SET_IMAGE_D') {
-//     console.log("uploadImgAfterAction")
-//     console.log("action image", action.payload.image,action.payload.to )
+//       "uploadImgAfterAction")
+//       "action image", action.payload.image,action.payload.to )
 //     // let e = action.payload
 //     // const reader1 = new FileReader()
 //     // reader1.readAsDataURL(action.payload)
 //     // var fileToUpload = 
 //     var myFile = new FormData()
-//     console.log("myFile", myFile)
-//       console.log('action.payload.image.img',action.payload.image.img)
+//       "myFile", myFile)
+//         'action.payload.image.img',action.payload.image.img)
 //     myFile.append("file", action.payload.image.img)
 
 //     // myFile.append("file", action.payload.image)
-//     console.log("append")
+//       "append")
 //     $.ajax({
 //       type: "POST",
 //       // url: "https://files.leader.codes/api/" + getState().managerComponent.managerComponent.userId + "/upload",
@@ -703,20 +703,20 @@
 //       processData: false,
 //       contentType: false,
 //       success: function (response) {
-//         console.log('res',response)
+//           'res',response)
         // checkPermission(response).then((ifOk) => {
         // dispatch(actions.setUser(response))
         // })
 
 //         if(action.payload.to=="design"){
-//         console.log(action.payload.to)
-//         console.log("url",response.data.url)
+//           action.payload.to)
+//           "url",response.data.url)
 //         const image1={img:response.data.url, title:action.payload.image.title}
 
 //           dispatch(actions.setItemData(image1));}
-//         console.log("success response", response);
+//           "success response", response);
 
-//         // console.log(response.data.url + "okImage");
+//         //   response.data.url + "okImage");
 //       },
 //       error: function (err) {
 //         alert('please try again later');
@@ -728,17 +728,17 @@
 
 
 // export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
-//   console.log("mail")
+//     "mail")
 //   if (action.type === 'SET_SEND_LINK_TO_EMAIL') {
-//     console.log("mail-action")
+//       "mail-action")
 //     // var url = (action.payload)
-//     // console.log("url", url)
+//     //   "url", url)
 //     // var userName = (url.pathname.split('/')[1]);
 //     var userName = "ruthCohen"
-//     console.log("userName", userName)
+//       "userName", userName)
 //     var mailTo = action.payload.mail;
 //     // var mailTo = props.contact.email;
-//     // console.log("mailTo", mailTo)
+//     //   "mailTo", mailTo)
 //     fetch('https://finance.leader.codes/' + userName + '/sendEmail', {
 //       method: 'POST',
 //       headers: {
@@ -752,11 +752,11 @@
 //       }),
 //     })
 //       .then((res) => res.json()).then((resJson) => {
-//         console.log("resJsonFromSendEmail", resJson)
+//           "resJsonFromSendEmail", resJson)
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log("errorFromMail", err)
+//           "errorFromMail", err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -767,12 +767,12 @@
 
 
 // export const sendMail = ({ dispatch, getState }) => next => action => {
-//   console.log("mail")
+//     "mail")
 //   if (action.type === 'SEND_MAIL') {
-//     console.log("mail-action")
+//       "mail-action")
 //     // var userName = (url.pathname.split('/')[1]);
 //     var userName = "ruthCohen"
-//     console.log("userName", userName)
+//       "userName", userName)
 //     var mailTo = "shirags321@gmail.com";
 //     var whenSend={
 //       "second":0,
@@ -783,7 +783,7 @@
 //       "dayOfWeek":0
 //     }
     // var mailTo = props.contact.email;
-    // console.log("mailTo", mailTo)
+    //   "mailTo", mailTo)
 //     fetch('https://finance.leader.codes/' + userName + '/sendEmailOtomat', {
 //       method: 'POST',
 //       headers: {
@@ -798,11 +798,11 @@
 //       }),
 //     })
 //       .then((res) => res.json()).then((resJson) => {
-//         console.log("resJsonFromSendEmail", resJson)
+//           "resJsonFromSendEmail", resJson)
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log("errorFromMail", err)
+//           "errorFromMail", err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -811,11 +811,11 @@
 
 // export const createInvoiceOtomat= ({ dispatch, getState }) => next => action => {
 //   if (action.type === 'CREATE_INVOICE') {
-//     console.log("create-action")
+//       "create-action")
 //     var uId = "KLZnS9AS0tg4OP4rlkwNOQOv5e72"
-//     console.log("payload",action.payload)
+//       "payload",action.payload)
 //     // var mailTo = props.contact.email;
-//     // console.log("mailTo", mailTo)
+//     //   "mailTo", mailTo)
 //     fetch(`https://finance.leader.codes/KLZnS9AS0tg4OP4rlkwNOQOv5e72/sendEmailOtomat`, {
 //       method: 'POST',
 //       headers: {
@@ -830,12 +830,12 @@
 //       }),
 //     })
 //       .then((res) => res.json()).then((resJson) => {
-//         console.log("resJsonFromSendEmail", resJson)
+//           "resJsonFromSendEmail", resJson)
 //         dispatch(actions.setPushInvoices(resJson));
 //         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
 //       })
 //       .catch((err) => {
-//         console.log("errorFromMail", err)
+//           "errorFromMail", err)
 //         // dispatch({ type: "SET_ALERTSTATUSE", payload: 6 });
 //       })
 //   }
@@ -862,13 +862,13 @@
 //         then((response) => {
 //             if (response.status != 200) {
 //                 response.json().then(function (object) {
-//                     console.log(object.type, object.message)
+//                       object.type, object.message)
 //                                        })
 //             }
 //             else {
 //                 response.json().then(function (resJson) {
 //                     checkPermission(resJson).then((ifOk) => {
-//                       console.log("successsss",resJson)
+//                         "successsss",resJson)
 //                         dispatch(actions.setAlert({
 //                             alertType: 'success',
 //                             message: resJson.message,
@@ -888,10 +888,10 @@
 //   const userName =  getState().publicReducer.userName
 //   const TokenToString= getState().publicReducer.tokenFromCookies;
 //   const contactId=""
-//   // console.log(id)
+//   //   id)
 //   if (action.type == "CREATE_CONTACT") {
 //     const contactDetails = action.payload
-//     console.log("userName", userName, "TokenToString", TokenToString)
+//       "userName", userName, "TokenToString", TokenToString)
 //       // const contactDetails = getState().contactDetails;
 //       const newContact = contactDetails
 //       // const newContact = contactDetails.contactDetails;
@@ -933,7 +933,7 @@
 //       }).then((response) => {
 //           if (response.status != 201) {
 //               response.json().then(function (object) {
-//                   console.log("objecttttt",object.type, object.message)
+//                     "objecttttt",object.type, object.message)
 //                   // dispatch(actions.setAlert({
 //                   //     alertType: 'error',
 //                   //     message: object.message,
@@ -950,7 +950,7 @@
 //                       // }))
 //                       // dispatch(actions.setContactide(resJson.newContact._id));
 //                       // contactId = resJson.newContact._id;
-//                       console.log("ffff", resJson)
+//                         "ffff", resJson)
 //                       dispatch(actions.setUpdateInvoiceFields({key:"contact",value:resJson.newContact.email}))
 //                       dispatch(actions.getAllContactByUser())
 //                       // dispatch(actions.setNewContact(resJson))
@@ -962,7 +962,7 @@
 //       })
 
 //           .catch((err) => {
-//               console.log(err)
+//                 err)
 //           })
 //   }
 //   return next(action);

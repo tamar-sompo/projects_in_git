@@ -277,7 +277,6 @@ function SettingBuisnessList(props) {
     // }
 
     const onChangeCountry = (data) => {
-        console.log("onChangeCounrty")
 
         setCities(data)
     }
@@ -318,7 +317,6 @@ function SettingBuisnessList(props) {
         }
         const value = e.target.value;
         // if (value !== "false") {
-        console.log("value", value)
         updateBuisnessField({ key: fieldName, value: value })
         changeCurrentBusiness(fieldName, value)
         // }
@@ -338,10 +336,10 @@ function SettingBuisnessList(props) {
     // const addImage1 = (event) => {
     //     if (event) {
     //         let reader = new FileReader();
-    //         console.log("reader", reader.result)
+    //           "reader", reader.result)
     //         dispatch(actions.setSettingBuisness({ key: 'imgLogo', value: reader.result }))
     //         reader.onloadend = () => {
-    //             console.log("event", event)
+    //               "event", event)
     //             const objectImage = { 'image': event, 'to': 'buisness' }
     //             setImageLogo(objectImage)
     //         }
@@ -352,10 +350,10 @@ function SettingBuisnessList(props) {
     // const addImage1 = (event) => {
     //     if (event) {
     //         let reader = new FileReader();
-    //         console.log("reader", reader.result)
+    //           "reader", reader.result)
     //         dispatch(actions.setBuisness({ key: 'imgLogo', value: reader.result }))
     //         reader.onloadend = () => {
-    //             console.log("event", event)
+    //               "event", event)
     //             const objectImage = { 'image': event, 'to': 'buisness' }
     //             setImageLogo(objectImage)
     //         }

@@ -29,7 +29,6 @@ export default function NewSetting(props) {
   const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
   const [flagFirst, setFlagFirst] = useState(false)
   const [index, setIndex] = useState(0)
-  console.log("allBuisnessToUser", allBuisnessToUser)
   const flagSave = useSelector(state => state.buisnessReducer.flagSave);
 
 
@@ -46,7 +45,6 @@ export default function NewSetting(props) {
       setShowMessage(false)
       setButtonClick("")
       routePage()
-      console.log("specific route", specificRoute)
     }
     if (buttonClick === 'saveInvoiceOtherPage') {
       // alert("lll")
@@ -61,7 +59,6 @@ export default function NewSetting(props) {
     if (flagFirst === false)
       setFlagFirst(true)
     else {
-      console.log("rrrrrrrr", specificRoute)
       if (history.location.pathname === `/${userName}/invoice` || window.location.href.indexOf("invoice/edit") !== -1) {
         if (flagIfEmpty === false) {
           routePage()
@@ -71,10 +68,8 @@ export default function NewSetting(props) {
           dispatch(actions.setModalBody(""))
         }
         else {
-          console.log("invoiceeeewwww", specificRoute)
           // if (flagSaveInvoice === false) {
           setModalBody("Do you want to save Invoice?")
-          console.log("seyttttttt", specificRoute)
           setFlagModal("otherPage")
           setShowMessage(true)
         }
@@ -149,11 +144,9 @@ export default function NewSetting(props) {
   }, [flagSave])
 
   const routePage = () => {
-    console.log("specific route function", specificRoute)
     dispatch(actions.setsendMessage("false"))
     dispatch(actions.setInvoiceSave(null))
     if (specificRoute === "Documents") {
-      console.log("specific route function all document", specificRoute)
       history.push(`/${userName}/allDocuments`)
 
     }
@@ -168,7 +161,6 @@ export default function NewSetting(props) {
     }
     if (specificRoute === "Products") {
       history.push(`/${userName}/product`)
-      console.log("specific route function all product", specificRoute)
       dispatch(actions.getAllProduct())
       dispatch(actions.setInvoiceSave(null))
     }
@@ -176,7 +168,6 @@ export default function NewSetting(props) {
       history.push(`/${userName}/payments`)
     }
     if (specificRoute === "Setting") {
-      console.log("setting")
       history.push(`/${userName}/setting`)
       dispatch(actions.setInvoiceSave(null))
     }
@@ -204,7 +195,6 @@ export default function NewSetting(props) {
       <MessageBusiness></MessageBusiness>
       <MessageProductP flag={1}></MessageProductP>
       {/* <button></button> */}
-      {console.log("open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
       <div className={`container-fluid 
       ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >

@@ -6,7 +6,6 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageBusiness(props) {
-    // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
     const setFlagOverPage = (status) => dispatch(actions.setFlagOverPage(status))
@@ -30,14 +29,14 @@ export default function MessageBusiness(props) {
     //yes
     // const save = () => {
     //      
-    //     console.log('ppppppppppppppppp', props.flag)
+    //       'ppppppppppppppppp', props.flag)
     //     // dispatch(actions.setIfSave(false))
     //     dispatch(actions.setIsSave(true))
     //     handleClose()
     // }
     // const saveEdit = () => {
     //      
-    //     console.log('ppppppppppppppppp', props.flag)
+    //       'ppppppppppppppppp', props.flag)
     //     dispatch(actions.setdegel(true))
     //     handleClose()
     // }
