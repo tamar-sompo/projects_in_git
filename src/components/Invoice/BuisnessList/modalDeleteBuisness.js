@@ -12,10 +12,13 @@ export default function ModeldeleteBuisness(props) {
     const modalBody = useSelector(state => state.messageReducer.modalBody);
     const showModalDelete = useSelector(state => state.messageReducer.showModalDelete);
     const currentBuisness = useSelector(state => state.buisnessReducer.currentBuisness);
+    const buisnessIDdelete = useSelector(state => state.messageReducer.buisnessIDdelete)
 
     const handleClose = () => setShowModalDelete(false);
+
     const handleDelete = () => {
-        dispatch(actions.setRemoveBuisnessById(currentBuisness._id))
+        dispatch(actions.setRemoveBuisnessById(buisnessIDdelete))
+        console.log(buisnessIDdelete, "buisnessIDdelete")
         setShowModalDelete(false)
     }
 
@@ -38,12 +41,14 @@ export default function ModeldeleteBuisness(props) {
 
                     <Button style={{ marginRight: "10%", width: "30%", backgroundColor: "#917BDF", height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer" }}
                         // onClick={dispatch(actions.setRemoveBuisnessById(currentBuisness._id))}
-                        onClick={handleClose}>Cancel
+                        onClick={handleClose}>
+                        Cancel
                     </Button>
                     <Button style={{
                         width: "30%", backgroundColor: '#0A102E', height: "20%", fontSize: "1.3rem", marginBottom: "2vh", cursor: "pointer"
                     }}
-                        onClick={handleDelete}>Delete
+                        onClick={handleDelete}>
+                        Delete
                     </Button>
                 </Modal.Body >
             </Modal>

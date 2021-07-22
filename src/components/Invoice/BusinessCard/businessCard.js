@@ -35,10 +35,10 @@ export default function Cards(props) {
     history.push(`/${userName}/setting`)
     setEditable(!editable)
   }
-  const remove = (e) => {
+  const remove = (e, id) => {
     e.stopPropagation()
-    // dispatch(actions.setRemoveBuisnessById(buisnessId))
     dispatch(actions.setShowModalDelete(true));
+    dispatch(actions.setBuisnessIDdelete(id));
 
   }
 
@@ -145,7 +145,7 @@ export default function Cards(props) {
               <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>Delete</p>} placement="bottom">
                 <button
                   className='btn btn-trash'
-                  onClick={(e) => remove(e)}
+                  onClick={(e) => remove(e, buisnessId)}
                 >
                   <FontAwesomeIcon
                     className='m-auto'

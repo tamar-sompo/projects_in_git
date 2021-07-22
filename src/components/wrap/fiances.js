@@ -105,22 +105,14 @@ export default function Fiances() {
                         <div className="d-flex justify-content-center" style={{ width: "95.5%", height: "100%" }}>
                             <div
                                 className="width_wrap d-flex justify-content-center align-items-center"
-                                // className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}
                                 style={displayBoxShadow ? { marginTop: "1%", marginBottom: "1%" } : { backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "1%", marginBottom: "1%" }}>
-                                {/* // style={{ backgroundColor: 'red', width: '40vh' }} */}
-                                {/* // className="d-flex justify-content-center" */}
-                                {/* > */}
-
-
-                                {/* <div className={isSendMessage == "true" ?
-                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
 
                                 {show && <div style={{
                                     zIndex: "999", position: "absolute",
                                     marginRight: "160vh", marginTop: "70vh",
                                     width: "250px"
                                 }}>
-                                    <MassageFormat></MassageFormat> </div>}
+                                    <MassageFormat /> </div>}
                                 {/* <button style={{
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}
