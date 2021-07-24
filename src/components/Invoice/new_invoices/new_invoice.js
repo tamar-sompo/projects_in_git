@@ -1,72 +1,77 @@
-
-
 import React, { useEffect, useRef, useState } from 'react';
-// import '../invoiceTemp1.css';
 import '../../notUse/invoiceTemp1.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../example.css';
-// import Select from 'react-select'
 import { Form } from 'react-bootstrap'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../../redux/actions/All_actions';
 import { useHistory } from "react-router-dom";
 import Item from './item'
-
 import Untitled from '../../../../src/Img/Untitled-1.jpg'
-// import { debounce, ListItemIcon } from '@material-ui/core';
 import { useLocation } from "react-router-dom";
 import $ from 'jquery'
-// import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import './new_invoice.css'
-// import './config.css'
+
+
 function New_Invoice(props) {
+
   const Location = useLocation()
-  // const ReactDatalist = require('react-datalist')
   const dispatch = useDispatch();
+  let history = useHistory()
+
+
+  //dispatch
   const updateinvoiceField = (fieldToUpdate) => dispatch(actions.setUpdateInvoiceFields(fieldToUpdate))
-  // const dispatchgetbusiness = () => dispatch({ type: "GET_BUSINESS_BY_ID" })
-  // const invoiceNumber = useSelector(state => state.invoiceReducer.lastInvoice.invoiceNumber);
-  // const invoiceDetails = useSelector(state => state.invoiceReducer.invoice);
-  // const focus = useSelector(state => state.invoiceReducer.focus);
   const setFocus = (focus) => dispatch(actions.setFocus(focus));
-  const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
   const setDisplayInvoice = (status) => dispatch(actions.setDislayInvoice(status));
+  const updatedetailsBusiness = (fieldToUpdate) => dispatch(actions.setUpdateBusiness(fieldToUpdate))
+  const setImage = (objectImage) => dispatch(actions.setImage(objectImage))
+  const setIslevel = (level) => dispatch(actions.setIsLevel(level))
+  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
+
+
+  //useSelector
+  const displayInvoice = useSelector(state => state.invoiceReducer.dislayInvoice)
   const allcontact1 = useSelector(state => state.customerReducer.allContact);
-  // const contactedit1 = useSelector(state => state.invoiceReducer.updateContact)
-  // const setupdateContact = (fieldToUpdate) => dispatch(actions.setUpdateContact(fieldToUpdate))
-  // const publicNoteInvoice = useSelector(state => state.invoiceReducer.publicNote);
-  // const contactDetails = useSelector(state => state.customerReducer.contact);
   const allproduct = useSelector(state => state.productReducer.allProducts);
-  // const allproductToinvoice = useSelector(state => state.productReducer.allProductToInvoice)
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   const detailscontact = useSelector(state => state.customerReducer.detailscontact);
   const detailsBusiness = useSelector(state => state.buisnessReducer.currentBuisness);
   const allInvoices = useSelector(state => state.invoiceReducer.allInvoices);
   const userName = useSelector(state => state.publicReducer.userName);
-  const updatedetailsBusiness = (fieldToUpdate) => dispatch(actions.setUpdateBusiness(fieldToUpdate))
   const invoice = useSelector(state => state.invoiceReducer.invoice);
-  // const flagBorderProduct = useSelector(state => state.invoiceReducer.flagBorderProduct);
-  const setImage = (objectImage) => dispatch(actions.setImage(objectImage))
-  // const logoDesign = useSelector(state => state.LogoReducer.logoDesign)
-  // const setinvoiceDetailsViewContact = (invoiceEdit) => dispatch(actions.setinvoiceDetailsViewContact(invoiceEdit))
+  let productSelect = useSelector(state => state.productReducer.productSelect);
+  const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
+  const buttonClick = useSelector(state => state.messageReducer.buttonClick)
+  const saveSum = useSelector(state => state.invoiceReducer.saveSum)
+  const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
+  const flagPush = useSelector(state => state.invoiceReducer.flagPush)
+  const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
+  const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
+
+
+  //useRef & uesState
   const prodactions = [...invoice.products];
-  const [str, setStr] = useState()
-  // const setInvoiceShow = ({ }) => dispatch(actions.setInvoiceShow({}))
   const inputFile = useRef();
   const inputFile1 = useRef();
+  const [str, setStr] = useState()
   const [isMouseTooltipVisible, setIsMouseTooltipVisible] = useState(false);
-  let productSelect = useSelector(state => state.productReducer.productSelect);
-  const newContact = useSelector(state => state.customerReducer.newContact)
-  // const product1 = useSelector(state => state.productReducer.product1)
-  // const new_product = useSelector(state => state.productReducer.newProduct)
-
-  // const invoiceeye = useSelector(state => state.invoiceReducer.invoiceeye)
-  // let date1 = new Date();
-  // const [isLoading, setIsLoading] = useState(false);
+  const [firstFlagSaveContact1, setFirstFlagSaveContact1] = useState(false)
+  const [validated, setValidated] = useState(false);
+  const [clickSubmitItem, setClickSubmitItem] = useState(false)
+  const [validatedItem, setValidateItem] = useState(false);
+  const [saveSum2, setsaveSum2] = useState(0)
+  const [flagcontactFromInvoice1, setflagcontactFromInvoice1] = useState(false)
+  const [flagdetailsContact, setflagdetailsContact] = useState(false)
+  const [flag, setFlag] = useState(false)
   const [borderLogo, setBorderLogo] = useState(false);
   const [borderBgImage, setBorderBgImage] = useState("true");
-  // const [contactName, setcontactName] = useState()
   const [contactFromInvoice, setContactFromInvoice] = useState({})
+  const [validName, setValidName] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
+  const [errorMessage1, setErrorMessage1] = useState(false);
+  const [errorMessage2, setErrorMessage2] = useState(false);
+  const [firstTmp, setfirstTmp] = useState(false);
   const [saveContactOne, setsaveContactOne] = useState({
     name: '',
     email: '',
@@ -74,50 +79,12 @@ function New_Invoice(props) {
     address: '',
     flag: false
   })
-  // const [index, setIndex] = useState()
-  const buttonClick = useSelector(state => state.messageReducer.buttonClick)
-  const [firstFlagSaveContact1, setFirstFlagSaveContact1] = useState(false)
-  // const colorFlagShowSaveP = useSelector(state => state.productReducer.colorFlagShowSaveP)
-  const flagShowSaveP = useSelector(state => state.productReducer.flagShowSaveP)
-  const setFlagShowSaveP = (status) => dispatch(actions.setFlagShowSaveP(status))
-  const saveSum = useSelector(state => state.invoiceReducer.saveSum)
-  // const saveSumView = useSelector(state => state.invoiceReducer.saveSumView)
-  const [saveSum2, setsaveSum2] = useState(0)
-  // const calcSumProduct = useSelector(state => state.invoiceReducer.calcSumProduct)
-  const [flagcontactFromInvoice1, setflagcontactFromInvoice1] = useState(false)
-  const [flagdetailsContact, setflagdetailsContact] = useState(false)
-  const setIslevel = (level) => dispatch(actions.setIsLevel(level))
-  const [flag, setFlag] = useState(false)
-  let history = useHistory()
-  // const p = useSelector(state => state.displayComponents.p);
-  // const showMessage = useSelector(state => state.messageReducer.showMessage);
-  // const setShowMessage = (status) => dispatch(actions.setShowMessage(status))
-  const flagPush = useSelector(state => state.invoiceReducer.flagPush)
-  const setFlagSaveP = (status) => dispatch(actions.setFlagSaveP(status))
-  // const submitSaveInvoice = useSelector(state => state.invoiceReducer.submitSaveInvoice)
   const [contactedit, setcontactedit] = useState({
     name: "",
     email: "",
     phone: "",
     address: ""
   })
-  // const flagSavePr = useSelector(state => state.invoiceReducer.flagSavePr)
-  // const [falgView, setFlagView] = useState(false)
-  const flagLoud = useSelector(state => state.invoiceReducer.showLoud)
-  const [validated, setValidated] = useState(false);
-  const [clickSubmitItem, setClickSubmitItem] = useState(false)
-  const [validatedItem, setValidateItem] = useState(false);
-  // const [firstForm, setFirstForm] = useState(false)
-
-  //   useEffect(()=>{
-  // if(firstForm===false)
-  // setFirstForm(true)
-  // else
-  // {
-
-  // }
-  //   },[invoice.products])
-
 
 
   useEffect(() => {
@@ -125,15 +92,12 @@ function New_Invoice(props) {
     let summ = 0
     if (window.location.href.indexOf("view") !== -1) {
       dispatch(actions.setsendMessage("false"))
-      detailsInvoice.products.filter(x =>
-        summ += x.sum_product
-      )
+      detailsInvoice.products.filter(x => summ += x.sum_product)
       setsaveSum2(summ)
       dispatch(actions.setViewConversion('false'))
       setIslevel(1);
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
-
         if (invoice.products.length === 0)
           dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPushNewProduct({}))
@@ -195,8 +159,6 @@ function New_Invoice(props) {
 
 
   useEffect(() => {
-
-
     dispatch(actions.setFlagTmpSave(true))
     dispatch(actions.setFlagOfterValidation(false))
     if (flagPush === true) {
@@ -204,15 +166,12 @@ function New_Invoice(props) {
       setIslevel(1);
       $(".step1").click()
       if (history.location.pathname === `/${userName}/invoice`) {
-
-
         dispatch(actions.setPushNewProduct({}))
         setDisplayInvoice("false")
         if (invoice.products.length === 0)
           setDisplayInvoice("false")
         dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
         dispatch(actions.setPDelete(['']))
-
       }
       else {
 
@@ -301,9 +260,8 @@ function New_Invoice(props) {
     }
 
   }, [buttonClick])
+
   useEffect(() => {
-
-
     if (firstFlagSaveContact1 === false)
       setFirstFlagSaveContact1(true)
     else {
@@ -318,12 +276,11 @@ function New_Invoice(props) {
 
     updateinvoiceField({ key: "contactOneTime", value: saveContactOne });
   }, [saveContactOne])
-  useEffect(() => {
 
+  useEffect(() => {
     if (flagcontactFromInvoice1 === false)
       setflagcontactFromInvoice1(true)
     else {
-
       setcontactedit({
         name: contactFromInvoice && contactFromInvoice.name ? contactedit.name : contactedit.name,
         email: contactFromInvoice && contactFromInvoice.email ? contactedit.email : contactedit.email,
@@ -332,13 +289,13 @@ function New_Invoice(props) {
       })
     }
   }, [contactFromInvoice])
-  useEffect(() => {
 
+  useEffect(() => {
     if (flagdetailsContact == false)
       setflagdetailsContact(true)
     else {
-      console.log("contactedit444", contactedit)
-      console.log("contactedit444", contactFromInvoice)
+      console.log("contactedit", contactedit)
+      console.log("contactFromInvoice", contactFromInvoice)
 
       setsaveContactOne({
         name: detailscontact.contact && detailscontact.contact.name ? detailscontact.contact.name : contactedit.name,
@@ -349,21 +306,7 @@ function New_Invoice(props) {
     }
   }, [detailscontact])
 
-  const [validName, setValidName] = useState(false);
-  const [validEmail, setValidEmail] = useState(false);
-  const flagValidation = useSelector(state => state.invoiceReducer.flagValidation);
-  const flagTmpSave = useSelector(state => state.invoiceReducer.flagTmpSave);
-  const [errorMessage1, setErrorMessage1] = useState(false);
-  const [errorMessage2, setErrorMessage2] = useState(false);
-  const [firstTmp, setfirstTmp] = useState(false);
 
-  const validatorPhone = (v) => {
-    const tmp = v.length == 13 && v.includes('+');
-    return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
-  }
-  const validatorEmail = (v) => {
-    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
-  }
   useEffect(() => {
 
     if (firstTmp) {
@@ -427,7 +370,15 @@ function New_Invoice(props) {
     // else (setfirstTmp(true))
   }, [flagValidation])
 
-  /////////////////////////////////////////////////////////
+
+  const validatorPhone = (v) => {
+    const tmp = v.length == 13 && v.includes('+');
+    return tmp || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(v);
+  }
+  const validatorEmail = (v) => {
+    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
+  }
+
   const saveContact1 = () => {
 
     dispatch(actions.setShowInInvoice(true))
@@ -509,12 +460,6 @@ function New_Invoice(props) {
           }
 
           dispatch(actions.getContactById(dc.email))
-          // if (validatorEmail(dc)) {
-          //   setErrorMessage1(false);
-          //   setValidName(true)
-          // }
-          // else setValidName(false)
-
           updateinvoiceField({ key: "contact", value: dc.email })
           setcontactedit({ [fieldName]: e.target.value })
         }
@@ -551,23 +496,7 @@ function New_Invoice(props) {
     }
   }
 
-  // const resetfieldcontactname = (field, e) => {
-  //    
-  //   // e.currentTarget.value = ''  
 
-  //   if (detailsInvoice && detailsInvoice.contact && !detailsInvoice.contactOneTime.flag) {
-  //     setContactFromInvoice({ ...contactFromInvoice, [field]: undefined })
-
-  //     //להחזיר אם לא עובדד
-
-  //     // updateinvoiceField({ key: "contact", value: '' })
-  //   }
-  //   if (contactedit && contactedit.name)
-  //     dispatch(actions.setresetcontactedit(field))
-  //   dispatch(actions.setContactReset(field))
-
-
-  // }
   const onFieldChanged = (fieldName, e) => {
     dispatch(actions.setFlagIfEmpty(true))
     const value = e.target.value;
@@ -583,10 +512,7 @@ function New_Invoice(props) {
     prodactions[index] = { ...prodactions[index], ...fieldChanged }
     updateinvoiceField({ key: "productions", value: prodactions });
   }
-  // const createInvoicenumber1 = () => {
-  //     "allInvoices.length+1", allInvoices.length + 1)
-  //   return allInvoices.length + 1
-  // }
+
   const convertdate = (date1) => {
     let date = new Date(date1)
     if (date.getDate() < 10 && date.getMonth() > 9)
@@ -640,19 +566,12 @@ function New_Invoice(props) {
           // newProdactions.push({ id: 'null', amount: 0 });
           dispatch(actions.setProduction({ id: 'null', amount: null, sum_product: null }))
         }
-
-
-        // updateinvoiceField({ products: newProdactions });
       }
 
-      //  }
       else {
 
         if (invoice.products[invoice.products.length - 1].id !== "null") {
-          // dispatch(actions.setProducts('null'));
           dispatch(actions.setProducts({ id: 'null', amount: null, sum_product: null }))
-          //   "invoiceee", invoice)
-          // focus_steps('Content', 3)
         }
 
       }
@@ -674,7 +593,7 @@ function New_Invoice(props) {
   }
 
   const deleteItemFromStore = (index) => {
-
+    console.log("in onItemDeleted function, delete ", index)
     dispatch(actions.setBorderProductInvoice(false))
     setFlagSaveP(false)
     dispatch(actions.setFlagIfEmpty(true))
@@ -704,6 +623,7 @@ function New_Invoice(props) {
       let productss = [...detailsInvoice.products]
       productss.splice(index, 1);
       dispatch(actions.setProductionAfterDelete(productss))
+      console.log(productss, "productss after deletion")
     }
     else {
 
@@ -1192,9 +1112,9 @@ function New_Invoice(props) {
                       arrColor={props.colors}
                       index={index}
                       productSelect={productSelect}
-                      onItemChanged={(fieldChanged) =>
-                        saveItemToStore(index, fieldChanged)}
-                      onItemDeleted={() => deleteItemFromStore(index)} />) :
+                      onItemChanged={(fieldChanged) => saveItemToStore(index, fieldChanged)}
+                      onItemDeleted={() => deleteItemFromStore(index)}
+                    />) :
                   invoice.products.map((p, index) =>
                     <Item key={index}
                       productSelect={productSelect}
@@ -1202,8 +1122,7 @@ function New_Invoice(props) {
                       pro={p}
                       index={index}
                       arrColor={props.colors}
-                      onItemChanged={(fieldChanged) =>
-                        saveItemToStore(index, fieldChanged)}
+                      onItemChanged={(fieldChanged) => saveItemToStore(index, fieldChanged)}
                       onItemDeleted={() => deleteItemFromStore(index)} />)}
               </div>
               {/* </div> */}

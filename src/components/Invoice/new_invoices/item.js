@@ -395,8 +395,6 @@ function Item(props) {
 
     }
     if (title1 === "name") {
-
-
       if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].description || new_product[props.index].description === "")
           if (!new_product[props.index].price || new_product[props.index].price === "")
@@ -404,16 +402,14 @@ function Item(props) {
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 === "description") {
-      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
-      )
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].name || new_product[props.index].name === "")
           if (!new_product[props.index].price || new_product[props.index].price === "")
             if (!new_product[props.index].discount || new_product[props.index].discount === "")
               setFlagShowSaveP({ index: props.index, value: false })
     }
     if (title1 === "price") {
-      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined
-      )
+      if (e.target.value === "" && product1._id === undefined && dtp._id === undefined)
         if (!new_product[props.index].name || new_product[props.index].name === "")
           if (!new_product[props.index].description || new_product[props.index].description === "")
             if (!new_product[props.index].discount || new_product[props.index].discount === "")
@@ -704,9 +700,7 @@ function Item(props) {
     <Form id="form_item" noValidate validated={validated} onSubmit={(e) => handleSubmit(e, "itemForm")}>
       <div
         className="row rowOneProduct"
-        style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}
-      >
-
+        style={flagToBroder ? { border: '1px solid red', width: '100%' } : { border: "none" }}      >
 
 
         <div className="col-6 d-flex justify-content-center wrapinputprod" >
@@ -773,7 +767,7 @@ function Item(props) {
               value={new_product[props.index] ? new_product[props.index].description ? new_product[props.index].description : dtp && dtp.description ? dtp.description : '' : ''}
               onChange={(e) => updateCell('description', e)}
               type="text"
-            ></TextareaAutosize>
+            />
           </div>
 
         </div>
@@ -806,14 +800,14 @@ function Item(props) {
           </Form.Control.Feedback> */}
           <div className="inputproduct" style={{ width: "25%" }}>
             <Cell
-              autoComplete="new-password"
+              autoComplete="off"
               onFocus={() => cleanInput1('amount')}
               value={props.pro.amount}
               onChange={(e) => updateCell('amount', e)}
               type="number"
               maxLength={6}
               min="1"
-              max="999999"
+            // max="999999"
             ></Cell>
           </div>
           <div className="inputproduct" style={{ width: "25%" }}>
@@ -845,21 +839,20 @@ function Item(props) {
                 // onClick={savepr}backgroundColor: 'transparent',
                 value="save"
                 className="btn "
-                type="submit" />
+                type="submit"
+              />
             }
             {displayInvoice === "false" &&
               <button id='1'
                 style={{ visibility: displayInvoice === "true" ? "hidden" : "visible" }}
+                style={{ marginLeft: "33%", display: "none", width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071", color: "#707071", padding: "0px", fonStize: "0.8vw", textAlign: "center" }}
                 onClick={() => {
                   if (displayInvoice === "false") clearProduct()
                 }}
-                className={invoice.products.length === 1 ? "cinput delete_hover" : "delete_hover"} style={{
-                  marginLeft: "33%",
-                  display: "none",
-                  width: "100%", height: "39%", backgroundColor: 'white', border: "1px solid #707071",
-                  color: "#707071",
-                  padding: "0px", fonStize: "0.8vw", textAlign: "center"
-                }}>delete</button>}
+                className={invoice.products.length === 1 ? "cinput delete_hover" : "delete_hover"}
+              >
+                delete
+              </button>}
           </div>
         </div>
       </div>

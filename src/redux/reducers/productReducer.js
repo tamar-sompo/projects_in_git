@@ -80,18 +80,17 @@ const products = {
                 state.newProductTable = action.payload
         },
         setColorFlagShowSaveP(state, action) {
-
                 state.colorFlagShowSaveP = action.payload
         },
-
         setFlagShowSaveP(state, action) {
-
                 state.flagShowSaveP[action.payload.index] = action.payload.value
         },
 
         setResetNewProduct(state, action) {
-                // state.newProduct[action.payload] = {}
+                console.log(state.newProduct, "state.newProduct before")
                 state.newProduct.splice(action.payload, 1)
+                console.log(state.newProduct, "state.newProduct after")
+
         },
         setProductId1(state, action) {
                 state.productId = action.payload
