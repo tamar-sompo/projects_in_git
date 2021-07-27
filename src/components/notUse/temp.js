@@ -553,8 +553,8 @@ function Invoice(props) {
         }
 
     }
-    const deleteItemFromStore = (index) => {
-
+    const deleteItemFromStore = (index, from) => {
+        console.log("from", from)
         dispatch(actions.setColorFlagShowSaveP("#707071"))
         dispatch(actions.setFlagShowSaveP(false))
         dispatch(actions.setDeleteSaveSum(index))
@@ -1104,7 +1104,7 @@ function Invoice(props) {
                                             productSelect={productSelect}
                                             onItemChanged={(fieldChanged) =>
                                                 saveItemToStore(index, fieldChanged)}
-                                            onItemDeleted={() => deleteItemFromStore(index)} />) :
+                                            onItemDeleted={() => deleteItemFromStore(index, "map 1 not use")} />) :
                                     (allproduct.length > 0 && window.location.href.indexOf("view") != -1) ||
                                     (window.location.href.indexOf("view") == -1) && invoice.products.map((p, index) =>
                                         <Item key={index}
@@ -1114,7 +1114,7 @@ function Invoice(props) {
                                             arrColor={props.colors}
                                             onItemChanged={(fieldChanged) =>
                                                 saveItemToStore(index, fieldChanged)}
-                                            onItemDeleted={() => deleteItemFromStore(index)} />)}
+                                            onItemDeleted={() => deleteItemFromStore(index, "map 2 not use")} />)}
                             </div>
 
                             <Row className='mt-2'>

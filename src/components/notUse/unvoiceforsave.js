@@ -215,7 +215,8 @@ function Invoice(props) {
   const save = () => {
     dispatch(actions.setSaveInvoice(invoice))
   }
-  const deleteItemFromStore = (index) => {
+  const deleteItemFromStore = (index, from) => {
+    console.log(from, "from")
     if (detailsInvoice.products && detailsInvoice.products.length > 0) {
       let productSelect3id = detailsInvoice.products[index];
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
@@ -447,14 +448,14 @@ function Invoice(props) {
                     productSelect={productSelect}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />) :
+                    onItemDeleted={() => deleteItemFromStore(index, "map 1.1")} />) :
                 invoice.products.map((p, index) =>
                   <Item key={index}
                     productSelect={productSelect}
                     pro={p}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />)}
+                    onItemDeleted={() => deleteItemFromStore(index, "map 1.2")} />)}
             </div>
 
             <Row className='mt-2'>

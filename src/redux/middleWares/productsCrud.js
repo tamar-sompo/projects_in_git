@@ -131,8 +131,6 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
           dispatch(actions.setNameAction("Adding a product successfully"))
           dispatch(actions.setProduct1(data))
           dispatch(actions.setAddProduct(data))
-          // dispatch(actions.setFlagShowSaveP({ index: action.payload, value: false }))
-          // dispatch(actions.setColorFlagShowSaveP("black"))
         }
 
 

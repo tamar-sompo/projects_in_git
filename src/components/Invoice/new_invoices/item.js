@@ -720,12 +720,13 @@ function Item(props) {
               size="7"
               value={new_product[props.index] ? new_product[props.index].name ? new_product[props.index].name : dtp && dtp.name ? dtp.name : '' : ''}
               onChange={detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0 ? (e) => vv(e) : (e) => vv3(e)}
-            ></input>
+            />
             <datalist id="productname">
               {allproduct.length > 0 && allproduct.map(pro => {
-                return (<option data-id={pro._id} data-value={pro.name}>
-                  {pro.name}
-                </option>)
+                return (
+                  <option data-id={pro._id} data-value={pro.name}>
+                    {pro.name}
+                  </option>)
 
               })}
             </datalist>

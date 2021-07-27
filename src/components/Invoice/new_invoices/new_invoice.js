@@ -592,7 +592,8 @@ function New_Invoice(props) {
     // }
   }
 
-  const deleteItemFromStore = (index) => {
+  const deleteItemFromStore = (index, from) => {
+    console.log("deleteItemFromStore called by ", from)
     console.log("in onItemDeleted function, delete ", index)
     dispatch(actions.setBorderProductInvoice(false))
     setFlagSaveP(false)
@@ -911,8 +912,7 @@ function New_Invoice(props) {
                   //  /
                   />
 
-                  <datalist id="contactname"
-                  >
+                  <datalist id="contactname" >
                     {allcontact1.length > 0 ? allcontact1.map(x => {
                       return (
                         <option
@@ -1113,7 +1113,7 @@ function New_Invoice(props) {
                       index={index}
                       productSelect={productSelect}
                       onItemChanged={(fieldChanged) => saveItemToStore(index, fieldChanged)}
-                      onItemDeleted={() => deleteItemFromStore(index)}
+                      onItemDeleted={() => deleteItemFromStore(index, "render map 1")}
                     />) :
                   invoice.products.map((p, index) =>
                     <Item key={index}
@@ -1123,7 +1123,7 @@ function New_Invoice(props) {
                       index={index}
                       arrColor={props.colors}
                       onItemChanged={(fieldChanged) => saveItemToStore(index, fieldChanged)}
-                      onItemDeleted={() => deleteItemFromStore(index)} />)}
+                      onItemDeleted={() => deleteItemFromStore(index, "render map 2")} />)}
               </div>
               {/* </div> */}
               {/* <div id='table-temp1' className=''>
