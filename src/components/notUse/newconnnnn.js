@@ -42,107 +42,107 @@ function NewConfigorator(props) {
         // $('.left_nav').addClass('border_configurator') 
     })
     useEffect(() => {
-        console.log("prevPath", prevPath)
-        if (prevPath == `/${userName}/invoice`) {
-            dispatch(actions.setPrevPath(''))
-            // alert('gyfsj')
-        }
-    }, [Location])
-    // useEffect(()=>{   
-    //      
-    //     console.log("invoiceeeeproducts",invoice)
+        "prevPath", prevPath)
+    if (prevPath == `/${userName}/invoice`) {
+        dispatch(actions.setPrevPath(''))
+        // alert('gyfsj')
+    }
+}, [Location])
+// useEffect(()=>{   
+//      
+//       "invoiceeeeproducts",invoice)
 
-    // },[invoice])
+// },[invoice])
 
-    useEffect(() => {
-        save();
-        // alert("in save")
-    }, [props.saveInvoice])
+useEffect(() => {
+    save();
+    // alert("in save")
+}, [props.saveInvoice])
 
-    const save = () => {
-        //  
-        // sendWave()
+const save = () => {
+    //  
+    // sendWave()
 
-        if (history.location.pathname === `/${userName}/invoice`) {
-            dispatch(actions.setSaveInvoice(invoice))
-            // history.push(`/${userName}/Invoice/Conversion`)
-        }
-        else {
-            dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-            console.log("detailsInvoice", detailsInvoice._id)
-            updateinvoiceField({ key: "products", value: detailsInvoice.products });
+    if (history.location.pathname === `/${userName}/invoice`) {
+        dispatch(actions.setSaveInvoice(invoice))
+        // history.push(`/${userName}/Invoice/Conversion`)
+    }
+    else {
+        dispatch(actions.setGetInvoiceById(detailsInvoice._id))
+        "detailsInvoice", detailsInvoice._id)
+        updateinvoiceField({ key: "products", value: detailsInvoice.products });
 
-            dispatch(actions.setUpdateInvoice())
+        dispatch(actions.setUpdateInvoice())
 
-
-        }
-
-        console.log("save", invoice)
 
     }
-    return (
-        <>
-            <div className="left_nav border_configurator">
-                {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
-                    $('.left_nav').removeClass('border_configurator') &&
-                    <>
-                        <Design_Menu />
-                        {ifDesign || open_design_by_steps ?
-                            <>
 
-                                {/* <button
+    "save", invoice)
+
+}
+return (
+    <>
+        <div className="left_nav border_configurator">
+            {window.location.href.indexOf("invoice") != -1 || window.location.href.indexOf("/Invoice") > -1 ?
+                $('.left_nav').removeClass('border_configurator') &&
+                <>
+                    <Design_Menu />
+                    {ifDesign || open_design_by_steps ?
+                        <>
+
+                            {/* <button
                     onClick={save}
                     className="saving1 mt-2 mb-2"
                 >
                     Save</button>     */}
-                                <div style={{ position: "absolute" }}>
-                                    <NewSetting ></NewSetting></div>
-                                <div style={{ position: "relative" }}>
-                                    <Maincomp ></Maincomp> </div>
-                                <div className="try">
-                                    <input
-                                        type="submit"
-                                        form="invoiceForm"
-                                        value="Save"
-                                        onClick={save}
-                                        className="btn saving1 mt-2 mb-2"
-                                    />
-                                </div>
+                            <div style={{ position: "absolute" }}>
+                                <NewSetting ></NewSetting></div>
+                            <div style={{ position: "relative" }}>
+                                <Maincomp ></Maincomp> </div>
+                            <div className="try">
+                                <input
+                                    type="submit"
+                                    form="invoiceForm"
+                                    value="Save"
+                                    onClick={save}
+                                    className="btn saving1 mt-2 mb-2"
+                                />
+                            </div>
 
-                            </> :
+                        </> :
 
-                            <>
+                        <>
 
-                                <div style={{ position: "relative" }}>
-                                    <NewSetting ></NewSetting>
-                                </div>
+                            <div style={{ position: "relative" }}>
+                                <NewSetting ></NewSetting>
+                            </div>
 
 
-                            </>}
+                        </>}
 
-                    </>
-                    :
-                    $('.left_nav').addClass('border_configurator') &&
-                    <>
-                        <div style={{ marginTop: '25%' }}>
-                            <NewSetting ></NewSetting>
-                        </div>
-                    </>
+                </>
+                :
+                $('.left_nav').addClass('border_configurator') &&
+                <>
+                    <div style={{ marginTop: '25%' }}>
+                        <NewSetting ></NewSetting>
+                    </div>
+                </>
 
-                }
+            }
 
-                {/* <div className="try">
+            {/* <div className="try">
                 <button
                     onClick={save}
                     className="saving1 mt-2 mb-2"
                 >
                     Save</button>
             </div> */}
-            </div>
+        </div>
 
 
-        </>
-    )
+    </>
+)
 }
 
 const mapStateToProps = (state) => {

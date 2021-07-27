@@ -233,7 +233,7 @@ function InvoiceTemp2(props) {
                   // {p.product}
                   onItemChanged={(fieldChanged) =>
                     saveItemToStore(index, fieldChanged)}
-                  onItemDeleted={() => deleteItemFromStore(index)}
+                  onItemDeleted={() => deleteItemFromStore(index, "not use file")}
                 />
               </div>)}
         </div>

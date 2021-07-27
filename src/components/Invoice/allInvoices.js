@@ -1,39 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ButtonGroup from 'react-bootstrap/Button';
-import ToggleButton from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
 import $ from "jquery";
 import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import '../customers/customers.css'
-import { MdEdit, MdDelete, MdContentCopy, MdRemoveRedEye, MdShare } from 'react-icons/md'
+import { MdEdit, MdRemoveRedEye } from 'react-icons/md'
 import ButtonPlus from '../forms/buttonPlus'
-import Invoice from '../Invoice/new_invoices/new_invoice'
-// import Invoice from './invoice'
 import './allInvoices'
-import { debounce } from '@material-ui/core';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import './allInvoices.css';
 import Share from '../wrap/share';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
-import New_Invoice from './new_invoices/new_invoice'
-import ModalToViewInvoice from './modalToViewInvoice'
-// import ImageList from '@material-ui/core/ImageList';
+import keys from '../../config/env/keys';
 
 function AllInvoices(props) {
 
   const sendEmail = () => dispatch(actions.setSendLinkToEmail())
   const [pdfDisplay, setPdfDisplay] = useState(false);
-  console.log("pdfDisplay", pdfDisplay)
   const invoiceSave = useSelector(state => state.invoiceReducer.invoiceSave);
   const [phone, setPhone] = useState("")
 
@@ -73,18 +61,17 @@ function AllInvoices(props) {
   const [flagSearch, setFlagSearch] = useState("false")
 
   // useEffect(() => {
-  //   console.log("detailsInvoice", detailsInvoice);
+  //     "detailsInvoice", detailsInvoice);
   // }, [detailsInvoice])
 
   useEffect(() => {
-    // console.log("allllll", props.allContact)
+    //   "allllll", props.allContact)
     // alert("allContact")
   }, [props.allContact])
   useEffect(() => {
     // dispatch(actions.setViewConversion('false'))
     if (history.location.pathname === `/${userName}/allDocuments`) {
     }
-    console.log("useeffecttt")
     // dispatch(actions.setDetailsContact({}))
     // dispatch(actions.setGetAllbuisness());
     // dispatch(actions.getAllProduct())
@@ -149,7 +136,7 @@ function AllInvoices(props) {
     }
     return isInvoicePayed;
   }
- async function showInvoiceById(invoice){
+  async function showInvoiceById(invoice) {
     dispatch(actions.setDisplayBoxShadow(true))
     dispatch(actions.setFlagFromTable(true))
     dispatch(actions.setFlagIfEmpty(false))
@@ -157,7 +144,6 @@ function AllInvoices(props) {
     await dispatch(actions.setInvoiceSave(invoice))
     // dispatch(actions.setInvoiceSave(invoice))
     setDisplayInvoice("false")
-    console.log("props.allproduct", props.allproduct)
     dispatch(actions.setDetailsContact({}))
     dispatch(actions.setInvoiceShow(invoice))
     dispatch(actions.setPDelete(['']))
@@ -190,7 +176,6 @@ function AllInvoices(props) {
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       success: async function (invoiceDetailsView) {
-        console.log("success", invoiceDetailsView)
         await dispatch(actions.setInvoiceShow(invoiceDetailsView));
         history.push("/show/" + theId)
       },
@@ -239,8 +224,6 @@ function AllInvoices(props) {
   }, [Allinvoices])
 
   const filtersearchInvoices = useSelector(state => state.invoiceReducer.filteredInvoices);
-  console.log("filtersearchInvoices", filtersearchInvoices)
-
   const [filteredinvoices, setfilteredinvoices] = useState()
   const searchInvoices = (searchInvoice) => {
 
@@ -248,7 +231,6 @@ function AllInvoices(props) {
     var invoices = props.allInvoices
     invoices.forEach(invoice => {
       if (invoice.contactOneTime.name != undefined && invoice.contactOneTime.name.toLowerCase().indexOf(searchInvoice) > -1) {
-        console.log("filteredinvoices", invoice.contactOneTime.name);
         dispatch(actions.setFilteredInvoices1(invoice))
       }
     });
@@ -256,7 +238,6 @@ function AllInvoices(props) {
 
   const search = (result) => {
     if (result != "") {
-      console.log(result);
       searchInvoices(result)
       clickSearch(true)
     }

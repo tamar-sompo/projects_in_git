@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './actions/All_actions.js';
+import keys from '../config/env/keys.js';
 
 import {
     newBuisnessToUser,
@@ -141,20 +142,17 @@ const store = createStore(
 )
 
 var url = window.location;
-console.log(url);
+
 store.dispatch(actions.setUserName(url.pathname.split('/')[1]))
 if (window.location.hostname === "localhost") {
-    console.log("localhost");
     let userName = "ruthF"
     let jwtFromCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEdGN4dFJueERlWXhNcjNZUWZxWWtQWDhsUmgyIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIzMzE0NzM5fQ.lvFAravaFf6h_A3BQPMjKu1831pwM3ySvqtkAmNrOJw"
-    console.log("jwtFromCookie", jwtFromCookie)
 
     store.dispatch(actions.setTokenFromCookies(jwtFromCookie));
     store.dispatch(actions.setUserName(userName))
     if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
-        console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() !== "") {
 
@@ -166,18 +164,14 @@ else {
     if (window.location.href.indexOf("view") !== -1) {
         store.dispatch({ type: 'GET_ALL_CONTACT_BY_USER' })
 
-        console.log("njnj")
         store.dispatch(actions.setDislayInvoice("true"))
         if (window.location.pathname.split("/").pop() !== "") {
 
             store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))
         }
     }
-    console.log("sharat")
     let params = (new URL(document.location)).searchParams;
-    console.log("params", params)
     let jwtGlobal = params.get('jwt');
-    console.log("jwtGlobal", jwtGlobal)
 
     if (jwtGlobal) {
 
@@ -189,7 +183,7 @@ else {
         var expires = "expires=" + date;
 
         if (!(document.cookie.split(";").filter(s => s.includes('devJwt'))[0]) || document.cookie.split(";").filter(s => s.includes('devJwt'))[0] === '')
-            document.cookie = "devJwt" + "=" + jwtGlobal + ";" + expires + ";domain=leader.codes;path=/";
+            document.cookie = `${keys.JWT}` + "=" + jwtGlobal + ";" + expires + ";domain=leader.codes;path=/";
 
         window.location.replace(newUrl)
 
@@ -197,7 +191,7 @@ else {
 
         // if (window.location.href.indexOf("view") != -1) {
         //      
-        //     console.log("njnj")
+        //       "njnj")
         //     store.dispatch(actions.setDislayInvoice("true"))
         //     if (window.location.pathname.split("/").pop() != "") {
         //       store.dispatch(actions.setGetInvoiceByIdFull(window.location.pathname.split("/").pop()))

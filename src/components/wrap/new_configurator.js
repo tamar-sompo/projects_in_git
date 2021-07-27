@@ -75,7 +75,7 @@ function NewConfigorator(props) {
     //     // $('.left_nav').addClass('border_configurator') 
     // }, [])
     // useEffect(() => {
-    //     console.log("prevPath", prevPath)
+    //       "prevPath", prevPath)
     //     if (prevPath == `/${userName}/invoice`) {
     //         dispatch(actions.setPrevPath(''))
     //         // alert('gyfsj')
@@ -97,7 +97,7 @@ function NewConfigorator(props) {
 
 
     // useEffect(() => {
-    //     console.log("flagModal", flagModal)
+    //       "flagModal", flagModal)
     //     if (flagFirst === false)
     //         setFlagFirst(true)
     //     else {
@@ -299,12 +299,12 @@ function NewConfigorator(props) {
     //     else {
 
     //         dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-    //         console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+    //           "detailsInvoice", detailsInvoice._id, detailsInvoice.products)
     //          
     //         updateinvoiceField({ key: "products", value: detailsInvoice.products });
     //         dispatch(actions.setUpdateInvoice())
     //     }
-    //     console.log("save", invoice)
+    //       "save", invoice)
     //     // sendWave()
     // }
 

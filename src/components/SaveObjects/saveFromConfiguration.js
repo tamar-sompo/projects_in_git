@@ -30,7 +30,6 @@ function SaveButton(props) {
       async: false,
       dataType: 'json',
       success: function (data) {
-        console.log("successSaveInvoiceFromConfiguration", data)
         history.push("/save/" + data.invoice._id)
       },
     });

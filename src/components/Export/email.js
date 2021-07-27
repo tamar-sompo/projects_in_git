@@ -16,40 +16,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from 'react-router-dom';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
-
-
-
-
-// import '../Components/style.css';
-// import '../Components/viewNewOnePage.css';
-// import validator from 'validator';
-
 const { colors } = defaultTheme;
 
 const animatedComponents = makeAnimated();
 
-function MultiSelectInput(props) {
+function EmailMassage(props) {
     const dispatch = useDispatch();
     const history = useHistory();
-
-
-    const [isOpen, setIsOpen] = useState();
     const [flag, setFlag] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
     const [valus, setValue] = useState(null);
     const [errorMessage, setErrorMessage] = useState(false);
     const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
     const invoice = useSelector(state => state.invoiceReducer.invoice);
-
-    const userName = useSelector(state => state.publicReducer.userName);
-    const allcontacts = useSelector(state => state.customerReducer.allContact);
     const successSendEmail = useSelector(state => state.exportInvoiceReducer.successSendEmail);
     const emailDetails = useSelector(state => state.exportInvoiceReducer.emailDetails);
     const updateEmailField = (fieldToUpdate) => dispatch(actions.setEmailDetails(fieldToUpdate))
 
     useEffect(() => {
 
-        if (invoice.contactOneTime && invoice.contactOneTime.flag == "true")
+        if (invoice.contactOneTime && invoice.contactOneTime.flag)
             updateEmailField({ key: "to", value: invoice.contactOneTime.email })
         else
             updateEmailField({ key: "to", value: invoice.contact })
@@ -70,9 +56,7 @@ function MultiSelectInput(props) {
                 setErrorMessage('');
             }
         }
-        console.log("fieldMail")
         const value = e.target.value;
-        console.log("valueMail", value)
         updateEmailField({ key: fieldName, value: value })
     }
 
@@ -146,22 +130,15 @@ function MultiSelectInput(props) {
         props.changeExportYN("papers")
     }
     const { options } = props;
-    console.log("777777valus" + valus);
 
     const validatorEmail = (v) => {
         return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
     }
 
-    const toMailServer = () => {
+    const toMailServer = async () => {
         if (emailDetails.to) {
             if (validatorEmail(emailDetails.to)) {
-                console.log("toMailServer")
-                dispatch(actions.setSendLinkToEmail())
-                console.log("123")
-                // dispatch(actions.setSuccessSendEmail("true"))
-                console.log("123")
-                setErrorMessage('')
-                console.log("123")
+                await dispatch(actions.setSendLinkToEmail())
             }
             else {
                 setErrorMessage('#invalid email');
@@ -171,12 +148,11 @@ function MultiSelectInput(props) {
             setErrorMessage('#no email address');
         }
         dispatch(actions.setShow(true))
-        dispatch(actions.setNameAction("The Email Send Success!"))
+
         setTimeout(() => {
             dispatch(actions.setsendMessage("false"))
             dispatch(actions.setSuccessSendEmail("false"))
             dispatch(actions.setInvoiceSave(null))
-            console.log("successSendEmail", successSendEmail)
         }, 3000)
     }
     return (
@@ -191,34 +167,28 @@ function MultiSelectInput(props) {
 
 
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
-                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    // onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'to')}
                     placeholder="To"
                     value={emailDetails ? emailDetails.to : ''}
-                /><div className="ml-5 errorMassage">{errorMessage}</div>
+                />
+                <div className="ml-5 errorMassage">{errorMessage}</div>
                 <input className="d-flex justify-content-center subjectAndBodyEmail"
-                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    // onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'subject')}
-                    placeholder="Subject" />
-                {/* <input  */}
+                    placeholder="Subject"
+                />
                 <TextareaAutosize
                     className="d-flex justify-content-center subjectAndBodyEmail bodyEmail"
-                    onFocus={(e) => e.currentTarget.placeholder = ''}
+                    // onFocus={(e) => e.currentTarget.placeholder = ''}
                     onChange={(e) => fieldChanged(e, 'html')}
-                    placeholder={"The Body Of The Message"}
-                ></TextareaAutosize>
-                {/* /> */}
+                    placeholder="The Body Of The Message"
+                />
                 <div style={{ height: "20vh" }}></div>
                 <div className="d-flex justify-content-center" >
                     <button onClick={() => toMailServer()}
-                        style={{
-                            backgroundColor: "#8E73EC",
-                            borderRadius: "2px",
-                            width: "7rem",
-                            height: "4vh",
-                            color: "white",
-                            fontSize: "11px"
-                        }}>send
+                        style={{ backgroundColor: "#8E73EC", borderRadius: "2px", width: "7rem", height: "4vh", color: "white", fontSize: "11px" }}>
+                        send
                     </button>
                     {/* <FontAwesomeIcon
                         size="2x"
@@ -258,12 +228,8 @@ export default connect(
 
             setBodyMail: (e) => dispatch(actions.setBodyMail(e)),
             setSubjectMail: (e) => dispatch(actions.setSubjectMail(e)),
-
-
-
-
         }
-    })(MultiSelectInput)
+    })(EmailMassage)
 
 const Menu = props => {
     const shadow = 'hsla(218, 50%, 10%, 0.1)';

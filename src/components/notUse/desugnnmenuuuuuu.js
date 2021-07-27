@@ -87,7 +87,7 @@ export default function Design_Menu() {
     else
       $("#b_design").addClass('stay_color_design');
 
-    // console.log("ffffffff",e.target.class)
+    //   "ffffffff",e.target.class)
 
 
   })
@@ -283,9 +283,9 @@ export default function NewSetting(props) {
   return (
     <>
       {/* <button></button> */}
-      {console.log("open_setting", open_setting)}
+      {"open_setting", open_setting)}
       {/* ${open_setting ? 'ttt setting':'setting2 ii'} */}
-      {console.log("open_design_by_steps", open_design_by_steps)}
+      {"open_design_by_steps", open_design_by_steps)}
       <div className={`container-fluid ${open_setting ? 'ttt setting' : displaySetting ? 'setting3' : 'setting2 ii'}`} >
         {/* <Design_Menu /> */}
 

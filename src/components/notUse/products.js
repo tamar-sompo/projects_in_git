@@ -1,28 +1,28 @@
-import React,{useState}  from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
-function Products(props){
+function Products(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const dispatch = useDispatch();
     //     const updateCustomerField = (fieldToUpdate) => dispatch(setCustomerDetails(fieldToUpdate))
     // const allProducts = (component1) => dispatch(actions.setComponentConfigurator(component1))
-//     const customerDetails = useSelector(state => state.customerReducer.customer);
-// allproduct: state.invoiceReducer.all_product
-const allproduct = useSelector(state => state.invoiceReducer.all_product)
+    //     const customerDetails = useSelector(state => state.customerReducer.customer);
+    // allproduct: state.invoiceReducer.all_product
+    const allproduct = useSelector(state => state.invoiceReducer.all_product)
     const changeInput = (e) => {
-        console.log("hi");
+        "hi");
         let val = e.target.value.toLowerCase();
-        console.log(val);
+        val);
         setSearchTerm(val);
     }
-return (
-    <>
-       <div className="container" style={{}}>
+    return (
+        <>
+            <div className="container" style={{}}>
                 <div className="row">
                     <div className="col">
                         <h4>Product List</h4>
                     </div>
-    
+
                 </div>
                 <div className="row">
                     <div className="col-8">
@@ -30,10 +30,10 @@ return (
                             {/* <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">@</span>
                             </div> */}
-    
-    <input  type="text" onChange={e => changeInput(e)} className="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" />
+
+                            <input type="text" onChange={e => changeInput(e)} className="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" />
                         </div>
-    
+
                     </div>
                 </div>
                 <div className="row">
@@ -47,18 +47,18 @@ return (
                                         <th>USER</th>
                                     </tr>
                                 </thead>
-                                {console.log("nnnnnnnnnnnnnnnnnnnn",props)}
-                                { allproduct? 
+                                {"nnnnnnnnnnnnnnnnnnnn", props)}
+                                {allproduct ?
                                     <tbody >
-                                        {allproduct.filter(product=> 
-                                               (product.name != null && product.name.toLowerCase().includes(searchTerm))
-                                               
-                                               || (product.user != null && product.user.toLowerCase().includes(searchTerm)))
-                                              .map(product => {
-                                            {console.log(product)}
-                                            return (
-                                            <tr key={product._id}>  
-                                                 {/* {contact.googleContact ?
+                                        {allproduct.filter(product =>
+                                            (product.name != null && product.name.toLowerCase().includes(searchTerm))
+
+                                            || (product.user != null && product.user.toLowerCase().includes(searchTerm)))
+                                            .map(product => {
+                                                { product)}
+                                        return (
+                                        <tr key={product._id}>
+                                            {/* {contact.googleContact ?
                                                 <td><img style={{ height: '8vh', width: '8vh', borderRadius: "50%" }} src={contact.googleContact.coverPhotos[0].url} /></td>:<td></td>} */}
                                             {/* {contact.googleContact &&
                                                 <td><img style={{ height: '8vh', width: '8vh', borderRadius: "50%" }} src={contact.googleContact.coverPhotos[0].url} /></td>} */}
@@ -66,33 +66,33 @@ return (
                                             <td>{product.name}</td>
                                             <td>{product.amount}</td>
                                             <td>{product.user}</td>
-                                          
-                                
+
+
                                         </tr>
-                                                    )
+                                        )
                                                 })
                                         }
-                                    </tbody>:
-                                 <div></div>
-                                 } 
+                                    </tbody> :
+                                    <div></div>
+                                }
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-  
-    {console.log("ppppppp",props.allproduct)}
-    {/* <Setting></Setting> */}
-    
-    </>
-)
+
+            {"ppppppp", props.allproduct)}
+            {/* <Setting></Setting> */}
+
+        </>
+    )
 }
 
 // const mapStateToProps=(state)=>{
 //     return{
 //       allproduct: state.invoiceReducer.all_product
-     
-  
+
+
 //     }
-  
-  export default Products;
+
+export default Products;

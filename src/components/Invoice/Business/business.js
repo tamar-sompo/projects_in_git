@@ -31,7 +31,6 @@ function Business(props) {
   const changeFlag = (value) => {
     setFlag(value)
   }
-  console.log("changeFlag", changeFlag)
   useEffect(() => {
     dispatch(actions.setDisplayBoxShadow(false))
   }, [])
@@ -72,7 +71,6 @@ function Business(props) {
             style={{ width: "95%" }}
           >
             <div className='displayCards'>
-              {console.log('allbusiness lea', allBuisnessToUser)}
               {allBuisnessToUser ? allBuisnessToUser.map((buisness) =>
                 <>
                   <BusinessCard
@@ -115,7 +113,7 @@ function Business(props) {
           style={{ width: "93%" }}
         >
           <div className='displayCards'>
-            {console.log('allbusiness lea', allBuisnessToUser)}
+            {  'allbusiness lea', allBuisnessToUser)}
             {allBuisnessToUser ? allBuisnessToUser.map((buisness) =>
               <div className=''>
                 <BusinessCard

@@ -6,7 +6,6 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageBusiness(props) {
-    // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
     const setFlagOverPage = (status) => dispatch(actions.setFlagOverPage(status))
@@ -14,7 +13,7 @@ export default function MessageBusiness(props) {
     const handleClose = () => setFlagOverPage(false);
     //no
     // const openEdit = () => {
-    //     debugger
+    //      
     //     // אם עריכת מוצר תיהיה פתוחה או לא
     //     dispatch(actions.setFlagNewP(false))
     //     dispatch(actions.setIsEdit(true))
@@ -29,20 +28,20 @@ export default function MessageBusiness(props) {
     // }
     //yes
     // const save = () => {
-    //     debugger
-    //     console.log('ppppppppppppppppp', props.flag)
+    //      
+    //       'ppppppppppppppppp', props.flag)
     //     // dispatch(actions.setIfSave(false))
     //     dispatch(actions.setIsSave(true))
     //     handleClose()
     // }
     // const saveEdit = () => {
-    //     debugger
-    //     console.log('ppppppppppppppppp', props.flag)
+    //      
+    //       'ppppppppppppppppp', props.flag)
     //     dispatch(actions.setdegel(true))
     //     handleClose()
     // }
     const overPage = () => {
-        debugger
+
         // אם עריכת מוצר תיהיה פתוחה או לא
         // dispatch(actions.setFlagNewP(false))
         // dispatch(actions.setIfSave(false))
@@ -54,7 +53,7 @@ export default function MessageBusiness(props) {
     //במעבר בין עמודים
     const flagSave = useSelector(state => state.buisnessReducer.flagSave);
     const savePage = () => {
-        debugger
+
         if (flagSave == 'true1' || flagSave == 'saveNewBusiness') {
             dispatch(actions.setflagSave('saveNewBusiness'))
         }

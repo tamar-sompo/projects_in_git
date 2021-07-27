@@ -20,7 +20,7 @@ function Color1(props) {
     const changeimageInvoice = (image) => dispatch(actions.setImageInvoice(image))
     const changeLogoWidth = (image) => dispatch(actions.setLogoWidth(image))
 
-    const setColors=(color)=>dispatch(actions.setColors(color))
+    const setColors = (color) => dispatch(actions.setColors(color))
 
     const [colorArr, setColorArr] = useState([
         ['#61A28F', '#BFDCD6', '#FDC946', '#F89724'],
@@ -45,60 +45,60 @@ function Color1(props) {
 
     const handleChangeComplete = (color) => {
         setColors(color)
-      };
-   
+    };
+
 
     return (
         <>
             {/* <div className=""> */}
-            <div className="d-flex justify-content-center" style={{width:'100%', marginTop:'10%'}}>
-              
-                <h6 style={{color:'#B1B2BC'}}>Select A Color Paleta</h6> 
-                </div>
-                    < div className="container mt-4 color-div">
-                        {/* <div className="mr-2"> */}
-                            
-                                {console.log(colorArr)}
-                                {colorArr.map(p =>
-                            <div>
-                                    <div className="row d-flex justify-content-center row-color  p-0" onClick={()=>handleChangeComplete(p)}>
-                                        {p.map(item =>
-                                            <div className="col col-color p-0"
-                                                style={{
-                                                    backgroundColor: item,
-                                                    // paddingRight:"50px"
-                                                    marginRight: '7px'
-                                                }}
-                                              
-                                                // onClick={() => changeimageInvoice(p)}
-                                            // onClick={() => changeBackgroundImg(p)}
-                                            >
-                                            </div>
-                                        )}
-                                    </div> 
-                                   
-                                    <div className="row d-flex align-items-center" style={{height:'1.5vh'}}>
-                                                <hr className="hrColor"/>
-                                        </div>
-                                    </div>
-                                    
-                                )}
-                                {/* <div class="button1"></div>
+            <div className="d-flex justify-content-center" style={{ width: '100%', marginTop: '10%' }}>
+
+                <h6 style={{ color: '#B1B2BC' }}>Select A Color Paleta</h6>
+            </div>
+            < div className="container mt-4 color-div">
+                {/* <div className="mr-2"> */}
+
+                {colorArr)}
+                {colorArr.map(p =>
+                    <div>
+                        <div className="row d-flex justify-content-center row-color  p-0" onClick={() => handleChangeComplete(p)}>
+                            {p.map(item =>
+                                <div className="col col-color p-0"
+                                    style={{
+                                        backgroundColor: item,
+                                        // paddingRight:"50px"
+                                        marginRight: '7px'
+                                    }}
+
+                                // onClick={() => changeimageInvoice(p)}
+                                // onClick={() => changeBackgroundImg(p)}
+                                >
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="row d-flex align-items-center" style={{ height: '1.5vh' }}>
+                            <hr className="hrColor" />
+                        </div>
+                    </div>
+
+                )}
+                {/* <div class="button1"></div>
 
     <div class="button2">
 
     </div> */}
 
-                            {/* </div> */}
-                        {/* </div> */}
-                    </div>
+                {/* </div> */}
+                {/* </div> */}
+            </div>
 
 
-                
+
             {/* </div> */}
             <br></br>
             <br></br>
-            
+
 
         </>);
 }

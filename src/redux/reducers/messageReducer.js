@@ -22,11 +22,14 @@ const message = {
     setShowModalDelete(state, action) {
         state.showModalDelete = action.payload
     },
+    setBuisnessIDdelete(state, action) {
+        state.buisnessIDdelete = action.payload
+    },
     setShowModalName(state, action) {
         state.showModalName = action.payload
     },
     setShowMessagePr(state, action) {
-        // debugger
+        //  
         state.showMessagePr = action.payload
     },
     setShowViewInvoiceInModal(state, action) {

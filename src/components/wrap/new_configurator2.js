@@ -60,7 +60,7 @@
 //         // $('.left_nav').addClass('border_configurator') 
 //     })
 //     useEffect(() => {
-//         console.log("prevPath", prevPath)
+//           "prevPath", prevPath)
 //         if (prevPath == `/${userName}/invoice`) {
 //             dispatch(actions.setPrevPath(''))
 //             // alert('gyfsj')
@@ -120,7 +120,7 @@
 //         }
 //         else {
 //             dispatch(actions.setGetInvoiceById(detailsInvoice._id))
-//             console.log("detailsInvoice", detailsInvoice._id, detailsInvoice.products)
+//               "detailsInvoice", detailsInvoice._id, detailsInvoice.products)
 //              
 //             updateinvoiceField({ key: "products", value: detailsInvoice.products });
 
@@ -128,7 +128,7 @@
 
 
 //         }
-//         console.log("save", invoice)
+//           "save", invoice)
 //         // sendWave()
 //     }
 

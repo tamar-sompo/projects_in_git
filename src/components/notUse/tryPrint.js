@@ -26,15 +26,12 @@ function ExportInvoice(props) {
   });
 
   const sendEmail = (viewUrl) => {
-    console.log("mail")
     var url = viewUrl
-    console.log("url", url)
     // var userName = (url.pathname.split('/')[1]);
     var userName = "ruthCohen"
-    console.log("userName", userName)
     var mailTo = "r0527645207@gmail.com";
     // var mailTo = props.contact.email;
-    // console.log("mailTo", mailTo)
+    //   "mailTo", mailTo)
     fetch('https://finance.leader.codes/' + userName + '/sendEmail', {
       method: 'POST',
       headers: {
@@ -48,7 +45,6 @@ function ExportInvoice(props) {
       }),
     })
       .then((res) => res.json()).then((resJson) => {
-        console.log("resJsonFromSendEmail", resJson)
         // dispatch({ type: 'SET_EMAILMESSAGE', payload: resJson })
         // dispatch({ type: "SET_ALERTSTATUSE", payload: 5 });
       })
@@ -59,7 +55,7 @@ function ExportInvoice(props) {
   }
 
   // const printInvoice = () => {
-  //   console.log("inPrint")
+  //     "inPrint")
   //   let printWindow = window.open(
   //     'Print', 
   //             'left=200', 

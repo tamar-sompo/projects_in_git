@@ -1,11 +1,12 @@
 import { actions } from '../../redux/actions/All_actions'
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -14,15 +15,12 @@ function checkPermission(result) {
 
 
 export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
-  console.log("mail")
+
   if (action.type === 'SET_SEND_LINK_TO_EMAIL') {
-    console.log("mail2")
     let userName = getState().publicReducer.userName;
     let invoiceSave = getState().invoiceReducer.invoiceSave.invoice;
     const linkPayToContact = getState().paymentsReducer.linkPayToContact;
-    console.log(userName, invoiceSave)
-    var url = `https://finance.leader.codes/${userName}/view/${invoiceSave._id}`;
-    console.log("url", url)
+    var url = `${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave._id}`;
     let text = getState().exportInvoiceReducer.emailDetails.html
     let textToPaypal = "Click here to pay"
     // let html
@@ -42,7 +40,6 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
       subject: getState().exportInvoiceReducer.emailDetails.subject,
       html: html
     }
-    console.log("eemail", email)
     fetch(`https://mails.codes/mail/sendEmail`, {
       method: 'POST',
       headers: {
@@ -53,11 +50,10 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
       body: JSON.stringify(email),
     })
       .then((res) => res.json()).then((res) => {
-        console.log("resJsonFromSendEmail", res.statusCode)
         dispatch(actions.setSuccessSendEmail("true"))
+        dispatch(actions.setNameAction("The Email Send Success!"))
       })
       .catch((err) => {
-        console.log("errorFromMail", err)
       })
   }
   return next(action);

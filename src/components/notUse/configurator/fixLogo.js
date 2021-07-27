@@ -62,7 +62,7 @@ function FixLogo(props) {
             reader.onloadend = () => {
                 const imageToStor = { 'image': event, 'to': 'logo' }
                 dispatch(actions.setImage(imageToStor))
-                console.log("imageee", reader.result)
+                "imageee", reader.result)
             }
             reader.readAsDataURL(event)
         }
@@ -74,7 +74,7 @@ function FixLogo(props) {
     };
 
     const onChangeHandlerLogo = (event) => {
-        console.log("event", event)
+        "event", event)
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
@@ -82,7 +82,7 @@ function FixLogo(props) {
                 setImage(event)
             }
             reader.readAsDataURL(event)
-            console.log("logoooo", logoDesign.logo)
+            "logoooo", logoDesign.logo)
         }
     }
     return (
@@ -90,10 +90,10 @@ function FixLogo(props) {
             <div className="mt-4 test_info_config">
                 <div>
                     <div className="uploaddivLogo uploaddiv d-flex justify-content-between">
-                        <img className="logoC" 
-                        id="imageshow"
-                        alt="" 
-                        src={invoice.imgLogo ? invoice.imgLogo : flowersLogo} />
+                        <img className="logoC"
+                            id="imageshow"
+                            alt=""
+                            src={invoice.imgLogo ? invoice.imgLogo : flowersLogo} />
                         <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
                             onChange={(e) => addImageList1(e.target.files[0])} />
                         <button onClick={onButtonClick} className="bUp" style={{ backgroundColor: "transparent" }}>

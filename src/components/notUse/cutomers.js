@@ -21,14 +21,14 @@ import pimg from '../assets/profil.png'
 //       contentType: 'application/json; charset=utf-8',
 //       dataType: 'json',
 //       success: async function (result) {
-//         console.log("successRemoveCustomer", result)
+//           "successRemoveCustomer", result)
 
 //       },
 //     });
 //   }
 // const EditCustomerById  = (theId) => {
 //     saveIdToDispatch(theId);
-//     console.log(theId);
+//       theId);
 //     // var theId = theId;
 //     $.ajax({
 //       url: 'https://finance.leader.codes/show/' + theId,
@@ -38,7 +38,7 @@ import pimg from '../assets/profil.png'
 //       contentType: 'application/json; charset=utf-8',
 //       dataType: 'json',
 //       success: async function (customerDetailsView) {
-//         console.log("success", customerDetailsView)
+//           "success", customerDetailsView)
 //         await dispatch({ type: 'SET_CUSTOMERVIEW', payload: customerDetailsView });
 //         history.push("/show/" + theId)
 //       },
@@ -90,7 +90,7 @@ function Customers(props) {
         return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     }
     const mmm = (email) => {
-        //   console.log("jjjj",email.length)
+        //     "jjjj",email.length)
 
         if (email.length > 22) {
             return email.substring(0, email.length - (email.length - 25)) + '...';
@@ -111,7 +111,6 @@ function Customers(props) {
             index: key,
             isShown: true
         })
-        console.log("tytyt", chooseline)
     }
     const ppp = (key) => {
 
@@ -120,21 +119,12 @@ function Customers(props) {
             index: key,
             isShown: false
         })
-        console.log("tytyt", chooseline)
     }
     const f = () => {
         if (searchby === "customerName") {
-
-            //console.log("hhh",contacts)
-            console.log('begining name')
-            console.log('', contacts)
-            console.log(searchTerm)
-
             searchcontact = contacts.filter(contact1 =>
                 (contact1.name != null && contact1.name.toLowerCase().includes(searchTerm)));
-            console.log("oooo", searchcontact)
             return true
-
         }
         if (searchby === "customerEmail") {
 
@@ -199,7 +189,7 @@ function Customers(props) {
 
                                             </tr>
                                         </thead>
-                                        {/* {console.log("serch_costumers",props.allcontact)} */}
+                                        {/* {  "serch_costumers",props.allcontact)} */}
                                         <tbody >
                                             {flag == true &&
                                                 <tr>
@@ -208,10 +198,10 @@ function Customers(props) {
                                                     </td>
                                                 </tr>}
                                             {/* {props.allcontact.map(contact=>{ 
-                                            {console.log(contact)}
+                                            {  contact)}
                                             return (
                                             <tr key={contact._id}>
-                                                {console.log("googlecontact",contact.googleContact)}
+                                                {  "googlecontact",contact.googleContact)}
                                                 <td></td>
                                          
                                             <td>{contact.name}</td>
@@ -235,12 +225,10 @@ function Customers(props) {
                                             {(f() || searchby === "") &&
 
                                                 searchcontact.map((contact1, index) => {
-                                                    { console.log("contacts", searchcontact) }
                                                     return (
                                                         <tr onMouseEnter={() => fff(contact1._id)} onMouseLeave={() => ppp(contact1._id)} key={contact1._id}>
-                                                            {/* {console.log("googlecontact",contact1.googleContact)} */}
+                                                            {/* {  "googlecontact",contact1.googleContact)} */}
                                                             {/* <td></td> */}
-                                                            {console.log("uuuu", contact1.active)}
                                                             {/**/}
                                                             <td className="td_checbox" id="td_hover">
                                                                 <input className="cb" name="select_test" type="checkbox"
@@ -252,7 +240,7 @@ function Customers(props) {
                                                             {/* {flag1 ?<td className="tdemail">{contact1.email}</td>:
                                                     <td>{mmm(contact1.email)}</td>
                                                 } */}
-                                                            {/* {console.log("erer",chooseline.index===contact1._id  )} */}
+                                                            {/* {  "erer",chooseline.index===contact1._id  )} */}
                                                             <td>  {chooseline.index === contact1._id && chooseline.flag === "true" ?
                                                                 <div className="tgtg">{contact1.email}</div>
                                                                 : <div >{mmm(contact1.email)}</div>} </td>
@@ -290,7 +278,7 @@ function Customers(props) {
                                         map(contact1 => {
                                             return (
                                                   <tr key={contact1._id}>
-                                                    {console.log("googlecontact",contact1.googleContact)}
+                                                    {  "googlecontact",contact1.googleContact)}
                                                     <td></td>
                                              
                                                 <td>{contact1.name}</td>
@@ -312,7 +300,7 @@ function Customers(props) {
                                         map(contact1 => {
                                             return (
                                                   <tr key={contact1._id}>
-                                                    {console.log("googlecontact",contact1.googleContact)}
+                                                    {  "googlecontact",contact1.googleContact)}
                                                     <td></td>
                                              
                                                 <td>{contact1.name}</td>
@@ -346,10 +334,10 @@ function Customers(props) {
 }
 
 // {props.allcontact.map(contact=>{ 
-//     {console.log(contact)}
+//     {  contact)}
 //     return (
 //     <tr key={contact._id}>
-//         {console.log("googlecontact",contact.googleContact)}
+//         {  "googlecontact",contact.googleContact)}
 //         <td></td>
 
 //     <td>{contact.name}</td>

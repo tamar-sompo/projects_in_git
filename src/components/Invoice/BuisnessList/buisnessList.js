@@ -55,11 +55,11 @@ function BuisnessList(props) {
         dispatch(actions.setGeCurrenttBuisness(buisnessChoose))
         history.push(`/${userName}/setting`)
     }
-    const remove = (e) => {
+    const remove = (e, id) => {
+        console.log(e, "e", id, "id")
         e.stopPropagation()
-        // setModalBody("Do You Want To delete The Buisness Forever?")
         dispatch(actions.setShowModalDelete(true));
-
+        dispatch(actions.setBuisnessIDdelete(id));
     }
     const chooseBuisness = (value) => {
         if (currentBuisness != value) {
@@ -68,7 +68,6 @@ function BuisnessList(props) {
         }
         // const buisnessChoose = allBuisnessToUser.find(x => x._id === value)
         dispatch(actions.getAllProduct(value._id))
-        console.log("buisnessObj", value)
         dispatch(actions.setGetBusiness(value._id))
         dispatch(actions.setGeCurrenttBuisness(value))
     }
@@ -115,7 +114,8 @@ function BuisnessList(props) {
                                                     <td>{buisness.address && buisness.city ? buisness.address + " " + buisness.city : ''}</td>
                                                     <td>{convertdate(buisness.productionDate)}</td>
                                                     <td className="td_tt" style={{ width: "7%" }}>
-                                                        <div className="td_side_edit_delete_copy d-flex-justify-content-center" style={{ display: "inline-block" }}>
+                                                        <div className="td_side_edit_delete_copy d-flex-justify-content-center"
+                                                            style={{ display: "inline-block" }}>
                                                             {
                                                                 chooselinei.isShown && chooselinei.index === buisness._id && (
                                                                     <div className="d-flex flex-row" style={{ display: "inline-block", width: "100%" }}>
@@ -130,7 +130,7 @@ function BuisnessList(props) {
                                                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
                                                                             <RiDeleteBin6Line id="icon"
                                                                                 style={{ verticalAlign: "top", cursor: 'pointer', marginLeft: "5px", width: "16px", height: "16px", zIndex: "2" }}
-                                                                                onClick={(e) => remove(e)}>
+                                                                                onClick={(e) => remove(e, buisness._id)}>
                                                                             </RiDeleteBin6Line>
                                                                         </Tooltip>
                                                                     </div>

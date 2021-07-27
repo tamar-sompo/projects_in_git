@@ -6,7 +6,7 @@
 // export default function Shoe(props) {
 //    const submit = (values) => {
 //     // print the form values to the console
-//     console.log(values)
+//       values)
 //     }
 //     return (
 //         <>
@@ -18,27 +18,27 @@
 import React, { Component } from 'react';
 import './showTry.css';
 
-export default class ShowTableInputs extends Component{
+export default class ShowTableInputs extends Component {
     state = {
         formState: {
             id: '',
-            ProductName:"",
-            Description:"",
-            UnitPrice:"",
-            Quantity:"",
-            Discount:"",
-            Total:"",
+            ProductName: "",
+            Description: "",
+            UnitPrice: "",
+            Quantity: "",
+            Discount: "",
+            Total: "",
             mode: "submit"
         },
         users: [
             {
                 id: 0,
-                ProductName:"",
-                Description:"",
-                UnitPrice:"",
-                Quantity:"",
-                Discount:"",
-                Total:"",
+                ProductName: "",
+                Description: "",
+                UnitPrice: "",
+                Quantity: "",
+                Discount: "",
+                Total: "",
                 updating: false
             }
         ]
@@ -48,12 +48,12 @@ export default class ShowTableInputs extends Component{
         this.setState({
             formState: {
                 id: '',
-                ProductName:"",
-                Description:"",
-                UnitPrice:"",
-                Quantity:"",
-                Discount:"",
-                Total:"",
+                ProductName: "",
+                Description: "",
+                UnitPrice: "",
+                Quantity: "",
+                Discount: "",
+                Total: "",
                 mode: "submit"
             }
         });
@@ -70,29 +70,29 @@ export default class ShowTableInputs extends Component{
     onSubmit = event => {
         const { users, formState } = this.state;
         event.preventDefault();
-        const  ProductName= event.target.querySelector("input[name='ProductName']")
+        const ProductName = event.target.querySelector("input[name='ProductName']")
             .value;
-            const  Description= event.target.querySelector("input[name='Description']")
+        const Description = event.target.querySelector("input[name='Description']")
             .value;
-            const  UnitPrice= event.target.querySelector("input[name='UnitPrice']")
+        const UnitPrice = event.target.querySelector("input[name='UnitPrice']")
             .value;
-            const  Quantity= event.target.querySelector("input[name='Quantity']")
+        const Quantity = event.target.querySelector("input[name='Quantity']")
             .value;
-            const  Discount= event.target.querySelector("input[name='Discount']")
+        const Discount = event.target.querySelector("input[name='Discount']")
             .value;
-            const Total = event.target.querySelector("input[name='Total']")
+        const Total = event.target.querySelector("input[name='Total']")
             .value;
         if (formState.mode === "submit") {
             this.setState({
                 users: [
                     ...this.state.users,
                     {
-            ProductName:"",
-            Description:"",
-            UnitPrice:"",
-            Quantity:"",
-            Discount:"",
-            Total:"",
+                        ProductName: "",
+                        Description: "",
+                        UnitPrice: "",
+                        Quantity: "",
+                        Discount: "",
+                        Total: "",
                         updating: false,
                         id: this.state.users[this.state.users.length - 1].id + 1
                     }
@@ -102,11 +102,11 @@ export default class ShowTableInputs extends Component{
             const index = users.find((user) => user.id === formState.id).id;
             users[index] = {
                 ProductName,
-            Description,
-            UnitPrice,
-            Quantity,
-            Discount,
-            Total,
+                Description,
+                UnitPrice,
+                Quantity,
+                Discount,
+                Total,
                 updating: false,
                 id: users[index].id
             }
@@ -212,52 +212,52 @@ const Field = ({ label = "", name = "", value = "", onChange }) => {
 
 const Form = ({ formState, onChange, onSubmit }) => {
     return (
-        <div className="row"> 
-        <form className="form" onSubmit={onSubmit}>
-            <fieldset>
-                <div className="col">
-                <Field
-                    name="ProductName"
-                    label="ProductName"
-                    value={formState.ProductName}
-                    onChange={onChange}
-                />
-                 <Field
-                    name="Description"
-                    label="Description"
-                    value={formState.Description}
-                    onChange={onChange}
-                />
-                 <Field
-                    name="UnitPrice"
-                    label="UnitPrice"
-                    value={formState.UnitPrice}
-                    onChange={onChange}
-                />
-                </div>
-                <div className="col">
-                 <Field
-                    name="Quantity"
-                    label="Quantity"
-                    value={formState.Quantity}
-                    onChange={onChange}
-                />
-                 <Field
-                    name="Discount"
-                    label="Discount"
-                    value={formState.Discount}
-                    onChange={onChange}
-                />
-                 <Field
-                    name="Total"
-                    label="Total"
-                    value={formState.Total}
-                    onChange={onChange}
-                />
-            </div>
-            </fieldset>
-            <button>{formState.mode}</button>
-        </form>
+        <div className="row">
+            <form className="form" onSubmit={onSubmit}>
+                <fieldset>
+                    <div className="col">
+                        <Field
+                            name="ProductName"
+                            label="ProductName"
+                            value={formState.ProductName}
+                            onChange={onChange}
+                        />
+                        <Field
+                            name="Description"
+                            label="Description"
+                            value={formState.Description}
+                            onChange={onChange}
+                        />
+                        <Field
+                            name="UnitPrice"
+                            label="UnitPrice"
+                            value={formState.UnitPrice}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="col">
+                        <Field
+                            name="Quantity"
+                            label="Quantity"
+                            value={formState.Quantity}
+                            onChange={onChange}
+                        />
+                        <Field
+                            name="Discount"
+                            label="Discount"
+                            value={formState.Discount}
+                            onChange={onChange}
+                        />
+                        <Field
+                            name="Total"
+                            label="Total"
+                            value={formState.Total}
+                            onChange={onChange}
+                        />
+                    </div>
+                </fieldset>
+                <button>{formState.mode}</button>
+            </form>
         </div>
     );
 };

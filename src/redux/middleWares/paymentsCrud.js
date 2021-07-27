@@ -1,18 +1,19 @@
 import $ from 'jquery';
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
+
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
   })
 }
-
 
 export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SEND_LINK_PAYPAL') {
@@ -38,8 +39,9 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
       items: items
     }
     console.log("chch", buisnessPaypalDetails)
-    // let username = getState().publicReducer.userName;
-    let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
+    let username = getState().publicReducer.userName;
+    let urlData = keys.API_URL_PAY + 'YaelBrenig' + '/payByPaypal';
+    // let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
     console.log("urlData", urlData)
     $.ajax({
       url: urlData,
@@ -74,7 +76,8 @@ export const setClientIdToBuisness = ({ dispatch, getState }) => next => action 
     let username = getState().publicReducer.userName;
     let clientId = getState().paymentsReducer.buisnessPaypalDetails.client_id;
     console.log("clientId", clientId)
-    let urlData = `https://finance.leader.codes/api/${username}/updateBuisness/${currentBuisness}`
+    let urlData = keys.API_URL_BASE_CLIENT + username + '/updateBuisness/' + currentBuisness;
+    // let urlData = `https://finance.leader.codes/api/${username}/updateBuisness/${currentBuisness}`
     $.ajax({
       url: urlData,
       method: 'POST',
@@ -114,7 +117,8 @@ export const setPaymentDetailsToPayServer = ({ dispatch, getState }) => next => 
     // let username = getState().publicReducer.userName;
     let paymentDetails = getState().paymentsReducer.buisnessPaypalDetails;
     console.log("paymentDetails", paymentDetails)
-    let urlData = `https://pay.leader.codes/api/YaelBrenig‏/craetePaypalSecret`
+    let urlData = keys.API_URL_BASE_CLIENT + "YaelBrenig‏" + '/craetePaypalSecret'
+    // let urlData = `https://pay.leader.codes/api/YaelBrenig‏/craetePaypalSecret`
     $.ajax({
       url: urlData,
       method: 'POST',

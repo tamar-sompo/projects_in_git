@@ -36,7 +36,6 @@ export default function Steps(props) {
 
       if (num === 4) {
         setIsLevel4(true)
-        console.log('is level 3')
       }
       else
         setIsLevel4(false)

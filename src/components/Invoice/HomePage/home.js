@@ -24,19 +24,18 @@ export default function HomePage(props) {
   const [flag, setFlag] = useState("false")
   const ffd = useSelector(state => state.invoiceReducer.flagBorderProduct)
   const [specificRoute, setspecificRoute] = useState('')
-  // console.log("allBuisnessToUser", allBuisnessToUser)
 
   //  useEffect(()=>{
-  //    console.log("ghgh1")
-  //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
+  //      "ghgh1")
+  //      "allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
   //     
   //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
-  //       console.log("ghgh2")
+  //         "ghgh2")
   //       dispatch(actions.getLastBuisness())
   //       // dispatch(actions.setGetUserByUsername())
   //     }
   //     if (allBuisnessToUser === undefined) {
-  //       console.log("ghgh3")
+  //         "ghgh3")
   //       // history.push(`/${userName}/add_buisness`)
   //       // dispatch(actions.setGetUserByUsername())
   //       }
@@ -86,16 +85,16 @@ export default function HomePage(props) {
   // }
 
   //  useEffect(()=>{
-  //    console.log("ghgh1")
-  //    console.log("allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
+  //      "ghgh1")
+  //      "allBuisnessToUser.length", allBuisnessToUser && allBuisnessToUser.length)
   //     
   //     if (allBuisnessToUser && allBuisnessToUser.length>0) {
-  //       console.log("ghgh2")
+  //         "ghgh2")
   //       dispatch(actions.getLastBuisness())
   //       // dispatch(actions.setGetUserByUsername())
   //     }
   //     if (allBuisnessToUser === undefined) {
-  //       console.log("ghgh3")
+  //         "ghgh3")
   //       // history.push(`/${userName}/add_buisness`)
   //       // dispatch(actions.setGetUserByUsername())
   //       }

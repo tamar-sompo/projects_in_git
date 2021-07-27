@@ -98,7 +98,6 @@ function BuisnessList(props) {
   const allBuisness = useSelector(state => state.buisnessReducer.allBuisness)
   const userName = useSelector(state => state.publicReducer.userName);
   const userFiled = useSelector(state => state.buisnessReducer.newBuisness);
-  console.log("userFileduserFiled", userFiled)
   const updateBuisnessField = (fieldToUpdate) => dispatch(actions.setBuisness(fieldToUpdate))
   const updateWebsite = (fieldToUpdate) => dispatch(actions.setbuisnessWebsite(fieldToUpdate))
   const setImageLogo = (objectImage) => dispatch(actions.setImage(objectImage))
@@ -120,8 +119,8 @@ function BuisnessList(props) {
   useEffect(() => {
     dispatch(actions.setDisplayBoxShadow(false))
   }, [])
+
   useEffect(() => {
-    debugger
     if (flag === "false")
       setFlag("true")
     else {
@@ -140,6 +139,7 @@ function BuisnessList(props) {
       history.push(`/${userName}/allDocuments`)
     }
   }, [allBuisness])
+
   const restart = () => {
     setFlagLoud(false)
     updateBuisnessField({ key: 'name', value: "" })
@@ -171,24 +171,20 @@ function BuisnessList(props) {
   //     history.push(`/${userName}/allDocuments`)
   // },[allBuisness])
 
-  const saveNewBuisness = async (e) => {
-    let tmp1 = true;
-    let tmp3 = true;
-    // let tmp4 = userFiled.name || currentBuisness.name;
-    // let tmp5 = userFiled.numberDeals || currentBuisness.numberDeals;
-    if (userFiled.email) {
-      tmp1 = validatorEmail(userFiled.email)
-    }
-    if (userFiled.phone) {
+  const saveNewBuisness = (e) => {
+    let valid_email = true;
+    let valid_phone = true;
 
-      tmp3 = validatorPhone(userFiled.phone);
+    if (userFiled.email) {
+      valid_email = validatorEmail(userFiled.email)
     }
-    if (userFiled.name && userFiled.numberDeals && tmp1 == true && tmp3 == true && userFiled.city && userFiled.address) {
-      await updateBuisnessField({
-        key: 'productionDate', value: new Date()
-      })
+
+    if (userFiled.phone) {
+      valid_phone = validatorPhone(userFiled.phone);
+    }
+
+    if (userFiled.name && userFiled.numberDeals && valid_email && valid_phone && userFiled.city && userFiled.address) {
       setFlagLoud(true)
-      debugger
       if (flagSave == 'saveNewBusiness') {
         dispatch(actions.setflagSave('overPage1'))
         restart()
@@ -204,7 +200,6 @@ function BuisnessList(props) {
       setErrorMessage5('');
       setErrorMessage6('');
       // continewAfterSave();
-
     }
     else {
       if (!userFiled.name) {
@@ -229,7 +224,7 @@ function BuisnessList(props) {
         setErrorMessage6('');
       }
       if (userFiled.email) {
-        if (!tmp1) {
+        if (!valid_email) {
           setErrorMessage3('#Invalid email address')
         }
         else {
@@ -237,7 +232,7 @@ function BuisnessList(props) {
         }
       }
       if (userFiled.phone) {
-        if (!tmp3) {
+        if (!valid_phone) {
           setErrorMessage4('#Invalid phone')
         }
         else {
@@ -251,7 +246,6 @@ function BuisnessList(props) {
   // }
 
   const onChangeCountry = (data) => {
-    console.log("onChangeCounrty")
 
     setCities(data)
   }
@@ -292,7 +286,6 @@ function BuisnessList(props) {
     }
     const value = e.target.value;
     // if (value !== "false") {
-    console.log("value", value)
     updateBuisnessField({ key: fieldName, value: value })
     // }
   }
@@ -313,10 +306,8 @@ function BuisnessList(props) {
     dispatch(actions.setflagSave('true1'))
     if (event) {
       let reader = new FileReader();
-      console.log("reader", reader.result)
       dispatch(actions.setBuisness({ key: 'imgLogo', value: reader.result }))
       reader.onloadend = () => {
-        console.log("event", event)
         const objectImage = { 'image': event, 'to': 'buisness' }
         setImageLogo(objectImage)
       }
@@ -562,84 +553,54 @@ function BuisnessList(props) {
             </div>
           </div>
         </div>
-        {/* <hr className="hrStyle"></hr> */}
-        {/* <div>
-          <div className="colorWhite">
-            Personal Information
-          </div>
-          <div className="row">
-            <div className="col-3">
-              <div className="font2">Username</div>
-              <input className="inptStyle"
-                style={{ width: "27rem", marginTop: "0.5vh" }}></input>
-            </div>
-            <div className="col-3">
-              <div className="font2">Birthday</div>
-              <div className="row">
-                <div className="col-3">
-                  <input className="inptStyle"
-                    style={{ width: "10rem", marginLeft: "2vh" }}>
-                  </input>
-                </div>
-                <div >
-                  <BiCalendar className="styleicon uniq"  ></BiCalendar>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* <hr className="hrStyle"></hr> */}
         <div>
           <div className="colorWhite">Social media</div>
           <div style={{ paddingBottom: "2vh" }}>media</div>
-          {/* <div className="row">
-            <div className="inptStyle widthIcon">
-              <GiWireframeGlobe className="styleicon"></GiWireframeGlobe>
-            </div>
-            <input className="inptStyle iconInput"
-              defaultValue="Add Your Website"
-            ></input>
-          </div> */}
           <div style={{ marginLeft: "2vh" }}>
             <div className="row">
               <div className="inptStyle widthIcon" >
                 <SiFacebook className="styleicon"></SiFacebook>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Facebook"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add your Facebook"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiWhatsapp className="styleicon"></SiWhatsapp>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Whatsapp"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Whatsapp"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiInstagram className="styleicon"></SiInstagram>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Instagram"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Instagram"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <SiYoutube className="styleicon"></SiYoutube>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Youtube"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Youtube"
+              />
             </div>
             <div className="row">
               <div className="inptStyle widthIcon">
                 <BiPlus className="styleicon"></BiPlus>
               </div>
-              <input className="inptStyle iconInput"
-                defaultValue="Add Your Media"
-              ></input>
+              <input
+                className="inptStyle iconInput"
+                placeholder="Add Your Media"
+              />
             </div>
           </div>
         </div>

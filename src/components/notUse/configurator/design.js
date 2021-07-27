@@ -34,26 +34,26 @@ export default function Design(props) {
   //     $(`#${idBefor}`).removeClass('liEnter')
   // setIdBefor(this.id)
   // })
-const addClassToIl = (e) => {
-  if($(`#${e}`).hasClass('liEnter'))
+  const addClassToIl = (e) => {
+    if ($(`#${e}`).hasClass('liEnter'))
       $(`#${e}`).removeClass('liEnter');
-else
-    $(`#${e}`).addClass('liEnter');
+    else
+      $(`#${e}`).addClass('liEnter');
     if (idBefor === '')
-       setIdBefor(e)
-    else{
-      if(idBefor !== e)
-     {
+      setIdBefor(e)
+    else {
+      if (idBefor !== e) {
         $(`#${idBefor}`).removeClass('liEnter');
-      setIdBefor(e)}
+        setIdBefor(e)
+      }
     }
 
-    // console.log("ffffffff",e.target.class)
+    //   "ffffffff",e.target.class)
   }
 
 
-      // $(this).addClass('liEnter');    
-  
+  // $(this).addClass('liEnter');    
+
 
   return (
     <>
@@ -63,7 +63,7 @@ else
         <ul class="list-group d-flex flex-column accordion" id="accordionExample">
 
 
-          
+
           <li className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="1"
             onClick={() => addClassToIl('1')}
             data-toggle="collapse" data-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture collapseColor">
@@ -106,9 +106,9 @@ else
           </div>
 
           {/* <div className='bgcBtnConfig m-0 mt-2 p-0 mb-5' data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> */}
-          <li 
-          onClick={() => addClassToIl('3')}
-          className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="3"
+          <li
+            onClick={() => addClassToIl('3')}
+            className="list-group-item d-flex align-items-center yy justify-content-start listConfig" id="3"
             data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
           //  className="btnConfig pl-4 ml-4 mt-3  m-0 p-0 font-weight-bold my-auto"
           >
@@ -130,10 +130,11 @@ else
           </div>
         </ul>
       </ul>
-{/* <ExampleTable></ExampleTable> */}
+      {/* <ExampleTable></ExampleTable> */}
 
-   
-    </>) }; 
+
+    </>)
+};
 
 
 

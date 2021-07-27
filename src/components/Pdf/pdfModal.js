@@ -54,7 +54,7 @@
 
 //     useEffect(() => {
 //         dispatch(actions.setInvoiceShow(invoice))
-//         console.log('invoice lea', invoice)
+//           'invoice lea', invoice)
 //         handleOpen()
 //     }, [])
 

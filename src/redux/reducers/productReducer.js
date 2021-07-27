@@ -28,13 +28,13 @@ const initialState = {
 }
 const products = {
         getAllProductToInvoice(state, action) {
-           state.allProductToInvoice = action.payload
+                state.allProductToInvoice = action.payload
         },
         setFilteredProducts(state, action) {
                 state.filteredProducts = action.payload
         },
         setPage(state, action) {
-                debugger
+
                 state.page = action.payload
         },
         setdegel1(state, action) {
@@ -56,22 +56,22 @@ const products = {
                 state.tmpPr = action.payload
         },
         setFlagNewP(state, action) {
-                // debugger
+                //  
                 state.flagNewP = action.payload
         },
         setFilteredProducts1(state, action) {
-            state.filteredProducts.push(action.payload)
+                state.filteredProducts.push(action.payload)
         },
         setResetAllNewProduct(state, action) {
-            state.newProduct = []
+                state.newProduct = []
         },
         editProduct11(state, action) {
-            state.allProducts[action.payload.i] = action.payload.objectProduct.product
+                alert("editProduct11")
+                state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
-
+                alert("setAddProduct")
                 state.allProducts.unshift(action.payload)
-                console.log("state.allProducts", state.allProducts)
                 // state.allProducts.splice(0, 0, action.payload);
         },
         setNewProductTable(state, action) {
@@ -81,18 +81,17 @@ const products = {
                 state.newProductTable = action.payload
         },
         setColorFlagShowSaveP(state, action) {
-
                 state.colorFlagShowSaveP = action.payload
         },
-
         setFlagShowSaveP(state, action) {
-
                 state.flagShowSaveP[action.payload.index] = action.payload.value
         },
 
         setResetNewProduct(state, action) {
-                // state.newProduct[action.payload] = {}
+                console.log(state.newProduct, "state.newProduct before")
                 state.newProduct.splice(action.payload, 1)
+                console.log(state.newProduct, "state.newProduct after")
+
         },
         setProductId1(state, action) {
                 state.productId = action.payload
@@ -107,6 +106,7 @@ const products = {
                 state.product1 = action.payload;
         },
         setAllProducts(state, action) {
+                alert("setAllProducts")
                 state.allProducts = action.payload;
         },
         // setAddProduct(state, action) {
@@ -121,7 +121,6 @@ const products = {
         setNewProduct(state, action) {
 
                 //  alert('jj')
-                console.log("state.newProduct[action.payload.index][action.payload.key]", state.newProduct[action.payload.index][action.payload.key])
                 state.newProduct[action.payload.index][action.payload.key] = action.payload.value
         },
         setProductName(state, action) {

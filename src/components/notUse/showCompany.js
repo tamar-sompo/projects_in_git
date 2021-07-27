@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 function ShowCompany(props) {
 
     const handleSubmit = (values) => {
-        console.log(values);
+        values);
         props.postCompany({ values })
     }
     return (

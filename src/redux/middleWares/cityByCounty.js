@@ -1,12 +1,13 @@
-
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
+
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -29,7 +30,6 @@ export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action 
           'Content-Type': 'application/json'
         }
       }).then((res) => res.json()).then((resJson) => {
-        console.log("cities", resJson);
         dispatch(actions.setAllCities(resJson))
       }).catch((err) => {
         console.log(err)
@@ -50,7 +50,6 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
           'Content-Type': 'application/json'
         }
       }).then((res) => res.json()).then((resJson) => {
-        console.log("countries", resJson);
         dispatch(actions.setCountry(resJson))
       }).catch((err) => {
         console.log(err)
@@ -60,13 +59,13 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
 }
 
   // export const getAllCitiesByCountry = ({ dispatch, getState }) => next => action => {
-  //   console.log("allCities")
+  //     "allCities")
   //   if (action.type === 'GET_CITY_BY_COUNTRY') {
   //      
   //     let countryName = action.payload;
   //      
   //     // return new Promise((resolve, reject) => {
-  //     let urlData = `https://finance.leader.codes/api/${countryName}/getAllCitiesByCountry`
+  //     let urlData = `${keys.API_URL_BASE_CLIENT}/${countryName}/getAllCitiesByCountry`
   //     $.ajax({
   //       headers: {
   //         Authorization: getState().publicReducer.tokenFromCookies
@@ -78,13 +77,13 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
   //       contentType: "application/json; charset=utf-8",
   //       dataType: 'json',
   //       success: (data) => {
-  //         console.log("data", data)
+  //           "data", data)
   //         checkPermission(data).then((ifOk) => {
   //           dispatch(actions.setGetAllBuisness(data))
   //         })
   //       },
   //       error: (err) => {
-  //         console.log("error", err)
+  //           "error", err)
   //       },
   //     });
   //   }

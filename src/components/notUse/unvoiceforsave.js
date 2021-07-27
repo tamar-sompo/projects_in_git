@@ -38,7 +38,7 @@ key={invoice._id}>
 
 <tr onMouseEnter={() => fff(invoice._id)} onMouseLeave={() => ppp(invoice._id)} key={invoice._id}>
 
-   {console.log("contactnameee",props.contact1)}
+   {  "contactnameee",props.contact1)}
  
  <td className="td_checbox" id="td_hover">
    <input className="cb" name="select_test" type="checkbox"
@@ -140,27 +140,24 @@ function Invoice(props) {
   useEffect(() => {
     // history.push("/ruthChoen/Invoice/Production")
     $(".step1").click()
-    console.log("useeeeeeeeeeeeeeeeeeeeee", detailsInvoice)
     // dispatchgetbusiness()
     updateinvoiceField({ date: convertdate(new Date()) })
       // updateinvoiceField({ buisness: detailsBusiness._id })
 
       ;
     if (history.location.pathname === `/${userName}/invoice`) {
-      console.log("useeeeeeeeeeeeeeeeeeeeee1111111")
       setInvoiceShow({})
     }
   }, [])
 
 
-  // console.log("props", props)
+  //   "props", props)
   let date1 = new Date();
   const [isLoading, setIsLoading] = useState(false);
 
   // const updateinvoiceField = (fieldToUpdate) => dispatch(actions.updateInvoiceFieldAction(fieldToUpdate))
 
   const focus_steps = (url_string, num) => {
-    console.log("url_string", url_string)
     window.location.href.indexOf('Invoice') != -1 &&
       history.push("/ruthChoen/Invoice/" + url_string)
     $(".step" + num).click()
@@ -193,38 +190,22 @@ function Invoice(props) {
     allproduct.map(
       function (x) {
         ;
-        // console.log("marrrrr11rrr", x)
-        console.log("p", p)
+        //   "marrrrr11rrr", x)
         let oo = p.find(y => y === x.name);
         if (oo == undefined) {
-          console.log("hi")
           dispatch(actions.setProductSelect(x))
-          console.log("productSelect", productSelect)
           // dispatch(actions.setProductSelect(x))  
         }
 
       })
-    console.log("productSelect5", productSelect)
     if (detailsInvoice && detailsInvoice.products && detailsInvoice.products.length > 0) {
-
-      console.log("gjdkhghhfkfkfkhk", detailsInvoice.products)
-        ;
       const newProdactions = [...detailsInvoice.products];
-      // console.log("newProdactions",newProdactions)
       newProdactions.push('null');
       dispatch(actions.setProduction('null'))
-      console.log("dp", invoice.products)
-      // updateinvoiceField({ products: newProdactions });
     }
 
-    //  }
     else {
-
-      ;
-      console.log("ghg")
       dispatch(actions.setProducts('null'));
-      console.log("invoiceee", invoice)
-      // focus_steps('Content', 3)
     }
   }
 
@@ -233,11 +214,9 @@ function Invoice(props) {
 
   const save = () => {
     dispatch(actions.setSaveInvoice(invoice))
-    console.log("saveeee", invoice)
   }
-  const deleteItemFromStore = (index) => {
-    // let productss=[...detailsInvoice.products]
-    // productss.splice(index, 1)
+  const deleteItemFromStore = (index, from) => {
+    console.log(from, "from")
     if (detailsInvoice.products && detailsInvoice.products.length > 0) {
       let productSelect3id = detailsInvoice.products[index];
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
@@ -245,13 +224,11 @@ function Invoice(props) {
         let prr = [...p]
         prr.map((pr, ind) => {
           if (pr === productSelect3.name) {
-            console.log("ind", ind, pr)
             prr.splice(ind, 1)
             dispatch(actions.setPDelete(prr));
           }
         })
       }
-      console.log("productss", detailsInvoice.products)
       let productss = [...detailsInvoice.products]
       productss.splice(index, 1);
       dispatch(actions.setProductionAfterDelete(productss))
@@ -260,27 +237,18 @@ function Invoice(props) {
 
       let productSelect3id = invoice.products[index];
       let productSelect3 = allproduct.find(x => x._id === productSelect3id)
-      console.log("productSelect3", productSelect3)
-      //  dispatch(actions.setPDelete(productSelect3.name))
-      //  console.log("productSelect3",productSelect3.name)
-      console.log("productSelect3", p)
-      console.log("tammmm", p.length, invoice.products.length)
       if (p.length !== invoice.products.length) {
         let prr = [...p]
         prr.map((pr, ind) => {
           if (pr === productSelect3.name) {
-            console.log("ind", ind, pr)
             prr.splice(ind, 1)
             dispatch(actions.setPDelete(prr));
           }
         })
       }
       //  dispatch(actions.setProductSelect(productSelect3))
-      console.log("productSelect2", productSelect)
       let productss = [...invoice.products]
-      console.log("productss1111", productss)
       productss.splice(index, 1)
-      console.log("productss", productss)
       dispatch(actions.setProductAfterDelete(productss))
 
     }
@@ -301,9 +269,9 @@ function Invoice(props) {
 
   return (
     <>
-      {/* {console.log("invoice", invoice)}
-      {console.log("detailsBusiness", detailsBusiness)}
-     {console.log("invoiceee",invoice)}  */}
+      {/* {  "invoice", invoice)}
+      {  "detailsBusiness", detailsBusiness)}
+     {  "invoiceee",invoice)}  */}
       <div className="wrap_invoice">
         <div id="bgImg" style={{ backgroundImage: `url(${props.imageInvoice})` }}>
           <Container className="main-temp1">
@@ -311,26 +279,14 @@ function Invoice(props) {
             <Row className="justify-content-md-center py-3" onClick={() => focus_steps('Design', 2)}>
 
               <img style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-                // placeholder={require('../../../src/Img/Untitled-1.jpg')}
                 id='userLogo-temp1'
-                // onClick={() => {changeCurrentComponent("Design")}}
-                // src='../../../src/Img/flowersLogo.png'
-                // placeholder={flowersLogo}
                 src={flowersLogo}
                 alt="Logo"
                 title="Your Logo Here"
                 onClick={() => { onLoad() }}
-              // style={isLoading ? { display: "none" } : {}}
               >
               </img>
               <div
-              // style={{ width: props.logowidth, borderRadius: props.borderlogo }}
-              // id='user-logo'
-              // src={props.logo}
-              // alt="Logo"
-              // title="Your Logo Here"
-              // onload={onLoad}
-              // style={isLoading ? {} : { display: "none" }}
               >
               </div>
 
@@ -343,12 +299,8 @@ function Invoice(props) {
                       size='15'
                       className={focus === 'companyWebsite' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
                       placeholder={detailsBusiness && detailsBusiness.socialmedias ? detailsBusiness.socialmedias.website ? detailsBusiness.socialmedias.website : "business website" : "business website"}
-                      //placeholder={detailsBusiness ? detailsBusiness.phone ? detailsBusiness.phone : "business phone" : "business phone"}
                       onClick={() => setFocus('companyWebsite')}
                       onBlur={updatedetailsBusiness1('website')}
-                      // onChange={('companyWebsite')}
-                      // value={companyChangesDetails.companyWebsite}
-                      // value={invoice.companyWebsite}
                       value={detailsBusiness && detailsBusiness.socialmedias && detailsBusiness.socialmedias.website}
                     />
                   </Col>
@@ -360,14 +312,10 @@ function Invoice(props) {
                       placeholder={detailsBusiness ? detailsBusiness.address ? detailsBusiness.address : "business Address" : "business Address"}
                       onClick={() => setFocus('companyAddress')}
                       onBlur={updatedetailsBusiness1('address')}
-                      // onChange={('companyWebsite')}
-                      // value={companyChangesDetails.companyWebsite}
-                      // value={invoice.companyAddress}
                       value={detailsBusiness && detailsBusiness.address}
                     />
                   </Col>
                   <Col md={4}>
-                    {/* <Link to="/" */}
                     <input
                       size='15'
                       className={focus === 'companyPhone' ? 'focus-temp1 text-center' : 'editable-temp1 text-center'}
@@ -375,9 +323,6 @@ function Invoice(props) {
                       onClick={() => setFocus('companyPhone')}
                       onChange={onFieldChanged('companyWebsite')}
                       onBlur={updatedetailsBusiness1('phone')}
-                      // onChange={('companyWebsite')}
-                      // value={companyChangesDetails.companyWebsite}
-                      // value={invoice.companyPhone}
                       value={detailsBusiness && detailsBusiness.phone}
                     />
                   </Col>
@@ -394,14 +339,6 @@ function Invoice(props) {
               <Col md={8} className='' onClick={() => focus_steps('Production', 1)}>
                 <Row className='static-temp1'>To:</Row>
                 <Row className="font-weight-bold mt-1 mb-1">
-                  {/* detailsInvoice || detailscontact ?detailsInvoice.customerName|| detailscontact.contact 
-              ? detailsInvoice.customerName?detailsInvoice.customerName:detailscontact.contact.name:"Customer's name"
-              :detailscontact.contact.name */}
-                  {console.log("detailsss", detailsInvoice)}
-                  {console.log("detailssscontact", detailscontact)}
-                  {console.log("detailssscontact", detailsInvoice && !detailscontact)}
-                  {/* detailsInvoice?detailscontact?detailscontact.contact.name:detailsInvoice.customerName?
-              detailsInvoice.customerName:"Customer's name":detailscontact?detailscontact.contact.name:"Customer's name" */}
 
                   <input
                     // placeholder={contactDetails ? contactDetails.name ? contactDetails.name : "Flowers" : "Flowers"}
@@ -412,12 +349,10 @@ function Invoice(props) {
                     onClick={() => setFocus('customerName')}
                     value={detailscontact && detailscontact.contact && detailscontact.contact.name}
                     ConBlur={onFieldChangeContact('name')}
-                  // onChange={onFieldChanged('customerName')}
                   />
                 </Row>
                 <Row >
                   <input
-                    // placeholder={contactDetails ? contactDetails.email ? contactDetails.email : "Flowers@gmail.com" : "Flowers@gmail.com"}
                     placeholder={
                       detailsInvoice && !detailscontact.contact ? detailsInvoice.contact ? allcontact1.find(x => x.email == detailsInvoice.contact) ? allcontact1.find(x => x.email == detailsInvoice.contact).email : "contact_email" : "contact_email" :
                         detailsInvoice ? detailscontact.contact.email : detailscontact.contact ? detailscontact.contact.email : "contact_email"}
@@ -431,8 +366,6 @@ function Invoice(props) {
 
                 <Row >
                   <input
-                    // detailsInvoice?detailsInvoice.customerPhone? detailsInvoice.customerPhone:"xxxx":"xxxx"
-                    // placeholder={contactDetails ? contactDetails.phone ? contactDetails.phone : "02.5864321" : "02.5864321"}
                     placeholder={detailsInvoice && !detailscontact.contact ? detailsInvoice.contact ? allcontact1.find(x => x.email == detailsInvoice.contact) ? allcontact1.find(x => x.email == detailsInvoice.contact).phone : "contact_phone" : "contact_phone" :
                       detailsInvoice ? detailscontact.contact.phone : detailscontact.contact ? detailscontact.contact.phone : "contact_phone"}
                     className={focus === 'customerPhone' ? 'focus-temp1' : 'editable-temp1'}
@@ -442,8 +375,6 @@ function Invoice(props) {
                 </Row>
                 <Row >
                   <input
-                    // detailsInvoice?detailsInvoice.customerAddress? detailsInvoice.customerAddress:"xxxx":"xxxx"
-                    // placeholder={contactDetails ? contactDetails.address ? contactDetails.address : "Arlozerov 2,Tel-Aviv" : "Arlozerov 2,Tel-Aviv"}
                     placeholder={detailsInvoice && !detailscontact.contact ? detailsInvoice.contact ? allcontact1.find(x => x.email == detailsInvoice.contact) ? allcontact1.find(x => x.email == detailsInvoice.contact).phone : "contact_adrress" : "contact_adrress" :
                       detailsInvoice ? detailscontact.contact.address : detailscontact.contact ? detailscontact.contact.address : "contact_adrress"}
                     className={focus === 'customerAddress' ? 'focus-temp1' : 'editable-temp1'}
@@ -455,13 +386,10 @@ function Invoice(props) {
               <Col md={4} className='' onClick={() => focus_steps('Content', 3)}>
                 <Row ><br /></Row>
                 <Row className="font-weight-bold mt-1 mb-1 ">
-                  {/*  */}
-                  {/* <Col md={2}></Col> */}
                   <Col md={6} className='static-temp1 text-left'>Invoice</Col>
                   <Col md={6} className='static-temp1 text-right p-0'>{detailsInvoice.invoiceNumber ? detailsInvoice.invoiceNumber : allInvoices.length + 1}</Col>
                 </Row>
                 <Row>
-                  {/* <Col md={2}></Col> */}
                   <Col md={6} className='static-temp1 text-left'>Date:{() => convertdate(detailsInvoice.date)}</Col>
                   <Col md={6}
                     className='static-temp1 text-right right p-0'
@@ -470,7 +398,6 @@ function Invoice(props) {
                   </Col>
                 </Row>
                 <Row>
-                  {/* <Col md={2}></Col> */}
                   <Col md={6} className='static-temp1 text-left'> Due Date:</Col>
                   <Col md={6} className='text-right p-0'>
 
@@ -479,9 +406,7 @@ function Invoice(props) {
                       type="date"
                       size="6"
                       defaultValue={new Date()}
-                      // onClick={changeCurrentComponent("Content")}
                       onChange={onFieldChanged('dueDate')}>
-                      {/* <Link to="/Design" style={{ backgroundColor: "white", border: "none" }}></Link> */}
                     </input>
 
                   </Col>
@@ -489,7 +414,6 @@ function Invoice(props) {
               </Col>
             </Row>
             <Row
-              // id='invoiceName' 
               className="font-weight-bold  justify-content-md-center py-5 mt-3 mb-3" onClick={() => focus_steps('Content', 3)}
             >
 
@@ -524,14 +448,14 @@ function Invoice(props) {
                     productSelect={productSelect}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />) :
+                    onItemDeleted={() => deleteItemFromStore(index, "map 1.1")} />) :
                 invoice.products.map((p, index) =>
                   <Item key={index}
                     productSelect={productSelect}
                     pro={p}
                     onItemChanged={(fieldChanged) =>
                       saveItemToStore(index, fieldChanged)}
-                    onItemDeleted={() => deleteItemFromStore(index)} />)}
+                    onItemDeleted={() => deleteItemFromStore(index, "map 1.2")} />)}
             </div>
 
             <Row className='mt-2'>
@@ -551,7 +475,6 @@ function Invoice(props) {
                   <Button variant="light"
                     id='comment-temp1'
                     className={focus === 'comment' ? 'focus-temp1' : 'editable-temp1'}
-                  // onClick={changeCurrentComponent("Content")}         
                   >
                     Comment +
                   </Button>
@@ -560,27 +483,19 @@ function Invoice(props) {
 
               <Col md={{ span: 4, offset: 9 }} className="total-temp1 text-right">
                 <Row>
-                  {/* <Link to="/Content" style={{ color: "black", border: "none" }}> */}
                   <Col md={4} className='font-weight-bold text-left'>SubTotal:</Col>
-                  {/* </Link> */}
                   <Col md={4} className='text-right p-0'>000</Col>
                 </Row>
                 <Row>
-                  {/* <Link to="/Content" style={{ color: "black", border: "none" }}> */}
                   <Col md={4} className='font-weight-bold text-left'>Discounts:</Col>
-                  {/* </Link> */}
                   <Col md={4} className='text-right p-0'>000</Col>
                 </Row>
                 <Row>
-                  {/* <Link to="/Content" style={{ color: "black", border: "none" }}> */}
                   <Col md={4} className='font-weight-bold text-left'>Taxes:</Col>
-                  {/* </Link> */}
                   <Col md={4} className='text-right p-0'>000</Col>
                 </Row>
                 <Row className=' font-weight-bold'>
-                  {/* <Link to="/Content" style={{ color: "black", border: "none" }}> */}
                   <Col md={4} className='totalSum-temp1 text-left pt-4'>Total:</Col>
-                  {/* </Link> */}
                   <Col md={4} className='totalSum-temp1 text-right pt-4 p-0'>138$</Col>
                 </Row>
               </Col>
@@ -591,7 +506,6 @@ function Invoice(props) {
               </div>
             </div>
           </Container>
-          {/* <Setting></Setting> */}
         </div>
       </div>
       <button style={{ backgroundColor: "red" }} onClick={save}></button>
@@ -613,18 +527,18 @@ function Invoice(props) {
 
 
 // export const Cell1 = (props) => {  
-//   console.log("cell1")
+//     "cell1")
 //   const [flag,setFlag]=useState(true)
 //   const allproduct=useSelector(state => state.productReducer.allProducts);
 //   const set_product=(e)=>{
 
-//     console.log("productssss",e)
+//       "productssss",e)
 //     setFlag(false)
 //     //  return <Item></Item>
 //   }
 //   return (
 //     <>
-//     {console.log("nhhhhh",flag)}
+//     {  "nhhhhh",flag)}
 //     {flag==false &&<Item></Item>}
 
 //   <Col className='py-3' md={2}>
@@ -640,7 +554,7 @@ function Invoice(props) {
 
 const productTotalCalculate = (a, b, c) => a * b - c
 // export const Hi = () => {
-//   // console.log("hiiii")
+//   //   "hiiii")
 // }
 
 export const Item = (props) => {
@@ -649,88 +563,41 @@ export const Item = (props) => {
   const detailsInvoice = useSelector(state => state.invoiceReducer.invoiceDetailsView);
   const invoice = useSelector(state => state.invoiceReducer.invoice)
   const allproduct = useSelector(state => state.productReducer.allProducts);
-  // const productSelect1 = useSelector(state => state.productReducer.productSelect);
-  // let productSelect1=[]
-
-  console.log("allproductctctctc", allproduct)
-  // const set_product=(e)=>{
-  //     ;
-  //   console.log("productssss",e)
-  //   dispatch(actions.setProduction(e.value))
-  //  return <Item></Item>
-  // }
-  console.log("", props)
 
   const vv2 = (e) => {
     dispatch(actions.setP(e.value.name))
-    console.log("evaluename", p)
-    console.log("tamar11", invoice.products.length)
     dispatch(actions.deleteLastProductInvoice());
-    console.log("tamar", invoice.products.length)
     dispatch(actions.setProducts(e.value._id));
-    console.log("yyyyyy", invoice.products)
 
   }
   const vv = (e) => {
     dispatch(actions.setP(e.value.name))
-    console.log("hereeee")
     dispatch(actions.deleteLastProduct());
     dispatch(actions.setProduction(e.value._id))
     dispatch(actions.setInvoceShow(detailsInvoice))
   }
   const [prod, setProd] = useState()
-  // console.log("ggpropsgg",props);
   const { vvv } = props
-  // console.log("vvv",vvv);
   const dispatch = useDispatch();
-  const {
-
-    onItemChanged, onItemDeleted, productSelect } = props;
-  // console.log("mumumuuuuuuuuu",mumumuuuuuuuuu)
-
+  const { onItemChanged, onItemDeleted, productSelect } = props;
   const updateCell = (title) => (value) => {
     onItemChanged({ [title]: value })
   }
   const totalProductRef = useRef([]);
 
-  // const searchP=(e)=>
-  // {
-  //    ;
-  //   console.log("allpr",allproduct)
-  //   let val=e.target.value.toLowerCase();
-
-  //   allproduct.filter(product=>(product.name!=null && product.name.toLowerCase().includes(val)))
-  //   .map(
-  //     product1=> 
-  //     {return(
-  //       console.log("marushhh",product1) &&
-  //       <h1>{product1.name}</h1>
-  //     )}
-  //   )
-  // }
   useEffect(() => {
 
-    console.log("props.pro", props.pro)
     if (props.pro != "null") {
       setProd(allproduct.find(x => x._id === props.pro))
-      console.log("prod", prod)
     }
-    console.log("totalProductRef")
   } // prints ref1 with the expected current  
   )
 
-  // const hhh=(key)=>{
-  //   console.log("key",key)
-  //   let addp=allproduct.find(x=>x._id==key);
-  //   console.log("addp",addp)
-  //   onItemDeleted()
-  //   productSelect.push(addp)
-  // }
+
   return (
 
     <>
 
-      {/* {console.log("rrrr", props)} */}
       <Row className='mr-0 ' id='row1'>
         <Col md={1} className='py-3'>
           <Button id='1'
@@ -778,7 +645,7 @@ export const Item = (props) => {
           type="number"
         ></Cell>
         <Col md={1} className='sum' style={props.arrColor ? { backgroundColor: props.arrColor[2] } : { backgroundColor: '#F2E7E7' }}>
-          {/* {console.log("sum",props.arrColor)}*/}
+          {/* {  "sum",props.arrColor)}*/}
           <div className='py-3' ref={totalProductRef}>
             {/*{productTotalCalculate(unitPrice, quantity, discount)}*/}
           </div>

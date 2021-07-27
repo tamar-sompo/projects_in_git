@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function FixLogo(props) {
-const [isUploadImage, setisUploadImage] = useState(false);
-console.log("upload", isUploadImage)
+    const [isUploadImage, setisUploadImage] = useState(false);
+    "upload", isUploadImage)
 
 
     const dispatch = useDispatch();
@@ -65,7 +65,7 @@ console.log("upload", isUploadImage)
             reader.onloadend = () => {
                 const imageToStor = { 'image': event, 'to': 'logo' }
                 dispatch(actions.setImage(imageToStor))
-                console.log("imageee", reader.result)
+                "imageee", reader.result)
             }
             reader.readAsDataURL(event)
         }
@@ -77,7 +77,7 @@ console.log("upload", isUploadImage)
     };
 
     const onChangeHandlerLogo = (event) => {
-        console.log("event", event)
+        "event", event)
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
@@ -85,7 +85,7 @@ console.log("upload", isUploadImage)
                 setImage(event)
             }
             reader.readAsDataURL(event)
-            console.log("logoooo", logoDesign.logo)
+            "logoooo", logoDesign.logo)
         }
     }
     return (
@@ -94,26 +94,26 @@ console.log("upload", isUploadImage)
                 <div>
                     {/* <div className="uploaddivLogo uploaddiv d-flex justify-content-between"> */}
                     {/* {isUploadImage===true? */}
-                        <img className="logoC"
-                            id="imageshow"
-                            alt=""
-                            onClick={onButtonClick}
-                            src={logoDesign.logo ? logoDesign.logo : <button  className="rounded" onChange={(e) => addImageList(e.target.files[0])}>
-             <FiUpload id="icon" size={30} style={{ color: "#8E73EC29" }} /> 
-                  </button>    
-                             } />
-                         <input name='buisnessLogo' style={{ display: 'none' }}
-                            type="file"
-                            className="i_topic d flex justify-content-center align-items-center"
-                            ref={inputFile}
-                            onChange={(e) => addImageList(e.target.files[0])}></input>  
-             {/* <button onClick={onButtonClick} className="rounded"> */}
-             {/* <FiUpload id="icon" size={30} style={{ color: "#8E73EC29" }} /> */}
-                 {/* </button>    */}
+                    <img className="logoC"
+                        id="imageshow"
+                        alt=""
+                        onClick={onButtonClick}
+                        src={logoDesign.logo ? logoDesign.logo : <button className="rounded" onChange={(e) => addImageList(e.target.files[0])}>
+                            <FiUpload id="icon" size={30} style={{ color: "#8E73EC29" }} />
+                        </button>
+                        } />
+                    <input name='buisnessLogo' style={{ display: 'none' }}
+                        type="file"
+                        className="i_topic d flex justify-content-center align-items-center"
+                        ref={inputFile}
+                        onChange={(e) => addImageList(e.target.files[0])}></input>
+                    {/* <button onClick={onButtonClick} className="rounded"> */}
+                    {/* <FiUpload id="icon" size={30} style={{ color: "#8E73EC29" }} /> */}
+                    {/* </button>    */}
                     {/* </div> */}
                 </div>
 
-                </div>
+            </div>
 
         </>);
 }

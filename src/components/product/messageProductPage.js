@@ -6,13 +6,10 @@ import { actions } from '../../redux/actions/All_actions'
 
 
 export default function MessageProductP(props) {
-    // console.log("functionshowModalDelete")
 
     const dispatch = useDispatch();
     const setPage = (status) => dispatch(actions.setPage(status))
     const page = useSelector(state => state.productReducer.page);
-
-    console.log("page", page)
     const handleClose = () => setPage(false);
     //no
     const openEdit = () => {
@@ -50,12 +47,12 @@ export default function MessageProductP(props) {
     //במעבר בין עמודים
     const flagNewP = useSelector(state => state.productReducer.flagNewP)
     const savePage = () => {
-        debugger
+
         if (flagNewP) {
             dispatch(actions.setdegel1(1)) //go to save new product
         }
         else {
-            debugger
+
             dispatch(actions.setdegel1(10))// after editing a product
             // dispatch(actions.setdegel2(true))
         }

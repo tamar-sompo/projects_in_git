@@ -55,22 +55,19 @@ export default function Fiances() {
 
     let TokenToString = document.cookie && document.cookie.includes("devJwt") ? document.cookie.split(";")
         .filter(s => s.includes('devJwt'))[0].split("=").pop() : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoY2h5U0VBZ1hFTmdvTnJTZ1ZMMWE4RTBrY3UxIiwiZW1haWwiOiJydXRoY29oZW5AbGVhZGVyLmNvZGVzIiwiaWF0IjoxNjIxMzI3MDg3fQ.MzgoqDOF_jMhJxa8BY5z7zFhMlka4fPzGYEL8opO_U4";
-    console.log("TTT", TokenToString)
     dispatch(actions.setTokenFromCookies(TokenToString))
 
 
     const show = useSelector(state => state.designReducer.show);
     const displayBoxShadow = useSelector(state => state.invoiceReducer.displayBoxShadow);
     const isSendMessage = useSelector(state => state.exportInvoiceReducer.isSendMessage);
-    console.log("isSendMessage", isSendMessage)
+
 
     const openDiv = () => {
-        console.log("openEmailForm")
         $(".sendEmailFromList").css("display", "block")
     }
 
     const closeDiv = () => {
-        console.log("ccclose")
         $(".sendEmailFromList").css("block", "none")
     }
 
@@ -89,9 +86,9 @@ export default function Fiances() {
 
     return (
         <>
-            <MessageProduct></MessageProduct>
-            <ModalNameInvoice></ModalNameInvoice>
-            <MessageSave></MessageSave>
+            <MessageProduct />
+            <ModalNameInvoice />
+            <MessageSave />
             <Router>
 
                 <div className="container-fluid">
@@ -108,22 +105,14 @@ export default function Fiances() {
                         <div className="d-flex justify-content-center" style={{ width: "95.5%", height: "100%" }}>
                             <div
                                 className="width_wrap d-flex justify-content-center align-items-center"
-                                // className={isSendMessage == "false" ? "width_wrap d-flex justify-content-center align-items-center " : "width_wrap_withemail d-flex justify-content-center align-items-center"}
                                 style={displayBoxShadow ? { marginTop: "1%", marginBottom: "1%" } : { backgroundColor: "white", borderRadius: "9px", boxShadow: "0px 3px 6px #0A26B126", marginTop: "1%", marginBottom: "1%" }}>
-                                {/* // style={{ backgroundColor: 'red', width: '40vh' }} */}
-                                {/* // className="d-flex justify-content-center" */}
-                                {/* > */}
-
-
-                                {/* <div className={isSendMessage == "true" ?
-                            "col-8 d-flex justify-content-center align-items-center" : "col-10 d-flex justify-content-center align-items-center flex_main"}> */}
 
                                 {show && <div style={{
                                     zIndex: "999", position: "absolute",
                                     marginRight: "160vh", marginTop: "70vh",
                                     width: "250px"
                                 }}>
-                                    <MassageFormat></MassageFormat> </div>}
+                                    <MassageFormat /> </div>}
                                 {/* <button style={{
                                     background: "red", width: "100px",
                                     zindex:"999",position:"absolute"}}></button> */}

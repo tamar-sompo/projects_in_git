@@ -1,15 +1,14 @@
-
-
 import React, { useState, useEffect } from 'react'
 import { Route } from 'react-router-dom';
 // import configData from '../config.json'
 import { useSelector } from 'react-redux';
+import keys from '../../config/env/keys';
 
 
 function redirectToLogin(routes) {
     window.location.href = routes ?
-        `https://dev.accounts.codes/finance/login?routes=${routes}` :
-        `https://dev.accounts.codes/finance/login`;
+        `${keys.LOGIN_URL}?routes=${routes}` :
+        `${keys.LOGIN_URL}`;
     return null
 }
 const ProtectedRoute = ({ component: Component, user, ...rest }) => {
@@ -18,9 +17,7 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     let routes = rest.computedMatch.params.nameVideo;
     // let userName = rest.computedMatch.params.userName;
     const userName = useSelector(state => state.publicReducer.userName);
-    console.log("uuuuuuuuuuuuusername", userName)
     useEffect(() => {
-        console.log("useEffectProtected")
         const isLocal = window.location.hostname === "localhost"
         const url = `https://finance.leader.codes/${userName}/isPermission?isLocal=${isLocal}`;
         const isPermission = async () => {
@@ -33,12 +30,10 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
                 },
             })
             if (response.status === 401) {
-                console.log("useEffectProtected2")
                 setIsLoading(false)
                 setIsLoggedIn(true)
             }
             else {
-                console.log("useEffectProtected1")
                 setIsLoading(false)
             }
         }

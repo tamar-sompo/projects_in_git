@@ -56,14 +56,11 @@ function ProductForm(props) {
   const newProductTable = useSelector(state => state.productReducer.newProductTable);
   // const isSave = useSelector(state => state.productReducer.isSave);
   // const isSave = useSelector(state => state.productReducer.isSave)
-  console.log("newProductTable.images", newProductTable.images);
 
   useEffect(() => {
-    // props.addProduct("sssss")
   }, [])
 
   const changeFlag = () => {
-    console.log('ffllaagg', props.flag);
     props.changeFlag(false)
     dispatch(actions.setFlagNewP(false))
   }
@@ -92,7 +89,7 @@ function ProductForm(props) {
   const isSave = useSelector(state => state.productReducer.isSave)
   useEffect(() => {
     if (isSave) {
-      debugger
+
       addNewProduct()
       // dispatch(actions.setIsSave(false))
     }
@@ -106,7 +103,7 @@ function ProductForm(props) {
   }, [degel])
 
   const addNewProduct = () => {
-    debugger
+
     if (!flagName && !flagPrice) {
       dispatch(actions.setNewProductServer())
       dispatch(actions.setFlagNewP(false))
@@ -118,7 +115,7 @@ function ProductForm(props) {
         dispatch(actions.setIsEdit(true))
       }
       dispatch(actions.setIsSave(false))
-      // debugger
+      //  
       // props.changeFlag(false)
     }
     else {
@@ -150,14 +147,13 @@ function ProductForm(props) {
 
         imageToStor = { 'image': event, 'to': 'product' }
         dispatch(actions.setImage(imageToStor))
-        console.log("imageee12kkkkkkkkkkkk", imageToStor)
       }
       reader.readAsDataURL(event)
     }
   }
 
   const updateCellPrice = (_value, fieldName) => {
-    debugger
+
     //הוא דואג לבדוק אם הכנים נצונים ביצירה של חדש
     // (בשביל מעבר בין עמ ולחיצה על מוצר)
     dispatch(actions.setIfSave(true))

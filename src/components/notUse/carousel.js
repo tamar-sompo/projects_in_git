@@ -6,8 +6,8 @@
 // import { useDispatch, useSelector } from 'react-redux';
 
 // export default class ListInvoice extends React.Component {
-     
-    
+
+
 //     constructor(props) {
 //         super()
 //         this.breakPoints = [
@@ -29,7 +29,7 @@
 //       setTimeout(() => {
 //         //   if(this.props.allInvoicesToBuisness.length !== 0)
 //         //   {
-//             console.log("this.props.invoiceList", this.props.invoiceList)
+//               "this.props.invoiceList", this.props.invoiceList)
 //               this.setState({
 //                  children: this.props.invoiceList.map((key, index)=> <div key={index}><Invoice lesson={key} /></div>) 
 //             })  
@@ -41,12 +41,12 @@
 //         const {
 //             children,
 //         } = this.state;
-     
+
 
 //         return (
-        
+
 //             <div>
-                
+
 //                 <Carousel className="one-carousel"
 //                     itemsToScroll={1}
 //                     isRTL={true}
@@ -54,7 +54,7 @@
 //                 >
 //                     {children}
 //                 </Carousel>
-    
+
 //             </div>
 //         )
 //     }
