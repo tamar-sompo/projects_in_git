@@ -1,19 +1,28 @@
 
 import React, { useEffect } from 'react'
 import './messageFormat.css'
+// import AllWorkspaces from '../workspace/allWorkspaces/allWorkspaces';
+// import TeamExample from '../team/teamExample'
+// import { Button, Modal, Form } from 'react-bootstrap';
+// import Moment from 'moment';
+// import { Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
-import keys from '../../config/env/keys';
+// import { Col, Row, Container, Toast } from 'react-bootstrap'
 
 function MassageFormat() {
   // let history = useHistory();
   const dispatch = useDispatch();
   const show = useSelector(state => state.designReducer.show);
+  console.log("ssssssssssssssooooooooooooooooooooo", show)
   const setShow = (status) => dispatch(actions.setShow(status))
   const nameAction = useSelector(state => state.designReducer.nameAction);
+  console.log("nameAction", nameAction)
   const productId = useSelector(state => state.productReducer.product1._id);
   // const invoiceId = useSelector(state => state.invoiceReducer.invoiceSave._id);
+  console.log("productvvvvvvvvvvvvvId", productId)//אין לו  ברדוסר כזה משתנה בעת יצירה
 
   useEffect(() => {
     if (show) setTimeout(() => {
@@ -35,7 +44,7 @@ function MassageFormat() {
   //       //לא קיימת עדין פונקציית מחיקה כזאת
   //       setShow(false);
   //     default:
-  //         "clum!!!!!!!!!1")
+  //       console.log("clum!!!!!!!!!1")
   //       setShow(false);;
   //   }
   // }
@@ -73,7 +82,7 @@ function MassageFormat() {
           </div>
 
 
-          // <CopyToClipboard text={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave.invoice._id}`}
+          // <CopyToClipboard text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
           //           onCopy={() => {
           //             setCopy(true)
           //             setTimeout(() => {

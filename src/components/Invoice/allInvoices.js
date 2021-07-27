@@ -343,7 +343,7 @@ function AllInvoices(props) {
                                           </a>
                                         </Tooltip>
                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
-                                          <a href={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoice._id}`} target="_blank"
+                                          <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
                                             style={{ height: "14px" }}>
                                             <MdRemoveRedEye id="icon"
                                               style={{ verticalAlign: "top", marginLeft: "5px", width: "16px", height: "16px" }}

@@ -96,33 +96,6 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
   }
   return next(action);
 }
-// export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action => {
-//   if (action.type === 'SET_SAVE_INVOICE') {
-//     // let buisnessId = getState().buisnessReducer.buisness._id;
-//     let invoice=action.payload
-//       "iiinvoice",invoice)
-//         let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/newInvoiceForBuisness/6087a5d6fef08c840a4558f6`
-//         $.ajax({
-//             url: urlData,
-//             method: 'POST',
-//             headers: {
-//                 Authorization: getState().publicReducer.tokenFromCookies
-//             },
-//             contentType: "application/json; charset=utf-8",
-//           data:JSON.stringify(invoice),
-//             success: function (data) {
-//                   "success add invoice", data)
-//                 // dispatch(actions.setPushInvoices2(data))
-//                 dispatch(actions.setGetAllInvoicesToBuisness())
-//             },
-//             error: function (err) {
-//                 //בדיקה אם חוזר 401 זאת אומרת שצריך לזרוק אותו ללוגין
-//                   "error", err)
-//             }
-//         });
-//     }
-//     return next(action);
-// }
 
 export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_UPDATE_INVOICE') {
@@ -171,30 +144,6 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
   return next(action);
 }
 
-
-// export const removeInvoiceById = ({ dispatch, getState }) => next => action => {
-//   if (action.type === 'SET_REMOVE_INVOICE') {
-//     // return new Promise((resolve, reject) => {
-//     let invoiceId = getState().invoiceReducer.invoiceId;
-//     let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/removeInvoiceForBuisnessById/${invoiceId}`
-//     $.ajax({
-//       headers: {
-//         Authorization: getState().publicReducer.tokenFromCookies
-//       },
-//       url: urlData,
-//       type: 'POST',
-//       withCradentials: true,
-//       async: false,
-//       contentType: "application/json; charset=utf-8",
-//       dataType: 'json',
-//       success: function (buisness) {
-//           "upDateBuisness", buisness)
-//         dispatch(actions.setGetAllBuisness(buisness))
-//       },
-//     });
-//   }
-//   return next(action);
-// }
 
 export const getInvoiceById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_INVOICE_BY_ID_FULL') {

@@ -20,7 +20,6 @@ export const sendNotificationToAll = ({ dispatch, getState }) => next => action 
         const userDesktopToken = action.payload
         let body = {
             "title": "An invoice has been created in your finance account",
-            //  "body": `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/view/${getState().invoiceReducer.invoiceSave.invoice._id}`,
             "body": "Your Box-account has been notified of invoice creation",
             "icon": "https://files.codes/uploads/ruthCohen/img/1623048638069__Artboard – 3.png",
             "fcmToken": userDesktopToken

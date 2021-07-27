@@ -19,7 +19,7 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     const userName = useSelector(state => state.publicReducer.userName);
     useEffect(() => {
         const isLocal = window.location.hostname === "localhost"
-        const url = `${keys.API_URL_BASE_CLIENT}/${userName}/isPermission?isLocal=${isLocal}`;
+        const url = `https://finance.leader.codes/${userName}/isPermission?isLocal=${isLocal}`;
         const isPermission = async () => {
             let response = await fetch(url, {
                 method: 'GET',

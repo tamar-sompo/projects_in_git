@@ -324,7 +324,7 @@ export default function Nav() {
           <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
             <div className="copy" style={{ border: "solid 1px #917BDF" }}>
               <CopyToClipboard
-                text={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave.invoice._id}`}
+                text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
                 onCopy={() => {
                   setCopy(true)
                   setTimeout(() => {
@@ -333,7 +333,7 @@ export default function Nav() {
                 }}>
                 <div className="linkCopydiv pointer" style={{ display: "inline" }}>
                   <span className="linkCopyspan px-3">
-                    <span>{`${keys.API_URL_BASE_CLIENT}/${invoiceSave.invoice._id.slice(0, 5)}${"..."}`}</span>
+                    <span>{`https://finance.leader.codes/${invoiceSave.invoice._id.slice(0, 5)}${"..."}`}</span>
                   </span>
                   <span className="linkCopyicon px-1"
                   // onClick={()=>setMail()}
@@ -355,7 +355,7 @@ export default function Nav() {
           <div className="col-8 d-flex justify-content-center" style={{ border: "3px black" }}>
             <div className="copy" style={{ border: "solid 1px #917BDF" }}>
               <CopyToClipboard
-                text={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave._id}`}
+                text={`https://finance.leader.codes/${userName}/view/${invoiceSave._id}`}
                 onCopy={() => {
                   setCopy(true)
                   setTimeout(() => {
@@ -364,7 +364,7 @@ export default function Nav() {
                 }}>
                 <div className="linkCopydiv pointer" style={{ display: "inline" }}>
                   <span className="linkCopyspan px-3">
-                    <span>{`${keys.API_URL_BASE_CLIENT}/${invoiceSave._id.slice(0, 5)}${"..."}`}</span>
+                    <span>{`https://finance.leader.codes/${invoiceSave._id.slice(0, 5)}${"..."}`}</span>
                   </span>
                   <span className="linkCopyicon px-1"
                   // onClick={()=>setMail()}

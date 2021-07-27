@@ -15,13 +15,14 @@ function checkPermission(result) {
   })
 }
 
-
 export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SEND_LINK_PAYPAL') {
+    console.log("paypalcrud")
     // let status = action.payload
     let items = getState().paymentsReducer.paypalInvoiceProductsTable
     // let num = items.length.toString()
     let totalToPAy = getState().invoiceReducer.saveSum
+    console.log("totalToPAy", items, totalToPAy)
     //   let buisnessPaypalDetails = getState().buisnessPaypalDetails;
     let buisnessPaypalDetails = {
       clientId:
@@ -37,8 +38,11 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
       //     
       items: items
     }
-    // let username = getState().publicReducer.userName;
-    let urlData = `${keys.API_URL_PAY}/YaelBrenig/payByPaypal`
+    console.log("chch", buisnessPaypalDetails)
+    let username = getState().publicReducer.userName;
+    let urlData = keys.API_URL_PAY + 'YaelBrenig' + '/payByPaypal';
+    // let urlData = `https://pay.leader.codes/YaelBrenig/payByPaypal`
+    console.log("urlData", urlData)
     $.ajax({
       url: urlData,
       method: 'POST',
@@ -48,10 +52,12 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(buisnessPaypalDetails),
       success: (link) => {
+        console.log("linkToPay", link)
         //   checkPermission(link).then((ifOk) => {
-        //       "okGetLink", link)
+        //     console.log("okGetLink", link)
         dispatch(actions.setSaveLinkPayToContact(link.href))
         dispatch(actions.setUpdateInvoice({ "paypalLink": link.href }))
+        console.log("oksendlinktostore", link)
       },
       error: (err) => {
         console.log("error", err)
@@ -64,10 +70,14 @@ export const getLinkToPayWithPaypal = ({ dispatch, getState }) => next => action
 // after paypal_buisness_form
 export const setClientIdToBuisness = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_CLIENT_ID_TO_BUISNESS') {
+    console.log("paypalbuisness")
     let currentBuisness = getState().buisnessReducer.buisness;
+    console.log("currentBuisness", currentBuisness)
     let username = getState().publicReducer.userName;
     let clientId = getState().paymentsReducer.buisnessPaypalDetails.client_id;
-    let urlData = `${keys.API_URL_BASE_CLIENT}/${username}/updateBuisness/${currentBuisness}`
+    console.log("clientId", clientId)
+    let urlData = keys.API_URL_BASE_CLIENT + username + '/updateBuisness/' + currentBuisness;
+    // let urlData = `https://finance.leader.codes/api/${username}/updateBuisness/${currentBuisness}`
     $.ajax({
       url: urlData,
       method: 'POST',
@@ -78,8 +88,9 @@ export const setClientIdToBuisness = ({ dispatch, getState }) => next => action 
       data: JSON.stringify({ "clientId": clientId }),
       success: async (buisness) => {
         //   checkPermission(link).then((ifOk) => {
-        //       "okGetLink", link)
+        //     console.log("okGetLink", link)
         // dispatch(actions.setSaveLinkPayToContact(link.href))
+        console.log("oksave", buisness.buisness)
         dispatch(actions.setGeCurrenttBuisness(buisness.buisness))
         dispatch(actions.setShow(true))
         await dispatch(actions.setNameAction("We have attached you to the service"))
@@ -99,11 +110,15 @@ export const setClientIdToBuisness = ({ dispatch, getState }) => next => action 
 // after paypal_buisness_form
 export const setPaymentDetailsToPayServer = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_PAYMENT_DETAILS_TO_PAY_SERVER') {
+    console.log("pay")
     let currentBuisness = getState().buisnessReducer.buisness;
     // let currentBuisness = getState().buisnessReducer.currentBuisness._id;
+    console.log("currentBuisness", currentBuisness)
     // let username = getState().publicReducer.userName;
     let paymentDetails = getState().paymentsReducer.buisnessPaypalDetails;
-    let urlData = `${keys.API_URL_PAY}/api/YaelBrenig‏/craetePaypalSecret`
+    console.log("paymentDetails", paymentDetails)
+    let urlData = keys.API_URL_BASE_CLIENT + "YaelBrenig‏" + '/craetePaypalSecret'
+    // let urlData = `https://pay.leader.codes/api/YaelBrenig‏/craetePaypalSecret`
     $.ajax({
       url: urlData,
       method: 'POST',
@@ -114,8 +129,9 @@ export const setPaymentDetailsToPayServer = ({ dispatch, getState }) => next => 
       data: JSON.stringify({ paymentDetails }),
       success: (result) => {
         //   checkPermission(link).then((ifOk) => {
-        //       "okGetLink", link)
+        //     console.log("okGetLink", link)
         // dispatch(actions.setSaveLinkPayToContact(link.href))
+        console.log("oksave3", result)
         // dispatch(actions.setShow(true))
         // dispatch(actions.setNameAction("We have attached you to the service"))
         //   })
