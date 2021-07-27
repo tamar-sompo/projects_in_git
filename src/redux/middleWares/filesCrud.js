@@ -2,8 +2,7 @@
 import $ from 'jquery'
 // import invoice from '../../components/Invoice/invoice';
 import { actions } from '../../redux/actions/All_actions'
-
-
+import keys from '../../config/env/keys';
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_IMAGE') {
@@ -13,7 +12,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
 
     $.ajax({
       type: "POST",
-      url: "https://files.codes/api/" + getState().publicReducer.userName + "/upload",
+      url: `${keys.API_URL_FILES}/` + getState().publicReducer.userName + "/upload",
       headers: { Authorization: getState().publicReducer.tokenFromCookies },
       data: myFile,
       processData: false,

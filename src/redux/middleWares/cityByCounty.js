@@ -1,12 +1,13 @@
-
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
+
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -64,7 +65,7 @@ export const getAllCountry = ({ dispatch, getState }) => next => action => {
   //     let countryName = action.payload;
   //      
   //     // return new Promise((resolve, reject) => {
-  //     let urlData = `https://finance.leader.codes/api/${countryName}/getAllCitiesByCountry`
+  //     let urlData = `${keys.API_URL_BASE_CLIENT}/${countryName}/getAllCitiesByCountry`
   //     $.ajax({
   //       headers: {
   //         Authorization: getState().publicReducer.tokenFromCookies

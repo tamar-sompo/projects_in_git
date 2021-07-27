@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ButtonGroup from 'react-bootstrap/Button';
-import ToggleButton from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions'
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
 import $ from "jquery";
 import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import '../customers/customers.css'
-import { MdEdit, MdDelete, MdContentCopy, MdRemoveRedEye, MdShare } from 'react-icons/md'
+import { MdEdit, MdRemoveRedEye } from 'react-icons/md'
 import ButtonPlus from '../forms/buttonPlus'
-import Invoice from '../Invoice/new_invoices/new_invoice'
-// import Invoice from './invoice'
 import './allInvoices'
-import { debounce } from '@material-ui/core';
 import LeaderLouder from '../../components/Useful/leaderLouder'
 import './allInvoices.css';
 import Share from '../wrap/share';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
-import New_Invoice from './new_invoices/new_invoice'
-import ModalToViewInvoice from './modalToViewInvoice'
-// import ImageList from '@material-ui/core/ImageList';
+import keys from '../../config/env/keys';
 
 function AllInvoices(props) {
 
@@ -354,7 +343,7 @@ function AllInvoices(props) {
                                           </a>
                                         </Tooltip>
                                         <Tooltip title={<p style={{ height: ".4vh", fontSize: '10px' }}>View</p>} placement="bottom">
-                                          <a href={`https://finance.leader.codes/${userName}/view/${invoice._id}`} target="_blank"
+                                          <a href={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoice._id}`} target="_blank"
                                             style={{ height: "14px" }}>
                                             <MdRemoveRedEye id="icon"
                                               style={{ verticalAlign: "top", marginLeft: "5px", width: "16px", height: "16px" }}

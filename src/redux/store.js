@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './actions/All_actions.js';
+import keys from '../config/env/keys.js';
 
 import {
     newBuisnessToUser,
@@ -182,7 +183,7 @@ else {
         var expires = "expires=" + date;
 
         if (!(document.cookie.split(";").filter(s => s.includes('devJwt'))[0]) || document.cookie.split(";").filter(s => s.includes('devJwt'))[0] === '')
-            document.cookie = "devJwt" + "=" + jwtGlobal + ";" + expires + ";domain=leader.codes;path=/";
+            document.cookie = `${keys.JWT}` + "=" + jwtGlobal + ";" + expires + ";domain=leader.codes;path=/";
 
         window.location.replace(newUrl)
 

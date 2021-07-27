@@ -1,16 +1,10 @@
 
 import React, { useEffect } from 'react'
 import './messageFormat.css'
-// import AllWorkspaces from '../workspace/allWorkspaces/allWorkspaces';
-// import TeamExample from '../team/teamExample'
-// import { Button, Modal, Form } from 'react-bootstrap';
-// import Moment from 'moment';
-// import { Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions/All_actions';
-// import { Col, Row, Container, Toast } from 'react-bootstrap'
+import keys from '../../config/env/keys';
 
 function MassageFormat() {
   // let history = useHistory();
@@ -79,7 +73,7 @@ function MassageFormat() {
           </div>
 
 
-          // <CopyToClipboard text={`https://finance.leader.codes/${userName}/view/${invoiceSave.invoice._id}`}
+          // <CopyToClipboard text={`${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave.invoice._id}`}
           //           onCopy={() => {
           //             setCopy(true)
           //             setTimeout(() => {

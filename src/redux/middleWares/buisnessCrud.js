@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -16,7 +17,7 @@ function checkPermission(result) {
 export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
   // if (action.type === 'SET_SEND_NEW_BUISNESS') 
   if (action.type === 'SET_BUISNESS_TO_SERVER') {
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newBuisness`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/newBuisness`
     // let buisness = getState().buisnessReducer.newBuisness
     let buisness = action.payload;
     $.ajax({
@@ -51,7 +52,7 @@ export const newBuisnessToUser = ({ dispatch, getState }) => next => action => {
 
 export const getAllbuisnessToUser = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_ALL_BUISNESS') {
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/allBuisness`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/allBuisness`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -83,7 +84,7 @@ export const updateBuisnessById = ({ dispatch, getState }) => next => action => 
     //   "current", current)
     const body = getState().buisnessReducer.updateBusiness;
     const buisnessId = action.payload;
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateBuisness/${buisnessId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/updateBuisness/${buisnessId}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -122,7 +123,7 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
     // const body = getState().buisnessReducer.settingBuisness;
     const body = action.payload;
     const buisnessId = action.payload._id;
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateBuisness/${buisnessId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/updateBuisness/${buisnessId}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -152,7 +153,7 @@ export const updateSettingBuisnessById = ({ dispatch, getState }) => next => act
 export const removeBuisnessById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_REMOVE_BUISNESS_BY_ID') {
     const buisnessId = action.payload;
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeBuinessById/${buisnessId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/removeBuinessById/${buisnessId}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -183,7 +184,7 @@ export const getBuisnessById = ({ dispatch, getState }) => next => action => {
     //להחזיר דחוףףףףףףף אם זה עושה בעיות
     // let id_buisness="6081530bdec1f741b4fca0e1"
 
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getBuinessById/${action.payload}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getBuinessById/${action.payload}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -205,7 +206,7 @@ export const getBuisnessById = ({ dispatch, getState }) => next => action => {
 
 export const getUserByUserName = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_USER_BY_USERNAME') {
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getUserByUserName`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getUserByUserName`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -237,7 +238,7 @@ export const getUserByUserName = ({ dispatch, getState }) => next => action => {
 export const getLastBuisness = ({ dispatch, getState }) => next => action => {
   if (action.type === 'GET_LAST_BUISNESS') {
     // setOldBuisness(getState().buisnessReducer.buisness)
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getLastBuisness`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getLastBuisness`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies

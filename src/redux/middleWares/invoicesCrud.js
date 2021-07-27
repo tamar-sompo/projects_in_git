@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -17,9 +18,8 @@ export const newSystemWave = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_SYSTEM_WAVE') {
     const id = getState().invoiceReducer.invoiceSave.invoice._id
     let userName = getState().publicReducer.userName
-    var link =
-      `https://finance.leader.codes/${userName}/view/${id}`
-    let urlData = `https://api.dev.leader.codes/createSystemWave`
+    var link = `${keys.API_URL_BASE_CLIENT}/${userName}/view/${id}`
+    let urlData = `${keys.API_URL_MASTER}/createSystemWave`
     let body = {
       subject: "Invoice created",
       body: 'New Invoice created successfuly, you can see it in:' + link,
@@ -53,7 +53,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
     let buisnessId = getState().buisnessReducer.buisness
     let currentBuisness = getState().buisnessReducer.currentBuisness
     let invoice = action.payload
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/${buisnessId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/newInvoiceForBuisness/${buisnessId}`
     $.ajax({
       url: urlData,
       method: 'POST',
@@ -101,7 +101,7 @@ export const newInvoiceToBuisness = ({ dispatch, getState }) => next => action =
 //     // let buisnessId = getState().buisnessReducer.buisness._id;
 //     let invoice=action.payload
 //       "iiinvoice",invoice)
-//         let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newInvoiceForBuisness/6087a5d6fef08c840a4558f6`
+//         let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/newInvoiceForBuisness/6087a5d6fef08c840a4558f6`
 //         $.ajax({
 //             url: urlData,
 //             method: 'POST',
@@ -135,7 +135,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
     }
     let invoiceId = getState().invoiceReducer.invoiceId;
     let vv = getState().invoiceReducer.viewConversion
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateInvoiceForBuisness/${invoiceId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/updateInvoiceForBuisness/${invoiceId}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -176,7 +176,7 @@ export const updateInvoiceById = ({ dispatch, getState }) => next => action => {
 //   if (action.type === 'SET_REMOVE_INVOICE') {
 //     // return new Promise((resolve, reject) => {
 //     let invoiceId = getState().invoiceReducer.invoiceId;
-//     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeInvoiceForBuisnessById/${invoiceId}`
+//     let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/removeInvoiceForBuisnessById/${invoiceId}`
 //     $.ajax({
 //       headers: {
 //         Authorization: getState().publicReducer.tokenFromCookies
@@ -202,7 +202,7 @@ export const getInvoiceById = ({ dispatch, getState }) => next => action => {
     // let invoiceId = getState().invoiceReducer.invoiceId;
     let invoiceId = action.payload
 
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getInvoiceForBuisnessById/${invoiceId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getInvoiceForBuisnessById/${invoiceId}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -233,7 +233,7 @@ export const getAllInvoicesToBuisness = ({ dispatch, getState }) => next => acti
     // let buisnessId = getState().publicReducer.buisness
     //זה הביזנס עם הנתוניםםםםםםםםםםםםםם
     // 6081530bdec1f741b4fca0e1
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllInvoicesForBuisness/${getState().buisnessReducer.buisness}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getAllInvoicesForBuisness/${getState().buisnessReducer.buisness}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies,

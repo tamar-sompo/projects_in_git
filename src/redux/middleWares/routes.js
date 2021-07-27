@@ -1,6 +1,6 @@
 
 export const protectedRoutes = ({ dispatch, getState }) => next => action => {
-  "arrived to protectedRoutes")
+
   if (action.type === 'EXTRACT_JWT') {
 
     let params = (new URL(document.location)).searchParams;

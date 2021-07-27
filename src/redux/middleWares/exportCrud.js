@@ -1,11 +1,12 @@
 import { actions } from '../../redux/actions/All_actions'
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -19,7 +20,7 @@ export const sendLinkToMail = ({ dispatch, getState }) => next => action => {
     let userName = getState().publicReducer.userName;
     let invoiceSave = getState().invoiceReducer.invoiceSave.invoice;
     const linkPayToContact = getState().paymentsReducer.linkPayToContact;
-    var url = `https://finance.leader.codes/${userName}/view/${invoiceSave._id}`;
+    var url = `${keys.API_URL_BASE_CLIENT}/${userName}/view/${invoiceSave._id}`;
     let text = getState().exportInvoiceReducer.emailDetails.html
     let textToPaypal = "Click here to pay"
     // let html

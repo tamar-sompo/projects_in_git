@@ -1,15 +1,14 @@
-
-
 import React, { useState, useEffect } from 'react'
 import { Route } from 'react-router-dom';
 // import configData from '../config.json'
 import { useSelector } from 'react-redux';
+import keys from '../../config/env/keys';
 
 
 function redirectToLogin(routes) {
     window.location.href = routes ?
-        `https://dev.accounts.codes/finance/login?routes=${routes}` :
-        `https://dev.accounts.codes/finance/login`;
+        `${keys.LOGIN_URL}?routes=${routes}` :
+        `${keys.LOGIN_URL}`;
     return null
 }
 const ProtectedRoute = ({ component: Component, user, ...rest }) => {
@@ -20,7 +19,7 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     const userName = useSelector(state => state.publicReducer.userName);
     useEffect(() => {
         const isLocal = window.location.hostname === "localhost"
-        const url = `https://finance.leader.codes/${userName}/isPermission?isLocal=${isLocal}`;
+        const url = `${keys.API_URL_BASE_CLIENT}/${userName}/isPermission?isLocal=${isLocal}`;
         const isPermission = async () => {
             let response = await fetch(url, {
                 method: 'GET',

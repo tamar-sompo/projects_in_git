@@ -1,12 +1,13 @@
 import $ from 'jquery'
 import { actions } from '../actions/All_actions'
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -18,7 +19,7 @@ export const getAllProductsToInvoice = ({ dispatch, getState }) => next => actio
     let buisnessId = getState().buisnessReducer.buisness
     if (action.payload)
       buisnessId = action.payload
-    let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllProductToInvoice/${buisnessId}`;
+    let url = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getAllProductToInvoice/${buisnessId}`;
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -46,7 +47,7 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
     let buisnessId = getState().buisnessReducer.buisness
     if (action.payload)
       buisnessId = action.payload
-    let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getAllProductsToBuisness/${buisnessId}`;
+    let url = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getAllProductsToBuisness/${buisnessId}`;
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -69,7 +70,7 @@ export const getAllProductsToBuisness = ({ dispatch, getState }) => next => acti
 
 export const deleteProductbyID = ({ dispatch, getState }) => next => action => {
   let id_product = action.payload
-  let url = `https://finance.leader.codes/api/${getState().publicReducer.userName}/removeProductFromBuisnessById/${id_product}`
+  let url = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/removeProductFromBuisnessById/${id_product}`
   if (action.type === "DELETE_PRODUCT") {
     return fetch(url, {
       method: 'POST',
@@ -100,7 +101,7 @@ export const newProductToBuisness = ({ dispatch, getState }) => next => action =
 
     let newProduct;
     let buisnessId = getState().buisnessReducer.buisness
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/newProductForBuisness/${buisnessId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/newProductForBuisness/${buisnessId}`
     if (action.payload || action.payload === 0)
       newProduct = getState().productReducer.newProduct[action.payload]
     else
@@ -173,7 +174,7 @@ export const updateProductById = ({ dispatch, getState }) => next => action => {
       newproduct = getState().productReducer.newProduct[action.payload];
       productId = getState().productReducer.productId
     }
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateProductForBuisness/${buisnessId}/${productId}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/updateProductForBuisness/${buisnessId}/${productId}`
     $.ajax({
       url: urlData,
       type: 'POST',
@@ -213,7 +214,7 @@ export const getProductById = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_PRODUCT') {
     // return new Promise((resolve, reject) => {
     let product = getState().productReducer.product;
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getProductForBuisnessById/${product._id}`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getProductForBuisnessById/${product._id}`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
@@ -238,7 +239,7 @@ export const getProductById = ({ dispatch, getState }) => next => action => {
 //   if (action.type === "DELETE_PRODUCT") {
 //     // return new Promise((resolve, reject) => {
 //     let product = getState().productReducer.product;
-//     let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/updateProductForBuisness/${product._id}`
+//     let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/updateProductForBuisness/${product._id}`
 //     $.ajax({
 //       headers: {
 //         Authorization: getState().publicReducer.tokenFromCookies

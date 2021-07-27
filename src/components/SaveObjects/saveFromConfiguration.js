@@ -30,28 +30,27 @@ function SaveButton(props) {
       async: false,
       dataType: 'json',
       success: function (data) {
-        "successSaveInvoiceFromConfiguration", data)
-    history.push("/save/" + data.invoice._id)
-  },
-});
+        history.push("/save/" + data.invoice._id)
+      },
+    });
   }
-return (
-  <>
-    <Fab
-      style={{ width: "150px" }}
-      variant="extended"
-      size="small"
-      color="primary"
-      aria-label="add"
-      // className={classes.margin}
-      onClick={() => saveInvoiceServerAction()}
-    // onClick={changeName}
-    >
-      <svg style={{ fill: "white", flexShrink: 0, margin: '5px' }} xmlns="http://www.w3.org/2000/svg" width="8.211" height="11.124" viewBox="0 0 8.211 11.124"><path d="M13.6,5.344,5.915.047A.265.265,0,0,0,5.5.265V10.859a.265.265,0,0,0,.415.218L13.6,5.78a.265.265,0,0,0,0-.436Z" transform="translate(-5.5 0)" /></svg>
-      {value}
-    </Fab>
-  </>
-)
+  return (
+    <>
+      <Fab
+        style={{ width: "150px" }}
+        variant="extended"
+        size="small"
+        color="primary"
+        aria-label="add"
+        // className={classes.margin}
+        onClick={() => saveInvoiceServerAction()}
+      // onClick={changeName}
+      >
+        <svg style={{ fill: "white", flexShrink: 0, margin: '5px' }} xmlns="http://www.w3.org/2000/svg" width="8.211" height="11.124" viewBox="0 0 8.211 11.124"><path d="M13.6,5.344,5.915.047A.265.265,0,0,0,5.5.265V10.859a.265.265,0,0,0,.415.218L13.6,5.78a.265.265,0,0,0,0-.436Z" transform="translate(-5.5 0)" /></svg>
+        {value}
+      </Fab>
+    </>
+  )
 }
 
 export default connect()(SaveButton)

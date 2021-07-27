@@ -1,13 +1,12 @@
-
-
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys';
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status === "401") {
       result.routes ?
-        window.location.assign(`https://dev.acoounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -19,7 +18,7 @@ export const getContactToUserById = ({ dispatch, getState }) => next => action =
 
     const id = action.payload;
     let userName = getState().publicReducer.userName;
-    return fetch(`https://api.dev.leader.codes/${userName}/getContact/${id}`
+    return fetch(`${keys.API_URL_MASTER}/${userName}/getContact/${id}`
       , {
         method: 'GET',
         headers: {
@@ -42,7 +41,7 @@ export const getAllContactsToUser = ({ dispatch, getState }) => next => action =
     // let id = action.payload
 
     let userName = getState().publicReducer.userName
-    return fetch(`https://api.dev.leader.codes/${userName}/getContacts/?includesConversations=false`
+    return fetch(`${keys.API_URL_MASTER}/${userName}/getContacts/?includesConversations=false`
       , {
         method: 'GET',
         headers: {
@@ -84,8 +83,8 @@ export const getAllContactsToUser = ({ dispatch, getState }) => next => action =
 //               message += `<tr> <td><b>${key}:<b/></td><td>${newContact[key]}</td></tr>`;
 //       })
 //       message += `</table>`;
-//       // `https://api.dev.leader.codes/chedva/getContact/${id}`
-//       return fetch('https://api.dev.leader.codes/ruthkremer/createContact', {
+//       // `${keys.API_URL_MASTER}/chedva/getContact/${id}`
+//       return fetch('${keys.API_URL_MASTER}/ruthkremer/createContact', {
 //           method: 'POST',
 //           headers: {
 //               Authorization: TokenToString,
@@ -158,7 +157,7 @@ export const updateContat = ({ dispatch, getState }) => next => action => {
     const allC = getState().customerReducer.allContact;
     //     contact.thumbnail = result;
 
-    return fetch('https://api.dev.leader.codes/' + userName + '/editContact/' + contactId, {
+    return fetch(`${keys.API_URL_MASTER}/` + userName + '/editContact/' + contactId, {
       method: 'PUT',
       headers: {
         Authorization: TokenToString,
@@ -219,8 +218,8 @@ export const createContact = ({ dispatch, getState }) => next => action => {
         message += `<tr> <td><b>${key}:<b/></td><td>${newContact[key]}</td></tr>`;
     })
     message += `</table>`;
-    // `https://api.dev.leader.codes/chedva/getContact/${id}`
-    return fetch(`https://api.dev.leader.codes/${userName}/createContact`, {
+    // `${keys.API_URL_MASTER}/chedva/getContact/${id}`
+    return fetch(`${keys.API_URL_MASTER}/${userName}/createContact`, {
       method: 'POST',
       headers: {
         Authorization: TokenToString,
@@ -247,7 +246,7 @@ export const createContact = ({ dispatch, getState }) => next => action => {
     }).then((response) => {
       if (response.status !== 201) {
         response.json().then(function (object) {
-          console.log("objecttttt", object.type, object.message)
+          console.log("object", object.type, object.message)
           // dispatch(actions.setAlert({
           //     alertType: 'error',
           //     message: object.message,
@@ -276,8 +275,6 @@ export const createContact = ({ dispatch, getState }) => next => action => {
             dispatch(actions.setModalBody(""))
             // alert("oooo");
             // dispatch(actions.setNewContact(resJson))
-
-
           })
         })
       }

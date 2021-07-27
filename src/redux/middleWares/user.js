@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import { actions } from '../actions/All_actions';
+import keys from '../../config/env/keys'
 
 function checkPermission(result) {
   return new Promise((resolve, reject) => {
     if (result.status == "401") {
       result.routes ?
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
-        window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
+        window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
+        window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
       reject(false)
     }
     resolve(true)
@@ -16,7 +17,7 @@ function checkPermission(result) {
 
 export const getUserByUserName = ({ dispatch, getState }) => next => action => {
   if (action.type === 'SET_GET_USER_BY_USERNAME') {
-    let urlData = `https://finance.leader.codes/api/${getState().publicReducer.userName}/getUserByUserName`
+    let urlData = `${keys.API_URL_BASE_CLIENT}/${getState().publicReducer.userName}/getUserByUserName`
     $.ajax({
       headers: {
         Authorization: getState().publicReducer.tokenFromCookies
