@@ -746,13 +746,12 @@ function New_Invoice(props) {
       // alert("vv")
     }
 
-
     const form = event.currentTarget;
-    //    
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      alert('bbbbbbbbbb')
+      console.log("in handleSubmit at new_invioce")
     }
     //   event.preventDefault();
     setValidated(true);

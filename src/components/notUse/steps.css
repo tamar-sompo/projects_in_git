@@ -26,66 +26,68 @@
 color:#BDBDBD ;
 }  */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
-.progress div{
-margin: auto;
-display: inline-block;
-}
 
-
- .lineStep{
-    height: 0.7vh;
+.progress div {
+    margin : auto;
     display: inline-block;
+}
+
+
+.lineStep {
+    height             : 0.7vh;
+    display            : inline-block;
     /* background-color:#787D91; */
-    border-radius: 50px;
+    border-radius      : 50px;
 }
-.itemStep{
-    width: 7vh;
-    height: 7vh;
-    font-family: 'Lato', sans-serif;
-    color:#787D91 ;
-    border: #787D91 solid 3px;
-    border-radius: 50px; 
-    display: inline-block !important;
-    font-size: 3.5vh;
-    text-align: center;
-    font-weight: 400;
+
+.itemStep {
+    width          : 7vh;
+    height         : 7vh;
+    font-family    : 'Lato', sans-serif;
+    color          : #787D91;
+    border         : #787D91 solid 3px;
+    border-radius  : 50px;
+    display        : inline-block !important;
+    font-size      : 3.5vh;
+    text-align     : center;
+    font-weight    : 400;
     text-decoration: none !important;
-    line-height: 6vh;
+    line-height    : 6vh;
 }
+
 /* .itemStep:focus{
     text-decoration: none;
     color:#BDBDBD ;
 } */
-.itemStep:hover{
+.itemStep:hover {
     text-decoration: none !important;
-    color:#787D91 ;
-    
-}
-.iconV{
-
-        background-image:  "linear-gradient(to bottom,#917BDF,#6236FF )"; 
-        color:'unset';
+    color          : #787D91;
 
 }
 
-.textStep{  
-    color:#787D91 ;
+.iconV {
 
-} 
-.bbbb{
-        /* background: linear-gradient(to right, red 50%, green 50%) left; 
+    background-image: "linear-gradient(to bottom,#917BDF,#6236FF )";
+    color           : 'unset';
+
+}
+
+.textStep {
+    color: #787D91;
+
+}
+
+.bbbb {
+    /* background: linear-gradient(to right, red 50%, green 50%) left; 
         background-size: 200%;
         transition: .3s ease-out;  */
-        background-image: 'linear-gradient(to bottom,#917BDF ,#6236FF )';
-        position: absolute;
-        /* right: 0; */
-        width: 0;
-    }
-    .aaaa{
-        position: relative;
-        background-color: '#787D91' ;
-    }
-.bbbb:focus {
-    /* border-bottom: 3px solid #917BDF #787D9; 
-    background-position: right; */
+    background-image: 'linear-gradient(to bottom,#917BDF ,#6236FF )';
+    position        : absolute;
+    /* right        : 0; */
+    width           : 0;
+}
+
+.aaaa {
+    position        : relative;
+    background-color: '#787D91';
 }
