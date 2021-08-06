@@ -66,11 +66,11 @@ const products = {
                 state.newProduct = []
         },
         editProduct11(state, action) {
-                alert("editProduct11")
+                // alert("editProduct11")
                 state.allProducts[action.payload.i] = action.payload.objectProduct.product
         },
         setAddProduct(state, action) {
-                alert("setAddProduct")
+                // alert("setAddProduct")
                 state.allProducts.unshift(action.payload)
                 // state.allProducts.splice(0, 0, action.payload);
         },
