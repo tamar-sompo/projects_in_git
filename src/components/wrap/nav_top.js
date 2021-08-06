@@ -409,7 +409,7 @@ export default function Nav() {
               style={{ marginLeft: "33%", width: "100%", height: "39%", border: "none", color: "white", fonStize: "0.8vw", backgroundColor: colorFlagShowSaveP, marginBottom: "2px" }}
               // onClick={savepr}backgroundColor: 'transparent'
               className={flagSaveP ? "saving2 mt-2 mb-2" : "saving1 mt-2 mb-2"}
-              value="save"
+              value={window.location.href.indexOf("invoice/edit") != -1 ? 'update' : 'save'}
               // className="btn"
               type="submit"
             />

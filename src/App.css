@@ -5,7 +5,7 @@ button, input, optgroup, select, textarea{
   font:menu;
 }
 body{
-  background:#F7F7F7;
+  background:#F7F7F7 !important;
   /* #EBEAEA 0% 0% no-repeat padding-box; */
   overflow: hidden;
 }
