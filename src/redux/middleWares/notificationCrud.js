@@ -6,8 +6,8 @@ function checkPermission(result) {
     return new Promise((resolve, reject) => {
         if (result.status === "401") {
             result.routes ?
-                window.location.assign(`${keys.LOGIN_URL}‏?des=${result.des}'&routes='${result.routes}`) :
-                window.location.assign(`${keys.LOGIN_URL}?des=${result.des}`)
+            window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}'&routes='${result.routes}`) :
+            window.location.assign(`https://dev.accounts.leader.codes/login?des=${result.des}`)
             reject(false)
         }
         resolve(true)
